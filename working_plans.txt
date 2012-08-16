@@ -84,7 +84,6 @@
 
 Прочитать Introduction в Angrist, Pischke, Mostly harmless econometrics
 
-Regression fallacy (заодно и история термина регрессия) Maddala
 
 
 
@@ -131,6 +130,13 @@ f <- function(x) {
 Подписи на осях графика с единицами измерения, "ввп, млрд руб"
 
 Обязательное наличие атрибута 'var_labels' в dataframe 
+
+
+[Возвращение к среднему](http://avva.livejournal.com/2426970.html)
+Плохие студенты исправляются сами...
+Regression fallacy (заодно и история термина регрессия) Maddala
+
+
 
 
 

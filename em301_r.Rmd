@@ -1,6 +1,6 @@
 ```{r setup, echo=FALSE}
 # автоматически в html/md документ к картинкам будет добавляться путь...
-opts_knit$set(base.url = "https://github.com/bdemeshev/em_301/raw/master/")
+opts_knit$set(base.url = "https://github.com/bdemeshev/em301/raw/master/")
 ````
 
 Эконометрика в R
