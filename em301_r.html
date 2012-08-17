@@ -247,8 +247,8 @@ mkdir the_new_folder
 <li>Запустить скрипт R
 <code>
 C:\path_to_R\Rscript file_to_run.R
-</code>
-По умолчанию в Windows для запуска программы нужно указывать её полный путь. Чтобы этого не делать каждый раз, а писать коротко <code>Rscript file_to_run.R</code>, нужно внести путь к папке с R в переменную $PATH. Для этого&hellip;</li>
+</code><code>
+По умолчанию в Windows для запуска программы нужно указывать её полный путь. Чтобы этого не делать каждый раз, а писать коротко</code>Rscript file_to_run.R, нужно внести путь к папке с R в переменную $PATH. Для этого&hellip;</li>
 </ol>
 
 <h3>Навигация по папкам:</h3>
@@ -282,8 +282,8 @@ C:\path_to_R\Rscript file_to_run.R
 <pre><code>##  [1] &quot;datasets&quot;           &quot;em301_ht1.txt&quot;      &quot;em301_ht1.txt~&quot;    
 ##  [4] &quot;em301_r.html&quot;       &quot;em301_r.md&quot;         &quot;em301_r.Rmd&quot;       
 ##  [7] &quot;em301_r.Rmd~&quot;       &quot;figure&quot;             &quot;hse_notes&quot;         
-## [10] &quot;README.md&quot;          &quot;README.md~&quot;         &quot;the_new_folder&quot;    
-## [13] &quot;working_plans.txt&quot;  &quot;working_plans.txt~&quot;
+## [10] &quot;log_file.txt&quot;       &quot;README.md&quot;          &quot;README.md~&quot;        
+## [13] &quot;the_new_folder&quot;     &quot;working_plans.txt&quot;  &quot;working_plans.txt~&quot;
 </code></pre>
 
 <p>Можно указать пролистываемую папку, <code>dir(&#39;folder&#39;)</code><br/>
@@ -523,14 +523,6 @@ df = read.dta(&quot;myfile.dta&quot;)
 <pre><code class="r">install.packages(&quot;vcd&quot;)
 </code></pre>
 
-<pre><code>## Installing package(s) into
-## &#39;/home/yuliana/R/i686-redhat-linux-gnu-library/2.15&#39; (as &#39;lib&#39; is
-## unspecified)
-</code></pre>
-
-<pre><code>## Error: trying to use CRAN without setting a mirror
-</code></pre>
-
 <p>После установки пакета на компьютер, его можно загрузить</p>
 
 <pre><code class="r">library(vcd)
@@ -564,6 +556,48 @@ df = read.dta(&quot;myfile.dta&quot;)
     return(-logl)
 }
 </code></pre>
+
+<h3>Схожие сюжеты нужно рассказывать рядом</h3>
+
+<p>logit/probit<br/>
+SVM<br/>
+RandomForest</p>
+
+<p>Ridge Regression<br/>
+Lasso</p>
+
+<p>На графиках показать:</p>
+
+<p>OLS &mdash; Lowess<br/>
+Logit/Probit &mdash; сглаживание вероятности (показать сами данные точечками)<br/>
+Оценка pdf с помощью ML &mdash; Kernel estimation, Гистограмма (сами данные &mdash; черточками)</p>
+
+<p>OLS &mdash; quantile regression</p>
+
+<p>Метод главных компонент (corr, cov)<br/>
+Факторный анализ</p>
+
+<h3>Временные ряды</h3>
+
+<p>Раскрываем мировой заговор! Временные ряды &mdash; это вовсе не ряды! Это последовательности! </p>
+
+<p>Последовательность: \( x_1 \), \( x_2 \), \( x_3 \), &hellip;.</p>
+
+<p>Ряд: \( x_1+x_2+x_3+\ldots \)</p>
+
+<h3>Bootstrap</h3>
+
+<h3>SEM</h3>
+
+<h3>Logit/probit</h3>
+
+<h4>Классический подход к logit/probit</h4>
+
+<h4>Байесовский подход к logit/probit</h4>
+
+<h4>SVM</h4>
+
+<h4>RandomForest</h4>
 
 <h3>MCMC</h3>
 
@@ -655,6 +689,12 @@ f(\theta|G-\theta) \sim f(\theta|parents(\theta))\cdot \prod_{a
 </ul>
 
 <p><a href="http://stackoverflow.com/questions/11715408">Источник</a></p>
+
+<h3>Пообсуждать с К.Ф.:</h3>
+
+<p>Зачем мы проверяем beta=0, если мы точно знаем, что это не так?</p>
+
+<p>Что же всё таки делать с данными по генеральной совокупности?</p>
 
 </body>
 
