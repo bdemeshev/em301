@@ -201,55 +201,70 @@ hljs.initHighlightingOnLoad();
 <p>Linux/MacOs<br/>
 1. Узнать текущую рабочую директорию:</p>
 
-<pre><code>pwd
+<pre><code class="r">pwd
 </code></pre>
 
 <ol>
-<li>Сменить директорию:
-<code>
-cd target_folder
-</code>
-Не забывайте, что в командной строке работает <Tab> и клавиши вверх, вниз.</li>
-<li>Посмотреть список файлов в текущей директории:
-<code>
-ls
-</code></li>
-<li>Создать папку
-<code>
-mkdir the_new_folder
-</code></li>
-<li>Запустить скрипт R
-<code>
-Rscript file_to_run.R
-</code></li>
+<li>Сменить директорию:</li>
 </ol>
+
+<pre><code class="r">cd target_folder
+</code></pre>
+
+<p>Не забывайте, что в командной строке работает <Tab> и клавиши вверх, вниз.<br/>
+3. Посмотреть список файлов в текущей директории:</p>
+
+<pre><code class="r">ls
+</code></pre>
+
+<ol>
+<li>Создать папку</li>
+</ol>
+
+<pre><code class="r">mkdir the_new_folder
+</code></pre>
+
+<ol>
+<li>Запустить скрипт R</li>
+</ol>
+
+<pre><code class="r">Rscript file_to_run.R
+</code></pre>
 
 <p>Windows:<br/>
 1. Узнать текущую рабочую директорию:</p>
 
-<pre><code>cd
+<pre><code class="r">cd
 </code></pre>
 
 <ol>
-<li>Сменить директорию:
-<code>
-cd target_folder
-</code>
-Не забывайте, что в командной строке работает <Tab> и клавиши вверх, вниз.</li>
-<li>Посмотреть список файлов в текущей директории:
-<code>
-dir
-</code></li>
-<li>Создать папку
-<code>
-mkdir the_new_folder
-</code></li>
-<li>Запустить скрипт R
-<code>
-C:\path_to_R\Rscript file_to_run.R
-</code><code>
-По умолчанию в Windows для запуска программы нужно указывать её полный путь. Чтобы этого не делать каждый раз, а писать коротко</code>Rscript file_to_run.R, нужно внести путь к папке с R в переменную $PATH. Для этого&hellip;</li>
+<li>Сменить директорию:</li>
 </ol>
+
+<pre><code class="r">cd target_folder
+</code></pre>
+
+<p>Не забывайте, что в командной строке работает <Tab> и клавиши вверх, вниз.<br/>
+3. Посмотреть список файлов в текущей директории:</p>
+
+<pre><code class="r">dir
+</code></pre>
+
+<ol>
+<li>Создать папку</li>
+</ol>
+
+<pre><code class="r">mkdir the_new_folder
+</code></pre>
+
+<ol>
+<li>Запустить скрипт R</li>
+</ol>
+
+<pre><code class="r">C:\path_to_R\Rscript file_to_run.R
+</code></pre>
+
+<p>По умолчанию в Windows для запуска программы нужно указывать её полный путь. Чтобы этого не делать каждый раз, а писать коротко <code>Rscript file_to_run.R</code>, нужно внести путь к папке с R в переменную $PATH. Для этого&hellip;</p>
 
 <h3>Навигация по папкам:</h3>
 
@@ -267,10 +282,7 @@ C:\path_to_R\Rscript file_to_run.R
 <li>Установить рабочую директорию:</li>
 </ol>
 
-<pre><code class="r">setwd(&quot;/home/boris/&quot;)
-</code></pre>
-
-<pre><code>## Error: невозможно сменить рабочий каталог
+<pre><code class="r">setwd(&quot;/home/boris/science/emetrix/em301&quot;)
 </code></pre>
 
 <p>Не забывайтие, что в R-studio работает <Tab>!<br/>
@@ -286,13 +298,19 @@ C:\path_to_R\Rscript file_to_run.R
 ## [13] &quot;the_new_folder&quot;     &quot;working_plans.txt&quot;  &quot;working_plans.txt~&quot;
 </code></pre>
 
-<p>Можно указать пролистываемую папку, <code>dir(&#39;folder&#39;)</code><br/>
-4. Создать папку</p>
+<p>Можно указать пролистываемую папку, например,</p>
 
-<pre><code class="r">dir.create(&quot;the_new_folder&quot;)
+<pre><code class="r">dir(&quot;datasets&quot;)
 </code></pre>
 
-<pre><code>## Warning: &#39;the_new_folder&#39; уже существует
+<pre><code>## [1] &quot;faithful_2011.txt&quot; &quot;p2011.zip&quot;         &quot;p2012.zip&quot;        
+</code></pre>
+
+<ol>
+<li>Создать папку</li>
+</ol>
+
+<pre><code class="r">dir.create(&quot;the_new_folder&quot;)
 </code></pre>
 
 <ol>
@@ -309,19 +327,15 @@ C:\path_to_R\Rscript file_to_run.R
 <li>Запустить скрипт не выходя из R:</li>
 </ol>
 
-<pre><code class="r">source(&quot;script_to_run.txt&quot;)
-</code></pre>
-
-<pre><code>## Warning: не могу открыть файл &#39;script_to_run.txt&#39;: Нет такого файла или
-## каталога
-</code></pre>
-
-<pre><code>## Error: не могу открыть соединение
+<pre><code class="r">source(&quot;script_to_run.R&quot;)
 </code></pre>
 
 <ol>
 <li>Выйти из R <code>quit()</code> или коротко <code>q()</code></li>
 </ol>
+
+<pre><code class="r">q()
+</code></pre>
 
 <p>На дворе 21 век, тем не менее:</p>
 
@@ -383,8 +397,9 @@ stud
 
 <p>В матрицы:</p>
 
-<p>Маленькая техническая подробность. На самом деле R хранит любую матрицу в виде вектора с дополнительной пометкой, атрибутом, о размере матрицы.<br/>
-Узнаём размер матрицы:</p>
+<p>Маленькая техническая подробность. На самом деле R хранит любую матрицу в виде вектора с дополнительной пометкой, атрибутом, о размере матрицы. </p>
+
+<p>Узнаём размер матрицы:</p>
 
 <pre><code class="r">dim(mat)
 </code></pre>
@@ -448,6 +463,10 @@ df = read.dta(&quot;myfile.dta&quot;)
 
 <h3>Рисование графиков</h3>
 
+<blockquote>
+<p>В выборке из ста муравьёв и одного кита средняя масса муравья может превышать тонну.</p>
+</blockquote>
+
 <p>Можно рисовать графики встроенными средствами R, но для более качественных графиков мы будем использовать пакет <code>ggplot2</code></p>
 
 <pre><code class="r">library(ggplot2)
@@ -458,7 +477,7 @@ df = read.dta(&quot;myfile.dta&quot;)
 <pre><code class="r">plot(cars)
 </code></pre>
 
-<p><img src="https://github.com/bdemeshev/em301/raw/master/figure/unnamed-chunk-18.png" alt="plot of chunk unnamed-chunk-18"/> </p>
+<p><img src="https://github.com/bdemeshev/em301/raw/master/figure/unnamed-chunk-30.png" alt="plot of chunk unnamed-chunk-30"/> </p>
 
 <h3>Оценка простой модели регрессии</h3>
 
@@ -541,7 +560,9 @@ df = read.dta(&quot;myfile.dta&quot;)
 
 <h3>MLE in R</h3>
 
-<p>В реальности редко приходится вручную максимизировать функцию правдоподобия. Для популярных моделей в R уже есть готовые функции. Для замысловатых экзотических моделей скорее всего имеет смысл воспользоваться MCMC, так как ML будет работать плохо. Однако в учебных целях это просто обязательно!</p>
+<p>В реальности редко приходится вручную максимизировать функцию правдоподобия. Для популярных моделей в R уже есть готовые функции. Для замысловатых экзотических моделей ML будет &ldquo;нехорошо себя вести&rdquo;. Например, он будет крутиться вокруг локального экстремума, не сходится вообще или требовать огромного времени на численный подсчёт тройных интегралов. В экзотических моделях скорее всего имеет смысл воспользоваться MCMC. </p>
+
+<p>Однако в учебных целях написать ML руками просто обязательно. Чтобы пользоваться калькулятором с чистой совестью, нужно уметь умножать в столбик!</p>
 
 <p>Хорошие мелочи: </p>
 
