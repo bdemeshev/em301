@@ -1,0 +1,79 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{/home/boris/science/tex_general/title_bor_utf8}
+
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+\listoftodos
+
+
+
+\section{Ridge/Lasso regression}
+
+LASSO --- Least Absolute Shrinkage and Selection Operator. Метод построения регрессии, предложенный Robert Tibshirani в 1995 году.
+
+Вспомним обычный МНК:
+\begin{equation}
+\min_{\beta} (y-X\beta)'(y-X\beta)
+\end{equation}
+
+
+LASSO вместо исходной задачи решает задачу условного экстремума:
+\begin{equation}
+\min_{\beta} (y-X\beta)'(y-X\beta)
+\end{equation}
+при ограничении $\sum_{j=1}^{k}|\beta_j|\leq c$.
+
+\todo[inline]{Проверить! Нет ли у $\beta_1$ особого положения?}
+
+Естественно, при больших значениях $c$ результат LASSO совпадает с МНК. Что происходит при малых $c$?
+
+
+Для наглядности рассмотрим задачу с двумя коэффициентами $\beta$: $\beta_1$ и $\beta_2$. Линии уровня целевой функции --- эллипсы. Допустимое множество имеет форму ромба с центром в начала координат.
+
+
+\todo[inline]{на картинке три $c$: очень большое --- дающиее мнк решение, меньше --- ненулевые $\beta$, маленькое --- одна из $\beta$  равна 0}
+
+
+То есть при малых $c$ LASSO обратит ровно в ноль некоторые коэффициенты $\beta$.
+
+
+Применим метод множителей Лагранжа для случая, когда ограничение $\sum_{j=1}^{k}|\beta_j|\leq c$ активно, то есть выполнено как равенство. 
+
+\begin{equation}
+L(\beta,\lambda)=(y-X\beta)'(y-X\beta)+\lambda (\sum_{j=1}^{k}|\beta_j| - c )
+\end{equation}
+
+Необходимым условием первого порядка является $\partial L/\partial \beta =0$. 
+Таким образом мы получили альтернативную формулировку метода LASSO:
+\begin{equation}
+\min_{\beta} (y-X\beta)'(y-X\beta)+\lambda \sum_{j=1}^{k}|\beta_j|
+\end{equation}
+
+LASSO пытается минимизировать взвешенную сумму $RSS=(y-X\beta)'(y-X\beta)$ и <<размера>> коэффициентов $\sum_{j=1}^{k}|\beta_j|$.
+
+
+Мы не будем вдаваться в численные алгоритмы, которые используются при решении этой задачи.
+
+
+Ridge regression отличается от LASSO ограничением $\sum \beta_j^2\leq c$. 
+Также как и LASSO Ridge regression допускает альтернативную формулировку:
+
+\begin{equation}
+\min_{\beta} (y-X\beta)'(y-X\beta)+\lambda \sum_{j=1}^{k} \beta_j^2
+\end{equation}
+
+Также как и LASSO Ridge regression тоже приближает значения коэффициентов $\beta_j$ к нулю. 
+Принципиальное отличие LASSO и RR. 
+В LASSO краевое решение с несколькими коэффициентами равными нулю является типичной ситуацией. 
+В RR коэффициент $\beta_j$ может оказаться точно равным нулю только по чистой случайности. 
+
+
+LASSO допускает байесовскую интерпретацию...
+
+
+
+
+\end{document}
