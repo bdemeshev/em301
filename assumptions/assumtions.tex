@@ -1,0 +1,379 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\include{title_bor}
+\begin{document}
+\parindent=0 pt 
+
+Оценки OLS считаются по формуле: $\hat{\beta}=(X'X)^{-1}X'Y$ \\
+Оценка дисперсии ошибки считается по формуле $\hat{\sigma}^{2}_{u}=\frac{RSS}{n-k}$ \\
+Оценка дисперсии оценок $\hat{Var}(\hat{\beta})=(X'X)^{-1}\hat{\sigma}^{2}_u$ \\
+
+Парадигма 1. Неслучайные $X$. \\
+Предпосылки. \\
+A1. $y_{t}=\beta_{1}+\beta_{2}x_{2,t}+...+\beta_{k}x_{k,t}+u_{t}$ \\
+A2. $X$ - константа \\
+А3. $E(u_{t})=0$ \\
+А4. Среди $X$ нет линейно зависимых столбцов, $n>k$ \\
+A5.1. Гомоскедастичность $Var(u_{t})=\sigma^2_{u}$ \\
+A5.2. Отсутствие автокорреляции $Cov(u_{t},u_{j})=0$ \\
+А6. $u$ нормально распределен \\
+
+Утверждения: \\
+
+A5.1 и A5.2 можно заменить на A5. $Var(u)=\sigma^{2}_{u}\cdot I_{n\times n}$ \\
+
+Существование $\hat{\beta}$ \\
+Если выполнено A4, тогда $\hat{\beta}$ можно посчитать. Иначе не получится обратить матрицу. \\
+
+Линейность $\hat{\beta}$ \\
+$\hat{\beta}$ - всегда линейны по $Y$, если они существуют. \\
+
+Несмещенность $\hat{\beta}$ \\
+Если выполнены A1-A4, тогда $\hat{\beta}$ - несмещенные \\
+
+Формула для расчета дисперсии $\hat{\beta}$ \\
+Если A1-A5 выполнены, тогда $Var(\hat{\beta})=(X'X)^{-1}\sigma^{2}_{u}$ \\
+
+Теорема Гаусса-Маркова \\
+Эффективность $\hat{\beta}$ среди линейных несмещенных оценок \\
+Если A1-A5 выполнены, тогда $\hat{\beta}^{OLS}$ более эффективна, чем любая другая оценка $\hat{\beta}^{nonOLS}$, обладающая линейностью и несмещенностью \\
+Точнее: \\
+$Var(\hat{\beta}^{OLS}_{i})\leq Var(\hat{\beta}^{nonOLS}_{i})$ \\
+Еще точнее: \\
+Матрица $Var(\hat{\beta}^{nonOLS})-Var(\hat{\beta}^{OLS})$ является положительно определенной. \\
+
+Несмещенность $\hat{\sigma}^{2}_u$ \\
+Если выполнены A1-A5, то $\hat{\sigma}^{2}_u$ несмещенная \\
+
+Если выполнены A1-A6, то при любом $n$ применимы тесты, в частности: \\
+T1. Тест на значимость отдельного коэффициента. \\
+$\frac{}{}\sim t_{n-k}$ \\
+T2. Тест на значимость регрессии в целом \\
+$\frac{ESS/(k-1)}{RSS/(n-k)}\sim F_{k-1,n-k}$ \\
+T3. Тест на выполнение нескольких линейных ограничений \\
+$\frac{(RSS_{R}-RSS_{UR})/q}{RSS_{UR}/(n-k)}\sim F_{q,n-k}$ \\
+
+
+Нарушения (или кажущиеся нарушения): \\
+
+
+\newpage
+Оценки OLS считаются по формуле: $\hat{\beta}=(X'X)^{-1}X'Y$ \\
+Оценка дисперсии ошибки считается по формуле $\hat{\sigma}^{2}_{u}=\frac{RSS}{n-k}$ \\
+Оценка дисперсии оценок $\hat{Var}(\hat{\beta})=(X'X)^{-1}\hat{\sigma}^{2}_u$ \\
+
+
+Парадигма 2. Случайные $X$. \\
+Предпосылки. \\
+A1. $y_{i}=\beta_{1}+\beta_{2}x_{2,i}+...+\beta_{k}x_{k,i}+u_{i}$ \\
+A2. Вектор $(y_{i},x_{2,i},x_{3,i},...,x_{k,i})$ является случайной выборкой. Т.е. векторы, соответствующие разным наблюдениям независимы и одинаково распределены \\
+Уточнение: существует $Var((y_{i},x_{2,i},x_{3,i},...,x_{k,i}))$ \\
+А3. $E(u|X)=0$ (наилучший прогноз $u$ при известных $X$ - это ноль) \\
+A3'. Ослабленный A3. $E(u)=0$ и $E(uX)=0$ (некоррелированность $u$ и $X$) \\
+А4. Среди регрессоров нет линейно зависимых (матрица $X$ полного ранга), $n>k$ \\
+A5.1. Гомоскедастичность $Var(u_{t}|X)=\sigma^2_{u}$ \\
+A5.2. Отсутствие автокорреляции $Cov(u_{i},u_{j}|X)=0$ \\
+А6. $u$ нормально распределен \\
+
+Утверждения. \\
+Из A3 следует A3'. Обратное неверно. \\
+
+A5.1 и A5.2 можно заменить на A5. $Var(u|X)=\sigma^{2}_{u}\cdot I_{n\times n}$ \\
+
+
+Существование $\hat{\beta}$ \\
+Если выполнено A4, тогда $\hat{\beta}$ можно посчитать. Иначе не получится обратить матрицу. \\
+
+Линейность $\hat{\beta}$ \\
+$\hat{\beta}$ - всегда линейны по $Y$, если они существуют. \\
+
+Несмещенность. \\
+Если выполнены A1-A4, то $\hat{\beta}$ - несмещенные \\
+
+Состоятельность. \\
+Если выполнены A1, A2, A3', A4 то $\hat{\beta}$ - состоятельные \\
+
+Формула для расчета условной дисперсии $\hat{\beta}$ \\
+Если A1-A3-A5 выполнены, тогда $Var(\hat{\beta}|X)=(X'X)^{-1}\sigma^{2}_{u}$ \\
+
+Теорема Гаусса-Маркова \\
+Эффективность $\hat{\beta}$ среди линейных несмещенных оценок \\
+Если A1-A3-A5 выполнены, тогда $\hat{\beta}^{OLS}$ более эффективна, чем любая другая оценка $\hat{\beta}^{nonOLS}$, обладающая линейностью и несмещенностью \\
+Точнее: \\
+$Var(\hat{\beta}^{OLS}_{i}|X)\leq Var(\hat{\beta}^{nonOLS}_{i}|X)$ \\
+Еще точнее: \\
+Матрица $Var(\hat{\beta}^{nonOLS}|X)-Var(\hat{\beta}^{OLS}|X)$ является положительно определенной. \\
+
+Асимтотическая т. Гаусса-Маркова \\
+Если A1-A3'-A5 выполнены, тогда при $n\to\infty$ ... \\
+
+
+Несмещенность $\hat{\sigma}^{2}_u$ \\
+Если выполнены A1-A3-A5, то $\hat{\sigma}^{2}_u$ несмещенная \\
+
+
+\newpage
+Тесты разные \\
+
+Если выполнены A1-A3-A6, то при любом $n$ применимы тесты, в частности: \\
+T1. Тест на значимость отдельного коэффициента. \\
+$\frac{\hat{\beta_{i}}-\beta_{i}}{sd}\sim t_{n-k}$ \\
+T2. Тест на значимость регрессии в целом \\
+$\frac{ESS/(k-1)}{RSS/(n-k)}\sim F_{k-1,n-k}$ \\
+T3. F-Тест на выполнение нескольких линейных ограничений \\
+$\frac{(RSS_{R}-RSS_{UR})/q}{RSS_{UR}/(n-k)}=\frac{(R^{2}_{UR}-R^{2}_{R})/q}{(1-R^{2}_{UR})/(n-k)}=\sim F_{q,n-k}$ \\
+Estimate both restricted and unrestriced model. \\
+T4. Wald test. Тест на выполнение нескольких линейных ограничений \\
+$\frac{W}{q}=\frac{1}{q}(R\hat{\beta}-b)'(R'\hat{Var}(\hat{\beta})R)^{-1}(R\hat{\beta}-b)\sim F_{q,(n-k)}$ \\
+Estimate only unrestricted model. \\
+
+
+
+Если выполнены A1-A3'-A5, то при $n\to\infty$ можно применять тесты, в частности: \\
+T1. Тест на значимость отдельного коэффициента. \\
+$\frac{\hat{\beta_{i}}-\beta_{i}}{sd}\sim N(0;1)$ \\
+T2. Тест на значимость регрессии в целом \\
+$\frac{ESS}{RSS/(n-k)}\sim \chi^{2}_{k-1}$ \\
+T3. Тест на выполнение нескольких линейных ограничений \\
+$\frac{(RSS_{R}-RSS_{UR})}{RSS_{UR}/(n-k)}=\frac{(R^{2}_{UR}-R^{2}_{R})}{(1-R^{2}_{UR})/(n-k)}\sim \chi^{2}_{q}$ \\
+T4. Wald test. Тест на выполнение нескольких линейных ограничений \\
+$W=(R\hat{\beta}-b)'(R'\hat{Var}(\hat{\beta})R)^{-1}(R\hat{\beta}-b)\sim \chi^{2}_{q}$ \\
+Estimate only unrestricted model. \\
+
+Легко запомнить: $t_{n}\to N(0;1)$, $kF_{k,n}\to \chi^{2}_{k}$ \\
+
+
+Separately: \\
+LM test for omitted variable. \\
+H0: no omitted variables \\
+Ha: at least one omitted variable \\
+1. Run original regression. \\
+2. Regress residuals on included and suspected omitted variables. \\
+$nR^{2}\sim \chi^{2}_{q}$, where $q$ - number of omitted variables. \\
+
+LR (likelyhood ratio test): \\
+H0: restrictions \\
+H1: at least one restriction is invalid \\
+1. Estimate unrestricted model using maximum likelyhood. Obtain $log(L_{UR})$ \\
+2. Estimate restricted model using maximum likelyhood. Obtain $log(L_{R})$ \\
+$2(log(L_{UR})-log(L_{R}))\sim \chi^{2}_{q}$, where $q$ - number of restrictions \\
+
+
+Maximum likelyhood method: \\
+Maximize probability $L$ of given observations. \\
+Often $y_{i}$ are independent and $L=P(Y_{1}=y_{1})P(Y_{2}=y_{2})...P(Y_{n}=y_{n})$ \\
+
+\newpage
+Нарушения (псведонарушения) \\
+
+Ошибка измерения $x$. \\
+Вместо нужного нам $x_{i,t}$ доступен только $\tilde{x}_{i,t}=x_{i,t}+w_{i,t}$. Т.е. в расчетах оценок вместо $x_{i,.}$ используется $\tilde{x}_{i,t}$. \\
+Означает нарушение A3' (и, следовательно, A3) \\
+Последствия: \\
+Потеряна смещенность. \\
+Потеряна состоятельность. \\
+Неприменимы тесты. \\
+
+Ошибка измерения $y$. \\
+Вместо нужного нам $y_{t}$ доступен только $\tilde{y}_{t}=t_{t}+w_{t}$. Т.е. в расчетах оценок вместо $y_{t}$ используется $\tilde{y}_{t}$. \\
+Ни одна предпосылка не нарушена. \\
+Последствия: \\
+Несмещенность сохраняется. \\
+Состоятельность сохраняется. \\
+Тесты применимы. \\
+По сравнению с ситуацией доступного $y_{t}$ потеряна эффективность. \\
+
+
+Невключена нужная переменная. \\
+Означает нарушение A1. \\
+Последствия: \\
+Потеряна смещенность. \\
+Потеряна состоятельность. \\
+Неприменимы тесты. \\
+
+Включена лишняя переменная. \\
+Означает нарушение А1 \\
+Последствия: \\
+Несмещенность сохраняется. \\
+Состоятельность сохраняется. \\
+Тесты применимы. \\
+Потеряна эффективность. \\
+
+В качестве $x$ используется дамми-переменная. \\
+Ничего не нарушено. \\
+
+В качестве $y$ используется дамми-переменная \\
+Нарушено A3' (и A3) (ошибка может принимать всего два значения) \\
+Нарушено А5.1 (дисперсия ошибки зависит от регрессора) \\
+Последствия: \\
+Потеряна смещенность. \\
+Потеряна состоятельность. \\
+Неприменимы тесты. \\
+Другие недостатки linear probability model: \\
+1. Predicted probability may lay outside $[0;1]$ \\
+2. Effect of change of regressor on probability is constant \\
+
+Что делать? Использовать модели бинарного выбора (Logit, Probit) \\
+
+
+\newpage
+Гетероскедастичность. Нарушено А5.1. \\
+
+Причины: как правило, разница <<размеров>> объектов входящих в выборку. Например, если пытаться проанализировать, от чего зависит прибыль предприятия, то конечно окажется, что на крупных предприятиях сильные колебания прибыли, на маленьких - маленькие. \\
+
+Последствия: \\
+Несмещенность, состоятельность $\hat{\beta}$ - сохраняются. \\
+Неверна формула расчета дисперсии $\hat{\beta}$. А раз все тесты ее используют, то все тесты (Т1-Т3) неприменимы. \\
+Эффективность $\hat{\beta}$ - потеряна. Т.е. можно придумать альтернативную $\hat{\beta}^{nonOLS}$ с меньшей дисперсией. \\
+
+Как бороться. \\
+Если цель - получить несмещенные оценки - то бороться не надо. \\
+Если цель - проверить гипотезы - то использовать исправленную формулу для дисперсии. \\
+Если цель - получить эффективных оценки - то использовать GLS или (как правило GLS недоступен) FGLS. \\ 
+
+Как обнаружить? \\
+
+Тест Breush-Pagan. (LM-test, $nR^{2}$ test) \\
+1. Run original regression, obtain residuals $\hat{u}_{i}$ \\
+2. Regress $\hat{u}^{2}_{i}$ on constant and all original regressors. \\
+$nR^{2}\sim \chi^{2}_{q}$, $q$ - number of regressors in the second regression (excluding constant). \\
+
+Тест White. (LM-test, $nR^{2}$ test) \\
+1. Run original regression, obtain residuals $\hat{u}_{i}$ \\
+2. Regress $\hat{u}^{2}_{i}$ on constant, all original regressors, all original regressors squared, all pairwise products of original regressors. \\
+$nR^{2}\sim \chi^{2}_{q}$, $q$ - number of regressors in the second regression (excluding constant). \\
+
+Сравнение White vs Breush-Pagan: White допускает нелинейную зависимость дисперсии от регрессоров; White требует большего числа наблюдений. \\
+
+Как бороться (детали) \\
+За применимость тестов: \\
+Оценки дисперсии (White) $\hat{Var_{White}}(\hat{\beta})=(X'X)^{-1}(X'uu'X)(X'X)^{-1}$ \\
+Если выполнены A1-A3'-A5, то при $n\to\infty$ можно применять T1, T4, заменив в них обычные оценки дисперсий $\hat{Var}(\hat{\beta})$ на оценки White'а $\hat{Var_{White}}(\hat{\beta})$. \\
+
+За асимптотическую эффективность оценок: \\
+1. Run the regression of $y_{i}$ on constant, $x_{2,i}$ ,..., $x_{k,i}$ and obtain the residuals, $\hat{u}_{i}$. \\
+2. Create $log(\hat{u}^{2}_{i})$ by first squaring the OLS residuals and then taking the natural log. \\
+3. Run the regression of $log(\hat{u}^{2}_{i})$ on variables which determine variance. Obtain the fitted values, $g_{i}$. \\
+4. Exponentiate the fitted values from $h_{i}=exp(g_{i})$.\\
+5. Use WLS (weighted least squares), using weights $1/h_{i}$.\\
+That means: \\
+5.1. Create $y^{*}_{i}=\frac{y_{i}}{\sqrt{h_{i}}}$, $x^{*}_{i,j}=\frac{x_{i,j}}{\sqrt{h_{i}}}$ \\
+5.2. Run the regression of $y^{*}_{i}$ on constant, $x^{*}_{2,i}$ ,..., $x^{*}_{k,i}$ \\
+All asymtotic tests are applicable. \\
+
+\newpage 
+Коррелированность disturbance term $u_{t}$ and $X$. Нарушено А3. (и А3'). \\
+
+причины: наличие omitted variable (чаще всего unobservable), которая коррелирована с включенными регрессорами, случайная ошибка в измерении хотя бы одного регрессора \\
+
+Последствия: \\
+Потеряна смещенность. \\
+Потеряна состоятельность. \\
+Неприменимы тесты. \\
+
+Как обнаружить? \\
+
+Hausman-Wu test. \\
+H0: all regressors $X$ are uncorrelated with $u$ \\
+Ha: at least one of $X$ from a given subset of $X$ (not all $X$!) are correlated with $u$ \\
+Регрессоры поделены на две части. Про одну мы уверены, что она не коррелирована с $u$, про другую - нет. \\
+Step 1. Строим регрессию каждого подозрительного регрессора на все инструментальные переменные. Obtain fitted values. \\
+Step 2. Regress $y$ on all original regressors and all fitted values. Это UR-regression. \\
+Step 3. Regress $y$ on all original regressors. Это R-regression. \\
+Step 4. If $n\to\infty$ we may use T3 (comparison of RSSs using $\chi^{2}$ distribution) \\
+
+
+Hausman test. \\
+H0: all regressors $X$ are uncorrelated with $u$ \\
+Ha: at least one of $X$ (maybe all) are correlated with $u$ \\
+
+$H=(\hat{\beta}_{IV}-\hat{\beta}_{OLS})'(\hat{Var}(\hat{\beta}_{IV})-\hat{Var}(\hat{\beta}_{OLS}))^{-1}(\hat{\beta}_{IV}-\hat{\beta}_{OLS})\sim \chi^{2}$ \\
+
+
+
+For Hausman-Wu and for Hausman: \\
+under H0 both estimators $\hat{\beta}_{OLS}$ and $\hat{\beta}_{IV}$ are consistent,
+ $\hat{\beta}_{OLS}$ is more efficient than $\hat{\beta}_{IV}$\\
+under Ha only $\hat{\beta}_{IV}$ is consistent \\
+
+
+
+
+Как бороться? \\
+Найти инструментальную переменную, IV: \\
+- коррелирована с регрессором (чем сильнее, тем лучше) \\
+- некоррелирована с ошибкой \\
+
+Метод IV (instrumental variables) \\
+Для одного регрессора - одна инструментальная переменная \\
+$Z$ - матрица инструментальных переменных \\
+$\hat{\beta}_{IV}=(Z'X)^{-1}Z'Y$ \\
+$\hat{Var}(\hat{\beta}_{IV})=(Z'X)^{-1}Z'Z(X'Z)^{-1}\hat{\sigma}^{2}_u$ \\
+
+Метод TSLS (two stage LS) \\
+Для одного регрессора - несколько инструментальных переменных \\
+Stage 1. Regress correlated variable $x_{it}$ on instruments $z_{1t}$, ..., $z_{kt}$. Obtain fitted values $\hat{x}_{it}$. \\
+Stage 2. Replace correlated variables $x_{it}$ in original regression by fitted values $\hat{x}_{it}$. \\
+
+TSLS дает те же результаты, что IV, если число инструментов = число регрессоров \\
+
+%Автокорреляция. Нарушено А5.2. \\
+
+%Последствия:
+%Полностью аналогичны гетероскедастичности. \\
+
+
+\newpage
+Conditional heteroskedasticity. \\
+$h_{t}=Var_{t-1}(u_{t})$ - conditional variance of $u_{t}$. \\
+
+ARCH(1): \\
+$h_{t}=a+b_{1}u^{2}_{t-1}$ \\
+
+GARCH(1,1): \\
+$h_{t}=a+b_{1}u^{2}_{t-1}+c_{1}h_{t-1}$ \\
+
+TARCH(1,1): \\
+$h_{t}=a+\gamma u^{2}_{t-1}d_{t-1}+b_{1}u^{2}_{t-1}+c_{1}h_{t-1}$ \\
+$d_{t-1}$ - dummy variable. Usually $d_{t-1}=1$ if $u_{t-1}<0$ and $d_{t-1}=0$ otherwise. \\
+
+EGARCH: \\
+$log(h_{t})=a+blog(h_{t-1})+c\left|\frac{u_{t-1}}{\sqrt{h_{t-1}}}\right|+d\frac{u_{t-1}}{\sqrt{h_{t-1}}}$ \\
+
+GARCH-M: (GARCH in mean) \\
+$y_{t}=\beta_{1}+\beta_{2}h_{t}+u_{t}$ \\
+$h_{t}=a+b_{1}u^{2}_{t-1}+c_{1}h_{t-1}$ \\
+
+Empirical: GARCH(1,1) - one of the most popular \\
+News Impact Curve - зависимость $h_{t}$ от $u_{t-1}$. \\
+Оценки моделей получаются методом максимального правдоподобия. \\ \\ \\
+TARCH and EGARCH capture the asymmetry property of 
+
+
+Logit-model \\
+Используется, если $Y_{i}$ принимает значения 0 и 1. \\
+
+$P(Y_{i}=1)=f(\beta_{1}+\beta_{2}x_{2i}+...+\beta_{k}x_{ki})$, где $f(z)=\frac{1}{1+exp(-z)}$. \\
+Такая $f(z)$ возрастает и всегда попадает в промежуток $[0;1]$ \\
+
+Оценивают logit-model методом максимального правдоподобия. \\
+Т.е. максимизируют функцию: $L=P(Y_{1}=y_{1})P(Y_{2}=y_{2})\cdot...\cdot P(Y_{n}=y_{n})$ \\
+
+Интерпретация коэффициентов: \\
+$\frac{dP(Y_{i}=1)}{dx}=\beta P(Y_{i}=1)P(Y_{i}=0)$ \\
+Т.е. знак $\beta$ определяет направление зависимости:\\
+Если $\beta>0$, то вероятность $P(Y_{i}=1)$ положительно зависит от $x$ и наоборот \\
+Для положительного $\beta$: \\
+Если $P(Y_{i}=1)>0.5$ то имеет место убывающий предельный эффект: \\
+Чем больше $x$, тем $P(Y_{i}=1)$ выше, однако скорость роста $P(Y_{i}=1)$ падает \\
+Если $P(Y_{i}=1)<0.5$ то имеет место возрастающий предельный эффект: \\
+Чем больше $x$, тем $P(Y_{i}=1)$ выше и скорость роста $P(Y_{i}=1)$ растет \\
+
+
+Probit-model. \\
+Аналогична logit-model. Отличие состоит в том, что используется другая функция $f(z)$ (тоже возрастает и гарантированно попадает в диапазон $[0;1]$) \\
+Интерпретация коэффициентов качественно такая же \\
+$\frac{dP(Y_{i}=1)}{dx}=\beta f'(z)$ \\
+
+\end{document}
+
