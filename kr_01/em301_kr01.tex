@@ -1,7 +1,39 @@
 \documentclass[pdftex,12pt,a4paper]{article}
 
-\input{/home/boris/science/tex_general/title_bor_utf8}
+% здесь идёт куча шаманских заклинаний, часть из которых я сам не понимаю :)
 
+\usepackage{cmap} % для поиска русских слов в pdf
+\usepackage{verbatim} % для многострочных комментариев
+\usepackage{makeidx} % для создания предметных указателей
+\usepackage[X2,T2A]{fontenc}
+\usepackage[utf8]{inputenc} % задание utf8 кодировки исходного tex файла
+% создание гиперссылок в pdf
+\usepackage[pdftex,unicode,colorlinks=true,urlcolor=blue,hyperindex,breaklinks]{hyperref} 
+% свешиваем пунктуацию 
+% теперь знаки пунктуации могут вылезать за правую границу текста, при этом текст выглядит ровнее
+\usepackage{microtype}
+% размер листа бумаги
+\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage[pdftex]{graphicx} % для вставки графики 
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % математические шрифты
+\DeclareMathOperator{\Var}{Var} % Var будет нарисовано прямыми буквами
+\DeclareMathOperator{\Cov}{Cov} % Cov будет нарисовано прямыми буквами
+\newcommand{\E}{\mathbb{E}} % мат. ожидание будет двойной E
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\setlist[enumerate,1]{label=\arabic*., ref=\arabic*, partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
+\setlist[itemize,1]{partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
+
+\setstretch{1}                  % Межстрочный интервал
+\flushbottom                    % Эта команда заставляет LaTeX чуть растягивать строки, чтобы получить идеально прямоугольную страницу
+\righthyphenmin=2               % Разрешение переноса двух и более символов
+\pagestyle{plain}               % Нумерация страниц снизу по центру.
+\widowpenalty=300               % Небольшое наказание за вдовствующую строку (одна строка абзаца на этой странице, остальное --- на следующей)
+\clubpenalty=3000               % Приличное наказание за сиротствующую строку (омерзительно висящая одинокая строка в начале страницы)
+\setlength{\parindent}{1.5em}   % Красная строка.
+\setlength{\topsep}{0pt}
 
 \begin{document}
 \parindent=0 pt % отступ равен 0
@@ -39,9 +71,9 @@ $A=\left(%
 \item Чему равно математическое ожидание числа Петиных верных ответов, если его ответы совпали с Васиными?
 \end{enumerate}
 
-\item Для случайных величин $X$ и $Y$ заданы следующие значения: $\E(X)=1$, $\E(Y)=4$, $\E(XY)=8$, $Var(X)=Var(Y)=9$. Для случайных величин $U=X+Y$ и $V=X-Y$ вычислите: 
+\item Для случайных величин $X$ и $Y$ заданы следующие значения: $\E(X)=1$, $\E(Y)=4$, $\E(XY)=8$, $\Var(X)=\Var(Y)=9$. Для случайных величин $U=X+Y$ и $V=X-Y$ вычислите: 
 \begin{enumerate}
-\item $\E(U)$, $Var(U)$, $\E(V)$, $\Var(V)$, $\Cov(U,V)$ 
+\item $\E(U)$, $\Var(U)$, $\E(V)$, $\Var(V)$, $\Cov(U,V)$ 
 \item Можно ли утверждать, что случайные величины U и V независимы? 
 \end{enumerate}
 
