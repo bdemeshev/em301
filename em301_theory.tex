@@ -7,6 +7,9 @@
 \def \hy{\hat{y}}
 \def \hY{\hat{Y}}
 \def \he{\hat{\varepsilon}}
+\def \hCorr{\widehat{\Corr}}
+\def \hVar{\widehat{\Var}}
+\def \hCov{\widehat{\Cov}}
 
 
 \begin{document}
@@ -79,6 +82,22 @@ $Y$ и $y$ для разных вещей, $y=Y-\bar{Y}$.
 
 \section{Семинар 2}
 
+Контрольная-1
+
+\section{Картинка}
+
+
+Утверждение. $\hCorr^2(y,\hy)=R^2$
+
+Доказательство. По определению, $\hCorr(y,\hy)=\frac{(y-\bar{y})(\hy-\bar{\hy})}{|y-\bar{y}||\hy-\bar{\hy}|}$. Поскольку в регрессии присутствует свободный член, $\bar{\hy}=\bar{y}$. Значит, 
+\begin{equation}
+\hCorr(y,\hy)=\frac{(y-\bar{y})(\hy-\bar{y})}{|y-\bar{y}||\hy-\bar{y}|}=\cos(y-\bar{y},\hy-\bar{y})
+\end{equation}
+По определению, $R^2=\frac{|\hy-\bar{y}|^2}{|y-\bar{y}|^2}=\cos^2(y-\bar{y},\hy-\bar{y})$
+
+
+
+Опыт: лучший результат у меня получается с обозначением $(\bar{y},\ldots,\bar{y})$.
 
 
 \section{Разное}
