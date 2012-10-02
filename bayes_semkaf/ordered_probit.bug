@@ -1,0 +1,49 @@
+# simple probit model
+# N - number of observations
+# X1 - matrix of exog. variables (exluding constant!)
+# y1 - 1,2,3,...m1
+# k1 - number of regressors
+
+
+var tau1[m1-1], tau1u[m1-1], b1[k1], X[N,k1], p1[N,m1], ey1.star[N], N, k1, m1
+
+model {
+
+# model description
+
+for (i in 1:N) {
+  y1[i] ~ dcat(p1[i,])
+
+  ey1.star[i]<-X1[i,]%*%b1
+
+
+  for (j in 1:(m1-1)) {
+    Q1[i,j]<-pnorm(tau1[j]-ey1.star[i],0,1)
+  }
+
+  p1[i,1] <- Q1[i,1]
+  for(j in 2:(m1-1)) {
+    p1[i,j] <- Q1[i,j] - Q1[i,j-1]
+  }
+  p1[i,m1] <- 1 - Q1[i,m1-1] 
+}
+
+# priors ############################
+
+# thresholds (unordered priors)
+for(j in 1:(m1-1)){
+  tau1u[j] ~ dnorm(0,.01)
+}
+
+# ordered thresholds
+tau1 <- sort(tau1u)
+
+
+# priors on betas
+for (j in 1:k1){
+  b1[j]~dnorm(0,.01)
+}
+
+}
+
+
