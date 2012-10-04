@@ -14,13 +14,17 @@ x=rnorm(n.obs,mu,sd=7)
 jags.data <- list(x=x, N=n.obs) # data available for estimation
 
 # Pass Model to JAGS
-m1 <- jags.model(file="simple_mean.bug", data=jags.data, n.chains=2, n.adapt=2000) 
+library(rjags)
+setwd("/home/boris/science/econometrix/em301/bayes_semkaf/")
+
+m1 <- jags.model(file="simple_mean_with_sd.bug", data=jags.data, n.chains=2, n.adapt=2000) 
+
 
 # Burn in
-update(m1, n.iter=500) 
+update(m1, n.iter=5000) 
 
 # Run Sampler
-m1.out <- coda.samples(model=m1, variable.names=c("mu"), n.iter=5000) 
+m1.out <- coda.samples(model=m1, variable.names=c("mu","s"), n.iter=5000) 
 
 # visualisation
 summary(m1.out)
