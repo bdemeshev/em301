@@ -1,4 +1,7 @@
 # hometask
+
+setwd('/home/boris/science/econometrix/em301/datasets/')
+
 d=read.table('tvims2012_data.csv',header=TRUE,sep=",")
 
 # check that the data is loaded correctly!
@@ -32,4 +35,11 @@ summary(model2)
 
 
 # Is popular name better than a rare name?
+d$name.count=0
+for (i in 1:nrow(d)) {
+  d$name.count[i]=sum(d$name==d$name[i])
+}
+
+model3=glm(kr2~group+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+male+name.count,data=d)
+summary(model3)
 
