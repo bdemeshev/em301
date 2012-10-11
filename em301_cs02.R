@@ -6,8 +6,10 @@ n=read.csv('names_sex.csv',encoding="UTF-8")
 str(d)
 str(n)
 
-d$one.m=0
+n.obs=nrow(d) # узнаём число наблюдений в d
+d$one.m=0 # создаём нулевую переменную в табличке d
 
+# тут лучше было merge использовать, смотрите как Хрюша в своей домашке сделал.
 for (i in 1:n.obs) {
   d$one.m[i]=n$male_name[n$vec_names==d$name[i]]
 }
@@ -15,9 +17,19 @@ for (i in 1:n.obs) {
 
 d$one.f=1-d$one.m
 
+# оцениваем модели
 m1=glm(kr2~one.m,data=d)
 summary(m1)
-  
+
+# Что R автоматом считает при оценке модели?
+m1$coefficients # оценки коэффициентов
+m1$residuals # остатки
+m1$fitted.values # прогнозы,\hat{y}
+m1$deviance # так RSS называется
+
+# Что ещё можно раздобыть?
+vcov(m1) # ковариационная матрица коэффициентов, \hat{\sigma}^2 (X'X)^{-1}
+
 m2=glm(kr2~one.f,data=d)
 summary(m2)
 
