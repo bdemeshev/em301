@@ -7,6 +7,10 @@
 \def \hy{\hat{y}}
 \def \hY{\hat{Y}}
 \def \he{\hat{\varepsilon}}
+\def \v1{\vec{1}}
+
+
+
 
 % временное решение
 \newcommand{\solution}[1]{ {\tiny #1} }
@@ -182,6 +186,9 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \begin{enumerate}
 \item \problem{Приведите пример таких $A$ и $B$, что $\det(AB)\neq \det(BA)$.}
 \solution{Например, $A=(1,2,3)$, $B=(1,0,1)'$}
+
+\item Для матриц-проекторов $\pi=\v1(\v1'\v1)^{-1}\v1'$ и $P=X(X'X)^{-1}X'$ найдите $\tr(\pi)$, $\tr(P)$, $\tr(I-\pi)$, $\tr(I-P)$.
+\solution{$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$ }
 
 
  

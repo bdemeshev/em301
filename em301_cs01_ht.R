@@ -34,6 +34,12 @@ model2=glm(kr2~group+p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+male,data=d)
 summary(model2)
 
 
+# Rare names...
+name.freq=table(d$name)
+# Another form...
+as.data.frame(name.freq)
+
+
 # Is popular name better than a rare name?
 d$name.count=0
 for (i in 1:nrow(d)) {
