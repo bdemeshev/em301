@@ -100,6 +100,42 @@ $Y$ и $y$ для разных вещей, $y=Y-\bar{Y}$.
 Опыт: лучший результат у меня получается с обозначением $(\bar{y},\ldots,\bar{y})$.
 
 
+\section{Мегаматрица}
+ 
+\begin{theorem}
+След и математическое ожидание можно переставлять, $\E(\tr(A))=\tr(\E(A))$.
+\end{theorem} 
+
+\begin{theorem}
+Математическое ожидание квадратичной формы
+\begin{equation}
+\E(x'Ax)=\tr(A\Var(x))+\E(x')A\E(x)
+\end{equation}
+\end{theorem}
+\begin{proof}
+Мы будем пользоваться простым приёмом. Если $u$ --- это скаляр, вектор размера 1 на 1, то $\tr(u)=u$.
+
+Поехали,
+\begin{equation}
+\E(x'Ax)=\E(\tr(x'Ax))=\E(\tr(Axx'))=\tr(\E(Axx'))=\tr(A\E(xx'))
+\end{equation}
+
+По определению дисперсии, $\Var(x)=\E(xx')-\E(x)\E(x')$. Поэтому:
+\begin{equation}
+\tr(A\E(xx'))=\tr(A(\Var(x)+\E(x)\E(x')))=\tr(A\Var(x))+\tr(A\E(x)\E(x'))
+\end{equation}
+
+И готовимся снова использовать приём $\tr(u)=u$:
+\begin{equation}
+\tr(A\Var(x))+\tr(A\E(x)\E(x'))=\tr(A\Var(x))+\tr(\E(x')A\E(x))=
+\tr(A\Var(x))+\E(x')A\E(x)
+\end{equation}
+
+\end{proof}
+
+
+
+
 \section{Разное}
 \begin{enumerate}
 
