@@ -1,6 +1,6 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[X2,T2A]{fontenc}
+%\usepackage[X2,T2A]{fontenc}
 \usepackage[russian]{babel}
 
 \usepackage{dcolumn} % выравнивание по десятичной точке в таблицах
