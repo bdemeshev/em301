@@ -26,7 +26,7 @@
 Для начала, хрю, мы загрузим данные, хрю.
 
 <<>>=
-setwd('/home/boris/science/econometrix/em301/ht_02')
+setwd('/home/boris/science/econometrix/em301/ht_02/ht_02_hrusha/')
 d=read.csv('tvims2012_data.csv',encoding="UTF-8")
 n=read.csv(file="names_sex.csv",encoding="UTF-8")
 @
