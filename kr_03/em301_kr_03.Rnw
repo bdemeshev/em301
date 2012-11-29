@@ -1,0 +1,83 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{/home/boris/science/tex_general/title_bor_utf8}
+
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+\section{Дню рождения буквы <<ё>> посвящается\ldots}
+
+\begin{enumerate}
+\item Выберите верные варианты.
+
+\begin{enumerate}
+\item Побасёнка --- Побасенка
+\item Вёдро --- Ведро
+\item Гренадёр --- Гренадер
+\item Новорождённый --- Новорожденный
+\item Бытиё --- Бытие
+\item Опёка --- Опека
+\item Сёрфинг --- Серфинг
+\item Пафнутий Львович Чебышёв --- Пафнутий Львович Чебышев
+\item Лёв Николаевич Толстой --- Лев Николаевич Толстой
+\end{enumerate}
+
+
+\item Оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
+
+\[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+
+<<echo=FALSE,message=FALSE>>=
+library(Hmisc)
+library(lmtest)
+library(apsrtable)
+h <- swiss
+model1 <- glm(Agriculture~Examination+Catholic,data=h)
+coef.t <- coeftest(model1)
+coef.t <- coef.t[,-4]
+coef.t[1,1] <- NA
+coef.t[2,2] <- NA
+coef.t[3,3] <- NA
+@
+
+<<echo=FALSE>>=
+print(coef.t,digits=3)
+@
+
+\begin{enumerate}
+\item Заполните пропуски в таблице.
+\item Укажите коэффициенты, значимые на 10\% уровне значимости.
+\item Постройте 95\%-ый доверительный интервал для коэффициента при переменной Catholic 
+\end{enumerate}
+
+\newpage
+
+\item Оценивается зависимость уровня фертильности всё тех же швейцарских кантонов в 1888 году от ряда показателей. В таблице представлены результаты оценивания двух моделей.
+
+Модель 1: $Fertility_i=\beta_1+\beta_2 Agriculture_i+\beta_3 Education_i+\beta_4 Examination_i+\beta_5 Catholic_i+\varepsilon_i$
+
+Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
+
+<<echo=FALSE>>=
+m1 <- lm(Fertility~Agriculture+Education+Examination+Catholic,data=h)
+m2 <- lm(Fertility~I(Education+Examination)+Catholic,data=h)
+@
+
+<<echo=FALSE, results='asis'>>=
+apsrtable(m1,m2)
+
+@
+
+\begin{enumerate}
+\item Посчитайте $RSS$ для каждой модели.
+\item Какая модель является ограниченной (короткой), какая --- неограниченной (длинной)?
+\item Какие ограничения нужно добавить к неограниченной модели, чтобы получить ограниченную?
+\item Найдите наблюдаемое значение $F$ статистики.
+\item Отвергается или не отвергается гипотеза об ограничениях? 
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}
