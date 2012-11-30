@@ -1,6 +1,6 @@
 \documentclass[pdftex,12pt,a4paper]{article}
 
-\input{/home/boris/science/tex_general/title_bor_utf8}
+\input{/home/boris/science/tex_general/title_bor_utf8_knitr}
 
 
 \begin{document}
@@ -24,25 +24,27 @@
 \end{enumerate}
 
 
-\item Оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
+\item По 47 наблюдениям оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
 
 \[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
 
 <<echo=FALSE,message=FALSE>>=
-library(Hmisc)
+# library(Hmisc)
 library(lmtest)
 library(apsrtable)
+library(xtable)
 h <- swiss
 model1 <- glm(Agriculture~Examination+Catholic,data=h)
 coef.t <- coeftest(model1)
+dimnames(coef.t)[[2]] <- c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
 coef.t <- coef.t[,-4]
 coef.t[1,1] <- NA
 coef.t[2,2] <- NA
 coef.t[3,3] <- NA
 @
 
-<<echo=FALSE>>=
-print(coef.t,digits=3)
+<<echo=FALSE,results='asis'>>=
+xtable(coef.t)
 @
 
 \begin{enumerate}
