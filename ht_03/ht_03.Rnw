@@ -28,16 +28,14 @@
 Данные RLMS выложены на сайте в формате SPSS. SPSS это потихоньку погибающий статистический пакет для домохозяек. Для чтения формата .sav в таблицу данных R можно сделать так
 <<"read sav">>=
 library(foreign) 
-options(width = 20)
 file.name<-"/home/boris/downloads/r20hall23c.sav"
 h<-read.spss(file.name,to.data.frame=TRUE)
-cat("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",fill=TRUE)
 @
 Первая команда, library(foreign), подгружает библиотеку R, в которой содержатся команды для чтения вражеских форматов, spss, stata, etc
 
 Описания переменных при этом также загружаются в таблицу данных. Можно их выделить в отдельный вектор и прочитать, например, про переменную pc9.631a.
 <<"description of vars">>=
-var.labels<-attributes(h)$variable.lables
+var.labels<-attr(h,"variable.labels")
 var.labels["pc9.631a"]
 @
 
