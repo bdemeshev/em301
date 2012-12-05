@@ -14,18 +14,18 @@
 
 \begin{document}
 
-<<>>=
+<<"setup">>=
 library(ggplot2)
 opts_chunk$set(cache=TRUE,
                dev="cairo_pdf",
                warning=FALSE,
-               format=FALSE,
+               tidy=FALSE,
                out.height="3cm",out.width="3cm") # кэшируем все куски по умолчанию
 @
 
 
 
-Одна переменная.
+\section{Одна переменная}
 
 Количественная:
 
@@ -42,6 +42,17 @@ ggplot(h,aes(x=Agriculture)) +
       ggtitle("Красивый график")
 @
 
+Вместо частот по вертикальной оси можно откладывать доли:
+<<>>=
+ggplot(h,aes(x=Agriculture)) +
+      geom_histogram(binwidth=10,aes(y=..density..)) +
+      xlab("Доля мужчин занятых в сельском хозяйстве") +
+      ylab("Частота") +
+      ggtitle("Красивый график")
+@
+
+
+
 Альтернативная команда:
 <<>>=
 qplot(data=h,
@@ -57,6 +68,16 @@ qplot(data=h,
 
 2. Оценка функции плотности
 
+<<>>=
+ggplot(h,aes(x=Agriculture)) +
+      geom_density()
+@
+
+Опции geom_density():
+
+adjust --- корректирующий множитель для ширины окна сглаживания
+
+
 3. Beanplot
 
 4. Добавим функцию на график
@@ -68,13 +89,28 @@ qplot(data=h,
 1. Гистограмма
 
 
-Две переменных:
+Если предварительные подсчёты уже проведены\ldots
+
+\section{Две переменных}
 
 Количественная - количественная.
 
 1. Диаграмма рассеяния
 
+<<"scatter plot">>=
+h <- swiss
+ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)
+@
+
 2. Диаграмма рассеяния с добавкой линии регрессии или линии loess
+<<"scatter plot + smoothing">>=
+h <- swiss
+ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)+
+  stat_smooth(method="lm")
+@
+
+Можно добавить сглаживание method="loess". Если нужна только линия без стандартных ошибок, то добавляют опцию se=FALSE.
+
 
 Нюансы:
 
@@ -116,6 +152,8 @@ qplot(data=h,
 2. Stacked histogram
 
 
+\section{Много переменных}
+
 Количественная, количественная, качественная
 
 1. Диаграмма рассеяния с разным типом (цветом) точек
@@ -128,21 +166,27 @@ qplot(data=h,
 
 1. plotmatrix
 
+<<>>=
+h <- swiss
+plotmatrix(h[,c("Fertility","Agriculture","Education")])+stat_smooth(method="loess")
+@
+
 
 Много качественных
 
 1. мозаичный график
 
+
+<<"Titanic">>=
+library(vcd)
+titan <- Titanic
+mosaic(~Class+Age+Sex+Survived, data=titan, shade=TRUE, legend=TRUE) 
+@
+
+
 2. Грани графика + Stacked histogram
 
 
-
-
-Прочее:
-
-1. Визуализация корреляционной матрицы
-
-2. Построение линий уровня функции двух переменных
 
 
 Размещение нескольких графиков рядом.
@@ -151,23 +195,52 @@ qplot(data=h,
 
 2. Временной ряд + гистограмма сбоку (для mcmc)
 
+К примеру мы сгенерировали марковскую цепь и хотим посмотреть, а не сошлась ли она часом к нужному нам распределению\ldots
+
+<<"markov chain">>=
+library(gridExtra)
+h <- data.frame(chain = rnorm(100),obs=1:100)
 
 
-Карты...
+p1 <- ggplot(h,aes(x=obs,y=chain))+geom_line()
+p2 <- ggplot(h,aes(x=chain))+geom_histogram(binwidth=0.4)+coord_flip()
 
-
-
-
-
-
-
-<<eval=FALSE>>=
-data(iris)
-c <- cor(iris[1:4]) 
-molten.iris <- melt(c)
-names(molten.iris) <- c("M1", "M2", "corr")   
-molten.iris
+p <- arrangeGrob(p1,p2,nrow=1)
+p
 @
+
+
+
+
+\section{Карты}
+
+
+
+\section{Часто встречаются}
+
+1. Визуализация корреляционной матрицы
+
+
+<<"correlation matrix">>=
+library(reshape2)
+
+h <- swiss
+cor.mat <- cor(h)
+cor.mat2 <- melt(cor.mat)
+
+ggplot(cor.mat2,aes(x=Var1,y=Var2,fill=value))+geom_raster()
+@
+
+
+2. Построение линий уровня функции двух переменных
+
+
+
+
+
+
+
+
 
 
 
@@ -314,16 +387,7 @@ p4
 @
 
 
-<<>>=
-h <- swiss[,c("Fertility","Agriculture","Education")]
-plotmatrix(h)+stat_smooth(method="loess")
-@
 
-
-<<>>=
-library(vcd)
-mosaic(HairEyeColor, shade=TRUE, legend=TRUE) 
-@
 
 
 \end{document}
