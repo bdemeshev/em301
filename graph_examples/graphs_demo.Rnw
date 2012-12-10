@@ -15,12 +15,14 @@
 \begin{document}
 
 <<"setup">>=
-library(ggplot2)
+library(ggplot2) 
+library(gridExtra)
 opts_chunk$set(cache=TRUE,
                dev="cairo_pdf",
                warning=FALSE,
-               tidy=FALSE,
-               out.height="3cm",out.width="3cm") # кэшируем все куски по умолчанию
+               tidy=FALSE) # кэшируем все куски по умолчанию
+
+# ,   out.height="3cm",out.width="3cm"
 @
 
 
@@ -35,18 +37,18 @@ h <- swiss
 
 1. Гистограмма
 <<>>=
-ggplot(h,aes(x=Agriculture)) +
+p1 <- ggplot(h,aes(x=Agriculture)) +
       geom_histogram(binwidth=10) +
-      xlab("Доля мужчин занятых в сельском хозяйстве") +
+      xlab("Доля мужчин в с/x") +
       ylab("Частота") +
       ggtitle("Красивый график")
 @
 
 Вместо частот по вертикальной оси можно откладывать доли:
 <<>>=
-ggplot(h,aes(x=Agriculture)) +
+p2 <- ggplot(h,aes(x=Agriculture)) +
       geom_histogram(binwidth=10,aes(y=..density..)) +
-      xlab("Доля мужчин занятых в сельском хозяйстве") +
+      xlab("Доля мужчин в с/x") +
       ylab("Частота") +
       ggtitle("Красивый график")
 @
@@ -55,12 +57,19 @@ ggplot(h,aes(x=Agriculture)) +
 
 Альтернативная команда:
 <<>>=
-qplot(data=h,
+p3 <- qplot(data=h,
       x=Agriculture, geom="histogram", binwidth=10,
       
       main="Гистограмма",
-      xlab="Доля мужчин занятых в сельском хозяйстве",
+      xlab="Доля мужчин в с/x",
       ylab="Частота")
+@
+
+Графики рядом.
+<<>>=
+p.all <- arrangeGrob(p1,p2,p3,nrow=1,heights=7,widths=5,default.units="cm")
+
+p.all
 @
 
 
@@ -73,7 +82,7 @@ ggplot(h,aes(x=Agriculture)) +
       geom_density()
 @
 
-Опции geom_density():
+Опции \verb|geom_density()|:
 
 adjust --- корректирующий множитель для ширины окна сглаживания
 
@@ -99,7 +108,7 @@ adjust --- корректирующий множитель для ширины �
 
 <<"scatter plot">>=
 h <- swiss
-ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)
+ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)+geom_density2d()
 @
 
 2. Диаграмма рассеяния с добавкой линии регрессии или линии loess
@@ -110,6 +119,21 @@ ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)+
 @
 
 Можно добавить сглаживание method="loess". Если нужна только линия без стандартных ошибок, то добавляют опцию se=FALSE.
+
+3. Линии уровня двумерной функции плотности
+<<"density 2d">>=
+h <- swiss
+ggplot(h,aes(x=Catholic,y=Fertility))+geom_density2d()
+@
+
+Вариант с закраской 
+<<"density 2d filled">>=
+h <- swiss
+ggplot(h,aes(x=Catholic,y=Fertility))+geom_density2d(aes(fill=..level..))
+@
+
+
+
 
 
 Нюансы:
@@ -126,6 +150,15 @@ ggplot(h,aes(x=Catholic,y=Fertility))+geom_point(size=4)+
 Количественная - качественная
 
 1. Несколько беанплотов
+
+<<"morley violin">>=
+h <- morley
+
+h$Expt <- factor(h$Expt)
+
+ggplot(h,aes(x=Expt,y=Speed))+geom_violin()+xlab("Номер эксперимента")+ylab("Скорость света")+ggtitle("Опыты Морли (Morley)")
+@
+
 
 Если категорий мало:
 
@@ -234,7 +267,17 @@ ggplot(cor.mat2,aes(x=Var1,y=Var2,fill=value))+geom_raster()
 
 2. Построение линий уровня функции двух переменных
 
+<<"level curves of a given function">>=
+my_f <- function(x,y) x^2+y^2
 
+x <- seq(-3,3,length.out=100)
+y <- seq(-3,3,length.out=100)
+h <- data.frame(x=rep(x,times=100),y=rep(y,each=100))
+
+h$z <- my_f(h$x,h$y)
+
+ggplot(h, aes(x=x, y=y, z=z)) + stat_contour()
+@
 
 
 
