@@ -1,27 +1,92 @@
 \documentclass{article}
 
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc} % for linux and mac users
+%\usepackage[cp1251]{inputenc} % for windows users
+% windows users should also re-encode this document using cp1251 encoding.
+% in Rstudio: File-Save with encoding
+
 \usepackage[T2A]{fontenc} 
 \usepackage[russian]{babel}
 
+
+
+
+\title{Швейцарские кантоны в 1888 году}
+\author{Хрюша}
+\date{\today}
+
+
+
 \begin{document}
 
+\maketitle
 
-<<echo=FALSE,results='asis'>>=
+% в тихаря подгружаем нужные пакеты:
+<<"setup", echo=FALSE,include=FALSE>>=
 library(xtable)
-h <- swiss
+library(ggplot2)
+options(scipen=10)
+@
 
-model1 <- lm(Agriculture~Catholic+Examination,data=h)
-report <- summary(model1)
+Загрузим данные по швейцарским кантонам
+<<"load data">>=
+h <- swiss
+@
+
+
+Построим несколько графиков для наглядности:
+
+<<echo=FALSE,warning=FALSE,dev='cairo_pdf'>>=
+
+ggplot(h,aes(x=Catholic,y=Agriculture))+geom_point(size=2)+stat_smooth(method=lm)+
+  xlab("Доля католиков") + ylab("Доля мужчин в с/х")
+@
+
+Если график планируется печатать на бумаге, а не показывать на презентации, то можно указать для него чёрно-белую тему с помощью опции \verb|theme_bw()|:
+
+<<warning=FALSE,dev='cairo_pdf'>>=
+plotmatrix(h[,c("Fertility","Agriculture","Catholic","Examination")]) +xlab("") + ylab("") + theme_bw()
+@
+
+
+
+Оценим зависимость доли мужчин занятых в сельском хозяйстве от доли католиков и средних результатов экзаменов.
+
+<<echo=FALSE, results='asis'>>=
+model <- lm(Agriculture~Catholic+Examination,data=h)
+report <- summary(model)
 
 coef.table<-report$coefficients
 
 colnames(coef.table) <- c("Оценка","$\\hat{\\sigma}_{\\hat{\\beta}}$","t-статистика","P-значение")
-rownames(coef.table) <- c("Констаната","Доля католиков","Результат экзамена")
+rownames(coef.table) <- c("Константа","Доля католиков","Результат экзамена")
 
 print(xtable(coef.table),sanitize.colnames.function=identity)
 @
 
+В этой регрессии коэффициент детерминации $R^2$ равен $\Sexpr{report$r.squared}$. Сумма квадратов остатков, $SSR$, равна $\Sexpr{deviance(model)}$. 
+
+<<"get p-value",echo=FALSE>>=
+model.p.value <- 1-pf(report$fstatistic[1],report$fstatistic[2],report$fstatistic[3])
+@
+
+
+Гипотеза о незначимости регрессии в целом отвергается, т.к. $F$-статистика равна $\Sexpr{report$fstatistic[1]}$ с точным P-значением равным $\Sexpr{model.p.value}$.
+
+
+Оценка ковариационной матрицы коэффициентов равна
+<<"cov hat", results='asis'>>=
+var.hat <- vcov(model)
+xtable(var.hat)
+@
+
+
+При сдаче учебных работ лучше не включать опцию \verb|echo=FALSE|. Без этой опции буден видно код, и вы получите комментарии по коду.
+
+В конце учебной работы имеет смысл дать команду
+<<"session info">>=
+sessionInfo()
+@
 
 
 
