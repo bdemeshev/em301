@@ -1,0 +1,28 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc} 
+\usepackage[russian]{babel}
+
+\begin{document}
+
+
+<<echo=FALSE,results='asis'>>=
+library(xtable)
+h <- swiss
+
+model1 <- lm(Agriculture~Catholic+Examination,data=h)
+report <- summary(model1)
+
+coef.table<-report$coefficients
+
+colnames(coef.table) <- c("Оценка","$\\hat{\\sigma}_{\\hat{\\beta}}$","t-статистика","P-значение")
+rownames(coef.table) <- c("Констаната","Доля католиков","Результат экзамена")
+
+print(xtable(coef.table),sanitize.colnames.function=identity)
+@
+
+
+
+
+\end{document}
