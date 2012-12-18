@@ -8,7 +8,11 @@
 \usepackage[T2A]{fontenc} 
 \usepackage[russian]{babel}
 
+% требуется для пакета texreg
+\usepackage{booktabs}
+\usepackage{dcolumn}
 
+\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
 
 
 \title{Швейцарские кантоны в 1888 году}
@@ -23,8 +27,9 @@
 
 % в тихаря подгружаем нужные пакеты:
 <<"setup", echo=FALSE,include=FALSE>>=
-library(xtable)
-library(ggplot2)
+library(xtable) # create latex table from R table
+library(ggplot2) # beautiful graphs
+library(texreg) # create latex table from some models
 options(scipen=10)
 @
 
@@ -36,7 +41,7 @@ h <- swiss
 
 Построим несколько графиков для наглядности:
 
-<<echo=FALSE,warning=FALSE,dev='cairo_pdf'>>=
+<<warning=FALSE,dev='cairo_pdf'>>=
 
 ggplot(h,aes(x=Catholic,y=Agriculture))+geom_point(size=2)+stat_smooth(method=lm)+
   xlab("Доля католиков") + ylab("Доля мужчин в с/х")
@@ -52,7 +57,7 @@ plotmatrix(h[,c("Fertility","Agriculture","Catholic","Examination")]) +xlab("") 
 
 Оценим зависимость доли мужчин занятых в сельском хозяйстве от доли католиков и средних результатов экзаменов.
 
-<<echo=FALSE, results='asis'>>=
+<<results='asis'>>=
 model <- lm(Agriculture~Catholic+Examination,data=h)
 report <- summary(model)
 
@@ -66,7 +71,7 @@ print(xtable(coef.table),sanitize.colnames.function=identity)
 
 В этой регрессии коэффициент детерминации $R^2$ равен $\Sexpr{report$r.squared}$. Сумма квадратов остатков, $SSR$, равна $\Sexpr{deviance(model)}$. 
 
-<<"get p-value",echo=FALSE>>=
+<<"get p-value">>=
 model.p.value <- 1-pf(report$fstatistic[1],report$fstatistic[2],report$fstatistic[3])
 @
 
@@ -80,8 +85,14 @@ var.hat <- vcov(model)
 xtable(var.hat)
 @
 
+Сравним несколько моделей в одной таблице\ldots
+<<"compare two models", results='asis'>>=
+model2 <- lm(Agriculture~Catholic+Examination+Education,data=h)
+table.comp <- texreg(list(model,model2),use.packages=FALSE,table=FALSE,model.names=c("Модель без Education", "Модель с Education"))
+@
 
-При сдаче учебных работ лучше не включать опцию \verb|echo=FALSE|. Без этой опции буден видно код, и вы получите комментарии по коду.
+
+При написании <<настоящей>> работы программный код чаще всего  скрывают с помощью опции \verb|echo=FALSE|. С этой опцией будут видны только результаты работы R. В учебной работе эту опцию включать не надо, чтобы получить вкусные комментарии к своему коду.
 
 В конце учебной работы имеет смысл дать команду
 <<"session info">>=
