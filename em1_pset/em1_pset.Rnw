@@ -44,13 +44,16 @@ library(ggplot2)
 opts_chunk$set(cache=TRUE,
                dev="cairo_pdf",
                warning=FALSE,
-               tidy=FALSE,
+               tidy=FALSE, 
                out.height="3cm",out.width="3cm") # кэшируем все куски по умолчанию
 @
 
 \listoftodos
 
 \todo[inline]{Опция tidy=FALSE не работает. Почему?}
+
+
+
 
 \section{Проверка гипотез строго по уставу!}
 
@@ -406,7 +409,163 @@ h <- swiss
 @
 \solution{}
 
+<<"load flats", include=FALSE>>=
+flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",header=TRUE)
+@
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+
+
+<<"flats", echo=FALSE, results='asis'>>=
+model1 <- lm(price~totsp+livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+<<"var hat", echo=FALSE, results='asis'>>=
+var.hat <- vcov(model1)
+xtable(var.hat)
+@
+
+\begin{enumerate}
+\item Проверьте $H_0$: $\beta_{totsp}=\beta_{livesp}$. В чём содержательный смысл этой гипотезы?
+\item Постройте доверительный интервал дли $\beta_{totsp}-\beta_{livesp}$. В чём содержательный смысл этого доверительного интервала?
 \end{enumerate}
+
+
+\solution{
+<<include=FALSE>>=
+est.se <- sqrt(var.hat[2,2]+var.hat[3,3]-2*var.hat[2,3])
+hb <- model1$coefficients
+est.diff <- hb[2]-hb[3]
+@
+
+Из оценки ковариационной матрицы находим, что $se(\hb_{totsp}=\hb_{livesp})=\Sexpr{est.se}$.
+
+Исходя из $Z_{crit}=1.96$ получаем доверительный интервал, $[\Sexpr{est.diff-1.96*est.se};\Sexpr{est.diff+1.96*est.se}]$.
+
+Вывод: при уровне значимости 5\% гипотеза о равенстве коэффициентов не отвергается.}
+
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+<<"flats - 2", echo=FALSE, results='asis'>>=
+model1 <- lm(price~totsp+livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+<<"var hat - 2", echo=FALSE, results='asis'>>=
+xtable(vcov(model1))
+@
+
+\begin{enumerate}
+\item Постройте 95\%-ый доверительный интервал для ожидаемой стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\item Постройте 95\%-ый прогнозный интервал для фактической стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\end{enumerate}
+
+
+\solution{}
+
+\item Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\varepsilon_t$. 
+\begin{enumerate}
+\item Найдите МНК оценку коэффициента $\beta$
+\item Рассчитайте $\E(\hat{\beta})$ и $\Var(\hat{\beta})$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hat{\beta}$ состоятельна?
+\end{enumerate}
+
+
+\solution{
+\begin{enumerate}
+\item $\hb=\frac{\sum y_t t}{\sum t^2}$
+\item $\E(\hat{\beta})=\beta$ и $\Var(\hat{\beta})=\frac{\sigma^2}{\sum_{t=1}^{T} t^2}$
+\item Да, состоятельна
+\end{enumerate}
+}
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
+<<"flats - 3", echo=FALSE, results='asis'>>=
+model1 <- lm(price~totsp+livesp+brick+brick:totsp+brick:livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+# rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+\begin{enumerate}
+\item Выпишите отдельно уравнения регрессии для кирпичных домов и для некирпичных домов
+\item Проинтерпретируйте коэффициент при $brick_i \cdot totsp_i$
+\end{enumerate}
+
+
+\item По 20 наблюдениям ценивается линейная регрессия $\hat{y}=\hat{\beta}_1 +\hat{\beta}_2 x+\hat{\beta}_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $N(0,1)$.
+
+\begin{enumerate}
+\item Найдите вероятность $\P(\hat{\beta}_3>se(\hat{\beta}_3))$
+\item Найдите вероятность $\P(\hat{\beta}_3>\sigma_{\hat{\beta}_3})$
+\end{enumerate}
+
+\solution{
+\begin{enumerate}
+\item $\P(\hat{\beta}_3>se(\hat{\beta}_3))=\P(t_{17}>1)=\Sexpr{1-pt(1,17)}$
+\item $\P(\hat{\beta}_3>\sigma_{\hat{\beta}_3})=\P(N(0,1)>1)=\Sexpr{1-pnorm(1)}$
+\end{enumerate}
+}
+
+
+
+\end{enumerate}
+
+
+\section{Мультиколлинеарность}
+
+
+\begin{enumerate}
+\item Сгенерируйте данные так, чтобы при оценке модели $\hat{y}=\hat{\beta_1}+\hat{\beta_2}x+\hat{\beta_3}z$ оказывалось, что по отдельности оценки коэффициентов $\hat{\beta_2}$ и $\hat{\beta_3}$ незначимы, но модель в целом --- значима.
+\solution{}
+
+
+
+\end{enumerate}
+
+
+\section{Гетероскедастичность}
+
+\begin{enumerate}
+\item Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
+
+<<"diagram", dev='cairo_pdf', warning=FALSE, echo=FALSE>>=
+ggplot(flats,aes(x=totsp,y=price))+geom_point()+theme_bw()+xlab("Общая площадь, кв. м.")+ylab("Цена квартиры, 1000$")
+@
+
+Какие подходы к оцениванию зависимости имеет смысл посоветовать исходя из данного графика?
+
+\solution{
+По графику видно, что с увеличением общей площади увеличивается разброс цены. Поэтому разумно, например, рассмотреть следующие подходы:
+\begin{enumerate}
+\item Перейти к логарифмам, т.е. оценивать модель $\ln price_i=\beta_1+\beta_2 \ln totsp_i +\varepsilon_i$
+\item Оценивать квантильную регрессию. В ней угловые коэффициенты линейной зависимости будут отличаться для разных квантилей переменной $price$.
+\item Обычную модель линейной регрессии с гетероскедастичностью вида $Var(\varepsilon_i)=\sigma^2 totsp_i^2$
+\end{enumerate} 
+}
+
+
+
+
+\end{enumerate}
+
+
+\section{Функциональная форма}
+
+\begin{enumerate}
+\item Сгенерируйте данные так, чтобы при оценке модели $\hat{y}=\hat{\beta_1}+\hat{\beta_2}x+\hat{\beta_3}z$ оказывалось, что $\hat{\beta_2}>0$, а при оценке модели $\hat{y}=\hat{\beta_1}+\hat{\beta_2}x$ оказывалось, что $\hat{\beta_2}<0$.
+\end{enumerate}
+
+
 
 \section{Инструментальные переменные}
 
@@ -598,7 +757,7 @@ $X=\left(
 
 
 \section{Компьютерные упражнения}
-
+\todo[inline]{Переделать классификацию. Каждый раздел делится на компьютерные и ручные задачи}
 Все наборы данных доступны по ссылке \url{https://github.com/bdemeshev/em301/wiki/Datasets}.
 
 
@@ -671,7 +830,7 @@ R_m-R_0=R_m^*-R_0^*+u
 
 
 \section{Вопросы теоретического характера}
-
+\todo[inline]{Разрезать на главы по темам}
 \begin{enumerate}
 \item Что означают слова автокорреляция, гетероскедастичность, гомоскедастичность?
 \item Напишите формулу для оценок коэффициентов в парной регрессии без матриц
