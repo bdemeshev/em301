@@ -42,6 +42,7 @@ p1 <- ggplot(h,aes(x=Agriculture)) +
       xlab("Доля мужчин в с/x") +
       ylab("Частота") +
       ggtitle("Красивый график")
+p1
 @
 
 Вместо частот по вертикальной оси можно откладывать доли:
@@ -51,6 +52,7 @@ p2 <- ggplot(h,aes(x=Agriculture)) +
       xlab("Доля мужчин в с/x") +
       ylab("Частота") +
       ggtitle("Красивый график")
+p2
 @
 
 
@@ -63,10 +65,11 @@ p3 <- qplot(data=h,
       main="Гистограмма",
       xlab="Доля мужчин в с/x",
       ylab="Частота")
+p3
 @
 
 Графики рядом.
-<<>>=
+<<eval=FALSE,echo=FALSE>>=
 p.all <- arrangeGrob(p1,p2,p3,nrow=1,heights=7,widths=5,default.units="cm")
 
 p.all
