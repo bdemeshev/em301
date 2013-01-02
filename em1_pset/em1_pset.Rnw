@@ -487,6 +487,38 @@ xtable(vcov(model1))
 \end{enumerate}
 }
 
+\item В модели $y_t=\beta_1+\beta_2 x_t$, где 
+$x_t=\left\{
+\begin{array}{l}
+2,\, t=1 \\
+1,\, t>1
+\end{array}
+\right.
+$:
+\begin{enumerate}
+\item Найдите мнк-оценку $\hb_2$
+\item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hb_2$ состоятельна?
+\end{enumerate}
+\solution{}
+
+\item В модели $y_t=\beta_1+\beta_2 x_t$, где 
+$x_t=\left\{
+\begin{array}{l}
+1,\, t=2k+1 \\
+0,\, t=2k
+\end{array}
+\right.
+$:
+\begin{enumerate}
+\item Найдите мнк-оценку $\hb_2$
+\item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hb_2$ состоятельна?
+\end{enumerate}
+\solution{}
+
+
+
 \item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
 <<"flats - 3", echo=FALSE, results='asis'>>=
 model1 <- lm(price~totsp+livesp+brick+brick:totsp+brick:livesp,data=flats)
@@ -515,6 +547,10 @@ xtable(coef.table)
 \item $\P(\hat{\beta}_3>\sigma_{\hat{\beta}_3})=\P(N(0,1)>1)=\Sexpr{1-pnorm(1)}$
 \end{enumerate}
 }
+
+
+
+
 
 
 
