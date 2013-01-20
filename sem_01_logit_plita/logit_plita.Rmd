@@ -1,0 +1,93 @@
+Loading all necessary libraries...
+```{r}
+library(ggplot2)
+library(lmtest)
+library(foreign)
+```
+
+`ggplot2` for beautiful graphs, `lmtest` for various test (Wald test, LR test etc), `foreign` for reading data in spss, stata and other ugly formats.
+
+
+First of all we set working directory. There R will search for files:
+```{r}
+setwd("~/science/econometrix/em301/sem_01_logit_plita/")
+```
+
+Now we load the dataset from the file `mesto_jenshini.dta` into the data frame `h`.  
+```{r}
+h <- read.dta("mesto_jenshini.dta")
+```
+
+Let's check whether everything is loaded correctly:
+```{r}
+head(h)
+summary(h)
+```
+
+Let's look on some specific variables. Income. Probably year income divided by family size.
+```{r}
+summary(h$adjinc)
+```
+
+Let's make some simple graphs
+```{r}
+hist(h$agree)
+```
+
+Graphical analysis before estimation...
+
+
+Let's estimate logit model
+```{r}
+m1 <- glm(agree~age+adjinc+nsibs,
+          data=h,
+          family=binomial(link="logit"))
+summary(m1)
+```
+
+
+
+Let's make predictions. First, we create a new data frame:
+```{r}
+new <- data.frame(age=c(20,24),
+                  adjinc=c(16000,4000),
+                  nsibs=c(2,5))
+new
+```
+
+Now we predict probability for these additional observations
+```{r}
+predict(m1,new,type="response")
+```
+
+Constructing the confidence interval for these new observations:
+```{r}
+forecast <- predict(m1,new,type="response",se.fit=TRUE)
+new$hat.p <- forecast$fit
+new$hat.p.se <- forecast$se.fit
+z.crit <- qnorm(0.975)
+new$ci.left <- new$hat.p - z.crit * new$hat.p.se
+new$ci.right <- new$hat.p + z.crit * new$hat.p.se
+new
+```
+
+Binary prediction. Best binary prediction?
+
+Graphical analysis after estimation...
+
+Likelihood ratio, LR-test, Тест отношения правдоподобия
+```{r}
+m2 <- glm(agree~age+age2+adjinc+nsibs,
+          data=h,
+          family=binomial(link="logit"))
+lrtest(m1,m2)
+```
+
+Lagrange multiplier test, LM-test, тест множителей Лагранжа (? by hands)
+
+Wald-test, Тест Вальда
+```{r}
+waldtest(m1,m2,test="Chisq")
+```
+
+
