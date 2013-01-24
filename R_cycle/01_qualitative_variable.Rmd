@@ -1,0 +1,57 @@
+# 1. Работа с качественными данными в R
+
+Создаем текстовую переменную из 100 случайно выбранных слов "yes", "no", "maybe". Затем посмотрим её описание.
+```{r}
+x <- sample(size=100,c("yes","no","maybe"),rep=TRUE)
+str(x) 
+```
+
+Переведём нашу переменную из символьной в факторную:
+```{r}
+x.factor <- factor(x)
+str(x.factor)
+```
+
+Можно построить гистограмму. Штатными средствами R:
+```{r, warning=FALSE}
+plot(x.factor,main="Любите ли вы сыр?",xlab="Ответ мышки",ylab="Количество мышек")
+```
+
+Та же гистограмма с помощью пакета `ggplot2`. Пакет `ggplot2` работает с таблицами данных (data frame), поэтому предварительно создадим таблицу `h` со столбцом `x.factor`.
+```{r, warning=FALSE}
+library(ggplot2)
+h <- data.frame(x.factor)
+ggplot(h,aes(x=x.factor))+geom_histogram()+theme_bw()+labs(x="Ответ мышки",y="Количество мышек",title="Любите ли вы сыр?")
+```
+
+Есть пакет `vcd` с кучей графиков для нескольких качественных переменных. Например, мозаичный график:
+```{r}
+library(vcd)
+g <- Titanic
+mosaic(~Class+Sex+Survived,data=g,shade=TRUE)
+```
+
+Теперь можно строить регрессии и R автоматом будет вводить дамми в нужном количестве. 
+```{r}
+y <- rnorm(100)
+model1 <- lm(y~x.factor)
+summary(model1)
+```
+
+Мы легко можем указать категорию `no` в качестве базовой:
+```{r}
+x.factor <- relevel(x.factor,ref="no")
+model2 <- lm(y~x.factor)
+summary(model2)
+```
+
+Для некоторых целей можно перевести факторную переменную в числовую
+```{r}
+x.num <- as.numeric(x.factor)
+str(x.num)
+```
+
+Эта первая заметка, возможно, будет продолжена...
+Ищите на [https://github.com/bdemeshev/em301/wiki/r_cycle](https://github.com/bdemeshev/em301/wiki/r_cycle)
+
+
