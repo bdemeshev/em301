@@ -1,0 +1,47 @@
+
+Сгенерим искусственные данные
+```{r}
+x <- rnorm(100)
+y <- sample(c(0,1),100,rep=TRUE)
+h <- data.frame(x,y)
+str(h)
+```
+
+Оценим линейную модель с помощью МНК, logit и probit модели:
+```{r}
+m.ols <- glm(y~x,data=h)
+
+m.logit <- glm(y~x,data=h,
+              family=binomial(link="logit"))
+m.probit <- glm(y~x,data=h,
+              family=binomial(link="probit"))
+```
+
+```{r}
+summary(model1)
+
+h$fit <- fitted(model1)
+h$fit0 <- fitted(model0)
+
+head(h$fit)
+```
+
+
+
+```{r}
+new <- data.frame(x=c(1,2,4))
+
+new$p.hat <- predict(model1,new,type="response")
+new$y.star.hat <- predict(model1,new,type="link")
+```
+
+
+
+ROC ручками...
+
+
+
+
+
+ROC с помощью пакета ROCR
+

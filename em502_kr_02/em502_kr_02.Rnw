@@ -197,6 +197,28 @@ $bee_i=0$ & 32 & 20 \\
 \item теста отношения правдоподобия
 \end{enumerate}
 
+<<"Winnie", echo=FALSE>>=
+k <- 42
+n <- 100
+p.hat <- k/n
+p0 <- 0.5
+l <- function(p) {
+  ans <- k*log(p)+(n-k)*log(1-p)
+}
+l.hat <- l(p.hat)
+l0 <- l(p0)
+
+@
+
+Функция правдоподобия, $l(p)=\Sexpr{k}\ln p + (100-\Sexpr{k})\ln(1-p)$.
+
+Численно, $l(\hat{p})=l(\Sexpr{p.hat})=\Sexpr{l.hat}$, $l(p_0)=l(\Sexpr{p0})=\Sexpr{l0}$
+
+Критическая точка $\chi^2$ распределения, $\Sexpr{qchisq(0.95,df=1)}$
+
+Наблюдаемое значение LR статистики, $LR=\Sexpr{2*(l.hat-l0)}$
+
+
 \end{enumerate}
 
 
