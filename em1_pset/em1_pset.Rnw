@@ -2,18 +2,8 @@
 
 \input{/home/boris/science/tex_general/title_bor_utf8_knitr}
 
+\input{../emetrix_preamble}
 % чисто эконометрические сокращения:
-\def \hb{\hat{\beta}}
-\def \hs{\hat{s}}
-\def \hy{\hat{y}}
-\def \hY{\hat{Y}}
-\def \he{\hat{\varepsilon}}
-\def \v1{\vec{1}}
-\def \e{\varepsilon}
-\def \hVar{\widehat{\Var}}
-\def \hCorr{\widehat{\Corr}}
-\def \hCov{\widehat{\Cov}}
-\def \useR{$[$R$]$ }
 
 
 % временное решение
