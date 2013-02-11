@@ -1,0 +1,38 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{/home/boris/science/tex_general/title_bor_utf8}
+
+\input{../emetrix_preamble}
+
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+\begin{center}
+Контрольная работа, ML
+\end{center}
+
+\WhiteRoseLine
+
+\begin{enumerate}
+\item Наблюдения $X_1,X_2,\ldots,X_n$ независимы и одинаково распределены с функцией плотности $f(x)=\frac{a(\ln(x))^{a-1}}{x}$ при $x\in [1;e]$. По 100 наблюдениям известно, что $\sum_{i=1}^{100} \ln(\ln(X_i))=-20$
+\begin{enumerate}
+\item Оцените параметр $a$ методом максимального правдоподобия
+\item Проверьте гипотезу о том, что $a=5$ против альтернативной $a\neq 5$ с помощью теста отношения правдоподобия, теста Вальда, теста множителей Лагранжа
+\item Постройте 95\%-ый доверительный интервал для параметра $a$
+\end{enumerate}
+\item \useR Фактическое распределение часовой и десятиминутной скорости ветра хорошо приближается распределением Вейбулла. Случайная величина имеет распределение Вейбулла, если её функция плотности при $x>0$ имеет вид
+\[
+f(x)=\frac{1}{\lambda^k}kx^{k-1}\exp(-x^k/\lambda^k)
+\]
+\begin{enumerate}
+\item Оцените параметры $k$ и $\lambda$ методом максимального правдоподобия
+\item Постройте 95\%-ые доверительные интервалы для $k$ и $\lambda$
+\end{enumerate}
+Часовые данные я не нашёл, нашёл дневные. Данные по среднедневной скорости ветра содержатся в \verb|weather_nov_2012_moskow.csv| в стобике \verb|wind|. Данные взяты с сайта \url{http://www.atlas-yakutia.ru/weather/climate_russia-I.html}.
+
+Hint: \verb|read.csv("filename.csv")|
+\end{enumerate}
+
+
+\end{document}
