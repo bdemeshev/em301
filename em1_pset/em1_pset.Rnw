@@ -33,10 +33,15 @@
 library(ggplot2)
 library(knitr)
 opts_chunk$set(cache=TRUE,
-               dev="cairo_pdf",
+               dev="png",dpi=300,
                warning=FALSE,
                tidy=FALSE, 
-               out.height="3cm",out.width="3cm") # кэшируем все куски по умолчанию
+               out.height="7cm",out.width="7cm") # кэшируем все куски по умолчанию
+               
+library(Hmisc)
+library(lmtest)
+library(apsrtable)
+library(xtable)
 @
 
 \listoftodos
@@ -358,10 +363,6 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
 
 <<echo=FALSE,message=FALSE>>=
-library(Hmisc)
-library(lmtest)
-library(apsrtable)
-library(xtable)
 h <- swiss
 model1 <- glm(Agriculture~Examination+Catholic,data=h)
 coef.t <- coeftest(model1)
@@ -566,6 +567,52 @@ xtable(coef.table)
 \item Сгенерируйте данные так, чтобы при оценке модели $\hat{y}=\hat{\beta_1}+\hat{\beta_2}x+\hat{\beta_3}z$ оказывалось, что по отдельности оценки коэффициентов $\hat{\beta_2}$ и $\hat{\beta_3}$ незначимы, но модель в целом --- значима.
 \solution{}
 
+\item В этом задании нужно сгенерировать зависимую переменную $y$ и два регрессора $x$ и $z$.
+\begin{enumerate}
+\item Сгенерируйте данные так, чтобы корреляция между регрессорами $x$ и $z$ была больше $0.9$, и проблема мультиколлинеарности есть, т.е. по отдельности регрессоры не значимы, но регрессия в целом --- значима.
+\item А теперь сгенерируйте данные так, чтобы корреляция между регрессорами была по-прежнему больше $0.9$, но проблемы мультиколлинеарности бы не было, т.е. все коэффициенты были бы значимы.
+\item Есть несколько способов, как изменить генерации случайных величин, чтобы перейти от ситуации <<a>> к ситуации <<b>>. Назовите хотя бы два.   
+\end{enumerate}
+\solution{увеличить количество наблюдений, уменьшить дисперсию случайной ошибки}
+
+\item Исследуем зависимость длины тормозного пути автомобиля от скорости по историческим данным 1920-х годов.
+
+
+<<echo=FALSE,message=FALSE>>=
+h <- cars
+plot(h$speed,h$dist,main="Зависимость длины тормозного пути",xlab="Скорость, миль в час",ylab="Длина пути, футов")
+speed.mean <- mean(h$speed)
+@
+
+Построим результаты оценивания нецентрированной регрессии:
+<<echo=FALSE>>=
+cars.model <- lm(dist~speed+I(speed^3),data=h)
+cars.table <- as.table(coeftest(cars.model))
+rownames(cars.table) <-c("Константа","speed","speed^3")
+@
+
+
+<<echo=FALSE,results='asis'>>=
+xtable(cars.table)
+@
+
+Ковариационная матрица коэффициентов имеет вид:
+<<echo=FALSE,results='asis'>>=
+cars.vcov <- vcov(cars.model)
+rownames(cars.vcov) <-c("Константа","speed","speed^3")
+colnames(cars.vcov) <-c("Константа","speed","speed^3")
+xtable(cars.vcov)
+@
+
+\begin{enumerate}
+\item Проверьте значимость всех коэффициентов и регрессии в целом
+\item Постройте 95\%-ый доверительный интервал для $\E(dist)$ при $speed=10$
+\item Постройте 95\%-ый доверительный интервал для $\E(ddist/dspeed)$ при $speed=10$
+\item Как выглядит уравнение регрессии, если вместо $speed$ использовать центрированную скорость? Известно, что средняя скорость равна $\Sexpr{speed.mean}$
+\item С помощью регрессии с центрированной скоростью ответьте на предыдущие вопросы.
+\end{enumerate}
+
+
 
 \item Пионеры, Крокодил Гена и Чебурашка собирали металлолом несколько дней подряд. В распоряжение иностранной шпионки, гражданки Шапокляк, попали ежедневные данные по количеству собранного металлолома: вектор $g$ --- для Крокодила Гены, вектор $h$ --- для Чебурашки и вектор $x$ --- для Пионеров. Гена и Чебурашка собирали вместе, поэтому выборочная корреляция $\sCorr(g,h)=-0.9$. Гена и Чебурашка собирали независимо от Пионеров, поэтому выборочные корреляции $\sCorr(g,x)=0$, $\sCorr(h,x)=0$. Если регрессоры $g$, $h$ и $x$ центрировать и нормировать, то получится матрица $\tilde{X}$.
 \begin{enumerate}
@@ -590,7 +637,7 @@ xtable(coef.table)
 
 \item Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
 
-<<"diagram", dev='cairo_pdf', warning=FALSE, echo=FALSE>>=
+<<"diagram", warning=FALSE, echo=FALSE>>=
 ggplot(flats,aes(x=totsp,y=price))+geom_point()+theme_bw()+xlab("Общая площадь, кв. м.")+ylab("Цена квартиры, 1000$")
 @
 
@@ -645,13 +692,13 @@ resids <- model$residuals
 resid.acf <- acf(resids,plot=FALSE)$acf
 @
 
-<<echo=FALSE,dev='cairo_pdf',warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
+<<echo=FALSE,warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
 ggplot(df,aes(x=obs,y=level))+geom_line()+theme_bw()+xlab("Год")+ylab("Уровень озера (футы)")
 @
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<echo=FALSE,dev='cairo_pdf',warning=FALSE,out.height="6cm",out.width="6.5cm">>=
+<<echo=FALSE,warning=FALSE,out.height="6cm",out.width="6.5cm">>=
 ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+geom_histogram(position="dodge",stat="identity")+theme_bw()+
   xlab("Лаг")+ylab("Корреляция") +
   guides(fill=guide_legend(title=NULL))+
