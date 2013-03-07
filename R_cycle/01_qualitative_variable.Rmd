@@ -52,6 +52,7 @@ str(x.num)
 ```
 
 Эта первая заметка, возможно, будет продолжена...
-Ищите на [https://github.com/bdemeshev/em301/wiki/r_cycle](https://github.com/bdemeshev/em301/wiki/r_cycle)
 
+### Ищите на [https://github.com/bdemeshev/em301/wiki/r_cycle](https://github.com/bdemeshev/em301/wiki/r_cycle)
 
+xxx

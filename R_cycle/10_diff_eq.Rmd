@@ -1,0 +1,125 @@
+# Визуализация и решение обыкновенных дифференциальных уравнений в R
+
+
+```{r, message=FALSE}
+library(knitr)
+opts_chunk$set(cache=TRUE,message=FALSE,warning=FALSE) 
+
+library(ggplot2) # для построения графиков
+library(rasterVis)
+library(fields)
+```
+
+
+Пакет `rasterVis` предназначен для изображения данных на реальных географических картах, поэтому
+там нужно понятие проекции. Мы пока просто введем это шаманское заклинание
+```{r}
+proj <- CRS('+proj=longlat +datum=WGS84')
+```
+
+
+### Построим график векторного поля для системы:
+$$
+\left\{
+\begin{array}{l}
+\dot{x}=\sin(y) \\
+\dot{y}=\sin(x)
+\end{array}
+\right.
+$$
+
+
+Рассчитываем $\dot{x}$ и $\dot{y}$
+```{r}
+df <- expand.grid(x=seq(-6, 6, .05), y=seq(-6, 6, .05))
+df$dx <- with(sin(y),data=df)
+df$dy <- with(sin(x),data=df)
+```
+
+
+Рассчитываем длины и углы для стрелочек, помещаем результат в объект `Raster`.
+```{r}
+df$len <- with(sqrt(dx^2+dy^2),data=df)
+df$phi <- with(atan2(dy,dx),data=df)
+r2 <- rasterFromXYZ(df[c("x","y","len","phi")],crs=proj)
+```
+
+Строим няку с капельками
+```{r}
+streamplot(r2, isField=TRUE)
+```
+
+
+Строим классический график со стрелочками
+```{r}
+vectorplot(r2,isField=TRUE)
+```
+
+
+Простой график можно руками построить:
+```{r}
+df <- expand.grid(x=seq(-6, 6, .5), y=seq(-6, 6, .5))
+df$dx <- with(sin(y),data=df)
+df$dy <- with(sin(x),data=df)
+plot(df$x,df$y,pch=".")
+arrow.plot( df$x,df$y,df$dx,df$dy,
+            arrow.ex=0.03,length=0.05) 
+```
+
+
+### Решим ОДУ с начальным условиями
+
+
+### Решим систему ОДУ с начальными условиями
+
+
+
+### Решим ОДУ с краевыми условиями
+
+
+### Изображение функций двух переменных
+
+Есть несколько способов представить себе функцию от двух переменных, $z(x,y)$:
+
+* 3D график
+* Линии уровня
+* Векторное поле градиентов функции
+
+
+Создаем data.frame с декартовым произведением двух векторов
+```{r}
+df <- expand.grid(x=seq(-2, 2, .01), y=seq(-2, 2, .01))
+```
+
+Изобразим функцию $z(x,y)=(3\cdot x^2+y)\cdot e^{-x^2-y^2}$.
+
+Cоздаем переменную z как функцию от x и y 
+```{r}
+df$z <- with((3*x^2 + y)*exp(-x^2-y^2),data=df)
+```
+
+
+```{r}
+r <- rasterFromXYZ(df, crs=proj)
+```
+
+Линии уровня функции z
+```{r}
+contour(r)
+```
+
+
+Капельки текущие по градиенту
+```{r}
+streamplot(r)
+```
+
+Направление градиентов, заодно вид сбоку для графика функции
+```{r}
+vectorplot(r)
+```
+
+
+
+
+
