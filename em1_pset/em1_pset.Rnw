@@ -29,25 +29,25 @@
 
 
 
-<<"setup", echo=FALSE, include=FALSE>>=
-library(ggplot2)
+<<"setup", echo=TRUE, include=FALSE,tidy=FALSE>>=
 library(knitr)
 opts_chunk$set(cache=TRUE,
                dev="png",dpi=300,
                warning=FALSE,
                tidy=FALSE, 
+               echo=TRUE,
                out.height="7cm",out.width="7cm") # кэшируем все куски по умолчанию
-               
+
+library(ggplot2)
 library(Hmisc)
 library(lmtest)
 library(apsrtable)
 library(xtable)
+
+theme_set(theme_bw())
 @
 
 \listoftodos
-
-\todo[inline]{Опция tidy=FALSE не работает. Почему?}
-
 
 
 
@@ -362,18 +362,19 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 
 \[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
 
-<<echo=FALSE,message=FALSE>>=
+<<message=FALSE>>=
 h <- swiss
 model1 <- glm(Agriculture~Examination+Catholic,data=h)
 coef.t <- coeftest(model1)
-dimnames(coef.t)[[2]] <- c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+dimnames(coef.t)[[2]] <- 
+    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
 coef.t <- coef.t[,-4]
 coef.t[1,1] <- NA
 coef.t[2,2] <- NA
 coef.t[3,3] <- NA
 @
 
-<<echo=FALSE,results='asis'>>=
+<<results='asis'>>=
 xtable(coef.t)
 @
 
@@ -396,12 +397,12 @@ h <- swiss
 
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
-<<echo=FALSE>>=
+<<>>=
 m1 <- lm(Fertility~Agriculture+Education+Examination+Catholic,data=h)
 m2 <- lm(Fertility~I(Education+Examination)+Catholic,data=h)
 @
 
-<<echo=FALSE, results='asis'>>=
+<<results='asis'>>=
 apsrtable(m1,m2)
 
 @
@@ -418,7 +419,7 @@ flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",head
 \item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 
 
-<<"flats", echo=FALSE, results='asis'>>=
+<<"flats", results='asis'>>=
 model1 <- lm(price~totsp+livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
@@ -427,7 +428,7 @@ xtable(coef.table)
 @
 
 Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
-<<"var hat", echo=FALSE, results='asis'>>=
+<<"var hat", results='asis'>>=
 var.hat <- vcov(model1)
 xtable(var.hat)
 @
@@ -453,7 +454,7 @@ est.diff <- hb[2]-hb[3]
 
 
 \item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
-<<"flats - 2", echo=FALSE, results='asis'>>=
+<<"flats - 2", results='asis'>>=
 model1 <- lm(price~totsp+livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
@@ -462,7 +463,7 @@ xtable(coef.table)
 @
 
 Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
-<<"var hat - 2", echo=FALSE, results='asis'>>=
+<<"var hat - 2", results='asis'>>=
 xtable(vcov(model1))
 @
 
@@ -523,7 +524,7 @@ $:
 
 
 \item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
-<<"flats - 3", echo=FALSE, results='asis'>>=
+<<"flats - 3", results='asis'>>=
 model1 <- lm(price~totsp+livesp+brick+brick:totsp+brick:livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
@@ -578,26 +579,28 @@ xtable(coef.table)
 \item Исследуем зависимость длины тормозного пути автомобиля от скорости по историческим данным 1920-х годов.
 
 
-<<echo=FALSE,message=FALSE>>=
+<<message=FALSE>>=
 h <- cars
-plot(h$speed,h$dist,main="Зависимость длины тормозного пути",xlab="Скорость, миль в час",ylab="Длина пути, футов")
+ggplot(h,aes(x=speed,y=dist))+geom_point()+
+    labs(title="Зависимость длины тормозного пути",
+    x="Скорость, миль в час",y="Длина пути, футов")
 speed.mean <- mean(h$speed)
 @
 
 Построим результаты оценивания нецентрированной регрессии:
-<<echo=FALSE>>=
+<<>>=
 cars.model <- lm(dist~speed+I(speed^3),data=h)
 cars.table <- as.table(coeftest(cars.model))
 rownames(cars.table) <-c("Константа","speed","speed^3")
 @
 
 
-<<echo=FALSE,results='asis'>>=
+<<results='asis'>>=
 xtable(cars.table)
 @
 
 Ковариационная матрица коэффициентов имеет вид:
-<<echo=FALSE,results='asis'>>=
+<<results='asis'>>=
 cars.vcov <- vcov(cars.model)
 rownames(cars.vcov) <-c("Константа","speed","speed^3")
 colnames(cars.vcov) <-c("Константа","speed","speed^3")
@@ -637,8 +640,9 @@ xtable(cars.vcov)
 
 \item Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
 
-<<"diagram", warning=FALSE, echo=FALSE>>=
-ggplot(flats,aes(x=totsp,y=price))+geom_point()+theme_bw()+xlab("Общая площадь, кв. м.")+ylab("Цена квартиры, 1000$")
+<<"diagram", warning=FALSE>>=
+ggplot(flats,aes(x=totsp,y=price))+geom_point()+
+    labs(x="Общая площадь, кв. м.",y="Цена квартиры, 1000$")
 @
 
 Какие подходы к оцениванию зависимости имеет смысл посоветовать исходя из данного графика?
@@ -678,7 +682,7 @@ ggplot(flats,aes(x=totsp,y=price))+geom_point()+theme_bw()+xlab("Общая пл
 
 \item На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:  
 
-<<echo=FALSE, include=FALSE>>=
+<<include=FALSE>>=
 library(zoo)
 library(tseries)
 library(ggplot2)
@@ -686,20 +690,24 @@ level <- LakeHuron
 df <- data.frame(level,obs=1875:1972)
 v.acf <- acf(level,plot=FALSE)$acf
 v.pacf <- pacf(level,plot=FALSE)$acf
-acfs.df <- data.frame(lag=c(1:15,1:15),acf=c(v.acf[2:16],v.pacf[1:15]),acf.type=rep(c("ACF","PACF"),each=15))
+acfs.df <- data.frame(lag=c(1:15,1:15),
+    acf=c(v.acf[2:16],v.pacf[1:15]),
+    acf.type=rep(c("ACF","PACF"),each=15))
 model <- arima(level,order=c(1,0,1))
 resids <- model$residuals
 resid.acf <- acf(resids,plot=FALSE)$acf
 @
 
-<<echo=FALSE,warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
-ggplot(df,aes(x=obs,y=level))+geom_line()+theme_bw()+xlab("Год")+ylab("Уровень озера (футы)")
+<<warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
+ggplot(df,aes(x=obs,y=level))+geom_line()+
+    labs(x="Год",ylab="Уровень озера (футы)")
 @
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<echo=FALSE,warning=FALSE,out.height="6cm",out.width="6.5cm">>=
-ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+geom_histogram(position="dodge",stat="identity")+theme_bw()+
+<<warning=FALSE,out.height="6cm",out.width="6.5cm">>=
+ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
+    geom_histogram(position="dodge",stat="identity")+
   xlab("Лаг")+ylab("Корреляция") +
   guides(fill=guide_legend(title=NULL))+
   geom_hline(yintercept=1.96/sqrt(nrow(df)))+

@@ -76,13 +76,17 @@ for (i in 1:nrow(t)) {
 
 t$spec <- t$tn/(t$tn+t$fp)
 t$sens <- t$tp/(t$tp+t$fn)
+t$correct <- (t$tp+t$tn)/(t$tp+t$tn+t$fn+t$fp)
 
 head(t)
 ```
 
 Зависимость специфичности от порога
 ```{r}
-ggplot(data=t,aes(x=cuts,y=sens))+geom_line()
+matplot(t$cuts,cbind(t$spec,t$sens,t$correct),type="l")
+
+molten.t <- melt(t,id.vars="cuts",measure.vars=c("spec","sens","correct"))
+ggplot(data=molten.t,aes(x=cuts,y=value,color=variable))+geom_line()
 ```
 
 [Кривая ROC](http://en.wikipedia.org/wiki/Receiver_operating_characteristic)
@@ -99,4 +103,4 @@ mosaic(data=h,~brick+walk+floor,shade=TRUE)
 Остальные заметочки, [https://github.com/bdemeshev/em301/wiki/r_cycle](https://github.com/bdemeshev/em301/wiki/r_cycle)
 
 
-xxx
+
