@@ -589,11 +589,12 @@ speed.mean <- mean(h$speed)
 
 Построим результаты оценивания нецентрированной регрессии:
 <<>>=
-cars.model <- lm(dist~speed+I(speed^3),data=h)
+cars.model <- lm(dist~speed+I(speed^2)+I(speed^3),data=h)
 cars.table <- as.table(coeftest(cars.model))
-rownames(cars.table) <-c("Константа","speed","speed^3")
+rownames(cars.table) <-c("Константа","speed","speed^2","speed^3")
 @
 
+\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
 
 <<results='asis'>>=
 xtable(cars.table)
@@ -602,8 +603,8 @@ xtable(cars.table)
 Ковариационная матрица коэффициентов имеет вид:
 <<results='asis'>>=
 cars.vcov <- vcov(cars.model)
-rownames(cars.vcov) <-c("Константа","speed","speed^3")
-colnames(cars.vcov) <-c("Константа","speed","speed^3")
+rownames(cars.vcov) <-c("Константа","speed","speed^2","speed^3")
+colnames(cars.vcov) <-c("Константа","speed","speed^2","speed^3")
 xtable(cars.vcov)
 @
 
@@ -627,7 +628,27 @@ xtable(cars.vcov)
 
 
 
+\item Для модели $y_i=\beta x_i+\e$ рассмотрите модель Ridge regression с коэффициентом $\lambda$.
+\begin{enumerate}
+\item Выведите формулу для $\hb_{RR}$
+\item Найдите $\E(\hb_{RR})$, смещение оценки $\hb_{RR}$,
+\item Найдите $\Var(\hb_{RR})$, $MSE(\hb_{RR})$
+\item Всегда ли оценка $\hb_{RR}$ смещена?
+\item Всегда ли оценка $\hb_{RR}$ имеет меньшую дисперсию, чем $\hb_{ols}$?
+\item Найдите такое $\lambda$, что $MSE(\hb_{RR})<MSE(\hb_{ols})$
+\end{enumerate}
+\solution{}
 
+
+\item Известно, что в модели $y=X\beta+\e$ все регрессоры ортогональны. 
+\begin{enumerate}
+\item Выведите $\hb_{rr}$ в явном виде
+\item Как связаны между собой $\hb_{rr}$ и $\hb_{ols}$?
+\end{enumerate}
+\solution{}
+
+\item Для модели $y_i=\beta x_i + \e_i$ выведите в явном виде $\hb_{lasso}$.
+\solution{}
 
 \end{enumerate}
 
