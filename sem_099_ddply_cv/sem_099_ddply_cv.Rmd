@@ -66,6 +66,7 @@ head(h.new)
 Пример "широкой" таблицы
 
 ```{r}
+h <- 
 tab.wide <- 
 head(tab.wide)
 ```
@@ -167,7 +168,7 @@ f_cross(1,1) # тестируем сделанную функцию
 
 Применяем её ко всем возможным $C$ и $\sigma$
 ```{r}
-d <- ddply(d,~C+sigma,transform,cr=f_cross(C,sigma))
+d <- ddply(d,~C+sigma,transform,cr=f_cross(sigma,C))
 head(d)
 ```
 
