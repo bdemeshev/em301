@@ -3,6 +3,7 @@ Loading all necessary libraries...
 library(ggplot2)
 library(lmtest)
 library(foreign)
+library(erer) # marginal effects for logit/probit and more
 ```
 
 `ggplot2` for beautiful graphs, `lmtest` for various test (Wald test, LR test etc), `foreign` for reading data in spss, stata and other ugly formats.
@@ -90,4 +91,13 @@ Wald-test, Тест Вальда
 waldtest(m1,m2,test="Chisq")
 ```
 
-
+Show marginal effects:
+```{r}
+m2 <- glm(agree~age+age2+adjinc+nsibs,
+          data=h,
+          family=binomial(link="logit"),
+          x=TRUE) 
+# option x=TRUE allows to use maBina() function
+# it saves all the regressors in 'm2' object
+maBina(m2)
+```
