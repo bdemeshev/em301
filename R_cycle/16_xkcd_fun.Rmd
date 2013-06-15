@@ -1,0 +1,23 @@
+library(xkcd)
+
+vignette("xkcd-intro")
+
+p <- ggplot() + geom_line(aes(x=mpg, y=wt), data=mtcars) +
+  theme(text = element_text(size = 16, family = "xkcd"))
+
+
+
+ggplot(aes(x=mpg, y=wt), data=mtcars) + 
+  geom_line(position="jitter", color="red", size=2) + 
+  xlab("Axe x") + ylab("Axe y") +
+#  xkcdaxis(seq(1,10,.1), seq(1,10,.1))+
+  theme(text = element_text(size = 16, family = "xkcd"))
+
+library(extrafont)
+download.file("http://simonsoftware.se/other/xkcd.ttf", dest="xkcd.ttf")
+system("mkdir ~/.fonts")
+system("cp xkcd.tff -t ~/.fonts")
+
+library(extrafont)
+font_import()
+loadfonts()
