@@ -1,40 +1,127 @@
-# соединить с файлом "место женщины"
+# Logit и probit модели в R
 
-Сгенерим искусственные данные
-```{r}
-x <- rnorm(100)
-y <- sample(c(0,1),100,rep=TRUE)
-h <- data.frame(x,y)
-str(h)
+Загружаем библиотеки
+```{r, message=FALSE}
+library(erer) # предельные эффекты, заодно подтянет пакеты ggplot2, lmtest
+library(ggplot2) # графики
+library(lmtest) 
+library(foreign)
+library(xtable)
+library(texreg)
 ```
 
-Оценим линейную модель с помощью МНК, logit и probit модели:
+Устанавливаем рабочую папку и загружаем данные:
 ```{r}
-m.ols <- glm(y~x,data=h)
-
-m.logit <- glm(y~x,data=h,
-              family=binomial(link="logit"))
-m.probit <- glm(y~x,data=h,
-              family=binomial(link="probit"))
+setwd("~/science/econometrix/em301/sem_01_logit_plita/")
+h <- read.dta("mesto_jenshini.dta")
 ```
 
+## До оценки моделей
+
+Проверяем, что всё корректно загрузилось --- `.dta` это не родной для R формат. 
 ```{r}
-summary(model1)
+head(h)
+summary(h)
+```
 
-h$fit <- fitted(model1)
-h$fit0 <- fitted(model0)
+Let's look on some specific variables. Income. Probably year income divided by family size.
+```{r}
+summary(h$adjinc)
+```
 
-head(h$fit)
+Несколько графиков до построения моделей:
+```{r}
+hist(h$agree)
+# more with ggplot2
+```
+
+## Собственно оценка моделей
+
+Логит, пробит и мнк. Предпосылки применения мнк нарушены, но мы его всё равно применим и посмотрим, что выйдет.
+```{r}
+m.logit <- glm(agree~age+adjinc+nsibs,
+          data=h,x=TRUE,
+          family=binomial(link="logit"))
+m.probit <- glm(agree~age+adjinc+nsibs,
+          data=h,x=TRUE,
+          family=binomial(link="probit"))
+m.ols <- glm(agree~age+adjinc+nsibs,
+          data=h)
+```
+
+Посмотрим на логит модель:
+```{r}
+summary(m.logit)
+```
+
+Коэффициенты в логит и пробит моделях плохо интерпретируемы. Вместо них часто рассчитывают предельные эффекты. Предельные эффекты отвечают на вопрос, как изменится примерно вероятность `y=1` с ростом регрессора на единицу. Обычно предельные эффекты считаются для среднего значения каждого регрессора:
+```{r}
+maBina(m.logit)$out
+```
+Опция `x=TRUE` в функции `glm` нужна только для того, чтобы работала функция `maBina`. Она сохраняет исходные `x` в полученной регрессии. Если массив данных огромный, то эту опцию можно убрать, но тогда придется считать предельные эффекты ручками.
+
+
+## Прогнозы
+
+Создаем набор данных, для которого мы будем строить прогнозы:
+```{r}
+new <- data.frame(age=c(20,24),
+                  adjinc=c(16000,4000),
+                  nsibs=c(2,5))
+new
+```
+
+Now we predict probability for these additional observations
+```{r}
+predict(m.logit,new,type="response")
+```
+
+Constructing the confidence interval for these new observations:
+```{r}
+forecast <- predict(m.logit,new,type="response",se.fit=TRUE)
+new$hat.p <- forecast$fit
+new$hat.p.se <- forecast$se.fit
+z.crit <- qnorm(0.975)
+new$ci.left <- new$hat.p - z.crit * new$hat.p.se
+new$ci.right <- new$hat.p + z.crit * new$hat.p.se
+new
+```
+
+
+Заметим приятный факт. Для средних значений регрессоров обычный МНК, который формально нельзя применять из-за нарушения предпосылок теоремы Гаусса-Маркова, даёт вполне корректные прогнозы:
+
+
+Проблемы МНК видны на краевых значениях регрессоров. Тут запросто могут быть отрицательные вероятности :)
+
+
+
+Binary prediction. Best binary prediction?
+
+
+## Выбор между вложенными моделями
+
+Likelihood ratio, LR-test, Тест отношения правдоподобия
+```{r}
+m2.logit <- glm(agree~age+age2+adjinc+nsibs,
+          data=h,
+          family=binomial(link="logit"))
+lrtest(m.logit,m2.logit)
+```
+
+Lagrange multiplier test, LM-test, тест множителей Лагранжа (? by hands)
+
+Wald-test, Тест Вальда
+```{r}
+waldtest(m.logit,m2.logit,test="Chisq")
 ```
 
 
 
-```{r}
-new <- data.frame(x=c(1,2,4))
 
-new$p.hat <- predict(model1,new,type="response")
-new$y.star.hat <- predict(model1,new,type="link")
-```
+
+
+## Кривые ROC
+
 
 
 
@@ -45,4 +132,28 @@ ROC ручками...
 
 
 ROC с помощью пакета ROCR
+
+## Презентация результатов в латехе
+
+
+Одна модель:
+```{r, eval=FALSE}
+xtable(m.logit)
+```
+
+Предельные эффекты одной модели:
+```{r, eval=FALSE}
+xtable(maBina(m.logit)$out)
+```
+
+Табличка со сравнением нескольких моделей:
+```{r,eval=FALSE}
+texreg(list(m.logit,m2.logit))
+```
+
+Табличка со сравнением предельных эффектов
+```{r, eval=FALSE}
+
+```
+
 
