@@ -68,8 +68,7 @@ head(h.new)
 Пример "широкой" таблицы
 
 ```{r}
-h <- 
-tab.wide <- 
+tab.wide <- smiths
 head(tab.wide)
 ```
 
@@ -77,7 +76,9 @@ head(tab.wide)
 Пример "длинной" таблицы
 
 ```{r}
-tab.long <- 
+names(airquality) <- tolower(names(airquality))
+tab.long <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
+
 head(tab.long)
 ```
 
@@ -88,7 +89,7 @@ head(tab.long)
 
 
 ```{r}
-tab.long2 <- melt(tab.wide)
+tab.long2 <- melt(tab.wide, id="subject")
 head(tab.long2)
 ```
 
@@ -96,7 +97,7 @@ head(tab.long2)
 
 
 ```{r}
-tab.wide2 <- cast(tab.long, ...)
+tab.wide2 <- cast(tab.long, day + month ~ variable, mean)
 head(tab.wide2)
 ```
 

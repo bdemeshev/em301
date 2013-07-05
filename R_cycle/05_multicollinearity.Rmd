@@ -135,7 +135,7 @@ summary(m.poly3c)
 vcov(m.poly3c)
 ```
 
-И если построить доверительный интервал, то ничего не изменится.
+И если построить доверительный интервал для прогнозов, то ничего не изменится.
 ```{r}
 new$spc <- 10 - mean(h$speed)
 predict(m.poly3c,newdata=new,interval='confidence')
