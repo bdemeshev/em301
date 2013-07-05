@@ -3,7 +3,7 @@
 Загружаем нужные библиотеки:
 ```{r, message=FALSE}
 library(knitr)
-opts_chunk$set(cache=TRUE) # кэшируем куски Rmd файла для скоростной компиляции после
+opts_chunk$set(cache=FALSE) # кэшируем куски Rmd файла для скоростной компиляции после
 
 library(plyr) # ddply
 library(reshape) # melt - cast
