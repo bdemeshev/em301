@@ -1,18 +1,29 @@
+# Прикольные графики в стиле [xkcd](www.xkcd.com)
+
+```{r, warning=FALSE,message=FALSE}
 library(xkcd)
+library(knitr)
+opts_chunk$set(warning=FALSE,message=FALSE)
+# vignette("xkcd-intro")
+```
 
-vignette("xkcd-intro")
-
-p <- ggplot() + geom_line(aes(x=mpg, y=wt), data=mtcars) +
+Правильный шрифт для осей, к сожалению только английский :)
+```{r}
+ggplot() + geom_line(aes(x=mpg, y=wt), data=mtcars) +
   theme(text = element_text(size = 16, family = "xkcd"))
+```
 
-
-
+Еще одна попытка:
+```{r}
 ggplot(aes(x=mpg, y=wt), data=mtcars) + 
   geom_line(position="jitter", color="red", size=2) + 
   xlab("Axe x") + ylab("Axe y") +
-#  xkcdaxis(seq(1,10,.1), seq(1,10,.1))+
+#  xkcdaxis(seq(10,35,.1), seq(0,6,.1))+
   theme(text = element_text(size = 16, family = "xkcd"))
+```
 
+То, что осталось от попыток установки на ubuntu
+```{r, eval=FALSE}
 library(extrafont)
 download.file("http://simonsoftware.se/other/xkcd.ttf", dest="xkcd.ttf")
 system("mkdir ~/.fonts")
@@ -21,3 +32,4 @@ system("cp xkcd.tff -t ~/.fonts")
 library(extrafont)
 font_import()
 loadfonts()
+```
