@@ -31,7 +31,7 @@ summary(h$adjinc)
 
 Несколько графиков до построения моделей:
 ```{r}
-hist(h$agree)
+qplot(factor(agree),data=h)
 # more with ggplot2
 ```
 
