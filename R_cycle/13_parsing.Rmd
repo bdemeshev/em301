@@ -194,4 +194,17 @@ str(all.data)
 
 
 
+Хвосты:
+
+library(XML)
+url<-
+"http://www.databasesports.com/olympics/sport/sportevent.htm?sp=ATH&enum=120"
+data <- readHTMLTable(readLines(url), which=3, header=TRUE)
+golddata <- subset(data, Medal %in% "GOLD")
+golddata$Year <- as.numeric(as.character(golddata$Year))
+golddata$Result <- as.numeric(as.character(golddata$Result))
+
+взято из http://www.statslab.cam.ac.uk/~pat/redwsheets.pdf
+
+
 
