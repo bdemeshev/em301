@@ -196,15 +196,48 @@ str(all.data)
 
 Хвосты:
 
-library(XML)
-url<-
-"http://www.databasesports.com/olympics/sport/sportevent.htm?sp=ATH&enum=120"
-data <- readHTMLTable(readLines(url), which=3, header=TRUE)
-golddata <- subset(data, Medal %in% "GOLD")
-golddata$Year <- as.numeric(as.character(golddata$Year))
-golddata$Result <- as.numeric(as.character(golddata$Result))
 
-взято из http://www.statslab.cam.ac.uk/~pat/redwsheets.pdf
+
+```{r}
+url <- "http://www.databasesports.com/olympics/sport/sportevent.htm?sp=ATH&enum=120"
+data <- readHTMLTable(url)
+str(data)
+
+# get the right table
+df.mock <- data[[3]]
+df.mock
+
+# clean table
+str(df.mock)
+df.mock$Year <- as.numeric(as.character(df.mock$Year))
+df.mock$Result <- as.numeric(as.character(df.mock$Result))
+
+df <- df.mock[,-2]
+
+# check
+str(df)
+head(df)
+tail(df)
+```
+
+
+```{r}
+url <- "http://sophist.hse.ru/exes/tables/IP_EA_Q.htm"
+data <- readHTMLTable(url)
+str(data)
+
+df <- data[[1]]
+
+head(df)
+tail(df)
+
+df.clean <- df[2:(nrow(df)-4),]
+df.clean
+
+df.clean$IP_EA_Q <- gsub(",",".",df.clean$IP_EA_Q)
+df.clean$IP_EA_Q_SA <- gsub(",",".",df.clean$IP_EA_Q_SA)
+```
+
 
 
 
