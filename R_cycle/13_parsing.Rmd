@@ -37,7 +37,9 @@ library(RCurl) # filling forms
 
 ### Парсинг готовых html-таблиц
 
-В википедии есть данные по тому, сколько медалей получила каждая страна  в Олимпийских играх. Для начала нужно поглядеть на данные за [2010 год](http://en.wikipedia.org/wiki/2010_Winter_Olympics_medal_table). 
+### Пример 1. Медали на олимпийских играх.
+
+В википедии есть данные по тому, сколько медалей получила каждая страна на Олимпийских играх. Для начала нужно поглядеть на данные за [2010 год](http://en.wikipedia.org/wiki/2010_Winter_Olympics_medal_table). 
 
 
 Мы их попытаемся вытащить автоматом. Потом, например, можно узнать как связано количество серебряных и золотых медалей. 
@@ -49,10 +51,10 @@ tables <- readHTMLTable(url)
 str(tables)
 ```
 
-Судя по описанию, понимаем, что наша таблица --- третья из полученных:
+Судя по описанию, понимаем, что наша таблица --- вторая из полученных:
 
 ```{r}
-df <- tables[[3]]
+df <- tables[[2]]
 str(df)
 ```
 
@@ -97,14 +99,99 @@ df$Bronze <- as.numeric(df$Bronze)
 df$Total <- as.numeric(df$Total)
 ```
 
-Смотрим на почти идеальную таблицку. Останется только присвоить правильный ранг там, где сейчас в графе ранг стоит название страны:
+Смотрим на почти идеальную табличку. Останется только присвоить правильный ранг там, где сейчас в графе ранг стоит название страны:
 
 ```{r}
 df[5:9,]
 summary(df)
 ```
 
-Кстати, Гугл-докс тоже умеет это делать! Создаёте пустую таблицу на [docs.google.com](docs.google.com). В верхней левой ячейке набираете:
+В конце проверяем, что всё ок:
+
+```{r, eval=FALSE}
+str(df)
+head(df)
+tail(df)
+summary(df)
+```
+
+### Пример 2. Результаты мужчин в беге на 200 метров.
+
+Табличка взята с сайта [databasesports.com](http://www.databasesports.com). Далее Olympics, Track and field, 200m Men.
+
+```{r}
+url <- "http://www.databasesports.com/olympics/sport/sportevent.htm?sp=ATH&enum=120"
+tables <- readHTMLTable(url)
+str(tables)
+```
+
+Наша табличка чудесным образом снова третья!
+```{r}
+df <- tables[[3]]
+str(df)
+```
+
+Конвертируем переменные в нужный тип, удаляем бесполезный столбец.
+```{r}
+df$Year <- as.numeric(as.character(df$Year))
+df$Result <- as.numeric(as.character(df$Result))
+df <- df[,-2]
+```
+
+Стандартная проверка
+```{r}
+str(df)
+head(df)
+tail(df)
+summary(df)
+```
+
+### Пример 3. Макроэкономические данные со [stat.hse.ru](http://sophist.hse.ru/data_access.shtml)
+
+На stat.hse.ru выбираем "статистические ряды", далее нужный показатель. 
+
+
+```{r}
+url <- "http://sophist.hse.ru/exes/tables/IP_EA_Q.htm"
+tables <- readHTMLTable(url)
+str(tables)
+```
+
+На этот раз наша табличка единственная в списке
+```{r}
+df <- tables[[1]]
+head(df)
+tail(df)
+```
+
+Удаляем ненужные строки:
+```{r}
+df <- df[2:(nrow(df)-4),]
+```
+
+Заменяем запятые на точки, удаляем пробелы и переводим в числа:
+```{r}
+df$IP_EA_Q <- gsub(",",".",df$IP_EA_Q)
+df$IP_EA_Q_SA <- gsub(",",".",df$IP_EA_Q_SA)
+df$IP_EA_Q <- gsub(" ","",df$IP_EA_Q)
+df$IP_EA_Q_SA <- gsub(" ","",df$IP_EA_Q_SA)
+df$IP_EA_Q <- as.numeric(df$IP_EA_Q)
+df$IP_EA_Q_SA <- as.numeric(df$IP_EA_Q_SA)
+```
+
+Обязательная проверка:
+
+```{r}
+str(df)
+head(df)
+tail(df)
+summary(df)
+```
+
+
+### Вытаскиваем таблицы с помощью гугл-докс. 
+
+Гугл-докс тоже умеет это делать! Создаём пустую таблицу на [docs.google.com](docs.google.com). В верхней левой ячейке набираете:
 ```{r, eval=FALSE}
 =ImportHtml("http://en.wikipedia.org/wiki/2010_Winter_Olympics_medal_table","table",3)
 ```
@@ -194,49 +281,7 @@ str(all.data)
 
 
 
-Хвосты:
 
-
-
-```{r}
-url <- "http://www.databasesports.com/olympics/sport/sportevent.htm?sp=ATH&enum=120"
-data <- readHTMLTable(url)
-str(data)
-
-# get the right table
-df.mock <- data[[3]]
-df.mock
-
-# clean table
-str(df.mock)
-df.mock$Year <- as.numeric(as.character(df.mock$Year))
-df.mock$Result <- as.numeric(as.character(df.mock$Result))
-
-df <- df.mock[,-2]
-
-# check
-str(df)
-head(df)
-tail(df)
-```
-
-
-```{r}
-url <- "http://sophist.hse.ru/exes/tables/IP_EA_Q.htm"
-data <- readHTMLTable(url)
-str(data)
-
-df <- data[[1]]
-
-head(df)
-tail(df)
-
-df.clean <- df[2:(nrow(df)-4),]
-df.clean
-
-df.clean$IP_EA_Q <- gsub(",",".",df.clean$IP_EA_Q)
-df.clean$IP_EA_Q_SA <- gsub(",",".",df.clean$IP_EA_Q_SA)
-```
 
 
 
