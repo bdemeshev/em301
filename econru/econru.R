@@ -4,31 +4,39 @@ require(zoo) # for year-quarterly class
 library(rjson)
 library(plyr)
 
+get_stat_hse_info_vector <- function(series.name = "IP_EA_Q",
+                                     n.vars = 1,
+                                     info = c("methodology","source","comment")) {
 
-get_stat_hse_info <- function(series.name = "IP_EA_Q",
-                              series.name.2 = "IP_EA_Q_SA",
-                              info = c("methodology","source","comment")) {
-    
+  
   if (info=="methodology") 
-    url <- paste("http://sophist.hse.ru/hse/1/met/",series.name,".html#",series.name.2,sep="")
+    url <- paste("http://sophist.hse.ru/hse/1/met/",series.name,".html",sep="")
   if (info=="source") 
-    url <- paste("http://sophist.hse.ru/hse/1/sor/",series.name,".html#",series.name.2,sep="")
+    url <- paste("http://sophist.hse.ru/hse/1/sor/",series.name,".html",sep="")
   if (info=="comment") 
-    url <- paste("http://sophist.hse.ru/hse/1/com/",series.name,".html#",series.name.2,sep="")
-
+    url <- paste("http://sophist.hse.ru/hse/1/com/",series.name,".html",sep="")
+  
   url.html <- getURL(url,.encoding="UTF-8")
   url.parsed <- htmlTreeParse(url.html)
   url.root <- xmlRoot(url.parsed)
+
   
-  text <- xmlValue(url.root[[3]][[3]][[2]][[1]][[1]][[1]])
+  # there maybe 2 situations:
+  # one entry for each variable
+  # one entry for all variables
+  # or more than 2 ;)
+  
+  n.on.site <- length(xmlChildren(url.root[[3]][[3]])) %/% 2 # only approximate
+  text <- rep("",n.vars)
+  
+  for (i in 1:min(n.on.site,n.vars)) {
+    temp.value <- xmlValue(url.root[[3]][[3]][[2*i]])
+    if (length(temp.value)>0) text[i] <- temp.value # avoid empty blocks 
+  }
+    
   return(text)
-}
-
-get_stat_hse_info_vector <- Vectorize(get_stat_hse_info,
-                                      vectorize.args="series.name.2")
+}  
   
-
-
 
 get_stat_hse <- function(series.name = "IP_EA_Q") {
 
@@ -72,16 +80,16 @@ get_stat_hse <- function(series.name = "IP_EA_Q") {
   
   # get methodology, comment and source
 
-  var.names <- names(df)[-1] # remove "T", the name of index
+  n.vars <- ncol(df)-1 # remove "T", the name of index
   
   attr(df,"methodology") <- c("",
-                              get_stat_hse_info_vector(series.name,var.names,"methodology"))
+                              get_stat_hse_info_vector(series.name,n.vars,"methodology"))
 
   attr(df,"source") <- c("",
-                              get_stat_hse_info_vector(series.name,var.names,"source"))
+                              get_stat_hse_info_vector(series.name,n.vars,"source"))
   
   attr(df,"comment") <- c("",
-                              get_stat_hse_info_vector(series.name,var.names,"comment"))
+                              get_stat_hse_info_vector(series.name,n.vars,"comment"))
   
   return(df)  
 }
@@ -91,10 +99,10 @@ get_panoramio <- function(minx=37.606,miny=55.719,maxx=37.612,maxy=55.722,from=0
   url <- paste("http://www.panoramio.com/map/get_panoramas.php?set=public&from=",
     from,"&to=",to,"&minx=",minx,"&miny=",miny,"&maxx=",maxx,"&maxy=",maxy,
                sep="")
-  url.html <- getURL(url)
+  url.json <- getURL(url)
   
   # this function creates an ugly list
-  panor.list <- fromJSON(url.html)
+  panor.list <- fromJSON(url.json)
   
   # we just need the list of list called panor.list$photos
   # the list of list as member of list... @#$%^!
@@ -104,3 +112,17 @@ get_panoramio <- function(minx=37.606,miny=55.719,maxx=37.612,maxy=55.722,from=0
   
   return(df)
 }
+
+
+get_google_elevation_data <- function(from.x=36.5,from.y=55.3,to.x=37.5,to.y=56.5,samples=500) {
+  
+  url <- paste("http://maps.google.com/maps/api/elevation/json?path=",from.x,",",from.y,
+               "|",to.x,",",to.y,"&samples=",samples,"&sensor=false",collapse="",sep="")
+  url.json <- getURL(url)
+  
+  elev.list <- fromJSON(url.json)
+  
+  df <- ldply(elev.list$results,data.frame)
+  return(df)
+}
+
