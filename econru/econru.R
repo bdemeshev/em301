@@ -151,3 +151,43 @@ get_google_elevation_data <- function(from.x=36.5,from.y=55.3,to.x=37.5,to.y=56.
   return(df)
 }
 
+
+get_cbr_currency <- function(currency.name = "USD",
+                 from="1993-01-05",
+                 to="2013-09-18") {
+
+
+  from <- as.Date(from)
+  to <- as.Date(to)
+
+  from.chr <- as.character(from,format="%d.%m.%Y")
+  to.chr <- as.character(to,format="%d.%m.%Y")
+
+  currency.internal <- "01120" # Бурундийский франк :)
+
+  url <- paste("http://cbr.ru/currency_base/DD_print.aspx?date_req1=",from.chr,"&date_req2=",to.chr,
+               "&VAL_NM_RQ=R",currency.internal,sep="")
+
+  # url.html <- getURL(url)
+  tables <- readHTMLTable(url,.encoding="UTF-8")
+
+  df <- tables[[2]]
+
+  names(df) <- c("date","units","ex.rate")
+
+  # all to character
+  df[,1] <- as.character(df[,1])
+  df[,2] <- as.character(df[,2])
+  df[,3] <- as.character(df[,3])
+
+  # correct type
+  df$date <- as.Date(df$date,format="%d.%m.%Y")
+  df$units <- as.numeric(df$units)
+  
+  df$ex.rate <- gsub(",",".",df$ex.rate)
+  df$ex.rate <- gsub(" ","",df$ex.rate)
+
+  df$ex.rate <- as.numeric(df$ex.rate)
+
+  return(df)
+}
