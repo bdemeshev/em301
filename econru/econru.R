@@ -38,12 +38,12 @@ get_stat_hse_info_vector <- function(series.name = "IP_EA_Q",
 }  
   
 
-get_stat_hse <- function(series.name = "IP_EA_Q") {
-
+get_stat_hse <- function(series.name = "IP_EA_Q") {  
+  
   # download main data
   url <- paste("http://sophist.hse.ru/exes/tables/",series.name,".htm",sep="")
   url.html <- getURL(url,.encoding="UTF-8")
-
+  
   # get main table
   tables <- readHTMLTable(url.html)
   df <- tables[[1]]  
@@ -75,6 +75,31 @@ get_stat_hse <- function(series.name = "IP_EA_Q") {
   }
   
   # pretty time index
+  
+  # determine the type of data: yearly/quarterly/mothly
+  t.type <- "Y" # by default we assume early data
+  if (length(grep("[IV]",df$T))>1) t.type <- "Q" # quarterly data
+  if (length(grep("^[23456789]$",df$T))>1) t.type <- "M" # monthly data
+  
+  # convert data to correct format
+  if (t.type=="Y") df$T <- as.numeric(df$T)
+  if (t.type=="M") {
+    # we assume that the first observation has the year
+    start.date <- as.yearmon(df$T[1],format="%Y %m")
+    df$T <- start.date + seq(from=0,by=1/12,length=nrow(df))
+  }
+  if (t.type=="Q") {
+    # we assume that the first observation has the year
+    df$T <- gsub(" IV$","-4",df$T)
+    df$T <- gsub(" III$","-3",df$T)
+    df$T <- gsub(" II$","-2",df$T)
+    df$T <- gsub(" I$","-1",df$T)
+    
+    start.date <- as.yearqtr(df$T[1])
+    df$T <- start.date + seq(from=0,by=1/4,length=nrow(df))
+  }
+  
+  
   # ... todo
   # http://stackoverflow.com/questions/8514662/how-can-i-read-a-date-series-of-quarterly-data-into-r
   

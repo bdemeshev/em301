@@ -1,8 +1,10 @@
 source("econru.R")
 
-df <- get_stat_hse("IP_EA_M")
+df <- get_stat_hse("CPI_Y_CHI")
 
 df
+
+qplot(as.Date(T),CPI_Y_CHI,data=df)
 
 attributes(df)
 
