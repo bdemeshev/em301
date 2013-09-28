@@ -163,10 +163,10 @@ get_cbr_currency <- function(currency.name = "USD",
   from.chr <- as.character(from,format="%d.%m.%Y")
   to.chr <- as.character(to,format="%d.%m.%Y")
 
-  currency.internal <- "01120" # Бурундийский франк :)
+  currency.internal <- "R01120" # Бурундийский франк :)
 
   url <- paste("http://cbr.ru/currency_base/DD_print.aspx?date_req1=",from.chr,"&date_req2=",to.chr,
-               "&VAL_NM_RQ=R",currency.internal,sep="")
+               "&VAL_NM_RQ=",currency.internal,sep="")
 
   # url.html <- getURL(url)
   tables <- readHTMLTable(url,.encoding="UTF-8")
