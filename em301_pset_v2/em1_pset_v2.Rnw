@@ -1,0 +1,104 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{/home/boris/science/tex_general/title_bor_utf8_knitr}
+
+
+% чисто эконометрические сокращения:
+\input{../emetrix_preamble}
+
+
+
+% временное решение
+\newcommand{\solution}[1]{#1}
+
+%\newcommand{\solution}[1]{ {\tiny #1} }
+%\newcommand{\solution}[1]{}
+
+\newcommand{\problem}[1]{#1}
+
+\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\author{Дмитрий Борзых, Борис Демешев}
+\date{\today}
+
+\makeindex % команда для создания предметного указателя
+\bibliographystyle{plain} % стиль оформления ссылок
+
+
+\begin{document}
+
+\maketitle % печатаем заголовок
+\tableofcontents
+
+\parindent=0 pt % отступ равен 0
+
+
+
+<<"setup", echo=TRUE, include=FALSE,tidy=FALSE>>=
+library(knitr)
+opts_chunk$set(cache=TRUE,
+               dev="png",dpi=300,
+               warning=FALSE,
+               tidy=FALSE, 
+               echo=TRUE,
+               out.height="7cm",out.width="7cm") # кэшируем все куски по умолчанию
+
+library(ggplot2)
+library(Hmisc)
+library(lmtest)
+library(apsrtable)
+library(xtable)
+
+theme_set(theme_bw())
+@
+
+\listoftodos
+
+
+% МНК
+
+\include{chapters/010_ols_no_probs_no_matr.tex}
+\include{chapters/020_ols_2_no_matr.tex}
+\include{chapters/030_ols_k_no_matr.tex}
+\include{chapters/040_ols_k_matrix.tex}
+
+% ML
+
+\include{chapters/050_ml_general.tex}
+\include{chapters/060_logit.tex}
+
+% Нарушения
+
+\include{chapters/070_collinearity.tex}
+\include{chapters/080_hetero.tex}
+\include{chapters/090_specification.tex}
+
+%
+
+\include{chapters/100_random_x.tex}
+\include{chapters/110_gmm.tex}
+
+% time series
+
+\include{chapters/120_series.tex}
+
+% Нетрадиционная медицина
+
+\include{chapters/130_svm.tex}
+\include{chapters/140_forest.tex}
+\include{chapters/150_nnetwork.tex}
+
+% байесовский подход
+
+\include{chapters/160_ba.tex}
+
+% Приложения
+
+\include{chapters/200_la.tex}
+\include{chapters/210_random_vectors.tex}
+\include{chapters/220_multivariate_n.tex}
+\include{chapters/230_programming.tex}
+\include{chapters/240_ustav_test.tex}
+\include{chapters/250_tables.tex}
+
+
+\end{document}
