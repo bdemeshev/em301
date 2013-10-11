@@ -45,3 +45,4 @@ dev.off()
 
 Проект [opencpu](https://public.opencpu.org/) позволяет создать своё облачко :) чтобы на нём болтало ножками написанное на R приложение. Среди [примеров приложений](https://public.opencpu.org/apps.html) есть [автоматом обновляющийся Rmd](https://public.opencpu.org/ocpu/library/markdownapp/www/), которым можно воспользоваться по-быстрому, чтобы показать Rmd на семинаре ;)
 
+test
