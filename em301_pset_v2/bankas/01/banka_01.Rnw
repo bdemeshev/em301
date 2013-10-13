@@ -1,0 +1,506 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[paper=a4paper,top=20.5mm,
+bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+
+\begin{document}
+
+\textbf{Задача 1.} При помощи метода наименьших квадратов найдите оценку неизвестного параметра $\theta$ в следующих моделях:
+
+\begin{enumerate}
+\item[(a)] $Y_i = \theta + \theta x_i + \varepsilon_i$
+\item[(b)] $Y_i = \theta - \theta x_i + \varepsilon_i$
+\item[(c)] $\text{ln} Y_i = \theta + ln x_i + \varepsilon_i$
+\item[(d)] $Y_i = \theta + x_i + \varepsilon_i$
+\item[(e)] $Y_i = 1 + \theta x_i + \varepsilon_i$
+\item[(f)] $Y_i = \theta / x_i + \varepsilon_i$
+\item[(g)] $Y_i = \theta x_{i1} + (1-\theta)x_{i2}+\varepsilon_i$
+\end{enumerate}
+
+\textbf{Задача 2.} Покажите, что для моделей $Y_i= \alpha + \beta x_i + \varepsilon_i$, $Z_i = \gamma + \delta x_i + \upsilon_i$ и $Y_i + Z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hat{\beta} + \hat{\delta}$.
+
+\textbf{Задача 3.} Найдите МНК-оценки параметров $\alpha$ и $\beta$ в модели $Y_i = \alpha + \beta Y_i + \varepsilon_i$.
+
+\textbf{Задача 4.} Рассмотрите модели $Y_i = \alpha + \beta (Y_i + Z_i) + \varepsilon_i$, $Z_i = \gamma + \delta(Y_i+Z_i) + \varepsilon_i$ и покажите, что $\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$.
+
+\textbf{Задача 5.} Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $Y_i = \alpha + \beta x_i + \varepsilon_i$ и $Z_i = \gamma + \delta x_i + \upsilon_i$, если $Z_i = 2 Y_i$.
+
+\textbf{Задача 6.} Для модели $Y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (Y_i - \beta_1 x_{i1} - \beta_2 x_{i2})^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
+
+\textbf{Задача 7.} Рассмотрите классическую линейную регрессионную модель $Y_i = \beta x_i + \varepsilon_i$. Найдите $\mathbb{E} \hat{\beta}$. Какие из следующих оценок параметра $\beta$ являются несмещенными:
+
+\begin{enumerate}
+\item[(a)] $\hat{\beta} = \frac{Y_1}{x_1}$
+\item[(b)] $\hat{\beta} = \frac{1}{2} \frac{Y_1}{x_1} + \frac{1}{2} \frac{Y_n}{x_n}$
+\item[(c)] $\hat{\beta} = \frac{1}{n} \left( \frac{Y_1}{x_1} + \ldots + \frac{Y_n}{x_n} \right)$
+\item[(d)] $\hat{\beta} = \frac{\overline{Y}}{\overline{x}}$
+\item[(e)] $\hat{\beta} = \frac{Y_n - Y_1}{x_n - x_1}$
+\item[(f)] $\hat{\beta} = \frac{1}{2} \frac{Y_2 - Y_1}{x_2 - x_1} + \frac{1}{2} \frac{Y_n - Y_{n-1}}{x_n - x_{n-1}}$
+\item[(g)] $\hat{\beta} = \frac{1}{n} \frac{Y_2 - Y_1}{x_2 - x_1} + \frac{1}{n} \frac{Y_3 - Y_2}{x_3 - x_2} + \ldots + \frac{1}{n} \frac{Y_n - Y_{n-1}}{x_n - x_{n-1}}$
+\item[(h)] $\hat{\beta} = \frac{1}{n-1} \left( \frac{Y_2 - Y_1}{x_2 - x_1} + \frac{Y_3 - Y_2}{x_3 - x_2} + \ldots + \frac{Y_n - Y_{n-1}}{x_n - x_{n-1}} \right)$
+\item[(i)] $\hat{\beta} = \frac{x_1 Y_1 + \ldots + x_n Y_n}{x_1^2 + \ldots + x_n^2}$
+\item[(j)] $\hat{\beta} = \frac{1}{2} \frac{Y_n - Y_1}{x_n - x_1} + \frac{1}{2n} \left( \frac{Y_1}{x_1} + \ldots + \frac{Y_n}{x_n} \right)$
+\item[(k)] $\hat{\beta} =  \frac{1}{2} \frac{Y_n - Y_1}{x_n - x_1} + \frac{1}{2} \frac{x_1 Y_1 + \ldots + x_n Y_n}{x_1^2 + \ldots + x_n^2}$
+\item[(l)] $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(Y_i - \overline{Y})}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
+\item[(m)] $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{Y} - Y_i)}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
+\item[(n)] $\hat{\beta} = \frac{Y_1 + 2 Y_2 + \ldots + n Y_n}{x_1 + 2 x_2 + \ldots + n x_n}$
+\item[(o)] $\hat{\beta} = \frac{\sum_{i=1}^n i(Y_i - \overline{Y})}{\sum_{i=1}^n i(x_i - \overline{x})}$
+\item[(p)] $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{Y_i}{x_i}$
+\item[(q)] $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{Y_i - \overline{Y}}{x_i - \overline{x}}$
+\end{enumerate}
+
+\textbf{Задача 8.} Рассмотрите классическую линейную регрессионную модель $Y_i = \beta x_i + \varepsilon_i$. Найдите $\text{var} (\hat{\beta})$. \textit{НЕТ ВОПРОСА!}
+
+\begin{enumerate}
+\item[(a)] $\hat{\beta} = \frac{Y_1}{x_1}$
+\item[(b)] $\hat{\beta} = \frac{1}{2} \frac{Y_1}{x_1} + \frac{1}{2} \frac{Y_n}{x_n}$
+\item[(c)] $\hat{\beta} = \frac{1}{n} \left( \frac{Y_1}{x_1} + \ldots + \frac{Y_n}{x_n} \right)$
+\item[(d)] $\hat{\beta} = \frac{\overline{Y}}{\overline{x}}$
+\item[(e)] $\hat{\beta} = \frac{Y_n - Y_1}{x_n - x_1}$
+\item[(f)] $\hat{\beta} = \frac{1}{2} \frac{Y_2 - Y_1}{x_2 - x_1} + \frac{1}{2} \frac{Y_n - Y_{n-1}}{x_n - x_{n-1}}$
+\item[(g)] $\hat{\beta} = \frac{x_1 Y_1 + \ldots + x_n Y_n}{x_1^2 + \ldots + x_n^2}$
+\item[(h)] $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(Y_i - \overline{Y})}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
+\item[(i)] $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{Y} - Y_i)}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
+\item[(j)] $\hat{\beta} = \frac{Y_1 + 2 Y_2 + \ldots + n Y_n}{x_1 + 2 x_2 + \ldots + n x_n}$
+\item[(k)] $\hat{\beta} = \frac{\sum_{i=1}^n i(Y_i - \overline{Y})}{\sum_{i=1}^n i(x_i - \overline{x})}$
+\item[(l)] $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{Y_i}{x_i}$
+\item[(m)] $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{Y_i - \overline{Y}}{x_i - \overline{x}}$
+\end{enumerate}
+
+\textbf{Задача 9.} Рассмотрите классическую линейную регрессионную модель $Y_i = \beta \cdot i + \varepsilon_i$, $i=1, \ldots, n$. Какая из оценок $\hat{\beta}$ и $\tilde{\beta}$ является более эффективной?
+
+\begin{enumerate}
+\item[(a)] $\hat{\beta} = Y_1$ и $\tilde{\beta} = Y_2/2$
+\item[(b)] $\hat{\beta} = Y_1$ и $\tilde{\beta} = \frac{1}{2} Y_1 + \frac{1}{2} \frac{Y_2}{2}$
+\item[(c)] $\hat{\beta} = \frac{1}{n} \left( \frac{Y_1}{1} + \ldots + \frac{Y_n}{n} \right)$ и $\tilde{\beta} = \frac{1 \cdot Y_1 + \ldots + n \cdot Y_n}{1^2 + \ldots + n^2}$
+\end{enumerate} 
+
+\textbf{Задача 10.} Известно, что случайные величины $X_1$, $X_2$ и $X_3$ имеют следующие характеристики: 
+\begin{enumerate}
+\item $\mathbb{E}(X_1) = 5$, $\mathbb{E}(X_2) = 10$, $\mathbb{E}(X_3) = 8$
+\item $\text{var} (X_1) = 6$, $\text{var} (X_2) = 14$, $\text{var} (X_3) = 1$
+\item $\text{cov} (X_1, X_2) = 3$, $\text{cov} (X_1, X_3) = 1$, $\text{cov} (X_2, X_3) = 0$
+\end{enumerate}
+Пусть случайные величины $Y_1$, $Y_2$ и $Y_3$, представляют собой линейные комбинации случайных величин $X_1$, $X_2$ и $X_3$:
+$$Y_1 = X_1 + 3X_2 - 2X_3$$
+$$Y_1 = 7X_1 - 4X_2 + X_3$$
+$$Y_1 = -2X_1 - X_2 + 4X_3$$
+
+\begin{enumerate}
+\item[(a)] Выпишите математическое ожидание и ковариационную матрицу случайного вектора $X = \left( \begin{array}{ccc}
+X_1 & X_2 & X_3\\
+\end{array} \right)^T$
+\item[(b)] Напишите матрицу $A$, которая позволяет перейти от случайного вектора $X = (X_1 X_2 X_3)^T$ к случайному вектору $Y = \left( \begin{array}{ccc}
+Y_1 & Y_2 & Y_3\\
+\end{array} \right)^T$
+\item[(c)] С помощью матрицы $A$ найдите математическое ожидание и ковариационную матрицу случайного вектора $Y = \left( \begin{array}{ccc}
+Y_1 & Y_2 & Y_3\\
+\end{array} \right)^T$
+\end{enumerate}
+
+\textbf{Задача 11.} Пусть $X = \left( \begin{array}{cc}
+X_1 & X_2\\
+\end{array} \right)^T$ --- случайный вектор, имеющий двумерное нормальное распределение с математическим ожиданием $\mu = \left( \begin{array}{cc}
+1 & 2\\
+\end{array} \right)^T$ и ковариационной матрицей $\Sigma = \left(
+\begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right)$. 
+
+\begin{enumerate}
+\item[(a)] Найдите $\Sigma^{-1}$
+\item[(b)] Найдите $\Sigma^{-1/2}$
+\item[(c)] Найдите математическое ожидание и ковариационную матрицу случайного вектора $Y = \Sigma^{-1/2} \cdot (X - \mu)$
+\item[(d)] Какое распределение имеет вектор $Y$ из предыдущего пункта?
+\item[(e)] Найдите распределение случайной величины $Q = (X- \mu)^T \cdot \Sigma^{-1} \cdot (X - \mu)$
+\end{enumerate}
+
+\textbf{Задача 12.} Пусть $Z = \left( \begin{array}{ccc}
+Z_1 & Z_2 & Z_3\\
+\end{array} \right)^T \sim N(0, I_{3x3})$, $b = \left( \begin{array}{ccc}
+1 & 2 & 3\\
+\end{array} \right)^T$,
+
+$A = \left( \begin{array}{ccc}
+1 & 1 & 1 \\
+0 & 1 & 1 \\
+0 & 0 & 1 \\
+\end{array} \right)$, $K = \left( \begin{array}{ccc}
+1 & 0 & 0 \\
+0 & 1/2 & 1/2 \\
+0 & 1/2 & 1/2 \\
+\end{array} \right)$.
+
+\begin{enumerate}
+\item[(a)] Найдите $\mathbb{E}X$ и $\text{var}(X)$ случайного вектора $X = A \cdot Z + b$
+\item[(b)] Найдите распределение случайного вектора $X$
+\item[(c)] Найдите $\mathbb{E}Q$ случайной величины $Q = Z^T \cdot K \cdot Z$
+\item[(d)] Найдите распределение случайной величины $Q$
+\end{enumerate}
+
+\textbf{Задача 13.} Пусть регрессионная модель $Y_i = \alpha + \beta_1 x_{i1} + \beta_2 x_{i2} + \varepsilon_i$, $i = 1, \ldots, n$, задана в матричном виде при помощи уравнения $Y = X \beta + \varepsilon$, где $\beta = \left( \begin{array}{ccc}
+\alpha & \beta_1 & \beta_2\\
+\end{array} \right)^T$. Известно, что $\mathbb{E}\varepsilon = 0$ и $\text{var}(\varepsilon) = 4 \cdot I$. Известно также, что:
+
+$Y = \left( \begin{array}{c}
+1 \\
+2 \\
+3 \\
+4 \\
+5 \\
+\end{array} \right)$, $X = \left( \begin{array}{ccc}
+1 & 0 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1 \\
+\end{array} \right)$
+
+Для удобства расчётов ниже приведены матрицы:
+
+$X^T X = \left( \begin{array}{ccc}
+5 & 3 & 1 \\
+3 & 3 & 1 \\
+1 & 1 & 1 \\
+\end{array} \right)$ и $(X^T X)^{-1} = \left( \begin{array}{ccc}
+0.5 & -0.5 & 0 \\
+-0.5 & 1 & -0.5 \\
+0 & -0.5 & 1.5 \\
+\end{array} \right)$.
+
+Найдите:
+\begin{enumerate}
+\item[(a)] $\text{var}(\varepsilon_1)$
+\item[(b)] $\text{var}(\alpha)$
+\item[(c)] $\text{var}(\hat{\alpha})$
+\item[(d)] $\widehat{\text{var}}(\hat{\alpha})$
+\item[(e)] $\mathbb{E}(\hat{\alpha}^2) - \alpha^2$
+\item[(f)] $\text{cov}(\hat{\beta}_1, \hat{\beta}_2)$
+\item[(g)] $\widehat{\text{cov}}(\hat{\beta}_1, \hat{\beta}_2)$
+\item[(h)] $\text{var}(\hat{\beta}_1 - \hat{\beta}_2)$
+\item[(i)] $\widehat{\text{var}}(\hat{\beta}_1 - \hat{\beta}_2)$
+\item[(j)] $\text{var}(\beta_1 - \beta_2)$
+\item[(k)] $\text{corr}(\hat{\beta}_1, \hat{\beta}_2)$
+\item[(l)] $\widehat{\text{corr}}(\hat{\beta}_1, \hat{\beta}_2)$
+\item[(m)] $\mathbb{E}(\hat{\sigma}^2)$
+\item[(n)] $\hat{\sigma}^2$
+\end{enumerate}
+
+\textbf{Задача 14.}  Пусть $\xi_1, \xi_2, \xi_3$ --- случайные величины, такие что $\text{var}(\xi_1) = 2$, $\text{var}(\xi_2) = 3$, $\text{var}(\xi_3) = 4$, $\text{cov}(\xi_1, \xi_2) = 1$, $\text{cov}(\xi_1, \xi_3) = -1$, $\text{cov}(\xi_2, \xi_3) = 0$. Пусть $\xi = \left( \begin{array}{ccc}
+\xi_1 & \xi_2 & \xi_3 \\
+\end{array} \right)^T$. Найдите $\text{V}(\xi)$ и $\text{var}(\xi_1 + \xi_2 + \xi_3)$.
+
+\textbf{Решение.} По определению ковариационной матрицы:
+
+$\text{V}(\xi) = \left( \begin{array}{ccc}
+\text{var}(\xi_1) & \text{cov}(\xi_1, \xi_2) & \text{cov}(\xi_1, \xi_3) \\
+\text{cov}(\xi_2, \xi_1) & \text{var}(\xi_2) & \text{cov}(\xi_2, \xi_3) \\
+\text{cov}(\xi_3, \xi_1) & \text{cov}(\xi_3, \xi_2) & \text{var}(\xi_3) \\
+\end{array} \right) = \left( \begin{array}{ccc}
+2 & 1 & -1 \\
+1 & 3 & 0 \\
+-1 & 0 & 4 \\
+\end{array} \right)$
+
+$\text{var}(\xi_1 + \xi_2 + \xi_3) = \text{V}(\xi_1 + \xi_2 + \xi_3) = \text{V} \left( \begin{array}{cc} 
+\left( \begin{array}{ccc}
+1 & 1 & 1 \\
+\end{array} \right) & \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\xi_3 \\
+\end{array} \right)
+\end{array} \right) = \left( \begin{array}{ccc}
+1 & 1 & 1 \\
+\end{array} \right) \text{V} \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\xi_3 \\
+\end{array} \right) \left( \begin{array}{c}
+1 \\
+1 \\
+1 \\
+\end{array} \right) = \left( \begin{array}{ccc}
+1 & 1 & 1 \\
+\end{array} \right) \left( \begin{array}{ccc}
+2 & 1 & -1 \\
+1 & 3 & 0 \\
+-1 & 0 & 4 \\
+\end{array} \right) \left( \begin{array}{c}
+1 \\
+1 \\
+1 \\
+\end{array} \right) = 9$
+
+\textbf{Задача 15.} Пусть $H = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$; $\mathbb{E}(H) = \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right)$; $\text{V}(H) = \left( \begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right)$; $Z_1 = \left( \begin{array}{c}
+\eta_1 \\
+\eta_2 \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$. Найдите $\mathbb{E}(Z_1)$ и $\text{V}(Z_1)$.
+
+\textbf{Решение.} $\mathbb{E}(Z_1) = \mathbb{E} \left( \begin{array}{cc}
+\left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) & \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \mathbb{E} \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right) = \left( \begin{array}{c}
+0\\
+2\\
+\end{array} \right)$
+
+$\text{V}(Z_1) = \text{V} \left( \begin{array}{cc}
+\left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) & \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \text{V} \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right)^T = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right) \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right)^T = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{cc}
+0 & 1 \\
+0 & 2 \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 2 \\
+\end{array} \right)$
+
+\textbf{Задача 16.} Пусть $H = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$; $\mathbb{E}(H) = \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right)$; $\text{V}(H) = \left( \begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right)$; $Z_2 = \left( \begin{array}{c}
+\eta_1 \\
+\eta_2 \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) + \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right)$. Найдите $\mathbb{E}(Z_2)$ и $\text{V}(Z_2)$
+
+\textbf{Решение.} $\mathbb{E}(Z_2) = \mathbb{E} \left( \begin{array}{cccc}
+\left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) & \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) & + & \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right) \\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \mathbb{E} \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) + \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right) = \left( \begin{array}{cc}
+0 & 0 \\
+0 & 1 \\
+\end{array} \right) \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right) + \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right) = \left( \begin{array}{c}
+0\\
+2\\
+\end{array} \right)+ \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right) = \left( \begin{array}{c}
+1\\
+3\\
+\end{array} \right)$
+
+Поскольку $Z_2 = Z_1 + \left( \begin{array}{c}
+1\\
+1\\
+\end{array} \right)$, где $Z_1$ --- случайный вектор из предыдущей задачи, то $\text{V}(Z_2) = \text{V}(Z_1)$ \textit{(сдвиг случайного вектора на вектор-константу не меняет его ковариационную матрицу)}.
+
+\textbf{Задача 17.} Пусть $H = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$; $\mathbb{E}(H) = \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right)$; $\text{V}(H) = \left( \begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right)$; $Z_3 = \left( \begin{array}{c}
+\eta_1 \\
+\eta_2 \\
+\end{array} \right) = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) - \left( \begin{array}{c}
+\mathbb{E}\xi_1 \\
+\mathbb{E}\xi_2 \\
+\end{array} \right)$. Найдите $\mathbb{E}(Z_3)$ и $\text{V}(Z_3)$
+
+\textbf{Решение.} \textit{В данном примере проиллюстрирована процедура центрирования случайного вектора --- процедура вычитания из случайного вектора его математического ожидания.}
+
+$\mathbb{E}(Z_3) = \mathbb{E} \left( \begin{array}{ccc}
+\left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) & - & \left( \begin{array}{c}
+\mathbb{E} \xi_1 \\
+\mathbb{E} \xi_2 \\
+\end{array} \right) \\
+\end{array} \right) = \mathbb{E} \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) - \mathbb{E} \left( \begin{array}{c}
+\mathbb{E} \xi_1 \\
+\mathbb{E} \xi_2 \\
+\end{array} \right) = \left( \begin{array}{c}
+\mathbb{E} \xi_1 \\
+\mathbb{E} \xi_2 \\
+\end{array} \right) - \left( \begin{array}{c}
+\mathbb{E} \xi_1 \\
+\mathbb{E} \xi_2 \\
+\end{array} \right) = \left( \begin{array}{c}
+0\\
+0\\
+\end{array} \right)$
+
+Заметим, что вектор $Z_3$ отличается от вектора $Z_1$ (из задачи 15) сдвигом на вектор-константу $\left( \begin{array}{c}
+\mathbb{E} \xi_1 \\
+\mathbb{E} \xi_2 \\
+\end{array} \right)$, поэтому $\text{V}(Z_3) = \text{V}(Z_1)$.
+
+\textbf{Задача 18.} Пусть $r_1$, $r_2$ и $r_3$ --- годовые доходности трёх рисковых финансовых инструментов. Пусть $\alpha_1$, $\alpha_2$ и $\alpha_3$ --- доли, с которыми данные инструменты входят в портфель инвестора. Считаем, что $\sum_{i=1}^3 \alpha_i = 1$ и $\alpha_i \geqslant 0$ для всех $i=1,2,3$. Пусть $r = \left( \begin{array}{ccc}
+r_1 & r_2 & r_3\\
+\end{array} \right)^T$, $\mathbb{E}(r) = \left( \begin{array}{ccc}
+a_1 & a_2 & a_3\\
+\end{array} \right)^T$, $\text{V}(r) = \left( \begin{array}{ccc}
+c_{11} & c_{12} & c_{13} \\
+c_{21} & c_{22} & c_{23} \\
+c_{31} & c_{32} & c_{33} \\
+\end{array} \right)$. Параметры $\left\lbrace a_i \right\rbrace$ и $\left\lbrace c_i \right\rbrace$ известны.
+
+\begin{enumerate}
+\item[(a)] Найдите годовую доходность портфеля П инвестора
+\item[(b)] Докажите, что дисперсия доходности портфеля П равна $\sum_{i=1}^3 \sum_{j=1}^3 \alpha_i c_{ij} \alpha_j$
+\item[(c)] Для случая $\alpha_1 = 0.1$, $\alpha_2 = 0.5$, $\alpha3 = 0.4$, $\mathbb{E}(r) = \left( \begin{array}{ccc}
+a_1 & a_2 & a_3\\
+\end{array} \right)^T = \left( \begin{array}{ccc}
+0.10 & 0.06 & 0.05 \\
+\end{array} \right)^T$, $\text{V}(r) = \left( \begin{array}{ccc}
+0.04 & 0 & -0.005\\
+0 & 0.01 & 0\\
+-0.005 & 0 & 0.0025\\
+\end{array} \right)$ найдите $\mathbb{E}(\text{П})$ и $\text{var}(\text{П})$
+\end{enumerate}
+
+\textbf{Задача 19.} Пусть $H = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$; $\mathbb{E}(H) = \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right)$; $\text{V}(H) = \left( \begin{array}{cc}
+2 & 1 \\
+1 & 2 \\
+\end{array} \right)$; $Z_3 = \left( \begin{array}{c}
+\eta_1 \\
+\eta_2 \\
+\end{array} \right) = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) - \left( \begin{array}{c}
+\mathbb{E}\xi_1 \\
+\mathbb{E}\xi_2 \\
+\end{array} \right)$; $Z_4 = \text{V}(H)^{-1/2} Z_3$. Найдите $\mathbb{E}(Z_4)$ и $\text{V}(Z_4)$
+
+\textbf{Задача 20.} Пусть $H = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right)$; $\mathbb{E}(H) = \left( \begin{array}{c}
+1\\
+2\\
+\end{array} \right)$; $\text{V}(H) = \left( \begin{array}{cc}
+3 & 1 \\
+1 & 3 \\
+\end{array} \right)$; $Z_3 = \left( \begin{array}{c}
+\eta_1 \\
+\eta_2 \\
+\end{array} \right) = \left( \begin{array}{c}
+\xi_1 \\
+\xi_2 \\
+\end{array} \right) - \left( \begin{array}{c}
+\mathbb{E}\xi_1 \\
+\mathbb{E}\xi_2 \\
+\end{array} \right)$; $Z_4 = \text{V}(H)^{-1/2} Z_3$. Найдите $\mathbb{E}(Z_4)$ и $\text{V}(Z_4)$
+\end{document}
