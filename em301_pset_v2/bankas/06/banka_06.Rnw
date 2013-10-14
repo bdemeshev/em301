@@ -1,0 +1,217 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{mathdots}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{Pgfplots} 
+%\usepackage{TikZ}
+\usepackage[process=all]{pstool}
+
+\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+\usepackage[pdftex,unicode,colorlinks=true,urlcolor=blue,hyperindex,breaklinks]{hyperref} 
+
+<<>>=
+require(ggplot2)
+@
+
+\begin{document}
+\begin{center}
+\textbf{Задачи по программированию}
+\end{center}
+
+\begin{enumerate}
+\item Напишите программу, которая находит сумму элементов побочной диагонали 
+квадратной матрицы. \\
+\item Напишите программу, которая создает $n\times n$-матрицы вида
+\[
+\begin{bmatrix}
+ 1 & \dots & 1 & 1\\ 
+ 2 & 2 & 2 & 2\\
+ \dots & \dots & \dots & \dots\\ 
+ n & n & n & n
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида 
+\[
+\begin{bmatrix}
+1 & 2 & 3 & \iddots & n\\ 
+2 & 3 & \iddots & n & \iddots\\
+3 & \iddots & \iddots & \iddots & \iddots\\
+\iddots & n & \iddots & \iddots & \iddots\\
+n & \iddots & \iddots & \iddots & 2n-1
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида 
+\[
+\begin{bmatrix}
+ 1 & 2 & \dots & n\\ 
+ 2 & 2 & \dots & n\\
+ \dots & \dots & \dots & n\\ 
+ n & n & n & n
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида 
+\[
+\begin{bmatrix}
+1 & 2 & 3 & \iddots & n\\ 
+2 & 3 & \iddots & n & \iddots\\
+3 & \iddots & \iddots & \iddots & 3\\
+\iddots & n & \iddots & 3 & 2\\
+n & \iddots & 3 & 2 & 1
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида 
+\[
+\begin{bmatrix}
+n & n-1 & \iddots & 2 & 1\\ 
+n-1 & n & n-1 & \iddots & 2\\
+\iddots & n-1 & n & \iddots & \iddots\\
+2 & \iddots & \iddots & \iddots & n-1 \\
+1 & 2 & \iddots & n-1 & n
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида
+\[
+\begin{bmatrix}
+1 & \rho & \rho^{2} & \ddots & \ddots & \rho^{n}\\ 
+\rho & 1 & \rho & \rho^{2} & \ddots & \ddots\\
+\rho^{2} & \rho & 1 & \ddots & \ddots & \ddots\\
+\ddots & \rho^{2} & \ddots & \ddots & \ddots & \rho^{2} \\
+\ddots & \ddots & \ddots & \ddots & \ddots & \rho \\
+\rho^{n} & \ddots & \ddots & \rho^{2} & \rho & 1
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $(2n-1)\times (2n-1)$-матрицы вида 
+\[
+\begin{bmatrix}
+n & n & n & n & n & n & n\\ 
+n & \cdots & \cdots & \cdots & \cdots & \cdots & n\\
+n & \cdots & 2 & 2 & 2 & \cdots & n\\
+n & \cdots & 2 & 1 & 2 & \cdots & n\\
+n & \cdots & 2 & 2 & 2 & \cdots & n\\
+n & \cdots & \cdots & \cdots & \cdots & \cdots & n\\
+n & n & n & n & n & n & n\\
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $n\times n$-матрицы вида
+\[
+\begin{bmatrix}
+1 & 2 & 4 & 7 &\cdots\\ 
+3 & 5 & 8 & \cdots \ & \cdots \\
+6 & 9 & \cdots & \cdots & \cdots\\ 
+10 & \cdots & \cdots & \cdots & \cdots\\
+\cdots & \cdots & \cdots & \cdots & \cdots\\
+\end{bmatrix}
+\]
+\item Напишите программу, которая создает $(2n)\times (2n)$-матрицы вида
+
+\[
+\begin{bmatrix}
+\begin{bmatrix}
+1 & \cdots &1\\
+\vdots & \ddots &\vdots\\
+1 & \cdots &1\\
+\end{bmatrix}
+ &   
+\begin{bmatrix}
+2 & \cdots & 2\\
+\vdots & \ddots &\vdots\\
+2 & \cdots &  2\\
+\end{bmatrix}
+\\\\
+\begin{bmatrix}
+3 & \cdots & 3\\
+\vdots & \ddots &\vdots\\
+3 & \cdots & 3\\
+\end{bmatrix}
+&
+\begin{bmatrix}
+4 & \cdots & 4\\
+\vdots & \ddots &\vdots\\
+4 & \cdots & 4\\
+\end{bmatrix}
+\end{bmatrix}
+ \]
+\item Сгенерируйте выборку из двух зависимых, но некоррелированных случайных величин.\\
+\item Сгенерируйте случайную выборку $(X_{i},Y_{i})^{n}_{i=1}$ из двумерного нормального распределения с
+$(X_{i},Y_{i})\sim(\mu,\Sigma)$.\\
+\item Сгенерируйте случайную выборку $(X_{i1},\dots,X_{ik})^{n}_{i=1}$ из $k-$мерного нормального распределения с
+$(X_{i1},\dots,X_{ik})\sim(\mu,\Sigma)$.\\
+\item Сгенерируйте такой случайный вектор $X=(X_{1},\dots,X_{n})$, что $X_{i}\sim(0,i),i=1,\dots,n$.\\
+\item (интерполяция при помощи многочленов) Пусть заданы попарно различные точки $x_{1},\dots,x_{k}\subseteq \mathbb{R}$. Для регрессионной модели $y_{i}=\beta_{0}+\beta_{1}x_{i}+\dots+\beta_{k}x_{i}^{k}+\varepsilon_{i}$ при $i=1,\dots,k+1$\\
+\begin{enumerate}
+\item Запишите матрицу $X$,\\
+\item Напишите программу, которая создает матрицу  $X$,\\
+\item Найдите $det X$,\\
+\item Найдите по методу наименьших квадратов$\hat \beta_{0},\dots,\hat \beta_{k}$,\\
+\item Найдите $R^{2}$ и сделайте вывод,\\
+\item В одних координатных осях изобразите наблюдения $(x_{1},y_{1}),\dots,(x_{k+1},y_{k+1})$  и линию регрессии $y_{i}=\hat \beta_{0}+\hat \beta_{1}x_{i}+\ldots+\beta_{k}x_{i}^{k}$\\
+\item Получите формулу для величины $det X$ в терминах точек  $x_{1},\dots,x_{k}$ (в результате вы получите, так называемый, определитель Вандермонда).\\
+\end{enumerate}
+
+\item Пусть задан $ARMA(p,q)$ процесс\\
+$y_{t}=\alpha_{0}+\alpha_{1}y_{t-1}+\ldots+\alpha_{p}y_{t-p}+\varepsilon_{t}+\beta_{1}\varepsilon_{t-1}+\ldots+\beta_{q}\varepsilon_{t-q}$\\
+\begin{enumerate}
+\item Напишите программу, которая по заданному вектору $(\alpha_{1},\dots,\alpha_{p})$ проверяет стационарность данного процесса.\\
+\item Напишите программу, которая вычисляет и строит графики $ACF$ и $PACF$ для заданного процесса.\\
+\end{enumerate}
+
+\item При помощи метода Монте-Карло постройте график ядерной плотности для статистики Дарбина–Уотсона. Используйте модель
+ $y_{i}=1+2t+\varepsilon_{t}, t=1,\dots,n$, где $\varepsilon_{0}\sim N(0,1/(1-\rho^{2})), u_{1},\dots,u_{n}\sim iidN(0,1), \varepsilon_{t}=\rho \varepsilon_{t-1}+u_{t}$. Проведите расчет для $\rho=0.9, \rho=0, \rho=-0.9$.\\ 
+
+
+<<>>=
+simulate_dw <- function(n.sim=1000,
+                        n.obs=100,
+                        sigma=1,
+                        x=1:n.obs,
+                        beta=c(2,3),
+                        rho=0) {
+  dw <- rep(0,n.sim)
+  
+  X <- model.matrix(~x)
+  ImP <- diag(n.obs) -
+    X%*%solve(t(X)%*%X)%*%t(X)
+  
+  for (i in 1:n.sim) {
+    if (!rho==0) u <- arima.sim(n=n.obs,
+                   list(ar=rho))*sigma/sqrt(1-rho^2)
+    if (rho==0) u <- rnorm(n.obs,sd=sigma)
+    y <- beta[1]+beta[2]*x+u
+    resid <- ImP %*% y
+    dw[i] <- sum((resid[-n.obs]-resid[-1])^2)/sum(resid^2)
+  }
+  return(dw)
+}
+
+dws <- simulate_dw(n.sim=1000,rho=0.9)
+qplot(dws,geom="density")
+@  
+
+
+
+\item Написать программу, которая генерирует процесс AR(1). (Помимо генерации 
+процесса программа должна проверять условие стационарности, и в случае 
+отсутствия стационарности сообщать об этом). \\
+\item Написать программу, которая оценивает параметры AR(1)-процесса.\\
+\item Написать программу, которая генерирует процесс AR(2). (Помимо генерации 
+процесса программа должна проверять условие стационарности, и в случае 
+отсутствия стационарности сообщать об этом). \\
+\item Написать программу, которая оценивает параметры AR(2)-процесса.\\ 
+\item Написать программу, которая генерирует процесс MA(2). \\
+\item Написать программу, которая оценивает параметры MA(2)-процесса.\\ 
+\item Написать программу, которая генерирует процесс ARMA(1,1). (Помимо генерации процесса программа должна проверять условие стационарности, и в случае отсутствия стационарности сообщать об этом). \\
+\item Написать программу, которая оценивает параметры ARMA(1,1)-процесса.\\ 
+\item Написать программу, которая генерирует процесс ARMA(2,1). (Помимо генерации процесса программа должна проверять условие стационарности, и в случае отсутствия стационарности сообщать об этом).\\
+\item Написать программу, которая оценивает параметры  ARMA(2,1)-процесса.
+\item Напишите программу, которая вычисляет произведение матриц (используйте 
+циклы, допускается использовать умножение числа на число или вектора строки на вектор столбец). \\
+\item Напишите программу, которая находит определитель квадратной матрицы.\\ 
+
+
+\end{enumerate}
+
+  
+\end{document}]
