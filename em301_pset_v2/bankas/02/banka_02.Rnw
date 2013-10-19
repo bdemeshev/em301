@@ -37,25 +37,7 @@
 
 <<message=FALSE, echo=FALSE>>=
 require(xtable)
-xmatrix <- function(a, environment="pmatrix",output=TRUE) {
-  # environment: pmatrix of bmatrix
-  
-  # override default alignment for xtable
-  xa <- xtable(a,align=rep("",ncol(a)+1))
-  
-  res <- print(xa, 
-              floating=FALSE, 
-              tabular.environment=environment, 
-              hline.after=NULL, 
-              include.rownames=FALSE, 
-              include.colnames=FALSE,
-              file="junk.txt")
-  
-  res <- paste("\\ensuremath{",res,"}",sep="")
-
-  if (output) cat(res)
-  return(invisible(res))
-}
+require(econru)
 @
 
 \begin{enumerate}
@@ -170,7 +152,7 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NU
 Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X^\prime X)^{-1}X^\prime $,
 $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{matrix} (\e_1 & \e_2 & \e_3 & \e_4)^\prime  \end{matrix}$
+\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$
 \item Найдите $\E(\e^\prime P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$
 \end{enumerate}
@@ -182,7 +164,7 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimna
 Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X^\prime X)^{-1}X^\prime $,
 $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{matrix} (\e_1 & \e_2 & \e_3 & \e_4)^\prime  \end{matrix}$
+\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$
 \item Найдите $\E(\e^\prime P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$
 \end{enumerate}
@@ -194,7 +176,7 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X^\prime X)^{-1}X^\prime $,
 $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} (\e_1 & \e_2 & \e_3 & \e_4)^\prime  \end{pmatrix}$.
+\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$.
 \item Найдите $\E(\e^\prime P\e)$.
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$. 
 \end{enumerate}
