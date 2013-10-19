@@ -16,7 +16,7 @@
 \usepackage{setspace}
 \usepackage{indentfirst} % indent first line
 
-%\usepackage{savesym} % avoid conflicting definitions with amsmath
+\usepackage{savesym} % useful package to avoid conflicting definitions
 %\savesymbol{iint}
 %\savesymbol{iiint}
 
@@ -25,12 +25,15 @@
 \usepackage{amssymb}
 \def\baselinestretch{1.5}
 
+\DeclareMathOperator{\Corr}{Corr}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\rk}{rk}
 \newcommand{\E}{\mathbb{E}}
-%\newcommand{\P}{\mathbb{P}} % somewhere \P is already defined :)
+
+\savesymbol{P} % save \P defined somewhere earlier
+\newcommand{\P}{\mathbb{P}} % define our \P
 \newcommand{\e}{\varepsilon}
 
 \begin{document}
@@ -50,12 +53,12 @@ require(econru)
 \item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$
 \end{enumerate}
 
-\item Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите
+\item Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
 \begin{enumerate}
 \item $\E(\overline{y})$
 \item $\Var(\overline{y})$
-\item $\E \bigl[ \frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2 \bigr ]$
-\item $\Var \bigl[ \frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2 \bigr ]$
+\item $\E(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
+\item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
 \end{enumerate}
 
 \item Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
@@ -117,31 +120,31 @@ xmatrix(D)
 \\ 1 & 1 & -1 & -\lambda \end{pmatrix}$
 \end{enumerate}
 
-\item Пусть $i = (1,\dots,1)^\prime$ --- вектор из n единиц и $\pi=i(i^\prime i)^{-1}i^\prime$. Найдите
+\item Пусть $i = (1,\dots,1)'$ --- вектор из n единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
 \begin{enumerate}
 \item $\tr(\pi)$ и $\rk(\pi)$
 \item $\tr(I-\pi)$ и $\rk(I-\pi)$
 \end{enumerate}
  
-\item Пусть $i = (1,\dots,1)^\prime$ --- вектор из n единиц, $\pi=i(i^\prime i)^{-1}i^\prime$ и $\e = (\e_1,\dots,\e_n)^\prime \sim N (0,I)$.
+\item Пусть $i = (1,\dots,1)'$ --- вектор из n единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
 \begin{enumerate}
-\item Найдите $\E(\e^\prime\pi\e)$, $\E(\e^\prime (I-\pi)\e)$ и $\E(\e\e^\prime)$
-\item Как распределены случайные величины $\e^\prime\pi\e$ и $\e^\prime(I-\pi)\e$?
-\item Запишите выражения $\e^\prime\pi\e$ и $\e^\prime(I-\pi)\e$, используя знак суммы
+\item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
+\item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
+\item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
 \end{enumerate}
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где n > k, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X^\prime X)^{-1}X^\prime $ симметрична и идемпотентна?
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X'X)^{-1}X'$ симметрична и идемпотентна?
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где n > k, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X^\prime X)^{-1}X^\prime$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X'X)^{-1}X'$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где n > k, пусть $\rk(X) = k$ и $P = X(X^\prime X)^{-1}X^\prime$. Верно ли, что каждый вектор-столбец $u$, такой что $X^\prime u=0$, является собственным вектором матрицы $P$, отвечающим собственному значению 0?
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, пусть $\rk(X) = k$ и $P = X(X'X)^{-1}X'$. Верно ли, что каждый вектор-столбец $u$, такой что $X'u=0$, является собственным вектором матрицы $P$, отвечающим собственному значению 0?
 
 \item Верно ли, что для любых матриц $A$ размера $m\times n$ и матриц $B$ размера 
 ${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
 
 \item Верно ли, что собственные значения симметричной и идемпотентной матрицы могут быть только нулями и единицами?
 
-\item Пусть $P$ --- матрица размера ${n \times n}$, $P^\prime = P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
+\item Пусть $P$ --- матрица размера ${n \times n}$, $P'= P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
 
 \item Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
 
@@ -149,39 +152,36 @@ ${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
 <<results='asis', echo=FALSE>>=
 a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X^\prime X)^{-1}X^\prime $,
-$\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$
-\item Найдите $\E(\e^\prime P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'P\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
 \end{enumerate}
 
 \item 
 <<results='asis', echo=FALSE>>=
 b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X^\prime X)^{-1}X^\prime $,
-$\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$
-\item Найдите $\E(\e^\prime P\e)$
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'P\e)$
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
 \end{enumerate}
 
 \item 
 <<results='asis', echo=FALSE>>=
 c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
 @
-Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X^\prime X)^{-1}X^\prime $,
-$\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
 \begin{enumerate}
-\item Найдите распределение случайной величины $\e^\prime P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}^\prime$.
-\item Найдите $\E(\e^\prime P\e)$.
-\item При помощи таблиц найдите такое число $q$, что $\mathbb{P} \bigl\{ \e^\prime P\e > q \bigr\}=0.1$. 
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
+\item Найдите $\E(\e'P\e)$.
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
 \end{enumerate}
 
-\item Найдите собственные значения и собственные векторы матрицы $P = X(X^\prime X)^{-1}X^\prime $, если 
+\item Найдите собственные значения и собственные векторы матрицы $P = X(X'X)^{-1}X'$, если 
 
 \begin{enumerate}
 <<results='asis', echo=FALSE>>=

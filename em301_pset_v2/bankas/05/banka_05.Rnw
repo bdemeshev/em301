@@ -16,7 +16,7 @@
 \usepackage{setspace}
 \usepackage{indentfirst} % indent first line
 
-%\usepackage{savesym} % avoid conflicting definitions with amsmath
+\usepackage{savesym} % avoid conflicting definitions with amsmath
 %\savesymbol{iint}
 %\savesymbol{iiint}
 
@@ -25,12 +25,15 @@
 \usepackage{amssymb}
 \def\baselinestretch{1.5}
 
+\DeclareMathOperator{\Corr}{Corr}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\rk}{rk}
 \newcommand{\E}{\mathbb{E}}
-%\newcommand{\P}{\mathbb{P}} % somewhere \P is already defined :)
+
+\savesymbol{P}
+\newcommand{\P}{\mathbb{P}} % somewhere \P is already defined :)
 \newcommand{\e}{\varepsilon}
 
 \begin{document}
@@ -42,15 +45,14 @@ require(econru)
 @
 
 
-
 \begin{enumerate}
 
-\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X^\prime X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X^\prime X)^\prime = \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}.$
+\item Пусть $y_i = \beta_1 + \beta_2 x_{1i} + \beta_3 x_{2i} + \e_i$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)'= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
 
 
 <<echo=FALSE,results='asis'>>=
 x <- matrix(as.integer(c(1,1,1,1,1,0,0,0,1,1,0,0,0,0,1)), nrow=5, ncol=3, byrow = FALSE, dimnames = NULL)
-y <- matrix(as.integer(c(1,2,3,4,5)), ncol=1, byrow = FALSE, dimnames = NULL)
+y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = NULL)
 xx <- matrix(as.integer(c(5,2,1,2,2,1,1,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
 x_x <- solve(xx)
 @
@@ -73,7 +75,7 @@ x_x <- solve(xx)
 \item Сделайте статистический вывод о значимости переменной $x_1$
 \end{enumerate}
 \item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости переменной $x_1$
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_1: \beta_1 \not= 1$:
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 \not= 1$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -81,7 +83,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_1: \beta_1 > 1$:
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 > 1$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -89,7 +91,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_1: \beta_1 < 1$:
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 < 1$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -107,7 +109,7 @@ x_x <- solve(xx)
 \item Сделайте статистический вывод
 \end{enumerate}
 \item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости регрессии <<в целом>>
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_1: \beta_1 + \beta_2 \not= 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -115,7 +117,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_1: \beta_1 + \beta_2 > 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 > 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -123,7 +125,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_1: \beta_1 + \beta_2 < 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 < 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -137,76 +139,76 @@ x_x <- solve(xx)
 
 \begin{enumerate}
 \item $n = 5$
-\item $k + 1 = 3$
+\item $k = 3$
 \item $TSS = 10$
 \item $RSS = 2$
-\item $\hat{\beta} = \begin{pmatrix} \hat{\beta}_1 \\ \hat{\beta}_2 \\ \hat{\beta}_3 \end{pmatrix} = (X^\prime X)^{-1}X^\prime y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
+\item $\hat{\beta} = \begin{pmatrix} \hat{\beta}_1 \\ \hat{\beta}_2 \\ \hat{\beta}_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
 \item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель <<хорошо>> описывает данные
-\item Основная гипотеза --- $H_0: \beta_1 = 0$, альтернативная гипотеза --- $H_1: \beta_1 \not= 0$
+\item Основная гипотеза --- $H_0: \beta_1 = 0$, альтернативная гипотеза --- $H_a: \beta_1 \not= 0$
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}}; n = 5; k = 2$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 0}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 0}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-2-1}}1.3333}} = 1.7321$
+\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hat{\beta}_1 - 0}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k - 1 = 5 - 2 - 1 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k - 1) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = 0$ не может быть отвергнута
+\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = 0$ не может быть отвергнута
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}}; n = 5; k = 2$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-2-1}}1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}}; n = 5; k = 2$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-2-1}}1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -\infty$, верхняя граница $= 1.8856$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-\infty$ до $1.8856$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}}; n = 5; k = 2$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k-1}}\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-2-1}}1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -1.8856$, верхняя граница $= +\infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-1.8856$ до $+\infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item Основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$, альтернативная гипотеза --- $H_1: |\beta_1| + |\beta_2| > 0$
+\item Основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$, альтернативная гипотеза --- $H_a: |\beta_1| + |\beta_2| > 0$
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{R^2}{1 - R^2} \cdot \frac{n-k-1}{k}; n = 5; k = 2$
-\item $T \sim F(n-k-1); n = 5; k = 2$
-\item $T_{obs} = \frac{R^2}{1 - R^2} \cdot \frac{n-k-1}{k} = \frac{0.8}{1 - 0.8} \cdot \frac{5-2-1}{2} = 4$
+\item $T = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k}; n = 5; k = 3$
+\item $T \sim F(n-k); n = 5; k = 3$
+\item $T_{obs} = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k} = \frac{0.8}{1 - 0.8} \cdot \frac{5-3}{2} = 4$
 \item Нижняя граница $= 0$, верхняя граница $= 19$
 \item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия <<в целом>> незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 2$ и $n - k - 1 = 5 - 2 - 1 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k - 1) = 1 - fcdf(4,2,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
+\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 \bigl[ (X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}= \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33})$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}) = \frac{2}{5 - 2 - 1} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 4.3027$, верхняя граница $= 4.3027$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- 4.3027$ до $4.3027$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 \bigl[ (X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}= \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33})$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}) = \frac{2}{5 - 2 - 1} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - \infty$, верхняя граница $= 2.9200$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- \infty$ до $2.9200$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 \bigl[ (X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \hat{\sigma}^2 \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}= \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33})$
-\item $T \sim t(n-k-1); n = 5; k = 2$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k - 1}(\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{22} + 2\bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{23} + \bigl[(X^\prime X)^{-1} \bigr] \left. \right|_{33}) = \frac{2}{5 - 2 - 1} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T \sim t(n-k); n = 5; k = 3$
+\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 2.9200$, верхняя граница $= + \infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-  2.9200$ до $+ \infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
@@ -214,15 +216,15 @@ x_x <- solve(xx)
 
 \item На основе 100 наблюдений была оценена функция спроса:
 \[
-\underset{(s.e.)}{\widehat{ln(Q)}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}ln(P)
+\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
 \]
-Значимо ли коэффициент эластичности спроса по цене отличается от $-1$? Рассмотрите уровень значимости $5\%$
+Значимо ли коэффициент эластичности спроса по цене отличается от $-1$? Рассмотрите уровень значимости $5\%$.
 
 \item На основе 100 наблюдений была оценена функция спроса: 
 \[
-\underset{(s.e.)}{\widehat{ln(Q)}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}ln(P)
+\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}\ln P
 \]
-На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_{ln(P)} = - 1$ против альтернативной $H_1: \beta_{ln(P)} < -1$. Дайте экономическую интерпретацию проверяемой гипотезе и альтернативе
+На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_{\ln P} = - 1$ против альтернативной $H_a: \beta_{\ln P} < -1$. Дайте экономическую интерпретацию проверяемой гипотезе и альтернативе.
 
 \item Используя годовые данные с 1960 по 2005 г., была построена кривая Филлипса, связывающая уровень инфляции $Inf$ и уровень безработицы $Unem$: 
 \[
@@ -231,11 +233,11 @@ x_x <- solve(xx)
 \[
 \sqrt{\widehat{Var}(\hat{\beta}_{Unem})} = 0.04, R^2 = 0.12
 \]
-На уровне значимости $1\%$ проверьте гипотезу  $H_0: \beta_{Unem} = 0$ против альтернативной $H_1: \beta_{Unem} \not= 0$
+На уровне значимости $1\%$ проверьте гипотезу  $H_0: \beta_{Unem} = 0$ против альтернативной $H_a: \beta_{Unem} \not= 0$.
 
 \item Была оценена функция Кобба-Дугласа с учётом человеческого капитала $H$ ($K$ --- физический капитал, $L$ --- труд): 
 \[ 
-\widehat{ln(Q)} = 1.4 + 0.46ln(L) + 0.27ln(H) + 0.23ln(K)
+\widehat{\ln Q} = 1.4 + 0.46\ln L + 0.27\ln H + 0.23\ln K
 \] 
 \[
 ESS = 170.4, RSS = 80.3, n = 21
@@ -245,9 +247,9 @@ ESS = 170.4, RSS = 80.3, n = 21
 \item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии <<в целом>>
 \end{enumerate}
 
-\item На основе опроса 25 человек была оценена следующая модель зависимости логарифма зарплаты $ln(W)$ от уровня образования $Edu$ (в годах) и возраста $Age$: 
+\item На основе опроса 25 человек была оценена следующая модель зависимости логарифма зарплаты $\ln W$ от уровня образования $Edu$ (в годах) и возраста $Age$: 
 \[
-\widehat{ln(W)} = 1.7 + 0.5Edu + 0.06Age - 0.0004Age^2
+\widehat{\ln W} = 1.7 + 0.5Edu + 0.06Age - 0.0004Age^2
 \]
 \[
 ESS = 90.3, RSS = 60.4
@@ -270,25 +272,25 @@ ESS = 90.3, RSS = 60.4
 
 Ограниченная модель (Restricted model):
 \[
-lnW_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \e_i
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \e_i
 \]
 Неограниченная модель (Unrestricted model):
 \[
-lnW_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
 \]
 По условию $ESS_R = 90.3$, $RSS_R = 60.4$, $TSS = ESS_R + RSS_R = 90.3 + 60.4 = 150.7.$ Также сказано, что $ESS_{UR} = 110.3$. Значит, $RSS_{UR} = TSS - ESS_{UR} = 150.7 - 110.3 = 40.4$
 \begin{enumerate}
 \item Cпецификация:
 \[
-lnW_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
 \]
 \item Проверка гипотезы
 \begin{enumerate}
 \item $H_0: \begin{cases} \beta_{Fedu} = 0  \\  \beta_{Medu} = 0 \end{cases}$
-$H_1: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
-\item $T = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k -1)}$, где $q = 2$ --- число линейно независимых уравнений в основной гипотезе $H_0$, $n = 25$ --- число наблюдений, $k = 5$ --- число коэффициентов в модели без ограничения (без учёта свободного члена)
-\item $T \sim F(q; n - k - 1)$
-\item $T_{obs} = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k -1)} = \frac{(60.4 - 40.4)/2}{40.4/(25 - 5 - 1)} = 4.70$
+$H_a: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
+\item $T = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)}$, где $q = 2$ --- число линейно независимых уравнений в основной гипотезе $H_0$, $n = 25$ --- число наблюдений, $k = 6$ --- число коэффициентов в модели без ограничения
+\item $T \sim F(q; n - k)$
+\item $T_{obs} = \frac{(RSS_{R} - RSS_{UR})/q}{RSS_{UR}/(n - k)} = \frac{(60.4 - 40.4)/2}{40.4/(25 - 6)} = 4.70$
 \item Нижняя граница $= 0$, верхняя граница $= 3.52$
 \item Поскольку $T_{obs} = 4.70$, что не принадлежит промежутку от $0$ до $3.52$, то на основе имеющихся данных можно отвергнуть основную гипотезу на уровне значимости $5\%$. Таким образом, образование родителей существенно влияет на заработную плату.
 \end{enumerate}
@@ -301,16 +303,16 @@ $H_1: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
 \[
 R^2 = 0.218, n = 23
 \]
-Напишите спецификацию регрессии с ограничениями для проверки статистистической гипотезы $H_0: \beta_3 = 20\beta_4$. Дайте интерпретацию проверяемой гипотезе. Для регрессии с ограничением был вычислен коэффициент $R_{R}^2 = 0.136$. На уровне значимости $5\%$ проверьте нулевую гипотезу
+Напишите спецификацию регрессии с ограничениями для проверки статистистической гипотезы $H_0: \beta_3 = 20\beta_4$. Дайте интерпретацию проверяемой гипотезе. Для регрессии с ограничением был вычислен коэффициент $R_{R}^2 = 0.136$. На уровне значимости $5\%$ проверьте нулевую гипотезу.
 
 \item Рассмотрим следующую модель зависимости почасовой оплаты труда $W$ от уровня образования $Educ$, возраста $Age$, уровня образования родителей $Fathedu$ и $Mothedu$:
 \[
-\widehat{ln(W)} = \hat{\beta}_1 + \hat{\beta}_2 Educ + \hat{\beta}_3 Age + \hat{\beta}_4 Age^2+ \hat{\beta}_5 Fathedu + \hat{\beta}_6 Mothedu
+\widehat{\ln W} = \hat{\beta}_1 + \hat{\beta}_2 Educ + \hat{\beta}_3 Age + \hat{\beta}_4 Age^2+ \hat{\beta}_5 Fathedu + \hat{\beta}_6 Mothedu
 \]
 \[
 R^2 = 0.341, n = 27
 \]
-Напишите спецификацию регрессии с ограничениями для проверки статистистической гипотезы $H_0: \beta_5 = 2\beta_4$. Дайте интерпретацию проверяемой гипотезе. Для регрессии с ограничением был вычислен коэффициент $R_{R}^2 = 0.296$. На уровне значимости $5\%$ проверьте нулевую гипотезу
+Напишите спецификацию регрессии с ограничениями для проверки статистистической гипотезы $H_0: \beta_5 = 2\beta_4$. Дайте интерпретацию проверяемой гипотезе. Для регрессии с ограничением был вычислен коэффициент $R_{R}^2 = 0.296$. На уровне значимости $5\%$ проверьте нулевую гипотезу.
 
 \item Пусть $y = X\beta + \e$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$.
 
@@ -319,7 +321,7 @@ x <- matrix(as.integer(c(1,1,1,1,1,0,0,1,1,1,0,0,0,0,1)), nrow=5, ncol=3, byrow 
 y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = NULL)
 @
 
-На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_1: \beta_1 + \beta_2 \not= 2$:
+На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -328,7 +330,7 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 \item Сделайте статистический вывод
 \end{enumerate}
 
-\item Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 18$ --- классическая регрессионная модель, где $\E(\e_i)$ = 0, $Var(\e_i) = \sigma^2$. Также имеются следующие данные: $\sum_{i=1}^{18} y_i^2 = 4256, \sum_{i=1}^{18} x_i^2 = 185, \sum_{i=1}^{18} x_iy_i = 814.25, \sum_{i=1}^{18} y_i = 225, \sum_{i=1}^{18} x_i = 49.5.$ Используя эти данные, оцените эту регрессию и на уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 3.5$ против альтернативной $H_1: \beta_1 > 3.5$:
+\item Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 18$ --- классическая регрессионная модель, где $\E(\e_i)$ = 0, $Var(\e_i) = \sigma^2$. Также имеются следующие данные: $\sum_{i=1}^{18} y_i^2 = 4256, \sum_{i=1}^{18} x_i^2 = 185, \sum_{i=1}^{18} x_iy_i = 814.25, \sum_{i=1}^{18} y_i = 225, \sum_{i=1}^{18} x_i = 49.5.$ Используя эти данные, оцените эту регрессию и на уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 3.5$ против альтернативной $H_a: \beta_1 > 3.5$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -339,16 +341,16 @@ y <- matrix(as.integer(c(1,2,3,4,5)), nrow=5, ncol=1, byrow = FALSE, dimnames = 
 
 \item По данным для 27 фирм исследователь оценил зависимость объёма выпуска $y$ от труда $l$ и капитала $k$ с помощью двух моделей:
 \[
-ln(y_i) = \beta_1 + \beta_2 ln(l_i) + \beta_3 ln(k_i) + \e_i
+\ln y_i = \beta_1 + \beta_2 \ln l_i + \beta_3 \ln k_i + \e_i
 \]
 \[
-ln(y_i) = \beta_1 + \beta_2 ln(l_i \cdot k_i) + \e_i
+\ln y_i = \beta_1 + \beta_2 \ln (l_i \cdot k_i) + \e_i
 \]
 Он получил для этих двух моделей суммы квадратов остатков $RSS_1 = 0.851$ и $RSS_2 = 0.894$ соответственно. Сформулируйте гипотезу, которую хотел проверить исследователь. На уровне значимости $5\%$ проверьте эту гипотезу и дайте экономическую интерпретацию.
 
 \item Пусть задана линейная регрессионная модель:
 \[
-y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i, i = 1, \dots, 20
+y_i = \beta_1 + \beta_2 x_{1i} + \beta_3 x_{2i} + \beta_4 x_{3i} + \beta_5 x_{4i} + \e_i, i = 1, \dots, 20
 \]
 По имеющимся данным оценены следующие регрессии:
 \[
@@ -366,7 +368,7 @@ y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4
 \[
 \underset{(s.e.)}{\widehat{y_i + x_1 - 2x_2}} = \underset{(1.25)}{9.22} + \underset{(0.51)}{0.97}x_3 - \underset{(0.49)}{1.54}x_4, RSS = 516.23
 \]
-На уровне значимости $5\%$ проверьте гипотезу $H_0: \begin{cases} \beta_1 = 1 \\ \beta_2 = 2 \end{cases}$ против альтернативной гипотезы $H_1: |\beta_1 - 1| + |\beta_2 - 2| \not= 0$
+На уровне значимости $5\%$ проверьте гипотезу $H_0: \begin{cases} \beta_2 = 1 \\ \beta_3 = 2 \end{cases}$ против альтернативной гипотезы $H_a: |\beta_2 - 1| + |\beta_3 - 2| \not= 0$.
 
 \item Рассмотрим следующую модель зависимости расходов на образование на душу населения от дохода на душу населения, доли населения в возрасте до 18 лет, а также доли городского населения: 
 \[
@@ -396,7 +398,7 @@ xtable(coefficient_table)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_1: \beta_1 > 1$ :
+\item На уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 > 1$ :
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики
@@ -405,7 +407,7 @@ xtable(coefficient_table)
 \item Сделайте статистический вывод
 \end{enumerate}
 \item Сформулируйте основную гипотезу, которая соответствует тесту на значимость регрессии <<в целом>>
-\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии <<в целом>>,если известно, что F-statistic: 34.81 on 3 and 47 DF, P-value: $5.337e^{-12}$:
+\item На уровне значимости $1\%$ проверьте гипотезу о значимости регрессии <<в целом>>,если известно, что $F-$статистика равна $34.81$ со степенями свободы 3 и 47, $P-$значение равно $5.337e^{-12}$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики
 \item Укажите распределение тестовой статистики
