@@ -16,7 +16,7 @@
 \usepackage{setspace}
 \usepackage{indentfirst} % indent first line
 
-\usepackage{savesym} % avoid conflicting definitions with amsmath
+%\usepackage{savesym} % avoid conflicting definitions with amsmath
 %\savesymbol{iint}
 %\savesymbol{iiint}
 
@@ -32,8 +32,8 @@
 \DeclareMathOperator{\rk}{rk}
 \newcommand{\E}{\mathbb{E}}
 
-\savesymbol{P}
-\newcommand{\P}{\mathbb{P}} % somewhere \P is already defined :)
+%\savesymbol{P}
+\renewcommand{\P}{\mathbb{P}} % somewhere \P is already defined :)
 \newcommand{\e}{\varepsilon}
 
 \begin{document}
