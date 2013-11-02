@@ -1,0 +1,63 @@
+\section{Временные ряды}
+
+\begin{enumerate}
+\item Что такое автокорреляция?
+
+
+\item На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:  
+
+<<include=FALSE>>=
+library(zoo)
+library(tseries)
+library(ggplot2)
+level <- LakeHuron
+df <- data.frame(level,obs=1875:1972)
+v.acf <- acf(level,plot=FALSE)$acf
+v.pacf <- pacf(level,plot=FALSE)$acf
+acfs.df <- data.frame(lag=c(1:15,1:15),
+    acf=c(v.acf[2:16],v.pacf[1:15]),
+    acf.type=rep(c("ACF","PACF"),each=15))
+model <- arima(level,order=c(1,0,1))
+resids <- model$residuals
+resid.acf <- acf(resids,plot=FALSE)$acf
+@
+
+<<warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
+ggplot(df,aes(x=obs,y=level))+geom_line()+
+    labs(x="Год",ylab="Уровень озера (футы)")
+@
+
+График автокорреляционной и частной автокорреляционной функций:
+
+<<warning=FALSE,out.height="6cm",out.width="6.5cm">>=
+ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
+    geom_histogram(position="dodge",stat="identity")+
+  xlab("Лаг")+ylab("Корреляция") +
+  guides(fill=guide_legend(title=NULL))+
+  geom_hline(yintercept=1.96/sqrt(nrow(df)))+
+  geom_hline(yintercept=-1.96/sqrt(nrow(df)))
+@
+
+
+\begin{enumerate}
+\item Судя по графикам, какие модели класса ARMA или ARIMA имеет смысл оценить?
+\item По результатам оценки некоей модели ARMA c двумя параметрами, исследователь посчитал оценки автокорреляционной функции для остатков модели. Известно, что для остатков модели первые три выборочные автокорреляции равны соответственно $\Sexpr{resid.acf[2]}$, $\Sexpr{resid.acf[3]}$ и $\Sexpr{resid.acf[4]}$. С помощью подходящей статистики проверьте гипотезу о том, что первые три корреляции ошибок модели равны нулю.
+\end{enumerate}
+
+
+
+
+\item Винни-Пух пытается выявить закономерность в количестве придумываемых им каждый день ворчалок.  Винни-Пух решил разобраться, является ли оно стационарным процессом, для этого он оценил регрессию
+
+\[ \Delta \hat{y}_t = \underset{(0.5)}{4.5} - \underset{(0.1)}{0.4}y_{t-1} +\underset{(0.5)}{0.7} \Delta y_{t-1} \]
+
+Из-за опилок в голове Винни-Пух забыл, какой тест ему нужно провести, то ли Доктора Ватсона, то ли Дикого Фуллера. 
+
+\begin{enumerate}
+\item Аккуратно сформулируйте основную и альтернативную гипотезы
+\item Проведите подходящий тест на уровне значимости 5\%
+\item Сделайте вывод о стационарности ряда
+\item Почему Сова не советовала Винни-Пуху пользоваться широко применяемым в Лесу $t$-распределением?
+\end{enumerate}
+
+\end{enumerate}

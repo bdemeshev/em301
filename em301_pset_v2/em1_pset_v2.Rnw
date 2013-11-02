@@ -50,10 +50,11 @@ require(xtable)
 require(MASS)
 require(car)
 
-
 require(econru)
 
 theme_set(theme_bw())
+
+load('pset_data.Rdata')
 @
 
 \listoftodos
@@ -80,6 +81,9 @@ theme_set(theme_bw())
 
 <<child='chapters/070_collinearity.Rnw'>>=
 @
+%%%%%%% здесь?... LASSO, rigdre regression
+
+
 <<child='chapters/080_hetero.Rnw'>>=
 @
 <<child='chapters/090_specification.Rnw'>>=
@@ -105,6 +109,10 @@ theme_set(theme_bw())
 @
 <<child='chapters/150_nnetwork.Rnw'>>=
 @
+
+
+
+
 
 % байесовский подход
 

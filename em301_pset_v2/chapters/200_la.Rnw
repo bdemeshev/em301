@@ -100,5 +100,33 @@ d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byro
 \end{enumerate}
 
 
+\item \problem{Приведите пример таких $A$ и $B$, что $\det(AB)\neq \det(BA)$.}
+\solution{Например, $A=(1,2,3)$, $B=(1,0,1)'$}
+
+\item Для матриц-проекторов $\pi=\v1(\v1'\v1)^{-1}\v1'$ и $P=X(X'X)^{-1}X'$ найдите $\tr(\pi)$, $\tr(P)$, $\tr(I-\pi)$, $\tr(I-P)$.
+\solution{$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$ }
+
+\item Выпишите в явном виде матрицы $X'X$, $(X'X)^{-1}$ и $X'y$, если
+
+$y=\left(
+\begin{array}{c}
+y_1 \\
+y_2 \\
+\vdots \\
+y_n 
+\end{array}\right)$ и
+$X=\left(
+\begin{array}{cc}
+1 & x_1 \\
+1 & x_2 \\
+\vdots & \vdots \\
+1 & x_n 
+\end{array}\right)$ 
+\solution{ }
+
+
+\item Выпишите в явном виде матрицы $\pi$, $\pi y$, $\pi \e$, $I-\pi$, если $\pi=\v1(\v1'\v1)^{-1}\v1'$.
+
+
 
 \end{enumerate}
