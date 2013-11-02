@@ -196,4 +196,32 @@ $A =  \begin{bmatrix}
 
 
 
+\item Известно, что $\e\sim N(0,I)$, $\e=(\e_1,\e_2,\e_3)'$. Матрица $A=\left(\begin{matrix}
+2/3 & -1/3 & -1/3 \\ 
+-1/3 & 2/3 & -1/3 \\ 
+-1/3 & -1/3 & 2/3
+\end{matrix}\right)$.
+\begin{enumerate}
+\item Найдите $\E(\e'A\e)$
+\item Как распределена случайная величина $\e' A\e$?
+\end{enumerate}
+\solution{по $\chi^2$-распределению }
+
+\item Известно, что $\e\sim N(0,A)$, $\e=(\e_1,\e_2)'$. Матрица $A=\left(\begin{matrix}
+4 & 1 \\ 
+1 & 4 
+\end{matrix}\right)$, матрица $B=\left(\begin{matrix}
+-1 & 3 \\ 
+2 & 1 
+\end{matrix}\right)$
+\begin{enumerate}
+\item Как распределен вектор $h=B\e$?
+\item Найдите $A^{-1/2}$
+\item Как распределен вектор $u=A^{-1/2}\e$?
+\end{enumerate}
+\solution{ $u\sim N(0,I)$ }
+
+
+
+
 \end{enumerate}

@@ -138,6 +138,22 @@
 \end{enumerate}
 
 
+\item Рассматривается модель $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$ и $\Cov(\e_i,\e_j)=0$ при $i\neq j$. При каких $c_i$ несмещенная оцека 
+\[
+\hat{\mu}=\sum_{i=1}^{n} c_i y_i
+\]
+имеет наименьшую дисперсию?
+\solution{Через теорему Гаусса--Маркова или через условную минимизацию, $c_i=1/n$}
+
+
+\item Рассмотрим классическую линейную регрессионную модель, $y_t=\b\cdot t+\e_t$. Какая из оценок, $\hb$ или $\hb'$ является более эффективной?
+\begin{enumerate}
+\item $\hb=y_1$, $\hb'=y_2/2$
+\item $\hb=y_1$, $\hb'=0.5y_1+0.5\frac{y_2}{2}$
+\item $\hb=\frac{1}{n}\left(y_1+\frac{y_2}{2}+\frac{y_3}{3}+\ldots+\frac{y_n}{n}\right)$, $\hb'=\frac{y_1+2y_2+\ldots+ny_n}{1^2+2^2+\ldots+n^2}$
+\end{enumerate}
+\solution{}
+
 
 
 \end{enumerate}

@@ -492,6 +492,48 @@ a_1 & a_2 & a_3\\
 \end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
 
 
+\item Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора, 
+$w=\left(
+\begin{array}{c}
+w_1 \\
+w_2
+\end{array}\right)$
+и 
+$z=\left(
+\begin{array}{c}
+-w_2 \\
+w_1
+\end{array}\right)$
+\begin{enumerate}
+\item Являются ли векторы $w$ и $z$ перпендикулярными?
+\item Найдите $\E(w)$, $\E(z)$
+\item Найдите $\Var(w)$, $\Var(z)$, $\Cov(w,z)$
+\end{enumerate}
+\solution{}
+
+
+\item Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$. 
+\begin{enumerate}
+\item Возможно ли, что $E(w)=0$ и $\sum w_i=0$?
+\item Возможно ли, что $E(w)\neq 0$ и $\sum w_i=0$?
+\item Возможно ли, что $E(w)=0$ и $\sum w_i \neq 0$?
+\item Возможно ли, что $E(w)=\neq $ и $\sum w_i \neq 0$?
+\end{enumerate}
+\solution{Каждый из вариантов возможен}
+
+
+\item Известна ковариационная матрица вектора $\e=(\e_1,\e_2)$,
+\[
+\Var(\e)=\left(
+\begin{matrix}
+9 & -1 \\
+-1 & 9
+\end{matrix}
+\right)
+\]
+
+Найдите четыре различных матрицы $A$, таких что вектор $v=A\e$ имеет некоррелированные компоненты с единичной дисперсией, то есть $\Var(A\e)=I$.
+\solution{}
 
 
 
