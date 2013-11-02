@@ -11,4 +11,33 @@
 
 \solution{ да, да, да, нет}
 
+
+\item При помощи метода наименьших квадратов найдите оценку неизвестного параметра $\theta$ в следующих моделях:
+
+\begin{enumerate}
+\item $y_i = \theta + \theta x_i + \varepsilon_i$
+\item $y_i = \theta - \theta x_i + \e_i$
+\item $\text{ln} y_i = \theta + \text{ln} x_i + \e_i$
+\item $y_i = \theta + x_i + \e_i$
+\item $y_i = 1 + \theta x_i + \e_i$
+\item $y_i = \theta / x_i + \e_i$
+\item $y_i = \theta x_{i1} + (1-\theta)x_{i2}+\e_i$
+\end{enumerate}
+
+\item Покажите, что для моделей $y_i= \alpha + \beta x_i + \e_i$, $z_i = \gamma + \delta x_i + \upsilon_i$ и $y_i + z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hat{\beta} + \hat{\delta}$.
+
+\item Найдите МНК-оценки параметров $\alpha$ и $\beta$ в модели $y_i = \alpha + \beta y_i + \e_i$.
+
+\item Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$. 
+\begin{enumerate}
+\item Как связаны между собой $\hat{alpha}$ и $\hat{gamma}$?
+\item  Как связаны между собой $\hat{beta}$ и $\hat{delta}$?
+\end{enumerate} 
+\solution{$\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$}
+
+\item Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $y_i = \alpha + \beta x_i + \e_i$ и $z_i = \gamma + \delta x_i + \upsilon_i$, если $z_i = 2 y_i$.
+
+\item Для модели $y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \e_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_{i1} - \beta_2 x_{i2})^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
+
+
 \end{enumerate}

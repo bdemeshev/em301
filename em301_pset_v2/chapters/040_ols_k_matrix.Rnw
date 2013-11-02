@@ -75,5 +75,54 @@ $ = \sigma_{\e}^2((X'X)^{-1} + \gamma I)(I + \gamma X'X) = \sigma_{\e}^2((X'X)^{
 \item Верно ли, что при невырожденном преобразовании факторов $RSS$ не меняется. А именно, пусть заданы две регрессиионные модели: $y = X\beta + \e$ и $y = Z\alpha + u$, где $y$ --- вектор размера $n \times 1$, $X$ и $Z$ --- матрицы размера $n \times k$, $\beta$ и $\alpha$ --- вектора рамзера $k \times 1$, $\e$ и $u$ --- вектора размера $n \times 1$, а также $Z=XD$, $\det(D) \not= 0.$ Верно ли, что сумма квадратов остатков в представленных выше моделях равны между собой?
 
 
+\item Пусть регрессионная модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$, $i = 1, \ldots, n$, задана в матричном виде при помощи уравнения $y = X \beta + \e$, где $\beta =  \begin{pmatrix}
+\beta_1 & \beta_2 & \beta_3\\
+\end{pmatrix} ^T$. Известно, что $\E \e = 0$ и $\Var (\e) = 4 \cdot I$. Известно также, что:
+
+$y =  \begin{pmatrix}
+1 \\
+2 \\
+3 \\
+4 \\
+5 \\
+\end{pmatrix} $, $X =  \begin{pmatrix}
+1 & 0 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1 \\
+\end{pmatrix} $
+
+Для удобства расчётов ниже приведены матрицы:
+
+$X^T X =  \begin{pmatrix}
+5 & 3 & 1 \\
+3 & 3 & 1 \\
+1 & 1 & 1 \\
+\end{pmatrix} $ и $(X^T X)^{-1} =  \begin{pmatrix}
+0.5 & -0.5 & 0 \\
+-0.5 & 1 & -0.5 \\
+0 & -0.5 & 1.5 \\
+\end{pmatrix} $.
+
+Найдите:
+\begin{enumerate}
+\item $\Var (\e_1)$
+\item $\Var (\beta_1)$
+\item $\Var (\hat{\beta}_1)$
+\item $\widehat{\Var }(\hat{\beta}_1)$
+\item $\E (\hat{\beta}_1^2) - \beta_1^2$
+\item $\Cov (\hat{\beta}_2, \hat{\beta}_3)$
+\item $\widehat{\Cov }(\hat{\beta}_2, \hat{\beta}_3)$
+\item $\Var (\hat{\beta}_2 - \hat{\beta}_3)$
+\item $\widehat{\Var }(\hat{\beta}_2 - \hat{\beta}_3)$
+\item $\Var (\beta_2 - \beta_3)$
+\item $\Corr (\hat{\beta}_2, \hat{\beta}_3)$
+\item $\widehat{\Corr}(\hat{\beta}_2, \hat{\beta}_3)$
+\item $\E (\hat{\sigma}^2)$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+
 
 \end{enumerate}

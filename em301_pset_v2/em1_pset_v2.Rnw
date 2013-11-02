@@ -35,7 +35,7 @@
 
 <<"setup", echo=TRUE, include=FALSE,tidy=FALSE>>=
 require(knitr)
-opts_chunk$set(cache=TRUE,
+opts_chunk$set(cache=FALSE,
                dev="png",dpi=300,
                warning=FALSE,
                tidy=FALSE, 
