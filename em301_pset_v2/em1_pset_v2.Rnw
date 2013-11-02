@@ -11,8 +11,8 @@
 % временное решение
 %\newcommand{\solution}[1]{#1}
 
-%\newcommand{\solution}[1]{ {\tiny #1} }
-\newcommand{\solution}[1]{}
+\newcommand{\solution}[1]{ {\tiny #1} }
+%\newcommand{\solution}[1]{}
 
 \newcommand{\problem}[1]{#1}
 
@@ -34,7 +34,7 @@
 
 
 <<"setup", echo=TRUE, include=FALSE,tidy=FALSE>>=
-library(knitr)
+require(knitr)
 opts_chunk$set(cache=TRUE,
                dev="png",dpi=300,
                warning=FALSE,
@@ -42,63 +42,86 @@ opts_chunk$set(cache=TRUE,
                echo=TRUE,
                out.height="7cm",out.width="7cm") # кэшируем все куски по умолчанию
 
-library(ggplot2)
-library(Hmisc)
-library(lmtest)
-library(apsrtable)
-library(xtable)
+require(ggplot2)
+require(Hmisc)
+require(lmtest)
+require(apsrtable)
+require(xtable)
+
+require(econru)
 
 theme_set(theme_bw())
 @
 
 \listoftodos
 
-
 % МНК
 
-\input{chapters/010_ols_no_probs_no_matr.tex}
-\input{chapters/020_ols_2_no_matr.tex}
-\input{chapters/030_ols_k_no_matr.tex}
-\input{chapters/040_ols_k_matrix.tex}
+<<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
+@
+<<child='chapters/020_ols_2_no_matr.Rnw'>>=
+@
+<<child='chapters/030_ols_k_no_matr.Rnw'>>=
+@
+<<child='chapters/040_ols_k_matrix.Rnw'>>=
+@
 
 % ML
 
-\input{chapters/050_ml_general.tex}
-\input{chapters/060_logit.tex}
+<<child='chapters/050_ml_general.Rnw'>>=
+@
+<<child='chapters/060_logit.Rnw'>>=
+@
 
 % Нарушения
 
-\input{chapters/070_collinearity.tex}
-\input{chapters/080_hetero.tex}
-\input{chapters/090_specification.tex}
+<<child='chapters/070_collinearity.Rnw'>>=
+@
+<<child='chapters/080_hetero.Rnw'>>=
+@
+<<child='chapters/090_specification.Rnw'>>=
+@
 
 %
 
-\input{chapters/100_random_x.tex}
-\input{chapters/110_gmm.tex}
+<<child='chapters/100_random_x.Rnw'>>=
+@
+<<child='chapters/110_gmm.Rnw'>>=
+@
 
 % time series
 
-\input{chapters/120_series.tex}
+<<child='chapters/120_series.Rnw'>>=
+@
 
 % Нетрадиционная медицина
 
-\input{chapters/130_svm.tex}
-\input{chapters/140_forest.tex}
-\input{chapters/150_nnetwork.tex}
+<<child='chapters/130_svm.Rnw'>>=
+@
+<<child='chapters/140_forest.Rnw'>>=
+@
+<<child='chapters/150_nnetwork.Rnw'>>=
+@
 
 % байесовский подход
 
-\input{chapters/160_ba.tex}
+<<child='chapters/160_ba.Rnw'>>=
+@
 
 % Приложения
 
-\input{chapters/200_la.tex}
-\input{chapters/210_random_vectors.tex} 
-\input{chapters/220_multivariate_n.tex}
-\input{chapters/230_programming.tex}
-\input{chapters/240_ustav_test.tex}
-\input{chapters/250_tables.tex}
+<<child='chapters/200_la.Rnw'>>=
+@
+<<child='chapters/210_random_vectors.Rnw'>>=
+@ 
+<<child='chapters/220_multivariate_n.Rnw'>>=
+@
+<<child='chapters/230_programming.Rnw'>>=
+@
+<<child='chapters/240_ustav_test.Rnw'>>=
+@
+<<child='chapters/250_tables.Rnw'>>=
+@
 
 
 \end{document}

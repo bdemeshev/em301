@@ -43,7 +43,11 @@ require(xtable)
 require(econru)
 @
 
+
+Банка 2 успешно вскрыта!!!
+
 \begin{enumerate}
+
 
 \item Верно ли, что для любых векторов $a = (a_1,\dots,a_n)$ и $b = (b_1,\dots,b_n)$ справедливы следующие неравенства?
 \begin{enumerate}
@@ -53,12 +57,14 @@ require(econru)
 \item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$
 \end{enumerate}
 
+
+
 \item Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
 \begin{enumerate}
 \item $\E(\overline{y})$
 \item $\Var(\overline{y})$
 \item $\E(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
-\item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
+\item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$, если дополнительно известно, что $\e_i$ нормально распределены
 \end{enumerate}
 
 \item Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
@@ -120,13 +126,13 @@ xmatrix(D)
 \\ 1 & 1 & -1 & -\lambda \end{pmatrix}$
 \end{enumerate}
 
-\item Пусть $i = (1,\dots,1)'$ --- вектор из n единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
+\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
 \begin{enumerate}
 \item $\tr(\pi)$ и $\rk(\pi)$
 \item $\tr(I-\pi)$ и $\rk(I-\pi)$
 \end{enumerate}
  
-\item Пусть $i = (1,\dots,1)'$ --- вектор из n единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
+\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
 \begin{enumerate}
 \item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
