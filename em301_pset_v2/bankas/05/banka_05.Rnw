@@ -44,6 +44,7 @@ require(car)
 require(econru)
 @
 
+Банка готова!!!!!!!!!!!!
 
 \begin{enumerate}
 
@@ -135,7 +136,7 @@ x_x <- solve(xx)
 \end{enumerate}
 \end{enumerate}
 
-Решение
+\solution{
 
 \begin{enumerate}
 \item $n = 5$
@@ -214,6 +215,8 @@ x_x <- solve(xx)
 \end{enumerate}
 \end{enumerate}
 
+}
+
 \item На основе 100 наблюдений была оценена функция спроса:
 \[
 \underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
@@ -268,8 +271,7 @@ ESS = 90.3, RSS = 60.4
 \end{enumerate}
 \end{enumerate}
 
-Решение
-
+\solution{
 Ограниченная модель (Restricted model):
 \[
 \ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \e_i
@@ -295,6 +297,7 @@ $H_a: |\beta_{Fedu}| + |\beta_{Medu}| > 0$
 \item Поскольку $T_{obs} = 4.70$, что не принадлежит промежутку от $0$ до $3.52$, то на основе имеющихся данных можно отвергнуть основную гипотезу на уровне значимости $5\%$. Таким образом, образование родителей существенно влияет на заработную плату.
 \end{enumerate}
 \end{enumerate}
+} % end of \solution{
 
 \item Рассмотрим следующую модель зависимости цены дома $Price$ (в тысячах долларов) от его площади $Hsize$ (в квадратных метрах), площади участка $Lsize$ (в квадратных метрах), числа ванных комнат $Bath$ и числа спален $BDR$:
 \[

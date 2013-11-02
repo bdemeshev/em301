@@ -48,6 +48,8 @@ require(lmtest)
 require(apsrtable)
 require(xtable)
 require(MASS)
+require(car)
+
 
 require(econru)
 
