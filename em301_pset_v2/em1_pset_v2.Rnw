@@ -47,6 +47,7 @@ require(Hmisc)
 require(lmtest)
 require(apsrtable)
 require(xtable)
+require(MASS)
 
 require(econru)
 
