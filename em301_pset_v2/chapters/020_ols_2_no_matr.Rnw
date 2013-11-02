@@ -1,0 +1,61 @@
+\section{Парный МНК без матриц}
+
+\begin{enumerate}
+\item Рассмотрим модель $y_t=\b_1+\b_2 \cdot t + \e_t$, где ошибки $\e_t$ независимы и равномерны на $[-1;1]$. С помощью симуляций на компьютере оцените и постройте график функции плотности для $\hb_1$, $\hb_2$, $\hs^2$, $\hVar(\hb_1)$, $\hVar(\hb_2)$ и $\hCov(\hb_1,\hb_2)$. 
+
+\item Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
+\begin{enumerate}
+\item $\E(\overline{y})$
+\item $\Var(\overline{y})$
+\item $\E(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
+\item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$, если дополнительно известно, что $\e_i$ нормально распределены
+\end{enumerate}
+
+
+\item Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
+При каких значениях параметров $c_i$ несмещённая оценка $\hat{\beta}=\frac{\sum_{i=1}^n {c_i y_i}}{\sum_{i=1}^n {c_i x_i}}$ имеет наименьшую дисперсию?
+
+\solution{$c_i=c\cdot x_i$, где $c\neq 0$ }
+
+
+\item Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$ Используя их, найдите:
+
+\begin{enumerate}
+\item $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item $TSS$
+\item $ESS$
+\item $RSS$
+\item $R^2$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+Проверьте следующие гипотезы:
+\begin{enumerate}
+\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
+\end{enumerate}
+
+\item Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 2, \sum_{i=1}^5 x_iy_i = 9, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 2.$ Используя их, найдите:
+
+\begin{enumerate}
+\item $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item $TSS$
+\item $ESS$
+\item $RSS$
+\item $R^2$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+Проверьте следующие гипотезы:
+\begin{enumerate}
+\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
+\end{enumerate}
+
+
+
+
+
+\end{enumerate}

@@ -1,0 +1,104 @@
+\section{Линейная алгебра}
+
+\begin{enumerate}
+\item Найдите каждую из следующих матриц в каждой из следующих степеней $\frac{1}{2}$, $\frac{1}{3}$, $-\frac{1}{2}$, $-\frac{1}{3}$, $-1$, $100$.
+\begin{enumerate}
+\item
+<<results='asis', echo=FALSE>>=
+ma1 <- matrix(as.integer(c(1,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = NULL)
+xmatrix(ma1)
+@
+\item
+<<results='asis', echo=FALSE>>=
+m1 <- matrix(as.integer(c(4,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = NULL)
+xmatrix(m1)
+@
+\end{enumerate}
+
+\item Найдите ортогональную проекцию и ортогональную составляющую (перпендикуляр) вектора $u_1$ на линейное подпространство $L = \mathcal{L}(u_2)$, порождённое вектором $u_2$, если
+\begin{enumerate}
+\item $\begin{matrix} u_1 = (1 & 1 & 1 & 1), u_2 = (1 & 0 & 0 & 1) \end{matrix}$
+\item $\begin{matrix} u_1 = (2 & 2 & 2 & 2), u_2 = (1 & 0 & 0 & 1) \end{matrix}$
+\item $\begin{matrix} u_1 = (1 & 1 & 1 & 1), u_2 = (7 & 0 & 0 & 7) \end{matrix}$
+\end{enumerate}
+
+
+\item Найдите обратные матрицы ко всем матрицам, представленным ниже.
+\begin{enumerate}
+\item
+<<results='asis',echo=FALSE>>=
+A <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+xmatrix(A)
+@
+\item
+<<results='asis',echo=FALSE>>=
+B <- matrix(as.integer(c(1,1,0,0,1,1,0,0,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+xmatrix(B)
+@
+\item
+<<results='asis',echo=FALSE>>=
+C <- matrix(as.integer(c(0,1,0,0,0,1,1,0,0)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+xmatrix(C)
+@
+\item
+<<results='asis',echo=FALSE>>=
+D <- matrix(c(0,1,0,0,0,1,"a",0,0), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+xmatrix(D)
+@
+\end{enumerate}
+
+\item Найдите ранг следующих матриц в зависимости от значений параметра $\lambda$.
+
+\begin{enumerate}
+\item $\begin{pmatrix} \lambda & 1 & 1 \\ 1 & \lambda & 1 \\ 1 & 1 & \lambda \end{pmatrix}$
+\item $\begin{pmatrix} 1-\lambda & 1-2\lambda \\ 1+\lambda & 1+3\lambda \end{pmatrix}$
+\item $\begin{pmatrix} 1 & \lambda & -1 & 2 \\ 2 & -1 & \lambda & 5 \\ 1 & 10 & -6 & 1 \end{pmatrix}$
+\item $\begin{pmatrix} \lambda & 1 & -1 & -1 \\ 1 & \lambda & -1 & -1 \\ 1 & 1 & -\lambda & -1
+\\ 1 & 1 & -1 & -\lambda \end{pmatrix}$
+\end{enumerate}
+
+\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
+\begin{enumerate}
+\item $\tr(\pi)$ и $\rk(\pi)$
+\item $\tr(I-\pi)$ и $\rk(I-\pi)$
+\end{enumerate}
+
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X'X)^{-1}X'$ симметрична и идемпотентна?
+
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X'X)^{-1}X'$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
+
+\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, пусть $\rk(X) = k$ и $P = X(X'X)^{-1}X'$. Верно ли, что каждый вектор-столбец $u$, такой что $X'u=0$, является собственным вектором матрицы $P$, отвечающим собственному значению 0?
+
+\item Верно ли, что для любых матриц $A$ размера $m\times n$ и матриц $B$ размера 
+${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
+
+\item Верно ли, что собственные значения симметричной и идемпотентной матрицы могут быть только нулями и единицами?
+
+\item Пусть $P$ --- матрица размера ${n \times n}$, $P'= P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
+
+\item Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
+
+\item Найдите собственные значения и собственные векторы матрицы $P = X(X'X)^{-1}X'$, если 
+
+\begin{enumerate}
+<<results='asis', echo=FALSE>>=
+a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
+@
+\item $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$
+<<results='asis', echo=FALSE>>=
+b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
+@
+\item $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$
+<<results='asis', echo=FALSE>>=
+c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
+@
+\item $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix}$
+<<results='asis', echo=FALSE>>=
+d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byrow = FALSE, dimnames = NULL)
+@
+\item $X = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0  \\ 1 & 1 & 1 & 1 \end{pmatrix}$
+\end{enumerate}
+
+
+
+\end{enumerate}

@@ -1,0 +1,79 @@
+\section{МНК с матрицами и вероятностями}
+
+\begin{enumerate}
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель.
+\begin{enumerate}
+\item Сформулируйте теорему Гаусса-Маркова
+\item Верно ли, что оценка $\hat{\beta} = (X'X)^{-1}X'y$ несмещённая?
+\item В условиях теоремы Гаусса-Маркова найдите ковариационную матрицу $\hat{\beta}$
+\end{enumerate}
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель и $\tilde{\beta} = ((X'X)^{-1}X'+ A)y$ --- несмещённая оценка вектора неизвестных параметров $\beta$. Верно ли, что $AX=0$?
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Найдите коэффициент корреляции $\Corr(\hat{\beta_1},\hat{\beta_2})$.
+<<echo=FALSE>>=
+X <- matrix(as.integer(c(1,1,1,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
+y <- c(1,2,3)
+@
+
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
+<<echo=FALSE,results='asis'>>=
+alpha <- matrix(as.integer(c(1,0,0,1,1,0,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
+@
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
+<<echo=FALSE,results='asis'>>=
+alpha2 <- matrix(as.integer(c(1,0,0,1,1,0,1,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+@
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
+<<echo=FALSE,results='asis'>>=
+alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE, dimnames = NULL)
+@
+
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель. Верно ли, что $\hat{\e}'\hat{y}=0$ и $\hat{y}'\hat{\e}=0$?
+\solution{да, да}
+
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $\E(\e)=0$, $\Var(\e)=\sigma_{\e}^2 I$. Пусть $A$ --- неслучайная матрица размера $k \times k$, $\det(A) \not= 0.$ Совершается преобразование регрессоров по правилу $Z=XA$. В преобразованных регрессорах уравнение выглядит так: $y = Z\gamma + u$, где $\E(u)=0$, $\Var(u)=\sigma_{u}^2 I.$
+
+\begin{enumerate}
+\item Как связаны между собой МНК-оценки $\hat{\beta}$ и $\hat{\gamma}$?
+\item Как связаны между собой векторы остатков регрессий?
+\item Как связаны между собой прогнозные значения, полученные по двум регрессиям?
+\end{enumerate}
+
+\solution{
+\begin{enumerate}
+\item $\hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y = A^{-1}(X'X)^{-1} X'y = A^{-1}\hat{\beta}$
+\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hat{\beta} = y - X\hat{\beta} = \hat{\e}$
+\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hat{\beta} = x^0 \hat{\beta}$ прогнозному значению для регрессии с исходными факторами. 
+\end{enumerate}
+}
+
+\item Рассмотрим оценку вида $\tilde{\beta} = ((X'X)^{-1} + \gamma I)X'y$ для вектора коэффициентов регрессионного уравнения $y = X\beta + \e$, удовлетворяющего условиям классической регрессионной модели. Найдите $\E(\tilde{\beta})$ и $\Var(\tilde{\beta}).$ 
+
+\solution{
+\begin{enumerate}
+\item $\E(\tilde{\beta}) = ((X'X)^{-1} + \gamma I)X'\E(y) = ((X'X)^{-1} + \gamma I)X'X\beta = \beta + \gamma X'X\beta$
+\item $\Var(\tilde{\beta}) = \Var(((X'X)^{-1} + \gamma I)X'y) = \Var(((X'X)^{-1} + \gamma I)X'\e) = $
+
+$ = (((X'X)^{-1} + \gamma I)X')\Var(\e)(((X'X)^{-1} + \gamma I)X')'= $
+
+$ = (((X'X)^{-1} + \gamma I)X')\sigma_{\e}^2 I(((X'X)^{-1} + \gamma I)X')'= 
+\sigma_{\e}^2((X'X)^{-1} + \gamma I)X'X((X'X)^{-1} + \gamma I) = $
+
+$ = \sigma_{\e}^2((X'X)^{-1} + \gamma I)(I + \gamma X'X) = \sigma_{\e}^2((X'X)^{-1} + 2\gamma I + \gamma ^2 X'X)$
+\end{enumerate}
+}
+
+
+\item Верно ли, что при невырожденном преобразовании факторов $R^2$ не меняется? А именно, пусть заданы две регрессионные модели: $y = X\beta + \e$ и $y = Z\alpha + u$, где $y$ --- вектор размера $n \times 1$, $X$ и $Z$ --- матрицы размера $n \times k$, $\beta$ и $\alpha$ --- вектора рамзера $k \times 1$, $\e$ и $u$ --- вектора размера $n \times 1$, а также $Z=XD$, $\det(D) \not= 0.$ Верно ли, что коэффициенты детерминации представленных выше моделей равны между собой?
+
+\item Верно ли, что при невырожденном преобразовании факторов $RSS$ не меняется. А именно, пусть заданы две регрессиионные модели: $y = X\beta + \e$ и $y = Z\alpha + u$, где $y$ --- вектор размера $n \times 1$, $X$ и $Z$ --- матрицы размера $n \times k$, $\beta$ и $\alpha$ --- вектора рамзера $k \times 1$, $\e$ и $u$ --- вектора размера $n \times 1$, а также $Z=XD$, $\det(D) \not= 0.$ Верно ли, что сумма квадратов остатков в представленных выше моделях равны между собой?
+
+
+
+\end{enumerate}

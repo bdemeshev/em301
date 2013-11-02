@@ -1,0 +1,70 @@
+\section{Случайные вектора}
+
+\begin{enumerate}
+\item Пусть $y=(y_1, y_2, y_3, y_4, y_5)'$ --- случайный вектор доходностей пяти ценных бумаг. Известно, что $\E(y')=(5, 10, 20, 30, 40)$, $\Var(y_1)=0$, $\Var(y_2)=10$, $\Var(y_3)=20$, $\Var(y_4)=40$, $\Var(y_5)=40$ и
+\[
+\Corr(y)=\begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0.3 & -0.2 & 0.1 \\
+0 & 0.3 & 1 & 0.3 & -0.2 \\
+0 & -0.2 & 0.3& 1 & 0.3 \\
+0 & 0 & -0.2 & 0.3 & 1 
+\end{pmatrix}
+\]
+С помощью компьютера найдите ответы на вопросы:
+\begin{enumerate}
+\item Какая ценная бумага является безрисковой?
+\item Найдите ковариационную матрицу $\Var(y)$
+\item Найдите ожидаемую доходность и дисперсию доходности портфеля, доли ценных бумаг в котором равны соответственно:
+\begin{enumerate}
+\item $\alpha=(0.2, 0.2, 0.2, 0.2, 0.2)'$
+\item $\alpha=(0.0, 0.1, 0.2, 0.3, 0.4)'$
+\item $\alpha=(0.0, 0.4, 0.3, 0.2, 0.1)'$
+\end{enumerate}
+\item Составьте из данных бумаг пять некоррелированных портфелей 
+\end{enumerate}
+
+
+\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
+\begin{enumerate}
+\item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
+\item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
+\item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
+\end{enumerate}
+
+\item 
+<<results='asis', echo=FALSE>>=
+a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
+@
+Пусть $X = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+\begin{enumerate}
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'P\e)$
+\item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
+\end{enumerate}
+
+\item 
+<<results='asis', echo=FALSE>>=
+b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
+@
+Пусть $X = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \\ 1 & 4 \end{pmatrix}$, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+\begin{enumerate}
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$
+\item Найдите $\E(\e'P\e)$
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
+\end{enumerate}
+
+\item 
+<<results='asis', echo=FALSE>>=
+c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
+@
+Пусть $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0  \\ 1 & 1 & 1 \end{pmatrix} $, $P = X(X'X)^{-1}X'$, случайные величины $\e_1, \e_2, \e_3, \e_4$ независимы и одинаково распределены $\sim N (0,1)$.
+\begin{enumerate}
+\item Найдите распределение случайной величины $\e'P\e$, где $\e = \begin{pmatrix} \e_1 & \e_2 & \e_3 & \e_4 \end{pmatrix}'$.
+\item Найдите $\E(\e'P\e)$.
+\item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
+\end{enumerate}
+
+
+
+\end{enumerate}

@@ -24,4 +24,42 @@
 \item Составьте из данных бумаг пять некоррелированных портфелей 
 \end{enumerate}
 
+
+\item Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
+\begin{enumerate}
+\item $y = x - \E(x)$
+\item $y = \Var(x)x$
+\item $y = \Var(x)(x - \E(x))$
+\item $y = \Var(x)^{-1}(x - \E(x))$
+\item $y = \Var(x)^{-1/2}(x - \E(x))$
+\item $z = (x - \E(x))'\Var(x)(x - \E(x))$
+\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$
+\item $z = x'\Var(x)x$
+\item $z = x'\Var(x)^{-1}x$
+\end{enumerate}
+<<echo=FALSE>>=
+ex <- c(1,2)
+varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
+@
+
+\item Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 4 & 1 \\ 1 & 4 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
+\begin{enumerate}
+\item $y = x - \E(x)$
+\item $y = \Var(x)x$
+\item $y = \Var(x)(x - \E(x))$
+\item $y = \Var(x)^{-1}(x - \E(x))$
+\item $y = \Var(x)^{-1/2}(x - \E(x))$
+\item $z = (x - \E(x))'\Var(x)(x - \E(x))$
+\item $z = (x - \E(x))'\Var(x)^{-1}(x - \E(x))$
+\item $z = x'\Var(x)x$
+\item $z = x'\Var(x)^{-1}x$
+\end{enumerate}
+<<echo=FALSE>>=
+ex1 <- c(1,4)
+varx1 <- matrix(as.integer(c(4,1,1,4)), nrow=2, byrow = FALSE, dimnames = NULL)
+@
+
+
+
+
 \end{enumerate}
