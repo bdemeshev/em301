@@ -639,4 +639,191 @@ R_m-R_0=R_m^*-R_0^*+u
 \end{enumerate}
 
 
+
+
+\item По 47 наблюдениям оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
+
+\[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+
+<<message=FALSE>>=
+h <- swiss
+model1 <- glm(Agriculture~Examination+Catholic,data=h)
+coef.t <- coeftest(model1)
+dimnames(coef.t)[[2]] <- 
+    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+coef.t <- coef.t[,-4]
+coef.t[1,1] <- NA
+coef.t[2,2] <- NA
+coef.t[3,3] <- NA
+@
+
+<<results='asis'>>=
+xtable(coef.t)
+@
+
+\begin{enumerate}
+\item Заполните пропуски в таблице
+\item Укажите коэффициенты, значимые на 10\% уровне значимости.
+\item Постройте 99\%-ый доверительный интервал для коэффициента при переменной Catholic 
+\end{enumerate}
+
+Набор данных доступен в пакете R:
+<<eval=FALSE>>=
+h <- swiss
+@
+\solution{}
+
+
+
+\item Оценивается зависимость уровня фертильности всё тех же швейцарских кантонов в 1888 году от ряда показателей. В таблице представлены результаты оценивания двух моделей.
+
+Модель 1: $Fertility_i=\beta_1+\beta_2 Agriculture_i+\beta_3 Education_i+\beta_4 Examination_i+\beta_5 Catholic_i+\varepsilon_i$
+
+Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
+
+<<>>=
+m1 <- lm(Fertility~Agriculture+Education+Examination+Catholic,data=h)
+m2 <- lm(Fertility~I(Education+Examination)+Catholic,data=h)
+@
+
+<<results='asis'>>=
+apsrtable(m1,m2)
+
+@
+
+Набор данных доступен в пакете R:
+<<eval=FALSE>>=
+h <- swiss
+@
+
+\begin{enumerate}
+\item Проверьте гипотезу о том, что коэффициент при $Education$ в модели 1 равен  $-0.5$.
+\item На 5\% уровне значимости проверьте гипотезу о том, что переменные $Education$ и $Examination$ оказывают одинаковое влияние на $Fertility$.
+\end{enumerate}
+
+\solution{}
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+
+<<"load flats", include=FALSE>>=
+flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",header=TRUE)
+@
+
+<<"flats", results='asis'>>=
+model1 <- lm(price~totsp+livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+<<"var hat", results='asis'>>=
+var.hat <- vcov(model1)
+xtable(var.hat)
+@
+
+\begin{enumerate}
+\item Проверьте $H_0$: $\beta_{totsp}=\beta_{livesp}$. В чём содержательный смысл этой гипотезы?
+\item Постройте доверительный интервал дли $\beta_{totsp}-\beta_{livesp}$. В чём содержательный смысл этого доверительного интервала?
+\end{enumerate}
+
+
+\solution{
+<<include=FALSE>>=
+est.se <- sqrt(var.hat[2,2]+var.hat[3,3]-2*var.hat[2,3])
+hb <- model1$coefficients
+est.diff <- hb[2]-hb[3]
+@
+
+Из оценки ковариационной матрицы находим, что $se(\hb_{totsp}=\hb_{livesp})=\Sexpr{est.se}$.
+
+Исходя из $Z_{crit}=1.96$ получаем доверительный интервал, $[\Sexpr{est.diff-1.96*est.se};\Sexpr{est.diff+1.96*est.se}]$.
+
+Вывод: при уровне значимости 5\% гипотеза о равенстве коэффициентов не отвергается.}
+
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+<<"flats - 2", results='asis'>>=
+model1 <- lm(price~totsp+livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+<<"var hat - 2", results='asis'>>=
+xtable(vcov(model1))
+@
+
+\begin{enumerate}
+\item Постройте 95\%-ый доверительный интервал для ожидаемой стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\item Постройте 95\%-ый прогнозный интервал для фактической стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\end{enumerate}
+
+\solution{}
+
+
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
+<<"flats - 3", results='asis'>>=
+model1 <- lm(price~totsp+livesp+brick+brick:totsp+brick:livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+# rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+\begin{enumerate}
+\item Выпишите отдельно уравнения регрессии для кирпичных домов и для некирпичных домов
+\item Проинтерпретируйте коэффициент при $brick_i \cdot totsp_i$
+\end{enumerate}
+
+
+\item По 20 наблюдениям оценивается линейная регрессия $\hat{y}=\hat{\beta}_1 +\hat{\beta}_2 x+\hat{\beta}_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $N(0,1)$.
+
+\begin{enumerate}
+\item Найдите вероятность $\P(\hat{\beta}_3>se(\hat{\beta}_3))$
+\item Найдите вероятность $\P(\hat{\beta}_3>\sigma_{\hat{\beta}_3})$
+\end{enumerate}
+
+\solution{
+\begin{enumerate}
+\item $\P(\hat{\beta}_3>se(\hat{\beta}_3))=\P(t_{17}>1)=\Sexpr{1-pt(1,17)}$
+\item $\P(\hat{\beta}_3>\sigma_{\hat{\beta}_3})=\P(N(0,1)>1)=\Sexpr{1-pnorm(1)}$
+\end{enumerate}
+}
+
+
+\item К эконометристу Вовочке в распоряжение попали данные с результатами контрольной работы студентов по эконометрике. В данных есть результаты по каждой задаче, переменные $p_1$, $p_2$, $p_3$, $p_4$ и $p_5$, и суммарный результат за контрольную, переменная $kr$. Чему будут равны оценки коэффициентов, их стандартные ошибки, t-статистики, P-значения, $R^2$, $RSS$, если
+\begin{enumerate}
+\item Вовочка построит регрессию $kr$ на константу, $p_1$, $p_2$, $p_3$, $p_4$ и $p_5$
+\item Вовочка построит регрессию $kr$ на $p_1$, $p_2$, $p_3$, $p_4$ и $p_5$ без константы
+\end{enumerate}
+\solution{}
+
+
+\item Сгенерируйте данные так, чтобы при оценке линейной регрессионной модели оказалось, что скорректированный коэффициент детерминации, $R^2_{adj}$, отрицательный.
+
+\[ R^2_{adj}=1-(1-R^2)\frac{n-1}{n-k} \]
+
+Следовательно, при $R^2$ близком к 0 и большом количестве регрессоров $k$ может оказаться, что $R^2_{adj}<0$. 
+
+Например,
+
+<<"negative adjusted R^2">>=
+set.seed(42)
+y <- rnorm(200,sd=15)
+X <- matrix(rnorm(2000),nrow=200)
+model <- lm(y~X)
+report <- summary(model)
+report$adj.r.squared
+@
+\solution{ }
+\todo[inline]{Косяк. Почему-то книтр внутри solution ругается на доллар.}
+
+
+
+
 \end{enumerate}

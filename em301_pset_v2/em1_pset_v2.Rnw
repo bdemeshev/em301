@@ -1,5 +1,16 @@
 \documentclass[pdftex,12pt,a4paper]{article}
 
+
+% идеи
+% * Задача на корреляционную матрицу по реальным данным require(quantmod)
+
+
+
+
+
+
+
+
 \input{/home/boris/science/tex_general/title_bor_utf8_knitr}
 
 
