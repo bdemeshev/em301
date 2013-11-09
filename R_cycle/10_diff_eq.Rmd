@@ -2,12 +2,15 @@
 
 
 ```{r, message=FALSE}
-library(knitr)
-opts_chunk$set(cache=TRUE,message=FALSE,warning=FALSE) 
+require(knitr)
+opts_chunk$set(cache=FALSE,message=FALSE,warning=FALSE) 
 
-library(ggplot2) # для построения графиков
-library(rasterVis)
-library(fields)
+require(ggplot2) # для построения графиков
+require(rasterVis)
+require(fields)
+require(deSolve)
+require(bvpSolve)
+
 ```
 
 
@@ -22,47 +25,55 @@ proj <- CRS('+proj=longlat +datum=WGS84')
 $$
 \left\{
 \begin{array}{l}
-\dot{x}=\sin(y) \\
-\dot{y}=\sin(x)
+\dot{y}_1=y_2 \\
+\dot{y}_2=y_1+\cos(y_2)
 \end{array}
 \right.
 $$
 
 
-Рассчитываем $\dot{x}$ и $\dot{y}$
+Задаем решетку, и рассчитываем $\dot{y}_1$ и $\dot{y}_2$ в точках решетки:
 ```{r}
-df <- expand.grid(x=seq(-6, 6, .05), y=seq(-6, 6, .05))
-df$dx <- with(sin(y),data=df)
-df$dy <- with(sin(x),data=df)
+y1 <- seq(-6, 6, .05)
+y2 <- seq(-6, 6, .05)
+df <- expand.grid(y1=y1, y2=y2)
+df$y1dot <- df$y2
+df$y2dot <- df$y1+cos(df$y2)
 ```
 
 
 Рассчитываем длины и углы для стрелочек, помещаем результат в объект `Raster`.
 ```{r}
-df$len <- with(sqrt(dx^2+dy^2),data=df)
-df$phi <- with(atan2(dy,dx),data=df)
-r2 <- rasterFromXYZ(df[c("x","y","len","phi")],crs=proj)
-```
+df$len <- sqrt(df$y1dot^2+df$y2dot^2)
+df$angle <- atan2(df$y1dot,df$y2dot)
 
-Строим няку с капельками
-```{r}
-streamplot(r2, isField=TRUE)
+df2 <- df[c("y1","y2","len","angle")]
+
+rast <- rasterFromXYZ(df2,crs=proj)
 ```
 
 
 Строим классический график со стрелочками
 ```{r}
-vectorplot(r2,isField=TRUE)
+vectorplot(rast,isField=TRUE)
 ```
 
 
-Простой график можно руками построить:
+Строим няку с капельками
 ```{r}
-df <- expand.grid(x=seq(-6, 6, .5), y=seq(-6, 6, .5))
-df$dx <- with(sin(y),data=df)
-df$dy <- with(sin(x),data=df)
-plot(df$x,df$y,pch=".")
-arrow.plot( df$x,df$y,df$dx,df$dy,
+streamplot(rast, isField=TRUE)
+```
+
+
+Простой график можно руками построить без доп. пакетов. При этом нам нужно самостоятельно уменьшить количество стрелочек.
+```{r}
+y1 <- seq(-6, 6, .5)
+y2 <- seq(-6, 6, .5)
+df <- expand.grid(y1=y1, y2=y2)
+df$y1dot <- df$y2
+df$y2dot <- df$y1+cos(df$y2)
+plot(df$y1,df$y2,pch=".")
+arrow.plot( df$y1,df$y2,df$y1dot,df$y2dot,
             arrow.ex=0.03,length=0.05) 
 ```
 
@@ -72,12 +83,75 @@ arrow.plot( df$x,df$y,df$dx,df$dy,
 
 ### Решим систему ОДУ с начальными условиями
 
+Описываем саму систему:
+```{r}
+eq1 <- function(t,y,parampampam) {
+  return(list(c(
+    y[2],
+    y[1]+cos(y[2])    
+  )))
+}
+```
+
+Начальные условия:
+```{r}
+y.start <- c(y1=1,y2=4) 
+```
+
+Точки, в которых компьютер будет считать функцию:
+```{r}
+t <- seq(0,10,by=0.01)
+```
 
 
-### Решим ОДУ с краевыми условиями
+Решаем
+```{r}
+sol <- ode(y=y.start,times=t,func=eq1)
+sol <- data.frame(sol)
+head(sol)
+qplot(data=sol,time,y1)
+```
+
+Функция `ode` возвращает матрицу, а для рисования графиков удобнее табличка с данными, data.frame. Строчка `sol <- data.frame(sol)` переделывает матрицу в таблицу с данными.
 
 
-### Изображение функций двух переменных
+
+### Решим систему ОДУ с краевыми условиями
+
+Описываем саму систему:
+```{r}
+eq1 <- function(t,y,parampampam) {
+  return(list(c(
+    y[2],
+    y[1]+cos(y[2])    
+  )))
+}
+```
+
+Граничные условия:
+```{r}
+y.start <- c(y1=1,y2=NA) 
+y.final <- c(y1=42,y2=NA)
+```
+
+Точки, в которых компьютер будет считать функцию:
+```{r}
+t <- seq(0,10,by=0.01)
+```
+
+
+Решаем
+```{r}
+sol <- bvptwp(yini=y.start,yend=y.final,
+           x=t,func=eq1,
+           nmax=2000)
+sol <- data.frame(sol)
+head(sol)
+qplot(data=sol,x,y1)
+```
+
+
+### Бесплатное приложение. Изображение функций двух переменных
 
 Есть несколько способов представить себе функцию от двух переменных, $z(x,y)$:
 
