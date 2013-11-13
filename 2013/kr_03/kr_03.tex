@@ -1,0 +1,64 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{/home/boris/science/tex_general/title_bor_utf8}
+
+\input{/home/boris/science/econometrix/em301/emetrix_preamble}
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+
+Пусть регрессионная модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$, $i = 1, \ldots, n$, задана в матричном виде при помощи уравнения $y = X \beta + \e$, где $\beta =  \begin{pmatrix}
+\beta_1 & \beta_2 & \beta_3\\
+\end{pmatrix} ^T$. Известно, что ошибки $\e$ нормально распределены с $\E \e = 0$ и $\Var (\e) = \sigma^2 \cdot I$. Известно также, что:
+
+$y =  \begin{pmatrix}
+1 \\
+2 \\
+3 \\
+4 \\
+5 \\
+\end{pmatrix} $, $X =  \begin{pmatrix}
+1 & 0 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1 \\
+\end{pmatrix} $
+
+Для удобства расчётов ниже приведены матрицы:
+
+$X^T X =  \begin{pmatrix}
+5 & 3 & 1 \\
+3 & 3 & 1 \\
+1 & 1 & 1 \\
+\end{pmatrix} $ и $(X^T X)^{-1} =  \begin{pmatrix}
+0.5 & -0.5 & 0 \\
+-0.5 & 1 & -0.5 \\
+0 & -0.5 & 1.5 \\
+\end{pmatrix} $.
+
+\begin{enumerate}
+\item Оценки $\hb$
+\item Спрогнозируйте $y$, если  $x_2=1$ и $x_3=-2$
+\item $TSS$, $ESS$, $RSS$, $R^2$
+\item $\E (\hat{\sigma}^2)$
+\item $\hat{\sigma}^2$
+\item $\Var (\e_1)$
+\item $\Var (\beta_1)$
+\item $\Var (\hat{\beta}_1)$
+\item $\widehat{\Var }(\hat{\beta}_1)$
+\item $\Cov (\hat{\beta}_2, \hat{\beta}_3)$
+\item $\widehat{\Cov }(\hat{\beta}_2, \hat{\beta}_3)$
+\item $\Var (\hat{\beta}_2 - \hat{\beta}_3)$
+\item $\widehat{\Var }(\hat{\beta}_2 - \hat{\beta}_3)$
+\item $\Var (\beta_2 - \beta_3)$
+\item Проверьте гипотезу $H_0$: $\b_1=1$ против гипотезы $H_a$: $\b_1\neq 1$ на уровне значимости $5\%$
+\item Проверьте гипотезу $H_0$: $\b_2=0$ против гипотезы $H_a$: $\b_2\neq 0$ на уровне значимости $10\%$
+\item Проверьте гипотезу $H_0$: $\b_2=\b_3$ против гипотезы $H_a$: $\b_2\neq \b_3$ на уровне значимости $5\%$
+\end{enumerate}
+
+
+
+
+\end{document}
