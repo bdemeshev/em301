@@ -1,5 +1,86 @@
 \section{Метод максимального правдоподобия --- общая теория}
 
+
+Пусть
+
+$X = (X_1,\ldots,X_n)$ --- случайная выборка
+
+$x = (x_1,\ldots,x_n)$ --- реализация данной случайной выборки
+
+$f_{X_i}(x_i, \theta)$ --- плотность распределения случайной величины $X_i$, $i = 1,\ldots, n$
+
+$\theta = (\theta_1, \ldots, \theta_k)$ --- вектор неизвестных параметров
+
+$\Theta \subseteq \mathbb{R}^k$ --- множество допустимых значений вектора неизвестных параметров
+
+$\text{L}(\theta) = \prod_{i=1}^n f_{X_i}(x_i, \theta)$ --- функция правдоподобия
+
+$l(\theta) := \ln \text{L}(\theta)$ --- логарифмическая функция правдоподобия
+
+Пусть требуется протестировать систему (нелинейных) ограничений относительно вектора неизвестных параметров
+
+$$H_0: \begin{cases}
+g_1(\theta) = 0 \\
+g_2(\theta) = 0 \\
+\ldots \\
+g_r(\theta) = 0 \\
+\end{cases}$$
+где $g_i(\theta)$ --- функция, которая задаёт $i$-ое ограничение на вектор параметров $\theta$, $i = 1,\ldots, r$.
+
+$\frac{\partial g}{\partial \theta'} = \begin{bmatrix}
+\partial g_1/\partial \theta' \\
+\partial g_2/\partial \theta' \\
+\vdots \\
+\partial g_r/\partial \theta' \\
+\end{bmatrix} = \begin{bmatrix}
+\frac{\partial g_1}{\partial \theta_1} & \frac{\partial g_1}{\partial \theta_2} & \ldots & \frac{\partial g_1}{\partial \theta_k}\\
+\frac{\partial g_2}{\partial \theta_1} & \frac{\partial g_2}{\partial \theta_2} & \ldots & \frac{\partial g_2}{\partial \theta_k}\\
+\ldots & \ldots & \ldots & \ldots \\
+\frac{\partial g_r}{\partial \theta_1} & \frac{\partial g_r}{\partial \theta_2} & \ldots & \frac{\partial g_r}{\partial \theta_k}\\
+\end{bmatrix}$
+
+$\frac{\partial g'}{\partial \theta} = \begin{bmatrix}
+\frac{\partial g'_1}{\partial \theta} & \frac{\partial g'_2}{\partial \theta} & \ldots & \frac{\partial g'_r}{\partial \theta} \\
+\end{bmatrix} = \begin{bmatrix}
+\frac{\partial g_1}{\partial \theta_1} & \frac{\partial g_2}{\partial \theta_1} & \ldots & \frac{\partial g_r}{\partial \theta_1}\\
+\frac{\partial g_2}{\partial \theta_2} & \frac{\partial g_2}{\partial \theta_2} & \ldots & \frac{\partial g_r}{\partial \theta_2}\\
+\ldots & \ldots & \ldots & \ldots \\
+\frac{\partial g_1}{\partial \theta_k} & \frac{\partial g_2}{\partial \theta_k} & \ldots & \frac{\partial g_r}{\partial \theta_k}\\
+\end{bmatrix}$
+
+$I(\theta) = -\E \left(\frac{\partial^2 l}{\partial \theta \partial \theta'}\right) = - \E \begin{bmatrix}
+\frac{\partial^2 l}{\partial \theta_1 \partial \theta_1} & \frac{\partial^2 l}{\partial \theta_1 \partial \theta_2} & \ldots & \frac{\partial^2 l}{\partial \theta_1 \partial \theta_k} \\
+\frac{\partial^2 l}{\partial \theta_2 \partial \theta_1} & \frac{\partial^2 l}{\partial \theta_2 \partial \theta_2} & \ldots & \frac{\partial^2 l}{\partial \theta_2 \partial \theta_k} \\
+\ldots & \ldots & \ldots & \ldots \\
+\frac{\partial^2 l}{\partial \theta_k \partial \theta_1} & \frac{\partial^2 l}{\partial \theta_k \partial \theta_2} & \ldots & \frac{\partial^2 l}{\partial \theta_k \partial \theta_k} \\
+\end{bmatrix}$ --- информационная матрица Фишера
+
+$\frac{\partial l}{\partial \theta} = \begin{bmatrix}
+\frac{\partial l}{\partial \theta_1} \\
+\frac{\partial l}{\partial \theta_2} \\
+\vdots \\
+\frac{\partial l}{\partial \theta_k} \\
+\end{bmatrix}$
+
+$\Theta_{UR} := \Theta$ --- множество допустимых значений вектора неизвестных параметров без учёта ограничений
+
+$\Theta_{R} := \{ \theta \in \Theta: g(\theta) = 0\}$ --- множество допустимых значений вектора неизвестных параметров с учётом ограничений
+
+$\hat{\theta}_{UR} \in \Theta_{UR}$ --- точка максимума функции $l$ на множестве $\Theta_{UR}$
+
+$\hat{\theta}_{R} \in \Theta_{R}$ --- точка максимума функции $l$ на множестве $\Theta_{R}$
+
+Тогда для тестирования гипотезы$H_0$ можно воспользоваться одной из следующих ниже статистик.
+
+$LR := -2(l(\hat{\theta}_{R}) - l) \overset{a}{\sim} \chi^2_r$ --- статистика отношения правдоподобия
+
+$W := g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) \overset{a}{\sim} \chi^2_r$ --- статистика Вальда
+
+$LM := \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] \overset{a}{\sim} \chi^2_r$ --- статистика множителей Лагранжа
+
+
+
+
 \begin{enumerate}
 
 \item Пусть $p$ --- неизвестная вероятность выпадения орла при бросании монеты. Из 100 испытаний  42 раза выпал <<Орел>> и 58 --- <<Решка>>. 
@@ -59,6 +140,393 @@ f(x,y)=\frac{\theta(\beta y)^x e^{-(\theta+\beta)y}}{x!}
 \solution{
 $\hat{\theta}=1/\bar{Y}$, $\hat{\beta}=\bar{X}/\bar{Y}$, $\hat{a}=1/(1+\bar{X})$
 }
+
+
+\item Пусть $X = (X_1,\ldots,X_n)$ --- случайная выборка из нормального распределения с математическим ожиданием $\mu$ и дисперсией $\nu$; $\mu \in \mathbb{R}$ и $\nu >0$ --- неизвестные параметры. Реализация случайной выборки $x = (x_1,\ldots,x_n)$ приведена ниже:
+\begin{table}[!ht]
+\center\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+\hline
+-2.80 & -1.12 & -2.27 & -1.31 & -0.98 & -2.15 & -1.52 & -2.82 & -1.19 & 0.87 \\
+\hline
+\end{tabular}
+\end{table}
+
+При помощи теста отношения правдоподобия, теста Вальда и теста множителей Лагранжа протестируйте гипотезу:
+$$H_0: \begin{cases}
+\mu = 0 \\
+\nu = 1 \\
+\end{cases}$$
+на уровне значимости 5\%.
+
+\solution{ В данном примере мы имеем
+
+$\theta = \begin{bmatrix}
+\mu & \nu
+\end{bmatrix}'$ --- вектор неизвестных параметров
+
+$\Theta = \mathbb{R} \times (0; +\infty)$ --- множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+$$\text{L}(\theta) = \prod_{i=1}^n f_{X_i}(x_i, \theta) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\nu}} \cdot \exp\left\lbrace -\frac{(x_i - \mu)^2}{2\nu} \right\rbrace = (2\pi)^{-n/2} \cdot \nu^{-n/2} \cdot \exp \left\lbrace -\frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu} \right\rbrace$$
+
+Логарифмическая функция правдоподобия:
+$$l(\theta) := \ln \text{L}(\theta) = -\frac{n}{2} \ln(2\pi) - \frac{n}{2} \ln\nu - \frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu}$$
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{(0,1)\}$
+
+Из системы уравнений
+$$\begin{cases}
+\frac{\partial l}{\partial \mu} = \frac{\sum_{i=1}^n (x_i - \mu)}{\nu} = 0 \\
+\frac{\partial l}{\partial \nu} = -\frac{n}{2\nu} + \frac{\sum_{i=1}^n (x_i - \mu)^2}{2\nu^2} = 0 \\
+\end{cases}$$
+
+находим
+
+$\hat{\theta}_{UR} = (\hat{\mu}_{UR}, \hat{\nu}_{UR})$, где $\hat{\mu}_{UR} = \overline{x} = -1.5290$, $\hat{\nu}_{UR} = \frac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2 = 1.0603$
+
+$\hat{\theta}_{R} = (\hat{\mu}_{R}, \hat{\nu}_{R}) = (0,1)$
+
+По имеющимся данным находим
+
+$l(\hat{\theta}_{R}) = -\frac{10}{2} \ln(2\pi) - \frac{10}{2} \ln 1 - \frac{\sum_{i=1}^n (x_i - 0)^2}{2 \cdot 1} = -26.1804$
+
+$l = -\frac{10}{2} \ln(2\pi) -  \frac{10}{2} \ln (1.0603) - \frac{\sum_{i=1}^n (x_i + 1.5290)^2}{2 \cdot 1.0603} = -14.4824$
+
+$LR_{\text{набл}} = -2(l(\hat{\theta}_{R}) - l) = -2 \cdot (-26.1804 + 14.4824) = 23.3959$
+
+Критическое значение $\chi^2$ распределения с двумя степенями свободы, отвечающее уровню значимости 5\%, равно 5.9915. Следовательно, тест отношения правдоподобия говорит о том, что гипотеза $H_0$ должна быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 l}{\partial \mu^2} = -\frac{n}{v}$, $\frac{\partial^2 l}{\partial \nu \partial \mu} = -\frac{\sum_{i=1}^n (x_i - \mu)}{\nu^2}$, $\frac{\partial^2 l}{\partial \nu^2} = \frac{n}{2\nu^2} - \frac{\sum_{i=1}^n (x_i - \mu)^2}{\nu^3}$
+
+$\E \frac{\partial^2 l}{\partial \nu \partial \mu} = -\frac{\sum_{i=1}^n \E(x_i - \mu)}{\nu^2} = 0$, $\E \frac{\partial^2 l}{\partial \nu^2} = \frac{n}{2\nu^2} - \frac{\sum_{i=1}^n \E(x_i - \mu)^2}{\nu^3} = \frac{n}{2\nu^2} - \frac{n\nu}{nu^3} =- \frac{n}{2\nu^2}$
+
+$I(\theta) = -\E \begin{bmatrix}
+\frac{\partial^2 l}{\partial \mu^2} & \frac{\partial^2 l}{\partial \nu \partial \mu} \\
+\frac{\partial^2 l}{\partial \nu \partial \mu} & \frac{\partial^2 l}{\partial \nu^2} \\
+\end{bmatrix} = \begin{bmatrix}
+\frac{n}{\nu} & 0 \\
+0 & \frac{n}{2\nu^2}
+\end{bmatrix}$
+
+$I(\hat{\theta}_{UR}) = \begin{bmatrix}
+\frac{n}{\hat{\nu}_{UR}} & 0 \\
+0 & \frac{n}{2 \cdot \hat{\nu}_{UR}^2}
+\end{bmatrix} = \begin{bmatrix}
+\frac{10}{1.0603} & 0 \\
+0 & \frac{10}{2 \cdot 1.0603^2}
+\end{bmatrix} = \begin{bmatrix}
+9.4307 & 0 \\
+0 & 4.4469 \\
+\end{bmatrix}$
+
+$g(\hat{\theta}_{UR}) = \begin{bmatrix}
+\hat{\mu}_{UR} - 0 \\
+\hat{\nu}_{UR} - 1 \\
+\end{bmatrix} = \begin{bmatrix}
+-1.5290 - 0\\
+1.0603 - 1 \\
+\end{bmatrix} = \begin{bmatrix}
+-1.5290\\
+0.0603 \\
+\end{bmatrix}$
+
+$\frac{\partial g}{\partial \theta'} = \begin{bmatrix}
+\frac{\partial c_1}{\partial \mu} & \frac{\partial c_1}{\partial \nu} \\
+\frac{\partial c_2}{\partial \mu} & \frac{\partial c_2}{\partial \nu} \\
+\end{bmatrix} = \begin{bmatrix}
+1 & 0\\
+0 & 1\\
+\end{bmatrix}$, $\frac{\partial g'}{\partial \theta} = \begin{bmatrix}
+\frac{\partial c_1}{\partial \mu} & \frac{\partial c_2}{\partial \mu} \\
+\frac{\partial c_1}{\partial \nu} & \frac{\partial c_2}{\partial \nu} \\
+\end{bmatrix} = \begin{bmatrix}
+1 & 0\\
+0 & 1\\
+\end{bmatrix}$
+
+$W_{\text{набл}} = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = \\
+\begin{bmatrix}
+-1.5290 & 0.0603\\
+\end{bmatrix} \cdot \left[ \begin{bmatrix}
+1 & 0\\
+0 & 1\\
+\end{bmatrix} \cdot \begin{bmatrix}
+9.4307 & 0 \\
+0 & 4.4469 \\
+\end{bmatrix}^{-1} \cdot \begin{bmatrix}
+1 & 0\\
+0 & 1\\
+\end{bmatrix} \right]^{-1} \cdot  \begin{bmatrix}
+-1.5290\\
+0.0603 \\
+\end{bmatrix} = 22.0635$
+
+Тест Вальда также говорит о том, что на основании имеющихся наблюдений гипотеза $H_0$ должна быть отвергнута.
+
+$I(\hat{\theta}_{R}) = \begin{bmatrix}
+\frac{n}{\hat{\nu}_{R}} & 0 \\
+0 & \frac{n}{2 \cdot \hat{\nu}_{R}^2}
+\end{bmatrix} = \begin{bmatrix}
+\frac{10}{1} & 0 \\
+0 & \frac{10}{2\cdot 1^2} \\
+\end{bmatrix} = \begin{bmatrix}
+10 & 0\\
+0 & 5 \\
+\end{bmatrix}$
+
+$\frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) = \begin{bmatrix}
+\frac{\sum_{i=1}^n (x_i - \hat{\mu}_R)}{\hat{\nu}_R}\\
+-\frac{n}{2\cdot \hat{\nu}_R} + \frac{\sum_{i=1}^n (x_i - \hat{\mu}_R)^2}{2 \cdot \hat{\nu}_R^2}
+\end{bmatrix} = \begin{bmatrix}
+\frac{\sum_{i=1}^n (x_i - 0)}{1}\\
+-\frac{10}{2\cdot 1} + \frac{\sum_{i=1}^n (x_i - 0)^2}{2 \cdot 1^2}
+\end{bmatrix} = \begin{bmatrix}
+-15.29 \\
+11.9910\\
+\end{bmatrix}$
+
+$LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] = \begin{bmatrix}
+-15.29 & 11.9910 \\
+\end{bmatrix} = \cdot \begin{bmatrix}
+10 & 0\\
+0 & 5 \\
+\end{bmatrix}^{-1} \cdot \begin{bmatrix}
+-15.29 \\
+11.9910\\
+\end{bmatrix} = 52.1354$
+
+Тест множителей Лагранжа также указывает на то, что гипотеза $H_0$ должна быть отвергнута.
+} % end of solution
+
+
+\item Пусть $p$ --- неизвестная вероятность выпадения орла при бросании монеты. Из 100 испытаний  42 раза выпал <<Орел>> и 58 --- <<Решка>>. Протестируйте на 5\%-ом уровне значимости гипотезу о том, что монетка --- <<правильная>> с помощью: 
+\begin{enumerate}
+\item[a] теста отношения правдоподобия
+\item[b] теста Вальда
+\item[c] теста множителей Лагранжа
+\end{enumerate}
+
+\solution{ В данной задаче мы имеем:
+
+$\theta = p$ --- вектор неизвестных параметров
+
+$\Theta = (0, 1)$ --- множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+$$\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^n p^{x_i} \cdot (1-p)^{1-x_i} = p^{\sum_{i=1}^n x_i} \cdot (1-p)^{n - \sum_{i=1}^n x_i}$$
+
+Логарифмическая функция правдоподобия:
+
+$$l(\theta) := \\ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln p + \left(n - \sum_{i=1}^n x_i \right) \cdot \ln (1 - p)$$
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{0.5\}$
+
+Решая уравнение правдоподобия
+
+$$\frac{\partial l}{\partial p} = \frac{\sum_{i=1}^n x_i}{p} - \frac{n - \sum_{i=1}^n x_i}{1 - p} = 0$$
+
+получаем
+
+$\hat{\theta}_{UR} = \hat{p}_{UR}$, где $\hat{p}_{UR} = \overline{x} = 0.42$
+
+$\hat{\theta}_{R} = \hat{p}_{R} = 0.5$
+
+По имеющимся данным находим
+
+$l(\hat{\theta}_{R}) = 42 \cdot \ln(0.5) + (100-42) \cdot \ln(1-0.5) = -69.3147$
+
+$l(\hat{\theta}_{UR} = 42 \cdot \ln(0.42) + (100-42) \cdot \ln(1-0.42) = -68.0292$
+
+$LR_{\text{набл}} = -2(l(\hat{\theta}_{R}) - l) = -2 \cdot (-69.3147 + 68.0292) = 2.5710$
+
+Критическое значение $\chi^2$ распределения с одной степенью свободы, отвечающее за 5\% уровень значимости, равно 3.8414. Следовательно, тест отношения правдоподобия говорит о том, что на основании имеющихся данных, основная гипотеза $H_0: p = 0.5$ не может быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 l}{\partial p^2} = - \frac{\sum_{i=1}^n x_i}{p^2} - \frac{n - \sum_{i=1}^n x_i}{(1 - p)^2}$
+
+$I(\theta) = -\E\left[ \frac{\partial^2 l}{\partial p^2} \right] = -\E \left[ - \frac{\sum_{i=1}^n x_i}{p^2} - \frac{n - \sum_{i=1}^n x_i}{(1 - p)^2} \right] = -\left(-\frac{np}{p^2} - \frac{n - np}{(1-p)^2}\right) = \frac{n}{p(1-p)}$
+
+$I(\hat{\theta}_{UR}) = \frac{n}{\hat{p}_{UR}(1-\hat{p}_{UR})} = \frac{100}{0.42 \times (1 - 0.42)} = 172.4138$
+
+$g(\hat{\theta}_{UR}) = \hat{\theta}_{UR} - 0.5 = 0.42 - 0.5 = -0.08$
+
+$\frac{\partial g}{\partial \theta'} = 1'$, $\frac{\partial g'}{\partial \theta} = 1$
+
+$W_{\text{набл}} = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = [-0.08]' \cdot [1' \cdot 172.4138^{-1} \cdot 1]^{-1} \cdot [-0.08] = 2.6272$
+
+Тест Вальда также говорит о том, что гипотеза $H_0$ не отвергается.
+
+$I(\hat{\theta}_{R}) = \frac{n}{\hat{p}_{R}(1-\hat{p}_{R})} = \frac{100}{0.5 \times (1 - 0.5)} = 400$
+
+$\frac{\partial l}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\hat{p}_R} - \frac{n - \sum_{i=1}^n x_i}{1 - \hat{p}_R} = \frac{42}{0.5} - \frac{100 - 42}{1 - 0.5} = -32$
+
+$LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] = [-32]' \cdot [400]^{-1} \cdot [-32] = 2.56$
+
+Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
+} % end of solution
+
+
+\item Пусть $x = (x_1, \ldots, x_n)$ --- реализация случайной выборки из распределения Пуассона с неизвестным параметром $\lambda > 0$. Известно, что выборочное среднее $\overline{x}$ по 80 наблюдениям равно 1.7. Протестируйте на 5\%-ом уровне значимости гипотезу $H_0: \lambda = 2$ с помощью
+\begin{enumerate}
+\item теста отношения правдоподобия
+\item теста Вальда
+\item теста множителей Лагранжа
+\end{enumerate}
+
+\solution{ В данной задаче мы имеем
+
+$\theta = \lambda$ --- вектор неизвестных параметров
+
+$\Theta = (0, +\infty)$ --- множество допустимых значений вектора неизвестных параметров
+
+Функция правдоподобия имеет вид:
+$$\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^n \frac{\lambda^{x_i}}{x_i !} e^{-\lambda} = \frac{\lambda^{\sum_{i=1}^n x_i}}{x_1!\ldots x_n!}e^{-\lambda n}$$
+
+Логарифмическая функция правдоподобия:
+
+$$l(\theta) := \\ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln\lambda - \sum_{i=1}^n \ln (x_i!) - \lambda n$$
+
+$\Theta_{UR} = \Theta$
+
+$\Theta_{R} = \{2\}$
+
+Решая уравнение правдоподобия
+
+$$\frac{\partial l}{\partial p} = \frac{\sum_{i=1}^n x_i}{\lambda} - n = 0$$
+
+получаем
+
+$\hat{\theta}_{UR} = \hat{\lambda}_{UR}$, где $\hat{\lambda}_{UR} = \overline{x} = 1.7$
+
+$\hat{\theta}_{R} = \hat{p}_{R} = 2$
+
+По имеющимся данным находим
+
+$l(\hat{\theta}_{R}) = (80 \cdot 1.7) \cdot \ln(2) - \sum_{i=1}^n \ln (x_i!) - 2 \cdot 80 = -65.7319$
+
+$l(\hat{\theta}_{UR} = (80 \cdot 1.7) \cdot \ln(1.7) - \sum_{i=1}^n \ln (x_i!) - 1.7 \cdot 80 = -63.8345$
+
+$LR_{\text{набл}} = -2(l(\hat{\theta}_{R}) - l) = -2 \cdot (-65.7319 + 63.8345) = 3.7948$
+
+Критическое значение $\chi^2$ распределения с одной степенью свободы, отвечающее за 5\% уровень значимости, равно 3.8414. Следовательно, тест отношения правдоподобия говорит о том, что на основании имеющихся данных, основная гипотеза $H_0: \lambda = 2$ не может быть отвергнута.
+
+Для выполнения тестов Вальда и множителей Лагранжа нам понадобится информационная матрица Фишера
+
+$\frac{\partial^2 l}{\partial p^2} = - \frac{\sum_{i=1}^n x_i}{\lambda^2}$
+
+$I(\theta) = -\E\left[ \frac{\partial^2 l}{\partial p^2} \right] = -\E \left[ - \frac{\sum_{i=1}^n x_i}{\lambda^2} \right] = -\left(-\frac{n\lambda}{\lambda^2}\right) = \frac{n}{\lambda}$
+
+$I(\hat{\theta}_{UR}) = \frac{n}{\hat{\lambda}_{UR}} = \frac{80}{1.7} = 47.0588$
+
+$g(\hat{\theta}_{UR}) = \hat{\theta}_{UR} - 2 = 1.7 - 2 = -0.3$
+
+$\frac{\partial g}{\partial \theta'} = 1'$, $\frac{\partial g'}{\partial \theta} = 1$
+
+$W_{\text{набл}} = g'(\hat{\theta}_{UR}) \cdot \left[ \frac{\partial g}{\partial \theta'}(\hat{\theta}_{UR}) \cdot I^{-1}(\hat{\theta}_{UR}) \cdot \frac{\partial g'}{\partial \theta}(\hat{\theta}_{UR}) \right]^{-1} g(\hat{\theta}_{UR}) = [-0.3]' \cdot [1' \cdot 47.0588^{-1} \cdot 1]^{-1} \cdot [-0.3] = 4.2352$
+
+Поскольку наблюдаемое значение статистики Вальда превосходит критическое значение 3.8414, то гипотеза $H_0$ должна быть отвергнута.
+
+$I(\hat{\theta}_{R}) = \frac{n}{\hat{\lambda}_{R}} = \frac{80}{2} = 40$
+
+$\frac{\partial l}{\partial \theta}(\hat{\theta}_R) = \frac{\sum_{i=1}^n x_i}{\hat{\lambda}_R} - n = \frac{80 \cdot 1.7}{2} - 80 = -12$
+
+$LM_{\text{набл}} = \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right]' \cdot I^{-1}(\hat{\theta}_{R}) \cdot \left[ \frac{\partial l}{\partial \theta}(\hat{\theta}_{R}) \right] = [-12]' \cdot [40]^{-1} \cdot [-12] = 3.6$
+
+Согласно тесту множителей Лагранжа, основная гипотеза $H_0$ не может быть отвергнута.
+} % end of solution
+
+
+\item Винни-Пух знает, что мёд бывает правильный, $honey_i=1$, и неправильный, $honey_i=0$. Пчёлы также бывают правильные, $bee_i=1$, и неправильные, $bee_i=0$. По 100 своим попыткам добыть мёд Винни-Пух составил таблицу сопряженности:
+
+\begin{tabular}{c|cc}
+ & $honey_i=1$ & $honey_i=0$ \\ 
+\hline 
+$bee_i=1$ & 12 & 36 \\ 
+$bee_i=0$ & 32 & 20 \\ 
+\end{tabular} 
+
+Используя метод максимального правдоподобия Винни-Пух хочет оценить логит-модель для прогнозирования правильности мёда с помощью правильности пчёл:
+\[
+\ln \left(\frac{\mathbb{P}(honey_i=1)}{\mathbb{P}(honey_i=0)} \right)=\beta_1 + \beta_2 bee_i 
+\]
+\begin{enumerate}
+\item Выпишите функцию правдоподобия для оценки параметров $\beta_1$ и $\beta_2$
+\item Оцените неизвестные параметры
+\item С помощью теста отношения правдоподобия проверьте гипотезу о том, правильность пчёл не связана с правильностью мёда на уровне значимости 5\%.
+\item Держась в небе за воздушный шарик, Винни-Пух неожиданно понял, что перед ним неправильные пчёлы. Помогите ему оценить вероятность того, что они делают неправильный мёд.
+\end{enumerate}
+
+\solution{ Для краткости введем следующие обозначения: $y_i = honey_i$, $d_i = bee_i$\footnote{$Y_i$ --- случайный Мёд, $y_i$ --- реализация случайного Мёда (наблюдаемый Мёд)}.
+
+\begin{enumerate}
+\item[(a)] Функция правдоподобия имеет следующий вид:
+
+$$\text{L}(\beta_1, \beta_2) = \prod_{i=1}^n \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = y_i \right\rbrace \right) = \prod_{i: y_i = 0} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 1 \right\rbrace \right) \cdot \prod_{i: y_i = 1} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 0 \right\rbrace \right) =$$
+$$\prod_{i: y_i = 1} \Lambda(\beta_1 + \beta_2 d_i) \cdot \prod_{i: y_i = 0} [1 - \Lambda(\beta_1 + \beta_2 d_i)] = $$
+$$\prod_{i: y_i = 1, d_i = 1} \Lambda(\beta_1 + \beta_2) \cdot \prod_{i: y_i = 1, d_i = 0} \Lambda(\beta_1) \cdot \prod_{i: y_i = 0, d_i = 1} [1 - \Lambda(\beta_1 + \beta_2)] \cdot \prod_{i: y_i = 0, d_i = 0} [1 - \Lambda(\beta_1)] = $$
+$$\Lambda(\beta_1 + \beta_2)^{\#\{i: y_i=1, d_i=1\}} \cdot \Lambda(\beta_1)^{\#\{i: y_i=1, d_i=0\}} \cdot [1 - \Lambda(\beta_1 + \beta_2)]^{\#\{i: y_i=0, d_i=1\}} \cdot [1 - \Lambda(\beta_1)]^{\#\{i: y_i=0, d_i=0\}}$$
+где 
+\begin{equation}
+\label{eq: logist df}\Lambda(x) = \frac{e^x}{1 + e^x}
+\end{equation}
+логистическая функция распределения, $\#A$ означает число элементов множества $A$.
+
+\item[(b)] Введём следующие обозначения:
+\begin{equation}
+\label{eq: short a}a := \Lambda(\beta_1)
+\end{equation}
+\begin{equation}
+\label{eq: short b}b := \Lambda(\beta_1 + \beta_2)
+\end{equation}
+
+Тогда с учетом имеющихся наблюдений функция правдоподобия принимает вид:
+
+$$\text{L}(a, b) = b^{12} \cdot a^{32} \cdot [1 - b]^{36} \cdot [1 - a]^{20}$$
+
+Логарифмическая функция правдоподобия:
+
+$$l(a, b) = \ln \text{L}(a, b) = 12\ln b + 32\ln a + 36\ln[1-b] + 20\ln[1 - a]$$
+
+Решая систему уравнений правдоподобия
+
+$$\begin{cases}
+\frac{\partial l}{\partial a} = \frac{32}{a} - \frac{20}{1 - a} = 0 \\
+\frac{\partial l}{\partial b} = \frac{12}{b} - \frac{36}{1 - b} = 0 \\
+\end{cases}$$
+получаем $\hat{a} = \frac{8}{13}$, $\hat{b} = \frac{1}{4}$. Из формул (\ref{eq: logist df}) и (\ref{eq: short a}), находим $\hat{\beta}_{1, UR} = \ln\left( \frac{\hat{a}}{1 - \hat{a}} \right)= \ln \left(\frac{8}{5} \right) = 0.47$. Далее, из (\ref{eq: logist df}) и (\ref{eq: short b}) имеем $\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right)$. Следовательно, $\hat{\beta}_{2, UR} = \ln \left( \frac{\hat{b}}{1 - \hat{b}} \right) - \hat{\beta}_{1, UR} = \ln \left( \frac{1}{3} \right) - \ln \left( \frac{8}{5} \right) = -1.57$.
+
+\item[(c)] Гипотеза, состоящая в том, что <<правильность Мёда не связана с правильностью 
+пчёл>> формализуется как $H_0: \beta_2 = 0$. Протестируем данную гипотезу при помощи теста 
+отношения правдоподобия. Положим в функции правдоподобия $\text{L}(\beta_1, \beta_2)$ $\beta_2 = 0$. Тогда с учетом (\ref{eq: short a}) и (\ref{eq: short b}) получим
+$$\text{L}(a, b=a) = a^{32+12} \cdot [1 - a]^{20+36}$$
+В этом случае логарифмическая функция правдоподобия имеет вид:
+$$l(a, b=a) := \text{L}(a, b=a) = 44 \ln a + 56 \ln[1 - a]$$
+Решаем уравнение правдоподобия
+$$\frac{\partial l}{\partial a} = \frac{44}{a} - \frac{56}{1 - a} = 0$$
+и получаем $\hat{a} = \frac{11}{25}$. Следовательно, согласно (\ref{eq: logist df}) и (\ref{eq: short a}), $\hat{\beta}_{1, R} = -0.24$ и $\hat{\beta}_{2, R} = 0$.
+
+Статистика отношения правдоподобия имеет вид:
+$$LR = -2(l(\hat{\beta}_{1, R}, \hat{\beta}_{2, R}) - l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}))$$
+и имеет асимптотическое $\chi^2$ распределение с числом степеней свободы, равным числу ограничений, составляющих гипотезу $H_0$, т.е. в данном случае $LR \overset{a}{\sim} \chi^2_1$.
+
+Находим наблюдаемое значение статистики отношения правдоподобия:
+$$l(\hat{\beta}_{1, R}, \hat{\beta}_{2, R}) = l(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] = 44\ln \left[ \frac{11}{25} \right] + 56\ln \left[ 1 - \frac{11}{25} \right] = -68.59$$
+$$l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}) = l(\hat{a}_{UR}, \hat{b}_{UR}) = 12\ln \hat{b}_{UR} + 32 \ln \hat{a}_{UR} + 36\ln[1 - \hat{b}_{UR}] + 20\ln[1 - \hat{a}_{UR}] = $$
+$$12\ln \left[ \frac{1}{4} \right] + 32\ln \left[ \frac{8}{13} \right] + 36\ln \left[ 1 - \frac{1}{4} \right] + 20\ln \left[1 - \frac{8}{13} \right] = -61.63$$
+Следовательно, $LR_{\text{набл}} = -2(-68.59 + 61.63) = 13.92$, при этом критическое значение $\chi^2$ распределения с одной степенью свободы для 5\% уровня значимости равна 3.84. Значит, на основании теста отношения правдоподобия гипотеза $H_0: \beta_2 = 0$ должна быть отвергнута. Таким образом, данные показывают, что, в действительности, правильность мёда связана с правильностью пчёл.
+
+item[(d)] $$\hat{\mathbb{P}}\{honey = 0| bee = 0\} = 1 - \hat{\mathbb{P}}\{honey=1|bee=0\} = 1 - \frac{\exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}}{1 + \exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}} =$$
+$$1 - \frac{\exp\{\ln\left( \frac{8}{5} \right)\}}{1 + \exp\{\ln\left( \frac{8}{5} \right)\}} = 1 - 0.62 = 0.38$$ 
+\end{enumerate}
+} % end of solution
+
 
 
 
