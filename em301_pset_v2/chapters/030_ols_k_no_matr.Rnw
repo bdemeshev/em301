@@ -872,9 +872,9 @@ H_0:
 \]
 
 \item Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \e_i$, в которой ошибки
-$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 20 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(RSS>2\sigma^2)$, $\P(RSS>2\hat{\sigma}^2)$
+$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 13 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(5\sigma^2<RSS<10\sigma^2)$, $\P(5\hat{\sigma}^2<RSS<10\hat{\sigma}^2)$
 
-\solution{ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$ }
+\solution{ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(5\sigma^2<RSS<10\sigma^2)\approx 0.451$ }
 
 
 
