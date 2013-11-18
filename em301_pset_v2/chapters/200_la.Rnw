@@ -127,6 +127,75 @@ $X=\left(
 
 \item Выпишите в явном виде матрицы $\pi$, $\pi y$, $\pi \e$, $I-\pi$, если $\pi=\v1(\v1'\v1)^{-1}\v1'$.
 
+\item Формула Фробениуса. Матрицу $A$ размера $(n+m)\times (n+m)$ разрезали на 4 части: $A=\begin{pmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22} 
+\end{pmatrix}$. Кусок $A_{11}$ имеет размер $n\times n$, кусок $A_{22}$ имеет размер $m\times m$. Известно, что $A$ --- обратима и $A^{-1}=B$. На аналогичные по размеру и расположению части разрезали матрицу $B=\begin{pmatrix}
+B_{11} & B_{12} \\
+B_{21} & B_{22} 
+\end{pmatrix}$.
+\begin{enumerate}
+\item Каковы размеры кусков $A_{12}$ и $A_{21}$?
+\item Может ли кусок $A_{11}$ быть необратимой матрицей?
+\item Чему равно $B_{22}(A_{22}-A_{21}A_{11}^{-1}A_{12})$?
+\end{enumerate}
+\solution{ $n\times m$, $m\times n$, $A_{11}$ обратима, $I$ }
+
+
+\item Спектральное разложение. Симметричная матрица $A$ размера $n\times n$ имеет $n$ собственных чисел $\lambda_1$, \ldots, $\lambda_n$ с собственными векторами $u_1$, \ldots, $u_n$. Докажите, что $A$ можно представить в виде $A=\sum \lambda_i u_i u_i'$.
+\solution{}
+
+\item Найдите определитель, собственные значения, собственные векторы и число
+обусловленности матрицы $A$. Также найдите $A^{-1}$, $A^{-1/2}$ и $A^{1/2}$.
+\begin{enumerate}
+\item $A=\begin{pmatrix}
+0.2 & 0 \\
+0 & 0.1
+\end{pmatrix}$ 
+\item $A=\begin{pmatrix}
+2 & 1 \\
+1 & 2
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+4 & 1 \\
+1 & 4
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+2 & 1 & 1 \\
+1 & 2 & 1 \\
+1 & 1 & 2
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+3 & 2 & 1 \\
+2 & 3 & 2 \\
+1 & 2 & 3
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+4 & -1 & 1 \\
+-1 & 4 & -1 \\
+1 & -1 & 4
+\end{pmatrix}$ 
+
+\item $A=\begin{pmatrix}
+6 & -2 & 2 \\
+-2 & 5 & 0 \\
+2 & 0 & 7
+\end{pmatrix}$ 
+
+
+
+\end{enumerate}
+
 
 
 \end{enumerate}
