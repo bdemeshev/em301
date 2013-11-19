@@ -30,8 +30,8 @@
 
 \item Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$. 
 \begin{enumerate}
-\item Как связаны между собой $\hat{alpha}$ и $\hat{gamma}$?
-\item  Как связаны между собой $\hat{beta}$ и $\hat{delta}$?
+\item Как связаны между собой $\hat{\alpha}$ и $\hat{\gamma}$?
+\item  Как связаны между собой $\hat{\beta}$ и $\hat{\delta}$?
 \end{enumerate} 
 \solution{$\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$}
 
