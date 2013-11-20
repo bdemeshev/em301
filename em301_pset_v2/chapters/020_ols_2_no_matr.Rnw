@@ -260,12 +260,19 @@ $:
 \solution {нет, нет, нет }
 
 
-\item Рассмотрим модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+\item Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
 $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 22 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(10\sigma^2<RSS<30\sigma^2)$, $\P(10\hat{\sigma}^2<RSS<30\hat{\sigma}^2)$
 
 \solution{ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(10\sigma^2<RSS<30\sigma^2)\approx 0.898$ }
 
-
+\item Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 12 наблюдениям. Найдите
+\begin{enumerate}
+\item $\P(\hb_1>\beta_1)$, $\P(\beta_1>0)$, $\P(|\hb_1-\beta_1|<se(\hb_1))$, $\P(\hb_2>\beta_2+se(\hb_2))$, $\P(\hb_2>\beta_2-se(\hb_2))$
+\item $\E(\hb_1)$, $\E(\hb_2)$, $\E(\beta_2)$
+\item Закон распределения, математическое ожидание и дисперсию величин $\frac{\hb_2-\beta_2}{\sqrt{\Var(\hb_2)}}$, $\frac{\hb_2-\beta_2}{\sqrt{\widehat{\Var}(\hb_2)}}$, $\frac{\hb_1+\hb_2-\beta_1-\beta_2}{\sqrt{\widehat{\Var}(\hb_1+\hb_2)}}$
+\item $\P(\hs>\sigma)$, $\P(\hs>2\sigma)$
+\end{enumerate}
 
 
 \end{enumerate}
