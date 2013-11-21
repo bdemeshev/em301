@@ -168,7 +168,7 @@
 
 
 
-\item Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\varepsilon_t$. 
+\item Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\varepsilon_t+\e_t$. 
 \begin{enumerate}
 \item Найдите МНК оценку коэффициента $\beta$
 \item Рассчитайте $\E(\hat{\beta})$ и $\Var(\hat{\beta})$ в предположениях теоремы Гаусса-Маркова
@@ -184,7 +184,7 @@
 \end{enumerate}
 }
 
-\item В модели $y_t=\beta_1+\beta_2 x_t$, где 
+\item В модели $y_t=\beta_1+\beta_2 x_t+\e_t$, где 
 $x_t=\left\{
 \begin{array}{l}
 2,\, t=1 \\

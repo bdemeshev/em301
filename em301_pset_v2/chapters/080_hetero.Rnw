@@ -245,6 +245,7 @@ V=\Var(\e)=\begin{pmatrix}
 \item ожидаемое значение статистики Уайта,
 \item дисперсию статистики Уайта.   
 \end{enumerate}
+\solution{$0.0752$, $5$, $10$}
 
 \end{enumerate}
 
