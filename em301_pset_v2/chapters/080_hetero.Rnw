@@ -7,7 +7,7 @@
 
 \item Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
 
-<<"diagram", warning=FALSE>>=
+<<warning=FALSE>>=
 ggplot(flats,aes(x=totsp,y=price))+geom_point()+
     labs(x="Общая площадь, кв. м.",y="Цена квартиры, 1000$")
 @

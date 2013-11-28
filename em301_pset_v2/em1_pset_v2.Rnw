@@ -30,15 +30,18 @@
 % чисто эконометрические сокращения:
 \input{../emetrix_preamble}
 
+% для отдельной упаковки решений
+\input{/home/boris/science/tex_general/prob_and_sol_utf8}
+
 
 
 % временное решение
 %\newcommand{\solution}[1]{#1}
 
-\newcommand{\solution}[1]{ {\tiny #1} }
+%\newcommand{\solution}[1]{ {\tiny #1} }
 %\newcommand{\solution}[1]{}
 
-\newcommand{\problem}[1]{#1}
+%\newcommand{\problem}[1]{#1}
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
 \author{Дмитрий Борзых, Борис Демешев}
@@ -82,6 +85,101 @@ load('pset_data.Rdata')
 @
 
 \listoftodos
+
+% МНК
+
+
+\problemonly
+
+
+
+
+<<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
+@
+<<child='chapters/020_ols_2_no_matr.Rnw'>>=
+@
+<<child='chapters/030_ols_k_no_matr.Rnw'>>=
+@
+<<child='chapters/040_ols_k_matrix.Rnw'>>=
+@
+
+% ML
+
+<<child='chapters/050_ml_general.Rnw'>>=
+@
+<<child='chapters/060_logit.Rnw'>>=
+@
+
+% Нарушения
+
+<<child='chapters/070_collinearity.Rnw'>>=
+@
+%%%%%%% здесь?... LASSO, rigdre regression
+
+
+<<child='chapters/080_hetero.Rnw'>>=
+@
+<<child='chapters/090_specification.Rnw'>>=
+@
+
+%
+
+<<child='chapters/100_random_x.Rnw'>>=
+@
+<<child='chapters/110_gmm.Rnw'>>=
+@
+
+% time series
+
+<<child='chapters/120_series.Rnw'>>=
+@
+
+% Нетрадиционная медицина
+
+<<child='chapters/130_svm.Rnw'>>=
+@
+<<child='chapters/140_forest.Rnw'>>=
+@
+<<child='chapters/150_nnetwork.Rnw'>>=
+@
+
+
+
+
+
+% байесовский подход
+
+<<child='chapters/160_ba.Rnw'>>=
+@
+
+% Приложения
+
+<<child='chapters/200_la.Rnw'>>=
+@
+<<child='chapters/210_random_vectors.Rnw'>>=
+@ 
+<<child='chapters/220_multivariate_n.Rnw'>>=
+@
+<<child='chapters/230_programming.Rnw'>>=
+@
+<<child='chapters/240_ustav_test.Rnw'>>=
+@
+<<child='chapters/250_tables.Rnw'>>=
+@
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%
+%%%%% Удвоим ставки!!!!!!!!!!!!!!!!!!!!
+
+\end{document} % test
+
+\restoresection
+\section{Решения}
+\solutiononly
+
 
 % МНК
 
@@ -157,6 +255,19 @@ load('pset_data.Rdata')
 @
 <<child='chapters/250_tables.Rnw'>>=
 @
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
