@@ -761,7 +761,8 @@ h <- swiss
 
 \problem{ По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 
-<<include=FALSE>>=
+% данные загружаются одним махом вначале
+<<include=FALSE, eval=FALSE>>=
 flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",header=TRUE)
 @
 
