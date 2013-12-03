@@ -112,7 +112,7 @@
 \begin{enumerate}
 \item $\hat{\beta} = y_1$ и $\tilde{\beta} = y_2/2$
 \item $\hat{\beta} = y_1$ и $\tilde{\beta} = \frac{1}{2} y_1 + \frac{1}{2} \frac{y_2}{2}$
-\item $\hat{\beta} = \frac{1}{n}  \frac{y_1}{1} + \ldots + \frac{y_n}{n} $ и $\tilde{\beta} = \frac{1 \cdot y_1 + \ldots + n \cdot y_n}{1^2 + \ldots + n^2}$
+\item $\hat{\beta} = \frac{1}{n} \left(  \frac{y_1}{1} + \ldots + \frac{y_n}{n} \right) $ и $\tilde{\beta} = \frac{1 \cdot y_1 + \ldots + n \cdot y_n}{1^2 + \ldots + n^2}$
 \end{enumerate} 
 } % eop
 \solution{ }
@@ -311,3 +311,12 @@ $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценив�
 \end{enumerate}
 } % eop
 \solution{ }
+
+\problem{В модели парной регрессии придумайте такие наблюдения, чтобы:
+\begin{itemize}
+\item $R^2=0.9$
+\item $R^2=0.8$ и регрессия имела вид $\hy=2+3x$
+\end{itemize}
+} % eop
+\solution{ Можно взять четыре наблюдения равноотстоящих по вертикали от данной прямой. Подбирая остатки, добиваемся нужного $R^2$. }
+

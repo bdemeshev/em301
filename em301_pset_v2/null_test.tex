@@ -1,0 +1,30 @@
+\documentclass{minimal}
+\newenvironment{Null}{%
+  \catcode`\{=12
+  \catcode`\}=12
+  \DoNull
+}{%
+  \ignorespacesafterend
+}
+
+\begingroup
+  \catcode`\(=1
+  \catcode`\)=2
+  \catcode`\{=12
+  \catcode`\}=12
+  \def\x(%
+    \endgroup
+    \newcommand\DoNull()
+    \long\def\DoNull##1\end{Null}(\end(Null))
+  )
+\x
+
+\begin{document}
+Hello
+\begin{Null}
+ \begin{center}
+ \end{center}
+Irgendwas
+\end{Null}
+Welt!
+\end{document}
