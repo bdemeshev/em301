@@ -167,6 +167,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \item $y_i=1+\frac{1}{\exp(\beta_1+\beta_2 x_i+\e_i)}$
 \item $y_i=\frac{1}{1+\exp(\beta_1+\beta_2 x_i+\e_i)}$
 \item $y_i=x_i^{\beta_2}e^{\beta_1+\e_i}$
+\item $y_i=\beta_1\exp(\beta_2 x_i + \e_i)$
 \end{enumerate}
 \end{problem}
 
