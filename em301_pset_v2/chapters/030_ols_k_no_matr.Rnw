@@ -36,6 +36,19 @@ $t$-статистики
 \item Поскольку $\frac{\hat{\sigma}_{\e}^2(n-k)}{\sigma_{\e}^2} \sim \chi ^2(n-k)$, где $\hat{\sigma}_{\e}^2 = \frac{RSS}{n-k}$, $k$ = 5. $P(\chi_{l}^2 < \frac{\hat{\sigma}_{\e}^2}{\sigma_{\e}^2} < \chi_{u}^2) = 0.8$. Преобразовав, получим $P(\frac{\hat{\sigma}_{\e}^2(n-5)}{\chi_{u}^2} < \sigma_{\e}^2 < \frac{\hat{\sigma}_{\e}^2(n-5)}{\chi_{l}^2}) = 0.8$, где $\chi_{u}^2 = \chi_{n-5; 0.1} ^2$, $\chi_{l}^2 = \chi_{n-5; 0.9} ^2$ --- соответствующие квантили. По условию $\frac{\hat{\sigma}_{\e}^2(n-5)}{\chi_{l}^2} = A = 45, \frac{\hat{\sigma}_{\e}^2(n-5)}{\chi_{u}^2} = B = 87.942.$ Поделим $B$ на $A$, отсюда следует $\frac{\chi_{u}^2}{\chi_{l}^2} = 1.95426.$ Перебором квантилей в таблице для хи-квадрат распределения мы находим, что $\frac{\chi_{30; 0.1}^2}{\chi_{30; 0.9}^2} = \frac{40.256}{20.599} = 1.95426.$ Значит, $n - 5 = 30$, отсюда следует, что $n = 35.$
 \item $\hat{\sigma}_{\e}^2 = 45 \frac{\chi_{u}^2}{n-5} = 45 \frac{40.256}{30} = 60.384$ 
 \end{enumerate}
+
+Решение в R:
+<<>>=
+df <- 1:200
+a <- qchisq(0.1,df)
+b <- qchisq(0.9,df)
+c <- b/a
+d <- 87.942/45
+penalty <- (c-d)^2
+df.ans <- df[which(penalty==min(penalty))]
+@
+Количество степеней свободы $n-5$ должно быть равно $\verb|df.ans|=\Sexpr{df.ans}$.
+
 \end{solution}
 
 \begin{problem}
