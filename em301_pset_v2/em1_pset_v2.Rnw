@@ -1,6 +1,13 @@
 \documentclass[pdftex,12pt,a4paper]{article}
 
 
+\input{title_bor_utf8_knitr}
+
+
+% чисто эконометрические сокращения:
+\input{../emetrix_preamble}
+
+
 % стандартизация
 % эпсилон во временных рядах --- белый шум, а в остальных сюжетах --- остатки, подумать
 % транспонирование --- штрих
@@ -24,17 +31,41 @@
 
 % номер задачи --- добавить раздел
 
+\begin{comment}
+\newenvironment{problem}{Задача n.
+
+
+}{}
+
+
+\newenvironment{solution}{%
+  \catcode`\{=12
+  \catcode`\}=12
+  \DoNull
+}{%
+  \ignorespacesafterend
+}
 
 
 
-\input{title_bor_utf8_knitr}
+
+\begingroup
+  \catcode`\(=1
+  \catcode`\)=2
+  \catcode`\{=12
+  \catcode`\}=12
+  \def\x(%
+    \endgroup
+    \newcommand\DoNull()
+    \long\def\DoNull##1\end{solution}(\end(solution))
+  )
+\x
+\end{comment}
 
 
-% чисто эконометрические сокращения:
-\input{../emetrix_preamble}
 
 % для отдельной упаковки решений
-\input{prob_and_sol_utf8}
+\input{prob_and_sol_2}
 
 
 
@@ -63,6 +94,8 @@
 
 
 
+
+
 <<"setup", echo=TRUE, include=FALSE,tidy=FALSE>>=
 require(knitr)
 opts_chunk$set(cache=FALSE,
@@ -79,6 +112,7 @@ require(apsrtable)
 require(xtable)
 require(MASS)
 require(car)
+require(texreg)
 
 require(econru)
 
@@ -177,7 +211,6 @@ load('pset_data.Rdata')
 %%%%%
 %%%%% Удвоим ставки!!!!!!!!!!!!!!!!!!!!
 
-\end{document} % test
 
 \restoresection
 \section{Решения}
@@ -254,23 +287,6 @@ load('pset_data.Rdata')
 @
 <<child='chapters/230_programming.Rnw'>>=
 @
-<<child='chapters/240_ustav_test.Rnw'>>=
-@
-<<child='chapters/250_tables.Rnw'>>=
-@
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 \end{document}

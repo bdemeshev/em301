@@ -1,7 +1,8 @@
 \section{Линейная алгебра}
 
-\begin{enumerate}
-\item Найдите каждую из следующих матриц в каждой из следующих степеней $\frac{1}{2}$, $\frac{1}{3}$, $-\frac{1}{2}$, $-\frac{1}{3}$, $-1$, $100$.
+
+\begin{problem}
+Найдите каждую из следующих матриц в каждой из следующих степеней $\frac{1}{2}$, $\frac{1}{3}$, $-\frac{1}{2}$, $-\frac{1}{3}$, $-1$, $100$.
 \begin{enumerate}
 \item
 <<results='asis', echo=FALSE>>=
@@ -14,16 +15,27 @@ m1 <- matrix(as.integer(c(4,1,1,2)), nrow=2, ncol=2, byrow = FALSE, dimnames = N
 xmatrix(m1)
 @
 \end{enumerate}
+\end{problem}
 
-\item Найдите ортогональную проекцию и ортогональную составляющую (перпендикуляр) вектора $u_1$ на линейное подпространство $L = \mathcal{L}(u_2)$, порождённое вектором $u_2$, если
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Найдите ортогональную проекцию и ортогональную составляющую (перпендикуляр) вектора $u_1$ на линейное подпространство $L = \mathcal{L}(u_2)$, порождённое вектором $u_2$, если
 \begin{enumerate}
 \item $\begin{matrix} u_1 = (1 & 1 & 1 & 1), u_2 = (1 & 0 & 0 & 1) \end{matrix}$
 \item $\begin{matrix} u_1 = (2 & 2 & 2 & 2), u_2 = (1 & 0 & 0 & 1) \end{matrix}$
 \item $\begin{matrix} u_1 = (1 & 1 & 1 & 1), u_2 = (7 & 0 & 0 & 7) \end{matrix}$
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\item Найдите обратные матрицы ко всем матрицам, представленным ниже.
+\begin{problem}
+Найдите обратные матрицы ко всем матрицам, представленным ниже.
 \begin{enumerate}
 \item
 <<results='asis',echo=FALSE>>=
@@ -46,8 +58,14 @@ D <- matrix(c(0,1,0,0,0,1,"a",0,0), nrow=3, ncol=3, byrow = FALSE, dimnames = NU
 xmatrix(D)
 @
 \end{enumerate}
+\end{problem}
 
-\item Найдите ранг следующих матриц в зависимости от значений параметра $\lambda$.
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Найдите ранг следующих матриц в зависимости от значений параметра $\lambda$.
 
 \begin{enumerate}
 \item $\begin{pmatrix} \lambda & 1 & 1 \\ 1 & \lambda & 1 \\ 1 & 1 & \lambda \end{pmatrix}$
@@ -56,29 +74,82 @@ xmatrix(D)
 \item $\begin{pmatrix} \lambda & 1 & -1 & -1 \\ 1 & \lambda & -1 & -1 \\ 1 & 1 & -\lambda & -1
 \\ 1 & 1 & -1 & -\lambda \end{pmatrix}$
 \end{enumerate}
+\end{problem}
 
-\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
+
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц и $\pi=i(i'i)^{-1}i'$. Найдите:
 \begin{enumerate}
 \item $\tr(\pi)$ и $\rk(\pi)$
 \item $\tr(I-\pi)$ и $\rk(I-\pi)$
 \end{enumerate}
+\end{problem}
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X'X)^{-1}X'$ симметрична и идемпотентна?
+\begin{solution}
+\end{solution}
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X'X)^{-1}X'$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
+\begin{problem}
+Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что матрица $P = X(X'X)^{-1}X'$ симметрична и идемпотентна?
+\end{problem}
 
-\item Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, пусть $\rk(X) = k$ и $P = X(X'X)^{-1}X'$. Верно ли, что каждый вектор-столбец $u$, такой что $X'u=0$, является собственным вектором матрицы $P$, отвечающим собственному значению 0?
+\begin{solution}
+\end{solution}
 
-\item Верно ли, что для любых матриц $A$ размера $m\times n$ и матриц $B$ размера 
+
+\begin{problem}
+Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, и пусть $\rk(X) = k$. Верно ли, что каждый столбец матрицы $P = X(X'X)^{-1}X'$ является собственным вектором матрицы $P$, отвечающим собственному значению 1?
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Пусть $X$ --- матрица размера ${n \times k}$, где $n > k$, пусть $\rk(X) = k$ и $P = X(X'X)^{-1}X'$. Верно ли, что каждый вектор-столбец $u$, такой что $X'u=0$, является собственным вектором матрицы $P$, отвечающим собственному значению 0?
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+  Верно ли, что для любых матриц $A$ размера $m\times n$ и матриц $B$ размера 
 ${n \times m}$ выполняется равенство $\tr(AB) = \tr(BA)$?
+\end{problem}
 
-\item Верно ли, что собственные значения симметричной и идемпотентной матрицы могут быть только нулями и единицами?
+\begin{solution}
+\end{solution}
 
-\item Пусть $P$ --- матрица размера ${n \times n}$, $P'= P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
+\begin{problem}
+Верно ли, что собственные значения симметричной и идемпотентной матрицы могут быть только нулями и единицами?
+\end{problem}
 
-\item Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
+\begin{solution}
+\end{solution}
 
-\item Найдите собственные значения и собственные векторы матрицы $P = X(X'X)^{-1}X'$, если 
+\begin{problem}
+Пусть $P$ --- матрица размера ${n \times n}$, $P'= P$, $P^2 = P$. Верно ли, что $\rk(P) = \tr(P)$?
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+  Верно ли, что для симметричной матрицы собственные векторы, отвечающие различным собственным значениям, ортогональны?
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Найдите собственные значения и собственные векторы матрицы $P = X(X'X)^{-1}X'$, если 
 
 \begin{enumerate}
 <<results='asis', echo=FALSE>>=
@@ -98,15 +169,30 @@ d <- matrix(as.integer(c(1,1,1,1,0,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=4, byro
 @
 \item $X = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 1 & 1 & 1 & 0  \\ 1 & 1 & 1 & 1 \end{pmatrix}$
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+Приведите пример таких $A$ и $B$, что $\det(AB)\neq \det(BA)$.
+\end{problem}
+
+\begin{solution}
+Например, $A=(1,2,3)$, $B=(1,0,1)'$
+\end{solution}
+
+\begin{problem}
+Для матриц-проекторов $\pi=\v1(\v1'\v1)^{-1}\v1'$ и $P=X(X'X)^{-1}X'$ найдите $\tr(\pi)$, $\tr(P)$, $\tr(I-\pi)$, $\tr(I-P)$.
+\end{problem}
+
+\begin{solution}
+$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$ 
+\end{solution}
 
 
-\item \problem{Приведите пример таких $A$ и $B$, что $\det(AB)\neq \det(BA)$.}
-\solution{Например, $A=(1,2,3)$, $B=(1,0,1)'$}
-
-\item Для матриц-проекторов $\pi=\v1(\v1'\v1)^{-1}\v1'$ и $P=X(X'X)^{-1}X'$ найдите $\tr(\pi)$, $\tr(P)$, $\tr(I-\pi)$, $\tr(I-P)$.
-\solution{$\tr(I)=n$, $\tr(\pi)=1$, $\tr(P)=k$ }
-
-\item Выпишите в явном виде матрицы $X'X$, $(X'X)^{-1}$ и $X'y$, если
+\begin{problem}
+Выпишите в явном виде матрицы $X'X$, $(X'X)^{-1}$ и $X'y$, если
 
 $y=\left(
 \begin{array}{c}
@@ -122,12 +208,22 @@ $X=\left(
 \vdots & \vdots \\
 1 & x_n 
 \end{array}\right)$ 
-\solution{ }
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\item Выпишите в явном виде матрицы $\pi$, $\pi y$, $\pi \e$, $I-\pi$, если $\pi=\v1(\v1'\v1)^{-1}\v1'$.
+\begin{problem}
+Выпишите в явном виде матрицы $\pi$, $\pi y$, $\pi \e$, $I-\pi$, если $\pi=\v1(\v1'\v1)^{-1}\v1'$.
+\end{problem}
 
-\item Формула Фробениуса. Матрицу $A$ размера $(n+m)\times (n+m)$ разрезали на 4 части: $A=\begin{pmatrix}
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Формула Фробениуса. Матрицу $A$ размера $(n+m)\times (n+m)$ разрезали на 4 части: $A=\begin{pmatrix}
 A_{11} & A_{12} \\
 A_{21} & A_{22} 
 \end{pmatrix}$. Кусок $A_{11}$ имеет размер $n\times n$ и обратим, кусок $A_{22}$ имеет размер $m\times m$. Известно, что $A$ --- обратима и $A^{-1}=B$. На аналогичные по размеру и расположению части разрезали матрицу $B=\begin{pmatrix}
@@ -138,13 +234,24 @@ B_{21} & B_{22}
 \item Каковы размеры кусков $A_{12}$ и $A_{21}$?
 \item Чему равно $B_{22}(A_{22}-A_{21}A_{11}^{-1}A_{12})$?
 \end{enumerate}
-\solution{ $n\times m$, $m\times n$, $I$ }
+\end{problem}
+
+\begin{solution}
+$n\times m$, $m\times n$, $I$ 
+\end{solution}
 
 
-\item Спектральное разложение. Симметричная матрица $A$ размера $n\times n$ имеет $n$ собственных чисел $\lambda_1$, \ldots, $\lambda_n$ с собственными векторами $u_1$, \ldots, $u_n$. Докажите, что $A$ можно представить в виде $A=\sum \lambda_i u_i u_i'$.
-\solution{}
 
-\item Найдите определитель, след, собственные значения, собственные векторы и число
+\begin{problem}
+Спектральное разложение. Симметричная матрица $A$ размера $n\times n$ имеет $n$ собственных чисел $\lambda_1$, \ldots, $\lambda_n$ с собственными векторами $u_1$, \ldots, $u_n$. Докажите, что $A$ можно представить в виде $A=\sum \lambda_i u_i u_i'$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Найдите определитель, след, собственные значения, собственные векторы и число
 обусловленности матрицы $A$. Также найдите $A^{-1}$, $A^{-1/2}$ и $A^{1/2}$.
 \begin{enumerate}
 \item $A=\begin{pmatrix}
@@ -190,8 +297,12 @@ B_{21} & B_{22}
 -2 & 5 & 0 \\
 2 & 0 & 7
 \end{pmatrix}$ 
-
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
 
 \begin{problem}
 В этом упражнении исследуется связь определителя, следа и собственных значений. Везде имеются ввиду действительные собственные значения с учетом кратности.
@@ -207,6 +318,3 @@ B_{21} & B_{22}
 
 \begin{solution}
 \end{solution}
-
-
-\end{enumerate}

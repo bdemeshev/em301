@@ -1,7 +1,8 @@
 \section{Случайные векторы}
 
-\begin{enumerate}
-\item Пусть $y=(y_1, y_2, y_3, y_4, y_5)'$ --- случайный вектор доходностей пяти ценных бумаг. Известно, что $\E(y')=(5, 10, 20, 30, 40)$, $\Var(y_1)=0$, $\Var(y_2)=10$, $\Var(y_3)=20$, $\Var(y_4)=40$, $\Var(y_5)=40$ и
+
+\begin{problem}
+Пусть $y=(y_1, y_2, y_3, y_4, y_5)'$ --- случайный вектор доходностей пяти ценных бумаг. Известно, что $\E(y')=(5, 10, 20, 30, 40)$, $\Var(y_1)=0$, $\Var(y_2)=10$, $\Var(y_3)=20$, $\Var(y_4)=40$, $\Var(y_5)=40$ и
 \[
 \Corr(y)=\begin{pmatrix}
 0 & 0 & 0 & 0 & 0 \\
@@ -23,16 +24,27 @@
 \end{enumerate}
 \item Составьте из данных бумаг пять некоррелированных портфелей 
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\item Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
+\begin{problem}
+Пусть $i = (1,\dots,1)'$ --- вектор из $n$ единиц, $\pi=i(i'i)^{-1}i'$ и $\e = (\e_1,\dots,\e_n)'\sim N (0,I)$.
 \begin{enumerate}
 \item Найдите $\E(\e'\pi\e)$, $\E(\e'(I-\pi)\e)$ и $\E(\e\e')$
 \item Как распределены случайные величины $\e'\pi\e$ и $\e'(I-\pi)\e$?
 \item Запишите выражения $\e'\pi\e$ и $\e'(I-\pi)\e$, используя знак суммы
 \end{enumerate}
+\end{problem}
 
-\item 
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
 <<results='asis', echo=FALSE>>=
 a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NULL)
 @
@@ -42,8 +54,14 @@ a <- matrix(as.integer(c(1,2,3,4)), nrow=4, ncol=1, byrow = FALSE, dimnames = NU
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\P(\e'P\e > q)=0.1$
 \end{enumerate}
+\end{problem}
 
-\item 
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
 <<results='asis', echo=FALSE>>=
 b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimnames = NULL)
 @
@@ -53,8 +71,13 @@ b <- matrix(as.integer(c(1,1,1,1,1,2,3,4)), nrow=4, ncol=2, byrow = FALSE, dimna
 \item Найдите $\E(\e'P\e)$
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$
 \end{enumerate}
+\end{problem}
 
-\item 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
 <<results='asis', echo=FALSE>>=
 c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALSE, dimnames = NULL)
 @
@@ -64,10 +87,15 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 \item Найдите $\E(\e'P\e)$.
 \item При помощи таблиц найдите такое число $q$, что $\mathbb{P}(\e'P\e > q)=0.1$. 
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
 
-\item Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
+\begin{problem}
+Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
 \begin{enumerate}
 \item $y = x - \E(x)$
 \item $y = \Var(x)x$
@@ -83,8 +111,14 @@ c <- matrix(as.integer(c(1,1,1,1,0,0,1,1,0,0,0,1)), nrow=4, ncol=3, byrow = FALS
 ex <- c(1,2)
 varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
 @
+\end{problem}
 
-\item Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 4 & 1 \\ 1 & 4 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Пусть  $x = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$, $\E(x) = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$, $\Var(x) = \begin{pmatrix} 4 & 1 \\ 1 & 4 \end{pmatrix}$. Найдите $\E(y)$, $\Var(y)$ и $\E(z)$, если
 \begin{enumerate}
 \item $y = x - \E(x)$
 \item $y = \Var(x)x$
@@ -100,10 +134,15 @@ varx <- matrix(as.integer(c(2,1,1,2)), nrow=2, byrow = FALSE, dimnames = NULL)
 ex1 <- c(1,4)
 varx1 <- matrix(as.integer(c(4,1,1,4)), nrow=2, byrow = FALSE, dimnames = NULL)
 @
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
 
-\item Известно, что случайные величины $x_1$, $x_2$ и $x_3$ имеют следующие характеристики: 
+\begin{problem}
+Известно, что случайные величины $x_1$, $x_2$ и $x_3$ имеют следующие характеристики: 
 \begin{enumerate}
 \item $\E(x_1) = 5$, $\E(x_2) = 10$, $\E(x_3) = 8$
 \item $\Var  (x_1) = 6$, $\Var  (x_2) = 14$, $\Var  (x_3) = 1$
@@ -127,17 +166,23 @@ y_1 & y_2 & y_3\\
 y_1 & y_2 & y_3\\
 \end{pmatrix} ^T$
 \end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
 
 
 
-
-\item  Пусть $\xi_1, \xi_2, \xi_3$ --- случайные величины, такие что $\Var (\xi_1) = 2$, $\Var (\xi_2) = 3$, $\Var (\xi_3) = 4$, $\Cov (\xi_1, \xi_2) = 1$, $\Cov (\xi_1, \xi_3) = -1$, $\Cov (\xi_2, \xi_3) = 0$. Пусть $\xi =  \begin{pmatrix}
+\begin{problem}
+Пусть $\xi_1, \xi_2, \xi_3$ --- случайные величины, такие что $\Var (\xi_1) = 2$, $\Var (\xi_2) = 3$, $\Var (\xi_3) = 4$, $\Cov (\xi_1, \xi_2) = 1$, $\Cov (\xi_1, \xi_3) = -1$, $\Cov (\xi_2, \xi_3) = 0$. Пусть $\xi =  \begin{pmatrix}
 \xi_1 & \xi_2 & \xi_3 \\
 \end{pmatrix} ^T$. Найдите $\Var (\xi)$ и $\Var (\xi_1 + \xi_2 + \xi_3)$.
+\end{problem}
 
-\solution{ По определению ковариационной матрицы:
+\begin{solution}
+По определению ковариационной матрицы:
 
 $\Var (\xi) =  \begin{pmatrix}
 \Var (\xi_1) & \Cov (\xi_1, \xi_2) & \Cov (\xi_1, \xi_3) \\
@@ -178,12 +223,13 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 1 \\
 1 \\
 \end{pmatrix}  = 9$
-}
+\end{solution}
 
 
 
 
-\item Пусть $h =  \begin{pmatrix}
+\begin{problem}
+  Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -202,8 +248,10 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $. Найдите $\E (z_1)$ и $\Var (z_1)$.
+\end{problem}
 
-\solution{ $\E (z_1) = \E   \begin{pmatrix}
+\begin{solution}
+$\E (z_1) = \E   \begin{pmatrix}
  \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
@@ -265,7 +313,7 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 0 & 0 \\
 0 & 2 \\
 \end{pmatrix} $
-}
+\end{solution}
 
 
 
@@ -274,9 +322,8 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 
 
 
-
-
-\item Пусть $h =  \begin{pmatrix}
+\begin{problem}
+Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -298,8 +345,10 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 1\\
 1\\
 \end{pmatrix} $. Найдите $\E (z_2)$ и $\Var (z_2)$
+\end{problem}
 
-\solution{ $\E (z_2) = \E   \begin{pmatrix}
+\begin{solution}
+$\E (z_2) = \E   \begin{pmatrix}
  \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
@@ -343,7 +392,7 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 1\\
 1\\
 \end{pmatrix} $, где $z_1$ --- случайный вектор из предыдущей задачи, то $\Var (z_2) = \Var (z_1)$. Сдвиг случайного вектора на вектор-константу не меняет его ковариационную матрицу. 
-}
+\end{solution}
 
 
 
@@ -351,11 +400,8 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 
 
 
-
-
-
-
-\item Пусть $h =  \begin{pmatrix}
+\begin{problem}
+Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -374,8 +420,10 @@ $\Var (z_1) = \Var   \begin{pmatrix}
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $. Найдите $\E (z_3)$ и $\Var (z_3)$
+\end{problem}
 
-\solution{ \textit{В данном примере проиллюстрирована процедура центрирования случайного вектора --- процедура вычитания из случайного вектора его математического ожидания.}
+\begin{solution}
+\textit{В данном примере проиллюстрирована процедура центрирования случайного вектора --- процедура вычитания из случайного вектора его математического ожидания.}
 
 $\E (z_3) = \E   \begin{pmatrix}
  \begin{pmatrix}
@@ -406,18 +454,15 @@ $\E (z_3) = \E   \begin{pmatrix}
 \E  \xi_1 \\
 \E  \xi_2 \\
 \end{pmatrix} $, поэтому $\Var (z_3) = \Var (z_1)$.
-}
+\end{solution}
 
 
 
 
 
 
-
-
-
-
-\item Пусть $r_1$, $r_2$ и $r_3$ --- годовые доходности трёх рисковых финансовых инструментов. Пусть $\alpha_1$, $\alpha_2$ и $\alpha_3$ --- доли, с которыми данные инструменты входят в портфель инвестора. Считаем, что $\sum_{i=1}^3 \alpha_i = 1$ и $\alpha_i \geqslant 0$ для всех $i=1,2,3$. Пусть $r =  \begin{pmatrix}
+\begin{problem}
+Пусть $r_1$, $r_2$ и $r_3$ --- годовые доходности трёх рисковых финансовых инструментов. Пусть $\alpha_1$, $\alpha_2$ и $\alpha_3$ --- доли, с которыми данные инструменты входят в портфель инвестора. Считаем, что $\sum_{i=1}^3 \alpha_i = 1$ и $\alpha_i \geqslant 0$ для всех $i=1,2,3$. Пусть $r =  \begin{pmatrix}
 r_1 & r_2 & r_3\\
 \end{pmatrix} ^T$, $\E (r) =  \begin{pmatrix}
 a_1 & a_2 & a_3\\
@@ -440,13 +485,15 @@ a_1 & a_2 & a_3\\
 -0.005 & 0 & 0.0025\\
 \end{pmatrix} $ найдите $\E (\text{П})$ и $\Var (\text{П})$
 \end{enumerate}
+\end{problem}
 
 
+\begin{solution}
+\end{solution}
 
 
-
-
-\item Пусть $h =  \begin{pmatrix}
+\begin{problem}
+Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -465,13 +512,15 @@ a_1 & a_2 & a_3\\
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
 
-
-
-
-\item Пусть $h =  \begin{pmatrix}
+\begin{problem}
+Пусть $h =  \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
 \end{pmatrix} $; $\E (h) =  \begin{pmatrix}
@@ -490,9 +539,13 @@ a_1 & a_2 & a_3\\
 \E \xi_1 \\
 \E \xi_2 \\
 \end{pmatrix} $; $z_4 = \Var (h)^{-1/2} z_3$. Найдите $\E (z_4)$ и $\Var (z_4)$
+\end{problem}
 
+\begin{solution}
+\end{solution}
 
-\item Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора, 
+\begin{problem}
+Случайные величины $w_1$ и $w_2$ независимы с нулевым ожиданием и единичной дисперсией. Из них составлено два вектора, 
 $w=\left(
 \begin{array}{c}
 w_1 \\
@@ -509,20 +562,29 @@ w_1
 \item Найдите $\E(w)$, $\E(z)$
 \item Найдите $\Var(w)$, $\Var(z)$, $\Cov(w,z)$
 \end{enumerate}
-\solution{}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\item Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$. 
+\begin{problem}
+Есть случайный вектор $w=(w_1, w_2, \ldots, w_n)'$. 
 \begin{enumerate}
 \item Возможно ли, что $E(w)=0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)\neq 0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)=0$ и $\sum w_i \neq 0$?
 \item Возможно ли, что $E(w)=\neq $ и $\sum w_i \neq 0$?
 \end{enumerate}
-\solution{Каждый из вариантов возможен}
+\end{problem}
+
+\begin{solution}
+Каждый из вариантов возможен
+\end{solution}
 
 
-\item Известна ковариационная матрица вектора $\e=(\e_1,\e_2)$,
+\begin{problem}
+Известна ковариационная матрица вектора $\e=(\e_1,\e_2)$,
 \[
 \Var(\e)=\left(
 \begin{matrix}
@@ -533,8 +595,8 @@ w_1
 \]
 
 Найдите четыре различных матрицы $A$, таких что вектор $v=A\e$ имеет некоррелированные компоненты с единичной дисперсией, то есть $\Var(A\e)=I$.
-\solution{}
+\end{problem}
 
+\begin{solution}
+\end{solution}
 
-
-\end{enumerate}

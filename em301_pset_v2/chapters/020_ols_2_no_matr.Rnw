@@ -1,46 +1,40 @@
 \section{Парный МНК без матриц}
 
-\problem{ Рассмотрим модель $y_t=\b_1+\b_2 \cdot t + \e_t$, где ошибки $\e_t$ независимы и равномерны на $[-1;1]$. С помощью симуляций на компьютере оцените и постройте график функции плотности для $\hb_1$, $\hb_2$, $\hs^2$, $\hVar(\hb_1)$, $\hVar(\hb_2)$ и $\hCov(\hb_1,\hb_2)$. 
-} % eop 
-\solution{ }
 
-\problem{ Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
+\begin{problem}
+ Рассмотрим модель $y_t=\b_1+\b_2 \cdot t + \e_t$, где ошибки $\e_t$ независимы и равномерны на $[-1;1]$. С помощью симуляций на компьютере оцените и постройте график функции плотности для $\hb_1$, $\hb_2$, $\hs^2$, $\hVar(\hb_1)$, $\hVar(\hb_2)$ и $\hCov(\hb_1,\hb_2)$. 
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
 \begin{enumerate}
 \item $\E(\overline{y})$
 \item $\Var(\overline{y})$
 \item $\E(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
 \item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$, если дополнительно известно, что $\e_i$ нормально распределены
 \end{enumerate}
-} % eop 
-\solution{ }
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
 
-\problem{ Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
+
+\begin{problem}
+ Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
 При каких значениях параметров $c_i$ несмещённая оценка $\hat{\beta}=\frac{\sum_{i=1}^n {c_i y_i}}{\sum_{i=1}^n {c_i x_i}}$ имеет наименьшую дисперсию? 
-} % eop 
-\solution{$c_i=c\cdot x_i$, где $c\neq 0$ }
+\end{problem}
+ 
+\begin{solution}
+$c_i=c\cdot x_i$, где $c\neq 0$ 
+\end{solution}
 
 
-\problem{ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$ Используя их, найдите:
-
-\begin{enumerate}
-\item $\hat{\beta_1}$ и $\hat{\beta_2}$
-\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
-\item $TSS$
-\item $ESS$
-\item $RSS$
-\item $R^2$
-\item $\hat{\sigma}^2$
-\end{enumerate}
-
-Проверьте следующие гипотезы:
-\begin{enumerate}
-\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
-\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
-\end{enumerate}
-} % eop
-\solution{ }
-
-\problem{ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 2, \sum_{i=1}^5 x_iy_i = 9, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 2.$ Используя их, найдите:
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$ Используя их, найдите:
 
 \begin{enumerate}
 \item $\hat{\beta_1}$ и $\hat{\beta_2}$
@@ -57,11 +51,39 @@
 \item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
 \item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
 \end{enumerate}
-} % eop 
-\solution{ }
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\problem{ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\E \hat{\beta}$. Какие из следующих оценок параметра $\beta$ являются несмещенными:
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 2, \sum_{i=1}^5 x_iy_i = 9, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 2.$ Используя их, найдите:
+
+\begin{enumerate}
+\item $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item $TSS$
+\item $ESS$
+\item $RSS$
+\item $R^2$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+Проверьте следующие гипотезы:
+\begin{enumerate}
+\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
+\end{enumerate}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\E \hat{\beta}$. Какие из следующих оценок параметра $\beta$ являются несмещенными:
 
 \begin{enumerate}
 \item $\hat{\beta} = \frac{y_1}{x_1}$
@@ -82,11 +104,15 @@
 \item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i}{x_i}$
 \item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i - \overline{y}}{x_i - \overline{x}}$
 \end{enumerate}
-} % eop
-\solution{ }
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\problem{ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\Var(\hat{\beta})$.
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\Var(\hat{\beta})$.
 
 \begin{enumerate}
 \item $\hat{\beta} = \frac{y_1}{x_1}$
@@ -103,37 +129,52 @@
 \item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i}{x_i}$
 \item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i - \overline{y}}{x_i - \overline{x}}$
 \end{enumerate}
-} % eop
-\solution{ }
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\problem{ Рассмотрите классическую линейную регрессионную модель $y_i = \beta \cdot i + \e_i$, $i=1, \ldots, n$. Какая из оценок $\hat{\beta}$ и $\tilde{\beta}$ является более эффективной?
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta \cdot i + \e_i$, $i=1, \ldots, n$. Какая из оценок $\hat{\beta}$ и $\tilde{\beta}$ является более эффективной?
 
 \begin{enumerate}
 \item $\hat{\beta} = y_1$ и $\tilde{\beta} = y_2/2$
 \item $\hat{\beta} = y_1$ и $\tilde{\beta} = \frac{1}{2} y_1 + \frac{1}{2} \frac{y_2}{2}$
 \item $\hat{\beta} = \frac{1}{n} \left(  \frac{y_1}{1} + \ldots + \frac{y_n}{n} \right) $ и $\tilde{\beta} = \frac{1 \cdot y_1 + \ldots + n \cdot y_n}{1^2 + \ldots + n^2}$
 \end{enumerate} 
-} % eop
-\solution{ }
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
 
 \begin{problem} На основе 100 наблюдений была оценена функция спроса:
 \[
 \underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
 \]
 Значимо ли коэффициент эластичности спроса по цене отличается от $-1$? Рассмотрите уровень значимости $5\%$.
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ На основе 100 наблюдений была оценена функция спроса: 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ На основе 100 наблюдений была оценена функция спроса: 
 \[
 \underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}\ln P
 \]
 На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_{\ln P} = - 1$ против альтернативной $H_a: \beta_{\ln P} < -1$. Дайте экономическую интерпретацию проверяемой гипотезе и альтернативе.
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ Используя годовые данные с 1960 по 2005 г., была построена кривая Филлипса, связывающая уровень инфляции $Inf$ и уровень безработицы $Unem$: 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Используя годовые данные с 1960 по 2005 г., была построена кривая Филлипса, связывающая уровень инфляции $Inf$ и уровень безработицы $Unem$: 
 \[
 \widehat{Inf} = 2.34 - 0.23Unem 
 \]
@@ -141,10 +182,14 @@
 \sqrt{\widehat{Var}(\hat{\beta}_{Unem})} = 0.04, R^2 = 0.12
 \]
 На уровне значимости $1\%$ проверьте гипотезу  $H_0: \beta_{Unem} = 0$ против альтернативной $H_a: \beta_{Unem} \not= 0$.
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 18$ --- классическая регрессионная модель, где $\E(\e_i)$ = 0, $Var(\e_i) = \sigma^2$. Также имеются следующие данные: $\sum_{i=1}^{18} y_i^2 = 4256, \sum_{i=1}^{18} x_i^2 = 185, \sum_{i=1}^{18} x_iy_i = 814.25, \sum_{i=1}^{18} y_i = 225, \sum_{i=1}^{18} x_i = 49.5.$ Используя эти данные, оцените эту регрессию и на уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 3.5$ против альтернативной $H_a: \beta_1 > 3.5$:
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 18$ --- классическая регрессионная модель, где $\E(\e_i)$ = 0, $Var(\e_i) = \sigma^2$. Также имеются следующие данные: $\sum_{i=1}^{18} y_i^2 = 4256, \sum_{i=1}^{18} x_i^2 = 185, \sum_{i=1}^{18} x_iy_i = 814.25, \sum_{i=1}^{18} y_i = 225, \sum_{i=1}^{18} x_i = 49.5.$ Используя эти данные, оцените эту регрессию и на уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 3.5$ против альтернативной $H_a: \beta_1 > 3.5$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики
@@ -152,54 +197,72 @@
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ Рассматривается модель $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$ и $\Cov(\e_i,\e_j)=0$ при $i\neq j$. При каких $c_i$ несмещенная оцека 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Рассматривается модель $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$ и $\Cov(\e_i,\e_j)=0$ при $i\neq j$. При каких $c_i$ несмещенная оцека 
 \[
 \hat{\mu}=\sum_{i=1}^{n} c_i y_i
 \]
 имеет наименьшую дисперсию?
-} % eop 
-\solution{Через теорему Гаусса--Маркова или через условную минимизацию, $c_i=1/n$}
+\end{problem}
+ 
+\begin{solution}
+Через теорему Гаусса--Маркова или через условную минимизацию, $c_i=1/n$
+\end{solution}
 
-\problem{ Рассмотрим классическую линейную регрессионную модель, $y_t=\b\cdot t+\e_t$. Какая из оценок, $\hb$ или $\hb'$ является более эффективной?
+\begin{problem}
+ Рассмотрим классическую линейную регрессионную модель, $y_t=\b\cdot t+\e_t$. Какая из оценок, $\hb$ или $\hb'$ является более эффективной?
 \begin{enumerate}
 \item $\hb=y_1$, $\hb'=y_2/2$
 \item $\hb=y_1$, $\hb'=0.5y_1+0.5\frac{y_2}{2}$
 \item $\hb=\frac{1}{n}\left(y_1+\frac{y_2}{2}+\frac{y_3}{3}+\ldots+\frac{y_n}{n}\right)$, $\hb'=\frac{y_1+2y_2+\ldots+ny_n}{1^2+2^2+\ldots+n^2}$
 \end{enumerate}
-} % eop 
-\solution{}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
 
 
-\problem{ Ошибки регрессии $\e_i$ независимы и равновероятно принимают значения $+1$ и $-1$. Также известно, что $y_i=\beta \cdot i +\e_i$. Модель оценивается всего по двум наблюдениям. 
+\begin{problem}
+ Ошибки регрессии $\e_i$ независимы и равновероятно принимают значения $+1$ и $-1$. Также известно, что $y_i=\beta \cdot i +\e_i$. Модель оценивается всего по двум наблюдениям. 
 \begin{enumerate}
 \item Найдите закон распределения $\hb$, $RSS$, $ESS$, $TSS$, $R^2$
 \item Найдите $\E(\hb)$, $\Var(\hb)$, $\E(RSS)$, $\E(ESS)$, $\E(R^2)$
 \item При каком $\beta$ величина $\E(R^2)$ достигает максимума?
 \end{enumerate}
-} % eop 
-\solution{}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
 
 
-\problem{ Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\varepsilon_t+\e_t$. 
+
+\begin{problem}
+ Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\varepsilon_t+\e_t$. 
 \begin{enumerate}
 \item Найдите МНК оценку коэффициента $\beta$
 \item Рассчитайте $\E(\hat{\beta})$ и $\Var(\hat{\beta})$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hat{\beta}$ состоятельна?
 \end{enumerate}
-} % eop 
+\end{problem}
+ 
 
-\solution{
+\begin{solution}
 \begin{enumerate}
 \item $\hb=\frac{\sum y_t t}{\sum t^2}$
 \item $\E(\hat{\beta})=\beta$ и $\Var(\hat{\beta})=\frac{\sigma^2}{\sum_{t=1}^{T} t^2}$
 \item Да, состоятельна
 \end{enumerate}
-}
+\end{solution}
 
-\problem{ В модели $y_t=\beta_1+\beta_2 x_t+\e_t$, где 
+
+\begin{problem}
+ В модели $y_t=\beta_1+\beta_2 x_t+\e_t$, где 
 $x_t=\left\{
 \begin{array}{l}
 2,\, t=1 \\
@@ -212,10 +275,15 @@ $:
 \item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hb_2$ состоятельна?
 \end{enumerate}
-} % eop
-\solution{несостоятельна}
+\end{problem}
 
-\problem{ В модели $y_t=\beta_1+\beta_2 x_t$, где 
+\begin{solution}
+несостоятельна
+\end{solution}
+
+
+\begin{problem}
+ В модели $y_t=\beta_1+\beta_2 x_t$, где 
 $x_t=\left\{
 \begin{array}{l}
 1,\, t=2k+1 \\
@@ -228,95 +296,155 @@ $:
 \item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
 \item Верно ли, что оценка $\hb_2$ состоятельна?
 \end{enumerate}
-} % eop
-\solution{}
+\end{problem}
+
+\begin{solution}
+\end{solution}
 
 
-\problem{ Априори известно, что парная регрессия должна проходить через точку $(x_{0},y_{0})$.
+
+\begin{problem}
+ Априори известно, что парная регрессия должна проходить через точку $(x_{0},y_{0})$.
 \begin{enumerate}
 \item  Выведите формулы МНК оценок;
 \item В предположениях теоремы Гаусса-Маркова найдите дисперсии и средние оценок 
 \end{enumerate}
-} % solution
+\end{problem}
 
-\solution{Вроде бы равносильно переносу начала координат и применению результата для регрессии без свободного члена. Должна остаться несмещенность. }
+\begin{solution}
+Вроде бы равносильно переносу начала координат и применению результата для регрессии без свободного члена. Должна остаться несмещенность. 
+\end{solution}
 
 
-\problem{ Мы предполагаем, что $y_t$ растёт с линейным трендом, т.е. $y_t=\b_1+\b_2 t+\e_t$. Все предпосылки теоремы Гаусса-Маркова выполнены. В качестве оценки $\hb_2$ предлагается $\hb_2=\frac{Y_T-Y_1}{T-1}$, где $T$ --- общее количество наблюдений. 
+
+\begin{problem}
+ Мы предполагаем, что $y_t$ растёт с линейным трендом, т.е. $y_t=\b_1+\b_2 t+\e_t$. Все предпосылки теоремы Гаусса-Маркова выполнены. В качестве оценки $\hb_2$ предлагается $\hb_2=\frac{Y_T-Y_1}{T-1}$, где $T$ --- общее количество наблюдений. 
 \begin{enumerate}
 \item Найдите $\E(\hb_2)$ и $\Var(\hb_2)$
 \item Совпадает ли оценка $\hb_2$ с классической мнк-оценкой?
 \item У какой оценки дисперсия выше, у $\hb_2$ или классической мнк-оценки?
 \end{enumerate}
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ Вася считает, что выборочная ковариация $\sCov(y,\hy)=\frac{\sum (y_i-\bar{y})(\hy_i-\bar{y})}{n-1}$ это неплохая оценка для $\Cov(y_i,\hy_i)$. Прав ли он?
-} % eop
-\solution{Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.}
-
-\problem{ В классической линейной регрессионной модели $y_i=\beta_1+\beta_2 x_i+\e_i$, дисперсия зависимой переменной не зависит от номера наблюдения, $\Var(y_i)=\sigma^2$. Почему для оценки $\sigma^2$ вместо известной из курса математической статистики формулы $\sum (y_i-\bar{y})^2/(n-1)$ используют $\sum \he_i^2/(n-2)$?
-} % eop
-\solution{формула $\sum (y_i-\bar{y})^2/(n-1)$ неприменима так как $\E(y_i)$ не является константой }
+\begin{solution}
+\end{solution}
 
 
-\problem{ Оценка регрессии имеет вид $\hy_i=3-2x_i$. Выборочная дисперсия $x$ равна $9$, выборочная дисперсия $y$ равна $40$. Найдите $R^2$ и выборочные корреляции $\sCorr(x,y)$, $\sCorr(y,\hy)$.
-} % eop
-\solution{$R^2$ --- это отношение выборочных дисперсий $\hy$ и $y$. } 
+\begin{problem}
+ Вася считает, что выборочная ковариация $\sCov(y,\hy)=\frac{\sum (y_i-\bar{y})(\hy_i-\bar{y})}{n-1}$ это неплохая оценка для $\Cov(y_i,\hy_i)$. Прав ли он?
+\end{problem}
+
+\begin{solution}
+Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.
+\end{solution}
 
 
-\problem{ Слитки-вариант. Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток --- $200$ грамм, взвесив оба слитка --- $400$ грамм. Предположим, что ошибки взвешивания --- независимые одинаково распределенные случайные величины с нулевым средним. 
+\begin{problem}
+ В классической линейной регрессионной модели $y_i=\beta_1+\beta_2 x_i+\e_i$, дисперсия зависимой переменной не зависит от номера наблюдения, $\Var(y_i)=\sigma^2$. Почему для оценки $\sigma^2$ вместо известной из курса математической статистики формулы $\sum (y_i-\bar{y})^2/(n-1)$ используют $\sum \he_i^2/(n-2)$?
+\end{problem}
+
+\begin{solution}
+формула $\sum (y_i-\bar{y})^2/(n-1)$ неприменима так как $\E(y_i)$ не является константой 
+\end{solution}
+
+
+
+\begin{problem}
+ Оценка регрессии имеет вид $\hy_i=3-2x_i$. Выборочная дисперсия $x$ равна $9$, выборочная дисперсия $y$ равна $40$. Найдите $R^2$ и выборочные корреляции $\sCorr(x,y)$, $\sCorr(y,\hy)$.
+\end{problem}
+
+\begin{solution}
+$R^2$ --- это отношение выборочных дисперсий $\hy$ и $y$. 
+\end{solution}
+
+
+
+\begin{problem}
+ Слитки-вариант. Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток --- $200$ грамм, взвесив оба слитка --- $400$ грамм. Предположим, что ошибки взвешивания --- независимые одинаково распределенные случайные величины с нулевым средним. 
 \begin{enumerate}
 \item Найдите несмещеную оценку веса первого слитка, обладающую наименьшей дисперсией.
 \item Как можно проинтерпретировать нулевое математическое ожидание ошибки взвешивания? 
 \end{enumerate} 
-} % eop
-\solution{ Как отсутствие систематической ошибки.} 
+\end{problem}
+
+\begin{solution}
+ Как отсутствие систематической ошибки.
+\end{solution}
 
 
-\problem{ Рассмотрим линейную модель $y_i=\beta_1+\beta_2 x_i +\e_i$, где ошибки $\e_i$ нормальны $N(0;\sigma^2)$ и независимы.
+
+\begin{problem}
+ Рассмотрим линейную модель $y_i=\beta_1+\beta_2 x_i +\e_i$, где ошибки $\e_i$ нормальны $N(0;\sigma^2)$ и независимы.
 \begin{enumerate}
 \item Верно ли, что $y_i$ одинаково распределены?
 \item Верно ли, что $\bar{y}$ --- это несмещенная оценка для $\E(y_i)$?
 \item Верно ли, что $\sum (y_i-\bar{y})^2/(n-1)$ --- несмещенная оценка для $\sigma^2$? Если да, то докажите, если нет, то определите величину смещения
 \end{enumerate} 
-} % eop
-\solution {нет, нет, нет }
+\end{problem}
+
+\begin{solution}
+нет, нет, нет 
+\end{solution}
 
 
-\problem{ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+
+\begin{problem}
+ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
 $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 22 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(10\sigma^2<RSS<30\sigma^2)$, $\P(10\hat{\sigma}^2<RSS<30\hat{\sigma}^2)$
-} % eop
-\solution{ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(10\sigma^2<RSS<30\sigma^2)\approx 0.898$ }
+\end{problem}
 
-\problem{ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+\begin{solution}
+ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(10\sigma^2<RSS<30\sigma^2)\approx 0.898$ 
+\end{solution}
+
+
+\begin{problem}
+ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
 $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 12 наблюдениям. Найдите
 \begin{enumerate}
 \item $\P(\hb_1>\beta_1)$, $\P(\beta_1>0)$, $\P(|\hb_1-\beta_1|<se(\hb_1))$, $\P(\hb_2>\beta_2+se(\hb_2))$, $\P(\hb_2>\beta_2-se(\hb_2))$
 \item $\E(\hb_1)$, $\E(\hb_2)$, $\E(\beta_2)$
 \item Закон распределения, математическое ожидание и дисперсию величин $\frac{\hb_2-\beta_2}{\sqrt{\Var(\hb_2)}}$, $\frac{\hb_2-\beta_2}{\sqrt{\widehat{\Var}(\hb_2)}}$, $\frac{\hb_1+\hb_2-\beta_1-\beta_2}{\sqrt{\widehat{\Var}(\hb_1+\hb_2)}}$
 \item $\P(\hs>\sigma)$, $\P(\hs>2\sigma)$
-} % eop
 \end{enumerate}
 
-\problem{ Для модели парной регрессии известны $y=(1, 2, 3, 4, 5)'$ и $\hy=(2, 2, 2, 4, 5)'$. Найдите $RSS$, $TSS$, $R^2$, $\hs^2$.
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{ В классической парной регрессионной модели $y_i = \beta_1 + \beta_2 x_i + \e_i$ с нормально распределенными ошибками, оцениваемой по 30 наблюдениям, дополнительно известно, что $\Var(\e_7)=9$. Найдите
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Для модели парной регрессии известны $y=(1, 2, 3, 4, 5)'$ и $\hy=(2, 2, 2, 4, 5)'$. Найдите $RSS$, $TSS$, $R^2$, $\hs^2$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ В классической парной регрессионной модели $y_i = \beta_1 + \beta_2 x_i + \e_i$ с нормально распределенными ошибками, оцениваемой по 30 наблюдениям, дополнительно известно, что $\Var(\e_7)=9$. Найдите
 \begin{enumerate}
 \item $\E(\e_2)$, $\Cov(\e_1,\e_3)$, $\E(\e_3^5)$, $\E(e_5^3)$, $\Var(e_5)$, $\Var(y_3)$
 \item $\P(e_2>\e_3)$, $\P(e_1>0)$, $\P(e_1>3)$
 \item $\E(RSS)$, $\Var(RSS)$, $\P(RSS>200)$
 \end{enumerate}
-} % eop
-\solution{ }
+\end{problem}
 
-\problem{В модели парной регрессии придумайте такие наблюдения, чтобы:
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+В модели парной регрессии придумайте такие наблюдения, чтобы:
 \begin{itemize}
 \item $R^2=0.9$
 \item $R^2=0.8$ и регрессия имела вид $\hy=2+3x$
 \end{itemize}
-} % eop
-\solution{ Можно взять четыре наблюдения равноотстоящих по вертикали от данной прямой. Подбирая остатки, добиваемся нужного $R^2$. }
+\end{problem}
+
+\begin{solution}
+ Можно взять четыре наблюдения равноотстоящих по вертикали от данной прямой. Подбирая остатки, добиваемся нужного $R^2$. 
+ \end{solution}
 
