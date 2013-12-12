@@ -476,14 +476,90 @@ $1$, $2$, $2$
 \end{solution}
 
 \begin{problem}
-Данные описываются моделью $y_t = \beta + \varepsilon_t$, где $\varepsilon_t$ --- стационарный AR(1) процесс, $\varepsilon_t=u_t+\rho \varepsilon_{t-1}$, $u\sim N(0;\sigma^2\cdot I)$. Имеются наблюдения $y'=(1, 2, 0, 0, 1)$. 
+Рассматривается модель $y_t = \mu + \varepsilon_t$, $t = 1,\ldots,T$, где $\varepsilon_t = \rho \varepsilon_{t-1} + u_t$, случайные величины $\varepsilon_0, u_1,\dots,u_T$ независимы, причем $\varepsilon_0 \sim N(0,\sigma^2/(1 - \rho^2))$, $u_t \sim N(0,\sigma^2)$. Имеются наблюдения $y' = (1, 2, 0, 0, 1)$.
 \begin{enumerate}
-\item Выпишите функцию правдоподобия для оценивания параметров $\beta$, $\sigma^2$, $\rho$
-\item Найдите оценки неизвестных параметров
+  \item Выпишите функцию правдоподобия $\mathrm{L}(\mu, \rho, \sigma^2) = f_{Y_1}(y_1)\prod_{t=2}^{T}f_{Y_t|Y_{t-1}}(y_t|y_{t-1})$.
+  \item Максимизируя условную функцию правдоподобия $\mathrm{L}(\mu, \rho, \sigma^2|Y_1 = y_1) = \prod_{t=2}^{T}f_{Y_t|Y_{t-1}}(y_t|y_{t-1})$, найдите оценки неизвестных параметров модели.
 \end{enumerate}
 \end{problem}
 
 \begin{solution}
+Поскольку имеют место соотношения $\varepsilon_1 = \rho \varepsilon_0 + u_1$ и $Y_1 =\mu + \varepsilon_1$, то из условия задачи получаем, что $\varepsilon_1 \sim N(0,\sigma^2 / (1 - \rho^2))$
+и $Y_1 \sim N(\mu,\sigma^2 / (1 - \rho^2))$. Поэтому
+\[
+f_{Y_1}(y_1) = \frac{1}{\sqrt{2\pi\sigma^2/(1-\rho^2)}}\exp{\left(-\frac{(y_1 - \mu)^2}{2\sigma^2/(1 - \rho^2)}\right)}.
+\]
+
+Далее, найдем $f_{Y_2|Y_1}(y_2|y_1)$. Учитывая, что $Y_2 = \rho Y_1 + (1- \rho) \mu + u_2$, получаем $Y_2|\{Y_1 = y_1\} \sim N(\rho y_1 + (1- \rho) \mu, \sigma^2)$. Значит,
+\[
+f_{Y_2|Y_1}(y_2|y_1) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left(-\frac{(y_2 - \rho y_1 - (1- \rho) \mu)^2}{2\sigma^2}\right)}.
+\]
+
+Действуя аналогично, получаем, что для всех $t \geq 2$ справедлива формула
+\[
+f_{Y_{t}|Y_{t-1}}(y_{t}|y_{t-1}) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp{\left(-\frac{(y_{t} - \rho y_{t-1} - (1- \rho) \mu)^2}{2\sigma^2}\right)}.
+\]
+
+Таким образом, находим функцию правдоподобия
+\[
+\mathrm{L}(\mu, \rho, \sigma^2) = f_{Y_T,\ldots,Y_1}(y_T,\dots,y_1) = f_{Y_1}(y_1)\prod_{t=2}^{T}f_{Y_t|Y_{t-1}}(y_t|y_{t-1}) \text{,}
+\]
+где $f_{Y_1}(y_1)$ и $f_{Y_t|Y_{t-1}}(y_t|y_{t-1})$ получены выше.
+
+2. Для нахождения неизвестных параметров модели запишем логарифмическую условную функцию правдоподобия:
+\[
+l(\mu, \rho, \sigma^2|Y_1 = y_1) = \sum_{t=2}^{T}\log{f_{Y_t|Y_{t-1}}(y_t|y_{t-1})} = 
+\]
+\[
+=-\frac{T-1}{2} \log(2 \pi) - \frac{T-1}{2} \log{\sigma^2} - \frac{1}{2\sigma^2} \sum_{t=2}^{T}(y_t - \rho y_{t-1} - (1 - \rho) \mu)^2 \text{.} 
+\]
+
+Найдем производные функции $l(\mu, \rho, \sigma^2|Y_1 = y_1)$ по неизвестным параметрам:
+\[
+\frac{\partial l}{\partial \mu} = -\frac{1}{2\sigma^2} \sum_{t=2}^{T} 2(y_t - \rho y_{t-1} - (1 - \rho) \mu) \cdot (\rho - 1) \text{,}
+\]
+\[
+\frac{\partial l}{\partial \rho} = -\frac{1}{2\sigma^2} \sum_{t=2}^{T} 2(y_t - \rho y_{t-1} - (1 - \rho) \mu) \cdot (\mu - y_{t-1}) \text{,}
+\]
+\[
+\frac{\partial l}{\partial {\sigma^2}} =  - \frac{T-1}{2\sigma^2} - \frac{1}{2\sigma^4} \sum_{t=2}^{T}(y_t - \rho y_{t-1} - (1 - \rho) \mu)^2 \text{.}
+\]
+
+Оценки неизвестных параметров модели могут быть получены как решение следующей системы уравнений:
+\[
+\left\{
+  \begin{aligned}
+    \frac{\partial l}{\partial \mu} = 0 \text{,} \\
+    \frac{\partial l}{\partial \rho} = 0 \text{,} \\
+    \frac{\partial l}{\partial {\sigma^2}} = 0 \text{.}
+  \end{aligned}
+\right.
+\]
+
+Из первого уравнения системы получаем, что
+\[
+\sum_{t=2}^{T}y_{t} - \hat{\rho} \sum_{t=2}^{T}y_{t-1} = (T - 1) (1- \hat{\rho}) \hat{\mu} \text{,}
+\]
+откуда
+\[
+\hat{\mu} = \frac{\sum_{t=2}^{T}y_{t} - \hat{\rho} \sum_{t=2}^{T}y_{t-1}}{(T - 1) (1- \hat{\rho})} = \frac{3 - \hat{\rho} \cdot 3}{4\cdot(1-\hat{\rho})} = \frac{3}{4} \text{.}
+\]
+
+Далее, если второе уравнение системы переписать в виде
+\[
+\sum_{t=2}^{T}(y_t - \hat{\mu} - \hat{\rho} (y_{t-1} - \hat{\mu}))(y_{t-1} - \hat{\mu}) = 0 \text{,}
+\]
+то легко видеть, что
+\[
+\hat{\rho} = \frac{\sum_{t=2}^{T}(y_t - \hat{\mu})(y_{t-1} - \hat{\mu})}{\sum_{t=2}^{T}(y_{t-1} - \hat{\mu})^2} \text{.}
+\]
+Следовательно, $\hat{\rho} = -0.0909$.
+
+Наконец, из третьего уравнения системы
+\[
+\hat{\sigma^2} =\frac{1}{T-1} \sum_{t=2}^{T}(y_t - \hat{\rho} y_{t-1} - (1 - \hat{\rho}) \hat{\mu})^2 \text{.}
+\]
+Значит, $\hat{\sigma^2} = 0.6818$. Ответы: $\hat{\mu} = 0.75$, $\hat{\rho} = -1/11$, $\hat{\sigma^2} =0.6818$.
 \end{solution}
 
 

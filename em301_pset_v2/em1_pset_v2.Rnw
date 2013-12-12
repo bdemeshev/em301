@@ -29,53 +29,10 @@
 % осталось:
 % задача 12, банки 10, докочегарить тушку версии 1, распределить проверить наличие программистко-сюжетных упражнений
 
-% номер задачи --- добавить раздел
-
-\begin{comment}
-\newenvironment{problem}{Задача n.
-
-
-}{}
-
-
-\newenvironment{solution}{%
-  \catcode`\{=12
-  \catcode`\}=12
-  \DoNull
-}{%
-  \ignorespacesafterend
-}
-
-
-
-
-\begingroup
-  \catcode`\(=1
-  \catcode`\)=2
-  \catcode`\{=12
-  \catcode`\}=12
-  \def\x(%
-    \endgroup
-    \newcommand\DoNull()
-    \long\def\DoNull##1\end{solution}(\end(solution))
-  )
-\x
-\end{comment}
-
-
 
 % для отдельной упаковки решений
 \input{prob_and_sol_2}
 
-
-
-% временное решение
-%\newcommand{\solution}[1]{#1}
-
-%\newcommand{\solution}[1]{ {\tiny #1} }
-%\newcommand{\solution}[1]{}
-
-%\newcommand{\problem}[1]{#1}
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
 \author{Дмитрий Борзых, Борис Демешев}
