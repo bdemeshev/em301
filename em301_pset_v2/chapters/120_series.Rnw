@@ -484,7 +484,7 @@ $1$, $2$, $2$
 \end{problem}
 
 \begin{solution}
-Поскольку имеют место соотношения $\varepsilon_1 = \rho \varepsilon_0 + u_1$ и $Y_1 =\mu + \varepsilon_1$, то из условия задачи получаем, что $\varepsilon_1 \sim N(0,\sigma^2 / (1 - \rho^2))$
+1. Поскольку имеют место соотношения $\varepsilon_1 = \rho \varepsilon_0 + u_1$ и $Y_1 =\mu + \varepsilon_1$, то из условия задачи получаем, что $\varepsilon_1 \sim N(0,\sigma^2 / (1 - \rho^2))$
 и $Y_1 \sim N(\mu,\sigma^2 / (1 - \rho^2))$. Поэтому
 \[
 f_{Y_1}(y_1) = \frac{1}{\sqrt{2\pi\sigma^2/(1-\rho^2)}}\exp{\left(-\frac{(y_1 - \mu)^2}{2\sigma^2/(1 - \rho^2)}\right)}.
@@ -553,13 +553,13 @@ l(\mu, \rho, \sigma^2|Y_1 = y_1) = \sum_{t=2}^{T}\log{f_{Y_t|Y_{t-1}}(y_t|y_{t-1
 \[
 \hat{\rho} = \frac{\sum_{t=2}^{T}(y_t - \hat{\mu})(y_{t-1} - \hat{\mu})}{\sum_{t=2}^{T}(y_{t-1} - \hat{\mu})^2} \text{.}
 \]
-Следовательно, $\hat{\rho} = -0.0909$.
+Следовательно, $\hat{\rho} =-1/11= -0.0909$.
 
 Наконец, из третьего уравнения системы
 \[
-\hat{\sigma^2} =\frac{1}{T-1} \sum_{t=2}^{T}(y_t - \hat{\rho} y_{t-1} - (1 - \hat{\rho}) \hat{\mu})^2 \text{.}
+\hat{\sigma}^2 =\frac{1}{T-1} \sum_{t=2}^{T}(y_t - \hat{\rho} y_{t-1} - (1 - \hat{\rho}) \hat{\mu})^2 \text{.}
 \]
-Значит, $\hat{\sigma^2} = 0.6818$. Ответы: $\hat{\mu} = 0.75$, $\hat{\rho} = -1/11$, $\hat{\sigma^2} =0.6818$.
+Значит, $\hat{\sigma}^2 = 165/242= 0.6818$. Ответы: $\hat{\mu} = 3/4= 0.75$, $\hat{\rho} = -1/11=-0.0909$, $\hat{\sigma}^2 =165/242=0.6818$.
 \end{solution}
 
 
