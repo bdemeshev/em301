@@ -1,4 +1,4 @@
-\section{SVM}
+\section{Метод опорных векторов}
 
 
 \begin{problem}

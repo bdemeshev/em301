@@ -1168,3 +1168,33 @@ $\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценив�
 \end{solution}
 
 
+
+\begin{problem}
+Пусть $\hat{\beta_1}$ и $\hat{\beta_2}$ --- МНК-оценки коэффициентов в регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, m$, а $\hat{\mu}$, $\hat{\nu}$, $\hat{\gamma}$ и $\hat{\delta}$ --- МНК-коэффициенты в регрессии $y_i = \mu + \nu x_i + \gamma d_i + \delta x_i d_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, n$, где фиктивная переменная $d$ определяется следующим образом
+$$d_i = \begin{cases}
+1 & \text{ при } i \in \{1, \ldots, m\} \\
+0 & \text{ при } i \in \{m + 1, \ldots, n\} \\
+\end{cases}$$
+Покажите, что $\hat{\beta_1} = \hat{\mu} + \hat{\gamma}$ и $\hat{\beta_2} = \hat{\nu} + \hat{\delta}$.
+\end{problem}
+
+\begin{solution}
+Поскольку $\hat{\mu}$, $\hat{\nu}$, $\hat{\gamma}$ и $\hat{\delta}$ являются МНК-коэффициентами в регрессии $y_i = \mu + \nu x_i + \gamma d_i + \delta x_i d_i + \e_i$, $i = 1, \ldots, n$, то для любых $\mu$, $\nu$, $\gamma$ и $\delta$ имеет место
+\begin{equation}
+\label{task1:1}\sum_{i=1}^n (y_i - \hat{\mu} - \hat{\nu} x_i - \hat{\gamma} d_i - \hat{\delta} x_i d_i - \e_i)^2 \leqslant \sum_{i=1}^n (y_i - \mu - \nu x_i - \gamma d_i - \delta x_i d_i - \e_i)^2
+\end{equation}
+Перепишем неравенство (\ref{task1:1}) в виде
+\begin{equation}
+\label{task1:2}\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \sum_{i=1}^m (y_i - ({\mu} + {\gamma}) - ({\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - {\mu} - {\nu} x_i)^2
+\end{equation}
+Учитывая, что неравенство (\ref{task1:2}) справедливо для всех $\mu$, $\nu$, $\gamma$ и $\delta$, то оно останется верным для $\mu = \hat{\mu}$, $\nu = \hat{\nu}$ и произвольных $\gamma$ и $\delta$. Имеем
+$$\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2$$
+Следовательно 
+\begin{equation}
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2
+\end{equation}
+Обозначим $\tilde{\beta_1} := \hat{mu} + \gamma$ и $\tilde{\beta_2} := \hat{\nu} + \delta$. В силу произвольности $\gamma$ и $\delta$ коэффициенты $\tilde{\beta_1}$ и $\tilde{\beta_2}$ также произвольны. тогда для любых $\tilde{\beta_1}$ и $\tilde{\beta_2}$ выполнено неравенство:
+$$\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - \tilde{\beta_1} - \tilde{\beta_2} x_i)^2$$
+которое означает, что $\hat{\mu} + \hat{\gamma}$ и $\hat{\nu} + \hat{\delta}$ являются МНК-оценками коэффициентов $\beta_1$ и $\beta_2$ в регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, оцененной по наблюдениям $i = 1, \ldots, m$, то есть $\hat{\beta_1} = \hat{\mu} + \hat{\gamma}$ и $\hat{\beta_2} = \hat{\nu} + \hat{\delta}$.
+\end{solution}
+

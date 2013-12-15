@@ -687,4 +687,81 @@ M_1 y = M_1 X_2 \gamma_2 + u
 \end{solution}
 
 
+\begin{problem}
+Докажите, что МНК-оценки $\hat{\beta} = (X^T X)^{-1} X^T y$ являются несмещенными и линейными по переменной $y$.
+\end{problem}
 
+\begin{solution}
+Докажем несмещенность МНК-оценок.
+$$\E\hat{\beta} = \E\left( (X^T X)^{-1} X^T y \right) = (X^T X)^{-1} X^T \E(y) = $$
+$$= (X^T X)^{-1} X^T \E(X\beta + \e) = (X^T X)^{-1} X^T X\beta = \beta$$
+Обозначим $\varphi(X, y) = (X^T X)^{-1} X^T y$. Тогда $\hat{\beta} = \varphi(X, y)$. Покажем, что функция $\varphi$ линейна по переменной $y$.
+\begin{enumerate}
+\item $\varphi(X, \lambda \cdot y) = (X^T X)^{-1} X^T (\lambda \cdot y) = \lambda (X^T X)^{-1} X^T y = \lambda \cdot \varphi(X, y)$
+\item $\varphi(X, y + z) = (X^T X)^{-1} X^T (y + z) = (X^T X)^{-1} X^T y + (X^T X)^{-1} X^T z = \varphi(X, y) + \varphi(X, z)$
+\end{enumerate}
+Что и требовалось доказать.
+\end{solution}
+
+\begin{problem}
+Являются ли МНК-оценки линейными по переменной $X$?
+\end{problem}
+
+\begin{solution}
+Нет, так как для функции $\varphi(X, y) = (X^T X)^{-1} X^T y$ не выполнено, например, свойство однородности по переменной $X$. Действительно,
+$$\varphi(X, \lambda \cdot y) = ((\lambda \cdot X)^T (\lambda \cdot X))^{-1} (\lambda \cdot X)^T y = \frac{1}{\lambda} \cdot (X^T X)^{-1} X^T y = \frac{1}{\lambda} \varphi(X, y)$$.
+\end{solution}
+
+\begin{problem}
+Приведите пример несмещенной и линейной по переменной $y$ оценки, отличной от МНК.
+\end{problem}
+
+\begin{solution} 
+$\tilde{\beta} = (X^T CX)^{-1} X^T Cy$, где
+$$C = \begin{bmatrix}
+1 & 0 & 0 & \cdots & 0 \\
+0 & 2 & 0 & \cdots & 0 \\
+0 & 0 & 3 & \ddots & \vdots \\
+\vdots & \vdots & \ddots & \ddots & 0 \\
+0 & 0 & \cdots & 0 & n \\
+\end{bmatrix} $$
+\end{solution}
+
+
+\begin{problem}
+Если для регрессии $y = X\beta + \e$ не выполняется условие $Pi = i$, где $i$ --- единичный столбец, а $P \equiv X(X^TX)^{-1}X^T$, $\pi \equiv \frac{ii^T}{i^Ti}$, то будут неверны равенства:
+\begin{enumerate}
+\begin{minipage}[h]{0.49\linewidth}
+\item[(1)] $P\pi = \pi$
+\item[(2)] $P^2 = P$
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+\item[(3)] $\sum_{i=1}^n \hat{\e}_i = 0$
+\item[(4)] $\overline{Y} = \overline{\hat{Y}}$
+\end{minipage}
+\end{enumerate}
+\end{problem}
+
+\begin{solution} 
+$Pi = i \Leftrightarrow P\pi = \pi$ поскольку, если матрицу $\pi$ записать по столбцам $\pi = \frac{1}{n}\begin{bmatrix}
+i & i & \ldots & i
+\end{bmatrix}$, то можно записать следующую цепочку равенств $P\pi = P\frac{1}{n}\begin{bmatrix}
+i & i & \ldots & i
+\end{bmatrix} = \frac{1}{n}\begin{bmatrix}
+Pi & Pi & \ldots & Pi
+\end{bmatrix} = \frac{1}{n}\begin{bmatrix}
+i & i & \ldots & i
+\end{bmatrix} \Leftrightarrow Pi = i$.
+
+Свойство $P^2 = P$ имеет место независимо от выполнимости условия $Pi = i$. Действительно, $P^2 = X (X^T X)^{-1}X^TX(X^TX)^{-1}X^T = X(X^TX)^{-1}X^T = P$.
+
+Рассмотрите пример $y = \begin{bmatrix}
+1 & -1 & 0
+\end{bmatrix}^T$, $x = \begin{bmatrix}
+1 & 0 & -1
+\end{bmatrix}^T$. Постройте регрессию $y = \beta x + \e$ без свободного члена. Убедитесь, что $\sum_{i=1}^n \hat{\e}_i = 0$ и $\overline{Y} = \overline{\hat{Y}} = 0$, но $Pi \neq i$.
+
+
+Ответ: $P\pi = \pi$
+\end{solution}
