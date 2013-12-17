@@ -563,4 +563,22 @@ l(\mu, \rho, \sigma^2|Y_1 = y_1) = \sum_{t=2}^{T}\log{f_{Y_t|Y_{t-1}}(y_t|y_{t-1
 \end{solution}
 
 
+\begin{problem}
+Была оценена AR(2) модель
+\[
+\hat{y}_t=2.3+0.8 y_{t-1}-0.2 y_{t-2}
+\]
+Дополнительно известно, что $se(\hb_{y_{t-1}})=0.3$ и $\hat{\rho}_1=0.7$. Найдите $se(\hb_{y_{t-2}})$ и $\hCov(\hb_{y_{t-2}},\hb_{y_{t-1}})$.
+\end{problem}
+
+\begin{solution}
+Рассмотрим модель без константы. Тогда ковариационная матрица коэффициентов пропорциональна матрице
+\[
+\begin{pmatrix}
+1 & -\hat{\rho}_1 \\
+-\hat{\rho}_1 & 1
+\end{pmatrix}
+\]
+\end{solution}
+
 
