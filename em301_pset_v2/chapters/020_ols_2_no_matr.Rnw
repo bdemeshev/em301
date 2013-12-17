@@ -490,5 +490,241 @@ $$\hat{\beta} = D^{-1}\hat{\beta}_{old} = \begin{bmatrix}
 \end{bmatrix}$$
 \end{solution}
 
+\begin{problem}
+Пусть есть набор данных $(x_i, y_i)$, $i = 1, \ldots, n$, $(x_i>0, y_i>0)$, порожденных уравнением $y_i = \beta_1 + \beta_2 x_i + \e_i$, удовлетворяющих условиям стандартной модели парной регрессии.
+Рассматриваются следующие оценки параметра $\beta_2$:
+$$\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i}, \text{ } \tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}}$$
+Найти дисперсию и смещение каждой из оценок.
+\end{problem}
+
+\begin{solution}
+Мы можем существенно упростить решение, воспользовавшись матричным представлением:
+
+$\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n\\
+\end{bmatrix} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} y$
+
+$\E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+\E y_1\\
+\E y_2\\
+\vdots\\
+\E y_n\\
+\end{bmatrix} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\  
+\end{bmatrix} = \\
+\frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \left[ \beta_1 \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} + \beta_2 \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{bmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2$
+
+Значит, смещение для первой оценки равно $\frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k}$.
+
+$\Var(\tilde{\beta}_2^a) = \Var(\frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} y) = \frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \Var(y) \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T =\\
+\frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \Var(\e) \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T = \frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \sigma_{\e}^2 I \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T =\\
+\frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}$
+
+Перейдём ко второй оценке.
+
+$\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} y$
+
+$\E\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \E y = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \begin{bmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\  
+\end{bmatrix} =\\
+\frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \left[ \beta_1 \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} + \beta_2 \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{bmatrix} \right] = \frac{1}{n} \frac{\beta_1 n}{\overline{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\overline{x}} = \frac{\beta_1}{\overline{x}} + \beta_2$
+
+Значит, смещение равно $\frac{\beta_1}{\overline{x}}$.
+
+$\Var(\tilde{\beta}_2^b) = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \Var(y) \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \Var(\e) \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} = \frac{\sigma_{\e}^2}{\overline{x}^2 n}$
+\end{solution}
 
 
+
+\begin{problem}
+Уравнение $y_t = \beta_1 + \beta_2 x_t + \e_t$ оценивается по МНК. Может ли коэффициент детерминации быть малым (<0.05), а статистика $t_{\hat{\beta}_2}$ большой (>10)?
+\end{problem}
+
+\begin{solution}
+Известно, что для парной регрессии $t_{\hat{\beta}_2}^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_{\hat{\beta}_2}^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hat{\beta}_2}$ сколь угодно большой.
+\end{solution}
+
+
+\begin{problem}
+ Докажите, что в случае, когда $|\sCorr(x, y)| = 1$, линия парной регрессии $y$ на $x$ совпадает с линией парной регрессии $x$ на $y$.
+\end{problem}
+
+\begin{solution}
+Пусть $Y_i = \beta_1 + \beta_2 X_i + \e_i$, $i = 1, \ldots, n$.
+
+Тогда $Y_i = \hat{\beta}_1 + \hat{\beta}_2 X_i + \hat{\e}_i$
+
+$Y_i -  \overline{Y} + \overline{Y} = \hat{\beta}_1 + \hat{\beta}_2 (X_i -  \overline{X} + \overline{X}) + \hat{\e}_i$
+
+$Y_i -  \overline{Y}  = \underbrace{\hat{\beta}_1 - \overline{Y} + \hat{\beta}_2 \overline{X}}_{=0} + \hat{\beta}_2 (X_i -  \overline{X}) + \hat{\e}_i$
+
+$Y_i -  \overline{Y} = \hat{\beta}_2 (X_i -  \overline{X}) + \hat{\e}_i$
+
+$y_i \equiv Y_i -  \overline{Y}$, $i = 1, \ldots, n$
+
+$x_i \equiv X_i -  \overline{X}$, $i = 1, \ldots, n$
+
+$y_i = \hat{\beta}_2 x_i + \hat{\e}_i$
+
+$\textbf{y} = \hat{\beta}_2 \textbf{x} + \hat{\e}$, где $\textbf{y} = \begin{bmatrix}
+y_1 & \ldots & y_n
+\end{bmatrix}^T$, $\textbf{x} = \begin{bmatrix}
+x_1 & \ldots & x_n
+\end{bmatrix}^T$, $\e = \begin{bmatrix}
+\e_1 & \ldots & \e_n
+\end{bmatrix}^T$
+
+$\textbf{x}^T \textbf{y} = \hat{\beta}_2 \textbf{x}^T \textbf{x} + \underbrace{\textbf{x}^T \hat{\e}}_{=0}$
+
+\begin{equation}
+\label{task20:direct_ols}\hat{\beta}_2 = \frac{\textbf{x}^T \textbf{y}}{\textbf{x}^T \textbf{x}}
+\end{equation}
+
+Аналогично получаем, что в обратной регрессии $X_i = \beta_3 + \beta_4 Y_i + \xi_i$, $i = 1, \ldots, n$
+
+\begin{equation}
+\label{task20:reverse_ols}\hat{\beta}_4 = \frac{\textbf{y}^T \textbf{y}}{\textbf{y}^T \textbf{y}}
+\end{equation}
+
+$ESS = (\hat{Y} - \overline{Y}_i)^T(\hat{Y} - \overline{Y}_i)$
+
+Заметим, что $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i)$.
+
+Действительно, $(I - \pi)(P - \pi) = P - \pi$, следовательно,
+
+$\hat{Y} - \overline{Y}_i = (P - \pi)Y = (I - \pi)(P - \pi)Y = (I-\pi)(\hat{Y} - \overline{Y}_i)$.
+
+Далее, $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i) = (I - \pi)(\hat{\beta}_1 + \hat{\beta}_2 X - \overline{Y}_i) = \hat{\beta}_2 \textbf{x}$
+
+Значит, $ESS = \hat{\beta}_2^2 \textbf{x}^T \textbf{x}$.
+
+Получаем:
+\begin{equation}
+\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hat{\beta}_2^2 \textbf{x}^T \textbf{x}^{(2)}}{\textbf{y}^T \textbf{y}} = \frac{\textbf{x}^T \textbf{y}^{(2)}}{(\textbf{x}^T \textbf{x})(\textbf{y}^T \textbf{y})} = \Corr^2(X, Y)
+\end{equation}
+
+Заметим также, что из формул (\ref{task20:direct_ols}), (\ref{task20:reverse_ols}) и (\ref{task20:corr}) следует, что $R^2 = \hat{\beta}_2 \hat{\beta}_4$.
+
+Если $\Corr^2(X, Y) = 1$, то $R^2 = \hat{\beta}_2 \hat{\beta}_4 = 1$.
+
+Отметим также, что из $R^2 = 1$ следует, что $\hat{\e}_1 = \ldots = \hat{\e}_n = 0$ и $\hat{\xi}_1 = \ldots = \hat{\xi}_n = 0$.
+
+Тогда $Y_i = \hat{\beta}_1 + \hat{\beta}_2 X_i + \underbrace{\hat{\e}_i}_{=0}$ и $X_i = \hat{\beta_3} + \hat{\beta_4} Y_i + \underbrace{\hat{\xi}_i}_{=0}$, $i = 1, \ldots, n$.
+
+$X_i = \hat{\beta_3} + \hat{\beta_4} Y_i = (\overline{X} - \hat{\beta_4}\overline{Y}) + \hat{\beta_4} Y_i = \left( \overline{X} - \frac{1}{\hat{\beta}_2} \overline{Y} \right) + \frac{1}{\hat{\beta}_2} Y_i$
+
+$\hat{\beta}_2 X_i = (\hat{\beta}_2 \overline{X} - \overline{Y}) + Y_i$
+
+$Y_i = (\overline{Y} - \hat{\beta}_2 \overline{X}) + \hat{\beta}_2 X_i = \hat{\beta}_1 + \hat{\beta}_2 X_i$
+
+Следовательно, в случае когда $\Corr^2(X, Y) = 1$, линия парной регрессии $Y$ на $X$ совпадает с линией парной регрессии $X$ на $Y$.
+\end{solution}
+
+
+
+\begin{problem}
+Сгенерите выборку из двух зависимых но некоррелированных случайных величин. Можно ли <<поймать>> зависимость используя парную регрессию?
+\end{problem}
+
+\begin{solution}
+Да, если строить регрессию функции от $y$ на функцию от $x$. А если строить регрессию просто $y$ на $x$, то оценка наклона будет распределена симметрично около нуля.
+\end{solution}
+
+
+\begin{problem}
+Все предпосылки классической линейной модели выполнены, $y=\beta_1+\beta_2 x+\varepsilon$. Рассмотрим альтернативную оценку коэффициента $\beta_2$,
+\begin{equation}
+\hb_{2,IV}=\frac{\sum z_i(y_i-\bar{y})}{\sum z_i(x_i-\bar{x})}
+\end{equation}
+\begin{enumerate}
+\item Является ли оценка несмещенной?
+\item Любые ли $z_i$ можно брать?
+\item Найдите $\Var(\hb_{2,IV})$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+Да, является. Любые, кроме констант. $\Var(\hb_{2,IV})=\sigma^2 \sum (z_i-\bar{z})^2/ \left(\sum (z_i-\bar{z})x_i \right)^2 $.
+\end{solution}
+
+\begin{problem}
+Напишите формулу для оценок коэффициентов в парной регрессии без матриц. Напишите формулу для дисперсий оценок коэффициентов.
+\end{problem}
+
+\begin{solution}
+\end{solution}

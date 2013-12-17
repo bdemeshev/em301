@@ -380,3 +380,80 @@ $$\hat{e}_i^2 = -0.3 + 0.08 x_i - 0.01 x_i^2, R^2 = 0.15$$
 \end{solution}
 
 
+\begin{problem}
+ Пусть $y_t = \beta x_t + \e$ где $\E(\e_t) = 0$ и известно, что оценки для параметров $\tilde{\beta} = \left( \sum_{t=1}^n y_t \right)/\left( \sum_{t=1}^n x_t \right)$ являются наилучшими (в смысле минимума дисперсии) среди линейных несмещенных оценок параметра $\beta$. Чему равна в этом случае матрица ковариаций вектора $\e$ с точностью до пропорциональности?
+\end{problem}
+
+
+\begin{solution}
+Известно, что оценки параметров, получаемые по обобщённому методу наименьших квадратов, являются наилучшими, поэтому:
+$\delta^2 \begin{bmatrix}
+x_1 & 0\ldots0 & 0 \\
+0 &  & 0 \\
+  & \ldots & \\
+0 &  & 0 \\
+0 & 0\ldots0 & x_n \\
+\end{bmatrix}$
+\end{solution}
+
+\begin{problem}
+Для регрессии $y = X\beta + \e$ с $\E(\e) = 0$, $\Var(\e) = \Sigma \neq \sigma^2 I$, оцененной с помощью обобщённого метода наименьших квадратов, найдите ковариационную матрицу $\Cov(\hat{\beta}_{GLS}, \e)$
+\end{problem}
+
+
+\begin{solution}
+$\Cov(\hat{\beta}_{GLS}, \e) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} y, \e \right) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \e, \e \right) = \\ = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Cov(\e, \e) = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Sigma = (X^T \Sigma^{-1} X)^{-1} X^T$
+\end{solution}
+
+
+\begin{problem}
+Найдите наиболее эффективную оценку коэффициента $\beta_1$ для модели $y_i = \beta_1 + \e$, $\E(\e_i) = 0$, $\E(\e_i\e_j) = 0$, $\Var(\e_i) = \sigma_{\e}^2 / x_i$, $x_i > 0$ в классе линейных несмещенных оценок
+\end{problem}
+
+\begin{solution}
+Для нахождения эффективной оценки воспользуемся взвешенным методом наименьших квадратов. Разделим каждое из уравнений $y_i = \beta_1 + \e$ на корень из дисперсии $\e_i$ с тем, чтобы ошибки в полученных уравнениях имели равные дисперсии (в этом случае можно будет сослаться на т. Гаусса-Маркова). Итак, после деления i-го уравнения на величину $\sqrt{x_i}/\sigma_{\e}$, мы получаем:
+$$\begin{bmatrix}
+y_1 \sqrt{x_1}/\sigma_{\e} \\
+y_2 \sqrt{x_2}/\sigma_{\e} \\
+\ldots \\
+y_n \sqrt{x_n}/\sigma_{\e} \\
+\end{bmatrix} = \beta_1 \begin{bmatrix}
+\sqrt{x_1}/\sigma_{\e} \\
+\sqrt{x_2}/\sigma_{\e} \\
+\ldots \\
+\sqrt{x_n}/\sigma_{\e} \\
+\end{bmatrix} + \begin{bmatrix}
+\e_1 \sqrt{x_1}/\sigma_{\e} \\
+\e_2 \sqrt{x_2}/\sigma_{\e} \\
+\ldots \\
+\e_n \sqrt{x_n}/\sigma_{\e} \\
+\end{bmatrix}$$
+Поскольку условия т. Гаусса-Маркова для последней модели выполнены, то МНК-оценка для последней модели будет наиболее эффективной. Поэтому
+$$\hat{\beta_1} = \frac{\sum_{i=1}^n (y_i \sqrt{x_i}/\sigma_{\e})(\sqrt{x_i}/\sigma_{\e})}{\sum_{i=1}^n (\sqrt{x_1}/\sigma_{\e})} = \frac{\sum_{i=1}^n y_i x_i}{\sum_{i=1}^n x_i^2}$$
+\end{solution}
+
+
+\begin{problem}
+Фурманов Кирилл. Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
+
+\begin{figure}[!ht]
+\begin{minipage}[h]{0.49\linewidth}
+\center\includegraphics[width=0.95\linewidth]{resfitval}
+\end{minipage}
+\hfill
+\begin{minipage}[h]{0.49\linewidth}
+\center\includegraphics[width=0.95\linewidth]{reslagres}
+\end{minipage}
+\end{figure}
+
+Также $VIF_2 = 1.06$, $VIF_3 = 1.07$, $VIF_4 = 1.02$
+\begin{enumerate}
+\item[(a)] Определите, какие проблемные явления обнаружил исследователь. Обоснуйте свой ответ.
+\item[(b)] Найдите коэффициент детерминации для регрессии: $x_{i2} = \gamma_1 + \gamma_2 x_{i3} + \gamma_3 x_{i4} + u_i$
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}
+\end{solution}
+
