@@ -1,0 +1,79 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{title_bor_knitr}
+
+<<echo=FALSE,message=FALSE>>=
+require(lmtest)
+require(xtable)
+@
+
+%\input{emetrix_preamble}
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+\begin{enumerate}
+\item Пусть $y = X\beta + \e$ --- регрессионная модель, где $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$. Пусть $Z = XD$, где $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$. Рассмотрите <<новую>> регрессионную модель $y = Z\alpha + u$, где $\alpha = \begin{pmatrix} \alpha_1 \\ \alpha_2 \\ \alpha_3 \end{pmatrix}$. Определите, как выражаются <<новые>> МНК-коэффициенты через <<старые>>.
+\item  Рассмотрим модель $y_i = \beta_1+ \beta_2 x_i + \beta_3 w_i +\beta_4 z_i + \e_i$.  При оценке модели по $24$ наблюдениям оказалось, что $RSS=15$, $\sum (y_i-\bar{y}-w_i+\bar{w})^2=20$. На уровне значимости 1\% протестируйте гипотезу 
+\[
+H_0:
+\begin{cases}
+\beta_2+\beta_3+\beta_4=1 \\
+\beta_2=0 \\
+\beta_3=1 \\
+\beta_4=0
+\end{cases}
+\]
+\item  По 47 наблюдениям оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
+
+\[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+
+<<echo=FALSE,message=FALSE>>=
+h <- swiss
+model1 <- glm(Agriculture~Examination+Catholic,data=h)
+coef.t <- coeftest(model1)
+dimnames(coef.t)[[2]] <- 
+    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+coef.t <- coef.t[,-4]
+coef.t[1,1] <- NA
+coef.t[2,2] <- NA
+coef.t[3,3] <- NA
+@
+
+
+
+<<results='asis',echo=FALSE>>=
+xtable(coef.t)
+@
+
+\begin{enumerate}
+\item Заполните пропуски в таблице
+\item Укажите коэффициенты, значимые на 10\% уровне значимости.
+\item Постройте 99\%-ый доверительный интервал для коэффициента при переменной Catholic 
+\end{enumerate}
+
+\item Рассмотрим модель:
+$y_i = \beta_1 + \beta_2 x_{1i} + \beta_3 x_{2i} + \beta_4 x_{3i} + \beta_5 x_{4i} + \e_i$.
+По 20 наблюдениям оценены следующие регрессии:
+\[
+\underset{(s.e.)}{\hat{y_i}} = \underset{(0.15)}{10.01} + \underset{(0.06)}{1.05}x_1 + \underset{(0.04)}{2.06}x_2 + \underset{(0.06)}{0.49}x_3 - \underset{(0.06)}{1.31}x_4, RSS = 6.85
+\]
+\[
+\underset{(s.e.)}{\widehat{y_i- x_1 - 2x_2}} = \underset{(0.15)}{10.00} + \underset{(0.07)}{0.50}x_3 - \underset{(0.06)}{1.32}x_4, RSS = 8.31 
+\]
+\[
+\underset{(s.e.)}{\widehat{y_i + x_1 + 2x_2}} = \underset{(3.62)}{9.93} + \underset{(1.48)}{0.56}x_3 - \underset{(1.42)}{1.50}x_4, RSS = 4310.62 
+\]
+\[
+\underset{(s.e.)}{\widehat{y_i - x_1 + 2x_2}} = \underset{(3.26)}{10.71} + \underset{(1.33)}{0.09}x_3 - \underset{(1.28)}{1.28}x_4, RSS = 3496.85
+\]
+\[
+\underset{(s.e.)}{\widehat{y_i + x_1 - 2x_2}} = \underset{(1.25)}{9.22} + \underset{(0.51)}{0.97}x_3 - \underset{(0.49)}{1.54}x_4, RSS = 516.23
+\]
+На уровне значимости $5\%$ проверьте гипотезу $H_0: \begin{cases} \beta_2 = 1 \\ \beta_3 = 2 \end{cases}$ против альтернативной гипотезы $H_a: |\beta_2 - 1| + |\beta_3 - 2| \not= 0$.
+
+
+\end{enumerate}
+
+
+\end{document}
