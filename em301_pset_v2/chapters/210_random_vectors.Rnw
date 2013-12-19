@@ -574,7 +574,7 @@ w_1
 \item Возможно ли, что $E(w)=0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)\neq 0$ и $\sum w_i=0$?
 \item Возможно ли, что $E(w)=0$ и $\sum w_i \neq 0$?
-\item Возможно ли, что $E(w)=\neq $ и $\sum w_i \neq 0$?
+\item Возможно ли, что $E(w)\neq 0$ и $\sum w_i \neq 0$?
 \end{enumerate}
 \end{problem}
 
