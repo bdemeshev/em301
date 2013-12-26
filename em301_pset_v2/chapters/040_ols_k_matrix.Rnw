@@ -964,3 +964,28 @@ $\mathbb{P}\left( \left| \frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3
 \begin{solution}
 \end{solution}
 
+\begin{problem}
+<<>>=
+model <- lm(dist~speed,data=cars)
+model.sum <- summary(model)
+hat.sigma <- model.sum$sigma
+@
+
+Исследователь оценил зависимость длины тормозного пути в футах от скорости автомобиля в милях в час по данным 1920-х годов.
+При построении парной регрессии у него получилась $\hat{\sigma}=\Sexpr{hat.sigma}$ и оценка ковариационной матрицы 
+
+\[
+<<results="asis">>=
+xtable(vcov(model))
+@
+\]
+
+\begin{enumerate}
+\item Определите количество наблюдений
+\item Найдите среднюю скорость автомобиля в милях в час
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+Находим $X'X$, её элементы и есть то, что нужно.
+\end{solution}
