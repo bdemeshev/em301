@@ -122,8 +122,8 @@ $c_i=c\cdot x_i$, где $c\neq 0$
 \item $\hat{\beta} = \frac{y_n - y_1}{x_n - x_1}$
 \item $\hat{\beta} = \frac{1}{2} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{2} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
 \item $\hat{\beta} = \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
-\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
-\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{y} - y_i)}{\sum_{i=1}^n (x_i - \overline{x^2})^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{y} - y_i)}{\sum_{i=1}^n (x_i - \bar{x})^2}$
 \item $\hat{\beta} = \frac{y_1 + 2 y_2 + \ldots + n y_n}{x_1 + 2 x_2 + \ldots + n x_n}$
 \item $\hat{\beta} = \frac{\sum_{i=1}^n i(y_i - \overline{y})}{\sum_{i=1}^n i(x_i - \overline{x})}$
 \item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i}{x_i}$

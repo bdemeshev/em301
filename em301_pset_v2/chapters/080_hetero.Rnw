@@ -436,15 +436,8 @@ $$\hat{\beta_1} = \frac{\sum_{i=1}^n (y_i \sqrt{x_i}/\sigma_{\e})(\sqrt{x_i}/\si
 \begin{problem}
 Фурманов Кирилл. Исследователь оценил регрессионную модель $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \beta_4 x_{i4} + \e_i$ и провёл диагностику различных проблемных явлений. Результаты его стараний приведены ниже:
 
-\begin{figure}[!ht]
-\begin{minipage}[h]{0.49\linewidth}
-\center\includegraphics[width=0.95\linewidth]{resfitval}
-\end{minipage}
-\hfill
-\begin{minipage}[h]{0.49\linewidth}
-\center\includegraphics[width=0.95\linewidth]{reslagres}
-\end{minipage}
-\end{figure}
+\todo[inline]{Две картинки с графиками остатков}
+
 
 Также $VIF_2 = 1.06$, $VIF_3 = 1.07$, $VIF_4 = 1.02$
 \begin{enumerate}
