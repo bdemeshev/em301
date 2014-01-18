@@ -248,4 +248,13 @@ load('pset_data.Rdata')
 @
 
 
+\restoresection
+\section{Таблицы}
+
+<<child='chapters/250_tables.Rnw'>>=
+@
+
+
+
+
 \end{document}
