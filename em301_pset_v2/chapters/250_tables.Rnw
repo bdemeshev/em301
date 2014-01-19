@@ -1,6 +1,6 @@
 % источник:
 
-Таблицы взяты из источник \url{http://www.york.ac.uk/depts/maths/tables/sources.htm}
+Таблицы взяты из \url{http://www.york.ac.uk/depts/maths/tables/sources.htm}
 
 
 \begin{center}
@@ -240,7 +240,7 @@ $\infty$
 
 {\small
 
-\thispagestyle{empty}
+
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -301,7 +301,6 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -367,7 +366,6 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -433,7 +431,7 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
+
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -502,7 +500,6 @@ $\infty$
 
 \newpage
 
-\thispagestyle{empty}
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -563,7 +560,6 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -629,7 +625,7 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
+
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r
@@ -695,7 +691,7 @@ $\nu_2\backslash\nu_l$ & &
 
 \newpage
 
-\thispagestyle{empty}
+
 
 \begin{center}
 \begin{tabular}{rrr@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r@{\,}r

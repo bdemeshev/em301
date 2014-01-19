@@ -216,7 +216,7 @@
 \renewenvironment{problem}{%
 \refstepcounter{problem}
 % \phantomsection % создаем точку привязки для команды \label % не нужна, т.к. есть refstepcounter
-Задача 
+\textbf{Задача} 
 \hyperref[s\theproblem]{\theproblem} % гиперссылка на метку "s1.1."
 \label{p\theproblem} % метка "p1.1." 
 \par
@@ -288,7 +288,7 @@
 \renewcommand{\problem}[1]{
 \refstepcounter{problem}
 % \phantomsection % создаем точку привязки для команды \label
-Задача 
+\textbf{Задача} 
 \hyperref[s\theproblem]{\theproblem} % гиперссылка на метку "s1.1."
 \label{p\theproblem} % метка "p1.1." 
 \par ##1}
