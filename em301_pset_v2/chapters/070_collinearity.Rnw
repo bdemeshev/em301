@@ -1,4 +1,4 @@
-\section{Мультиколлинеарность}
+\chapter{Мультиколлинеарность}
 
 
 \begin{problem}
@@ -38,7 +38,7 @@ cars.table <- as.table(coeftest(cars.model))
 rownames(cars.table) <-c("Константа","speed","speed^2","speed^3")
 @
 
-\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
+%\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
 
 <<results='asis'>>=
 xtable(cars.table)

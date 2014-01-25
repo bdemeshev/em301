@@ -1,4 +1,4 @@
-\section{Временные ряды}
+\chapter{Временные ряды}
 
 
 \begin{problem}

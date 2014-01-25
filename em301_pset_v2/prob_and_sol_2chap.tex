@@ -54,15 +54,15 @@
 
 % начало кода:
 
+\let\oldchapter\chapter % сохраняем команду \chapter, т.к. мы ее переопределим
 \let\oldsection\section % сохраняем команду \section, т.к. мы ее переопределим
-\let\oldsubsection\subsection % сохраняем команду \subsection, т.к. мы ее переопределим
 
-\newcommand{\restoresection}{ % команда для восстановления \section \subsection
+\newcommand{\restorechapter}{ % команда для восстановления \section \subsection
 \renewcommand{\section}[1]{\oldsection{##1}}
-\renewcommand{\subsection}[1]{\oldsubsection{##1}}
+\renewcommand{\chapter}[1]{\oldchapter{##1}}
 }
 
-\newcounter{problem}[section]
+\newcounter{problem}[chapter]
 %создаем новый счетчик "problem", 
 % будет автоматом сбрасываться на 0 при старте нового раздела
 % при создании счетчик сам встанет на 0
@@ -82,7 +82,7 @@
 }
 % команда \newsecsolution увеличит номер секции на 1 и установит номер решения внутри секции равным 0
 
-\renewcommand{\theproblem}{\thesection.\arabic{problem}.}
+\renewcommand{\theproblem}{\thechapter.\arabic{problem}.}
 \renewcommand{\thesolution}{\thesecsolution.\arabic{solution}.}
 % обновляем команду \theproblem - она должна выводить номер секции и номер задачи внутри секции
 % почему обновляем? - потому, что она создалась при создании счетчика problem
@@ -208,15 +208,14 @@
 }
 
 % теперь команда \section помимо своих стандартных функций еще и увеличит secsolution на 1.
-\renewcommand{\section}[1]{\oldsection{##1}\newsecsolution}
-\renewcommand{\subsection}[1]{\oldsubsection{##1}}
+\renewcommand{\chapter}[1]{\oldchapter{##1}\newsecsolution}
+\renewcommand{\section}[1]{\oldsection{##1}}
 % \subsection - стандартная
 
 
 \renewenvironment{problem}{%
-\vspace{5pt}
-% \phantomsection % создаем точку привязки для команды \label % не нужна, т.к. есть refstepcounter
 \refstepcounter{problem}
+% \phantomsection % создаем точку привязки для команды \label % не нужна, т.к. есть refstepcounter
 \textbf{Задача} 
 \hyperref[s\theproblem]{\theproblem} % гиперссылка на метку "s1.1."
 \label{p\theproblem} % метка "p1.1." 
@@ -254,8 +253,8 @@
 
 \renewenvironment{solution}{}{}
 
-\renewcommand{\section}[1]{\newsecsolution} % можно сюда чего-то добавить, чтобы решения отделялись как-то по секциям
-\renewcommand{\subsection}[1]{}
+\renewcommand{\chapter}[1]{\newsecsolution} % можно сюда чего-то добавить, чтобы решения отделялись как-то по секциям
+\renewcommand{\section}[1]{}
 
 \renewenvironment{problem}{%
   \catcode`\{=12
@@ -283,11 +282,10 @@
 \renewcommand{\problemtext}[1]{##1}
 \renewcommand{\solutiontext}[1]{##1}
 
-\renewcommand{\section}[1]{\oldsection{##1}\newsecsolution}
-\renewcommand{\subsection}[1]{\oldsubsection{##1}}
+\renewcommand{\chapter}[1]{\oldchapter{##1}\newsecsolution}
+\renewcommand{\section}[1]{\oldsection{##1}}
 
 \renewcommand{\problem}[1]{
-\vspace{5pt}
 \refstepcounter{problem}
 % \phantomsection % создаем точку привязки для команды \label
 \textbf{Задача} 

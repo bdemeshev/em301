@@ -1,4 +1,4 @@
-\section{Задачи по программированию}
+\chapter{Задачи по программированию}
 
 Все наборы данных доступны по ссылке \url{https://github.com/bdemeshev/em301/wiki/Datasets}.
 

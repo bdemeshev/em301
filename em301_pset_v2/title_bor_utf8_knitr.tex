@@ -1,4 +1,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%  Загрузка пакетов  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% кусок от урсса
+%\usepackage[60x90,headers,11pt]{format}
+
+%\textheight=494pt%
+%\textwidth=322pt%
+%
+%\oddsidemargin=0pt%
+%\evensidemargin=0pt
+%\topmargin=-1pt \headsep=14pt \headheight=22pt \voffset=-28pt
+%\hoffset=-50pt
+
+
+\clubpenalty=10000  
+\widowpenalty=10000
+
+%\overfullrule=5pt
+%\hfuzz=1.5mm 
+%\baselineskip=12pt plus 0.18pt minus 0.1pt
+
+
+\pagestyle{headings}
+% конец куска от урсса
+
+
+
 
 % специальная версия для knitr'а. Исключает graphicx
 
@@ -22,10 +47,10 @@
 \usepackage{dsfont} % sudo yum install texlive-doublestroke
 \usepackage{array,multicol,multirow,bigstrut} % sudo yum install texlive-multirow
 \usepackage{indentfirst} % установка отступа в первом абзаце главы
-\usepackage[british,russian]{babel} % выбор языка для документа
+\usepackage[russian]{babel} % выбор языка для документа
 \usepackage{bm}
 \usepackage{bbm} % шрифт с двойными буквами
-\usepackage[perpage]{footmisc}
+%\usepackage[perpage]{footmisc}
 
 \usepackage{dcolumn} % центрирование по разделителю для apsrtable
 
@@ -39,7 +64,9 @@
 \usepackage{textcomp}  % Чтобы в формулах можно было русские буквы писать через \text{}
 
 % размер листа бумаги
-\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+\usepackage[paperwidth=145mm,paperheight=215mm,
+height=182mm,width=113mm,top=25mm,includefoot]{geometry}
+%\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
 
 \usepackage{xcolor}
 
@@ -113,9 +140,9 @@
 \setstretch{1}                          % Межстрочный интервал
 \flushbottom                            % Эта команда заставляет LaTeX чуть растягивать строки, чтобы получить идеально прямоугольную страницу
 \righthyphenmin=2                       % Разрешение переноса двух и более символов
-\pagestyle{plain}                       % Нумерация страниц снизу по центру.
-\widowpenalty=300                     % Небольшое наказание за вдовствующую строку (одна строка абзаца на этой странице, остальное --- на следующей)
-\clubpenalty=3000                     % Приличное наказание за сиротствующую строку (омерзительно висящая одинокая строка в начале страницы)
+%\pagestyle{plain}                       % Нумерация страниц снизу по центру.
+%\widowpenalty=300                     % Небольшое наказание за вдовствующую строку (одна строка абзаца на этой странице, остальное --- на следующей)
+%\clubpenalty=3000                     % Приличное наказание за сиротствующую строку (омерзительно висящая одинокая строка в начале страницы)
 \setlength{\parindent}{1.5em}           % Красная строка.
 %\captiondelim{. }
 \setlength{\topsep}{0pt}
@@ -342,8 +369,8 @@
 \def\hm#1{#1\nobreak\discretionary{}{\hbox{$#1$}}{}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\setlist[enumerate,1]{label=\arabic*., ref=\arabic*, partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
-\setlist[itemize,1]{partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
+%\setlist[enumerate,1]{label=\arabic*., ref=\arabic*, partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
+%\setlist[itemize,1]{partopsep=0pt plus 2pt, topsep=0pt plus 1.5pt,itemsep=0pt plus .5pt,parsep=0pt plus .5pt}
 
 % Эти парни затем, если вдруг не захочется управлять списками из-под уютненького enumitem
 % или если будет жизненно важно, чтобы в списках были именно русские буквы.

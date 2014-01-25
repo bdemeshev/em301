@@ -1,4 +1,4 @@
-\section{Парный МНК без матриц}
+\chapter{Парный МНК без матриц}
 
 
 \begin{problem}

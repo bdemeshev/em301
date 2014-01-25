@@ -1,4 +1,7 @@
-\documentclass[pdftex,12pt,a4paper]{article}
+\documentclass[pdftex,11pt,openany]{book}
+
+%\documentclass[11pt,openany]{book}
+
 
 
 \input{title_bor_utf8_knitr}
@@ -33,7 +36,7 @@
 
 
 % для отдельной упаковки решений
-\input{prob_and_sol_2}
+\input{prob_and_sol_2chap}
 
 
 \title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
@@ -46,7 +49,9 @@
 
 \begin{document}
 
-\maketitle % печатаем заголовок
+\setcounter{page}{3}
+
+%\maketitle % печатаем заголовок
 \tableofcontents
 
 \parindent=0 pt % отступ равен 0
@@ -80,7 +85,7 @@ theme_set(theme_bw())
 load('pset_data.Rdata')
 @
 
-\listoftodos
+%\listoftodos
 
 % МНК
 
@@ -160,8 +165,6 @@ load('pset_data.Rdata')
 @
 <<child='chapters/240_ustav_test.Rnw'>>=
 @
-<<child='chapters/250_tables.Rnw'>>=
-@
 
 
 
@@ -171,8 +174,8 @@ load('pset_data.Rdata')
 %%%%% Удвоим ставки!!!!!!!!!!!!!!!!!!!!
 
 
-\restoresection
-\section{Решения}
+\restorechapter
+\chapter{Решения}
 \solutiononly
 
 
@@ -248,8 +251,8 @@ load('pset_data.Rdata')
 @
 
 
-\restoresection
-\section{Таблицы}
+\restorechapter
+\chapter{Таблицы}
 
 <<child='chapters/250_tables.Rnw'>>=
 @

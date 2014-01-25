@@ -1,4 +1,4 @@
-\section{Случайные регрессоры}
+\chapter{Случайные регрессоры}
 
 \begin{problemtext}
 

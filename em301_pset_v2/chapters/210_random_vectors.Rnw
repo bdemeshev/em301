@@ -1,4 +1,4 @@
-\section{Случайные векторы}
+\chapter{Случайные векторы}
 
 
 \begin{problem}

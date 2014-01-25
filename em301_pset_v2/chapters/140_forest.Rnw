@@ -1,4 +1,4 @@
-\section{Деревья и Random Forest}
+\chapter{Деревья и Random Forest}
 
 
 \begin{problem}
