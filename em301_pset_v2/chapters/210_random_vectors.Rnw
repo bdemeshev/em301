@@ -27,6 +27,7 @@
 \end{problem}
 
 \begin{solution}
+\newpage
 \end{solution}
 
 
@@ -194,7 +195,8 @@ $\Var (\xi) =  \begin{pmatrix}
 -1 & 0 & 4 \\
 \end{pmatrix} $
 
-$\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix} 
+\begin{multline}
+\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix} 
  \begin{pmatrix}
 1 & 1 & 1 \\
 \end{pmatrix}  &  \begin{pmatrix}
@@ -202,7 +204,8 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 \xi_2 \\
 \xi_3 \\
 \end{pmatrix} 
-\end{pmatrix}  =  \begin{pmatrix}
+\end{pmatrix}  = \\  
+\begin{pmatrix}
 1 & 1 & 1 \\
 \end{pmatrix}  \Var   \begin{pmatrix}
 \xi_1 \\
@@ -212,7 +215,8 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 1 \\
 1 \\
 1 \\
-\end{pmatrix}  =  \begin{pmatrix}
+\end{pmatrix}  = \\
+ \begin{pmatrix}
 1 & 1 & 1 \\
 \end{pmatrix}   \begin{pmatrix}
 2 & 1 & -1 \\
@@ -222,7 +226,8 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 1 \\
 1 \\
 1 \\
-\end{pmatrix}  = 9$
+\end{pmatrix}  = 9
+\end{multline}
 \end{solution}
 
 
@@ -251,7 +256,8 @@ $\Var (\xi_1 + \xi_2 + \xi_3)  = \Var   \begin{pmatrix}
 \end{problem}
 
 \begin{solution}
-$\E (z_1) = \E   \begin{pmatrix}
+\begin{multline}
+\E (z_1) = \E   \begin{pmatrix}
  \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
@@ -265,7 +271,8 @@ $\E (z_1) = \E   \begin{pmatrix}
 \end{pmatrix}  \E   \begin{pmatrix}
 \xi_1 \\
 \xi_2 \\
-\end{pmatrix}  =  \begin{pmatrix}
+\end{pmatrix}  = \\
+ \begin{pmatrix}
 0 & 0 \\
 0 & 1 \\
 \end{pmatrix}   \begin{pmatrix}
@@ -274,7 +281,8 @@ $\E (z_1) = \E   \begin{pmatrix}
 \end{pmatrix}  =  \begin{pmatrix}
 0\\
 2\\
-\end{pmatrix} $
+\end{pmatrix} 
+\end{multline}
 
 $\Var (z_1) = \Var   \begin{pmatrix}
  \begin{pmatrix}
@@ -479,11 +487,15 @@ c_{31} & c_{32} & c_{33} \\
 a_1 & a_2 & a_3\\
 \end{pmatrix} ^T =  \begin{pmatrix}
 0.10 & 0.06 & 0.05 \\
-\end{pmatrix} ^T$, $\Var (r) =  \begin{pmatrix}
+\end{pmatrix} ^T$, 
+\[
+\Var (r) =  \begin{pmatrix}
 0.04 & 0 & -0.005\\
 0 & 0.01 & 0\\
 -0.005 & 0 & 0.0025\\
-\end{pmatrix} $ найдите $\E (\text{П})$ и $\Var (\text{П})$
+\end{pmatrix} 
+\]
+найдите $\E (\text{П})$ и $\Var (\text{П})$
 \end{enumerate}
 \end{problem}
 

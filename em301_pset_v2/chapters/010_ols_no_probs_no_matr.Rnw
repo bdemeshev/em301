@@ -172,6 +172,7 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \end{problem}
 
 \begin{solution}
+\newpage
 \end{solution}
 
 
@@ -194,8 +195,8 @@ Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
 \begin{problem}
  У эконометриста Вовочки есть три переменных: $r_i$ --- доход $i$-го человека в выборке, $m_i$ --- пол (1 --- мальчик, 0 --- девочка) и $f_i$ --- пол (1 --- девочка, 0 --- мальчик). Вовочка оценил две модели
 \begin{enumerate}
-\item[Модель A] $m_i=\beta_1+\beta_2 r_i+\ve_i$
-\item[Модель B] $f_i=\gamma_1+\gamma_2 r_i+u_i$
+\item[] Модель A: $m_i=\beta_1+\beta_2 r_i+\ve_i$
+\item[] Модель B: $f_i=\gamma_1+\gamma_2 r_i+u_i$
 \end{enumerate}
 \begin{enumerate}
 \item Как связаны между собой оценки $\hb_1$ и $\hat{\gamma}_1$?

@@ -1,6 +1,8 @@
 \chapter{Задачи по программированию}
 
+\begin{problemtext}
 Все наборы данных доступны по ссылке \url{https://github.com/bdemeshev/em301/wiki/Datasets}.
+\end{problemtext}
 
 \begin{problem}
 Начиная с какого знака в числе $\pi=3.1415\ldots$ можно обнаружить твой номер телефона? Первый $10$ миллионов знаков числа $\pi$ можно найти на сайте \url{http://code.google.com/p/pc2012-grupo-18-turma-b/downloads/list}. Если не хватает, то миллиард знаков, файл размера примерно в 1 гигабайт, доступен по ссылке \url{http://stuff.mit.edu/afs/sipb/contrib/pi/}. Настоящие челябинцы рассчитывают $\pi$ самостоятельно. Краткая история о том, как маньяки считали $\pi$ до 10 миллиардов знаков и потеряли полгода из-за сбоев компьютерного железа, \url{http://www.numberworld.org/misc_runs/pi-10t/details.html}. 

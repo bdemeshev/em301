@@ -119,10 +119,15 @@ $bee_i=0$ & 32 & 20 \\
 \begin{enumerate}
 \item Функция правдоподобия имеет следующий вид:
 
-$$\text{L}(\beta_1, \beta_2) = \prod_{i=1}^n \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = y_i \right\rbrace \right) = \prod_{i: y_i = 0} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 1 \right\rbrace \right) \cdot \prod_{i: y_i = 1} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 0 \right\rbrace \right) =$$
-$$\prod_{i: y_i = 1} \Lambda(\beta_1 + \beta_2 d_i) \cdot \prod_{i: y_i = 0} [1 - \Lambda(\beta_1 + \beta_2 d_i)] = $$
-$$\prod_{i: y_i = 1, d_i = 1} \Lambda(\beta_1 + \beta_2) \cdot \prod_{i: y_i = 1, d_i = 0} \Lambda(\beta_1) \cdot \prod_{i: y_i = 0, d_i = 1} [1 - \Lambda(\beta_1 + \beta_2)] \cdot \prod_{i: y_i = 0, d_i = 0} [1 - \Lambda(\beta_1)] = $$
-$$\Lambda(\beta_1 + \beta_2)^{\#\{i: y_i=1, d_i=1\}} \cdot \Lambda(\beta_1)^{\#\{i: y_i=1, d_i=0\}} \cdot [1 - \Lambda(\beta_1 + \beta_2)]^{\#\{i: y_i=0, d_i=1\}} \cdot [1 - \Lambda(\beta_1)]^{\#\{i: y_i=0, d_i=0\}}$$
+\begin{multline}
+\text{L}(\beta_1, \beta_2) = \prod_{i=1}^n \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = y_i \right\rbrace \right) =\\
+ \prod_{i: y_i = 0} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 1 \right\rbrace \right) \cdot \prod_{i: y_i = 1} \mathbb{P}_{\beta_1, \beta_2} \left(\left\lbrace Y_i = 0 \right\rbrace \right) =\\
+\prod_{i: y_i = 1} \Lambda(\beta_1 + \beta_2 d_i) \cdot \prod_{i: y_i = 0} [1 - \Lambda(\beta_1 + \beta_2 d_i)] = \\
+\prod_{i: y_i = 1, d_i = 1} \Lambda(\beta_1 + \beta_2) \cdot \prod_{i: y_i = 1, d_i = 0} \Lambda(\beta_1) \cdot \prod_{i: y_i = 0, d_i = 1} [1 - \Lambda(\beta_1 + \beta_2)] \cdot \\
+\cdot \prod_{i: y_i = 0, d_i = 0} [1 - \Lambda(\beta_1)] = \\
+\Lambda(\beta_1 + \beta_2)^{\#\{i: y_i=1, d_i=1\}} \cdot \Lambda(\beta_1)^{\#\{i: y_i=1, d_i=0\}} \cdot [1 - \Lambda(\beta_1 + \beta_2)]^{\#\{i: y_i=0, d_i=1\}} \cdot \\
+\cdot  [1 - \Lambda(\beta_1)]^{\#\{i: y_i=0, d_i=0\}}
+\end{multline}
 где 
 \begin{equation}
 \label{eq: logist df}\Lambda(x) = \frac{e^x}{1 + e^x}
@@ -168,13 +173,23 @@ $$LR = -2(l(\hat{\beta}_{1, R}, \hat{\beta}_{2, R}) - l(\hat{\beta}_{1, UR}, \ha
 и имеет асимптотическое $\chi^2$ распределение с числом степеней свободы, равным числу ограничений, составляющих гипотезу $H_0$, т.е. в данном случае $LR \overset{a}{\sim} \chi^2_1$.
 
 Находим наблюдаемое значение статистики отношения правдоподобия:
-$$l(\hat{\beta}_{1, R}, \hat{\beta}_{2, R}) = l(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] = 44\ln \left[ \frac{11}{25} \right] + 56\ln \left[ 1 - \frac{11}{25} \right] = -68.59$$
-$$l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}) = l(\hat{a}_{UR}, \hat{b}_{UR}) = 12\ln \hat{b}_{UR} + 32 \ln \hat{a}_{UR} + 36\ln[1 - \hat{b}_{UR}] + 20\ln[1 - \hat{a}_{UR}] = $$
-$$12\ln \left[ \frac{1}{4} \right] + 32\ln \left[ \frac{8}{13} \right] + 36\ln \left[ 1 - \frac{1}{4} \right] + 20\ln \left[1 - \frac{8}{13} \right] = -61.63$$
+\begin{multline}
+l(\hat{\beta}_{1, R}, \hat{\beta}_{2, R}) = l(\hat{a}_R, \hat{b}_R = \hat{a}_R) = 44\ln\hat{a}_R + 56\ln[1-\hat{a}_R] =\\
+ 44\ln \left[ \frac{11}{25} \right] + 56\ln \left[ 1 - \frac{11}{25} \right] = -68.59
+\end{multline}
+\begin{multline}
+l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}) = l(\hat{a}_{UR}, \hat{b}_{UR}) =\\
+ 12\ln \hat{b}_{UR} + 32 \ln \hat{a}_{UR} + 36\ln[1 - \hat{b}_{UR}] + 20\ln[1 - \hat{a}_{UR}] = \\
+12\ln \left[ \frac{1}{4} \right] + 32\ln \left[ \frac{8}{13} \right] + 36\ln \left[ 1 - \frac{1}{4} \right] + 20\ln \left[1 - \frac{8}{13} \right] = -61.63
+\end{multline}
 Следовательно, $LR_{\text{набл}} = -2(-68.59 + 61.63) = 13.92$, при этом критическое значение $\chi^2$ распределения с одной степенью свободы для 5\% уровня значимости равна 3.84. Значит, на основании теста отношения правдоподобия гипотеза $H_0: \beta_2 = 0$ должна быть отвергнута. Таким образом, данные показывают, что, в действительности, правильность мёда связана с правильностью пчёл.
 
-\item $$\hat{\mathbb{P}}\{honey = 0| bee = 0\} = 1 - \hat{\mathbb{P}}\{honey=1|bee=0\} = 1 - \frac{\exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}}{1 + \exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}} =$$
-$$1 - \frac{\exp\{\ln\left( \frac{8}{5} \right)\}}{1 + \exp\{\ln\left( \frac{8}{5} \right)\}} = 1 - 0.62 = 0.38$$ 
+\item 
+\begin{multline}
+\hat{\mathbb{P}}\{honey = 0| bee = 0\} = 1 - \hat{\mathbb{P}}\{honey=1|bee=0\} = \\
+1 - \frac{\exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}}{1 + \exp\{\hat{\beta}_{1, UR} + \hat{\beta}_{2, UR} \cdot 0\}} =\\
+1 - \frac{\exp\{\ln\left( \frac{8}{5} \right)\}}{1 + \exp\{\ln\left( \frac{8}{5} \right)\}} = 1 - 0.62 = 0.38
+\end{multline}
 \end{enumerate}
 \end{solution}
 

@@ -64,14 +64,16 @@ df.ans <- df[which(penalty==min(penalty))]
 
 Упорядочим нашу выборку таким образом, чтобы наблюдения с номерами с 1 по 35 относились к мужчинам, а наблюдения с номерами с 36 по 58 относились к женщинам.
 Тогда уравнение
-\[
-\ln W_i=\beta_1+\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,35
-\]
+\begin{multline}
+\ln W_i=\beta_1+\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,35
+\end{multline}
 
 соответствует регрессии, построенной для подвыборки из мужчин, а уравнение
-\[
-\ln W_i=\gamma_1+\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36,...,58
-\]
+\begin{multline}
+\ln W_i=\gamma_1+\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\\
+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36,...,58
+\end{multline}
 соответствует регрессии, построенной для подвыборки из женщин. Введем следующие переменные:
 
 \[
@@ -91,13 +93,12 @@ dum_i =
 \]
 
 Рассмотрим следующее уравнение регрессии:
-\[
+\begin{multline}
 \ln W_i=\beta_1 d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2
-Edu_i dum_i+\beta_3 Exp_i d_i+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i+
-\]
-\[
-+ \gamma_4 Exp_i^2 dum_i + \beta_5 Fedu_i d_i +\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
-\]
+Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i + \gamma_4 Exp_i^2 dum_i + \beta_5 Fedu_i d_i +\gamma_5 Fedu_i dum_i+\\
+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
+\end{multline}
 Гипотеза, которую требуется проверить в данной задаче, имеет вид
 
 \[
@@ -111,37 +112,41 @@ H_0:
 \]
 
 Тогда регрессия
-\[
-\ln W_i=\beta_1 d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i+
-\]
-\[
-+ \gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d_i +\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
-\]
+\begin{multline}
+\ln W_i=\beta_1 d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i+
+\gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d_i +\\
+\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
+\end{multline}
 по отношению к основной гипотезе $H_0$ является регрессией без ограничений, а регрессия 
-\[
-\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,58 
-\]
+\begin{multline}
+\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,58 
+\end{multline}
+
 является регрессией с ограничениями.
 
 Кроме того, для решения задачи должен быть известен следующий факт:
 
 $RSS_{UR}=RSS_1+RSS_2$, где $RSS_{UR}$ --- это сумма квадратов остатков в модели:
-\[
-\ln W_i=\beta_1  d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i+
-\]
-\[
-+ \gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d _i +\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
-\]
+\begin{multline}
+\ln W_i=\beta_1  d_i+\gamma_1 dum_i+\beta_2 Edu_i d_i+\gamma_2 Edu_i dum_i+\beta_3 Exp_i d_i+\\
+\gamma_3 Exp_i dum_i+\beta_4 Exp_i^2 d_i
++ \gamma_4 Exp_i^2 dum_i+\beta_5 Fedu_i d _i +\\
+\gamma_5 Fedu_i dum_i+\beta_6 Medu_i d_i+\gamma_6 Medu_i dum_i+\e_i, i=1,...,58
+\end{multline}
 
 $RSS_1$ --- это сумма квадратов остатков в модели:
-\[
-\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,35
-\]
+\begin{multline}
+\ln W_i=\beta_1 +\beta_2 Edu_i+\beta_3 Exp_i+\beta_4 Exp_i^2+\\
+\beta_5 Fedu_i+\beta_6 Medu_i+\e_i, i=1,...,35
+\end{multline}
 
 $RSS_2$ --- это сумма квадратов остатков в модели:
-\[
-\ln W_i=\gamma_1 +\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36,...,58
-\]
+\begin{multline}
+\ln W_i=\gamma_1 +\gamma_2 Edu_i+\gamma_3 Exp_i+\gamma_4 Exp_i^2+\\
+\gamma_5 Fedu_i+\gamma_6 Medu_i+\e_i, i=36,...,58
+\end{multline}
 
 
 \begin{enumerate}
@@ -242,9 +247,10 @@ R^2=0.78, \sum_{i=1}^{52} {(Price_i-\overline{Price})^2}=278
 \]
 Предположим, что все квартиры в выборке можно отнести к двум категориям: квартиры на севере города (28 наблюдений) и квартиры на юге города (24 наблюдения). Пусть
 $S$ --- это фиктивная переменная, равная 1 для домов в южной части города и 0 для домов в северной части города. Используя эту переменную, была оценена следующая регрессия:
-\[
-\underset{(s.e.)}{\widehat{Price}} =\underset{(3.13)}{14.12}+\underset{(0.11)}{0.25}S+\underset{(0.13)}{1.65}K+\underset{(0.14)}{0.17}K\cdot{S}-\underset{(0.039)}{0.37}M+\underset{(0.0012)}{0.05}M\cdot{S}-\underset{(0.13)}{0.44}C-\underset{(0.18)}{0.06}C\cdot{S}+\underset{(0.88)}{2.27}P-\underset{(0.08)}{0.23}P\cdot{S}
-\]
+\begin{multline}
+\underset{(s.e.)}{\widehat{Price}} =\underset{(3.13)}{14.12}+\underset{(0.11)}{0.25}S+\underset{(0.13)}{1.65}K+\underset{(0.14)}{0.17}K\cdot{S}-\underset{(0.039)}{0.37}M+\\
++\underset{(0.0012)}{0.05}M\cdot{S}-\underset{(0.13)}{0.44}C-\underset{(0.18)}{0.06}C\cdot{S}+\underset{(0.88)}{2.27}P-\underset{(0.08)}{0.23}P\cdot{S}
+\end{multline}
 \[
 R^2 = 0.85
 \]
@@ -322,9 +328,10 @@ $H_0:
 \[
 \underset{(s.e.)}{\hat{S}}=\underset{(0.44)}{6.12}+\underset{(0.088)}{0.147}\cdot{IQ}, RSS=2758.6
 \]
-\[
-\underset{(s.e.)}{\hat{S}}=\underset{(0.73)}{6.12}+\underset{(0.014)}{0.147}\cdot{IQ}-\underset{(0.933)}{1.035}\cdot{MALE}+\underset{(0.018)}{0.0166}\cdot{(MALE}\cdot{IQ)}, RSS=2090.98
-\]
+\begin{multline}
+\underset{(s.e.)}{\hat{S}}=\underset{(0.73)}{6.12}+\underset{(0.014)}{0.147}\cdot{IQ}-\underset{(0.933)}{1.035}\cdot{MALE}+\underset{(0.018)}{0.0166}\cdot{(MALE}\cdot{IQ)}
+\end{multline}
+Во второй регрессии сумма квадратов остатков равна $RSS=2090.98$
 Зависит ли длительность обучения от пола индивида и почему?
 \end{problem}
 
@@ -364,8 +371,8 @@ d_i =
 \[
 d_i =
   \begin{cases}
-    1 & \text{при $i$ $\in \bigl\{ 1,\dots,20 \bigr\} $}, \\
-    0 & \text{при $i$ $\in \bigl\{ 21,\dots,30 \bigr\} $}. 
+    1 & \text{при } i \in \bigl\{ 1,\dots,20 \bigr\} , \\
+    0 & \text{при } i \in \bigl\{ 21,\dots,30 \bigr\} . 
  \end{cases}
 \]
 \end{problem}
@@ -536,15 +543,18 @@ ESS = 90.3, RSS = 60.4
 \ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \e_i
 \]
 Неограниченная модель (Unrestricted model):
-\[
-\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
-\]
+\begin{multline}
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \\
+\beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\end{multline}
+
 По условию $ESS_R = 90.3$, $RSS_R = 60.4$, $TSS = ESS_R + RSS_R = 90.3 + 60.4 = 150.7.$ Также сказано, что $ESS_{UR} = 110.3$. Значит, $RSS_{UR} = TSS - ESS_{UR} = 150.7 - 110.3 = 40.4$
 \begin{enumerate}
 \item Cпецификация:
-\[
-\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
-\]
+\begin{multline}
+\ln W_i = \beta + \beta_{Edu}Edu_i + \beta_{Age}Age_i + \beta_{Age^2}Age^2_i + \\
+\beta_{Fedu}Fedu_i + \beta_{Medu}Medu_i + \e_i
+\end{multline}
 \item Проверка гипотезы
 \begin{enumerate}
 \item $H_0: \begin{cases} \beta_{Fedu} = 0  \\  \beta_{Medu} = 0 \end{cases}$
@@ -850,7 +860,8 @@ h <- swiss
 model1 <- glm(Agriculture~Examination+Catholic,data=h)
 coef.t <- coeftest(model1)
 dimnames(coef.t)[[2]] <- 
-    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+    c("Оценка","Ст. ошибка",  
+    "t-статистика", "P-значение")
 coef.t <- coef.t[,-4]
 coef.t[1,1] <- NA
 coef.t[2,2] <- NA
@@ -888,8 +899,10 @@ h <- swiss
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
 <<>>=
-m1 <- lm(Fertility~Agriculture+Education+Examination+Catholic,data=h)
-m2 <- lm(Fertility~I(Education+Examination)+Catholic,data=h)
+m1 <- lm(Fertility~Agriculture+Education+
+  Examination+Catholic,data=h)
+m2 <- lm(Fertility~I(Education+Examination)+Catholic,
+  data=h)
 @
 
 <<results='asis'>>=
@@ -925,7 +938,8 @@ flats <- read.table("~/science/econometrix/em301/datasets/flats_moscow.txt",head
 model1 <- lm(price~totsp+livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+rownames(coef.table) <- 
+  c("Константа","Общая площадь", "Жилая площадь")
 xtable(coef.table)
 @
 
@@ -967,7 +981,8 @@ est.diff <- hb[2]-hb[3]
 model1 <- lm(price~totsp+livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+rownames(coef.table) <- 
+  c("Константа","Общая площадь", "Жилая площадь")
 xtable(coef.table)
 @
 
@@ -990,10 +1005,12 @@ xtable(vcov(model1))
 \begin{problem}
  По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража, метража жилой площади и дамми-переменной, равной 1 для кирпичных домов.
 <<results='asis'>>=
-model1 <- lm(price~totsp+livesp+brick+brick:totsp+brick:livesp,data=flats)
+model1 <- lm(price~totsp+livesp+brick+brick:totsp+
+  brick:livesp,data=flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-# rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+# rownames(coef.table) <- c("Константа","Общая площадь", 
+#  "Жилая площадь")
 xtable(coef.table)
 @
 
@@ -1180,15 +1197,20 @@ $$d_i = \begin{cases}
 
 \begin{solution}
 Поскольку $\hat{\mu}$, $\hat{\nu}$, $\hat{\gamma}$ и $\hat{\delta}$ являются МНК-коэффициентами в регрессии $y_i = \mu + \nu x_i + \gamma d_i + \delta x_i d_i + \e_i$, $i = 1, \ldots, n$, то для любых $\mu$, $\nu$, $\gamma$ и $\delta$ имеет место
-\begin{equation}
-\label{task1:1}\sum_{i=1}^n (y_i - \hat{\mu} - \hat{\nu} x_i - \hat{\gamma} d_i - \hat{\delta} x_i d_i - \e_i)^2 \leqslant \sum_{i=1}^n (y_i - \mu - \nu x_i - \gamma d_i - \delta x_i d_i - \e_i)^2
-\end{equation}
+\begin{multline}
+\label{task1:1}\sum_{i=1}^n (y_i - \hat{\mu} - \hat{\nu} x_i - \hat{\gamma} d_i - \hat{\delta} x_i d_i - \e_i)^2 \leqslant \\
+\sum_{i=1}^n (y_i - \mu - \nu x_i - \gamma d_i - \delta x_i d_i - \e_i)^2
+\end{multline}
 Перепишем неравенство (\ref{task1:1}) в виде
-\begin{equation}
-\label{task1:2}\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \sum_{i=1}^m (y_i - ({\mu} + {\gamma}) - ({\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - {\mu} - {\nu} x_i)^2
-\end{equation}
+\begin{multline}
+\label{task1:2}\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \\
+\sum_{i=1}^m (y_i - ({\mu} + {\gamma}) - ({\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - {\mu} - {\nu} x_i)^2
+\end{multline}
 Учитывая, что неравенство (\ref{task1:2}) справедливо для всех $\mu$, $\nu$, $\gamma$ и $\delta$, то оно останется верным для $\mu = \hat{\mu}$, $\nu = \hat{\nu}$ и произвольных $\gamma$ и $\delta$. Имеем
-$$\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2$$
+\begin{multline}
+\sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2 \leqslant \\
+ \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2 + \sum_{i= m + 1}^n (y_i - \hat{\mu} - \hat{\nu} x_i)^2
+\end{multline}
 Следовательно 
 \begin{equation}
 \sum_{i=1}^m (y_i - (\hat{\mu} + \hat{\gamma}) - (\hat{\nu} + \hat{\delta}) x_i)^2 \leqslant \sum_{i=1}^m (y_i - (\hat{\mu} + {\gamma}) - (\hat{\nu} + {\delta}) x_i)^2
@@ -1249,8 +1271,7 @@ bootstrap, дельта-метод.
 
 
 \begin{problem}
-%\todo[inline]{вставить ссылки на файл}
-Скачайте результаты двух контрольных работ по теории вероятностей, \url{} с описанием данных, \url{}. Наша задача попытаться предсказать результат второй контрольной работы зная позадачный результат первой контрольной, пол и группу студента. 
+Скачайте результаты двух контрольных работ по теории вероятностей, \url{https://github.com/bdemeshev/em301/raw/master/datasets/tvims2012_data.csv} с описанием данных, \url{https://github.com/bdemeshev/em301/raw/master/datasets/tvims2012_data_description.txt}. Наша задача попытаться предсказать результат второй контрольной работы зная позадачный результат первой контрольной, пол и группу студента. 
 \begin{enumerate}
 \item Какая задача из первой контрольной работы наиболее существенно влияет на результат второй контрольной?
 \item Влияет ли пол на результат второй контрольной?
@@ -1294,13 +1315,12 @@ bootstrap, дельта-метод.
 \]
 но вводит дамми-переменные вводит по-другому:
 
-
 \begin{tabular}{c|cccc}
 Порода коровы & $d_1$ & $d_2$ & $d'_1$ & $d'_2$  \\ 
 \hline 
-Колмогорская & 0 & 0 & 1 & 1 \\ 
-• & 1 & 0 & 0 & 1  \\ 
-• & 0 & 1 & 1 & 0  \\ 
+Холмогорская & 0 & 0 & 1 & 1 \\ 
+Тагильская & 1 & 0 & 0 & 1  \\ 
+Ярославская & 0 & 1 & 1 & 0  \\ 
 \hline 
 \end{tabular} 
 

@@ -35,7 +35,8 @@ speed.mean <- mean(h$speed)
 <<>>=
 cars.model <- lm(dist~speed+I(speed^2)+I(speed^3),data=h)
 cars.table <- as.table(coeftest(cars.model))
-rownames(cars.table) <-c("Константа","speed","speed^2","speed^3")
+rownames(cars.table) <-
+  c("Константа","speed","speed^2","speed^3")
 @
 
 %\todo[inline]{с тремя переменными руками громоздко делать, а с двумя вроде не видно мультик.}
@@ -47,8 +48,10 @@ xtable(cars.table)
 Ковариационная матрица коэффициентов имеет вид:
 <<results='asis'>>=
 cars.vcov <- vcov(cars.model)
-rownames(cars.vcov) <-c("Константа","speed","speed^2","speed^3")
-colnames(cars.vcov) <-c("Константа","speed","speed^2","speed^3")
+rownames(cars.vcov) <-
+  c("Константа","speed","speed^2","speed^3")
+colnames(cars.vcov) <-
+  c("Константа","speed","speed^2","speed^3")
 xtable(cars.vcov)
 @
 

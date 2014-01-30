@@ -476,9 +476,13 @@ $\tilde{X} = X \cdot D$, где $D = \begin{bmatrix}
 0 & 1 \\
 \end{bmatrix}$.
 
-Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны
-$$\hat{\beta} = \left( \tilde{X}^T \tilde{X} \right)^{-1} \tilde{X}^T y = \left( [XD]^T [XD] \right)^{-1} [XD]^T y = D^{-1} (X^T X)^{-1} (D^T)^{-1} D^T X^T y = D^{-1} (X^T X)^{-1}X^T y$$
-$$\hat{\beta} = D^{-1}\hat{\beta}_{old} = \begin{bmatrix}
+Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны:
+\begin{multline}
+\hat{\beta} = \left( \tilde{X}^T \tilde{X} \right)^{-1} \tilde{X}^T y = \left( [XD]^T [XD] \right)^{-1} [XD]^T y = \\
+D^{-1} (X^T X)^{-1} (D^T)^{-1} D^T X^T y = D^{-1} (X^T X)^{-1}X^T y 
+\end{multline}
+\[
+\hat{\beta} = D^{-1}\hat{\beta}_{old} = \begin{bmatrix}
 1 & -1994 \\
 0 & 1 \\
 \end{bmatrix} \begin{bmatrix}
@@ -487,7 +491,8 @@ $$\hat{\beta} = D^{-1}\hat{\beta}_{old} = \begin{bmatrix}
 \end{bmatrix} = \begin{bmatrix}
 -4890 \\
 2.5 \\
-\end{bmatrix}$$
+\end{bmatrix}
+\]
 \end{solution}
 
 \begin{problem}
@@ -500,25 +505,30 @@ $$\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i}, \text{ } \tilde{\
 \begin{solution}
 Мы можем существенно упростить решение, воспользовавшись матричным представлением:
 
-$\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\begin{multline}
+\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \begin{bmatrix}
 y_1\\
 y_2\\
 \vdots\\
 y_n\\
-\end{bmatrix} = \frac{1}{n} \begin{bmatrix}
+\end{bmatrix} = \\
+ \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix} y$
+\end{bmatrix} y
+\end{multline}
 
-$\E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\begin{multline}
+\E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \begin{bmatrix}
 \E y_1\\
 \E y_2\\
 \vdots\\
 \E y_n\\
-\end{bmatrix} = \frac{1}{n} \begin{bmatrix}
+\end{bmatrix} = \\
+ \frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \begin{bmatrix}
 \beta_1 + \beta_2 x_1\\
@@ -538,13 +548,16 @@ x_1\\
 x_2\\
 \vdots\\
 x_n\\
-\end{bmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2$
+\end{bmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2
+\end{multline}
 
 Значит, смещение для первой оценки равно $\frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k}$.
 
-$\Var(\tilde{\beta}_2^a) = \Var(\frac{1}{n} \begin{bmatrix}
+\begin{multline}
+\Var(\tilde{\beta}_2^a) = \Var\left(\frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix} y) = \frac{1}{n^2} \begin{bmatrix}
+\end{bmatrix} y\right) =\\
+ \frac{1}{n^2} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \Var(y) \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
@@ -553,12 +566,14 @@ $\Var(\tilde{\beta}_2^a) = \Var(\frac{1}{n} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \Var(\e) \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
-\end{bmatrix}^T = \frac{1}{n^2} \begin{bmatrix}
+\end{bmatrix}^T = \\
+ \frac{1}{n^2} \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix} \sigma_{\e}^2 I \begin{bmatrix}
 \frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
 \end{bmatrix}^T =\\
-\frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}$
+\frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}
+\end{multline}
 
 Перейдём ко второй оценке.
 
@@ -566,7 +581,9 @@ $\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} 
 1 & 1 & \ldots & 1
 \end{bmatrix} y$
 
-$\E\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+
+\begin{multline}
+\E\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
 1 & 1 & \ldots & 1
 \end{bmatrix} \E y = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
 1 & 1 & \ldots & 1
@@ -588,25 +605,30 @@ x_1\\
 x_2\\
 \vdots\\
 x_n\\
-\end{bmatrix} \right] = \frac{1}{n} \frac{\beta_1 n}{\overline{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\overline{x}} = \frac{\beta_1}{\overline{x}} + \beta_2$
+\end{bmatrix} \right] = \\
+\frac{1}{n} \frac{\beta_1 n}{\overline{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\overline{x}} = \frac{\beta_1}{\overline{x}} + \beta_2
+\end{multline}
 
 Значит, смещение равно $\frac{\beta_1}{\overline{x}}$.
 
-$\Var(\tilde{\beta}_2^b) = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+\begin{multline}
+\Var(\tilde{\beta}_2^b) = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
 1 & 1 & \ldots & 1
 \end{bmatrix} \Var(y) \begin{bmatrix}
 1\\
 1\\
 \vdots\\
 1\\
-\end{bmatrix} = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+\end{bmatrix} = \\
+\frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
 1 & 1 & \ldots & 1
 \end{bmatrix} \Var(\e) \begin{bmatrix}
 1\\
 1\\
 \vdots\\
 1\\
-\end{bmatrix} = \frac{\sigma_{\e}^2}{\overline{x}^2 n}$
+\end{bmatrix} = \frac{\sigma_{\e}^2}{\overline{x}^2 n}
+\end{multline}
 \end{solution}
 
 

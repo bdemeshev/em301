@@ -7,42 +7,6 @@
 \begin{solution}
 \end{solution}
 
-
-\begin{problem}
-Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
-
-<<warning=FALSE>>=
-ggplot(flats,aes(x=totsp,y=price))+geom_point()+
-    labs(x="Общая площадь, кв. м.",y="Цена квартиры, 1000$")
-@
-
-Какие подходы к оцениванию зависимости имеет смысл посоветовать исходя из данного графика?
-\end{problem}
-
-
-\begin{solution}
-По графику видно, что с увеличением общей площади увеличивается разброс цены. Поэтому разумно, например, рассмотреть следующие подходы:
-\begin{enumerate}
-\item Перейти к логарифмам, т.е. оценивать модель $\ln price_i=\beta_1+\beta_2 \ln totsp_i +\varepsilon_i$
-\item Оценивать квантильную регрессию. В ней угловые коэффициенты линейной зависимости будут отличаться для разных квантилей переменной $price$.
-\item Обычную модель линейной регрессии с гетероскедастичностью вида $Var(\varepsilon_i)=\sigma^2 totsp_i^2$
-\end{enumerate} 
-\end{solution}
-
-
-
-\begin{problem}
-По наблюдениям $x=(1,2,3)'$, $y=(2,-1,3)'$ оценивается модель $y=\b_1+\b_2 x+\e$. Ошибки $\e$ гетероскедастичны и известно, что $\Var(\e_i)=\sigma^2 \cdot x_i^2$. 
-\begin{enumerate}
-\item Найдите оценки $\hb_{ols}$ с помощью МНК и их ковариационную матрицу
-\item Найдите оценки $\hb_{gls}$ с помощью обобщенного МНК и их ковариационную матрицу 
-\end{enumerate}  
-\end{problem}
-
-\begin{solution}
-\end{solution}
-
-
 \begin{problem}
 В модели $y=\hb_1+\hb_2 x+\e$ присутствует гетероскедастичность вида $\Var(\e_i)=\sigma^2 x^2_i$. Как надо преобразовать исходные регрессоры и зависимую переменную, чтобы устранить гетероскедастичность? 
 \end{problem}
@@ -76,6 +40,44 @@ $\Var(\e_i)=cx_i^4$
 \begin{solution}
 $\Var(\e_i)=c x_i$
 \end{solution}
+
+
+\begin{problem}
+Диаграмма рассеяния стоимости квартиры в Москве (в 1000\$) и общей площади квартиры имеет вид:
+
+<<warning=FALSE>>=
+ggplot(flats,aes(x=totsp,y=price))+geom_point()+
+    labs(x="Общая площадь, кв. м.",
+    y="Цена квартиры, 1000$")
+@
+
+Какие подходы к оцениванию зависимости имеет смысл посоветовать исходя из данного графика?
+\end{problem}
+
+
+\begin{solution}
+По графику видно, что с увеличением общей площади увеличивается разброс цены. Поэтому разумно, например, рассмотреть следующие подходы:
+\begin{enumerate}
+\item Перейти к логарифмам, т.е. оценивать модель $\ln price_i=\beta_1+\beta_2 \ln totsp_i +\varepsilon_i$
+\item Оценивать квантильную регрессию. В ней угловые коэффициенты линейной зависимости будут отличаться для разных квантилей переменной $price$.
+\item Обычную модель линейной регрессии с гетероскедастичностью вида $Var(\varepsilon_i)=\sigma^2 totsp_i^2$
+\end{enumerate} 
+\end{solution}
+
+
+
+\begin{problem}
+По наблюдениям $x=(1,2,3)'$, $y=(2,-1,3)'$ оценивается модель $y=\b_1+\b_2 x+\e$. Ошибки $\e$ гетероскедастичны и известно, что $\Var(\e_i)=\sigma^2 \cdot x_i^2$. 
+\begin{enumerate}
+\item Найдите оценки $\hb_{ols}$ с помощью МНК и их ковариационную матрицу
+\item Найдите оценки $\hb_{gls}$ с помощью обобщенного МНК и их ковариационную матрицу 
+\end{enumerate}  
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
 
 
 \begin{problem}
@@ -401,7 +403,11 @@ x_1 & 0\ldots0 & 0 \\
 
 
 \begin{solution}
-$\Cov(\hat{\beta}_{GLS}, \e) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} y, \e \right) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \e, \e \right) = \\ = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Cov(\e, \e) = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Sigma = (X^T \Sigma^{-1} X)^{-1} X^T$
+\begin{multline}
+\Cov(\hat{\beta}_{GLS}, \e) = \Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} y, \e \right) = \\
+\Cov \left( (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \e, \e \right) = \\ = (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Cov(\e, \e) =\\
+ (X^T \Sigma^{-1} X)^{-1} X^T \Sigma^{-1} \Sigma = (X^T \Sigma^{-1} X)^{-1} X^T
+\end{multline}
 \end{solution}
 
 
