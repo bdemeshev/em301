@@ -54,7 +54,7 @@
 %\maketitle % печатаем заголовок
 \tableofcontents
 
-\parindent=0 pt % отступ равен 0
+
 
 
 \vspace{30pt}
@@ -116,6 +116,7 @@ load('pset_data.Rdata')
 Дмитрий Борзых, Борис Демешев
 \end{flushright}
 
+%\parindent=0 pt % отступ равен 0
 
 <<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
 @
