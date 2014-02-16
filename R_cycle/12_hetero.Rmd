@@ -3,7 +3,7 @@
 Загружаем нужные пакеты:
 ```{r, message=FALSE, warning=FALSE}
 library(knitr)
-opts_chunk$set(cache=TRUE)
+opts_chunk$set(cache=FALSE)
 
 library(ggplot2) # графики
 library(sandwich) # оценка Var для гетероскедастичности
@@ -37,10 +37,10 @@ theme_set(theme_bw())
   * Вместо регрессии $y_i=\beta_1+\beta_2 x_i+\epsilon_i$ попробовать оценить регрессию $\ln(y_i)=\beta_1+\beta_2 \ln(x_i)+\epsilon_i$.
   * Оценить квантильную регрессию 
 
-Файл доступен по ссылке [goo.gl/zL5JQ](goo.gl/zL5JQ)
+Файл с данными по стоимости квартир в Москве доступен по ссылке [goo.gl/zL5JQ](http://goo.gl/zL5JQ)
 
 ```{r, "read table"}
-filename <- "~/science/econometrix/em301/datasets/flats_moscow.txt"
+filename <- "../datasets/flats_moscow.txt"
 h <- read.table(filename,header=TRUE)
 
 qplot(totsp,price,data=h)
@@ -70,19 +70,19 @@ coeftest(m1)
 
 Как было сказано ранее: если в данных присутствует гетероскедастичность, но нужно проверить гипотезы и строить доверительные интервалы, то нужно использовать правильную формулу для $\widehat{Var}(\hat{\beta})$, она выглядит так:
 \[
-\widehat{Var}(\hat{\beta}_{HC})=n(X'X)^{-1}X'\hat{\Omega}X(X'X)^{-1}
+\widehat{Var}(\hat{\beta}_{HC})=(X'X)^{-1}X'\hat{\Omega}X(X'X)^{-1}
 \]
 
 \[
-\hat{\Omega}=diag(w_1...w_n)
+\hat{\Omega}=diag(\hat{\sigma}^2_1,\ldots,\hat{\sigma}^2_n)
 \]
 
-Есть разные способы состоятельно оценить веса $w_i$, подробно можно почитать в описании пакета [`sandwich`](http://cran.r-project.org/web/packages/sandwich/vignettes/sandwich.pdf). Наиболее популярный на сегодня --- это так называемый "HC3":
+Есть разные способы состоятельно оценить отдельные дисперсии $\hat{\sigma}^2_i$, подробно можно почитать в описании пакета [`sandwich`](http://cran.r-project.org/web/packages/sandwich/vignettes/sandwich.pdf). Наиболее популярный на сегодня --- это так называемый "HC3":
 \[
-w_i=\frac{\hat{\epsilon}_i^2}{(1-h_{ii})^2}
+\hat{\sigma}^2_i=\frac{\hat{\epsilon}_i^2}{(1-h_{ii})^2}
 \] 
 
-Здесь $h_{ii}$ --- диагональный элемент матрицы  $H=X(X'X)^{-1}X'$
+Здесь $h_{ii}$ --- диагональный элемент матрицы-шляпницы (hat matrix, $\hat{y}=Hy$,  $H=X(X'X)^{-1}X'$). Матрицу-шляпницу также называют проектором, т.к. она проецирует вектор $y$ на линейную оболочку регрессоров.
 
 Посмотрим на матрицу $\widehat{Var}(\hat{\beta}_{HC})$ в R.
 ```{r}
@@ -94,13 +94,16 @@ vcovHC(m1)
 coeftest(m1,vcov=vcovHC(m1))
 ```
 
-Доверительный интервал надо строить руками...
+Доверительный интервал надо строить руками. За основу мы возьмем табличку с правильными стандартными ошибками и прибавим и вычтем их от оценок коэффициентов.
 ```{r}
-
+conftable <- coeftest(m1,vcov=vcovHC(m1))
+ci <- data.frame(estimate=conftable[,1],sd_hc=conftable[,2])
+ci$left_95 <- ci$estimate-qnorm(0.975)*ci$sd_hc
+ci$right_95 <- ci$estimate+qnorm(0.975)*ci$sd_hc
+ci
 ```
 
-
-Вектор весов `weights` должен быть обратно пропорционален дисперсиям, т.е. $w_i=1/\sigma^2_i$.
+В R вектор весов `weights` должен быть обратно пропорционален дисперсиям, т.е. $w_i=1/\sigma^2_i$.
 ```{r}
 model<- lm(price~totsp, weights=I(1/totsp), data=h)
 summary(model)
@@ -118,7 +121,7 @@ summary(model)
 * Оценивается исходная регрессия и из неё получаются остатки $\hat{\varepsilon}_i$.
 * Если верить в гомоскедастичность, то дисперсия вектора остатков определяется по формуле $Var(\hat{\varepsilon})=\sigma^2 (I-X(X'X)^{-1}X')$. Т.е. дисперсия у остатков разная (!) даже если $Var(\varepsilon_i)=\sigma^2$. Поэтому остатки стандартизуют по формуле:
 \[
-s_i = \frac{\varepsilon_i}{\sqrt{\hat{\sigma}^2(I-X(X'X)^{-1}X')_{ii}}}
+s_i = \frac{\varepsilon_i}{\sqrt{\hat{\sigma}^2(1-h_{ii})}}
 \]
 Остатки полученные после такого преобразования называют стандартизированными или иногда стьюдентизированными. 
 * Можно построить график зависимости величины $s_i^2$ или $|s_i|$ от переменной, предположительно повинной в гетроскедастичности.
