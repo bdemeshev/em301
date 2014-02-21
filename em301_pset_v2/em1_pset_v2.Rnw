@@ -2,7 +2,11 @@
 
 %\documentclass[11pt,openany]{book}
 
-
+% команды АК.
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\bs}[1]{\boldsymbol{#1}} 
+\newcommand{\hypo}{\mathcal{H}} 
+\newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
 \input{title_bor_utf8_knitr}
 

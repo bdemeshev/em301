@@ -557,3 +557,197 @@ $\hat{p}_1=X_1/n$, $\hat{p}_2=X_2/n$.
 \end{solution}
 
 
+\begin{problem}
+Случайные величины $X_{1}$, ..., $X_{n}$ --- независимы и одинаково распределены с функцией плотности $f(t)=\frac{\theta \cdot\left(\ln  t\right)^{\theta -1}}{t} $  при  $t\in
+\left[1;e\right]$. По выборке из 100 наблюдений оказалось, что $\sum{\ln(\ln(X_{i}))}=-30$ 
+\begin{enumerate}
+\item Найдите ML оценку параметра $\theta$
+\item Постройте 95\% доверительный интервал для $\theta$
+\item С помощью LR, LM и W теста проверьте гипотезу о том, что $\theta=1$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}
+ Функция правдоподобия: \[\calL = \prod_{i=1}^{n} \frac{\theta (\ln X_i)^{\theta-1}}{X_i}\]
+
+Логарифм функции правдоподобия: \[\ln \calL = \sum\limits_{i=1}^{n} \bigl[\ln \bigl(\theta (\ln X_i)^{\theta-1} \bigr) - \ln X_i \bigr] = \sum\limits_{i=1}^{n} [\ln \theta + (\theta-1) \ln\ln X_i - \ln X_i] \hm= n \ln \theta + (\theta-1) \sum\limits_{i=1}^{n} \ln \ln X_i - \sum\limits_{i=1}^{n} \ln X_i\]
+
+\[\frac{\p \ln \calL}{\p \theta} = \frac{n}{\theta} + \sum\limits_{i=1}^{n} \ln \ln X_i \]
+
+FOC: \[\frac{\p \ln \calL}{\p \theta} = 0 \hence \frac{n}{\theta} = -\sum\limits_{i=1}^{n} \ln \ln X_i \hence \hat\theta_{\text{ML}} = - \frac{n}{\sum\limits_{i=1}^{n} \ln \ln X_i} \]
+
+Подставим имеющиеся данные: $- \frac{n}{\sum \ln \ln X_i} = -\frac{100}{-30} = \frac{10}{3}$.
+
+\par\smallskip
+
+\textbf{(b) (3 балла)} Так как оценки ММП асимптотически нормальны, то для нахождения доверительного интервала достаточно найти стандартное отклонение параметра  и~домножить на квантиль двухстороннего распределения: $\PP\left(\left\{|\hat\theta-\theta| \le z_{0{,}025} \sqrt{\var(\hat\theta)}\right\}\right) = 0{,}95$. Известно, что $\widehat{\var}(\hat \theta) = -\bs{H}^{-1} |_{\hat\theta}$. Матрица $\bs{H}$ "--- это матрица вторых производных логарифма функции правдоподобия.
+\[
+\bs{H} = \frac{\p^2 \ln \calL}{\p \theta^2} = -\frac{n}{\theta^2} \hence -\bs{H}^{-1} = \frac{\theta^2}{n} \hence \widehat{\var}(\hat\theta) = \frac{100/9}{100} = \frac19 \hence \hat\sigma_{\theta} = \frac13
+\]
+Следовательно, с вероятность 0,95 $\theta$ лежит в интервале $\frac{10}{3} \pm 1{,}96 \cdot \frac{1}{3} \approx \frac{10}{3} \pm \frac{2}{3}$, или [2{,}680; 3{,}987].
+
+\par\smallskip
+
+\textbf{(c) (3 $\times$ 3 = 9 баллов)} Тест Вальда  выглядит следующим образом:
+\[
+W = \bigl(\mathbf{c}(\bs\theta) - \bs{q}\bigr)' (\bs{C} \bs{I}^{-1}(\bs\theta) \bs{C}')^{-1} \bigl(\mathbf{c}(\bs\theta) - \bs{q} \bigr) \simhypo \chi^2_{r}
+\]
+
+За $\bs{C}$ обозначено $\frac{\p \mathbf{c}(\bs\theta)}{\p \bs\theta}$, за $\bs{I}$ "--- информационная матрица Фишера ($\bs{I}(\theta) = -\E\left( \frac{\p^2 \ln \calL}{\p \bs\theta^2} \right)$). В данном случае $\bs\theta = \theta$, и~нулевая гипотеза $\mathbf{c}(\theta) = \bs{q}$ выглядит как $\theta=1$ ($\mathbf{c}(\theta) = \theta$) "--- одномерный случай, одна степень свободы хи"=квадрата, $W \simhypo \chi^2_1$. $\mathbf{c}'(\theta) = 1$, поэтому расчётная статистика выглядит следующим образом:
+\[
+W = (\hat\theta - \theta_0) \frac{n}{\theta^2} (\hat\theta - \theta_0) = \left( \frac{10}{3} - 1 \right) \cdot \frac{100}{100/9} \cdot \left( \frac{10}{3} - 1 \right) = 49
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR = -2 \left( \left[n \ln \theta_0 + (\theta_0-1) \sum\limits_{i=1}^{n} \ln \ln X_i \cancel{- \sum\limits_{i=1}^{n} \ln X_i}\right] - \left[n \ln \hat\theta + (\hat\theta-1) \sum\limits_{i=1}^{n} \ln \ln X_i \cancel{- \sum\limits_{i=1}^{n} \ln X_i}\right] \right) = \\
+= -2 \left( \cancel{100 \ln 1} \cancel{+ (1-1) (-30)}  - 100 \ln \frac{10}{3} - \left(\frac{10}{3}-1 \right) (-30)  \right) = -2 \left( - 100 \ln \frac{10}{3} + \frac73 \cdot 30  \right) \approx 100{,}8
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}({\theta}_0)' \bs{I}^{-1}({\theta}_{0}) \bs{S}({\theta}_{0}) \simhypo \chi^2_r
+\]
+
+$\bs{S} = \left.\frac{\p \ln \calL}{\p \theta}\right|_{\theta_0}$. В точке $\theta_0$ значение частной производной логарифма функции правдоподобия равно $\frac{100}{1} -30=70$, $\bs{I}^{-1}(\theta_0) = \frac{\theta^2_0}{n} = \frac{1}{100}$, откуда
+\[
+LM = 70\cdot \frac{1}{100} \cdot 70 = 49
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_1$ равно $\approx3{,}84$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \theta=1$ отвергается.
+
+\end{solution}
+
+
+\begin{problem}
+ Величины $X_{1}$, ..., $X_{n}$ --- независимы и нормально распределены, $N(\mu,\sigma^2)$. По 100 наблюдениям $\sum X_i=100$ и  $\sum X_i^2=900$. 
+\begin{enumerate}
+\item Найдите ML оценки неизвестных параметров $\mu$ и $\sigma^2$.
+\item Постройте 95\%-ые доверительные интервалы для $\mu$ и $\sigma^2$
+\item С помощью LR, LM и W теста проверьте гипотезу о том, что $\sigma^2=1$.
+\item С помощью LR, LM и W теста проверьте гипотезу о том, что $\sigma^2=1$ и одновременно $\mu=2$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\[
+\bs\theta =
+\begin{pmatrix} \mu \\ \sigma^2 \end{pmatrix}, \quad
+\calL = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp \left( -\frac{(X_i-\mu)^2}{2\sigma^2} \right), \quad
+\ln \calL = -\frac{n}{2}\ln 2\pi - \frac{n}{2} \ln \sigma^2 - \frac{1}{2\sigma^2} \sum\limits_{i=1}^n (X_i-\mu)^2
+\]
+
+\[
+\text{FOC:} \quad
+\frac{\p \ln \calL}{\p \mu} = \frac{1}{\sigma^2} \sum\limits_{i=1}^n (X_i-\mu), \quad \frac{\p \ln \calL}{\p (\sigma^2)} = -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2} \sum\limits_{i=1}^n (X_i-\mu)^2
+\]
+
+\[
+\frac{\p^2 \ln \calL}{\p \mu^2} = -\frac{n}{\sigma^2}, \quad \frac{\p^2 \ln \calL}{\p \mu \, \p (\sigma^2)} = -\frac{1}{(\sigma^2)^2} \sum\limits_{i=1}^n (X_i - \mu), \quad \frac{\p^2 \ln \calL}{\p (\sigma^2)^2} = \frac{n}{2(\sigma^2)^2} - \frac{1}{(\sigma^2)^3} \sum\limits_{i=1}^n (X_i - \mu)^2
+\]
+
+Т.\,к. даны $\sum X_i$ и $\sum X_i^2$, то можно вывести, что $\sum(X_i - \mu)^2 = \sum X_i^2 - \sum 2\mu X_i + \sum \mu^2 = \sum X_i^2 - 2\mu \sum X_i + n \mu^2$.
+
+Из условий первого порядка следует, что ММП"=оценка матожидания $\hat\mu_{\text{ML}}$ "--- это выборочное среднее, а~дисперсии $\hat\sigma^2_{\text{ML}}$ "--- выборочная дисперсия (без коррекции на одну степень свободы):
+\[
+\hat \mu_{\text{ML}} = \frac1n \sum\limits_{i=1}^n X_i = \frac{100}{100} = 1, \quad \frac{1}{n}\sum\limits_{i=1}^n (X_i - \mu)^2  = \frac{1}{100}(900 - 2\cdot 1 \cdot 100 + 100\cdot 1^2) = \frac{800}{100} = 8
+\]
+
+\par\smallskip
+
+\textbf{(b) (2 + 2 = 4 балла)}
+\[
+\bs{I}(\bs\theta) = -\E\left( \frac{\p^2 \ln \calL}{\p \bs\theta^2} \right), \quad \bs{I}(\hat{\bs\theta}) = \begin{pmatrix} \frac{n}{\hat\sigma^2} & 0 \\ 0 & \frac{n}{2(\hat\sigma^2)^2} \end{pmatrix} = \begin{pmatrix} \frac{100}{8} & 0 \\ 0 & \frac{100}{128}  \end{pmatrix}, \quad \bs{I}^{-1}(\hat{\bs\theta}) = \begin{pmatrix} \frac{2}{25} & 0 \\ 0 & \frac{32}{25} \end{pmatrix}
+\]
+
+Так как ММП"=оценки асимптотически нормальны, то 95\%-й доверительный интервал для вектора неизвестных параметров выглядит как
+\[
+\begin{pmatrix} \hat\mu \pm z_{\frac{\alpha}{2}} \sqrt{\widehat{\var}(\hat\mu)} \\ \hat\sigma^2 \pm z_{\frac{\alpha}{2}} \sqrt{\widehat{\var}(\hat\mu)} \end{pmatrix} \approx \begin{pmatrix} 1 \pm 1{,}96 \sqrt{\frac{2}{25}} \\ 8 \pm 1{,}96 \sqrt{\frac{32}{25}} \end{pmatrix} \approx \begin{pmatrix} [0{,}446; 1{,}554] \\ [5{,}783; 10{,}217] \end{pmatrix}
+\]
+
+\par\smallskip
+
+\textbf{(c) (3 $\times$ 3 = 9 баллов)}
+
+Тест Вальда:
+\[
+W = \bigl(c(\sigma^2) - \sigma^2_0 \bigr)' (\bs{C} \bs{I}^{-1}(\bs\theta) \bs{C}')^{-1} \bigl(c(\sigma^2) - \sigma^2_0 \bigr) \simhypo \chi^2_{r}
+\]
+
+$\frac{\p c}{\p \sigma^2}=1$, поэтому
+\[
+W = \bigl(8-1 \bigr)^2 \frac{n}{2(\sigma^2)^2} = 49\cdot \frac{100}{128} \approx 38{,}28
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR =  -2 \bigl( \ln \calL(\sigma^2_0) - \ln \calL(\hat\sigma^2) \bigr)
+ = -2 \left( -\frac{n}{2} \ln \sigma^2_0 - \frac{1}{2\sigma^2_0} \cdot 800 + \frac{n}{2} \ln \hat\sigma^2 + \frac{1}{2\hat\sigma^2} \cdot 800 \right) = \\
+ -2 \left( \cancel{-50 \ln 1} - \frac{1}{2} \cdot 800 + 50 \ln 8 + \frac{1}{16} \cdot 800 \right) \approx 492
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}(\sigma^2_0)' \bs{I}^{-1}(\sigma^2_{0}) \bs{S}(\sigma^2_{0}) \simhypo \chi^2_r
+\]
+\[
+\bs{I}(\sigma^2_0) = \frac{n}{2(\sigma^2_0)^2} = 50, \quad \bs{S}(\sigma^2_0) = \left. \frac{\p \ln \calL}{\p (\sigma^2)} \right|_{\sigma^2_0} = -\frac{100}{2} + \frac{1}{2} \cdot 800 = 350
+\]
+\[ LM = 350^2 \cdot \frac{1}{50} = 2450
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_1$ равно $\approx3{,}84$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \sigma^2=1$ отвергается.
+
+\par\smallskip
+
+\textbf{(d) (3 $\times$ 3 = 9 баллов)}
+
+Тест Вальда  выглядит следующим образом:
+\[
+W = \bigl(\mathbf{c}(\bs{\hat\theta}) - \bs{q}\bigr)' (\bs{C} \bs{I}^{-1}(\bs{\hat\theta}) \bs{C}')^{-1} \bigl(\mathbf{c}(\bs{\hat\theta}) - \bs{q} \bigr) \simhypo \chi^2_{r}
+\]
+
+За $\bs{C}$ обозначено $\frac{\p \mathbf{c}(\bs\theta)}{\p \bs\theta}$, за $\bs{I}$ "--- информационная матрица Фишера ($\bs{I}(\bs\theta) = -\E\left( \frac{\p^2 \ln \calL}{\p \bs\theta^2} \right)$). В данном случае нулевая гипотеза $\mathbf{c}(\bs\theta) = \bs{q}$ записывается как $\mathbf{c}({\bs{\theta}}) = \begin{pmatrix} \mu \\ \sigma^2 \end{pmatrix} = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$, поэтому все статистики имеют две степени свободы хи"=квадрата. $\bs{C} = \frac{\p  \mathbf{c}}{\p \bs\theta} = \begin{pmatrix} \frac{\p  c_1}{\p \mu} & \frac{\p  c_2}{\p \mu} \\ \frac{\p  c_1}{\p \sigma^2} & \frac{\p  c_2}{\p \sigma^2} \end{pmatrix} =  \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $\mathbf{c}(\bs\theta) - \bs{q}  = \begin{pmatrix} 1 \\ 8 \end{pmatrix} - \begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \\ 7 \end{pmatrix}$, поэтому расчётная статистика выглядит следующим образом:
+\[
+W = \begin{pmatrix} -1 & 7 \end{pmatrix} \left[ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} \frac{100}{8} & 0 \\ 0 & \frac{100}{128}  \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \right] \begin{pmatrix} -1  \\  7 \end{pmatrix} =
+\begin{pmatrix} -1 & 7 \end{pmatrix} \begin{pmatrix} \frac{25}{2} & 0 \\ 0 & \frac{25}{32} \end{pmatrix} \begin{pmatrix} -1  \\  7 \end{pmatrix} = 50{,}78
+\]
+
+Тест отношения правдоподобия:
+\[
+LR = -2 \bigl( \ln \calL_{\text{R}} - \ln \calL_{\text{UR}} \bigr) \simhypo \chi^2_r
+\]
+\begin{multline*}
+LR =  -2 \bigl( \ln \calL(\bs{q}) - \ln \calL(\hat{\bs\theta}) \bigr) = \\
+ = -2 \left( -\frac{n}{2} \ln \sigma^2_0 - \frac{1}{2\sigma^2_0} \left( \sum X_i^2 - 2\mu_0 \sum X_i + n \mu^2_0\right) + \frac{n}{2} \ln \hat\sigma^2 + \frac{1}{2\hat\sigma^2} \left( \sum X_i^2 - 2\hat\mu \sum X_i + n \hat\mu^2\right) \right) = \\
+= -2 \left( \cancel{- \frac{100}{2} \ln 1} - \frac{1}{2} ( 900 \xcancel{- 2\cdot 2 \cdot 100 + 100\cdot 2^2}) +  \frac{100}{2} \ln 8 + \frac{1}{16} ( 900 - 2\cdot 1 \cdot 100 + 100\cdot 1)  \right) \approx 592
+\end{multline*}
+
+Тест множителей Лагранжа:
+\[
+LM = \bs{S}(\bs{\theta}_0)' \bs{I}^{-1}(\bs{\theta}_{0}) \bs{S}(\bs{\theta}_{0}) \simhypo \chi^2_r
+\]
+
+\[
+\bs{I}(\bs\theta_0) = \begin{pmatrix}  \frac{n}{\sigma^2_0} & 0 \\ 0  & \frac{n}{2(\sigma^2_0)^2} \end{pmatrix} = \begin{pmatrix}  100 & 0 \\ 0  & 50 \end{pmatrix}, \quad \bs{I}^{-1}(\bs\theta_0) = \begin{pmatrix}  \frac{1}{100} & 0 \\ 0  & \frac{1}{50} \end{pmatrix}\]
+
+\[\bs{S}(\bs\theta_0) =  \begin{pmatrix} \frac{1}{\sigma^2_0 } (100-100\mu_0) \\ -\frac{100}{2\sigma^2_0} + \frac{1}{2(\sigma_0^2)^2 } (900 - 200\mu_0 + 100\mu_0^2)  \end{pmatrix} = \begin{pmatrix} -100 \\ 400 \end{pmatrix}
+\]
+
+
+\[
+LM =  \begin{pmatrix} -100 & 400 \end{pmatrix}  \begin{pmatrix}  \frac{1}{100} & 0 \\ 0  & \frac{1}{50} \end{pmatrix}  \begin{pmatrix} -100 \\ 400 \end{pmatrix} = 3300
+\]
+
+Для уровня значимости 5\,\% критическое значение $\chi^2_2$ равно $\approx5{,}99$, поэтому во всех трёх тестах гипотеза $\hypo_0\colon \bs\theta=\bs\theta_0$ отвергается.
+
+\end{solution}
+
+
