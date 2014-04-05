@@ -12,6 +12,9 @@ x.factor <- factor(x)
 str(x.factor)
 ```
 
+
+### Графики
+
 Можно построить гистограмму. Штатными средствами R:
 ```{r, warning=FALSE}
 plot(x.factor,main="Любите ли вы сыр?",xlab="Ответ мышки",ylab="Количество мышек")
@@ -21,7 +24,7 @@ plot(x.factor,main="Любите ли вы сыр?",xlab="Ответ мышки"
 ```{r, warning=FALSE}
 library(ggplot2)
 h <- data.frame(x.factor)
-ggplot(h,aes(x=x.factor))+geom_histogram()+theme_bw()+labs(x="Ответ мышки",y="Количество мышек",title="Любите ли вы сыр?")
+qplot(x.factor,data=h)+labs(x="Ответ мышки",y="Количество мышек",title="Любите ли вы сыр?")
 ```
 
 Есть пакет `vcd` с кучей графиков для нескольких качественных переменных. Например, мозаичный график:
@@ -30,6 +33,32 @@ library(vcd)
 g <- Titanic
 mosaic(~Class+Sex+Survived,data=g,shade=TRUE)
 ```
+
+
+
+### добавить parallel coordinates
+
+### добавить circular plot
+
+
+Устанавливаем пакет `alluvial`
+```{r, eval=FALSE}
+require(devtools)
+install_github(repo="alluvial",username="mbojan")
+```
+
+Загружаем `alluvial`
+```{r}
+require(alluvial)
+tit <- as.data.frame(Titanic)
+alluvial( tit[,1:4], freq=tit$Freq, border=NA,
+         hide = tit$Freq < quantile(tit$Freq, .50),
+         col=ifelse( tit$Survived == "No", "red", "gray") )
+```
+
+
+
+### Регрессии и смена базовой категории
 
 Теперь можно строить регрессии и R автоматом будет вводить дамми в нужном количестве. 
 ```{r}
@@ -51,8 +80,8 @@ x.num <- as.numeric(x.factor)
 str(x.num)
 ```
 
-Эта первая заметка, возможно, будет продолжена...
+Почиташки:
 
-### Ищите на [https://github.com/bdemeshev/em301/wiki/r_cycle](https://github.com/bdemeshev/em301/wiki/r_cycle)
+* [Cписок заметок](https://github.com/bdemeshev/em301/wiki/R)
+* [Пакет alluvial](http://bc.bojanorama.pl/2014/03/alluvial-diagrams/)
 
-xxx

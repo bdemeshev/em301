@@ -1,0 +1,101 @@
+\documentclass[pdftex,11pt,openany]{book}
+
+%\documentclass[11pt,openany]{book}
+
+% команды АК.
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\bs}[1]{\boldsymbol{#1}} 
+\newcommand{\hypo}{\mathcal{H}} 
+\newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
+
+\input{title_bor_utf8_knitr}
+
+
+% чисто эконометрические сокращения:
+\input{emetrix_preamble}
+
+
+% стандартизация
+% эпсилон во временных рядах --- белый шум, а в остальных сюжетах --- остатки, подумать
+% транспонирование --- штрих
+
+% задачи типа "воспроизведите тест такой-то ручками в R" -> в тему согласно тесту, а не в доп. задачи по программированию
+
+% идеи задач:
+% * Задача на корреляционную матрицу по реальным данным require(quantmod)
+% Задача про суеверную Мырли. Можно ли там что-то про se сказать?
+% теорему FWL в массы!
+% симуляционные задачи на ошибки 1, 2 рода, мощность
+% E_t(X) или с указанием сигма-алгебры
+
+% выложить преамбулу
+
+
+% перегнанные банки:
+% 1 ---20
+
+% осталось:
+% задача 12, компьютерное про пи (алгоритмы вычисления)
+% распределить проверить наличие программистко-сюжетных упражнений
+
+
+% для отдельной упаковки решений
+\input{prob_and_sol_2chap}
+
+
+\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\author{Дмитрий Борзых, Борис Демешев}
+\date{\today}
+
+\makeindex % команда для создания предметного указателя
+\bibliographystyle{plain} % стиль оформления ссылок
+
+
+\begin{document}
+
+
+
+
+<<"setup", echo=FALSE, message=FALSE,tidy=FALSE,warning=FALSE>>=
+require(knitr)
+opts_chunk$set(cache=FALSE,
+               dev="png",dpi=300,
+               warning=FALSE,
+               tidy=FALSE, 
+               echo=TRUE,
+               out.height="7cm",out.width="7cm") 
+
+require(ggplot2)
+require(Hmisc)
+require(lmtest)
+require(apsrtable)
+require(xtable)
+require(MASS)
+require(car)
+require(texreg)
+
+require(econru)
+
+theme_set(theme_bw())
+
+load('pset_data.Rdata')
+@
+
+%\listoftodos
+
+% МНК
+
+
+\problemonly
+
+
+
+<<child='chapters/080_hetero.Rnw'>>=
+@
+
+
+
+
+
+
+\end{document}
