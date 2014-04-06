@@ -3,11 +3,12 @@
 Загружаем нужные пакеты:
 ```{r, message=FALSE}
 library(knitr)
-opts_chunk$set(cache=TRUE)
+opts_chunk$set(cache=FALSE)
 
 library(ggplot2) # графики
 library(kernlab) # Support Vector Machines
 # install.packages("kernlab") # может быть нужно установить пакеты...
+require(plyr)
 ```
 
 Другой популярный пакет для SVM в R --- это `e1071`.
@@ -39,7 +40,7 @@ SVM пытается разделить гиперплоскостью наши 
 
 Загружаем данные по стоимости квартир в Москве:
 ```{r}
-filename <- "~/science/econometrix/em301/datasets/flats_moscow.txt"
+filename <- "../datasets/flats_moscow.txt"
 h <- read.table(filename,header=TRUE)
 str(h)
 ```
@@ -186,7 +187,14 @@ d <- ddply(d,~C+sigma,transform,cr=f_cross(sigma,C))
 head(d)
 ```
 
+### Вкусная Морковка
 
+Есть замечательный пакет `caret` созвучный с carrot :) В нем реализовано и деление выборки на тестовую и обучающую части и подбор параметров SVM  с помощью кросс-валидации. А также куча других морковок :)
+
+```{r}
+require(caret)
+
+```
 
 ### Недостатки SVM в задаче классификации
 
@@ -237,10 +245,10 @@ head(probs)
 
 ### Ссылки:
 
-[A Practical Guide to Support Vector Classiffication](http://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf), отсюда взята инструкция по практике SVM 
+* [A Practical Guide to Support Vector Classiffication](http://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf), отсюда взята инструкция по практике SVM 
 
-[A User's Guide to Support Vector Machines](http://pyml.sourceforge.net/doc/howto.pdf) --- картинки, помогающие понять разницу гауссовского ядра для разных $C$ и $\sigma$ с примерами на питоне. Питон --- это еще один подходящий язык програмирования для анализа данных.
+* [A User's Guide to Support Vector Machines](http://pyml.sourceforge.net/doc/howto.pdf) --- картинки, помогающие понять разницу гауссовского ядра для разных $C$ и $\sigma$ с примерами на питоне. Питон --- это еще один подходящий язык програмирования для анализа данных.
 
-
+* Пакет caret: [официальный сайт](http://caret.r-forge.r-project.org/), [статья  в ...](), и [введение побольше]()
 
 
