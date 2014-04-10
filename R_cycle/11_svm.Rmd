@@ -249,6 +249,6 @@ head(probs)
 
 * [A User's Guide to Support Vector Machines](http://pyml.sourceforge.net/doc/howto.pdf) --- картинки, помогающие понять разницу гауссовского ядра для разных $C$ и $\sigma$ с примерами на питоне. Питон --- это еще один подходящий язык програмирования для анализа данных.
 
-* Пакет caret: [официальный сайт](http://caret.r-forge.r-project.org/), [статья  в ...](), и [введение побольше]()
+* Пакет caret: [официальный сайт](http://caret.r-forge.r-project.org/), [статья  в JSS](http://www.jstatsoft.org/v28/i05/paper), и [введение побольше](http://cran.cermin.lipi.go.id/web/packages/caret/vignettes/caretTrain.pdf). Пакет достаточно активно обновляется и это радует :)
 
 
