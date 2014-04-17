@@ -10,11 +10,16 @@ library(xtable)
 library(texreg)
 ```
 
-Устанавливаем рабочую папку и загружаем данные:
+Загружаем [данные](https://github.com/bdemeshev/em301/raw/master/datasets/mesto_jenshini.dta) в R:
 ```{r}
-setwd("~/science/econometrix/em301/sem_01_logit_plita/")
-h <- read.dta("mesto_jenshini.dta")
+h <- read.dta("../datasets/mesto_jenshini.dta")
 ```
+
+Это данные американского социологического опроса National Longitudinal Survey of Youth. Основная переменная, `agree`, показывает согласна ли опрашиваемая женщина с утверждением "Место женщины у плиты!" Мы оценим logit и probit модели для переменной `agree`.
+
+![](03_plita.gif)
+
+Андрей Цветков, ["Место женщины"](http://ccra.ru/Plk)
 
 ## До оценки моделей
 
@@ -76,19 +81,27 @@ new <- data.frame(age=c(20,24),
 new
 ```
 
-Now we predict probability for these additional observations
+В логит и пробит-моделях можно прогнозировать значение скрытой переменной (склонности ответить "да") или вероятность $y_i=1$ (вероятность ответить "да"). Прогноз скрытой переменной:
+```{r}
+predict(m.logit,new)
+```
+
+Немножко другой командой получаются прогнозы вероятности $y_i=1$:
 ```{r}
 predict(m.logit,new,type="response")
 ```
 
-Constructing the confidence interval for these new observations:
+Поскольку в методе максимального правдоподобия оценка любого параметра является асимпотически нормальной, то доверительный интервал для любого параметра $a$ строится по принципу $[\hat{a}-z_{cr}se(\hat{a});\hat{a}+z_{cr}se(\hat{a})]$. Для того, чтобы получить стандартные ошибки, как для оценки ожидаемой склонности ответить "да", так и для оценки вероятности ответить "да", используется опция `se.fit=TRUE`.
+
+Поскольку чаще всего нужен доверительный интервал именно для вероятностей, мы построим только его. Если нужен доверительный интервал для ожидаемой склонности ответить да, то он строится аналогично:
+
 ```{r}
 forecast <- predict(m.logit,new,type="response",se.fit=TRUE)
 new$hat.p <- forecast$fit
-new$hat.p.se <- forecast$se.fit
-z.crit <- qnorm(0.975)
-new$ci.left <- new$hat.p - z.crit * new$hat.p.se
-new$ci.right <- new$hat.p + z.crit * new$hat.p.se
+new$se.hat.p <- forecast$se.fit
+z.cr <- qnorm(0.975)
+new$ci.left <- new$hat.p - z.cr * new$se.hat.p
+new$ci.right <- new$hat.p + z.cr * new$se.hat.p
 new
 ```
 
