@@ -217,7 +217,9 @@ Regression fallacy (заодно и история термина регресс
 * В рассказ про логит/пробит добавить про perfect separation
 http://stats.stackexchange.com/questions/45803/logistic-regression-in-r-resulted-in-hauck-donner-phenomenon-now-what
 
-
+* Стащить задачи из
+  * олимпиада по метрики
+  * миэфовские UOL
 
 
 
