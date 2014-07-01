@@ -58,6 +58,29 @@ sudo rstudio-server start
 sudo rstudio-server restart
 ```
 
+Запустить скрипт на амазоне, а свой комп выключить :)
+```{r, eval=FALSE}
+ssh -i your_key.pem ubuntu@your-ec2-ip-address
+tmux
+Rscript your_R_script.R
+```
+
+Далее нажимаем `ctrl-B` и затем `D`. Интересующий нас скрипт сейчас работает внутри сессии `tmux`. Теперь можно спокойно отсоединиться от удалённого компа
+
+```{r, eval=FALSE}
+logout
+```
+
+Теперь можно принять ванну, выпить чашечку кофе и потом глянуть, как там дела там у амазона:
+```{r, eval=FALSE}
+ssh -i your_key.pem ubuntu@your-ec2-ip-address
+tmux list-sessions
+tmux attach
+```
+
+
+
+
 
 Готовые AMI образы с Rstudio.
 * [Louis Aslett](http://www.louisaslett.com/RStudio_AMI/)
@@ -133,4 +156,12 @@ dev.off()
 ## Opencpu
 
 Проект [opencpu](https://public.opencpu.org/) позволяет создать своё облачко :) чтобы на нём болтало ножками написанное на R приложение. Среди [примеров приложений](https://public.opencpu.org/apps.html) есть [автоматом обновляющийся Rmd](https://public.opencpu.org/ocpu/library/markdownapp/www/), которым можно воспользоваться по-быстрому, чтобы показать Rmd на семинаре ;)
+
+## Ссылки:
+
+* Как запустить процесс на удаленном компе, [перестать беспокоиться](http://askubuntu.com/questions/8653/) и начать жить
+
+
+
+
 
