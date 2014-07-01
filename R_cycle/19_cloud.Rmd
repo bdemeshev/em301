@@ -51,6 +51,13 @@ sudo gdebi rstudio-server-0.97.551-amd64.deb
 sudo rstudio-server verify-installation
 ```
 
+Запустить-остановить-перезапустить R-studio server:
+```{r, eval=FALSE}
+sudo rstudio-server stop
+sudo rstudio-server start
+sudo rstudio-server restart
+```
+
 
 Готовые AMI образы с Rstudio.
 * [Louis Aslett](http://www.louisaslett.com/RStudio_AMI/)

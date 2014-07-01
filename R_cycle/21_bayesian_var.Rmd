@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 Загружаем пакеты
 
 ```{r, message=FALSE}
@@ -5,6 +8,14 @@ require(vars)
 require(mvtsplot)
 require(MSBVAR)
 ```
+
+[//]: # (В настоящее время пакет `MSVBAR` есть только на [гитхабе](https://github.com/bdemeshev/msbvar). При поставленных утилитах пакет инсталлируется так:)
+
+```{r, eval=FALSE, echo=FALSE}
+require("devtools")
+install_github("bdemeshev/msbvar")
+```
+
 
 Строим необычный график для многомерных временных рядов
 ```{r}
@@ -55,17 +66,6 @@ model <- szbsvar(Y, p=5, z=z2, lambda0=0.8, lambda1=0.1,
 summary(model)
 ```
 
-В summary для SVAR моделей есть ошибка
-Нужно достать код функции 
-```{r}
-MSBVAR:::summary.BSVAR
-```
-Добавить в него первой строчкой 
-```{r}
-p <- dim(object$ar.coefs)[3]
-```
-И сохранить под видом какой-нибудь функции
-
 
 
 simulate A0 posterior
@@ -84,7 +84,9 @@ plot(model.irfs)
 * [Двигаем горы](http://www.polmeth.wustl.edu/media/Paper/brand02.pdf)
 * Оригинальная [статья Sim, Zha](http://sims.princeton.edu/yftp/ier/cstzIER95.PDF)
 
-Автор не ответил на письмо об ошибке, похоже нужно выкладывать пакет в открытый доступ с исправленной ошибкой самостоятельно. А студентам можно предложить дополнить его алгоритмами из MBR пакета.
+Я заинтересован в развитии этого пакета. Если есть желающие писать ВКР, не боящиеся прогать и шарящие в вероятностях --- добро пожаловать!
+
+
 
 
 
