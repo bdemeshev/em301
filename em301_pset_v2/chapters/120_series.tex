@@ -12,43 +12,41 @@
 \begin{problem}
 На графике представлены данные по уровню озера Гур\'{о}н в футах в 1875-1972 годах:  
 
-<<include=FALSE>>=
-library(zoo)
-library(tseries)
-library(ggplot2)
-level <- LakeHuron
-df <- data.frame(level,obs=1875:1972)
-n <- nrow(df) # used later for answers
-v.acf <- acf(level,plot=FALSE)$acf
-v.pacf <- pacf(level,plot=FALSE)$acf
-acfs.df <- data.frame(lag=c(1:15,1:15),
-    acf=c(v.acf[2:16],v.pacf[1:15]),
-    acf.type=rep(c("ACF","PACF"),each=15))
-model <- arima(level,order=c(1,0,1))
-resids <- model$residuals
-resid.acf <- acf(resids,plot=FALSE)$acf
-@
 
-<<warning=FALSE,message=FALSE,out.height="6cm",out.width="6cm">>=
-ggplot(df,aes(x=obs,y=level))+geom_line()+
-    labs(x="Год",ylab="Уровень озера (футы)")
-@
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(df,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= obs,} \hlkwc{y} \hlstd{= level))} \hlopt{+} \hlkwd{geom_line}\hlstd{()} \hlopt{+} \hlkwd{labs}\hlstd{(}\hlkwc{x} \hlstd{=} \hlstr{"\textbackslash{}320\textbackslash{}223\textbackslash{}320\textbackslash{}276\textbackslash{}320\textbackslash{}264"}\hlstd{,}
+    \hlkwc{ylab} \hlstd{=} \hlstr{"\textbackslash{}320\textbackslash{}243\textbackslash{}321\textbackslash{}200\textbackslash{}320\textbackslash{}276\textbackslash{}320\textbackslash{}262\textbackslash{}320\textbackslash{}265\textbackslash{}320\textbackslash{}275\textbackslash{}321\textbackslash{}214 \textbackslash{}320\textbackslash{}276\textbackslash{}320\textbackslash{}267\textbackslash{}320\textbackslash{}265\textbackslash{}321\textbackslash{}200\textbackslash{}320\textbackslash{}260 (\textbackslash{}321\textbackslash{}204\textbackslash{}321\textbackslash{}203\textbackslash{}321\textbackslash{}202\textbackslash{}321\textbackslash{}213)"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=6cm,height=6cm]{figure/unnamed-chunk-2} 
+
+\end{knitrout}
+
 
 График автокорреляционной и частной автокорреляционной функций:
 
-<<warning=FALSE,out.height="6cm",out.width="6.5cm">>=
-ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
-    geom_histogram(position="dodge",stat="identity")+
-  xlab("Лаг")+ylab("Корреляция") +
-  guides(fill=guide_legend(title=NULL))+
-  geom_hline(yintercept=1.96/sqrt(nrow(df)))+
-  geom_hline(yintercept=-1.96/sqrt(nrow(df)))
-@
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(acfs.df,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= lag,} \hlkwc{y} \hlstd{= acf,} \hlkwc{fill} \hlstd{= acf.type))} \hlopt{+} \hlkwd{geom_histogram}\hlstd{(}\hlkwc{position} \hlstd{=} \hlstr{"dodge"}\hlstd{,}
+    \hlkwc{stat} \hlstd{=} \hlstr{"identity"}\hlstd{)} \hlopt{+} \hlkwd{xlab}\hlstd{(}\hlstr{"\textbackslash{}320\textbackslash{}233\textbackslash{}320\textbackslash{}260\textbackslash{}320\textbackslash{}263"}\hlstd{)} \hlopt{+} \hlkwd{ylab}\hlstd{(}\hlstr{"\textbackslash{}320\textbackslash{}232\textbackslash{}320\textbackslash{}276\textbackslash{}321\textbackslash{}200\textbackslash{}321\textbackslash{}200\textbackslash{}320\textbackslash{}265\textbackslash{}320\textbackslash{}273\textbackslash{}321\textbackslash{}217\textbackslash{}321\textbackslash{}206\textbackslash{}320\textbackslash{}270\textbackslash{}321\textbackslash{}217"}\hlstd{)} \hlopt{+}
+    \hlkwd{guides}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlkwd{guide_legend}\hlstd{(}\hlkwc{title} \hlstd{=} \hlkwa{NULL}\hlstd{))} \hlopt{+} \hlkwd{geom_hline}\hlstd{(}\hlkwc{yintercept} \hlstd{=} \hlnum{1.96}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlkwd{nrow}\hlstd{(df)))} \hlopt{+}
+    \hlkwd{geom_hline}\hlstd{(}\hlkwc{yintercept} \hlstd{=} \hlopt{-}\hlnum{1.96}\hlopt{/}\hlkwd{sqrt}\hlstd{(}\hlkwd{nrow}\hlstd{(df)))}
+\end{alltt}
+\end{kframe}
+\includegraphics[width=6.5cm,height=6cm]{figure/unnamed-chunk-3} 
+
+\end{knitrout}
+
 
 
 \begin{enumerate}
 \item Судя по графикам, какие модели класса ARMA или ARIMA имеет смысл оценить?
-\item По результатам оценки некоей модели ARMA c двумя параметрами, исследователь посчитал оценки автокорреляционной функции для остатков модели. Известно, что для остатков модели первые три выборочные автокорреляции равны соответственно $\Sexpr{resid.acf[2]}$, $\Sexpr{resid.acf[3]}$ и $\Sexpr{resid.acf[4]}$. С помощью подходящей статистики проверьте гипотезу о том, что первые три корреляции ошибок модели равны нулю.
+\item По результатам оценки некоей модели ARMA c двумя параметрами, исследователь посчитал оценки автокорреляционной функции для остатков модели. Известно, что для остатков модели первые три выборочные автокорреляции равны соответственно $0.0047$, $-0.0129$ и $-0.063$. С помощью подходящей статистики проверьте гипотезу о том, что первые три корреляции ошибок модели равны нулю.
 \end{enumerate}
 \end{problem}
 
@@ -58,13 +56,13 @@ ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
 \item Можно использовать одну из двух статистик
 \[
 \text{Ljung-Box}=n(n+2)\sum_{k=1}^3\frac{\hat{\rho}_k^2}{n-k}=
-\Sexpr{n*(n+2)*(resid.acf[2]^2/(n-1)+resid.acf[3]^2/(n-2)+resid.acf[4]^2/(n-3))}
+0.4289
 \]
 \[
 \text{Box-Pierce}=n\sum_{k=1}^3\hat{\rho}_k^2=
-\Sexpr{n*(resid.acf[2]^2+resid.acf[3]^2+resid.acf[4]^2)}
+0.4076
 \]
-Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=\Sexpr{qchisq(0.95,df=3)}$.
+Критическое значение хи-квадрат распределения с 3-мя степенями свободы для $\alpha=0.05$ равно $\chi^2_{3,crit}=7.8147$.
 Вывод: гипотеза $H_0$ об отсутствии корреляции ошибок модели не отвергается.
 \end{enumerate}
 \end{solution}
@@ -90,13 +88,12 @@ ggplot(acfs.df,aes(x=lag,y=acf,fill=acf.type))+
 
 \begin{solution}
 
-<<echo=FALSE,include=FALSE>>=
-require(fUnitRoots) # critical values for adf test
-@
+
+
 
 \begin{enumerate}
 \item $H_0$: ряд содержит единичный корень, $\beta=0$; $H_0$: ряд не содержит единичного корня, $\beta<0$
-\item $ADF=-0.4/0.1=-4$, $ADF_{crit}=\Sexpr{qadf(0.05,N=100,trend="c",statistic="t")}$, $H_0$ отвергается
+\item $ADF=-0.4/0.1=-4$, $ADF_{crit}=-2.89$, $H_0$ отвергается
 \item Ряд стационарен
 \item При верной $H_0$ ряд не стационарен, и  $t$-статистика имеет не $t$-распределение, а распределение Дики-Фуллера.
 \end{enumerate}
