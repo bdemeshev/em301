@@ -7,14 +7,71 @@
 
 # Первичное создание пакета
 
-* Пишем несколько очень полезных функций и помещаем их в файл useful.R
-* Создаём правильную структуру папок для пакета
+* Создаём папку с названием нашего пакета, пусть будет пакет `honey`:)
+* Внутри этой папки создаём подпапку `R`.
+* Пишем несколько очень полезных функций и помещаем их в файл `honey.R` внутри папки `honey/R`. Если функций очень много, то их можно поместить в отдельные файлы.
+* В папке `honey` создаём файл `DESCRIPTION` с описанием пакета. Примерно такой
 ```{r, eval=FALSE}
-package.skeleton(name="useful",code.files="useful.R")
+Package: honey
+Type: Package
+Title: R package to get honey.
+Version: 0.1
+Date: 2014-07-25
+Author: Winni-the-Pooh
+Maintainer: Winni-the-Pooh <xxx.yyy@zzz.com>
+Description: This package contains functions useful to distinguish good and bad bees.
+License: MIT
 ```
-R поместит наш файл `useful.R` в нужную папку в структуре пакета. Теперь мы будем редактировать только его.
-* Перед каждой функцией пишем документацию примерно такого вида:
+* Перед каждой функцией файла `honey.R` пишем документацию примерно такого вида:
 
+```{r, eval=FALSE}
+#' Evaluates the amount of good honey given the tree
+#'
+#' The amount of honey is estimated using the latest mcmc methods.
+#'
+#' @param tree the tree for which the amount of honey is estimated
+#' @return numeric the estimated amount of good honey
+#' @export
+#' @examples
+#' honey_evaluate(tree)
+```
+
+* В начале файла `honey.R` пишем описание пакета в целом:
+
+
+```{r, eval=FALSE}
+#' honey
+#'
+#' @name honey
+#' @docType package
+#' @author Winnie-the-Pooh 
+#' @import MCMCpack ggplot2
+NULL
+```
+
+* Если пакет включает в себя наборы данных, то:
+
+    * Создаём подпапку `data` в папке `honey`
+    * Помещаем в неё все файлы с данными, пусть будет `pot.rda`
+    * В файл `honey.R` после описания пакета в целом помещаем описание данных
+  
+```{r, eval=FALSE}
+#' Data on honey prices
+#'
+#' A dataset containing xxx The variables are as follows:
+#'
+#' \itemize{
+#' \item pot the number of honey pot
+#' \item price the price of the pot in rubbles
+#' }
+#'
+#' @docType data
+#' @keywords datasets
+#' @name honey_price
+#' @usage data(honey_price)
+#' @format A data frame with xxx rows and yyy variables
+NULL
+```
 
 # Типичный сценарий работы над пакетом
 
@@ -22,21 +79,30 @@ R поместит наш файл `useful.R` в нужную папку в ст
 ```{r, eval=FALSE}
 require("devtools")
 require("roxygen2")
-setwd("...")
+setwd("honey")
 
 dev_mode()
 ```
 
 * Что-то там изменили в функции и в её документации
 
-* Обновили документацию, установили и загрузили новую версию пакета
+* Обновили документацию
+```{r, eval=FALSE}
+document()
+```
+
+* установили и загрузили новую версию пакета
 ```{r, eval=FALSE}
 
-install("useful")
-require("useful")
+install("../honey")
+require("honey")
 ```
 
 * Опять изменили, опять обновили. До тех пор, пока не надоест или не заработает.
+```{r, eval=FALSE}
+dev_mode(FALSE)
+```
+
 
 * Выложили готовый пакет на github
 
@@ -45,11 +111,11 @@ require("useful")
 Любой другой человек сможет установить наш пакет командами
 ```{r, eval=FALSE}
 require("devtools")
-install_github(repo="useful",username="...")
+install_github(repo="honey",username="...")
 ```
 И далее использовать после обычного
 ```{r, eval=FALSE}
-require("useful"")
+require("honey")
 ```
 
 
