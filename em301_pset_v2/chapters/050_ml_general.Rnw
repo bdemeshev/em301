@@ -751,3 +751,35 @@ LM =  \begin{pmatrix} -100 & 400 \end{pmatrix}  \begin{pmatrix}  \frac{1}{100} &
 \end{solution}
 
 
+
+%%%% попробовать взять несколько значений эпсилон с разной вероятностью?
+\begin{problem}
+Рассмотрим модель регрессии 
+\begin{equation}
+\begin{pmatrix}
+y_1 \\
+y_2 \\
+y_3
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 \\
+1 & 0 \\
+1 & 1
+\end{pmatrix} \cdot
+\begin{pmatrix}
+\b_1 \\
+\b_2 
+\end{pmatrix} +
+\begin{pmatrix}
+\e_1 \\
+\e_2 \\
+e_3
+\end{pmatrix}
+\end{equation}
+, где $\e_1$, $\e_2$, $\e_3$ независимы и равновероятно принимаю значения $+1$ и $-1$. При помощи метода максимального правдоподобия оцените $\b_1$, $\b_2$, если $y'=(-1,1,2)$.
+\end{problem}
+
+\begin{solution}
+Можно решать перебором вариантов.
+\end{solution}
