@@ -30,7 +30,7 @@ opts_chunk$set(warning=FALSE,message=FALSE,dev='png',dpi=300)
 Очень люблю, ну просто обожаю, пельмени. Но нужно строить графики!
 
 <<>>=
-getSymbols(Symbols="GOOG",from="2012-01-01",to="2013-08-08")
+getSymbols(Symbols="GOOG",src="google",from="2012-01-01",to="2013-08-08")
 gribok <- data.frame(t=time(GOOG),coredata(GOOG))
 head(gribok) # первые 6 строчек таблицы
 @
