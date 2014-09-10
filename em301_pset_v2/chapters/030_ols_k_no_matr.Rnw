@@ -1350,3 +1350,13 @@ JB=\frac{S^2}{6} + \frac{(K-3)^2}{24},
 
 \begin{solution}
 \end{solution}
+
+
+\begin{problem}
+Рассмотрим классическую модель линейной регрессии. Найдите предел $\lim R^2$ при условии, что $\sigma^2 \rightarrow \infty$.
+\end{problem}
+
+
+\begin{solution}
+$0$
+\end{solution}
