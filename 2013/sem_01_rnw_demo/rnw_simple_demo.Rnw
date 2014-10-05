@@ -25,6 +25,8 @@ opts_chunk$set(echo=TRUE) # echo=TRUE включает программный к
 opts_chunk$set(warning=FALSE,message=FALSE,dev='png',dpi=300)
 # warning=TRUE включает предупреждения в готовый pdf
 # message=TRUE включает системные сообщения от функций в pdf
+invisible(Sys.setlocale("LC_MESSAGES", "C")) # установка локали потенциально решает проблему 
+invisible(Sys.setlocale("LC_TIME", "C")) # с отсутствием дат в getSymbols с гугла :)
 @
 
 Очень люблю, ну просто обожаю, пельмени. Но нужно строить графики!
