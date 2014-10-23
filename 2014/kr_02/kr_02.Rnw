@@ -1,0 +1,130 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+\input{title_bor_knitr}
+
+<<echo=FALSE,message=FALSE,warning=FALSE>>=
+library("knitr")
+library("xtable")
+library("lmtest")
+@
+
+%\input{emetrix_preamble}
+
+\begin{document}
+\parindent=0 pt % отступ равен 0
+
+\section*{Паниковать на контрольной строго воспрещается! :)}
+\thispagestyle{empty}
+\begin{enumerate}
+
+\item  По 47 наблюдениям оценивается зависимость доли мужчин занятых в сельском хозяйстве от уровня образованности и доли католического населения по Швейцарским кантонам в 1888 году.
+
+\[Agriculture_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+
+<<echo=FALSE,message=FALSE>>=
+h <- swiss
+model1 <- glm(Agriculture~Examination+Catholic,data=h)
+coef.t <- coeftest(model1)
+dimnames(coef.t)[[2]] <- 
+    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+coef.t <- coef.t[,-4]
+coef.t[1,1] <- NA
+coef.t[2,2] <- NA
+coef.t[3,3] <- NA
+@
+
+
+
+<<results='asis',echo=FALSE>>=
+xtable(coef.t)
+@
+
+\begin{enumerate}
+\item Заполните пропуски в таблице
+\item Укажите коэффициенты, значимые на 10\% уровне значимости.
+\item Постройте 99\%-ый доверительный интервал для коэффициента при переменной Catholic 
+\end{enumerate}
+
+\item В рамках классической линейной модели с неслучайными регрессорами найдите $\Var(\hat{\varepsilon})$, $\Cov(\hat{\beta},\hat{\varepsilon})$. Верно ли, что $\Cov(\hat{\varepsilon}_1,\hat{\varepsilon}_2)=0$?
+
+<<echo=FALSE>>=
+X <- model.matrix(model1)
+B <- t(X) %*% X
+colnames(B) <- NULL
+rownames(B) <- NULL
+XXm <- solve(B)
+x <- xtable(B,align=rep("",ncol(B)+1),digits=0)
+xm <- xtable(XXm,align=rep("",ncol(B)+1),digits = 5)
+# print(xm, floating=FALSE, tabular.environment="bmatrix", 
+#      hline.after=NULL, include.rownames=FALSE, include.colnames=FALSE)
+@
+
+
+
+\item Эконометресса Ефросинья оценивала модель $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$. Найдя матрицы $X'X$ и $(X'X)^{-1}$, она призадумалась...
+
+$X'X = \begin{bmatrix}{}
+  47 & 775 & 1934 \\ 
+  775 & 15707 & 23121 \\ 
+  1934 & 23121 & 159570 \\ 
+  \end{bmatrix}$, 
+$(X'X)^{-1}=\begin{bmatrix}{}
+  0.26653 & -0.01067 & -0.00168 \\ 
+  -0.01067 & 0.00051 & 0.00006 \\ 
+  -0.00168 & 0.00006 & 0.00002 \\ 
+  \end{bmatrix}$
+
+
+\begin{enumerate}
+\item Помогите Ефросинье найти количество наблюдений, $\bar{z}$, $\sum x_i z_i$, $\sum(x_i-\bar{x})(z_i-\bar{z})$
+\item (*) Ефросинья решила зачем-то также оценить модель $x_i = \gamma_1 + \gamma_2 z_i + u_i$. Как она может найти RSS в новой модели в одно арифметическое действие?
+\end{enumerate}
+
+\item Регрессионная модель  задана в матричном виде при помощи уравнения $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
+Известно, что $\E(\varepsilon)=0$  и  $\Var(\varepsilon)=\sigma^2\cdot I$.
+Известно также, что 
+
+$y=\left(
+\begin{array}{c} 
+1\\ 
+2\\ 
+3\\ 
+4\\ 
+2
+\end{array}\right)$, 
+$X=\left(\begin{array}{ccc}
+1 & 0 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1 
+\end{array}\right)$.
+
+
+Для удобства расчетов приведены матрицы 
+
+
+$X'X=\left(
+\begin{array}{ccc} 
+5 & 3 & 1\\ 
+3 & 3 & 1\\ 
+1 & 1 & 1 
+\end{array}\right)$ и $(X'X)^{-1}=\frac{1}{2}\left(
+\begin{array}{ccc} 
+1 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 3
+\end{array}\right)$.
+
+\begin{enumerate}
+\item Найдите вектор МНК-оценок коэффициентов $\hat{\beta}$.
+\item Найдите несмещенную оценку для неизвестного параметра $\sigma^2$.
+\item Проверьте гипотезу $\beta_2=0$ против альтернативной о неравенстве на уровне значимости 5\%
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}

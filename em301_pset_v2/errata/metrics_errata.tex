@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[parfill]{parskip}
+\title{Список опечаток}
+
+\newcommand{\reportedby}[2]{{\small [First reported by #1 on \mbox{#2}.]}}
+\newcommand{\erratum}[1]{\subsubsection*{#1}}
+% \erroronpage <page> <line info> <contributor> <date> 
+\newcommand{\erroronpage}[4]{\textbf{Страница #1, #2} (#3, #4)}
+
+
+
+\begin{document}
+\maketitle
+\begin{abstract} Список очепяток
+\end{abstract}
+
+\section{Первое издание задачника}
+
+\erroronpage{161}{пункт 7 и 8}{Александр Левкун}{22.10.2014}
+
+Вместо $\beta_1$ везде должно быть $\beta_2$.
+
+\erroronpage{56}{строка 2}{Александр Левкун}{22.10.2014}
+
+Должно быть $y_i=\beta_1+\beta_2 x_{i2} + \beta_3 x_{i3}+\varepsilon_i$
+
+
+
+\end{document}

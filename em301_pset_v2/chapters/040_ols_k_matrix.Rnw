@@ -193,7 +193,7 @@ $X^T X =  \begin{pmatrix}
 
 
 \begin{problem}
-Пусть $y_i = \beta_1 + \beta_2 x_{1i} + \beta_3 x_{2i} + \e_i$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
+Пусть $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$ --- регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$
 
 
 <<echo=FALSE,results='asis'>>=
@@ -290,12 +290,12 @@ x_x <- solve(xx)
 \item $RSS = 2$
 \item $\hat{\beta} = \begin{pmatrix} \hat{\beta}_1 \\ \hat{\beta}_2 \\ \hat{\beta}_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
 \item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель <<хорошо>> описывает данные
-\item Основная гипотеза --- $H_0: \beta_1 = 0$, альтернативная гипотеза --- $H_a: \beta_1 \not= 0$
+\item Основная гипотеза --- $H_0: \beta_2 = 0$, альтернативная гипотеза --- $H_a: \beta_2 \not= 0$
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hat{\beta}_2 - \beta_2}{\sqrt{\widehat{Var}(\hat{\beta}_2)}} = \frac {\hat{\beta}_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 0}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
+\item $T_{obs} = \frac{\hat{\beta}_2 - 0}{\sqrt{\widehat{Var}(\hat{\beta}_2)}} = \frac {\hat{\beta}_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
