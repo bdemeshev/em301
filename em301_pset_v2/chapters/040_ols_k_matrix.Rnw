@@ -5,8 +5,8 @@
 Пусть $y = X\beta + \e$ --- регрессионная модель.
 \begin{enumerate}
 \item Сформулируйте теорему Гаусса-Маркова
-\item Верно ли, что оценка $\hat{\beta} = (X'X)^{-1}X'y$ несмещённая?
-\item В условиях теоремы Гаусса-Маркова найдите ковариационную матрицу $\hat{\beta}$
+\item Верно ли, что оценка $\hb = (X'X)^{-1}X'y$ несмещённая?
+\item В условиях теоремы Гаусса-Маркова найдите ковариационную матрицу $\hb$
 \end{enumerate}
 \end{problem}
 
@@ -24,7 +24,7 @@
 
 
 \begin{problem}
- Пусть $y = X\beta + \e$ --- регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Найдите коэффициент корреляции $\Corr(\hat{\beta_1},\hat{\beta_2})$.
+ Пусть $y = X\beta + \e$ --- регрессионная модель, $X = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \end{pmatrix}$, $\E(\e)$ = 0, $\Var(\e) = \sigma^2 I$. Найдите коэффициент корреляции $\Corr(\hb_1,\hb_2)$.
 <<echo=FALSE>>=
 X <- matrix(as.integer(c(1,1,1,0,1,1)), nrow=3, byrow = FALSE, dimnames = NULL)
 y <- c(1,2,3)
@@ -79,7 +79,7 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 Пусть $y = X\beta + \e$ --- регрессионная модель, где $\E(\e)=0$, $\Var(\e)=\sigma_{\e}^2 I$. Пусть $A$ --- неслучайная матрица размера $k \times k$, $\det(A) \not= 0.$ Совершается преобразование регрессоров по правилу $Z=XA$. В преобразованных регрессорах уравнение выглядит так: $y = Z\gamma + u$, где $\E(u)=0$, $\Var(u)=\sigma_{u}^2 I.$
 
 \begin{enumerate}
-\item Как связаны между собой МНК-оценки $\hat{\beta}$ и $\hat{\gamma}$?
+\item Как связаны между собой МНК-оценки $\hb$ и $\hat{\gamma}$?
 \item Как связаны между собой векторы остатков регрессий?
 \item Как связаны между собой прогнозные значения, полученные по двум регрессиям?
 \end{enumerate}
@@ -90,10 +90,10 @@ alpha3 <- matrix(as.integer(c(1,0,0,0,1,0,0,1,1)), nrow=3, ncol=3, byrow = FALSE
 \item 
 \begin{multline}
 \hat{\gamma} = (Z'Z)^{-1}Z'y = A^{-1}(X'X)^{-1}(A')^{-1}A'X'y =\\
- A^{-1}(X'X)^{-1} X'y = A^{-1}\hat{\beta}
+ A^{-1}(X'X)^{-1} X'y = A^{-1}\hb
 \end{multline}
-\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hat{\beta} = y - X\hat{\beta} = \hat{\e}$
-\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hat{\beta} = x^0 \hat{\beta}$ прогнозному значению для регрессии с исходными факторами. 
+\item $\hat{u} = y - Z\hat{\gamma} = y - XAA^{-1}\hb = y - X\hb = \hat{\e}$
+\item Пусть $z^0 = \begin{pmatrix} 1 & z_1^0 & \dots & z_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$ и $x^0 = \begin{pmatrix} 1 & x_1^0 & \dots & x_{k-1}^0 \end{pmatrix}$ --- вектор размера $1 \times k$. Оба эти вектора представляют собой значения факторов. Тогда $z^0 = x^0 A$ и прогнозное значение для регрессии с преобразованными факторами равно $z^0 \hat{\gamma} = x^0 AA^{-1} \hb = x^0 \hb$ прогнозному значению для регрессии с исходными факторами. 
 \end{enumerate}
 \end{solution}
 
@@ -173,16 +173,16 @@ $X^T X =  \begin{pmatrix}
 \begin{enumerate}
 \item $\Var (\e_1)$
 \item $\Var (\beta_1)$
-\item $\Var (\hat{\beta}_1)$
-\item $\widehat{\Var }(\hat{\beta}_1)$
-\item $\E (\hat{\beta}_1^2) - \beta_1^2$
-\item $\Cov (\hat{\beta}_2, \hat{\beta}_3)$
-\item $\widehat{\Cov }(\hat{\beta}_2, \hat{\beta}_3)$
-\item $\Var (\hat{\beta}_2 - \hat{\beta}_3)$
-\item $\widehat{\Var }(\hat{\beta}_2 - \hat{\beta}_3)$
+\item $\Var (\hb_1)$
+\item $\widehat{\Var }(\hb_1)$
+\item $\E (\hb_1^2) - \beta_1^2$
+\item $\Cov (\hb_2, \hb_3)$
+\item $\widehat{\Cov }(\hb_2, \hb_3)$
+\item $\Var (\hb_2 - \hb_3)$
+\item $\widehat{\Var }(\hb_2 - \hb_3)$
 \item $\Var (\beta_2 - \beta_3)$
-\item $\Corr (\hat{\beta}_2, \hat{\beta}_3)$
-\item $\widehat{\Corr}(\hat{\beta}_2, \hat{\beta}_3)$
+\item $\Corr (\hb_2, \hb_3)$
+\item $\widehat{\Corr}(\hb_2, \hb_3)$
 \item $\E (\hat{\sigma}^2)$
 \item $\hat{\sigma}^2$
 \end{enumerate}
@@ -211,25 +211,17 @@ x_x <- solve(xx)
 \item Найдите $RSS = \sum_{i=1}^n (y_i - \hat{y_i})^2$
 \item Методом МНК найдите оценку для вектора неизвестных коэффициентов
 \item Чему равен $R^2$ в модели? Прокомментируйте полученное значение с точки зрения качества оценённого уравнения регрессии
-\item Сформулируйте основную и альтернативную гипотезы, которые соответствуют тесту на значимость переменной $x_1$ в уравнении регрессии
-\item Протестируйте на значимость переменную $x_1$ в уравнении регрессии на уровне значимости $10\%$:
+\item Сформулируйте основную и альтернативную гипотезы, которые соответствуют тесту на значимость переменной $x_2$ в уравнении регрессии
+\item Протестируйте на значимость переменную $x_2$ в уравнении регрессии на уровне значимости $10\%$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
 \item Вычислите наблюдаемое значение тестовой статистики
 \item Укажите границы области, где основная гипотеза не отвергается
-\item Сделайте статистический вывод о значимости переменной $x_1$
+\item Сделайте статистический вывод о значимости переменной $x_2$
 \end{enumerate}
-\item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости переменной $x_1$
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 \not= 1$:
-\begin{enumerate}
-\item Приведите формулу для тестовой статистики 
-\item Укажите распределение тестовой статистики при верной $H_0$
-\item Вычислите наблюдаемое значение тестовой статистики
-\item Укажите границы области, где основная гипотеза не отвергается
-\item Сделайте статистический вывод
-\end{enumerate}
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 > 1$:
+\item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости переменной $x_2$
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 \not= 1$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -237,7 +229,15 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_1 = 1$ против альтернативной $H_a: \beta_1 < 1$:
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 > 1$:
+\begin{enumerate}
+\item Приведите формулу для тестовой статистики 
+\item Укажите распределение тестовой статистики при верной $H_0$
+\item Вычислите наблюдаемое значение тестовой статистики
+\item Укажите границы области, где основная гипотеза не отвергается
+\item Сделайте статистический вывод
+\end{enumerate}
+\item На уровне значимости $10\%$ проверьте гипотезу $H_0: \beta_2 = 1$ против альтернативной $H_a: \beta_2 < 1$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -255,7 +255,7 @@ x_x <- solve(xx)
 \item Сделайте статистический вывод
 \end{enumerate}
 \item Найдите $P-$значение, соответствующее наблюдаемому значению тестовой статистики $(T_{obs})$ из предыдущего пункта. На основе полученного $P-$значения сделайте вывод о значимости регрессии <<в целом>>
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 \not= 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 \not= 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -263,7 +263,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 > 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 > 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -271,7 +271,7 @@ x_x <- solve(xx)
 \item Укажите границы области, где основная гипотеза не отвергается
 \item Сделайте статистический вывод
 \end{enumerate}
-\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_1 + \beta_2 = 2$ против альтернативной $H_a: \beta_1 + \beta_2 < 2$:
+\item На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_2 + \beta_3 = 2$ против альтернативной $H_a: \beta_2 + \beta_3 < 2$:
 \begin{enumerate}
 \item Приведите формулу для тестовой статистики 
 \item Укажите распределение тестовой статистики при верной $H_0$
@@ -288,43 +288,43 @@ x_x <- solve(xx)
 \item $k = 3$
 \item $TSS = 10$
 \item $RSS = 2$
-\item $\hat{\beta} = \begin{pmatrix} \hat{\beta}_1 \\ \hat{\beta}_2 \\ \hat{\beta}_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
+\item $\hb = \begin{pmatrix} \hb_1 \\ \hb_2 \\ \hb_3 \end{pmatrix} = (X'X)^{-1}X'y = \begin{pmatrix} 2 \\ 2 \\ 1 \end{pmatrix}$
 \item $R^2 = 1 - \frac {RSS}{TSS} = 0.8.$ $R^2$ высокий, построенная эконометрическая модель <<хорошо>> описывает данные
 \item Основная гипотеза --- $H_0: \beta_2 = 0$, альтернативная гипотеза --- $H_a: \beta_2 \not= 0$
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_2 - \beta_2}{\sqrt{\widehat{Var}(\hat{\beta}_2)}} = \frac {\hat{\beta}_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hat{\beta}_2 - 0}{\sqrt{\widehat{Var}(\hat{\beta}_2)}} = \frac {\hat{\beta}_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
+\item $T_{obs} = \frac{\hb_2 - 0}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 0}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-0}{\sqrt{{\frac{2}{5-3}}1.3333}} = 1.7321$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 1.7321$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = 0$ не может быть отвергнута
+\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $t-$распределения с $n - k = 5 - 3 = 2$ степенями свободы в точке $|T_{obs}|$. $p-value(T_{obs}) = 2tcdf(-|T_{obs}|, n - k) = 2tcdf(-1.7321,2) = 0.2253$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = 0$ не может быть отвергнута
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -2.920$, верхняя граница $= 2.920$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от -2.920 до 2.920, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -\infty$, верхняя граница $= 1.8856$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-\infty$ до $1.8856$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 - \beta_1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - \beta_1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
+\item $T = \frac{\hb_2 - \beta_2}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - \beta_2}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}}; n = 5; k = 3$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $T_{obs} = \frac{\hat{\beta}_1 - 1}{\sqrt{\widehat{Var}(\hat{\beta}_1)}} = \frac {\hat{\beta}_1 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
+\item $T_{obs} = \frac{\hb_2 - 1}{\sqrt{\widehat{Var}(\hb_2)}} = \frac {\hb_2 - 1}{\sqrt{{\frac{RSS}{n-k}}[(X'X)^{-1}]_{22}}} = \frac{2-1}{\sqrt{{\frac{2}{5-3}}1.3333}} = 0.8660$
 \item Нижняя граница $= -1.8856$, верхняя граница $= +\infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-1.8856$ до $+\infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $10\%$
 \end{enumerate}
-\item Основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$, альтернативная гипотеза --- $H_a: |\beta_1| + |\beta_2| > 0$
+\item Основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$, альтернативная гипотеза --- $H_a: |\beta_2| + |\beta_3| > 0$
 \item Проверка гипотезы
 \begin{enumerate}
 \item $T = \frac{R^2}{1 - R^2} \cdot \frac{n-k}{k}; n = 5; k = 3$
@@ -333,28 +333,28 @@ x_x <- solve(xx)
 \item Нижняя граница $= 0$, верхняя граница $= 19$
 \item Поскольку $T_{obs} = 4$, что принадлежит промежутку от $0$ до $19$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$. Следовательно, регрессия в целом незначима. Напомним, что $R^2 = 0.8$, то есть он высокий. Но при этом регрессия <<в целом>> незначима. Такой эффект может возникать при малом объёме выборки, например, таком, как в данной задаче
 \end{enumerate}
-\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_1 = \beta_2 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
+\item $p-value(T_{obs}) = \mathbb{P}(|T|>|T_{obs}|) = 2F_{T}(|T_{obs}|)$, где $F_{T}(|T_{obs}|)$ --- функция распределения $F-$распределения c $k = 3$ и $n - k = 5 - 3 = 2$ степенями свободы в точке $T_{obs}$. $p-value(T_{obs}) = 1 - fcdf(-|T_{obs}|, n - k) = 1 - fcdf(4,2) = 0.2$. Поскольку $P-$значение превосходит уровень значимости $10\%$, то основная гипотеза --- $H_0: \beta_2 = \beta_3 = 0$ не может быть отвергнута. Таким образом, регрессия <<в целом>> незначима
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 4.3027$, верхняя граница $= 4.3027$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- 4.3027$ до $4.3027$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - \infty$, верхняя граница $= 2.9200$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $- \infty$ до $2.9200$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
 \item Проверка гипотезы
 \begin{enumerate}
-\item $T = \frac{\hat{\beta}_1 + \hat{\beta}_2 - (\beta_1 + \beta_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}}$, где $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \widehat{\Var}(\hat{\beta}_1) + \widehat{\Var}(\hat{\beta}_2) + 2\widehat{\Cov}(\hat{\beta}_1;\hat{\beta}_2) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
+\item $T = \frac{\hb_2 + \hb_3 - (\beta_2 + \beta_3)}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}}$, где $\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2;\hb_3) = \hat{\sigma}^2 [(X'X)^{-1}]_{22} + 2\hat{\sigma}^2 [(X'X)^{-1}]_{23} + \hat{\sigma}^2 [(X'X)^{-1}]_{33}= \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33})$
 \item $T \sim t(n-k); n = 5; k = 3$
-\item $\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hat{\beta}_1 + \hat{\beta}_2 - 2}{\sqrt{\widehat{\Var}(\hat{\beta}_1 + \hat{\beta}_2)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
+\item $\widehat{\Var}(\hb_2 + \hb_3) = \frac{RSS}{n - k}([(X'X)^{-1}]_{22} + 2[(X'X)^{-1}]_{23} + [(X'X)^{-1}]_{33}) = \frac{2}{5 - 3} (1.3333 + 2(-1.0000) + 2.0000) = 1.3333.$ Тогда $T_{obs} = \frac{\hb_2 + \hb_3 - 2}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{2 + 1 - 2}{\sqrt{1.3333}} = 0.8660$
 \item Нижняя граница $= - 2.9200$, верхняя граница $= + \infty$
 \item Поскольку $T_{obs} = 0.8660$, что принадлежит промежутку от $-  2.9200$ до $+ \infty$, то на основе имеющихся данных нельзя отвергнуть основную гипотезу на уровне значимости $5\%$
 \end{enumerate}
@@ -698,14 +698,14 @@ M_1 y = M_1 X_2 \gamma_2 + u
 
 
 \begin{problem}
-Докажите, что МНК-оценки $\hat{\beta} = (X^T X)^{-1} X^T y$ являются несмещенными и линейными по переменной $y$.
+Докажите, что МНК-оценки $\hb = (X^T X)^{-1} X^T y$ являются несмещенными и линейными по переменной $y$.
 \end{problem}
 
 \begin{solution}
 Докажем несмещенность МНК-оценок.
-$$\E\hat{\beta} = \E\left( (X^T X)^{-1} X^T y \right) = (X^T X)^{-1} X^T \E(y) = $$
+$$\E\hb = \E\left( (X^T X)^{-1} X^T y \right) = (X^T X)^{-1} X^T \E(y) = $$
 $$= (X^T X)^{-1} X^T \E(X\beta + \e) = (X^T X)^{-1} X^T X\beta = \beta$$
-Обозначим $\varphi(X, y) = (X^T X)^{-1} X^T y$. Тогда $\hat{\beta} = \varphi(X, y)$. Покажем, что функция $\varphi$ линейна по переменной $y$.
+Обозначим $\varphi(X, y) = (X^T X)^{-1} X^T y$. Тогда $\hb = \varphi(X, y)$. Покажем, что функция $\varphi$ линейна по переменной $y$.
 \begin{enumerate}
 \item $\varphi(X, \lambda \cdot y) = (X^T X)^{-1} X^T (\lambda \cdot y) = \lambda (X^T X)^{-1} X^T y = \lambda \cdot \varphi(X, y)$
 \item $\varphi(X, y + z) = (X^T X)^{-1} X^T (y + z) = (X^T X)^{-1} X^T y + (X^T X)^{-1} X^T z = \varphi(X, y) + \varphi(X, z)$
@@ -828,7 +828,7 @@ i & i & \ldots & i
 \end{solution}
 
 \begin{problem}
-Рассмотрим регрессию, для которой выполнены условия теоремы Гаусса-Маркова. Уравнение регрессии имеет вид $\hat{y} = \hat{\beta}_1 i + \hat{\beta}_2 x_2 + \hat{\beta}_3 x_3 + \hat{\beta}_4 x_4$. Известны следующие данные:
+Рассмотрим регрессию, для которой выполнены условия теоремы Гаусса-Маркова. Уравнение регрессии имеет вид $\hat{y} = \hb_1 i + \hb_2 x_2 + \hb_3 x_3 + \hb_4 x_4$. Известны следующие данные:
 
 \[
 X^T X = \begin{bmatrix}
@@ -855,7 +855,7 @@ $X^Ty = \begin{bmatrix}
 \end{bmatrix}$; $y^Ty = 3924$
 
 \begin{enumerate}
-\item Найти $\widehat{\Corr}(\hat{\beta}_1, \hat{\beta}_2)$ (1 балл)
+\item Найти $\widehat{\Corr}(\hb_1, \hb_2)$ (1 балл)
 \item Найти $\widehat{\Corr}(x_2, x_3)$ (1 балл)
 \item Проверить гипотезу $H_0: \beta_2 = 0$ (1 балл)
 \end{enumerate}
@@ -890,9 +890,9 @@ y^T X(X^TX)^{-1}X^Ty= \\
  
 $\hat{\sigma}_{\e}^2 = \frac{RSS}{n-k} = \frac{872.8}{100-4} = 9.0917$
 
-$\widehat{\Var}(\hat{\beta}) = \hat{\sigma}_{\e}^2 (X^T X)^{-1} \Rightarrow \widehat{\Cov}(\hat{\beta}_1, \hat{\beta}_2) = -0.56939$, $\widehat{\Var}(\hat{\beta}_1) = 0.34251$, $\widehat{\Var}(\hat{\beta}_2) = 10.269$
+$\widehat{\Var}(\hb) = \hat{\sigma}_{\e}^2 (X^T X)^{-1} \Rightarrow \widehat{\Cov}(\hb_1, \hb_2) = -0.56939$, $\widehat{\Var}(\hb_1) = 0.34251$, $\widehat{\Var}(\hb_2) = 10.269$
 
-$\widehat{\Corr}(\hat{\beta}_1, \hat{\beta}_2) = \frac{\widehat{\Cov}(\hat{\beta}_1, \hat{\beta}_2)}{\sqrt{\widehat{\Var}(\hat{\beta}_1)}\sqrt{\widehat{\Var}(\hat{\beta}_2)}} = -0.30361$
+$\widehat{\Corr}(\hb_1, \hb_2) = \frac{\widehat{\Cov}(\hb_1, \hb_2)}{\sqrt{\widehat{\Var}(\hb_1)}\sqrt{\widehat{\Var}(\hb_2)}} = -0.30361$
 
 \item(указание) $\widehat{\Corr}(x_2, x_3) = \frac{\sum (x_{i2} - \overline{x}_2) (x_{i3} - \overline{x}_3)}{\sqrt{\sum (x_{i2} - \overline{x}_2)}\sqrt{\sum (x_{i3} - \overline{x}_3)}}$. Все необходимые величины можно извлечь из матрицы $X^T X$ --- это величины $\sum x_{i2}$ и $\sum x_{i3}$, а остальное -- из матрицы $X^T (I - \pi) X = X^T X - X^T \pi X = X^T X - (\pi X)^T \pi X$. При этом имейте в виду, что
 $\pi X = \begin{bmatrix}
@@ -902,11 +902,11 @@ $\pi X = \begin{bmatrix}
 \end{bmatrix}$ и $\overline{x}_1 = 1.23$, $\overline{x}_2 = 0.96$, $\overline{x}_3 = 1.09$
 
 \item $\begin{bmatrix}
-\hat{\beta}_1 \\
-\hat{\beta}_2 \\
-\hat{\beta}_3 \\
-\hat{\beta}_4 \\
-\hat{\beta}_5 \\
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\hb_4 \\
+\hb_5 \\
 \end{bmatrix} = \begin{bmatrix}
 0.03767 & -0.06263 & -0.06247 & 0.1003 \\
 -0.06263 & 1.129 & 1.107 & -2.192 \\
@@ -924,9 +924,9 @@ $\pi X = \begin{bmatrix}
 -7.5256 \\
 \end{bmatrix}$
 
-$t = \frac{\hat{\beta}_2}{\sqrt{\Var(\hat{\beta}_2)}} \sim t_{100-4}$
+$t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} \sim t_{100-4}$
 
-$t = \frac{\hat{\beta}_2}{\sqrt{\Var(\hat{\beta}_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \Rightarrow \hat{\beta}_2$ --- не значим.
+$t = \frac{\hb_2}{\sqrt{\Var(\hb_2)}} = \frac{6.1234}{\sqrt{10.269}} = 1.9109 \Rightarrow \hb_2$ --- не значим.
 \end{enumerate}
 \end{solution}
 
@@ -942,7 +942,7 @@ $(X^T X)^{-1} = \begin{bmatrix}
 
 Требуется:
 \begin{enumerate}
-\item Написать формулу для несмещенной оценки ковариации $\widehat{\Cov}(\hat{\beta}_2, \hat{\beta}_3)$ и вычислить её по имеющимся данным (если это возможно);
+\item Написать формулу для несмещенной оценки ковариации $\widehat{\Cov}(\hb_2, \hb_3)$ и вычислить её по имеющимся данным (если это возможно);
 \item Проверить $H_0: \beta_2 + \beta_3 = 1$ при помощи t-статистики (обязательно требуется указать формулу для статистики, а также указать число степеней свободы);
 \item Построить 95\% доверительный интервал для величины $\beta_2 + \beta_3$.
 \end{enumerate}
@@ -951,44 +951,44 @@ $(X^T X)^{-1} = \begin{bmatrix}
 \begin{solution}
 \begin{enumerate}
 \item $\widehat{\Cov}\begin{bmatrix}
-\hat{\beta}_1 \\
-\hat{\beta}_2 \\
-\hat{\beta}_3 \\
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
 \end{bmatrix} = \hat{\sigma}_{\e}^2 (X^TX)^{-1}$ --- несмещённая оценка для ковариационной матрицы \\ МНК-коэффициентов. Действительно, $\E\widehat{\Cov}\begin{bmatrix}
-\hat{\beta}_1 \\
-\hat{\beta}_2 \\
-\hat{\beta}_3 \\
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
 \end{bmatrix} = \E\hat{\sigma}_{\e}^2 (X^TX)^{-1} = \sigma_{\e}^2 (X^TX)^{-1} = \Cov\begin{bmatrix}
-\hat{\beta}_1 \\
-\hat{\beta}_2 \\
-\hat{\beta}_3 \\
-\end{bmatrix}$. Поэтому искомая оценка $\widehat{\Cov}(\hat{\beta}_2, \hat{\beta}_3) = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{23}$, где $\left[ (X^T X)^{-1} \right]_{23}$ --- элемент матрицы $(X^T X)^{-1}$, расположенный во второй строке, 3-м столбце.
+\hb_1 \\
+\hb_2 \\
+\hb_3 \\
+\end{bmatrix}$. Поэтому искомая оценка $\widehat{\Cov}(\hb_2, \hb_3) = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{23}$, где $\left[ (X^T X)^{-1} \right]_{23}$ --- элемент матрицы $(X^T X)^{-1}$, расположенный во второй строке, 3-м столбце.
 
-Заметим, что $\hat{\sigma}_{\hat{\beta}_2}^2 = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hat{\sigma}_{\e}^2 \cdot (3030) \Rightarrow \hat{\sigma}_{\e}^2 = 0.00016172$
+Заметим, что $\hat{\sigma}_{\hb_2}^2 = \hat{\sigma}_{\e}^2 \left[ (X^T X)^{-1} \right]_{22} \Rightarrow 0.7^2 = \hat{\sigma}_{\e}^2 \cdot (3030) \Rightarrow \hat{\sigma}_{\e}^2 = 0.00016172$
 
-Значит, $\widehat{\Cov}(\hat{\beta}_2, \hat{\beta}_3) = 0.00016172 \cdot (-589) = -0.095253$.
+Значит, $\widehat{\Cov}(\hb_2, \hb_3) = 0.00016172 \cdot (-589) = -0.095253$.
 
-\item $t = \frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}} \sim t_{n-k}$
+\item $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k}$
 
 Требуется проверить $H_0: \beta_2 + \beta_3 = 1$.
 
-$\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3) = \widehat{\Var}(\hat{\beta}_2) + \widehat{\Var}(\hat{\beta}_3) + 2\widehat{\Cov}(\hat{\beta}_2, \hat{\beta}_3) = 0.7^2 + 0.138^2 + 2 \cdot 0.095253 = 0.319044$
+$\widehat{\Var}(\hb_2 + \hb_3) = \widehat{\Var}(\hb_2) + \widehat{\Var}(\hb_3) + 2\widehat{\Cov}(\hb_2, \hb_3) = 0.7^2 + 0.138^2 + 2 \cdot 0.095253 = 0.319044$
 
-$t = \frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
+$t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} = \frac{0.76 + 0.19 - 1}{\sqrt{0.319044}} = -0.088520674$
 
 Значит, гипотеза не отвергается на любом <<разумном>> уровне значимости.
 
-\item Мы знаем, что $\frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\mathbb{P}\left( \left| \frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}} \right| < t^* \right) = 0.95$
+\item Мы знаем, что $\frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \sim t_{n-k} = t_{15-3}$, поэтому построить доверительный интервал для $\beta_2 + \beta_3$ не составляет труда. $\mathbb{P}\left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = 0.95$
 
-Обозначим $se=\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}$, тогда:
+Обозначим $se=\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}$, тогда:
 
 \begin{multline}
-\mathbb{P}\left( \left| \frac{\hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hat{\beta}_2 + \hat{\beta}_3)}} \right| < t^* \right) = \\
-\mathbb{P}\left( -t^* se < \hat{\beta}_2 + \hat{\beta}_3 - \beta_2 - \beta_3 < t^* se \right) = \\ 
-\mathbb{P}\left( -t^*se  - (\hat{\beta}_2 + \hat{\beta}_3) < - \beta_2 - \beta_3  < -(\hat{\beta}_2 + \hat{\beta}_3) + t^* se \right) =\\ 
-\mathbb{P}\left( (\hat{\beta}_2 + \hat{\beta}_3) + t^* se 
+\mathbb{P}\left( \left| \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3)}} \right| < t^* \right) = \\
+\mathbb{P}\left( -t^* se < \hb_2 + \hb_3 - \beta_2 - \beta_3 < t^* se \right) = \\ 
+\mathbb{P}\left( -t^*se  - (\hb_2 + \hb_3) < - \beta_2 - \beta_3  < -(\hb_2 + \hb_3) + t^* se \right) =\\ 
+\mathbb{P}\left( (\hb_2 + \hb_3) + t^* se 
 > \beta_2 + \beta_3 
-> (\hat{\beta}_2 + \hat{\beta}_3) - t^* se \right) 
+> (\hb_2 + \hb_3) - t^* se \right) 
 \end{multline}
 Отсюда получаем доверительный интервал
 \begin{multline}

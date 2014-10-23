@@ -77,16 +77,16 @@ opts_chunk$set(cache=FALSE,
                echo=TRUE,
                out.height="7cm",out.width="7cm") 
 
-require(ggplot2)
-require(Hmisc)
-require(lmtest)
-require(apsrtable)
-require(xtable)
-require(MASS)
-require(car)
-require(texreg)
+library("ggplot2")
+require("Hmisc")
+library("lmtest")
+library("apsrtable")
+library("xtable")
+library("MASS")
+library("car")
+library("texreg")
 
-require(econru)
+library("econru")
 
 theme_set(theme_bw())
 
