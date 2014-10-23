@@ -2,7 +2,11 @@
 
 %\documentclass[11pt,openany]{book}
 
-
+% команды АК.
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\bs}[1]{\boldsymbol{#1}} 
+\newcommand{\hypo}{\mathcal{H}} 
+\newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
 \input{title_bor_utf8_knitr}
 
@@ -49,18 +53,18 @@
 
 \begin{document}
 
-\setcounter{page}{3}
+%\setcounter{page}{3}
 
 %\maketitle % печатаем заголовок
-\tableofcontents
+%\tableofcontents
 
 \parindent=0 pt % отступ равен 0
 
 
-\vspace{30pt}
+%\vspace{30pt}
 
 
-<<"setup", echo=TRUE, message=FALSE,tidy=FALSE,warning=FALSE>>=
+<<"setup", echo=FALSE, message=FALSE,tidy=FALSE,warning=FALSE>>=
 require(knitr)
 opts_chunk$set(cache=FALSE,
                dev="png",dpi=300,
@@ -69,16 +73,16 @@ opts_chunk$set(cache=FALSE,
                echo=TRUE,
                out.height="7cm",out.width="7cm") 
 
-require(ggplot2)
-require(Hmisc)
-require(lmtest)
-require(apsrtable)
-require(xtable)
-require(MASS)
-require(car)
-require(texreg)
+library("ggplot2")
+require("Hmisc")
+library("lmtest")
+library("apsrtable")
+library("xtable")
+library("MASS")
+library("car")
+library("texreg")
 
-require(econru)
+library("econru")
 
 theme_set(theme_bw())
 
@@ -98,53 +102,53 @@ load('pset_data.Rdata')
 
 % МНК
 
-<<child='chapters/010_ols_no_probs_no_matr.Rnw'>>=
+<<child='../chapters/010_ols_no_probs_no_matr.Rnw'>>=
 @
-<<child='chapters/020_ols_2_no_matr.Rnw'>>=
+<<child='../chapters/020_ols_2_no_matr.Rnw'>>=
 @
-<<child='chapters/030_ols_k_no_matr.Rnw'>>=
+<<child='../chapters/030_ols_k_no_matr.Rnw'>>=
 @
-<<child='chapters/040_ols_k_matrix.Rnw'>>=
+<<child='../chapters/040_ols_k_matrix.Rnw'>>=
 @
 
 % ML
 
-<<child='chapters/050_ml_general.Rnw'>>=
+<<child='../chapters/050_ml_general.Rnw'>>=
 @
-<<child='chapters/060_logit.Rnw'>>=
+<<child='../chapters/060_logit.Rnw'>>=
 @
 
 % Нарушения
 
-<<child='chapters/070_collinearity.Rnw'>>=
+<<child='../chapters/070_collinearity.Rnw'>>=
 @
 %%%%%%% здесь?... LASSO, rigdre regression
 
 
-<<child='chapters/080_hetero.Rnw'>>=
+<<child='../chapters/080_hetero.Rnw'>>=
 @
-<<child='chapters/090_specification.Rnw'>>=
+<<child='../chapters/090_specification.Rnw'>>=
 @
 
 %
 
-<<child='chapters/100_random_x.Rnw'>>=
+<<child='../chapters/100_random_x.Rnw'>>=
 @
-<<child='chapters/110_gmm.Rnw'>>=
+<<child='../chapters/110_gmm.Rnw'>>=
 @
 
 % time series
 
-<<child='chapters/120_series.Rnw'>>=
+<<child='../chapters/120_series.Rnw'>>=
 @
 
 % Нетрадиционная медицина
 
-<<child='chapters/130_svm.Rnw'>>=
+<<child='../chapters/130_svm.Rnw'>>=
 @
-<<child='chapters/140_forest.Rnw'>>=
+<<child='../chapters/140_forest.Rnw'>>=
 @
-<<child='chapters/150_nnetwork.Rnw'>>=
+<<child='../chapters/150_nnetwork.Rnw'>>=
 @
 
 
@@ -153,26 +157,26 @@ load('pset_data.Rdata')
 
 % байесовский подход
 
-<<child='chapters/160_ba.Rnw'>>=
+<<child='../chapters/160_ba.Rnw'>>=
 @
 
 % Приложения
 
-<<child='chapters/200_la.Rnw'>>=
+<<child='../chapters/200_la.Rnw'>>=
 @
-<<child='chapters/210_random_vectors.Rnw'>>=
+<<child='../chapters/210_random_vectors.Rnw'>>=
 @ 
-<<child='chapters/220_multivariate_n.Rnw'>>=
+<<child='../chapters/220_multivariate_n.Rnw'>>=
 @
-<<child='chapters/230_programming.Rnw'>>=
+<<child='../chapters/230_programming.Rnw'>>=
 @
 
 
 \restorechapter
-\chapter{Таблицы}
+%\chapter{Таблицы}
 
-<<child='chapters/250_tables.Rnw'>>=
-@
+%<<child='../chapters/250_tables.Rnw'>>=
+%@
 
 
 

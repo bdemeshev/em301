@@ -1,0 +1,1196 @@
+\documentclass[pdftex,11pt,openany]{book}
+
+%\documentclass[11pt,openany]{book}
+
+
+
+\input{title_bor_utf8_knitr}
+
+
+% чисто эконометрические сокращения:
+\input{emetrix_preamble}
+
+
+% стандартизация
+% эпсилон во временных рядах --- белый шум, а в остальных сюжетах --- остатки, подумать
+% транспонирование --- штрих
+
+% задачи типа "воспроизведите тест такой-то ручками в R" -> в тему согласно тесту, а не в доп. задачи по программированию
+
+% идеи задач:
+% * Задача на корреляционную матрицу по реальным данным require(quantmod)
+% Задача про суеверную Мырли. Можно ли там что-то про se сказать?
+% теорему FWL в массы!
+% симуляционные задачи на ошибки 1, 2 рода, мощность
+% E_t(X) или с указанием сигма-алгебры
+
+% выложить преамбулу
+
+
+% перегнанные банки:
+% 1 ---20
+
+% осталось:
+% задача 12, компьютерное про пи (алгоритмы вычисления)
+% распределить проверить наличие программистко-сюжетных упражнений
+
+
+% для отдельной упаковки решений
+\input{prob_and_sol_2chap}
+
+
+\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\author{Дмитрий Борзых, Борис Демешев}
+\date{\today}
+
+\makeindex % команда для создания предметного указателя
+\bibliographystyle{plain} % стиль оформления ссылок
+
+
+\begin{document}
+
+\setcounter{page}{3}
+
+%\maketitle % печатаем заголовок
+\tableofcontents
+
+\parindent=0 pt % отступ равен 0
+
+
+\vspace{30pt}
+
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{require}\hlstd{(knitr)}
+\hlstd{opts_chunk}\hlopt{$}\hlkwd{set}\hlstd{(}\hlkwc{cache}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+               \hlkwc{dev}\hlstd{=}\hlstr{"png"}\hlstd{,}\hlkwc{dpi}\hlstd{=}\hlnum{300}\hlstd{,}
+               \hlkwc{warning}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+               \hlkwc{tidy}\hlstd{=}\hlnum{FALSE}\hlstd{,}
+               \hlkwc{echo}\hlstd{=}\hlnum{TRUE}\hlstd{,}
+               \hlkwc{out.height}\hlstd{=}\hlstr{"7cm"}\hlstd{,}\hlkwc{out.width}\hlstd{=}\hlstr{"7cm"}\hlstd{)}
+
+\hlkwd{library}\hlstd{(}\hlstr{"ggplot2"}\hlstd{)}
+\hlkwd{require}\hlstd{(}\hlstr{"Hmisc"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"lmtest"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"apsrtable"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"xtable"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"MASS"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"car"}\hlstd{)}
+\hlkwd{library}\hlstd{(}\hlstr{"texreg"}\hlstd{)}
+
+\hlkwd{library}\hlstd{(}\hlstr{"econru"}\hlstd{)}
+
+\hlkwd{theme_set}\hlstd{(}\hlkwd{theme_bw}\hlstd{())}
+
+\hlkwd{load}\hlstd{(}\hlstr{'pset_data.Rdata'}\hlstd{)}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: cannot open the connection}}\end{kframe}
+\end{knitrout}
+
+%\listoftodos
+
+% МНК
+
+
+\chapter{Решения и ответы к избранным задачам}
+\chaptermark{Избранные решения}
+
+\solutiononly
+
+
+% МНК
+
+
+\chapter{МНК без матриц и вероятностей}
+
+\begin{problem}
+ Верно ли, что для любых векторов $a = (a_1,\dots,a_n)$ и $b = (b_1,\dots,b_n)$ справедливы следующие равенства?
+\begin{enumerate}
+\item $\sum_{i=1}^n {(a_i-\bar a)} = 0$
+\item $\sum_{i=1}^n {(a_i-\bar a)^2} = \sum_{i=1}^n {(a_i-\bar a)a_i}$
+\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {(a_i-\bar a)b_i}$
+\item $\sum_{i=1}^n {(a_i-\bar a)(b_i-\bar b)} = \sum_{i=1}^n {a_i b_i}$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+ да, да, да, нет
+\end{solution}
+
+
+
+
+\begin{problem}
+ При помощи метода наименьших квадратов найдите оценку неизвестного параметра $\theta$ в следующих моделях:
+
+\begin{enumerate}
+\item $y_i = \theta + \theta x_i + \varepsilon_i$
+\item $y_i = \theta - \theta x_i + \e_i$
+\item $\text{ln} y_i = \theta + \text{ln} x_i + \e_i$
+\item $y_i = \theta + x_i + \e_i$
+\item $y_i = 1 + \theta x_i + \e_i$
+\item $y_i = \theta / x_i + \e_i$
+\item $y_i = \theta x_{i1} + (1-\theta)x_{i2}+\e_i$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+ Покажите, что для моделей $y_i= \alpha + \beta x_i + \e_i$, $z_i = \gamma + \delta x_i + \upsilon_i$ и $y_i + z_i = \mu + \lambda x_i + \xi_i$ МНК-оценки связаны соотношениями $\hat{\mu}=\hat{\alpha}+\hat{\gamma}$ и $\hat{\lambda}=\hat{\beta} + \hat{\delta}$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+ Найдите МНК-оценки параметров $\alpha$ и $\beta$ в модели $y_i = \alpha + \beta y_i + \e_i$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+ Рассмотрите модели $y_i = \alpha + \beta (y_i + z_i) + \e_i$, $z_i = \gamma + \delta(y_i+z_i) + \e_i$. 
+\begin{enumerate}
+\item Как связаны между собой $\hat{\alpha}$ и $\hat{\gamma}$?
+\item  Как связаны между собой $\hat{\beta}$ и $\hat{\delta}$?
+\end{enumerate} 
+\end{problem}
+
+\begin{solution}
+$\hat{\alpha} + \hat{\gamma} = 0$ и $\hat{\beta} + \hat{\delta} = 1$
+\end{solution}
+
+
+
+\begin{problem}
+ Как связаны МНК-оценки параметров $\alpha, \beta$ и $\gamma, \delta$ в моделях $y_i = \alpha + \beta x_i + \e_i$ и $z_i = \gamma + \delta x_i + \upsilon_i$, если $z_i = 2 y_i$.
+\end{problem}
+
+\begin{solution}
+\end{solution} 
+
+\begin{problem}
+ Для модели $y_i = \beta_1 x_{i1} + \beta_2 x_{i2} + \e_i$ решите условную задачу о наименьших квадратах: $Q(\beta_1, \beta_2) := \sum_{i=1}^n (y_i - \beta_1 x_{i1} - \beta_2 x_{i2})^2 \rightarrow \underset{\beta_1 + \beta_2 = 1}{\min}$
+\end{problem}
+
+\begin{solution}
+\end{solution} 
+ 
+
+
+\begin{problem}
+Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb x_i$. Найдите $\hb$ методом наименьших квадратов. 
+\end{problem} 
+
+\begin{solution}
+$\hb=\sum x_i y_i/\sum x_i^2$
+\end{solution}
+
+\begin{problem}
+Даны $n$ чисел: $y_1$, \ldots, $y_n$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb$. Найдите $\hb$ методом наименьших квадратов. 
+\end{problem}
+\begin{solution}
+$\hb=\bar{y}$
+\end{solution}
+
+\begin{problem}
+Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=\hb_1+\hb_2 x_i$. Найдите $\hb_1$ и $\hb_2$ методом наименьших квадратов. 
+\end{problem}
+\begin{solution}
+$\hb_2=\sum (x_i-\bar{x})(y_i-\bar{y})/\sum(x_i-\bar{x})^2$, $\hb_1=\bar{y}-\hb_2\bar{x}$
+\end{solution}
+
+\begin{problem}
+Даны $n$ пар чисел: $(x_1, y_1)$, \ldots, $(x_n,y_n)$. Мы прогнозируем $y_i$ по формуле $\hy_i=1+\hb x_i$. Найдите $\hb$ методом наименьших квадратов. 
+\end{problem}
+\begin{solution}
+$\hb=\sum x_i (y_i-1)/\sum x_i^2$
+\end{solution}
+
+\begin{problem}
+ Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток --- $200$ грамм, взвесив оба слитка --- $400$ грамм. Оцените вес каждого слитка методом наименьших квадратов.
+ \end{problem}
+\begin{solution}
+ $(300-\hb_1)^2+(200-\hb_2)^2+(400-\hb_1-\hb_2)^2\to\min$ 
+\end{solution}
+
+
+\begin{problem}
+ Аня и Настя утверждают, что лектор опоздал на 10 минут. Таня считает, что лектор опоздал на 3 минуты. С помощью мнк оцените на сколько опоздал лектор. 
+\end{problem}
+\begin{solution}
+ $2\cdot (10-\hb)^2+(3-\hb)^2\to\min$ 
+\end{solution}
+
+
+\begin{problem}
+ Функция $f(x)$ непрерывна на отрезке $[0;1]$. Найдите аналог МНК-оценок для регрессии без свободного члена в непрерывном случае. Более подробно: найдите минимум по $\hb$ для функции
+\begin{equation}
+Q(\hb)= \int_0^1 (f(x)-\hb x)^2\,dx
+\end{equation}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Есть двести наблюдений. Вовочка оценил модель $\hy=\hb_1+\hb_2 x$ по первой сотне наблюдений. Петечка оценил модель $\hy=\hat{\gamma}_1+\hat{\gamma}_2 x$ по второй сотне наблюдений. Машенька оценила модель $\hy=\hat{m}_1+\hat{m}_2 x$ по всем наблюдениям.
+\begin{enumerate}
+\item Возможно ли, что $\hb_2>0$, $\hat{\gamma}_2>0$, но $\hat{m}_2<0$?
+\item Возможно ли, что $\hb_1>0$, $\hat{\gamma}_1>0$, но $\hat{m}_1<0$?
+\item Возможно ли одновременное выполнение всех упомянутых условий?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+да, возможно. Два вытянутых облачка точек. Первое облачко даёт первую регрессию, второе --- вторую. Прямая, соединяющая центры облачков, --- общую.
+\end{solution}
+
+
+
+\begin{problem}
+ Вася оценил модель $y=\beta_1+\beta_2 d+\beta_3 x+\varepsilon$. Дамми-переменная $d$ обозначает пол, 1 для мужчин и 0 для женщин. Оказалось, что $\hat{\beta}_2>0$. Означает ли это, что для мужчин $\bar{y}$ больше, чем $\bar{y}$ для женщин?
+\end{problem}
+
+\begin{solution}
+Нет. Коэффициенты можно интерпретировать только <<при прочих равных>>, т.е. при равных $x$. Из-за разных $x$ может оказаться, что у мужчин $\bar{y}$ меньше, чем $\bar{y}$ для женщин.
+\end{solution}
+
+
+
+\begin{problem}
+ Какие из указанные моделей можно представить в линейном виде?
+\begin{enumerate}
+\item $y_i=\beta_1+\frac{\beta_2}{x_i}+\e_i$
+\item $y_i=\exp(\beta_1+\beta_2 x_i+\e_i)$
+\item $y_i=1+\frac{1}{\exp(\beta_1+\beta_2 x_i+\e_i)}$
+\item $y_i=\frac{1}{1+\exp(\beta_1+\beta_2 x_i+\e_i)}$
+\item $y_i=x_i^{\beta_2}e^{\beta_1+\e_i}$
+\item $y_i=\beta_1\exp(\beta_2 x_i + \e_i)$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\newpage
+\end{solution}
+
+
+
+\begin{problem}
+ У эконометриста Вовочки есть переменная $1_f$, которая равна 1, если $i$-ый человек в выборке --- женщина, и 0, если мужчина. Есть переменная $1_m$, которая равна 1, если $i$-ый человек в выборке --- мужчина, и 0, если женщина. Какие $\hy$ получатся, если Вовочка попытается построить регрессии:
+\begin{enumerate}
+\item $y$ на константу и $1_f$
+\item $y$ на константу и $1_m$
+\item $y$ на $1_f$ и $1_m$ без константы
+\item $y$ на константу, $1_f$ и $1_m$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+ 
+
+
+\begin{problem}
+ У эконометриста Вовочки есть три переменных: $r_i$ --- доход $i$-го человека в выборке, $m_i$ --- пол (1 --- мальчик, 0 --- девочка) и $f_i$ --- пол (1 --- девочка, 0 --- мальчик). Вовочка оценил две модели
+\begin{enumerate}
+\item[] Модель A: $m_i=\beta_1+\beta_2 r_i+\ve_i$
+\item[] Модель B: $f_i=\gamma_1+\gamma_2 r_i+u_i$
+\end{enumerate}
+\begin{enumerate}
+\item Как связаны между собой оценки $\hb_1$ и $\hat{\gamma}_1$?
+\item Как связаны между собой оценки $\hb_2$ и $\hat{\gamma}_2$? 
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+ Оценки МНК линейны по объясняемой переменной. Если сложить объясняемые переменные в этих двух моделях, то получится вектор из единичек. Если строить регрессию вектора из единичек на константу и $r$, то получатся оценки коэффициентов 1 и 0. Значит, $\hb_1+\hat{\gamma}_1=1$, $\hb_2+\hat{\gamma}_2=0$ 
+\end{solution}
+
+
+
+\begin{problem}
+ Эконометрист Вовочка оценил линейную регрессионную модель, где $y$ измерялся в тугриках. Затем он оценил ту же модель, но измерял $y$ в мунгу (1 тугрик = 100 мунгу). Как изменятся оценки коэффициентов?
+\end{problem}
+
+\begin{solution}
+ Увеличатся в 100 раз
+\end{solution}
+
+
+\begin{problem}
+ Возможно ли, что при оценке парной регрессии $y=\beta_1+\beta_2 x+\e$ оказывается, что $\hb_2>0$, а при оценке регрессии без константы, $y=\gamma x+\e$, оказывается, что $\hat{\gamma}<0$?
+\end{problem}
+
+\begin{solution}
+ да
+\end{solution}
+
+
+
+\begin{problem}
+ Эконометрист Вовочка оценил регрессию $y$ только на константу. Какой коэффициент $R^2$ он получит?
+\end{problem}
+
+\begin{solution}
+$R^2=0$
+\end{solution}
+
+
+
+\begin{problem}
+ Эконометрист Вовочка оценил методом наименьших квадратов модель 1, $y=\b_1+\b_2 x+\b_3 z+\e$, а затем модель 2, $y=\b_1+\b_2 x+\b_3 z+\b_4 w+\e$. Сравните полученные $ESS$, $RSS$, $TSS$ и $R^2$.
+\end{problem}
+
+\begin{solution}
+ $TSS_1=TSS_2$, $R_2^2\geq R_2^1$, $ESS_2\geq ESS_1$, $RSS_2\leq RSS_1$
+\end{solution}
+
+
+
+
+\begin{problem}
+  Создайте набор данных с тремя переменными $y$, $x$ и $z$ со следующими свойствами. При оценке модели $\hy=\hb_1+\hb_2 x$ получается $\hb_2>0$. При оценке модели $\hy=\hat{\gamma}_1+ \hat{\gamma}_2 x+\hat{\gamma}_3 z$ получается $\hat{\gamma}_2<0$. Объясните принцип, руководствуясь которым легко создать такой набор данных.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ У меня есть набор данных с выборочным средним $\bar{y}$ и выборочной дисперсией $s_y^2$. Как нужно преобразовать данные, чтобы выборочное среднее равнялось $7$, а выборочная дисперсия --- $9$? 
+\end{problem}
+
+\begin{solution}
+ $y_i^*=7+3(y_i-\bar{y})/s_y$ 
+% эта задача не использует понятия вероятностей, хотя близка. Пусть будет в невероятностной секции.
+\end{solution}
+
+
+
+\chapter{Парный МНК без матриц}
+
+
+\begin{problem}
+ Рассмотрим модель $y_t=\b_1+\b_2 \cdot t + \e_t$, где ошибки $\e_t$ независимы и равномерны на $[-1;1]$. С помощью симуляций на компьютере оцените и постройте график функции плотности для $\hb_1$, $\hb_2$, $\hs^2$, $\hVar(\hb_1)$, $\hVar(\hb_2)$ и $\hCov(\hb_1,\hb_2)$. 
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. Найдите:
+\begin{enumerate}
+\item $\E(\overline{y})$
+\item $\Var(\overline{y})$
+\item $\E(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$
+\item $\Var(\frac{1}{n}\sum_{i=1}^n {(y_i-\overline{y})}^2)$, если дополнительно известно, что $\e_i$ нормально распределены
+\end{enumerate}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Рассматривается модель $y_i=\beta x_i+\e_i$, $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$, $\Cov(\e_i,\e_j)=0$ при $i \ne j$. 
+При каких значениях параметров $c_i$ несмещённая оценка $\hat{\beta}=\frac{\sum_{i=1}^n {c_i y_i}}{\sum_{i=1}^n {c_i x_i}}$ имеет наименьшую дисперсию? 
+\end{problem}
+ 
+\begin{solution}
+$c_i=c\cdot x_i$, где $c\neq 0$ 
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$ Используя их, найдите:
+
+\begin{enumerate}
+\item $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item $TSS$
+\item $ESS$
+\item $RSS$
+\item $R^2$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+Проверьте следующие гипотезы:
+\begin{enumerate}
+\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ --- классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 2, \sum_{i=1}^5 x_iy_i = 9, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 2.$ Используя их, найдите:
+
+\begin{enumerate}
+\item $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item $\Corr(\hat{\beta_1}, \hat{\beta_2})$
+\item $TSS$
+\item $ESS$
+\item $RSS$
+\item $R^2$
+\item $\hat{\sigma}^2$
+\end{enumerate}
+
+Проверьте следующие гипотезы:
+\begin{enumerate}
+\item $\begin{cases}  H_0: \beta_2 = 2  \\ H_a: \beta_2 \not= 2 \end{cases}$
+\item $\begin{cases}  H_0: \beta_1 + \beta_2 = 1  \\ H_a: \beta_1 + \beta_2 \not= 1 \end{cases}$
+\end{enumerate}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\E \hat{\beta}$. Какие из следующих оценок параметра $\beta$ являются несмещенными:
+
+\begin{enumerate}
+\item $\hat{\beta} = \frac{y_1}{x_1}$
+\item $\hat{\beta} = \frac{1}{2} \frac{y_1}{x_1} + \frac{1}{2} \frac{y_n}{x_n}$
+\item $\hat{\beta} = \frac{1}{n}  \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} $
+\item $\hat{\beta} = \frac{\overline{y}}{\overline{x}}$
+\item $\hat{\beta} = \frac{y_n - y_1}{x_n - x_1}$
+\item $\hat{\beta} = \frac{1}{2} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{2} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
+\item $\hat{\beta} = \frac{1}{n} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{n} \frac{y_3 - y_2}{x_3 - x_2} + \ldots + \frac{1}{n} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
+\item $\hat{\beta} = \frac{1}{n-1}  \frac{y_2 - y_1}{x_2 - x_1} + \frac{y_3 - y_2}{x_3 - x_2} + \ldots + \frac{y_n - y_{n-1}}{x_n - x_{n-1}} $
+\item $\hat{\beta} = \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
+\item $\hat{\beta} = \frac{1}{2} \frac{y_n - y_1}{x_n - x_1} + \frac{1}{2n}  \left( \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} \right) $
+\item $\hat{\beta} =  \frac{1}{2} \frac{y_n - y_1}{x_n - x_1} + \frac{1}{2} \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^n (x_i - \overline{x})^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{y} - y_i)}{\sum_{i=1}^n (x_i - \overline{x})^2}$
+\item $\hat{\beta} = \frac{y_1 + 2 y_2 + \ldots + n y_n}{x_1 + 2 x_2 + \ldots + n x_n}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n i(y_i - \overline{y})}{\sum_{i=1}^n i(x_i - \overline{x})}$
+\item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i}{x_i}$
+\item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i - \overline{y}}{x_i - \overline{x}}$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta x_i + \e_i$. Найдите $\Var(\hat{\beta})$.
+
+\begin{enumerate}
+\item $\hat{\beta} = \frac{y_1}{x_1}$
+\item $\hat{\beta} = \frac{1}{2} \frac{y_1}{x_1} + \frac{1}{2} \frac{y_n}{x_n}$
+\item $\hat{\beta} = \frac{1}{n} \left( \frac{y_1}{x_1} + \ldots + \frac{y_n}{x_n} \right)$
+\item $\hat{\beta} = \frac{\overline{y}}{\overline{x}}$
+\item $\hat{\beta} = \frac{y_n - y_1}{x_n - x_1}$
+\item $\hat{\beta} = \frac{1}{2} \frac{y_2 - y_1}{x_2 - x_1} + \frac{1}{2} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}$
+\item $\hat{\beta} = \frac{x_1 y_1 + \ldots + x_n y_n}{x_1^2 + \ldots + x_n^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n (x_i - \overline{x})(\overline{y} - y_i)}{\sum_{i=1}^n (x_i - \bar{x})^2}$
+\item $\hat{\beta} = \frac{y_1 + 2 y_2 + \ldots + n y_n}{x_1 + 2 x_2 + \ldots + n x_n}$
+\item $\hat{\beta} = \frac{\sum_{i=1}^n i(y_i - \overline{y})}{\sum_{i=1}^n i(x_i - \overline{x})}$
+\item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i}{x_i}$
+\item $\hat{\beta} = \frac{1}{n} \sum_{i=1}^n \frac{y_i - \overline{y}}{x_i - \overline{x}}$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрите классическую линейную регрессионную модель $y_i = \beta \cdot i + \e_i$, $i=1, \ldots, n$. Какая из оценок $\hat{\beta}$ и $\tilde{\beta}$ является более эффективной?
+
+\begin{enumerate}
+\item $\hat{\beta} = y_1$ и $\tilde{\beta} = y_2/2$
+\item $\hat{\beta} = y_1$ и $\tilde{\beta} = \frac{1}{2} y_1 + \frac{1}{2} \frac{y_2}{2}$
+\item $\hat{\beta} = \frac{1}{n} \left(  \frac{y_1}{1} + \ldots + \frac{y_n}{n} \right) $ и $\tilde{\beta} = \frac{1 \cdot y_1 + \ldots + n \cdot y_n}{1^2 + \ldots + n^2}$
+\end{enumerate} 
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem} На основе 100 наблюдений была оценена функция спроса:
+\[
+\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{0.87} - \underset{(0.02)}{1.23}\ln P
+\]
+Значимо ли коэффициент эластичности спроса по цене отличается от $-1$? Рассмотрите уровень значимости $5\%$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ На основе 100 наблюдений была оценена функция спроса: 
+\[
+\underset{(s.e.)}{\widehat{\ln Q}} = \underset{(0.04)}{2.87} - \underset{(0.02)}{1.12}\ln P
+\]
+На уровне значимости $5\%$ проверьте гипотезу  $H_0: \beta_{\ln P} = - 1$ против альтернативной $H_a: \beta_{\ln P} < -1$. Дайте экономическую интерпретацию проверяемой гипотезе и альтернативе.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Используя годовые данные с 1960 по 2005 г., была построена кривая Филлипса, связывающая уровень инфляции $Inf$ и уровень безработицы $Unem$: 
+\[
+\widehat{Inf} = 2.34 - 0.23Unem 
+\]
+\[
+\sqrt{\widehat{Var}(\hat{\beta}_{Unem})} = 0.04, R^2 = 0.12
+\]
+На уровне значимости $1\%$ проверьте гипотезу  $H_0: \beta_{Unem} = 0$ против альтернативной $H_a: \beta_{Unem} \not= 0$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 18$ --- классическая регрессионная модель, где $\E(\e_i)$ = 0, $Var(\e_i) = \sigma^2$. Также имеются следующие данные: $\sum_{i=1}^{18} y_i^2 = 4256, \sum_{i=1}^{18} x_i^2 = 185, \sum_{i=1}^{18} x_iy_i = 814.25, \sum_{i=1}^{18} y_i = 225, \sum_{i=1}^{18} x_i = 49.5.$ Используя эти данные, оцените эту регрессию и на уровне значимости $5\%$ проверьте гипотезу $H_0: \beta_1 = 3.5$ против альтернативной $H_a: \beta_1 > 3.5$:
+\begin{enumerate}
+\item Приведите формулу для тестовой статистики 
+\item Укажите распределение тестовой статистики
+\item Вычислите наблюдаемое значение тестовой статистики
+\item Укажите границы области, где основная гипотеза не отвергается
+\item Сделайте статистический вывод
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Рассматривается модель $y_i=\mu+\e_i$, где $\E(\e_i)=0$, $\Var(\e_i)=\sigma^2$ и $\Cov(\e_i,\e_j)=0$ при $i\neq j$. При каких $c_i$ несмещенная оцека 
+\[
+\hat{\mu}=\sum_{i=1}^{n} c_i y_i
+\]
+имеет наименьшую дисперсию?
+\end{problem}
+ 
+\begin{solution}
+Через теорему Гаусса--Маркова или через условную минимизацию, $c_i=1/n$
+\end{solution}
+
+\begin{problem}
+ Рассмотрим классическую линейную регрессионную модель, $y_t=\b\cdot t+\e_t$. Какая из оценок, $\hb$ или $\hb'$ является более эффективной?
+\begin{enumerate}
+\item $\hb=y_1$, $\hb'=y_2/2$
+\item $\hb=y_1$, $\hb'=0.5y_1+0.5\frac{y_2}{2}$
+\item $\hb=\frac{1}{n}\left(y_1+\frac{y_2}{2}+\frac{y_3}{3}+\ldots+\frac{y_n}{n}\right)$, $\hb'=\frac{y_1+2y_2+\ldots+ny_n}{1^2+2^2+\ldots+n^2}$
+\end{enumerate}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Ошибки регрессии $\e_i$ независимы и равновероятно принимают значения $+1$ и $-1$. Также известно, что $y_i=\beta \cdot i +\e_i$. Модель оценивается всего по двум наблюдениям. 
+\begin{enumerate}
+\item Найдите закон распределения $\hb$, $RSS$, $ESS$, $TSS$, $R^2$
+\item Найдите $\E(\hb)$, $\Var(\hb)$, $\E(RSS)$, $\E(ESS)$, $\E(R^2)$
+\item При каком $\beta$ величина $\E(R^2)$ достигает максимума?
+\end{enumerate}
+\end{problem}
+ 
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрим модель с линейным трендом без свободного члена, $y_t=\beta t +\e_t$. 
+\begin{enumerate}
+\item Найдите МНК оценку коэффициента $\beta$
+\item Рассчитайте $\E(\hat{\beta})$ и $\Var(\hat{\beta})$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hat{\beta}$ состоятельна?
+\end{enumerate}
+\end{problem}
+ 
+
+\begin{solution}
+\begin{enumerate}
+\item $\hb=\frac{\sum y_t t}{\sum t^2}$
+\item $\E(\hat{\beta})=\beta$ и $\Var(\hat{\beta})=\frac{\sigma^2}{\sum_{t=1}^{T} t^2}$
+\item Да, состоятельна
+\end{enumerate}
+\end{solution}
+
+
+\begin{problem}
+ В модели $y_t=\beta_1+\beta_2 x_t+\e_t$, где 
+$x_t=\left\{
+\begin{array}{l}
+2,\, t=1 \\
+1,\, t>1
+\end{array}
+\right.
+$:
+\begin{enumerate}
+\item Найдите мнк-оценку $\hb_2$
+\item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hb_2$ состоятельна?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+несостоятельна
+\end{solution}
+
+
+\begin{problem}
+ В модели $y_t=\beta_1+\beta_2 x_t$, где 
+$x_t=\left\{
+\begin{array}{l}
+1,\, t=2k+1 \\
+0,\, t=2k
+\end{array}
+\right.
+$:
+\begin{enumerate}
+\item Найдите мнк-оценку $\hb_2$
+\item Рассчитайте $\E(\hb_2)$ и $\Var(\hb_2)$ в предположениях теоремы Гаусса-Маркова
+\item Верно ли, что оценка $\hb_2$ состоятельна?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Априори известно, что парная регрессия должна проходить через точку $(x_{0},y_{0})$.
+\begin{enumerate}
+\item  Выведите формулы МНК оценок;
+\item В предположениях теоремы Гаусса-Маркова найдите дисперсии и средние оценок 
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+Вроде бы равносильно переносу начала координат и применению результата для регрессии без свободного члена. Должна остаться несмещенность. 
+\end{solution}
+
+
+
+\begin{problem}
+ Мы предполагаем, что $y_t$ растёт с линейным трендом, т.е. $y_t=\b_1+\b_2 t+\e_t$. Все предпосылки теоремы Гаусса-Маркова выполнены. В качестве оценки $\hb_2$ предлагается $\hb_2=\frac{Y_T-Y_1}{T-1}$, где $T$ --- общее количество наблюдений. 
+\begin{enumerate}
+\item Найдите $\E(\hb_2)$ и $\Var(\hb_2)$
+\item Совпадает ли оценка $\hb_2$ с классической мнк-оценкой?
+\item У какой оценки дисперсия выше, у $\hb_2$ или классической мнк-оценки?
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ Вася считает, что выборочная ковариация $\sCov(y,\hy)=\frac{\sum (y_i-\bar{y})(\hy_i-\bar{y})}{n-1}$ это неплохая оценка для $\Cov(y_i,\hy_i)$. Прав ли он?
+\end{problem}
+
+\begin{solution}
+Не прав. Ковариация $\Cov(y_i,\hy_i)$ зависит от $i$, это не одно неизвестное число, для которого можно предложить одну оценку.
+\end{solution}
+
+
+\begin{problem}
+ В классической линейной регрессионной модели $y_i=\beta_1+\beta_2 x_i+\e_i$, дисперсия зависимой переменной не зависит от номера наблюдения, $\Var(y_i)=\sigma^2$. Почему для оценки $\sigma^2$ вместо известной из курса математической статистики формулы $\sum (y_i-\bar{y})^2/(n-1)$ используют $\sum \he_i^2/(n-2)$?
+\end{problem}
+
+\begin{solution}
+формула $\sum (y_i-\bar{y})^2/(n-1)$ неприменима так как $\E(y_i)$ не является константой 
+\end{solution}
+
+
+
+\begin{problem}
+ Оценка регрессии имеет вид $\hy_i=3-2x_i$. Выборочная дисперсия $x$ равна $9$, выборочная дисперсия $y$ равна $40$. Найдите $R^2$ и выборочные корреляции $\sCorr(x,y)$, $\sCorr(y,\hy)$.
+\end{problem}
+
+\begin{solution}
+$R^2$ --- это отношение выборочных дисперсий $\hy$ и $y$. 
+\end{solution}
+
+
+
+\begin{problem}
+ Слитки-вариант. Перед нами два золотых слитка и весы, производящие взвешивания с ошибками. Взвесив первый слиток, мы получили результат $300$ грамм, взвесив второй слиток --- $200$ грамм, взвесив оба слитка --- $400$ грамм. Предположим, что ошибки взвешивания --- независимые одинаково распределенные случайные величины с нулевым средним. 
+\begin{enumerate}
+\item Найдите несмещеную оценку веса первого слитка, обладающую наименьшей дисперсией.
+\item Как можно проинтерпретировать нулевое математическое ожидание ошибки взвешивания? 
+\end{enumerate} 
+\end{problem}
+
+\begin{solution}
+ Как отсутствие систематической ошибки.
+\end{solution}
+
+
+
+\begin{problem}
+ Рассмотрим линейную модель $y_i=\beta_1+\beta_2 x_i +\e_i$, где ошибки $\e_i$ нормальны $N(0;\sigma^2)$ и независимы.
+\begin{enumerate}
+\item Верно ли, что $y_i$ одинаково распределены?
+\item Верно ли, что $\bar{y}$ --- это несмещенная оценка для $\E(y_i)$?
+\item Верно ли, что $\sum (y_i-\bar{y})^2/(n-1)$ --- несмещенная оценка для $\sigma^2$? Если да, то докажите, если нет, то определите величину смещения
+\end{enumerate} 
+\end{problem}
+
+\begin{solution}
+нет, нет, нет 
+\end{solution}
+
+
+
+\begin{problem}
+ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 22 наблюдениям. Найдите $\E(RSS)$, $\Var(RSS)$, $\P(10\sigma^2<RSS<30\sigma^2)$, $\P(10\hat{\sigma}^2<RSS<30\hat{\sigma}^2)$
+\end{problem}
+
+\begin{solution}
+ $RSS/\sigma^2\sim\chi^2_{n-k}$, $\E(RSS)=(n-k)\sigma^2$, $\Var(RSS)=2(n-k)\sigma^4$, $\P(10\sigma^2<RSS<30\sigma^2)\approx 0.898$ 
+\end{solution}
+
+
+\begin{problem}
+ Модель регрессии $y_i = \beta_1 + \beta_2 x_i + \e_i$, в которой ошибки
+$\e_i$ независимы и нормальны $N(0;\sigma^2)$, оценивается по 12 наблюдениям. Найдите
+\begin{enumerate}
+\item $\P(\hb_1>\beta_1)$, $\P(\beta_1>0)$, $\P(|\hb_1-\beta_1|<se(\hb_1))$, $\P(\hb_2>\beta_2+se(\hb_2))$, $\P(\hb_2>\beta_2-se(\hb_2))$
+\item $\E(\hb_1)$, $\E(\hb_2)$, $\E(\beta_2)$
+\item Закон распределения, математическое ожидание и дисперсию величин $\frac{\hb_2-\beta_2}{\sqrt{\Var(\hb_2)}}$, $\frac{\hb_2-\beta_2}{\sqrt{\widehat{\Var}(\hb_2)}}$, $\frac{\hb_1+\hb_2-\beta_1-\beta_2}{\sqrt{\widehat{\Var}(\hb_1+\hb_2)}}$
+\item $\P(\hs>\sigma)$, $\P(\hs>2\sigma)$
+\end{enumerate}
+
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+
+\begin{problem}
+ Для модели парной регрессии известны $y=(1, 2, 3, 4, 5)'$ и $\hy=(2, 2, 2, 4, 5)'$. Найдите $RSS$, $TSS$, $R^2$, $\hs^2$.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+ В классической парной регрессионной модели $y_i = \beta_1 + \beta_2 x_i + \e_i$ с нормально распределенными ошибками, оцениваемой по 30 наблюдениям, дополнительно известно, что $\Var(\e_7)=9$. Найдите
+\begin{enumerate}
+\item $\E(\e_2)$, $\Cov(\e_1,\e_3)$, $\E(\e_3^5)$, $\E(e_5^3)$, $\Var(e_5)$, $\Var(y_3)$
+\item $\P(e_2>\e_3)$, $\P(e_1>0)$, $\P(e_1>3)$
+\item $\E(RSS)$, $\Var(RSS)$, $\P(RSS>200)$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+В модели парной регрессии придумайте такие наблюдения, чтобы:
+\begin{itemize}
+\item $R^2=0.9$
+\item $R^2=0.8$ и регрессия имела вид $\hy=2+3x$
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+ Можно взять четыре наблюдения равноотстоящих по вертикали от данной прямой. Подбирая остатки, добиваемся нужного $R^2$. 
+ \end{solution}
+
+
+
+\begin{problem}
+Оцененная с помощью линейной модели $y_t = \beta_1 + \beta_2 t + \e_t$ методом наименьших квадратов зависимость расходов на питание $y$ от времени, определённого как $t = 1$ для 1995 г., $t = 2$ для 1996 г., \ldots, $t = 12$ для 2006 г., задана уравнением $\hat{y}_t = 95 + 2.5 t$.
+
+Чему были бы равны оценки коэффициентов $\beta_1$ и $\beta_2$, если бы в качестве $t$ использовались фактические даты (1995 – 2006), а не числа от 1 до 12? 
+\end{problem}
+
+\begin{solution}
+$\hat{\beta_1} = -4890$ и $\hat{\beta_2} = 2.5$
+
+$X = \begin{bmatrix}
+1 & 1 \\
+1 & 2 \\
+\ldots & \ldots \\
+1 & 12 \\
+\end{bmatrix}$ --- матрица исходных регрессоров; $\tilde{X} = \begin{bmatrix}
+1 & 1+1994\\
+1 & 2+1994 \\
+\ldots & \ldots \\
+1 & 12+1994 \\
+\end{bmatrix}$ --- матрица новых регрессоров.
+
+$\tilde{X} = X \cdot D$, где $D = \begin{bmatrix}
+1 & 1994 \\
+0 & 1 \\
+\end{bmatrix}$.
+
+Итак, уравнение регрессии с новыми регрессорами имеет вид $y = \tilde{X}\beta + \e$ и МНК-оценки коэффициентов равны:
+\begin{multline}
+\hat{\beta} = \left( \tilde{X}^T \tilde{X} \right)^{-1} \tilde{X}^T y = \left( [XD]^T [XD] \right)^{-1} [XD]^T y = \\
+D^{-1} (X^T X)^{-1} (D^T)^{-1} D^T X^T y = D^{-1} (X^T X)^{-1}X^T y 
+\end{multline}
+\[
+\hat{\beta} = D^{-1}\hat{\beta}_{old} = \begin{bmatrix}
+1 & -1994 \\
+0 & 1 \\
+\end{bmatrix} \begin{bmatrix}
+95 \\
+2.5 \\
+\end{bmatrix} = \begin{bmatrix}
+-4890 \\
+2.5 \\
+\end{bmatrix}
+\]
+\end{solution}
+
+\begin{problem}
+Пусть есть набор данных $(x_i, y_i)$, $i = 1, \ldots, n$, $(x_i>0, y_i>0)$, порожденных уравнением $y_i = \beta_1 + \beta_2 x_i + \e_i$, удовлетворяющих условиям стандартной модели парной регрессии.
+Рассматриваются следующие оценки параметра $\beta_2$:
+$$\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i}, \text{ } \tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}}$$
+Найти дисперсию и смещение каждой из оценок.
+\end{problem}
+
+\begin{solution}
+Мы можем существенно упростить решение, воспользовавшись матричным представлением:
+
+\begin{multline}
+\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+y_n\\
+\end{bmatrix} = \\
+ \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} y
+\end{multline}
+
+\begin{multline}
+\E\tilde{\beta}_2^a = \frac{1}{n}\sum_{i=1}^n \frac{\E y_i}{x_i} = \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+\E y_1\\
+\E y_2\\
+\vdots\\
+\E y_n\\
+\end{bmatrix} = \\
+ \frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \begin{bmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\  
+\end{bmatrix} = \\
+\frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \left[ \beta_1 \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} + \beta_2 \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{bmatrix} \right] = \frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k} + \beta_2
+\end{multline}
+
+Значит, смещение для первой оценки равно $\frac{\beta_1}{n}\sum_{k=1}^n \frac{1}{x_k}$.
+
+\begin{multline}
+\Var(\tilde{\beta}_2^a) = \Var\left(\frac{1}{n} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} y\right) =\\
+ \frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \Var(y) \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T =\\
+\frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \Var(\e) \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T = \\
+ \frac{1}{n^2} \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix} \sigma_{\e}^2 I \begin{bmatrix}
+\frac{1}{x_1} & \frac{1}{x_2} & \ldots & \frac{1}{x_n}
+\end{bmatrix}^T =\\
+\frac{\sigma^2_{\e}}{n^2}\sum_{k=1}^n \frac{1}{x_k^2}
+\end{multline}
+
+Перейдём ко второй оценке.
+
+$\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} y$
+
+
+\begin{multline}
+\E\tilde{\beta}_2^b = \frac{\overline{y}}{\overline{x}} = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \E y = \frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \begin{bmatrix}
+\beta_1 + \beta_2 x_1\\
+\beta_1 + \beta_2 x_2\\
+\vdots\\
+\beta_1 + \beta_2 x_n\\  
+\end{bmatrix} =\\
+\frac{1}{\overline{x}} \frac{1}{n} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \left[ \beta_1 \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} + \beta_2 \begin{bmatrix}
+x_1\\
+x_2\\
+\vdots\\
+x_n\\
+\end{bmatrix} \right] = \\
+\frac{1}{n} \frac{\beta_1 n}{\overline{x}} + \frac{1}{n} \frac{\beta_2 \sum x_i}{\overline{x}} = \frac{\beta_1}{\overline{x}} + \beta_2
+\end{multline}
+
+Значит, смещение равно $\frac{\beta_1}{\overline{x}}$.
+
+\begin{multline}
+\Var(\tilde{\beta}_2^b) = \frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \Var(y) \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} = \\
+\frac{1}{\overline{x}^2} \frac{1}{n^2} \begin{bmatrix}
+1 & 1 & \ldots & 1
+\end{bmatrix} \Var(\e) \begin{bmatrix}
+1\\
+1\\
+\vdots\\
+1\\
+\end{bmatrix} = \frac{\sigma_{\e}^2}{\overline{x}^2 n}
+\end{multline}
+\end{solution}
+
+
+
+\begin{problem}
+Уравнение $y_t = \beta_1 + \beta_2 x_t + \e_t$ оценивается по МНК. Может ли коэффициент детерминации быть малым (<0.05), а статистика $t_{\hat{\beta}_2}$ большой (>10)?
+\end{problem}
+
+\begin{solution}
+Известно, что для парной регрессии $t_{\hat{\beta}_2}^2 = \frac{R^2}{(1 - R^2)/(n-2)}$. Поэтому из выражения $t_{\hat{\beta}_2}^2 = \frac{0.05^2}{(1 - 0.05^2)/(n-2)} = \frac{0.05^2 (n-2)}{1 - 0.05^2}$ становится очевидным, что при надлежащем выборе числа наблюдений можно сделать величину $t_{\hat{\beta}_2}$ сколь угодно большой.
+\end{solution}
+
+
+\begin{problem}
+ Докажите, что в случае, когда $|\sCorr(x, y)| = 1$, линия парной регрессии $y$ на $x$ совпадает с линией парной регрессии $x$ на $y$.
+\end{problem}
+
+\begin{solution}
+Пусть $Y_i = \beta_1 + \beta_2 X_i + \e_i$, $i = 1, \ldots, n$.
+
+Тогда $Y_i = \hat{\beta}_1 + \hat{\beta}_2 X_i + \hat{\e}_i$
+
+$Y_i -  \overline{Y} + \overline{Y} = \hat{\beta}_1 + \hat{\beta}_2 (X_i -  \overline{X} + \overline{X}) + \hat{\e}_i$
+
+$Y_i -  \overline{Y}  = \underbrace{\hat{\beta}_1 - \overline{Y} + \hat{\beta}_2 \overline{X}}_{=0} + \hat{\beta}_2 (X_i -  \overline{X}) + \hat{\e}_i$
+
+$Y_i -  \overline{Y} = \hat{\beta}_2 (X_i -  \overline{X}) + \hat{\e}_i$
+
+$y_i \equiv Y_i -  \overline{Y}$, $i = 1, \ldots, n$
+
+$x_i \equiv X_i -  \overline{X}$, $i = 1, \ldots, n$
+
+$y_i = \hat{\beta}_2 x_i + \hat{\e}_i$
+
+$\textbf{y} = \hat{\beta}_2 \textbf{x} + \hat{\e}$, где $\textbf{y} = \begin{bmatrix}
+y_1 & \ldots & y_n
+\end{bmatrix}^T$, $\textbf{x} = \begin{bmatrix}
+x_1 & \ldots & x_n
+\end{bmatrix}^T$, $\e = \begin{bmatrix}
+\e_1 & \ldots & \e_n
+\end{bmatrix}^T$
+
+$\textbf{x}^T \textbf{y} = \hat{\beta}_2 \textbf{x}^T \textbf{x} + \underbrace{\textbf{x}^T \hat{\e}}_{=0}$
+
+\begin{equation}
+\label{task20:direct_ols}\hat{\beta}_2 = \frac{\textbf{x}^T \textbf{y}}{\textbf{x}^T \textbf{x}}
+\end{equation}
+
+Аналогично получаем, что в обратной регрессии $X_i = \beta_3 + \beta_4 Y_i + \xi_i$, $i = 1, \ldots, n$
+
+\begin{equation}
+\label{task20:reverse_ols}\hat{\beta}_4 = \frac{\textbf{y}^T \textbf{y}}{\textbf{y}^T \textbf{y}}
+\end{equation}
+
+$ESS = (\hat{Y} - \overline{Y}_i)^T(\hat{Y} - \overline{Y}_i)$
+
+Заметим, что $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i)$.
+
+Действительно, $(I - \pi)(P - \pi) = P - \pi$, следовательно,
+
+$\hat{Y} - \overline{Y}_i = (P - \pi)Y = (I - \pi)(P - \pi)Y = (I-\pi)(\hat{Y} - \overline{Y}_i)$.
+
+Далее, $\hat{Y} - \overline{Y}_i = (I - \pi)(\hat{Y} - \overline{Y}_i) = (I - \pi)(\hat{\beta}_1 + \hat{\beta}_2 X - \overline{Y}_i) = \hat{\beta}_2 \textbf{x}$
+
+Значит, $ESS = \hat{\beta}_2^2 \textbf{x}^T \textbf{x}$.
+
+Получаем:
+\begin{equation}
+\label{task20:corr}R^2 = \frac{ESS}{TSS} = \frac{\hat{\beta}_2^2 \textbf{x}^T \textbf{x}^{(2)}}{\textbf{y}^T \textbf{y}} = \frac{\textbf{x}^T \textbf{y}^{(2)}}{(\textbf{x}^T \textbf{x})(\textbf{y}^T \textbf{y})} = \Corr^2(X, Y)
+\end{equation}
+
+Заметим также, что из формул (\ref{task20:direct_ols}), (\ref{task20:reverse_ols}) и (\ref{task20:corr}) следует, что $R^2 = \hat{\beta}_2 \hat{\beta}_4$.
+
+Если $\Corr^2(X, Y) = 1$, то $R^2 = \hat{\beta}_2 \hat{\beta}_4 = 1$.
+
+Отметим также, что из $R^2 = 1$ следует, что $\hat{\e}_1 = \ldots = \hat{\e}_n = 0$ и $\hat{\xi}_1 = \ldots = \hat{\xi}_n = 0$.
+
+Тогда $Y_i = \hat{\beta}_1 + \hat{\beta}_2 X_i + \underbrace{\hat{\e}_i}_{=0}$ и $X_i = \hat{\beta_3} + \hat{\beta_4} Y_i + \underbrace{\hat{\xi}_i}_{=0}$, $i = 1, \ldots, n$.
+
+$X_i = \hat{\beta_3} + \hat{\beta_4} Y_i = (\overline{X} - \hat{\beta_4}\overline{Y}) + \hat{\beta_4} Y_i = \left( \overline{X} - \frac{1}{\hat{\beta}_2} \overline{Y} \right) + \frac{1}{\hat{\beta}_2} Y_i$
+
+$\hat{\beta}_2 X_i = (\hat{\beta}_2 \overline{X} - \overline{Y}) + Y_i$
+
+$Y_i = (\overline{Y} - \hat{\beta}_2 \overline{X}) + \hat{\beta}_2 X_i = \hat{\beta}_1 + \hat{\beta}_2 X_i$
+
+Следовательно, в случае когда $\Corr^2(X, Y) = 1$, линия парной регрессии $Y$ на $X$ совпадает с линией парной регрессии $X$ на $Y$.
+\end{solution}
+
+
+
+\begin{problem}
+Сгенерите выборку из двух зависимых но некоррелированных случайных величин. Можно ли <<поймать>> зависимость используя парную регрессию?
+\end{problem}
+
+\begin{solution}
+Да, если строить регрессию функции от $y$ на функцию от $x$. А если строить регрессию просто $y$ на $x$, то оценка наклона будет распределена симметрично около нуля.
+\end{solution}
+
+
+\begin{problem}
+Все предпосылки классической линейной модели выполнены, $y=\beta_1+\beta_2 x+\varepsilon$. Рассмотрим альтернативную оценку коэффициента $\beta_2$,
+\begin{equation}
+\hb_{2,IV}=\frac{\sum z_i(y_i-\bar{y})}{\sum z_i(x_i-\bar{x})}
+\end{equation}
+\begin{enumerate}
+\item Является ли оценка несмещенной?
+\item Любые ли $z_i$ можно брать?
+\item Найдите $\Var(\hb_{2,IV})$
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+Да, является. Любые, кроме констант. $\Var(\hb_{2,IV})=\sigma^2 \sum (z_i-\bar{z})^2/ \left(\sum (z_i-\bar{z})x_i \right)^2 $.
+\end{solution}
+
+\begin{problem}
+Напишите формулу для оценок коэффициентов в парной регрессии без матриц. Напишите формулу для дисперсий оценок коэффициентов.
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+
+\begin{problem}
+Рассматривается модель линейной регрессии $y_i = \beta_1 + \beta_2x_i + \varepsilon_i$, в которой ошибки $\varepsilon_1, \ldots, \varepsilon_n$ являются независимыми нормально распределенными случайными величинами с математическим ожиданием $0$ и дисперсией $\sigma^2$. Найдите
+
+\begin{enumerate}
+  \item $\mathbb{P}\{\varepsilon_1 > 0\}$, 
+  \item $\mathbb{P}\{\varepsilon_1^2 + \varepsilon_2^2 > 2\sigma^2\}$,
+  \item $\mathbb{P}\left\{\frac{\varepsilon_1}{\sqrt{\varepsilon_2^2 + \varepsilon_3^2}} > 2 \right\}$,	
+  \item $\mathbb{P}\left\{\frac{\varepsilon_1}{\sqrt{\varepsilon_2^2 + \varepsilon_3^2 + \varepsilon_4^2}} > \frac{5}{4\sqrt{3}} \right\}$,
+  \item $\mathbb{P}\left\{\frac{\varepsilon_1 + 2\varepsilon_2}{\sqrt{\varepsilon_3^2 + \varepsilon_4^2 + \varepsilon_5^2}} < \frac{9}{2} \right\}$,
+  \item $\mathbb{P}\left\{\frac{\varepsilon_1^2}{\varepsilon_2^2 + \varepsilon_3^2} > 17 \right\}$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+Вспомните про $t$, $\chi^2$, $F$ распределения
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% новые задачи
+
+\begin{problem}
+В модели парной регрессии $y_i=\beta_1+\beta_2 x_i +\e_i$ ошибки $\e_i$ независимы и имеют пуассоновское распределение с параметром $\lambda$.
+\begin{enumerate}
+\item Предложите способ несмещенно оценить $\lambda$.
+\item Являются ли МНК-оценки $\hb_1$ и $\hb_2$ несмещенными? Если оценки являются смещенными, то предложите несмещенные оценки
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}
+$\hat{\lambda}=RSS/(n-2)$ т.к. $\Var(\e_i)=\lambda$. Оценка $\hb_2$ является несмещенной, но $\E(\hb_1)=\beta_1+\lambda$. Можно предложить несмещенную оценку $\hb'_1=\hb_1-RSS/(n-2)$.
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
