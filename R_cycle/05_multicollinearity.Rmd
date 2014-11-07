@@ -254,7 +254,7 @@ LASSO в R. Сначала надо ручками сваять матрицу �
 ```{r}
 X <- model.matrix(~0+speed+I(speed^2)+I(speed^3),data=cars)
 y <- h$dist
-fit <- glmnet(X,y)
+fit <- glmnet(X,y,alpha=0)
 plot(fit)
 ```
 
