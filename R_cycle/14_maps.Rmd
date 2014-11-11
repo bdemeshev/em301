@@ -2,13 +2,62 @@
 
 Решим несколько типичных задач, связанных с картами
 
+
+##### Дополнительный софт
+
+Границы регионов и прочие географические данные часто хранятся в формате шейп-файлов ([shape-file](https://ru.wikipedia.org/wiki/Shapefile)). Для работы с шейп-файлами можно воспользоваться открытой [qgis](http://www.qgis.org/). 
+
+##### Установка gdal под macos
+
+1. Скачать и установить [gdal](http://www.kyngchaos.com/software/frameworks)
+2. Отредактировать файл `~/.bash_profile`, добавив туда строчку
+`export PATH="/Library/Frameworks/GDAL.framework/Programs:$PATH"`
+3. Скачать и разархивировать [proj](http://trac.osgeo.org/proj/wiki/WikiStart#Download)
+4. Установить `proj` из терминала
+```{r, eval=FALSE, engine='bash'}
+./configure
+make && make test
+sudo make install
+```
+5. Скачать исходные файлы (package source)[rgdal](http://cran.r-project.org/web/packages/rgdal/index.html)
+6. Установить `rgdal` из терминала
+```{r, eval=FALSE, engine='bash'}
+sudo R CMD INSTALL --configure-args='--with-proj-include=/usr/local/lib' rgdal_0.9-1.tar.gz 
+```
+
+
+
+##### Данные по России
+
+* [gis-lab-russia](http://gis-lab.info/qa/rusbounds-rosreestr.html) --- границы регионов России (на 2010 и 2000 годы) в трёх проекциях 
+* [gis-lab-moscow](http://gis-lab.info/qa/moscow-atd.html) --- границы административных округов и муниципальных образований
+* [gadm](http://www.gadm.org/) --- границы регионов для всех стран, шейп-файлы и `.Rdata`
+
+
+##### Ссылки
+
+http://gis.stackexchange.com/questions/43543 centroids
+http://gis.stackexchange.com/questions/83722 minimal distance
+http://stackoverflow.com/questions/3807136/r-points-in-polygons
+http://stackoverflow.com/questions/19002744/spover-for-point-in-polygon-analysis-in-r
+
+
+##### Читаем данные gis-lab
+
+```{r}
+a <- readOGR(dsn="Downloads/regions2010_alb_shp/","regions2010",encoding = "WINDOWS-1251")
+# folder, file-name
+plot(a)
+plot(a[a$AREA>mean(a$AREA),],col="blue")
+```
+
 ## Раскрасим регионы России
 
 Загружаем данные c [www.gadm.org](www.gadm.org)
 ```{r, message=FALSE}
-require(sp)
-require(maptools)
-require(rgdal)
+library("sp")
+library("maptools")
+library("rgdal")
 
 # скачаем с сайта gadm данные по России с детализацией по регионам:
 rus<-url("http://www.gadm.org/data/rda/RUS_adm1.RData")
@@ -53,7 +102,47 @@ spplot(gadm.prj,"NAME_1") # `NAME_1` --- переменная, отвечающ�
 
 ## Один регион более детально
 
+...
 
+
+## Карта вышки в три строчки!
+
+```{r}
+library("ggmap")
+hse.sha <- "shabolovka, 26"
+qmap(location = hse.sha,zoom=18) # source="osm" fails
+```
+
+Добавим на карту координаты фотографий на [panoramio.com](panoramio.com)
+
+Получаем данные:
+```{r}
+library("RCurl")
+library("rjson")
+library("plyr")
+
+url <- "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=100&minx=37.606&miny=55.719&maxx=37.612&maxy=55.722"
+panor.text <- getURL(url)
+
+# this function creates an ugly list
+panor.list <- fromJSON(panor.text)
+
+# we just need the list of list called panor.list$photos
+# the list of list as member of list... @#$%^!
+
+# convert it to a pretty data frame!
+panor <- ldply(panor.list$photos,data.frame)
+head(panor)
+```
+
+Нанесём точки на карту!
+```{r}
+# get the map
+hse.map <- get_map(hse.sha,zoom=17)
+
+ggmap(hse.map)+geom_point(data=panor,
+  aes(x=longitude,y=latitude),size=3)
+```
 
 
 
