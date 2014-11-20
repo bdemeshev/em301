@@ -1032,3 +1032,49 @@ xtable(vcov(model))
 \begin{solution}
 Находим $X'X$, её элементы и есть то, что нужно.
 \end{solution}
+
+
+
+\begin{problem}
+Дана оценка ковариацонной матрицы, 
+\[
+\widehat{Var}(\hat{\beta})=\begin{pmatrix}
+1/3 & -1/3 & 0 \\
+-1/3 & 4/3 & -1 \\
+0 & -1 & 2
+\end{pmatrix}
+\]
+
+Найдите $\widehat{Var}(\hb_1+\hb_2-\hb_3)$
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+Методом наименьших квадратов по 5 наблюдениям оценивается модель $y_i=\beta_1+\beta_2 x_{i2}+\beta_3 x_{i3}+\varepsilon_i$. Известно, что
+\[
+\hb=\begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}, \;
+(X'X)^{-1}= \begin{pmatrix} 
+1/3 & -1/3 & 0 \\ 
+-1/3 & 4/3 & -1 \\ 
+0 & -1 & 2.0000 
+\end{pmatrix}
+\]
+\[
+\widehat{Var}(\hb)=\begin{pmatrix}
+1 & -1 & 0 \\
+-1 & 4 & -3 \\ 
+0 & -3 & 6
+\end{pmatrix}, \; TSS=60
+\]
+
+Найдите $\hat{\sigma}^2$ и проверьте гипотезу о значимости регрессии в целом на уровне значимости 5\%.
+\end{problem}
+
+\begin{solution}
+\end{solution}
