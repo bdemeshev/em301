@@ -8,7 +8,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-\input{title_bor_utf8_knitr}
+\input{title_bor_utf8_solution}
 
 
 % чисто эконометрические сокращения:
@@ -43,7 +43,7 @@
 \input{prob_and_sol_2chap}
 
 
-\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\title{Эконометрика в задачах и упражнениях \\ {\small Решебник с Монте-Карло и эконометрессами} }
 \author{Дмитрий Борзых, Борис Демешев}
 \date{\today}
 
@@ -53,9 +53,11 @@
 
 \begin{document}
 
+
+
 %\setcounter{page}{3}
 
-%\maketitle % печатаем заголовок
+\maketitle % печатаем заголовок
 %\tableofcontents
 
 \parindent=0 pt % отступ равен 0

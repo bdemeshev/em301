@@ -1,0 +1,67 @@
+---
+title: "Нано-исследование"
+author: "Винни-Пух"
+date: "22 ноября 2014, суббота"
+output: pdf_document
+lang: russian
+geometry: margin=1cm
+toc: TRUE
+---
+
+В данной **научной работе** мы проанализируем данные по швейцарским кантонам.
+
+```{r, include=FALSE}
+library("lattice")
+library("psych")
+library("dplyr")
+library("knitr")
+library("sjPlot")
+library("pander")
+library("memisc")
+opts_chunk$set(echo=FALSE)
+h <- swiss
+```
+
+Графическое представление данных
+
+```{r}
+splom(h)
+```
+
+Средняя доля католиков в кантоне равна 
+`r mean(h$Catholic)`.
+
+В нашем наборе данных `r nrow(h)` наблюдений.
+
+Исследуем зависимость показателя фертильности
+```{r, results='asis'}
+model <- lm(data=h, Fertility~Agriculture+Catholic)
+model2 <- lm(data=h, Fertility~Catholic)
+compare <- mtable('Model 1' = model,
+            'Model 2' = model2,
+            summary.stats = c('R-squared','F','p','N'))
+pander(compare)
+```
+
+
+
+Представляем результаты оценивания модели
+
+```{r}
+sjp.lm(model)
+```
+
+
+
+
+```{r, results='asis'}
+pander(head(mtcars[, 1:5]))
+```
+
+
+```{r, results='asis'}
+pander(model)
+```
+
+
+

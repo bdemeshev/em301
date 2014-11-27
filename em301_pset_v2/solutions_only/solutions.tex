@@ -57,7 +57,7 @@
 \newcommand{\hypo}{\mathcal{H}} 
 \newcommand{\simhypo}{\ensuremath{\mathrel{\stackrel{\hypo_0}{\sim}}}}
 
-\input{title_bor_utf8_knitr}
+\input{title_bor_utf8_solution}
 
 
 % чисто эконометрические сокращения:
@@ -92,7 +92,7 @@
 \input{prob_and_sol_2chap}
 
 
-\title{Эконометрика \\ {\small с Монте-Карло и эконометрессами} \\ в задачах и упражнениях}
+\title{Эконометрика в задачах и упражнениях \\ {\small Решебник с Монте-Карло и эконометрессами} }
 \author{Дмитрий Борзых, Борис Демешев}
 \date{\today}
 
@@ -101,9 +101,11 @@
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
+
+
 %\setcounter{page}{3}
 
-%\maketitle % печатаем заголовок
+\maketitle % печатаем заголовок
 %\tableofcontents
 
 \parindent=0 pt % отступ равен 0
@@ -1506,6 +1508,7 @@ $H_0:
 \end{problem}
 
 \begin{solution}
+Смысл гипотезы: летом и осенью одинаковая зависимость и одинаковая зависимость зимой и весной. Ограниченная модель: $\widehat{\ln Q}=\hat{\beta}_1+\hat{\beta}_2\cdot{\ln P}+\hat{\beta}_3 d$, где $d$ равна 1 для лета и осени. Наблюдаемое значение статистики $F_{obs}=1.375$, критическое, $F_{cr}=3.5219$. Гипотеза не отвергается.
 \end{solution}
 
 
@@ -1671,8 +1674,8 @@ $\alpha>0.09$
 \[
 deaths_i = \beta_1 + \beta_2 drivers_i + \beta_3 popden_i + \beta_4  temp + \beta_5 fuel + \e_i
 \]
-\ensuremath{\widehat{deaths}_i=-\underset{(222.8803)}{27.1}+\underset{(  0.3767)}{4.64}\cdot drivers_i-\underset{(  0.0239)}{0.0228}\cdot popden_i+\underset{(  4.6016)}{5.3}\cdot temp_i-\underset{(  0.8679)}{0.663}\cdot fuel_i}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\ensuremath{\widehat{deaths}_i=-\underset{(222.8803)}{27.1}+\underset{(  0.3767)}{4.64}\cdot drivers_i-\underset{(  0.0239)}{0.0228}\cdot popden_i+\underset{(  4.6016)}{5.3}\cdot temp_i-\underset{(  0.8679)}{0.663}\cdot fuel_i}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:43 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -1723,7 +1726,7 @@ ESS = 170.4, RSS = 80.3, n = 21
 \[
 ESS = 90.3, RSS = 60.4
 \]
-Когда в модель были введены переменные $Fedu$ и $Medu$, учитывающие уровень образования родителей, величина $ESS$ уведичилась до $110.3.$
+Когда в модель были введены переменные $Fedu$ и $Medu$, учитывающие уровень образования родителей, величина $ESS$ увеличилась до $110.3.$
 \begin{enumerate}
 \item Напишите спецификацию уравнения регрессии с учётом образования родителей
 \item Сформулируйте и на уровне значимости $5\%$ проверьте гипотезу о значимом влиянии уровня образования родителей на заработную плату:
@@ -1855,8 +1858,8 @@ education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \
 \]
 Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
-\ensuremath{\widehat{education}_i=-\underset{(64.9199)}{287}+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\ensuremath{\widehat{education}_i=-\underset{(64.9199)}{287}+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:43 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -1903,8 +1906,8 @@ Intercept & -286.84 & 64.92 & -4.42 & 0.00 \\
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю городского населения:
 \begin{center}
-\ensuremath{\widehat{education}_i=-\underset{(70.27134)}{301}+\underset{( 0.00741)}{0.0612}\cdot income_i+\underset{( 0.17327)}{0.836}\cdot young_i}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\ensuremath{\widehat{education}_i=-\underset{(70.27134)}{301}+\underset{( 0.00741)}{0.0612}\cdot income_i+\underset{( 0.17327)}{0.836}\cdot young_i}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:43 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -1941,8 +1944,8 @@ education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \
 \]
 Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
-\ensuremath{\widehat{education}_i=-\underset{(64.9199)}{287}+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\ensuremath{\widehat{education}_i=-\underset{(64.9199)}{287}+\underset{( 0.0093)}{0.0807}\cdot income_i+\underset{( 0.1598)}{0.817}\cdot young_i-\underset{( 0.0343)}{0.106}\cdot urban_i}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -1973,8 +1976,8 @@ Intercept & -286.84 & 64.92 & -4.42 & 0.00 \\
 
 Далее приведены результаты оценивания уравнения регрессии без переменной, отражающей долю населения в возрасте до 18 лет:
 \begin{center}
-\ensuremath{\widehat{education}_i=\underset{(27.3827)}{25.3}+\underset{( 0.0114)}{0.0762}\cdot income_i-\underset{( 0.0423)}{0.112}\cdot urban_i}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\ensuremath{\widehat{education}_i=\underset{(27.3827)}{25.3}+\underset{( 0.0114)}{0.0762}\cdot income_i-\underset{( 0.0423)}{0.112}\cdot urban_i}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -2104,8 +2107,8 @@ R_m-R_0=R_m^*-R_0^*+u
 \begin{alltt}
 \hlkwd{xtable}\hlstd{(coef.t)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrr}
@@ -2230,8 +2233,8 @@ Num. obs.                  & 47            & 47            \\
   \hlkwd{c}\hlstd{(}\hlstr{"Константа"}\hlstd{,}\hlstr{"Общая площадь"}\hlstd{,} \hlstr{"Жилая площадь"}\hlstd{)}
 \hlkwd{xtable}\hlstd{(coef.table)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -2252,8 +2255,8 @@ Num. obs.                  & 47            & 47            \\
 \hlstd{var.hat} \hlkwb{<-} \hlkwd{vcov}\hlstd{(model1)}
 \hlkwd{xtable}\hlstd{(var.hat)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrr}
@@ -2301,8 +2304,8 @@ Num. obs.                  & 47            & 47            \\
   \hlkwd{c}\hlstd{(}\hlstr{"Константа"}\hlstd{,}\hlstr{"Общая площадь"}\hlstd{,} \hlstr{"Жилая площадь"}\hlstd{)}
 \hlkwd{xtable}\hlstd{(coef.table)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:50 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -2322,8 +2325,8 @@ Num. obs.                  & 47            & 47            \\
 \begin{alltt}
 \hlkwd{xtable}\hlstd{(}\hlkwd{vcov}\hlstd{(model1))}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:51 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrr}
@@ -2361,8 +2364,8 @@ Num. obs.                  & 47            & 47            \\
 \hlcom{#  "Жилая площадь")}
 \hlkwd{xtable}\hlstd{(coef.table)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:51 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -2391,7 +2394,7 @@ Num. obs.                  & 47            & 47            \\
 
 
 \begin{problem}
- По 20 наблюдениям оценивается линейная регрессия $\hat{y}=\hat{\beta}_1 +\hat{\beta}_2 x+\hat{\beta}_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $N(0,1)$.
+ По 20 наблюдениям оценивается линейная регрессия $\hat{y}=\hat{\beta}_1 +\hat{\beta}_2 x+\hat{\beta}_3 z$, причём истинная зависимость имеет вид $y=\beta_1 +\beta_2 x+\varepsilon$. Случайная ошибка $\varepsilon_i$ имеет нормальное распределение $N(0,\sigma^2)$.
 
 \begin{enumerate}
 \item Найдите вероятность $\P(\hat{\beta}_3>se(\hat{\beta}_3))$
@@ -2417,6 +2420,9 @@ Num. obs.                  & 47            & 47            \\
 \end{problem}
  
 \begin{solution}
+В обоих случаях можно так подобрать коэффициенты $\hb$, что $kr_i=\widehat{kr}_i$. А именно, идеальные прогнозы достигаются при  $\hb_{p_1}=1$, $\hb_{p_2}=1$, $\hb_{p_3}=1$, $\hb_{p_4}=1$, $\hb_{p_5}=1$ и (в первой модели) $\hb_1=0$. Отсюда $RSS=0$, $ESS=TSS$, поэтому $R^2=1$ даже в модели без свободного члена. Получаем $\hat{\sigma}^2=0$, поэтому строго говоря $t$ статистики и $P$-значения не существуют из-за деления на ноль. 
+
+На практике при численной минимизации $RSS$ оказывается, что $t$-статистики коэффициентов при задачах принимают очень большие значения, а соответствующие $P$-значения крайне близки к нулю. В первой модели особенной на практике будет $t$ статистика свободного члена. В силу неопределенности вида $0/0$ свободный коэффициент на практике может оказаться незначим.
 \end{solution}
 
 
@@ -2733,6 +2739,27 @@ JB=\frac{S^2}{6} + \frac{(K-3)^2}{24},
 \begin{solution}
 $0$
 \end{solution}
+
+
+\begin{problem}
+В отделении буйно-помешанных 30 больных. В инфекционном отделении 20 больных. Эконометрист Василий из департамента НОБ (науко-образного бреда) построил регрессию температуры больного на константу по каждому отделению в отдельности и по обоим отделениям сразу. По инфекционному отделению $RSS=15$, по отделению буйно-помешанных $RSS=25$, по обоим отделениям сразу --- $RSS=80$. Эконометрист Василий хочет получить грант на публикацию в зарубежном рецензируемом журнале статьи, описывающей результаты регрессии по обоим отделениям сразу. 
+
+Помогите главврачу с помощью теста Чоу проверить корректность действий эконометриста Василия
+\end{problem}
+
+\begin{solution}
+Проводим тест Чоу
+\end{solution}
+
+
+\begin{problem}
+Все предпосылки классической теоремы Гаусса-Маркова со стохастическими регрессорами для случая независимой выборки выполнены. Является ли оценка $\hat{\sigma}$ несмещенной и состоятельной? Если оценка смещена, то в большую или меньшую сторону относительно $\sigma$?
+\end{problem}
+
+\begin{solution}
+Несмещенной является $\hat{\sigma}^2$, поэтому $\hat{\sigma}$ смещена, но состоятельна. 
+\end{solution}
+
 
 \chapter{МНК с матрицами и вероятностями}
 
@@ -3745,8 +3772,8 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 \begin{alltt}
 \hlkwd{xtable}\hlstd{(}\hlkwd{vcov}\hlstd{(model))}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:51 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:44 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrr}
@@ -3769,6 +3796,52 @@ $t = \frac{\hb_2 + \hb_3 - \beta_2 - \beta_3}{\sqrt{\widehat{\Var}(\hb_2 + \hb_3
 
 \begin{solution}
 Находим $X'X$, её элементы и есть то, что нужно.
+\end{solution}
+
+
+
+\begin{problem}
+Дана оценка ковариацонной матрицы, 
+\[
+\widehat{Var}(\hat{\beta})=\begin{pmatrix}
+1/3 & -1/3 & 0 \\
+-1/3 & 4/3 & -1 \\
+0 & -1 & 2
+\end{pmatrix}
+\]
+
+Найдите $\widehat{Var}(\hb_1+\hb_2-\hb_3)$
+\end{problem}
+
+\begin{solution}
+\end{solution}
+
+\begin{problem}
+Методом наименьших квадратов по 5 наблюдениям оценивается модель $y_i=\beta_1+\beta_2 x_{i2}+\beta_3 x_{i3}+\varepsilon_i$. Известно, что
+\[
+\hb=\begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix}, \;
+(X'X)^{-1}= \begin{pmatrix} 
+1/3 & -1/3 & 0 \\ 
+-1/3 & 4/3 & -1 \\ 
+0 & -1 & 2.0000 
+\end{pmatrix}
+\]
+\[
+\widehat{Var}(\hb)=\begin{pmatrix}
+1 & -1 & 0 \\
+-1 & 4 & -3 \\ 
+0 & -3 & 6
+\end{pmatrix}, \; TSS=60
+\]
+
+Найдите $\hat{\sigma}^2$ и проверьте гипотезу о значимости регрессии в целом на уровне значимости 5\%.
+\end{problem}
+
+\begin{solution}
 \end{solution}
 
 % ML
@@ -4824,8 +4897,8 @@ l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}) = l(\hat{a}_{UR}, \hat{b}_{UR}) =\\
 \begin{alltt}
 \hlkwd{xtable}\hlstd{(cars.table)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:51 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:45 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -4851,8 +4924,8 @@ l(\hat{\beta}_{1, UR}, \hat{\beta}_{2, UR}) = l(\hat{a}_{UR}, \hat{b}_{UR}) =\\
   \hlkwd{c}\hlstd{(}\hlstr{"Константа"}\hlstd{,}\hlstr{"speed"}\hlstd{,}\hlstr{"speed^2"}\hlstd{,}\hlstr{"speed^3"}\hlstd{)}
 \hlkwd{xtable}\hlstd{(cars.vcov)}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:51 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:45 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -5106,7 +5179,7 @@ $i=20,\ldots, 30$ & $1.56$ & $1.06$ & $2.29$ & $14.51$ \\
 последней подгруппе, $k=3$ --- число факторов в модели, считая единичный столбец.
 \item Распределение тестовой статистики при верной $H_0$: $GQ\sim F_{n_3-k,n_1-k}$
 \item Наблюдаемое значение $GQ_{obs}=1.41$
-\item Область в которой $H_0$ не отвергается: $GQ\in [0;3.44]$
+\item Область, в которой $H_0$ не отвергается: $GQ\in [0;3.44]$
 \item Статистический вывод: поскольку $GQ_{obs} \in [0;3.44]$, то на основании имеющихся наблюдений на уровне значимости 5\% основная гипотеза $H_0$ не может быть отвергнута. Таким образом, тест Голдфельда-Квандта не выявил гетероскедастичность.
 \end{enumerate} 
 \end{solution}
@@ -5138,7 +5211,7 @@ $i=30,\ldots, 50$ & $1.72$ & $1.41$ & $2.49$ & $130.74$ \\
 последней подгруппе, $k=3$ --- число факторов в модели, считая единичный столбец.
 \item Распределение тестовой статистики при верной $H_0$: $GQ\sim F_{n_3-k,n_1-k}$
 \item Наблюдаемое значение $GQ_{obs}=6.49$
-\item Область в которой $H_0$ не отвергается: $GQ\in [0;3.12]$
+\item Область, в которой $H_0$ не отвергается: $GQ\in [0;3.12]$
 \item Статистический вывод: поскольку $GQ_{obs} \notin [0;3.12]$, то на основании имеющихся наблюдений на уровне значимости 1\% основная гипотеза $H_0$ отвергается. Таким образом, тест Голдфельда-Квандта выявил гетероскедастичность.
 \end{enumerate} 
 \end{solution}
@@ -5170,7 +5243,7 @@ $i=20,\ldots, 30$ & $1.04$ & $2.56$ & $4.12$ & $16.00$ \\
 последней подгруппе, $k=3$ --- число факторов в модели, считая единичный столбец.
 \item Распределение тестовой статистики при верной $H_0$: $GQ\sim F_{n_3-k,n_1-k}$
 \item Наблюдаемое значение $GQ_{obs}=2.88$
-\item Область в которой $H_0$ не отвергается: $GQ\in [0;3.44]$
+\item Область, в которой $H_0$ не отвергается: $GQ\in [0;3.44]$
 \item Статистический вывод: поскольку $GQ_{obs} \in [0;3.44]$, то на основании имеющихся наблюдений на уровне значимости 5\% основная гипотеза $H_0$ не может быть отвергнута. Таким образом, тест Голдфельда-Квандта не выявил гетероскедастичность.
 \end{enumerate} 
 \end{solution}
@@ -5201,7 +5274,7 @@ $i=30,\ldots, 50$ & $0.87$ & $1.84$ & $3.66$ & $117.46$ \\
 последней подгруппе, $k=3$ --- число факторов в модели, считая единичный столбец.
 \item Распределение тестовой статистики при верной $H_0$: $GQ\sim F_{n_3-k,n_1-k}$
 \item Наблюдаемое значение $GQ_{obs}=5.91$
-\item Область в которой $H_0$ не отвергается: $GQ\in [0;2.21]$
+\item Область, в которой $H_0$ не отвергается: $GQ\in [0;2.21]$
 \item Статистический вывод: поскольку $GQ_{obs} \notin [0;2.21]$, то на основании имеющихся наблюдений на уровне значимости 5\% основная гипотеза $H_0$ отвергается. Таким образом, тест Голдфельда-Квандта выявил гетероскедастичность.
 \end{enumerate} 
 \end{solution}
@@ -5223,7 +5296,7 @@ $i=30,\ldots, 50$ & $0.87$ & $1.84$ & $3.66$ & $117.46$ \\
 \item Тестовая статистика $W=n\cdot R^2_{aux}$, где $n$ --- число наблюдений, $R^2_{aux}$ --- коэффициент детерминации для вспомогательной регрессии.
 \item Распределение тестовой статистики при верной $H_0$: $W\sim \chi^2_{k_{aux}-1}$, где $k_{aux}=6$ --- число регрессоров во вспомогательной регрессии, считая константу.
 \item Наблюдаемое значение тестовой статистики: $W_{obs}=18$
-\item Область в которой $H_0$ не отвергается: $W\in [0;W_{crit}]=[0;11.07]$
+\item Область, в которой $H_0$ не отвергается: $W\in [0;W_{crit}]=[0;11.07]$
 \item Статистический вывод: поскольку $W_{obs} \notin [0;11.07]$, то на основании имеющихся наблюдений на уровне значимости 5\% основная гипотеза $H_0$ отвергается. Таким образом, тест Уайта выявил гетероскедастичность.
 \end{enumerate}
 \end{solution}
@@ -6480,8 +6553,8 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
 \hlkwd{library}\hlstd{(xtable)}
 \hlkwd{xtable}\hlstd{(}\hlkwd{data.frame}\hlstd{(x,y,z))}
 \end{alltt}
-\end{kframe}% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\end{kframe}% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
@@ -6543,16 +6616,16 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
 Найдите каждую из следующих матриц в каждой из следующих степеней $\frac{1}{2}$, $\frac{1}{3}$, $-\frac{1}{2}$, $-\frac{1}{3}$, $-1$, $100$.
 \begin{enumerate}
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 \\ 
     1 &   2 \\ 
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     4 &   1 \\ 
     1 &   2 \\ 
@@ -6582,8 +6655,8 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
 Найдите обратные матрицы ко всем матрицам, представленным ниже.
 \begin{enumerate}
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 &   0 \\ 
     0 &   1 &   1 \\ 
@@ -6591,8 +6664,8 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   0 &   0 \\ 
     1 &   1 &   0 \\ 
@@ -6600,8 +6673,8 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     0 &   0 &   1 \\ 
     1 &   0 &   0 \\ 
@@ -6609,8 +6682,8 @@ $\P()$ & $0.2$ & $0.3$ & $0.5$ \\
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:54 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
   0 & 0 & a \\ 
   1 & 0 & 0 \\ 
@@ -7576,38 +7649,38 @@ $\begin{pmatrix} 0.2 & -0.4 & 0 \\ -0.4 & 0.8 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 Пусть $\e = (\e_1, \e_2, \e_3)'\sim N (0,I)$. Найдите $\E(\e'P\e)$ и распределение случайной величины $\e'P\e$, если $P = X(X'X)^{-1}X'$ и матрица $X'$ представлена ниже.
 \begin{enumerate}
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:55 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 &   1 \\ 
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:55 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   2 &   3 \\ 
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:55 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 &   1 \\ 
     0 &   0 &   1 \\ 
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:55 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 &   1 \\ 
     1 &   2 &   3 \\ 
   \end{pmatrix}
 }
 \item
-\ensuremath{% latex table generated in R 3.1.0 by xtable 1.7-4 package
-% Thu Oct 23 13:11:55 2014
+\ensuremath{% latex table generated in R 3.1.1 by xtable 1.7-4 package
+% Thu Nov 27 12:48:48 2014
 \begin{pmatrix}{}
     1 &   1 &   1 \\ 
     0 &   1 &   1 \\ 

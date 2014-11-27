@@ -63,10 +63,10 @@
 
 \usepackage{textcomp}  % Чтобы в формулах можно было русские буквы писать через \text{}
 
-% размер листа бумаги
-\usepackage[paperwidth=145mm,paperheight=215mm,
-height=182mm,width=113mm,top=20mm,includefoot]{geometry}
-%\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+% размер листа бумаги. Для решений --- другой!!
+%\usepackage[paperwidth=145mm,paperheight=215mm,
+%height=182mm,width=113mm,top=20mm,includefoot]{geometry} % основная книга
+\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
 
 \usepackage{xcolor}
 
@@ -130,8 +130,8 @@ height=182mm,width=113mm,top=20mm,includefoot]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%  Внедрение tex исходников в pdf файл  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \embedfile[desc={Main tex file}]{\jobname.tex} % Включение кода в выходной файл
-\embedfile[desc={title_bor}]{title_bor_utf8_knitr.tex}
-
+\embedfile[desc={title_bor}]{title_bor_utf8_solution.tex}
+\embedfile[desc={emetrix}]{emetrix_preamble.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
