@@ -239,14 +239,14 @@ $g(\hat{\theta}_{UR}) = \begin{bmatrix}
 \end{bmatrix}$
 
 $\frac{\partial g}{\partial \theta'} = \begin{bmatrix}
-\frac{\partial c_1}{\partial \mu} & \frac{\partial c_1}{\partial \nu} \\
-\frac{\partial c_2}{\partial \mu} & \frac{\partial c_2}{\partial \nu} \\
+\frac{\partial g_1}{\partial \mu} & \frac{\partial g_1}{\partial \nu} \\
+\frac{\partial g_2}{\partial \mu} & \frac{\partial g_2}{\partial \nu} \\
 \end{bmatrix} = \begin{bmatrix}
 1 & 0\\
 0 & 1\\
 \end{bmatrix}$, $\frac{\partial g'}{\partial \theta} = \begin{bmatrix}
-\frac{\partial c_1}{\partial \mu} & \frac{\partial c_2}{\partial \mu} \\
-\frac{\partial c_1}{\partial \nu} & \frac{\partial c_2}{\partial \nu} \\
+\frac{\partial g_1}{\partial \mu} & \frac{\partial g_2}{\partial \mu} \\
+\frac{\partial g_1}{\partial \nu} & \frac{\partial g_2}{\partial \nu} \\
 \end{bmatrix} = \begin{bmatrix}
 1 & 0\\
 0 & 1\\
@@ -328,7 +328,7 @@ $$\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^
 
 Логарифмическая функция правдоподобия:
 
-$$l(\theta) := \\ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln p + \left(n - \sum_{i=1}^n x_i \right) \cdot \ln (1 - p)$$
+$$l(\theta) := \ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln p + \left(n - \sum_{i=1}^n x_i \right) \cdot \ln (1 - p)$$
 
 $\Theta_{UR} = \Theta$
 
@@ -402,7 +402,7 @@ $$\text{L}(\theta) = \prod_{i=1}^n \mathbb{P}_{\theta}(X_i = x_i) = \prod_{i=1}^
 
 Логарифмическая функция правдоподобия:
 
-$$l(\theta) := \\ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln\lambda - \sum_{i=1}^n \ln (x_i!) - \lambda n$$
+$$l(\theta) := \ln \text{L}(\theta) = \left( \sum_{i=1}^n x_i \right) \cdot \ln\lambda - \sum_{i=1}^n \ln (x_i!) - \lambda n$$
 
 $\Theta_{UR} = \Theta$
 
