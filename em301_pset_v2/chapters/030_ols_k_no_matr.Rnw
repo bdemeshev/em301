@@ -987,9 +987,9 @@ rownames(coef.table) <-
 xtable(coef.table)
 @
 
-Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+Сумма квадратов остатков равна $RSS=\Sexpr{deviance(model1)}$. Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
 <<results='asis'>>=
-xtable(vcov(model1))
+xtable(vcov(model1), digits=4)
 @
 
 \begin{enumerate}
