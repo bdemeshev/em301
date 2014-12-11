@@ -666,6 +666,8 @@ xtable(coefficient_table)
 @
 \end{center}
 
+Модель оценивается по \Sexpr{nrow(Anscombe)} наблюдению.
+
 \begin{enumerate}
 \item Сформулируйте основную и альтернативую гипотезы, которые соответствуют тесту на значимость коэффициента при переменной доход на душу населения в уравнении регрессии
 \item На уровне значимости $10\%$ проверьте гипотезу о значимости коэффициента при переменной доход на душу населения в уравнении регрессии:
@@ -726,7 +728,7 @@ xtable(coefficient_table2)
 \[
 education_i = \beta_1 + \beta_2 income_i + \beta_3 young_i + \beta_4 urban_i + \e_i
 \]
-Ниже приведены результаты оценивания уравнения этой линейной регрессии:
+Модель оценивается по \Sexpr{nrow(Anscombe)} наблюдению. Ниже приведены результаты оценивания уравнения этой линейной регрессии:
 \begin{center}
 <<echo=FALSE, warning=FALSE,results='asis'>>=
 d <- Anscombe
@@ -947,7 +949,7 @@ xtable(coef.table)
 Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
 <<results='asis'>>=
 var.hat <- vcov(model1)
-xtable(var.hat)
+xtable(var.hat, digits=4)
 @
 
 \begin{enumerate}
