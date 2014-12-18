@@ -85,6 +85,7 @@ library("xtable")
 library("MASS")
 library("car")
 library("texreg")
+library("memisc")
 
 library("econru")
 

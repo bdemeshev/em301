@@ -787,3 +787,39 @@ $\hat{\lambda}=RSS/(n-2)$ т.к. $\Var(\e_i)=\lambda$. Оценка $\hb_2$ яв
 
 
 
+\begin{problem}
+У Эконометрессы Глафиры было четыре наблюдения и она решила оценить модель парной регрессии:
+
+\begin{tabular}{cc}
+$y$ & $x$ \\ 
+\hline 
+5 & 1 \\ 
+4 & 2 \\ 
+4 & 3 \\ 
+3 & 4 \\ 
+\end{tabular} 
+
+Эконометресса Анжелла решила, что четыре наблюдения --- мало, и поэтому учла каждое наблюдение 10 раз, так что в результате у неё вышло 40 наблюдений.
+
+\begin{enumerate}
+\item Какие оценки коэффициентов получат Анжелла и Глафира? Будут ли значимы оценки коэффициентов в предположении нормальности ошибок?
+\item Во сколько раз у Анжеллы и Глафиры отличаются: коэффициенты детерминации, коэффициенты выборочной корреляции между $x$ и $y$, $RSS$?
+\end{enumerate}
+
+\end{problem}
+
+
+\begin{solution}
+<<results="asis">>=
+df1 <- data.frame(x = c(1,2,3,4), y = c(5,3,3,4) )
+df2 <- data.frame(y = rep(df1$y,10), x = rep(df1$x,10))
+m1 <- lm(data=df1, y~x)
+m2 <- lm(data=df2, y~x)
+library(memisc)
+mt <- mtable(m1,m2,
+  summary.stats=c("N",
+    "Deviance","R-squared", "sigma", "F", "p"))
+write.mtable(mt, forLaTeX=TRUE)
+@
+
+\end{solution}
