@@ -56,7 +56,7 @@
 \usetikzlibrary{trees} % прибамбас в нем для рисовки деревьев
 \usetikzlibrary{arrows} % прибамбас в нем для рисовки стрелочек подлиннее
 \usepackage{tikz-qtree} % прибамбас в нем для рисовки деревьев
-
+\pgfplotsset{compat=1.8}
 
 %\usepackage{verse} % для стихов
 
@@ -132,6 +132,11 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\trace}{tr}
+%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rk}{rank}
+
 
 \def \xfs{(x_1,\ldots,x_{n-1})}
 \def \ti{\tilde}
@@ -212,13 +217,13 @@
 
 %"Определения","Замечания"
 %и "Гипотезы" не нумеруются
-%\newtheorem*{defin}{Определение}
+\newtheorem*{definition}{Определение}
 %\newtheorem*{rem}{Замечание}
 %\newtheorem*{conj}{Гипотеза}
 
 %"Теоремы" и "Леммы" нумеруются
 %по главам и согласованно м/у собой
-%\newtheorem{theorem}{Теорема}
+\newtheorem{theorem}{Теорема}
 %\newtheorem{lemma}[theorem]{Лемма}
 
 % Утверждения нумеруются по главам
