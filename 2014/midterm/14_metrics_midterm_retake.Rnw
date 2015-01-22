@@ -64,15 +64,14 @@ load(file="exam_data.Rdata")
 
 
 
-\title{Метрика. Полуфинал. 26 декабря 2014.}
+\title{Метрика.}
 
 \begin{document}
 %\maketitle
 \parindent=0 pt % no indent
 
-\section*{Метрика. Ликвидация безграмотности --- 2014}
+\section*{Метрика. Midterm Retake, January 2015}
 
-В этот день, 26 декабря 1919 года, совнарком РСФСР принял декрет <<О ликвидации безграмотности в РСФСР>>. Всем желаю отметить этот день написанием грамотного зачета по эконометрике! Удачи!
 
 \begin{enumerate}
 \item Регрессионная модель  задана в матричном виде при помощи уравнения $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
@@ -82,10 +81,10 @@ load(file="exam_data.Rdata")
 $y=\left(
 \begin{array}{c} 
 1\\ 
+1\\ 
 2\\ 
-3\\ 
-4\\ 
-5
+2\\ 
+2
 \end{array}\right)$, 
 $X=\left(\begin{array}{ccc}
 1 & 0 & 0 \\
