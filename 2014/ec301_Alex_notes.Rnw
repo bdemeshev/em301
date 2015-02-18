@@ -1,0 +1,1747 @@
+\documentclass[12pt,a4paper]{article} % Класс печатного документа.
+
+%%% Математика
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % AMS
+%\usepackage{mathtools} % Еще AMS
+\usepackage{mathtext} % Русские буквы в фомулах
+\usepackage{textcomp} % Чтобы в формулах можно было русские буквы писать через \text{}
+
+%%% Русский язык в тексте
+\usepackage[X2,T2A]{fontenc} % Кодировки
+\usepackage[utf8]{inputenc} % Кодировка TeX-файла
+\usepackage{cmap} % Поддержка русского в PDF
+\usepackage[english, russian]{babel}  % Поддержка русского языка.
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}% Перенос знаков в формулах
+    {\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Шрифты
+\usepackage{euscript}   % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+
+\usepackage{longtable}  % Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{floatflt}% Обтекаемые таблицы
+
+
+\usepackage{graphicx}  % Для вставки рисунков
+\usepackage[update,prepend]{epstopdf} % EPS-рисунки конвертируются в PDF
+\usepackage{wrapfig} % Обтекание рисунков текстом
+
+\usepackage{geometry} % Простой способ задавать поля
+\geometry{top=20mm}
+\geometry{bottom=20mm}
+\geometry{left=20mm}
+\geometry{right=20mm}
+ 
+% \usepackage{fancyhdr} % Колонтитулы
+% \pagestyle{fancy}
+ % \renewcommand{\headrulewidth}{0pt}  % Толщина линейки, отчеркивающей верхний колонтитул
+ %\lfoot{Теория вероятности и математическая статистика}
+ %\rfoot{группа 211И}
+% \rhead{Домашнее задание №\,3}
+
+ %\lhead{Микроэкономика (ИП)}
+ %\cfoot{\roman{page}}  По умолчанию здесь номер страницы
+ 
+% \usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+ 
+ %  \usepackage{extsizes} % Возможность сделать 14-й шрифт
+ 
+ % \linespread{1.5} % Интерлиньяж
+ 
+ \usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+ \usepackage{hyperref} % Гиперссылки
+ \hypersetup{
+   colorlinks = true,
+   linkcolor = MidnightBlue,
+   urlcolor = [rgb]{0,0,1},
+ 	citecolor = red
+ }
+ 
+ \usepackage{indentfirst} % Отступ в первом абзаце
+ 
+ 
+ \usepackage{multicol} % Несколько колонок
+ 
+ \theoremstyle{definition}
+ \newtheorem{problem}{Задача}
+ 
+ \theoremstyle{remark}
+ \newtheorem*{nonum}{Решение}
+ \newtheorem*{answer}{Ответ}
+
+\usepackage{pgf,tikz} % Графики
+
+\usepackage{etoolbox} % Логические операторы
+
+
+\begin{document}
+
+
+\begin{center}
+\vspace{10cm}
+\textsc{\LARGE \textbf{ECONOMETRICS}}
+
+\textsc{\LARGE Александр Левкун}
+
+\end{center}
+
+%\newpage 
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\begin{center}
+
+\textsc{\Large CMF} \addcontentsline{toc}{part}{CMF} 
+
+\end{center}
+
+Есть КЛММР --- классическая линейная модель множественной регрессии.
+
+А есть ОЛММР --- обобщенная линейная модель множественной регрессии --- общий вид $\Omega$ (нарушается условие гомоскедастичности и некоррелированных ошибок).
+
+$$\widehat{\beta}_{GLS} = (X' \Omega^{-1} X)^{-1} X' \Omega^{-1} y$$
+
+Оценка, полученная методом ОМНК (GLS):
+\begin{enumerate}
+\item несмещенная;
+\item состоятельная;
+\item распределена нормально при нормальном распределении ошибок;
+\item эффективная в классе несмещенных линейных оценок.
+\end{enumerate}
+
+$$\mathbb{V}ar(\hat{\beta}_{OLS}) = (X'X)^{-1}X' \Omega X (X'X)^{-1}$$
+
+Нужно уметь эффективно оценивать $\Omega$!
+
+В КЛММР:
+
+$$\widehat{R}^2 = 1 - \dfrac{\left(y - X \hat{\beta}_{GLS} \right)' \left(y - X \hat{\beta}_{GLS} \right)}{\left(y - \bar{y}I \right)' \left(y - \bar{y}I \right)}$$
+
+Но такая оценка $R^2$ является смещенной. Поэтому используем несмещенную оценку:
+$$\widehat{R}^2_{adj} = 1 - \dfrac{\left(y - X \hat{\beta}_{GLS} \right)' \left(y - X \hat{\beta}_{GLS} \right)/(n-k)}{\left(y - \bar{y}I \right)' \left(y - \bar{y}I \right)/(n-1)}$$
+
+Про ограниченную модель. Выдвигается какая-то гипотеза о коэффициентах: в матричном виде $H_0: H \beta = r$.
+
+$F$-статистика:
+$$F= \dfrac{(H \hat{\beta} - r)' (H (X'X)^{-1} H')^{-1} (H \hat{\beta} - r)/q}{RSS/(n-k)}$$
+
+Пример:
+$$y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$$
+\begin{equation*}
+H_0 = 
+ \begin{cases}
+   \beta_1 = 1\\
+   \beta_2 = \beta_3
+ \end{cases}
+\end{equation*}
+Матрица $H$ и вектор $r$ здесь:
+
+$H = \begin{pmatrix}
+1 & 0 & 0  \\
+0 & 1 & -1 
+\end{pmatrix}$
+
+$r = \begin{pmatrix}
+1 \\
+0
+\end{pmatrix}$
+\begin{center}
+
+Проверка гипотезы: $H_0: \beta_2 = ... = \beta_k = 0$.
+
+$$F = \dfrac{R^2}{1-R^2} \dfrac{n-k}{k-1}$$
+
+При верной $H_0$: $F$-статистика имеет распределение Фишера с $k-1$ и $n-k$ степенями свободы.
+
+Если хотим проверить, что $q$ коэффициентов незначимы, то:
+
+$$F = \dfrac{(R^2_{UR} - R^2_R)/q}{(1-R^2_{UR})/(n-k)}$$
+
+$$F = \dfrac{(RSS_R - RSS_{UR})/q}{RSS_{UR}/(n-k)}$$
+
+Ну и оценка дисперсии:
+
+$$\hat{\sigma}^2 = \dfrac{1}{n-k} \hat{\varepsilon}' \hat{\varepsilon}$$
+
+\newpage
+\textsc{\Large Семинар. November, 24} \addcontentsline{toc}{part}{Семинар. November, 24} 
+
+\end{center}
+Перед тем, как переходить к стохастическим регрессорам, для начала вернемся к теории вероятности:
+
+$Y$ --- одна случайная величина; $X$ --- одна случайная величина.
+
+\subsection*{} \addcontentsline{toc}{subsection}{Условное математическое ожидание} 
+Вспоминаем концепцию \textbf{условного математического ожидания}: $\mathbb{E}(Y|X)$ --- случайная величина. 
+
+$$\mathbb{E}(Y|X) = \mathbb{E}(Y|X = x_i) \text{ if } X = x_i $$
+
+Основные свойства:
+
+\begin{itemize}
+\item{ $\mathbb{E}(a|X) = a$}
+\item{ $\mathbb{E}(aY|X) = a \mathbb{E}(Y|X)$}
+\item{$ \mathbb{E}(f(X)|X) = f(X)$}
+\item{$ \mathbb{E} \left(\mathbb{E}(Y|X) \right) = \mathbb{E}(Y)$}
+
+\end{itemize}
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про автобус на пуассоновский поток} 
+\noindent \textbf{Задача 1.} Задача на пуассоновский поток ($\lambda = 2$): 
+
+день 1: Вася ждет $T$ до 1 автобуса
+
+день 2: Вася ждет время $T$. $N$ --- кол-во автобусов за время $T$.
+
+Найти: $\mathbb{E} (N)$; $\mathbb{E} (N^2)$; Правда ли, что $N$ распределено по Пуассону?
+
+Решение:
+$$\mathbb{E} (N) = \mathbb{E}\left( \mathbb{E} (N|T) \right)$$
+$$N | T \sim Poiss(2\cdot T) $$
+
+Учитывая то, что для пуассоновского потока $T \sim Exp (2)$:
+$$\mathbb{E} (N) = \mathbb{E}\left(\mathbb{E} (N|T) \right)= \mathbb{E} (2T) = 2 \cdot \dfrac{1}{2} = 1$$
+$$\mathbb{E} (N^2) = \mathbb{E}\left( \mathbb{E} (N^2|T) \right) = \mathbb{E}\left( \mathbb{V}ar (N|T) + \left(  \mathbb{E} (N|T) \right)^2 \right) = \mathbb{E} \left(2T + 4T^2 \right) = $$
+$$ = 2  \mathbb{E} T + 4 \mathbb{V}ar (T) + 4 \left(\mathbb{E} T \right)^2 = 1+1+1 =3$$
+
+Правда ли, что $N$ распределено по Пуассону? Нет! Так как $\mathbb{V}ar = 3 - 1 = 2 \ne \mathbb{E} (N)$.
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про грибы} 
+\noindent \textbf{Задача 2.} Задача про грибы: 
+
+$n$ грибов. Вероятности найти рыжик $R$, лисичку $L$ или другой гриб соответственно равны $p_r$, $p_l$, $1 - p_r - p_l$.
+
+Найти: $\mathbb{E}(R|L)$; $\mathbb{P} ( R = 0 |L )$; $\mathbb{P} (\mathbb{E} (R|L) = 0)$; $ \mathbb{E}\left[ \left(\mathbb{E}(R|L) \right)^2 \right]$.
+
+Решение:
+$$R|L \sim Bin \left(n - L, \dfrac{p_r}{1 - p_l}\right)$$
+$$\mathbb{E}(R|L) = (n-L)  \dfrac{p_r}{1 - p_l} $$
+$$\mathbb{P} ( R = 0 |L ) = \left(1 - \dfrac{p_r}{1 - p_l} \right)^{n-L}$$
+$$\mathbb{P} (\mathbb{E} (R|L) = 0) = \mathbb{P} (L = n) = p_l^n$$
+$$ \mathbb{E}\left[ \left(\mathbb{E}(R|L) \right)^2 \right] = \mathbb{E} (Y^2) = \mathbb{V}ar(Y) + (\mathbb{E} (Y))^2 =  \mathbb{V}ar\left((n-L)\dfrac{p_r}{1 - p_l} \right) + (\mathbb{E} (R))^2 =   $$
+$$=\left( \dfrac{p_r}{1 - p_l} \right)^2 \mathbb{V}ar(L) + n^2 p_r^2 = \left( \dfrac{p_r}{1 - p_l} \right)^2 n p_l (1-p_l) + n^2 p_r^2 = n p_r^2 \left(\dfrac{p_l}{1-p_l} + n \right)     $$
+
+\subsection*{} \addcontentsline{toc}{subsection}{Условная дисперсия}
+\textbf{Условная дисперсия}: 
+$$\mathbb{V}ar(Y|X) = \mathbb{E}(Y^2|X) - \left( \mathbb{E}(Y|X) \right)^2 $$  
+
+Основные свойства условной дисперсии:
+\begin{itemize}
+\item{ $\mathbb{V}ar (aY|X) = a^2  \mathbb{V}ar (Y|X)$}
+\item{ $\mathbb{V}ar (f(X)|X) = 0$ }
+\item{ $\mathbb{V}ar (XY|X) = X^2 \mathbb{V}ar (Y|X)$}
+\end{itemize}
+
+Теорема Пифагора (by definition $|y|^2 = \mathbb{V}ar (y)   $, скалярное произведение --- $(x, y) = \mathbb{C}ov(x, y)$, критерий перпендикулярности: $\mathbb{C}ov(x, y) = 0$ ):
+$$\mathbb{V}ar (y) = \mathbb{E} \left(\mathbb{V}ar(y|x) \right) + \mathbb{V}ar \left(\mathbb{E}(y|x)   \right) $$
+
+$\mathbb{C}ov (y - \mathbb{E}(y|x), \mathbb{E}(y|x)) = 0$ доказывается из теории меры. 
+
+Определение:
+
+$\mathbb{E}(y|x)$ --- это такая с.в. $\hat{y}$, что $\hat{y} = f(x)$ (борелевская), что: $\mathbb{E}(\hat{y}) = \mathbb{E}(y)$, $\mathbb{C}ov(y, g(x)) =\mathbb{C}ov(\hat{y}, g(x))$ (или $\mathbb{C}ov(y - \hat{y}, g(x)) =0$), т.е. $y$ и $\hat{y}$ неотличимы в смысле мат. ожиданий и ковариаций.
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про 100 равномерно распределенных случайных величин} 
+\noindent \textbf{Задача 3.} 
+$X_1$, $X_2$, ..., $X_{100}$ $\sim$ i.i.d $U [0, 1]$
+
+$M = \text{max} \{X_1, ..., X_{100}\} $
+
+$L = \text{max} \{X_1, ..., X_{80}\} $
+
+$R = \text{max} \{X_{81}, ..., X_{100}\} $
+
+Найти: $\mathbb{P} (L> R |L )$, $\mathbb{P} (L> R |M )$, $\mathbb{P} (L> R |R )$, $\mathbb{P} (L> R |L, M )$, $\mathbb{E}(M|L)$, $\mathbb{E}(L|M)$.
+
+Решение:
+
+$$\mathbb{P} (L> R |L ) = \mathbb{P}(X_{81} < L |L) \cdot \mathbb{P}(X_{82} < L |L) \cdot ... \cdot \mathbb{P}(X_{100} < L |L) = F^{20}(L) = L^{20}$$
+$$\mathbb{P} (L> R |R ) = 1 - \mathbb{P}(L < R |R) = 1 - \mathbb{P}(X_{1} < R |R) \cdot ... \cdot \mathbb{P}(X_{80} < R |R)  = 1 - F^{80}(R) = 1 - R^{80}$$
+Т.к. $M = \text{max} \{L, R\}$, $\mathbb{P}(M = L) = 0.8$, $\mathbb{P}(M = R) = 0.2$, то:
+$$\mathbb{P} (L> R |M) = \dfrac{4}{5} M^{20} + \dfrac{1}{5} \left(1 - M^{80} \right)$$
+$$\mathbb{P} (L> R |L, M ) = \mathbf{1}_{L = M}$$
+
+Заметим, что $F_R(x) = x^{20}$, тогда $f_R (x) = 20 x^{19}$. Отсюда можем найти математическое ожидание случайной величины $R$ (этот же результат можно получить из соображений симметрии):
+$$\mathbb{E}(R) = \int \limits_0^1 20 x^{20} dx = \dfrac{20}{21}$$
+$$\mathbb{E} (M|L) = \dfrac{4}{5} L  + \dfrac{1}{5} \cdot \dfrac{20}{21} = \dfrac{4}{5} L + \dfrac{4}{21}$$
+
+Учитывая то, что $\mathbb{E}(L|M \ne L) = 80M/81$ (из соображений симметрии):
+$$\mathbb{E} (L|M) = \dfrac{4}{5} M + \dfrac{1}{5} \cdot \dfrac{80}{81} M = \dfrac{404}{405} M$$
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. December, 1} \addcontentsline{toc}{part}{Семинар. December, 1} 
+
+\end{center}
+\subsection*{} \addcontentsline{toc}{subsection}{Состоятельность оценок} 
+Последовательность оценок $\hat{\theta}_1$, $\hat{\theta}_2$, $\hat{\theta}_3$, ... называется \textbf{состоятельной} для параметра $\theta$, если при $n \rightarrow \infty$:
+$$\mathbb{P}\left(|\hat{\theta}_n - \theta| > \varepsilon \right) \rightarrow 0$$
+
+Обозначение состоятельности: $\text{plim} \hat{\theta}_n = \theta$ или $\hat{\theta}_n \rightarrow \theta$
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача на состоятельность коэффициентов регрессии} 
+\noindent \textbf{Задача 1.} \textbf{a)} $X$ --- детерменированная. Оценивается модель парной регрессии:
+$$y_i = \beta_1 + \beta_2 x_i + \varepsilon_i$$
+\begin{equation*}
+x_i = 
+ \begin{cases}
+   1,&\text{при } i = 1;\\
+   2,&\text{при } i \ge 2.
+ \end{cases}
+\end{equation*}
+
+$n = 3, 4, 5, 6, ...$
+
+Верно ли, что $\text{plim}_{n\rightarrow \infty} \hat{\beta}_2^n = \beta_2$ ($n$ здесь --- не степень, а просто индекс)?
+
+$X = \begin{pmatrix}
+1 & 1  \\
+1 & 2 \\         
+\vdots & \vdots \\
+1 & 2 \\
+\end{pmatrix}$
+
+$ X' X = \begin{pmatrix}
+n & 2n-1  \\
+2n-1 & 4n-3 \\         
+\end{pmatrix}$
+
+$ \left(X' X \right)^{-1} = \dfrac{1}{n - 1} \begin{pmatrix}
+4n-3 & -2n+1  \\
+-2n+1 & n \\         
+\end{pmatrix}$
+
+Так как $\mathbb{V}ar \hat{\beta}  = \sigma^2 \left(X' X \right)^{-1}$, то:
+$\lim \limits_{n \rightarrow \infty} \mathbb{V}ar \left(\hat{\beta}^n \right) = \sigma^2 \begin{pmatrix}
+4 & -2  \\
+-2 & 1 \\         
+\end{pmatrix}$
+
+Итак, $\mathbb{V}ar \left(\hat{\beta}_2^n \right) =  \sigma^2$,  $\mathbb{V}ar \left(\hat{\beta}_1^n \right) = 4 \sigma^2$. Достаточное условие не выполняется.
+
+Достаточными условиями состоятельности являются:
+\begin{enumerate}
+\item $\mathbb{V}ar (\hat{\theta}_n) \rightarrow 0$
+\item $\mathbb{E} (\hat{\theta}_n) = \theta$
+\end{enumerate}
+
+Пример, когда без выполнения условий Чебышева выполняется состоятельность:
+
+\begin{table}[h]
+\begin{tabular}{l|c|c|c}
+$\hat{\theta}_n$ & $\theta - 100^n$ & $\theta$ & $\theta + 100^n$ \\ \hline
+$\mathbb{P}(\hat{\theta}_n)$ & $0.1^n$  & $1-2\cdot 0.1^n$ & $0.1^n$ \\ 
+\end{tabular}
+\end{table}
+
+Оценка состоятельна, но $\mathbb{V}ar (\hat{\theta}_n) \rightarrow \infty$.
+
+Докажем все же по-честному (выше мы просто показали, что достаточное условие состоятельности не выполняется):
+
+$ X' \varepsilon =  \begin{pmatrix}
+\varepsilon_1 + \varepsilon_2 + ... +\varepsilon_n  \\
+\varepsilon_1 + 2\varepsilon_2 + ... +2\varepsilon_n \\         
+\end{pmatrix}$
+
+Тогда:
+
+$ \lim \limits_{n \rightarrow \infty} \left(X' X\right)^{-1} X' \varepsilon = \begin{pmatrix}
+4 & -2 \\
+-2 & 1 \\
+\end{pmatrix} X' \varepsilon = \begin{pmatrix}
+2\varepsilon_1 \\
+-\varepsilon_1\\
+\end{pmatrix}$
+
+$\hat{\beta} = \beta + \left(X' X\right)^{-1} X' \varepsilon $
+
+$\begin{pmatrix}
+\hat{\beta}_1 \\
+\hat{\beta}_2 \\
+\end{pmatrix} \rightarrow
+\begin{pmatrix}
+\beta_1 \\
+\beta_2 \\
+\end{pmatrix} + 
+\begin{pmatrix}
+2\varepsilon_1 \\
+-\varepsilon_1\\
+\end{pmatrix}
+$
+
+Из последнего следует несостоятельность оценок коэффициентов.
+
+\textbf{б)} Теперь:
+
+\begin{equation*}
+x_i = 
+ \begin{cases}
+   1,&\text{при } i = 2k +1;\\
+   2,&\text{при } i = 2k.
+ \end{cases}
+\end{equation*} 
+
+$ X' X = \begin{pmatrix}
+n & 3n/2  \\
+3n/2 & 5n/2 \\         
+\end{pmatrix}$
+
+$ \left(X' X \right)^{-1} = \dfrac{4}{n^2} \begin{pmatrix}
+5n/2 & -3n/2  \\
+-3n/2 & n \\           
+\end{pmatrix}$
+
+$\lim \limits_{n \rightarrow \infty} \mathbb{V}ar \left(\hat{\beta}^n \right) = \sigma^2 \begin{pmatrix}
+0 & 0  \\
+0 & 0 \\         
+\end{pmatrix}$
+
+Оценки --- состоятельны по достаточным условиям.
+
+\textbf{в)} Теперь $x_i = i$. 
+
+Так как $1^2 + 2^2 + ... + n^2 = n(n+1)(2n+1)/6$ (доказывается по мат. индукции), то:
+
+$ X' X = \begin{pmatrix}
+n & n(n+1)/2  \\
+n(n+1)/2 & n(n+1)(2n+1)/6 \\         
+\end{pmatrix}$
+
+Находим определитель:
+$$det\left( X' X\right) = \frac{n^2(n + 1)(2n + 1)}{6} - \frac{n^2(n+1)^2}{4}=$$
+$$n^2(n+1)\frac{4n+2-3n-3}{12}=\frac{n(n+1)(n-1)}{12}$$
+
+$ \left(X' X \right)^{-1} = \dfrac{12}{n(n+1)(n-1)} \begin{pmatrix}
+n(n+1)(2n+1)/6 & -n(n+1)/2  \\
+-n(n+1)/2 & n \\           
+\end{pmatrix} = $
+
+$ =\begin{pmatrix}
+2(2n+1)/(n-1) & -6/(n-1)  \\
+-6/(n-1) & 12/(n+1)/(n-1) \\           
+\end{pmatrix}$
+
+Значит:
+$\lim \limits_{n \rightarrow \infty} \mathbb{V}ar \left(\hat{\beta}^n \right) = \sigma^2 \begin{pmatrix}
+4 & 0  \\
+0 & 0 \\         
+\end{pmatrix}$
+
+Достаточно свойство не выполняется. Докажем снова по-честному:
+
+$ X' \varepsilon =  \begin{pmatrix}
+\varepsilon_1 + \varepsilon_2 + ... +\varepsilon_n  \\
+\varepsilon_1 + 2\varepsilon_2 + ... +n\varepsilon_n \\         
+\end{pmatrix}$
+
+$ \lim \limits_{n \rightarrow \infty} \left(X' X\right)^{-1} X' \varepsilon = \begin{pmatrix}
+4 & 0 \\
+0 & 0 \\
+\end{pmatrix} X' \varepsilon = \begin{pmatrix}
+4\sum \varepsilon_i \\
+0\\
+\end{pmatrix}$
+
+$\hat{\beta} = \beta + \left(X' X\right)^{-1} X' \varepsilon $
+
+$\begin{pmatrix}
+\hat{\beta}_1 \\
+\hat{\beta}_2 \\
+\end{pmatrix} \rightarrow
+\begin{pmatrix}
+\beta_1 \\
+\beta_2 \\
+\end{pmatrix} + 
+\begin{pmatrix}
+4\sum \varepsilon_i \\
+0\\
+\end{pmatrix}
+$
+
+Видим, что оценка коэффициента $\beta_2$ --- состоятельна, однако оценка коэффициента $\beta_1$ не является состоятельной.
+
+\subsection*{} \addcontentsline{toc}{subsection}{Большой список хороших свойств касательно регрессии} 
+\textbf{БСХС} (Большой Список Хороших Свойств):
+
+Если:
+\begin{itemize}
+\item $y = X \beta + \varepsilon$
+\item $\mathbb{E}(\varepsilon | X) = 0 $
+\item $\mathbb{V}ar (\varepsilon |X) = \sigma^2 I_n$
+\item $P(X \text{ полного ранга}) = 1$
+\item векторы $(x_{i2}, x_{i3}, ..., x_{ik}, y_i)$ --- i.i.d.
+\item $n > k$
+\item строится регрессия $y$ на $X$
+\end{itemize}
+то:
+\begin{enumerate}
+\item Базовые: 
+\begin{itemize}
+\item $\hat{\beta}$ --- линейные по $y$: $\hat{\beta} = \left(X' X \right)^{-1} X' y$
+\item $\mathbb{E} (\hat{\beta} |X) = \beta$
+\item $\mathbb{E} (\hat{\beta}) = \beta$
+\item условная эффективность среди линейных несмещенных оценок:
+
+$\mathbb{V}ar \left(\hat{\beta}_j^{OLS} | X\right) \leqslant \mathbb{V}ar \left(\hat{\beta}_j^{alt} | X\right)$
+\item безусловная эффективность среди линейных несмещенных оценок (следует из условной из теоремы Пифагора):
+$\mathbb{V}ar \left(\hat{\beta}_j^{OLS} \right) \leqslant \mathbb{V}ar \left(\hat{\beta}_j^{alt} \right)$
+
+\item $\mathbb{E} (\hat{\sigma^2}) = \sigma^2$
+\end{itemize}
+\item Асимптотические:
+\begin{itemize}
+\item $\text{plim} \hat{\sigma^2} = \sigma^2$
+\item $\text{plim} \hat{\beta} = \beta$
+\item $t \sim N(0,1)$
+\item $qF \sim \chi^2_q$ (из restricted and unrestricted models)
+\end{itemize}
+\item При дополнительной предпосылке $\varepsilon | X \sim N (0; \sigma^2 I_n)$:
+\begin{itemize}
+\item $t |X \sim t_{n-k}$
+\item $t \sim t_{n-k}$
+\item $F |X \sim F_{q, n-k}$
+\item $F \sim F_{q, n-k}$
+\item $\hat{\sigma^2} (n-k) / \sigma^2 |X \sim \chi^2_{n-k}$
+\item $\hat{\sigma^2} (n-k) / \sigma^2 \sim \chi^2_{n-k}$
+\end{itemize}
+\end{enumerate}
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. December, 8} \subsection*{} \addcontentsline{toc}{part}{Семинар. December, 8} 
+
+\end{center}
+
+Setup: Регрессоры стохастические, \textbf{гетероскедастичность} $\mathbb{V}ar(\varepsilon | X) \ne \sigma^2$
+
+\subsection*{} \addcontentsline{toc}{subsection}{Гетероскедастичность} 
+В случайных выборках всегда присутствует гетероскедастичность.
+
+Если есть гетероскедастичность (а она, скорее, есть!), то: 
+
+\begin{enumerate}
+\item $\mathbb{E}(\hat{\beta}) = \beta$
+\item $\mathbb{V}ar(\hat{\beta}|X) \ne \sigma^2 \left(X' X \right)^{-1}$
+\end{enumerate}
+
+$$\mathbb{V}ar(\varepsilon|X) = \mathbb{V}ar(y|X) = \Omega$$ 
+$$\mathbb{V}ar(\hat{\beta}|X) = \mathbb{V}ar \left((X'X)^{-1} X' y |X\right) = (X'X)^{-1} X' \Omega X (X' X)^{-1}$$
+$$\widehat{\mathbb{V}ar}(\hat{\beta}|X) = (X'X)^{-1} X' \widehat{\Omega} X (X' X)^{-1}$$
+
+Уайт  предложил оценки для $\Omega$: HC0, HC1, HC2, ... 
+
+Подгружаем пакеты:
+<<>>=
+library("lmtest") # тест Бройша-Пагана
+library("sandwich") # оценка дисперсии для гетероскедастичности
+library("ggplot2") 
+library("hexbin")
+@
+
+<<>>=
+str(diamonds) # data set, встроенный в пакет ggplot2
+model <- lm(log(price) ~ log(carat), data = diamonds)
+@
+
+<<>>=
+summary(model)
+vcov(model)
+vcovHC(model)
+vcovHC(model, type = "HC5") # HC5 очень похож на HC3, т.к. много наблюдений
+@
+
+$$\widehat{\mathbb{V}ar} (\hat{\beta}|X) = \dfrac{RSS}{n-k} (X'X)^{-1}$$
+
+Heteroscedasticity consistent (HC):
+$$\widehat{\mathbb{V}ar} (\hat{\beta}|X) = (X'X)^{-1} X' \widehat{\Omega} X (X' X)^{-1}$$
+
+Следующие команды использут не HC оценки:
+<<>>=
+coeftest(model) 
+confint(model)
+@
+
+Поэтому указываем, какую ковариационную матрицу брать:
+<<>>=
+coeftest(model, vcov = vcovHC(model))
+confint(model, vcov = vcovHC(model))
+@
+
+Относительно <<руками>> доверительный интервал считается следующим образом:
+<<>>=
+low <- as.vector(coef(model) - qnorm(0.975)*sqrt(diag(vcovHC(model))))
+high <- as.vector(coef(model) + qnorm(0.975)*sqrt(diag(vcovHC(model))))
+conf <- data.frame(low, high)
+conf
+@
+
+\subsection*{} \addcontentsline{toc}{subsection}{Графический детекшн гетероскедастичности}
+Попробуем задетектить гетероскедастичность с помощью графического анализа:
+<<>>=
+qplot(data = diamonds, log(carat), (resid(model))^2)
+@
+
+На таком графике ничего не видно. Попробуем увидеть черную кошку в черной комнате с помощью пакета \textit{hexbin}:
+<<>>=
+qplot(data = diamonds, log(carat), (resid(model))^2) + geom_hex() 
+@
+Видим, что с увеличением логарифма массы бриллианта растет дисперсия ошибки. Значит, есть гетероскедастичность.
+
+Теперь попробуем выявлять и бороться с гетероскедастичностью теоретическими методами [Магнус, Пересецкий]. 
+Итак, мы рассматриваем частный случай обобщенной регрессионной модели, а именно, модель с гетероскедастичностью. Это означает, что ковариационная матрица $\Omega$ --- диагональная. 
+
+Стандартные ошибки в форме Уайта:
+$$\mathbb{V}ar(\hat{\beta}|X) = (X'X)^{-1} X' \Omega X (X' X)^{-1}$$
+
+Уайт показал, что 
+$$\widehat{\mathbb{V}ar}(\hat{\beta}|X) = (X'X)^{-1} X' \widehat{\Omega} X (X' X)^{-1}$$
+является состоятельной оценкой ковариационной матрицы оценок коэффициентов регресии.
+
+Тесты на гетероскедастичность:
+
+Во всех этих тестах проверяется основная гипотеза $H_0: \sigma_1^2 = ... = \sigma_n^2$ против альтернативной гипотезы $H_a: H_0\;is\;not\;true$.
+
+Большинство тестов есть априорные структурные ограничения относительно характера гетероскедастичности (из каких-либо разумных соображений). Однако тест Уайта освобожден от этих ограничений:
+
+\begin{itemize}
+\subsection*{} \addcontentsline{toc}{subsection}{White test}
+\item[1] \textbf{Тест Уайта (White)}
+
+Если в модели присутствуют гетероскедастичность, то очень часто это связано с тем, что дисперсии ошибок некоторым образом (возможно, сложным образом) зависят от регрессоров; гетероскедастичность должна как-то отражаться в остатках обычной регрессии исходной модели.
+
+Сначала к исходной модели применяется обычный МНК и находятся остатки регрессии $e_t$. Затем осуществляется регрессия квадратов этих остатков на все регрессоры $X$, их квадраты, а также попарные произведения и константу (если ее не было в составе исходных регрессоров). Тогда при верной гипотезе $H_0$ величина $nR^2$ асимптотически имеет распределение $\chi^2 (N-1)$, где $N$ --- число регрессоров вспомагательной регрессии.
+
+Тест универсален, но в случае если $H_0$ отвергается, он не дает никакого указания на форму гетероскедастичности; единственный способ коррекции --- использование стандартных ошибок в форме Уайта.
+
+[Демешев] Предпосылки:
+\begin{itemize}
+\item \( H_0 \): \( Var(\varepsilon_i)=\sigma^2 \), нормальность не требуется;
+\item \( E(\varepsilon_i^4)=const \);
+\item тест асимптотический;
+\end{itemize}
+Процедура:
+\begin{itemize}
+\item оценивается регрессия \( y_i=\beta_1+\beta_2 x_i +\varepsilon_i \);
+\item строим регрессию \( \hat{\varepsilon_i}^2 \) на все регрессоры, их квадраты, их попарные произведения и константу (можно пойти и дальше, но разложение в Тейлора до членов, отвечающих за квадраты, уже дает хорошую точность);
+\item асимптотически \( nR^2 \) имеет хи-квадрат распределение.
+\end{itemize}
+Тест Уайта в R:
+
+<<>>=
+e2 <- (model$residuals)^2
+logcarat <- log(diamonds$carat)
+wteststat <- summary(lm(e2 ~ logcarat + (logcarat^2)))$r.squared * 
+  length(model$fitted.values)
+p.value <- 1 - pchisq(wteststat, df = length(model$coefficients) - 1)
+p.value
+@
+
+\subsection*{} \addcontentsline{toc}{subsection}{Goldfeld-Quandt test}
+\item[2] \textbf{Тест Голдфелда-Куандта (Goldfeld-Quandt)}
+
+Применяется, когда есть предположение о прямой зависимости дисперсии ошибки от величины некоторой независимой переменной. Кратко тест можно описать следующим образом:
+\begin{itemize}
+\item упорядочить данные по убыванию той независимой переменной, относительно которой есть подозрение на гетероскедастичность;
+\item исключить $d$ средних в этом упорядочении наблюдений ($d$ должно быть равно примерно четверти общего количества наблюдений);
+\item провести две независимые регрессии первых $n/2-d/2$ наблюдений и последних $n/2-d/2$ наблюдений и построить соответствующие остатки $e_1$ и $e_2$;
+\item составить статистику $F=e_1'e_1/e_2'e_2$. Если верна гипотеза $H_0$, то $F$ имеет распределение Фишера с $(n/2-d/2-k,n/2-d/2-k)$ степенями свободы.
+\end{itemize}
+Большая величина этой статистики означает, что гипотезу $H_0$ следует отвергнуть. Формально тест работает и без исключения наблюдений, но, как показывает опыт, при этом его мощность уменьшается.
+
+[Демешев] Предпосылки:
+\begin{itemize}
+\item нормальность остатков, \( \varepsilon_i \sim N(0,\sigma^2_i) \);
+\item наблюдения упорядочены по возрастанию гетероскедастичности;
+\item тест точный (неасимптотический);
+\end{itemize}
+Процедура:
+\begin{itemize}
+\item упорядочить наблюдения в том порядке, в котором подозревается рост гетероскедастичности;
+\item выкинуть некий процент наблюдений по середине, чтобы подчеркнуть разницу в дисперсии между начальными и конечными наблюдениями;
+\item оценить исходную модель по наблюдениям из начала выборки и по наблюдениям конца выборки;
+\item получить, соответственно, \( RSS_1 \) и \( RSS_2 \);
+\item при верной \( H_0 \): \[ \frac{RSS_2}{RSS_1}\sim F_{r-k,r-k} \] где \( r \) — размер подвыборки в начале и в конце.
+\end{itemize}
+
+Тест Голдфельда-Квандта в R:
+
+<<>>=
+diamonds2 <- diamonds[order(log(diamonds$carat)), ]  
+# сменим порядок строк в табличке diamonds
+model2 <- lm(log(price) ~ log(carat), data = diamonds2)
+gqtest(model2, fraction = 0.2)  
+# проведем GQ тест выкинув посередине 20% наблюдений
+@
+
+\subsection*{} \addcontentsline{toc}{subsection}{Breusch-Pagan test}
+\item[3] \textbf{Тест Бреуша-Пагана (Breusch-Pagan)}
+
+[Магнус, Пересецкий] Тест применяется в тех случаях, когда априорно предполагается, что дисперсии $\sigma_t^2$ зависят от нескольких дополнительных переменных:
+$$\sigma_t^2 = \gamma_0 + z_t' \gamma$$
+В соответствии с этим тестом следует действовать так:
+\begin{itemize}
+\item провести обычную регрессию и получить вектор остатков $e$;
+\item построить оценку $\hat{\sigma}^2=(1/n)\sum e_t^2$;
+\item провести регрессию $e_t^2/\hat{\sigma}^2 = \gamma_0 +  z_t' \gamma + \nu_t $, где $\nu_t$ --- белый шум, и найти для нее объясненную часть вариации $ESS$;
+\item построить статистику $ESS/2$. При верной гипотезе $H_0$: $ESS/2$ асимптотически имеет распределение $\chi^2 (p)$, где $p$ --- длина вектора $\gamma$.
+\end{itemize}
+
+[Демешев] Предпосылки:
+\begin{itemize}
+\item нормальность остатков, \( \varepsilon_i \sim N(0,\sigma^2_i) \);
+\item \( \sigma^2_i=h(\alpha_1+\alpha_2 z_{i2}+\ldots+\alpha_{p}z_{ip}) \); 
+\item у функции \( h(\cdot) \) существуют первая и вторая производные;
+\item тест асимптотический.
+\end{itemize}
+Суть теста: Используя метод максимального правдоподобия посчитаем $LM$-статистику. При верной \( H_0 \) она имеет хи-квадрат распределение с \( p-1 \) степенью свободы.
+
+Оказывается, что LM-статистику можно получить с помощью вспомогательной регрессии. Авторская процедура:
+
+Оценивается регрессия \( y_i=\beta_1+\beta_2 x_i +\varepsilon_i \).
+
+Переходим к \( g_i=n \hat{\varepsilon_i} / RSS \).
+
+Строим регрессию \( g_i \) на \( \alpha_1+\alpha_2 z_{i2}+\ldots+\alpha_{p}z_{ip} \).
+
+\( LM=ESS/2 \).
+
+Современная модификация выглядит (неизвестный рецензент Коэнкера) так:
+
+Оценивается регрессия \( y_i=\beta_1+\beta_2 x_i +\varepsilon_i \).
+
+Оценивается регрессия \( s_i^2=\alpha_1+\alpha_2 x_i +\varepsilon_i \).
+
+При верной \( H_0 \) асимптотически: \[ nR^2 \sim \chi^2_{p-1} \] где \( p \) — число оцениваемых коэффициентов во вспомогательной регрессии. По смыслу \( (p-1) \) — это количество факторов, от которых потенциально может зависеть дисперсия \( \mathbb{V}ar(\varepsilon_i) \).
+
+Тест Бройша-Пагана в R:
+<<>>=
+bptest(model)
+@
+\end{itemize}
+
+Если хотя бы в одном из тестов $H_0$ отвергается, делаем вывод о гетероскедастичности. 
+
+Про прогнозирование:
+
+КЛММР:
+$$y = X\beta + \varepsilon;\;\mathbb{\varepsilon} =0,\;\mathbb{V}ar(\varepsilon) = \sigma^2 I$$
+
+Предположим теперь, что есть еще один набор объясняющих переменных $x_{n+1}$ и известно, что соответствующая зависимая переменная удовлетворяет модели:
+$$y_{n+1}= x_{n+1}' \beta + \varepsilon_{n+1};\;\mathbb{E}\varepsilon_{n+1} =0,\;\mathbb{V}ar(\varepsilon)_{n+1} = \sigma^2 I,\;\mathbb{C}ov (\varepsilon_{n+1}, \varepsilon) = 0 $$
+
+В качестве оценки $y_{n+1}$ возьмем: 
+$$\hat{y}_{n+1} = x_{n+1}' \hat{\beta}$$
+
+\subsection*{} \addcontentsline{toc}{subsection}{Домашнее задание. RLMS и гетероскедастичность}
+Стоит отметить, что где-то в этом временном промежутке необходимо было выполнить большое \href{https://www.dropbox.com/s/nv0c4cd07t50zay/ec301_HA1_Levkun.pdf?dl=0}{Домашнее задание №\,1 про RLMS и гетероскедастичность}.
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. January, 19} \addcontentsline{toc}{part}{Семинар. January, 19}
+
+\end{center}
+
+\subsection*{} \addcontentsline{toc}{subsection}{Ограниченная и неограниченная модели}
+\(l(\theta)\) --- логарифмическая функция максимального правдоподобия.
+
+Рассмотрим три базовых теста, испольуземых для проверки ограничений на параметры статистических моделей. Все тесты асимптотические!
+
+\begin{itemize}
+\subsection*{} \addcontentsline{toc}{subsection}{Likelihood-ratio test}
+\item[1] \textbf{Тест отношения правдоподобия (LR-тест)}:
+
+При верной \(H_0\):
+\[LR = 2\left(l(\hat{\theta}_{UR}) - l(\hat{\theta}_R)\right) \sim \chi^2_q\]
+
+Но на практике этот тест самый временезатратный, так как требует вычисления и \(\hat{\theta}_{UR}\), и \(\hat{\theta}_{R}\).
+
+\subsection*{} \addcontentsline{toc}{subsection}{Lagrange Multiplier test}
+\item[2] \textbf{Тест множителей Лагранжа (LM-тест)}:
+
+Информационная матрица (матрица Гессе с минусом):
+\[\widehat{I} = - \frac{\partial^2 l}{\partial \theta^2} \left(\theta \right)\]
+
+При верной \(H_0\):
+\[LM = \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_R \right)\right)' \cdot \widehat{I}^{-1} \left(\hat{\theta}_R \right) \cdot \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_R \right)\right) \sim \chi^2_q \]
+
+\subsection*{} \addcontentsline{toc}{subsection}{Wald test}
+\item[3] \textbf{Тест Вальда (Wald test)}:
+\[H_0: \begin{cases}
+g_1 (\theta_1, ..., \theta_p) = 0 \\
+... \\
+g_q (\theta_1, ..., \theta_p) = 0
+\end{cases} \]
+
+При верной \(H_0\):
+\[W = \left(g\left(\hat{\theta}_{UR} \right) \right)' \cdot \left( \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_{UR} \right)\right) \cdot \widehat{I}^{-1} \left(\hat{\theta}_{UR} \right) \cdot \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_{UR} \right)\right)' \right)^{-1} \cdot g\left(\hat{\theta}_{UR} \right) \sim \chi^2_q \]
+
+\end{itemize}
+
+Доказано, что тест Вальда (\(W\)), тест отношения правдоподобия (\(LR\)) и тест множителей Лагранжа (\(LM\)) --- асимптотически эквивалентные тесты (\(LM = LR = W\)). Тем не менее для конечных выборок значения статистик не совпадают. Для линейных ограничений вкупе с рядом предпосылок доказано неравенство \(LM \leqslant LR \leqslant W\). Тем самым тест Вальда будет чаще других тестов отвергать нулевую гипотезу об ограничениях. В случае нелинейных ограничений первая часть неравенства выполняется, а вторая - вообще говоря, нет.
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача на применение базовых тестов для проверки ограничений}
+\noindent \textbf{Задача 1.} \(X_1, ..., X_n\) --- независимы, \(100\) наблюдений;
+\[f(x) = \dfrac{\theta e^{-\theta^2 / 2x}}{\sqrt{2\pi x^3}},\; x > 0 \]
+\[\sum \limits_{x = 1}^{100} \frac{1}{x_i} =12\]
+
+\textbf{а)} \(\hat{\theta}_{UR}\) --- ?
+
+\textbf{б)} \(\widehat{I}\left(\hat{\theta}_{UR} \right) \) --- ?
+
+\textbf{в)} На уровне значимости \(\alpha = 5\,\%\) с помощью базовых тестов проверить гипотезу \\ \(H_0: \theta = 1\)
+
+Решение. 
+
+\textbf{а)}
+\[l(\theta) = \log \left(f(x_1) \cdot ... \cdot f(x_n) \right) = \sum \log f(x_i) = \sum \left[\log \theta - \frac{\theta^2}{2x_i} - \frac{1}{2} \log(2\pi) - \frac{3}{2} \log(x_i) \right] = \]
+\[ = n \log (\theta) - \theta^2 \sum \frac{1}{2x_i} - \frac{n}{2} \log(2\pi) - \frac{3}{2} \sum \log(x_i)\]
+
+\[\dfrac{\partial l(\theta)}{\partial \theta} = \frac{n}{\theta} - 2\theta \sum \frac{1}{2x_i} = \frac{100}{\theta} - 12 \theta    \]
+
+\[\frac{100}{\hat{\theta}_{UR}} - 12 \cdot \hat{\theta}_{UR}  = 0\]
+
+\[\hat{\theta}_{UR} = \sqrt{100/12} \approx 2.887  \]
+
+Проделаем тоже самое в R с помощью пакета \(maxLik\):
+<<warning = FALSE>>=
+library(maxLik)
+@
+
+Создаем случайную выборку:
+<<>>=
+a <- runif(n = 100, 0, 1)
+@
+
+Для выполнения ограничения масштабируем ее:
+<<>>=
+b <- 12*a/sum(a)
+sum(b)
+x <- 1/b
+head(x)
+sum(1/x)
+@
+
+Функция, возвращающая значение логарифмической функции максимального правдоподобия:
+<<>>=
+lik <- function(theta, data){
+  n <- length(data)
+  ans <- n * log(theta) - theta^2*sum(1/(2*data)) - n*log(2*pi)/2 - 
+    3*sum(log(data))/2
+  return(ans)
+}
+lik(1, x)
+@
+
+Максимизация:
+<<>>=
+model <- maxLik(lik, start = 1, data = x)
+summary(model)
+@
+
+\(\hat{\theta}_{UR}\):
+<<>>=
+model$estimate
+@
+
+\textbf{б)}
+ 
+Гессиан:
+\[\dfrac{\partial^2 l}{\partial \theta^2} \left(\hat{\theta}_{UR} \right) = - \frac{n}{\hat{\theta}_{UR}^2} - \sum \frac{1}{x_i} = \frac{100}{2.887^2} - 12 \approx -24\]
+
+Или так:
+<<>>=
+model$hessian
+@
+
+Тогда:
+\[\widehat{I}\left(\hat{\theta}_{UR} \right) = 24 \]
+
+\textbf{в)}
+
+\(\hat{\theta}_{UR}\):
+<<>>=
+theta_ur <- model$estimate
+@
+
+\(\hat{\theta}_{R}\) берем из гипотезы:
+<<>>=
+theta_r <- 1
+@
+
+\(LR\)-тест:
+<<>>=
+LR <- -2*(lik(theta_r, data = x) - lik(theta_ur, data = x))
+LR
+qcrit <- qchisq(0.95, df = 1); qcrit
+LR < qcrit
+@
+Гипотеза отвергается.
+
+Wald test:
+<<>>=
+I_ur <- -model$hessian
+g_ur <- theta_ur - 1
+dg_dtheta_ur <- 1
+W <- t(g_ur) %*% solve(dg_dtheta_ur %*% solve(I_ur) %*% 
+                         t(dg_dtheta_ur)) %*% g_ur
+W <- as.integer(W); W
+W < qcrit
+@
+Гипотеза отвергается.
+
+\(LM\)-тест:
+<<>>=
+dl_dtheta_r <- 100/theta_r - 12*theta_r
+LM <- t(dl_dtheta_r) %*% solve(I_ur) %*% dl_dtheta_r
+LM <- as.integer(LM); LM
+LM < qcrit
+@
+Гипотеза отвергается.
+
+Как видим, здесь не выполняется соотношение между \(LR\), \(LM\) и \(W\), о котором шла речь выше. Проблема в том, что здесь \(|W/n|<1\) (подробнее в \href{http://economics.ucr.edu/people/ullah/papers/24.pdf}{Ullah A., Zinde-Walsh V. On the robustness of LM, LR, and W tests in regression models //Econometrica: Journal of the Econometric Society. – 1984.})
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача на проверку ограничений на мат. ожидание и дисперсию}
+\noindent \textbf{Задача 2.} \(x_1, ..., x_{100}\) --- i. i. d. \(\mathcal{N} (\mu, \sigma^2) \)
+\[\sum x_i =10\]
+\[\dfrac{\sum (x_i - \bar{x})^2}{n - 1} = 5 = s_x^2 \]
+
+\textbf{а)} \(H_0: \mu = \sigma^2 \)
+
+\textbf{б)} \(H_0: \begin{cases}
+\mu = 4\\
+\sigma^2  = 7
+\end{cases}\)
+
+Решение. 
+
+\textbf{а)}
+
+Функция плотности нормального распределения:
+\[f(x_i) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x_i - \mu)^2}{2 \sigma^2}} \]
+
+Тогда логарифмическая функция максимального правдоподобия здесь:
+\[l(\mu, \sigma) = \log \left(f(x_1) \cdot ... \cdot f(x_{100}) \right) = \sum \log f(x_i) = \]
+\[= \sum \left[-\log \left(\sqrt{2\pi}\right) - \log \sigma - \frac{(x_i - \mu)^2}{2 \sigma^2} \right] \]
+
+Берем первые производные:
+\[\dfrac{\partial l(\cdot)}{\partial \mu} = - \dfrac{2\sum (x_i - \mu)}{2 \sigma^2} = - \dfrac{\sum x_i - n \mu}{\sigma^2} \]
+\[\dfrac{\partial l(\cdot)}{\partial \sigma} = -\dfrac{n}{\sigma} + \dfrac{\sum (x_i - \mu)^2}{\sigma^3} = -\dfrac{n}{\sigma} + \dfrac{\sum (x_i -\bar{x})^2 + 2 \sum (x_i - \bar{x}) (\bar{x} - \mu) + \sum (\bar{x} - \mu)^2}{\sigma^3}\]
+
+Из F.O.C.:
+\[\widehat{\mu} = \dfrac{\sum x_i}{n} = \bar{x} = 0.1\]
+\[\widehat{\sigma}^2 = \dfrac{\sum (x_i -\bar{x})^2}{n} = \dfrac{n - 1}{n} s_x^2 = 4.95\]
+
+Теперь найдем оценки максимального правдоподобия при ограничении из гипотезы \(\mu = \sigma^2 \):
+\[l(\mu, \sigma) =\sum \left[-\log \left(\sqrt{2\pi}\right) - \frac{1}{2} \log \mu - \frac{(x_i - \mu)^2}{2 \mu} \right]  \]
+
+Первая производная:
+\[\dfrac{\partial l(\cdot)}{\partial \mu} = - \frac{n}{2 \mu} - \frac{1}{2}\sum \frac{ -2 (x_i - \mu) \mu - (x_i - \mu)^2}{\mu^2} = \]
+\[=- \frac{n}{2 \mu}  - \frac{1}{2} \frac{- 2\mu \sum x_i + 2n \mu^2 - \sum \left[ (x_i - 0.1)^2 + 2 (x_i - 0.1) (0.1 - \mu) + (0.1 - \mu)^2\right]}{\mu^2} =\]
+\[= - \frac{100}{2 \mu}  - \frac{1}{2} \frac{ - 20\mu + 200\mu^2 -495 - 100(0.1 - \mu)^2}{\mu^2}  \]
+
+F.O.C.:
+\[ - 100\widehat{\mu} + 20\widehat{\mu} -200\widehat{\mu}^2 + 495 + 1 - 20\widehat{\mu} +100\widehat{\mu}^2 = 0 \]
+\[  \widehat{\mu}^2 +  \widehat{\mu} - 4.96 = 0 \]
+
+Учитывая, что \(\mu \geqslant 0\):
+\[ \widehat{\mu} = \frac{-1 + \sqrt{1 + 4\cdot 4.96}}{2} \approx 1.7825\]
+
+Итак:
+\[\widehat{\mu}_{UR} = 0.1,\; \widehat{\sigma}^2_{UR} = 4.95,\; \widehat{\mu}_R = \widehat{\sigma}^2_R = 1.7825 \]
+
+\[l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) = -100 \log(\sqrt{2\pi}) - 100 \log \sqrt{4.95} - \frac{\sum \left(x_i - 0.1 \right)^2}{2\cdot 4.95} \approx -221.86\]
+
+\[l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) = -100 \log(\sqrt{2\pi}) - 100 \log \sqrt{1.7825} - \frac{\sum \left(x_i - 1.7825\right)^2}{2\cdot 1.7825} \approx \]
+\[\approx -120.79 - \frac{\sum \left[\left(x_i - 0.1 \right)^2 - 2\cdot 1.6825 \cdot (x_i - 0.1) + 1.6825^2\right]}{3.565} = \]
+\[\approx -120.79 - \frac{497.83}{3.565} \approx -260.43\]
+
+Применив тест отношения правдоподобия, получим:
+\[LR = 2 \left(l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) -  l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) \right) = 77.14\]
+
+P-value:
+<<>>=
+1 - pchisq(77.14, df = 2)
+@
+% \[l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) = -100 \log(\sqrt{2\pi}) - 100 \log 4.95 - \frac{\sum \left(x_i - 0.1 \right)^2}{2\cdot 4.95^2} \approx -261.93\]
+% \[l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) = -100 \log(\sqrt{2\pi}) - 100 \log 0.0916 - \frac{\sum \left(x_i - 0.0916 \right)^2}{2\cdot 0.0916^2} \approx \]
+% \[\approx -251.83 - \frac{\sum \left[\left(x_i - 0.1 \right)^2 + 2\cdot 0.0084 \cdot (x_i - 0.1) + 0.0084^2\right]}{0.01678} = \]
+% \[= -251.83 - \frac{5\cdot 99 + 0 +100 \cdot 0.0084^2}{0.01678} =  -29751.65 \]
+% 
+% Применив тест отношения правдоподобия, получим:
+% \[LR = 2 \left(l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) -  l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) \right) = 58979.44\]
+
+% P-value:
+% <<>>=
+% 1 - pchisq(58979.44, df = 2)
+% @
+% 
+% Гипотеза отвергается.
+
+\textbf{б)}
+
+Здесь:
+\[\widehat{\mu}_{UR} = 0.1,\; \widehat{\sigma}^2_{UR} = 4.95,\; \widehat{\mu}_R = 4,\; \widehat{\sigma}^2_R = 7 \]
+
+\[l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) = -100 \log(\sqrt{2\pi}) - 100 \log \sqrt{4.95} - \frac{\sum \left(x_i - 0.1 \right)^2}{2\cdot 4.95} \approx -221.86\]
+\[l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) = -100 \log(\sqrt{2\pi}) - 100 \log \sqrt{7} - \frac{\sum \left(x_i - 4\right)^2}{2\cdot 7} \approx \]
+\[\approx -189.19 - \frac{\sum \left[\left(x_i - 0.1 \right)^2 - 2\cdot 3.9 \cdot (x_i - 0.1) + 3.9^2\right]}{14} = \]
+\[= -189.19 - \frac{5\cdot 99 + 0 +100 \cdot 3.9^2}{14} =  -333.19 \]
+
+Применив тест отношения правдоподобия, получим:
+\[LR = 2 \left(l\left(\widehat{\mu}_{UR}, \widehat{\sigma}_{UR}\right) -  l\left(\widehat{\mu}_{R}, \widehat{\sigma}_{R}\right) \right) = 222.66\]
+
+P-value:
+<<>>=
+1 - pchisq(222.66, df = 2)
+@
+
+Гипотеза отвергается.
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. January, 26} \addcontentsline{toc}{part}{Семинар. January, 26}
+
+\end{center}
+
+\subsection*{} \addcontentsline{toc}{subsection}{Метод максимального правдоподобия}
+\noindent\textbf{Метод максимального правдоподобия}
+
+Оценки максимального правдоподобия, вообще говоря, могут быть смещёнными, но являются состоятельными, асимптотически эффективными и асимптотически нормальными оценками. Асимптотическая нормальность означает, что:
+\[\sqrt {n}(\hat{\theta}-\theta) \xrightarrow  d N(0,I^{-1}_{\infty})\]
+где \(I_{\infty}=-\lim_{n \rightarrow \infty} \left( \mathbb{E}(H)/n \right) \)  — асимптотическая информационная матрица.
+
+Асимптотическая эффективность означает, что асимптотическая ковариационная матрица \(I^{-1}_{\infty}\) является нижней границей для всех состоятельных асимптотически нормальных оценок.
+
+Если \(\hat{\theta}\) --- оценка метода максимального правдоподобия параметров \(\theta\), то \(g(\hat{\theta})\) является оценкой максимального правдоподобия для \(g(\theta)\), где \(g(\cdot)\) --- непрерывная функция (функциональная инвариантность). Таким образом, законы распределения данных можно параметризовать различным образом.
+
+Задачу ограниченной оптимизации лучше приводить к задаче неограниченной оптимизации.
+
+Например:
+
+Ограничение \(p \in [0, 1] \) с помощью сигмоиды приводим к \(p = 1/\left(1 + e^{-t} \right) \), где \\ \(t \in (-\infty, +\infty) \) .
+
+Ограничение \(\sigma \in (0, +\infty) \) заменяем на \(\sigma = e^t \), где \(t \in (-\infty, +\infty) \) .
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про плов и максимальное правдоподобие}
+\noindent \textbf{Задача 1.}
+
+Если \(X \sim Pois(\lambda) \), то \(\mathbb{E} (X) = \lambda \), \(\mathbb{V}ar (X) = \lambda \).
+
+Но на реальных данных \(\mathbb{E} (X) \ne \mathbb{V}ar (X)\) из-за того, что нули попадаются слишком часто.
+
+Пусть \(X_i \) --- число кусков мяса в плове для \(i\)-го посетителя столовой. Например, Аня может быть любителем плова с вероятностью \(p\), в этом случае \(X_i \sim Pois(\lambda) \); а может быть принципиальной его ненавистницей с вероятностью \(1 - p \), тогда \(X_i = 0\).
+
+\textbf{а)} Найти \(\widehat{p} \), \(\widehat{\lambda} \) с помощью метода максимального правдоподобия
+
+\textbf{б)} Построить доверительные интервалы для полученных оценок
+
+\textbf{в)} С помощью базовых тестов проверить гипотезу \(H_0\): \(\lambda = 1\)
+
+\textbf{г)} С помощью базовых тестов проверить гипотезу \(H_0\): \(p = \lambda\)
+
+Решение.
+
+\textbf{а)} Для начала нужно понять, что мы будем оптимизировать: 
+
+\[\mathbb{P}(X_i = x) = \begin{cases}
+(1 - p) + p e^{-\lambda}, & x = 0 \\
+p e^{-\lambda} \lambda^x / x!, & x > 0
+\end{cases}\]
+
+Taking logs:
+\[\log \left(\mathbb{P}(X_i = x) \right) = \begin{cases}
+\log \left(1 - p + p e^{-\lambda}\right), & x = 0 \\
+\log p -\lambda + x \log \lambda - \log x!, & x > 0
+\end{cases}\]
+
+Например, если в среднем в порцию плова кидают два куска мяса:
+<<>>=
+library(maxLik)
+
+set.seed(4) # for reproducible results
+# more on 
+# http://stackoverflow.com/questions/13605271/reasons-for-using-the-set-seed-function
+
+X <- rpois(n = 100, lambda = 2)
+head(X)
+@
+
+Функция, которую будем оптимизировать:
+<<>>=
+loglik <- function(par, data) {
+  p <- par[1]
+  lambda <- par[2]
+  n <- length(data)
+  n_zero <- sum(data == 0)
+  ans <- n_zero*log(1 - p + p*exp(-lambda))
+  nonzero_data <- data[data > 0]
+  ans <- ans + (n - n_zero)*(log(p) - lambda) + 
+    log(lambda)*sum(nonzero_data)
+  return(ans)
+}
+@
+
+Например, для \(p = 0.5 \), \(\lambda = 1\) значение логарифмической функции правдоподобия для данных \(X\) будет равно:
+<<>>=
+loglik(c(0.5, 1), X)
+@
+
+Но мы знаем, что есть ограничения \(p \in [0, 1] \) и \(\lambda \in (0, +\infty) \). То есть фактически мы имеем дело с условной оптимизацией. Что ж, перейдем к безусловной оптимизации с помощью функции-трансформера:
+<<>>=
+transformer <- function(par, data) {
+        p <- 1/(1 + (exp(par[1]))^(-1)) # сигмоида
+        lambda <- exp(par[2]) # экспонента
+        return(c(p, lambda))
+}
+
+loglik2 <- function(par, data) {
+        return(loglik(transformer(par), data))
+}
+
+result <- maxLik(logLik = loglik2, start = c(0,0), data = X)
+report <- summary(result)
+report
+@
+
+<<>>=
+result$estimate
+transformer(result$estimate)
+@
+
+Итак: \(\widehat{p} = \Sexpr{transformer(result$estimate)[1]}\), \(\widehat{\lambda} = \Sexpr{transformer(result$estimate)[2]} \)
+
+\textbf{б)} Строим \(95-\%\) доверительные интервалы для полученных оценок:
+<<>>=
+high <- transformer(result$estimate + qnorm(0.975)*report$estimate[,2])
+low <- transformer(result$estimate - qnorm(0.975)*report$estimate[,2])
+conf <- data.frame(low, high, row.names = c('p', 'lambda'))
+conf
+@
+
+\textbf{в)} Мы уже знаем, что: \[\widehat{p}_{UR} = \Sexpr{transformer(result$estimate)[1]}, \ \widehat{\lambda}_{UR} = \Sexpr{transformer(result$estimate)[2]} \]
+При этом:
+<<>>=
+loglik(c(transformer(result$estimate)[1], transformer(result$estimate)[2]), X)
+@
+По условию \(\widehat{\lambda}_R = 1\). Нам нужно найти \(\widehat{p}_R\) посредством максимизации логарифмической функции правдоподобия с подставлением в нее \(\widehat{\lambda}_R = 1\).
+
+Нужно будет немного переписать функции:
+<<>>=
+loglik_restr <- function(p, data) {
+  n <- length(data)
+  n_zero <- sum(data == 0)
+  ans <- n_zero*log(1 - p + p*exp(-1))
+  nonzero_data <- data[data > 0]
+  ans <- ans + (n - n_zero)*(log(p) - 1)
+  return(ans)
+}
+@
+
+<<>>=
+transformer_restr <- function(p, data) {
+        p_log <- 1/(1 + exp(p)^(-1)) # сигмоида
+        return(p_log)
+}
+
+loglik2_restr <- function(p, data) {
+        return(loglik_restr(transformer_restr(p), data))
+}
+
+result_restr <- maxLik(logLik = loglik2_restr, start = 0, data = X)
+report_restr <- summary(result_restr)
+report_restr
+@
+
+<<>>=
+transformer_restr(result_restr$estimate)
+@
+
+Значение логарифмической функции распределения в ограниченной модели:
+<<>>=
+loglik_restr(transformer_restr(result_restr$estimate), X)
+@
+
+Для проверки гипотезы \(H_0\): \(\lambda = 1\) ограничимся тестом отношения правдоподобия:
+<<>>=
+LR <- 2*( loglik(c(transformer(result$estimate)[1], 
+                  transformer(result$estimate)[2]), X) - 
+           loglik_restr(transformer_restr(result_restr$estimate), X) )
+LR
+p.value <- 1 - pchisq(LR, df = 1)
+p.value
+@
+
+Гипотеза отвергается.
+
+\textbf{г)} 
+
+Для проверки данной гипотезы снова придется переписать функцию, которую мы будем оптимизировать:
+<<>>=
+loglik_restr2 <- function(p, data) {
+  n <- length(data)
+  n_zero <- sum(data == 0)
+  ans <- n_zero*log(1 - p + p*exp(-p))
+  nonzero_data <- data[data > 0]
+  ans <- ans + (n - n_zero)*(log(p) - p) +
+    log(p)*sum(nonzero_data)
+  return(ans)
+}
+
+loglik2_restr2 <- function(p, data) {
+        return(loglik_restr2(transformer_restr(p), data))
+}
+result_restr2 <- maxLik(logLik = loglik2_restr2, start = 0, data = X)
+report_restr2 <- summary(result_restr2)
+report_restr2
+@
+
+<<>>=
+transformer_restr(result_restr2$estimate)
+@
+
+Снова применим \(LR\)-тест, и снова гипотеза будет отвергнута:
+<<>>=
+LR <- 2*( loglik(c(transformer(result$estimate)[1], 
+                  transformer(result$estimate)[2]), X) - 
+           loglik_restr2(transformer_restr(result_restr2$estimate), X) )
+LR
+p.value <- 1 - pchisq(LR, df = 2)
+p.value
+@
+
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. February, 2} \addcontentsline{toc}{part}{Семинар. February, 2}
+
+\end{center}
+
+\subsection*{} \addcontentsline{toc}{subsection}{Логистическое распределение}
+\noindent\textbf{Метод максимального правдоподобия применительно к logit и probit моделям}
+
+Для начала нужно познакомиться с логистическим распределением:
+
+\(X \sim L(0, 1)\), если \[f_X (x) = \frac{e^{-x}}{\left(1 + e^{-x} \right)^2} \]
+
+В общем виде: \(X \sim L(\mu, s)\), если: \[f_X (x) = \frac{e^{-(x-\mu)/s}}{s\left(1 + e^{-(x-\mu)/s} \right)^2} = \frac{1}{4s} \cdot \text{sech}^2 \left(\frac{x - \mu}{2s} \right)\]
+где \(\mu\) --- параметр сдвига, \(s\) --- параметр масштаба.
+Построим функцию плотности логистического распределения:
+<<out.height = "8cm", out.width = "8cm">>=
+library(ggplot2)
+x <- seq(-4, 4, by = 0.05)
+y <- dlogis(x, location = 0, scale = 1)
+qplot(x, y, geom = 'line')
+@
+
+Легко показать, что \(f_X (x)\) является четной:
+\[f(-x) = \frac{e^x}{(1 + e^x)^2} = \frac{e^{-x}}{(1+e^{-x})^2}  = f(x)\]
+
+Выведем функцию распределения логистического распределения:
+\[F_X (x) = \int \limits_{-\infty}^x  \frac{e^{-x}}{\left(1 + e^{-x} \right)^2}  dx = \left.\frac{1}{1 + e^{-x}} \,\middle|\,\right._{-\infty}^x = \frac{1}{1 + e^{-x}}\]
+
+Достоинством логистического распределения является интегрируемость функции плотности. Заметим, что функция распределения логистического распределения --- стандартная сигмоида:
+<<out.height = "8cm", out.width = "8cm">>=
+yf <- plogis(x)
+qplot(x, yf, geom = 'line')
+@
+
+Квантильная функция: \[F^{-1} (p) = \log \left(\frac{p}{1-p} \right) \]
+Так как \(f(x)\) является четной, то функция \(x f(x)\) является нечетной, что значит, что \\ \(\mathbb{E} X = 0\).
+
+Если \(Z = \sqrt{3}/\pi \cdot X\), то есть параметр масштаба \(s = \sqrt{3}/\pi\), то:
+\[f_Z (z) = \frac{\pi}{\sqrt{3}}\cdot\frac{e^{-\pi z /\sqrt{3}}}{\left(1 + e^{-\pi z /\sqrt{3}} \right)^2} \]
+
+Можно показать, что \(\mathbb{V}ar X = \pi^2/3\). Например, так:
+<<>>=
+r <- rlogis(10^6)
+var(r); pi^2/3
+@
+
+Значит, \(\mathbb{V}ar X = 1\). Функция плотности случайной величины \(Z\) является хорошей аппроксимацией функции плотности стандартного нормального распределения.
+
+Покажем это, двумя способами организовав данные:
+<<out.height = "8cm", out.width = "8cm">>=
+yl <- dlogis(x, location = 0, scale = sqrt(3)/pi)
+yn <- dnorm(x)
+data <- data.frame(x = x, yl = yl, yn = yn)
+qplot(data = data, x, yl, geom = 'line') + geom_line(aes(y = yn)) 
+@
+
+<<out.height = "8cm", out.width = "8cm">>=
+library(reshape2) # перевод данных из широкого формата в длинный
+
+data_long <- melt(data = data, id.vars = 'x')
+head(data_long)
+
+qplot(data = data_long, x = x, y = value, col = variable, geom = 'line')
+
+@
+
+Длинный формат очень удобен для автоматической обработки данных. Из длинного формата в широкий переводит команда \(cast\).
+
+\subsection*{} \addcontentsline{toc}{subsection}{Логит и пробит модели}
+\noindent\textbf{Логит и пробит модели}
+
+\(y_i \in \{0 ,1 \} \) --- прогулял лекцию или нет (наблюдаема);
+
+\(y^* \) --- склонность прогулять лекцию (ненаблюдаема);
+
+Построим следующую модель:
+
+\[y_i^* = \beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i \]
+
+Отличие логит модели от пробит модели:
+\begin{itemize}
+\item Логит: \(\varepsilon_i \sim L (0, 1) \)
+\item Пробит: \(\varepsilon_i \sim N (0, 1) \)
+\end{itemize}
+
+Для логистической модели: 
+
+\[\mathbb{P}(y_i = 1) = \mathbb{P} (\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i \geqslant 0) = \mathbb{P} \left(\varepsilon_i \geqslant -\left(\beta_1 + \beta_2 x_i + \beta_3 z_i \right)\right) =  \frac{e^{\beta_1 + \beta_2 x_i + \beta_3 z_i}}{1 + e^{\beta_1 + \beta_2 x_i + \beta_3 z_i}} \]
+\[ \mathbb{P}(y_i = 0) = 1 - \mathbb{P}(y_i = 1) = \frac{1}{1 + e^{\beta_1 + \beta_2 x_i + \beta_3 z_i}} \]
+Когда имеешь дело с логистической моделью, необходимо мыслить в отношениях шансов:
+\[ \log \left(\frac{\mathbb{P}(y_i = 1)}{\mathbb{P}(y_i = 0)}\right)=  \beta_1 + \beta_2 x_i + \beta_3 z_i\]
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про Винни-Пуха и мед}
+\noindent \textbf{Задача 6.6.}
+
+Винни-Пух знает, что мёд бывает правильный, \(honey_i = 1\), и неправильный, \(honey_i = 0\). Пчёлы также бывают правильные, \(bee_i = 1\), и неправильные, \(bee_i = 0\). По \(100\) своим попыткам добыть мёд Винни-Пух составил таблицу сопряженности:
+\begin{table}[h]
+\begin{tabular}{l|cc}
+ &   \(honey_i = 1\)  &   \(honey_i = 0\)  \\ \hline
+\(bee_i = 1\) & \(12\) & \(36\) \\
+\(bee_i = 0\) & \(32\) & \(20\)
+\end{tabular}
+\end{table}
+
+Используя метод максимального правдоподобия, Винни-Пух хочет оценить логит модель для прогнозирования правильности мёда с помощью правильности пчёл:
+\[ \log \left(\frac{\mathbb{P}(honey_i = 1)}{\mathbb{P}(honey_i = 0)}\right)=  \beta_1 + \beta_2 bee_i\]
+
+\textbf{а)} Выпишите функцию правдоподобия для оценки параметров \(\beta_1\) и \(\beta_2 \)
+
+\textbf{б)} Оцените неизвестные параметры
+
+\textbf{в)} С помощью теста отношения правдоподобия проверьте гипотезу о том, правильность пчёл не связана с правильностью мёда на уровне значимости 5\,\%
+
+\textbf{г)} Держась в небе за воздушный шарик, Винни-Пух неожиданно понял, что перед ним неправильные пчёлы. Помогите ему оценить вероятность того, что они делают неправильный мёд
+
+Решение.
+
+\textbf{а)} Будем оценивать склонность меда к правильности от правильности пчел:
+\[honey_i^* = \beta_1 + \beta_2 bee_i + \varepsilon_i \]
+
+Логарифмическая функция правдоподобия:
+\[l(\beta_1, \beta_2, data) = \sum \log \mathbb{P} \left(honey_i (\omega) = honey_i \,\middle|\, bee_i\right) \]
+
+То есть мы ввели случайную величину --- условную правильность меда.
+
+Найдем все необходимые условные вероятности:
+\[\mathbb{P} \left(honey_i = 1 \,\middle|\, bee_i = 1\right) = \frac{e^{\beta_1 + \beta_2}}{1 + e^{\beta_1 + \beta_2}} \]
+\[\mathbb{P} \left(honey_i = 1 \,\middle|\, bee_i = 0\right) = \frac{e^{\beta_1}}{1 + e^{\beta_1}} \]
+\[\mathbb{P} \left(honey_i = 0 \,\middle|\, bee_i = 1\right) = \frac{1}{1 + e^{\beta_1 + \beta_2}} \]
+\[\mathbb{P} \left(honey_i = 0 \,\middle|\, bee_i = 0\right) = \frac{1}{1 + e^{\beta_1}} \]
+
+Учитывая данные из таблички выше:
+\[l(\beta_1, \beta_2, data) = 12 \log \left(\frac{e^{\beta_1 + \beta_2}}{1 + e^{\beta_1 + \beta_2}}  \right) + 32 \log \left(\frac{e^{\beta_1}}{1 + e^{\beta_1}} \right) +\]
+\[+36 \log \left(\frac{1}{1 + e^{\beta_1 + \beta_2}}\right) + 20 \log \left(\frac{1}{1 + e^{\beta_1}} \right) = \]
+\[= 44 \beta_1 + 12 \beta_2 -  48 \log \left(1 + e^{\beta_1 + \beta_2} \right) - 52 \log \left( 1 + e^{\beta_1}\right)\]
+
+\textbf{б)} Найдем сначала первые производные функции \(l(\cdot) \):
+
+\[ \frac{\partial l(\cdot)}{\partial \beta_1} = 44 - \frac{48 e^{\beta_1 + \beta_2}}{1 + e^{\beta_1 + \beta_2}} - \frac{52 e^{\beta_1}}{1 + e^{\beta_1}} \]
+\[\frac{\partial l(\cdot)}{\partial \beta_2} = 12 - \frac{48 e^{\beta_1 + \beta_2}}{1 + e^{\beta_1 + \beta_2}}  \]
+
+Из условий первого порядка задачи максимизации:
+\[42 - \frac{52 e^{\widehat{\beta}_1}}{1 + e^{\widehat{\beta}_1}} = 12 \]
+
+Отсюда:
+\[\widehat{\beta_1} = \log \left(\frac{8}{5} \right) \approx 0.47\]
+\[\widehat{\beta_2} = \log \left(\frac{5}{24} \right) \approx -1.57\]
+
+\textbf{в)} Можем сформулировать нулевую гипотезу: \(H_0: \beta_2 = 0 \)
+
+Нужно максимизировать логарифмическую функцию правдоподобия по \(\beta_1\) при ограничении \(\beta_2 = 0 \):
+\[l^R (\beta_1, data) = 44 \beta_1 - 100 \log \left(1 + e^{\beta_1} \right)  \]
+\[ \frac{\partial l(\cdot)}{\partial \beta_1} = 44 - \frac{100 e^{\beta_1}}{1 + e^{\beta_1}} \]
+\[44 - \frac{100 e^{\widehat{\beta}_1}}{1 + e^{\widehat{\beta}_1}} = 0 \]
+\[\widehat{\beta}_1 = \log \left(\frac{11}{14} \right) \approx -0.24 \]
+
+Здесь:
+\[\widehat{\beta}_{1, UR} = 0.47,\; \widehat{\beta}_{2, UR} = -1.57,\; \widehat{\beta}_{1, R} = -0.24,\; \widehat{\beta}_{2, R} = 0 \]
+
+Применив тест отношения правдоподобия, получим:
+\[LR = 2 \left(l\left(\widehat{\beta}_{1, UR}, \widehat{\beta}_{2, UR}\right) -  l\left(\widehat{\beta}_{1, R}, \widehat{\beta}_{2, R}\right) \right) = 2 \left(-61.63857 + 68.59298 \right) \approx 13.91\]
+
+<<>>=
+p.value <- 1 - pchisq(13.91, df = 2)
+p.value
+p.value < 0.05
+@
+
+Гипотеза отвергается. То есть на самом деле правильность меда связана с правильностью пчел.
+
+\textbf{г)} Используем оценки коэффициентов для оценки необходимой вероятности:
+
+\[\widehat{\mathbb{P}} \left(honey_i = 0 \,\middle|\, bee_i = 0\right) = \frac{1}{1 + e^{\widehat{\beta}_{1, UR}}}  = \frac{1}{1 + e^{0.47}} \approx 0.38\]
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про предельный эффект}
+\noindent \textbf{Задача 6.5.} 
+
+При оценке логит модели \[\mathbb{P} (y_i = 1) = \Lambda \left(\beta_1 + \beta_2 x_i \right)\]
+оказалось, что \(\widehat{\beta}_1 = 0.7 \) и  \(\widehat{\beta}_2 = 3 \). Найдите максимальный предельный эффект роста \(x_i\) на вероятность \(\mathbb{P} (y_i = 1)\).
+
+Решение. 
+
+\[\widehat{\mathbb{P} (y_i = 1)} = \Lambda \left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right) = \frac{1}{(1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)})} = \frac{1}{1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}}\]
+
+Предельный эффект роста \(x_i\) на вероятность \(\mathbb{P} (y_i = 1)\):
+\[\frac{\partial \widehat{\mathbb{P} (y_i = 1)}}{\partial x_i} = \frac{\widehat{\beta_2} e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}}{\left(1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}\right)^2}\]
+
+Максимизируем:
+\[\frac{\partial^2 \mathbb{P} (y_i = 1)}{\partial x_i^2} = \widehat{\beta_2} \frac{-\widehat{\beta_2} e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}\left(1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}\right)^2 + 2 \left(1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)} \right) e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i\right)} \widehat{\beta_2}}{\left(1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}\right)^4} = 0\]
+\[1 + e^{-\left(\widehat{\beta_1} + \widehat{\beta_2} x_i \right)}  = 2 \]
+\[ \widehat{\beta_1} + \widehat{\beta_2} x_i = 0\]
+\[x_i = -\frac{\widehat{\beta_1}}{\widehat{\beta_2}}\]
+
+Итак:
+\[\hat{x}_i = -\frac{\widehat{\beta}_1}{\widehat{\beta}_2} \approx -0.23  \]
+
+Максимальный предельный эффект роста \(x_i\) на вероятность:
+\[\frac{\partial \widehat{\mathbb{P} (y_i = 1)}}{\partial x_i} = \frac{3 e^{-\left(0.7 + 3\cdot (-0.23)  \right)}}{\left(1 + e^{-\left(0.7 + 3\cdot (-0.23)  \right)}\right)^2} \approx 0.75\]
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про Фрекен Бок, коньяк и привидения}
+\noindent \textbf{Задача 6.4.} 
+
+Как известно, Фрекен Бок любит пить коньяк по утрам. За прошедшие \(4\) дня она записала, сколько рюмочек коньяка выпила утром, \(x_i\), и видела ли она в этот день приведение, \(y_i\):
+
+\begin{table}[h]
+\begin{tabular}{l|llll}
+\(y_i\) & \(1\)  &  \(0\) & \(1\)  &  \(0\)\\ \hline
+\(x_i\) & \(2\) & \(1\) & \(3\) & \(0\)
+\end{tabular}
+\end{table}
+
+Зависимость между \(y_i\) и \(x_i\) описывается логит моделью:
+\[\log \left(\frac{\mathbb{P} (y_i = 1)}{\mathbb{P} (y_i = 0)} \right) = \beta_1 + \beta_2 x_i \]
+
+\textbf{а)} Выпишите в явном виде логарифмическую функцию максимального правдоподобия
+
+\textbf{б)} Найдите оценки параметров \(\beta_1\) и \(\beta_2\)
+
+Решение.
+
+\textbf{а)} Логарифмическая функция максимального правдоподобия выглядит следующим образом:
+
+\[l(\beta_1, \beta_2, data) = \sum \log \mathbb{P} \left(y_i \,\middle|\, x_i\right) \]
+
+Выпишем все вероятности, соответствующие данным из таблицы:
+\[\mathbb{P} \left(y_i = 1 \,\middle|\, x_i = 2\right) = \frac{e^{\beta_1 + 2\beta_2}}{1 + e^{\beta_1 + 2\beta_2}} \]
+\[\mathbb{P} \left(y_i = 0 \,\middle|\, x_i = 1\right) = \frac{1}{1 + e^{\beta_1 + \beta_2}}\]
+\[\mathbb{P} \left(y_i = 1 \,\middle|\, x_i = 3\right) = \frac{e^{\beta_1 + 3\beta_2}}{1 + e^{\beta_1 + 3\beta_2}} \]
+\[\mathbb{P} \left(y_i = 0 \,\middle|\, x_i = 0\right) = \frac{1}{1 + e^{\beta_1}}\]
+
+\[l(\beta_1, \beta_2, data) = 2\beta_1 + 5\beta_2 - \log \left(1 + e^{\beta_1 + 2\beta_2}\right) - \log \left(1 + e^{\beta_1 + \beta_2}\right) - \]
+\[ -\log \left(1 + e^{\beta_1 + 3\beta_2}\right) - \log \left(1 + e^{\beta_1}\right)\]
+
+\textbf{б)}
+<<>>=
+loglik <- function(par) {
+  b1 <- par[1]
+  b2 <- par[2]
+  ans <- 2*b1 + 5*b2 - log(1 + exp(b1 + 2*b2)) - 
+    log(1 + exp(b1 + b2)) -
+    log(1 + exp(b1 + 3*b2)) -
+    log(1 + exp(b1)) 
+  return(ans)
+}
+@
+
+<<>>=
+result <- maxLik(logLik = loglik, start = c(0,0))
+report <- summary(result)
+report
+result$estimate
+@
+
+Наблюдается ситуация perfect prediction. Простое правило --- если \(x_i > 1.5\), то \(y_i = 1\). Ситуация иногда наблюдается в логит моделях, когда много объясняющих переменных. 
+
+Грамотный выход из ситуации --- Байесовский подход или получить дополнительное наблюдение (с последним сложнее).
+
+Байесовский подход: \(\beta_1\) и \(\beta_2\) случайны. 
+\[\beta_i \sim N (0, 10^6) \]
+
+Оценки получить апостериорно, они будут существовать.
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. February, 9} \addcontentsline{toc}{part}{Семинар. February, 9}
+
+\end{center}
+
+Нам потребуются функции \(glm(\cdot)\) (Generalized Linear Model) и \(maBina\) (Marginal Effect for Binary Probit and Logit Model) из пакета \(erer\):
+<<>>=
+library(erer) # glm
+@
+
+Загрузим данные из задачи 6.4., но с дополнительным наблюдением \(x_5 = 3\), \(y_5 = 0\) для того, чтобы избежать проблему perfect prediction:
+<<>>=
+df <- data.frame(x = c(2, 1, 3, 0, 3),
+                 y = c(1, 0, 1, 0, 0))
+@
+
+Оценим по этим данным логит и пробит модели. Для этого нужно выбрать аргумент \(link\), соответствующий определенной модели классификации:
+<<>>=
+logit <- glm(data = df, y ~ x,
+             family = binomial(link = "logit"))
+summary(logit)
+@
+
+<<>>=
+probit <- glm(data = df, y ~ x,
+             family = binomial(link = "probit"))
+summary(probit)
+@
+
+
+<<>>=
+library(memisc)
+mtable(logit, probit) # a table of estimates for several models
+@
+
+Заметим, что так как \(L(0, 1) \approx N(0, \pi^2/3) \), то отношение коэффициентов в логит модели к коэффициентам в пробит модели приблизительно равно \(\sqrt{\pi}/3 \).
+
+\subsection*{} \addcontentsline{toc}{subsection}{Задача про оценку вероятности в логит модели}
+\noindent \textbf{Задача 1.} 
+
+\[y_i = \begin{cases}
+1, &\text{если } y_i^* \geqslant 0 \\
+0, &\text{если } y_i^* < 0
+\end{cases}\]
+
+% Оценена пробит модель:
+% \[\hat{y}_i^* = -1.616 + 0.681 x_i \]
+
+Оценена логит модель:
+\[\hat{y}_i^* = -2.542 + 1.079 x_i \]
+
+Прогноз на завтра: \(x_F = 2\).
+
+\textbf{а)} Найти \(\widehat{\mathbb{P}(y_F = 1)} \)
+
+\textbf{б)} Построить \(95\)-\% доверительный интервал для \(\widehat{\mathbb{P}(y_F = 1)} \) с использованием дельта-метода и без использования дельта-метода
+
+Решение.
+
+\textbf{а)} \[\widehat{\mathbb{P}(y_F = 1)}= F\left(\hat{\beta}_1 + \hat{\beta}_2 x_F \right) \]
+
+\(F\left(\hat{\beta}_1 + \hat{\beta}_2 x_F \right) \) для логит модели --- сигмоида в точке \(\hat{\beta}_1 + \hat{\beta}_2 x_F \), для пробит модели --- функция Лапласа в точке \(\hat{\beta}_1 + \hat{\beta}_2 x_F \).
+
+Для логит модели:
+\[\widehat{\mathbb{P}(y_F = 1)} = \frac{e^{\hat{\beta}_1 + \hat{\beta}_2 x_F}}{1 + e^{\hat{\beta}_1 + \hat{\beta}_2 x_F}} \approx 0.405\]
+
+<<>>=
+hb1_l <- as.numeric(coef(logit)[1]) 
+hb2_l <- as.numeric(coef(logit)[2])
+hb1_p <- as.numeric(coef(probit)[1])
+hb2_p <- as.numeric(coef(probit)[2])
+# hb --- hat beta, l --- logit, p --- probit
+
+xf <- 2
+
+q_l <- hb1_l + hb2_l*xf 
+plogis(q_l)
+@
+
+Построим графики \(\widehat{\mathbb{P}(y_F = 1)}\) и предельного эффекта \(x_F\):
+
+График \(\widehat{\mathbb{P}(y_F = 1)}\):
+<<out.height = "8cm", out.width = "8cm">>=
+all_x <- seq(-10, 10, by = 0.1)
+all_p <- plogis(hb1_l + hb2_l*all_x)
+qplot(all_x, all_p, geom = "line")
+@
+
+Предельный эффект \(x_F\):
+\[\frac{d \widehat{\mathbb{P}(y_F = 1)}}{d x_F} = f_{\varepsilon_i} \left(\hat{\beta}_1 + \hat{\beta}_2 x_F \right) \cdot \hat{\beta}_2  \]
+График предельного эффекта:
+<<out.height = "8cm", out.width = "8cm">>=
+all_me <- dlogis(hb1_l + hb2_l*all_x)*hb2_l
+qplot(all_x, all_me, geom = "line")
+@
+
+\subsection*{} \addcontentsline{toc}{subsection}{Delta method}
+\textbf{б)} \textbf{Дельта-метод}
+
+Если \(\hat{\theta}_1\), ..., \(\hat{\theta}_n\) --- оценки для параметра \(\theta\), \(g(\cdot)\) дифференцируема в \(\theta\) и
+\[\sqrt{n}\left(\hat{\theta}_n - \theta \right)\,\xrightarrow{D}\,\mathcal{N}(0, \sigma^2)\]
+то:
+\[\sqrt{n}\left(g\left(\hat{\theta}_n\right) - g\left(\theta\right)\right)\,\xrightarrow{D}\,\mathcal{N}(0,\sigma^2\cdot \left(g'\left(\theta\right)\right)^2)\]
+
+Для нашей задачи:
+
+\[\hat{\beta} = \begin{pmatrix} 
+-2.542 \\
+1.019 
+\end{pmatrix} \]
+
+\[g(\hat{\beta}) = \widehat{\mathbb{P}(y_F = 1)} = \Lambda \left(\hat{\beta_1} + \hat{\beta_2} x_F \right) \]
+
+При этом:
+\[g(\beta) = \Lambda \left(\beta_1 + \beta_2 x_F \right) \]
+
+Настало время дельта-метода:
+\[\mathbb{V}ar \left(g(\hat{\beta}) \right) \approx \left(\frac{d g }{d \beta} \left(\hat{\beta} \right)\right)' \widehat{V} \left( \hat{\beta}\right) \left( \frac{d g }{d \beta}\left(\hat{\beta} \right) \right)\]
+
+\[\frac{d g }{d \beta} \left(\hat{\beta} \right) = \begin{pmatrix} 
+\frac{d \Lambda }{d \beta_1} (\hat{\beta_1} + \hat{\beta_2} x_F ) \\
+\frac{d \Lambda }{d \beta_2} (\hat{\beta_1} + \hat{\beta_2} x_F )
+\end{pmatrix} = \begin{pmatrix} 
+f_{\varepsilon_i} (\hat{\beta_1} + \hat{\beta_2} x_F ) \cdot 1\\
+f_{\varepsilon_i} (\hat{\beta_1} + \hat{\beta_2} x_F ) \cdot x_F
+\end{pmatrix} \]
+
+<<>>=
+dgdb1 <- dlogis(hb1_l + hb2_l*xf)*1; dgdb1
+dgdb2 <- dlogis(hb1_l + hb2_l*xf)*xf; dgdb2
+grad <- c(dgdb1, dgdb2)
+grad
+vcov(logit)
+
+Var_g <- t(grad) %*% vcov(logit) %*% grad
+Var_g <- as.numeric(Var_g); Var_g
+
+sqrt(Var_g)
+@
+
+Проверим то, что мы получили с помощью функции \(deltamethod(\cdot)\) из пакета \(msm\), позволяющую сразу найти стандартное отклонение оценки:
+<<>>=
+library(msm) # delta method
+deltamethod(~ 1/(1 + exp(-x1 - x2*xf)), c(hb1_l, hb2_l), 
+            vcov(logit))
+@
+
+Теперь легко построить доверительный интервал, учитывая, что по дельта-методу оценка сходится по распределению к нормальному распределению:
+<<>>=
+low <- plogis(q_l) - qnorm(0.975)*sqrt(Var_g)
+high <- plogis(q_l) + qnorm(0.975)*sqrt(Var_g)
+conf <- data.frame(low, high)
+conf
+@
+
+Видим, что доверительный интервал выходит из области допустимых значений и имеет большой разброс. Но этот результат на основе дельта-метода стоило ожидать, так как очень мало наблюдений.
+
+
+\newpage
+\begin{center}
+
+\textsc{\Large Семинар. February, 16} \addcontentsline{toc}{part}{Семинар. February, 16}
+
+\end{center}
+
+Продолжение задачи с прошлого семинара.
+
+Коэффициенты и ковариационная матрица коэффициентов для оцененной модели:
+<<>>=
+logit$coefficients
+vcov(logit)
+@
+
+Прогнозируем в случае \(x_F = 2\) или \(x_F = 4\).
+<<>>=
+new <- data.frame(x = c(2, 4))
+@
+
+Можем получить оценку ненаблюдаемой склонности увидеть привидение:
+<<>>=
+pred <- predict(logit, newdata = new, se.fit = T)
+pred
+@
+
+Чтобы привести ее к вероятности, нужно применить функцию распределения логистического распределения:
+<<>>=
+plogis(pred$fit)
+@
+
+А можем сразу получить вероятность, прописав аргумент \(type\):
+<<>>=
+pred2 <- predict(logit, newdata = new, type = 'response')
+pred2
+@
+
+Построим доверительный интервал для прогноза для ненаблюдаемой склонности:
+\[\hat{y}_F^* = \hat{\beta}_1 + \hat{\beta}_2 x_F \]
+\[\mathbb{E} \left(\hat{y}_F^* | x_F \right) = \beta_1 + \beta_2 x_F\]
+\[\mathbb{V}ar \left(\hat{y}_F^* | x_F \right) = \mathbb{V}ar (\hat{\beta}_1) + x_F^2 \mathbb{V}ar (\hat{\beta}_2) + 2 x_F \mathbb{C}ov (\hat{\beta_1}, \hat{\beta_2}) \]
+\[\hat{y}_F^* | x_F \sim \mathcal{N} \left(\beta_1 + \beta_2 x_F, \mathbb{V}ar \left(\hat{y}_F^* | x_F \right)\right) \]
+
+Например, для \(x_F = 2\):
+<<>>=
+var.hat <- vcov(logit)[1, 1] + 2^2*vcov(logit)[2, 2] + 2*2*vcov(logit)[2, 1]
+var.hat
+sqrt(var.hat)
+@
+
+То же самое мы получили в нашем прогнозе:
+<<>>=
+pred_df <- as.data.frame(pred)
+pred_df
+@
+
+Новые значения объясняющей переменной:
+<<>>=
+pred_df$x <- c(2, 4)
+pred_df
+@
+
+Строим доверительный интервал для склонности увидеть привидение и несимметричный доверительный интервал для вероятности увидеть привидение:
+<<>>=
+library(dplyr)
+pred_df <- pred_df %>% 
+  mutate(left_ci = fit - qnorm(0.975)*se.fit, 
+         right_ci = fit + qnorm(0.975)*se.fit) %>%
+  mutate(left_ci_p = plogis(left_ci), 
+         right_ci_p = plogis(right_ci),
+         p_hat = plogis(fit))
+pred_df
+@
+
+Теперь построим симметричный доверительный интервал для вероятности, используя дельта-метод:
+<<>>=
+pred_df <- pred_df %>%
+  mutate(se_DM = se.fit*dlogis(fit)) %>%
+  mutate(left_ci_p_DM = p_hat - qnorm(0.975)*se_DM,
+         right_ci_p_DM = p_hat + qnorm(0.975)*se_DM)
+pred_df
+@
+
+Посмотрим на предельный эффект \(x_i\) на вероятность увидеть привидение:
+<<>>=
+library(erer)
+logit_w_memory <- glm(data = df, y ~ x,
+                      family = binomial(link = "logit"), 
+                      x = TRUE) 
+maBina(logit_w_memory)
+maBina(logit_w_memory, x.mean = F)
+@
+
+\end{document}
+
+% Планы:
+% W LR LM statistics --- geometric interpretation
+% geometric --- ML for logit
+% geometrc --- confidence intervals for hat P
+% packages
