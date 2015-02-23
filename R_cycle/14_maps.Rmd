@@ -41,6 +41,9 @@ http://gis.stackexchange.com/questions/83722 minimal distance
 http://stackoverflow.com/questions/3807136/r-points-in-polygons
 http://stackoverflow.com/questions/19002744/spover-for-point-in-polygon-analysis-in-r
 
+[https://github.com/muuankarski/regioncoderus](https://github.com/muuankarski/regioncoderus)
+
+
 
 ##### Читаем данные gis-lab
 
