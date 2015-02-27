@@ -1,0 +1,63 @@
+---
+title: "Untitled"
+author: "Boris Demeshev"
+date: "26 February 2015"
+output: html_document
+---
+
+Установка пакетов с неофициальных репозиториев
+```{r}
+install.packages("rusquant", repos="http://R-Forge.R-project.org", type="source")
+```
+
+Приступаем к работе
+```{r}
+library("quantmod")
+library("rusquant")
+library("xts")
+library("ggplot2")
+library("forecast")
+```
+
+Загружаем данные по ценам акций гугла:
+```{r}
+getSymbols(Symbols="GOOG", from="2012-01-01", to="2015-02-25" )
+```
+
+Посмотрим, загрузилось ли?
+```{r}
+head(GOOG)
+plot(GOOG)
+chartSeries(GOOG)
+#tsdisplay(GOOG$GOOG.Adjusted)
+```
+
+По графику самого ряда кое-что можно отличить, но не всё!
+```{r}
+y <- arima.sim(n=100, model = list())
+plot(y)
+tsdisplay(y)
+```
+
+```{r}
+y <- arima.sim(n=100, model = list(ma=2))
+plot(y)
+```
+
+
+```{r}
+y <- arima.sim(n=100, model = list(ma=c(2,3) ) )
+plot(y)
+```
+
+```{r}
+y <- arima.sim(n=100, model = list(ar=0.9 ) )
+plot(y)
+```
+
+```{r}
+y <- arima.sim(n=100, model = list(ar=-0.95 ) )
+plot(y)
+```
+
+
