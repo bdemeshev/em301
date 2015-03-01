@@ -768,8 +768,8 @@ $$\hat{y}_{n+1} = x_{n+1}' \hat{\beta}$$
 \subsection*{} \addcontentsline{toc}{subsection}{Lagrange Multiplier test}
 \item[2] \textbf{Тест множителей Лагранжа (LM-тест)}:
 
-Информационная матрица (матрица Гессе с минусом):
-\[\widehat{I} = - \frac{\partial^2 l}{\partial \theta^2} \left(\theta \right)\]
+Оценка информационной матрицы Фишера (матрица Гессе с минусом):
+\[\widehat{I} = - \frac{\partial^2 l}{\partial \theta \partial \theta'} \left(\hat{\theta} \right)\]
 
 При верной \(H_0\):
 \[LM = \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_R \right)\right)' \cdot \widehat{I}^{-1} \left(\hat{\theta}_R \right) \cdot \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_R \right)\right) \sim \chi^2_q \]
@@ -783,7 +783,7 @@ g_q (\theta_1, ..., \theta_p) = 0
 \end{cases} \]
 
 При верной \(H_0\):
-\[W = \left(g\left(\hat{\theta}_{UR} \right) \right)' \cdot \left( \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_{UR} \right)\right) \cdot \widehat{I}^{-1} \left(\hat{\theta}_{UR} \right) \cdot \left(\dfrac{\partial l}{\partial \theta}\left(\hat{\theta}_{UR} \right)\right)' \right)^{-1} \cdot g\left(\hat{\theta}_{UR} \right) \sim \chi^2_q \]
+\[W = \left(g\left(\hat{\theta}_{UR} \right) \right)' \cdot \left( \dfrac{\partial g}{\partial \theta'}\left(\hat{\theta}_{UR} \right) \cdot \widehat{I}^{-1} \left(\hat{\theta}_{UR} \right) \cdot \dfrac{\partial g'}{\partial \theta}\left(\hat{\theta}_{UR} \right) \right)^{-1} \cdot g\left(\hat{\theta}_{UR} \right) \sim \chi^2_q \]
 
 \end{itemize}
 
@@ -1734,7 +1734,17 @@ library(erer)
 logit_w_memory <- glm(data = df, y ~ x,
                       family = binomial(link = "logit"), 
                       x = TRUE) 
+@
+
+Предельный эффект для среднего потребления коньяка:
+\[maBina = f_{\varepsilon_i}\left(\beta_1 + \beta_2 \frac{\sum x_i}{n}\right)\beta_2 \]
+<<>>=
 maBina(logit_w_memory)
+@
+
+Средний предельный эффект:
+\[maBina(x.mean = FALSE) = \frac{1}{n} \sum  f_{\varepsilon_i}\left(\beta_1 + \beta_2 x_i\right)\beta_2  \]
+<<>>=
 maBina(logit_w_memory, x.mean = F)
 @
 
@@ -1745,3 +1755,4 @@ maBina(logit_w_memory, x.mean = F)
 % geometric --- ML for logit
 % geometrc --- confidence intervals for hat P
 % packages
+% вставить матрицы производных по векторам в ML
