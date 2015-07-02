@@ -15,7 +15,6 @@
 /*.R~
 /*.csv~
 /*.Rhistory
-/*.R
 /regression_in_R.html
 /regression_in_R.md
 /em301_theory.lyx
@@ -154,13 +153,7 @@ buza/buza_pamiatka.pdf
 
 *.jpg
 
-buza/demotivators/506px-Correlation_examples2.svg.png
 
-buza/demotivators/buza_demotivators.zip
-
-buza/demotivators/extrapolating.png
-
-buza/demotivators/correlation.png
 
 2013/sem_01_rnw_demo/figure/unnamed-chunk-21.png
 
@@ -289,3 +282,5 @@ metrics_exams/metrics_exams.run.xml
 2014/binst_ht_rlms/binst_ht_rlms.tex
 
 metrics_exams/metrics_exams-concordance.tex
+
+buza/demotivators/buza_demotivators.zip
