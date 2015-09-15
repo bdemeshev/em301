@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}
+
+% минимум для русского языка:
+\usepackage[russian]{babel}
+\usepackage[utf8]{inputenc}
+
+% размеры страницы
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
+% разные плюшки для математических символов
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\title{Пять фактов обо мне, хрю!}
+\author{Хрюша}
+\date{\today}
+
+\begin{document}
+
+
+
+\maketitle
+
+
+\thispagestyle{empty} % без номера внизу страницы
+
+\begin{enumerate}
+\item Амплуа --- непослушный ребёнок
+\item Принимал в Кремле американских коллег лягушонка Кермита и Мисс Пигги
+\item Вёл телемост «Москва—Нью-Йорк»
+\item В молодости у меня были копыта
+\item «Мощно задвинул! Внушаить»
+\end{enumerate}
+
+\begin{center}
+\includegraphics[height=5cm]{khrusha.jpg}
+\end{center}
+
+А ещё я в R могу посчитать $2+2$:
+
+<<>>=
+2 + 2
+@
+
+
+
+\end{document}
