@@ -284,3 +284,7 @@ metrics_exams/metrics_exams.run.xml
 metrics_exams/metrics_exams-concordance.tex
 
 buza/demotivators/buza_demotivators.zip
+
+*.log
+
+2015/kr_01_recall_all/kr_01_recall_all.synctex.gz
