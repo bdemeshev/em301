@@ -1,0 +1,112 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%\usepackage[OT1]{fontenc}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\newcommand{\hb}{\hat{\beta}}
+\newcommand{\e}{\varepsilon}
+
+\begin{document}
+\begin{enumerate}
+\item Регрессионная модель  задана в матричном виде при помощи уравнения $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
+Известно, что $\E(\varepsilon)=0$  и  $\Var(\varepsilon)=\sigma^2\cdot I$.
+Известно также, что 
+
+$y=\left(
+\begin{array}{c} 
+1\\ 
+2\\ 
+3\\ 
+4\\ 
+5
+\end{array}\right)$, 
+$X=\left(\begin{array}{ccc}
+1 & 0 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 1 
+\end{array}\right)$.
+
+
+Для удобства расчетов приведены матрицы 
+
+
+$X'X=\left(
+\begin{array}{ccc} 
+5 & 3 & 1\\ 
+3 & 3 & 1\\ 
+1 & 1 & 1 
+\end{array}\right)$ и $(X'X)^{-1}=\frac{1}{2}\left(
+\begin{array}{ccc} 
+1 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 3
+\end{array}\right)$.
+
+\begin{enumerate}
+\item Найдите вектор МНК-оценок коэффициентов $\hb$.
+\item Найдите несмещенную оценку для неизвестного параметра $\sigma^2$.
+\item Проверьте гипотезу $\beta_2=0$ против альтернативной о неравенстве на уровне значимости 5\%
+
+\end{enumerate}
+
+
+
+
+\item По данным о пассажирах Титаника оценивается логит-модель. Зависимая переменная \verb|survived| равна 1, если пассажир выжил. Объясняющая переменная \verb|sexmale| равна 1 для  мужчин.
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{l c }
+\hline
+               & Model 1 \\
+\hline
+(Intercept)    & $1.92^{***}$  \\
+               & $(0.28)$      \\
+age            & $-0.01$       \\
+               & $(0.01)$      \\
+sexmale        & $-2.84^{***}$ \\
+               & $(0.21)$      \\
+\hline
+AIC            & 633.45        \\
+BIC            & 646.80        \\
+Log Likelihood & -313.72       \\
+Deviance       & 627.45        \\
+Num. obs.      & 633           \\
+\hline
+\multicolumn{2}{l}{\scriptsize{$^{***}p<0.001$, $^{**}p<0.01$, $^*p<0.05$}}
+\end{tabular}
+\caption{Statistical models}
+\label{table:coefficients}
+\end{center}
+\end{table}
+
+
+\begin{enumerate}
+\item Оцените вероятность выжить для женщины 20 лет
+\item Оцените предельный эффект увеличения возраста для женщины 20 лет 
+\item С помощью какого метода оценивается логит-модель? Каким образом при этом получаются оценки стандартных ошибок коэффициентов?
+\end{enumerate}
+
+
+\item Теорема Гаусса-Маркова.
+
+\begin{enumerate}
+\item Аккуратно сформулируйте теорему Гаусса-Маркова для стохастических регрессоров. 
+\item Поясните каждое из свойств оценок, фигурирующих в теореме.
+\item Как меняются свойства оценок МНК при нарушении предпосылки теоремы о том, что условная дисперсия $\e_i$ постоянна? 
+\end{enumerate}
+\end{enumerate}
+\end{document}
