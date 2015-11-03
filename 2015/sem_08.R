@@ -1,4 +1,4 @@
-# em301, 03.11.2015, семинар 8
+﻿# em301, 03.11.2015, семинар 8
 
 # problem 4.13
 
@@ -50,5 +50,6 @@ coef(otchet)
 df$yy <- df$y - 2*df$x
 df$zz <- df$z - df$x
 df
+
 model2 <- lm(data=df, yy~x+zz)
 summary(model2)
