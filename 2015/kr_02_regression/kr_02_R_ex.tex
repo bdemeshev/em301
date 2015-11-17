@@ -1,0 +1,38 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{verbatim}
+\begin{document}
+
+
+
+
+\begin{enumerate}
+\item Подключите библиотеку \verb|ggplot2| командой \verb|library("ggplot2")|. Рассмотрим набор данных по цене бриллиантов \verb|diamonds|. Оцените линейную модель зависимости цены бриллианта \verb|price| от массы \verb|carat| и глубины \verb|depth|. После оценки модели:
+\begin{enumerate}
+\item Поместите $R^2$ в переменную \verb|r_sq|
+\item Поместите $RSS$ в переменную \verb|rss|
+\item Поместите оценку коэффициента при \verb|carat| в переменную \verb|hb_carat|
+\item Поместите прогнозы в вектор \verb|y_hat|
+\end{enumerate}
+
+
+\vspace{2in}
+
+\item Подключите библиотеку \verb|ggplot2| командой \verb|library("ggplot2")|. Рассмотрим набор данных по цене бриллиантов \verb|diamonds|. Оцените линейную модель зависимости цены бриллианта \verb|price| от массы \verb|carat| и отношения ширины верха бриллианта к самой широкой части \verb|table|. После оценки модели:
+\begin{enumerate}
+\item Поместите $R^2$ в переменную \verb|r_sq|
+\item Поместите $\hat{\sigma}^2$ в переменную \verb|s2_hat|
+\item Поместите оценку коэффициента при \verb|carat| в переменную \verb|hb_carat|
+\item Поместите остатки регрессии в вектор \verb|e_hat|
+\end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

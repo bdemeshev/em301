@@ -1637,7 +1637,7 @@ xm <- xtable(XXm,align=rep("",ncol(B)+1),digits = 5)
 
 
 
-\item Эконометресса Ефросинья оценивала модель $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$. Найдя матрицы $X'X$ и $(X'X)^{-1}$, она призадумалась...
+\item Эконометресса Ефросинья оценивала модель $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$. Найдя матрицы $X'X$ и $(X'X)^{-1}$, она призадумалась\ldots
 
 $X'X = \begin{bmatrix}{}
   47 & 775 & 1934 \\

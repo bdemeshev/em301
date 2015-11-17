@@ -1,0 +1,163 @@
+\documentclass[12pt]{article} % добавить или удалить answers в скобках, чтобы показать ответы
+%\usepackage[T2A, T1]{fontenc}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[greek, russian]{babel}
+%\usepackage[OT1]{fontenc}
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setdefaultlanguage{russian}
+\setotherlanguages{english, greek}
+
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+
+%\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{\mathbb{V}\mathrm{ar}}
+\DeclareMathOperator{\Cov}{\mathbb{C}\mathrm{ov}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\hbeta}{\hat{\beta}}
+%% эконометрические сокращения
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+
+
+\begin{document}
+
+
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{Группа, имя и фамилия:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{Настроение:\enspace\hrulefill}
+
+\vspace{0.2in}
+
+
+\begin{enumerate}
+
+
+
+\item В рамках классической линейной регрессионной модели $y=X\beta+ \varepsilon$, $\E(\varepsilon)=0$, $\Var(\varepsilon)=\sigma^2 \cdot I$, найдите: $\E(\hat\varepsilon)$, $\Var(\hat\varepsilon)$, $\Cov(\hat\varepsilon, y)$
+
+\item Имеются данные:
+
+\begin{tabular}{lll}
+\toprule
+$y_i$ & $x_i$ & $z_i$ \\
+\midrule
+1 & 2 & 1 \\
+2 & -1 & 2 \\
+3 & -3 & -3 \\
+4 & 2 & 0 \\
+\end{tabular}
+
+Предположим, что ошибки нормальны $N(0;\sigma^2)$ и независимы.
+
+\begin{enumerate}
+\item Оцените с помощью МНК модель $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$
+\item Найдите $RSS$, $TSS$, $ESS$ и $R^2$
+\item Проверьте гипотезу о незначимости коэффициента $\hat\beta_2$ на уровне значимости 5\%.
+\item Найдите оценку ковариационной матрицы коэффициентов $\widehat{\Var}(\hat\beta)$
+\item Проверьте гипотезу $H_0: \beta_2 = \beta_3$ на уровне значимости 5\%.
+\item Для четвёртого наблюдения постройте прогноз и найдите ошибку прогноза.
+\end{enumerate}
+
+\item Как могут измениться (могут ли увеличиться? уменьшиться?) $RSS$, $TSS$ и $ESS$ при добавлении дополнительного наблюдения? При добавлении дополнительного регрессора?
+
+\item Эконометресса Агнесса оценила множественную регрессию $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$. Потом она добавила два наблюдения к своей выборке: $y_{n+1}=1$, $x_{n+1}=2$, $z_{n+1}=3$ и $y_{n+2}=-1$, $x_{n+2}=1$, $z_{n+2}=2$. Как при этом изменились матрицы $X'X$ и $X'y$? 
+
+
+\item По 47 наблюдениям оценивается зависимость фертильности женщин от доли мужчин занятых в сельском хозяйстве и доли католического населения по Швейцарским кантонам в 1888 году.
+
+\[Fertility_i=\beta_1+\beta_2 Examination_i+\beta_3 Catholic_i+\varepsilon_i\]
+
+<<echo=FALSE,message=FALSE>>=
+# library(Hmisc)
+library(lmtest)
+library(apsrtable)
+library(xtable)
+h <- swiss
+model1 <- lm(Fertility~Examination+Catholic,data=h)
+coef.t <- coeftest(model1)
+dimnames(coef.t)[[2]] <- c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
+coef.t <- coef.t[,-4]
+coef.t[1,1] <- NA
+coef.t[2,2] <- NA
+coef.t[3,3] <- NA
+@
+
+<<echo=FALSE,results='asis'>>=
+xtable(coef.t)
+@
+
+\begin{enumerate}
+\item Заполните пропуски в таблице.
+\item Укажите коэффициенты, значимые на 10\% уровне значимости.
+\item Постройте 95\%-ый доверительный интервал для коэффициента при Examination
+\end{enumerate}
+
+\newpage
+
+
+\item Аккуратно сформулируйте (с «Если» и «то») теорему Гаусса-Маркова для случая нестохастических регрессоров.
+
+\item Нарисуйте Самую Главную Картинку, иллюстрирующую метод наименьших квадратов для множественной регрессии. Отметьте на картинке $RSS$, $ESS$, $TSS$ и $R^2$
+
+\item Эконометресса Ефросинья оценивала модель $y_i=\beta_1 + \beta_2 x_i + \beta_3 z_i + \varepsilon_i$. Найдя матрицы $X'X$ и $(X'X)^{-1}$, она призадумалась\ldots
+
+$X'X = \begin{bmatrix}{}
+  47 & 775 & 1934 \\
+  775 & 15707 & 23121 \\
+  1934 & 23121 & 159570 \\
+  \end{bmatrix}$,
+$(X'X)^{-1}=\begin{bmatrix}{}
+  0.26653 & -0.01067 & -0.00168 \\
+  -0.01067 & 0.00051 & 0.00006 \\
+  -0.00168 & 0.00006 & 0.00002 \\
+  \end{bmatrix}$
+
+
+\begin{enumerate}
+\item Помогите Ефросинье найти количество наблюдений, $\bar{z}$, $\sum x_i z_i$, $\sum(x_i-\bar{x})(z_i-\bar{z})$
+\item Ефросинья решила зачем-то также оценить модель $x_i = \gamma_1 + \gamma_2 z_i + u_i$. Как выглядят матрицы $X'X$ и $X'y$ для новой модели? 
+\item (*) Как Ефросинья может найти RSS в новой модели в одно арифметическое действие?
+\end{enumerate}
+
+
+\item Как известно, $\hy=H y$, где матрица-шляпница $H$ задаётся формулой $H=X(X'X)^{-1}X'$.
+\begin{enumerate}
+\item Является ли вектор остатков $\he$ собственным вектором матрицы $H$? Если да, то какое собственное число ему соответствует?
+\item Является ли вектор прогнозов $\hy$ собственным вектором матрицы $H$? Если да, то какое собственное число ему соответствует?
+\item  Является ли регрессор $z$ (скажем, второй столбец матрицы $X$) собственным вектором матрицы $H$? Если да, то какое собственное число ему соответствует?
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
