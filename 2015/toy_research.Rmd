@@ -1,0 +1,30 @@
+---
+title: "Toy research"
+author: "Boris Demeshev"
+date: "17 November 2015"
+output: word_document
+lang: russian
+---
+
+Подключим парочку пакетиков
+```{r, message=FALSE, echo=FALSE}
+library("pander")
+library("memisc")
+library("knitr")
+library("ggplot2")
+library("dplyr")
+```
+
+Оценим парочку регрессий
+```{r}
+model_ur <- lm(data=diamonds,
+            price~carat+x+y+z)
+model_r <- lm(data=diamonds,
+            price~carat)
+```
+
+Выведем красивую табличечку:
+```{r, results='asis'}
+mtable(model_ur, model_r) %>% pander()
+```
+
