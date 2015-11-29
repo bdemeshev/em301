@@ -1,6 +1,9 @@
 df <- read.table("flats_moscow.txt", dec=".", sep="\t", header=TRUE)
 str(df) # structure of loaded data frame
 
+model <- lm(data=df, price~livesp)
+summary(model)
+
 model <- lm(data=df, price~livesp+kitsp)
 summary(model)
 
