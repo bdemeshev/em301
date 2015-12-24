@@ -1,0 +1,27 @@
+---
+title: "Selected topics in econometrics with R"
+author: "Boris Demeshev"
+output: pdf_document
+fontsize: 12pt
+---
+
+This course will cover hard topics in econometrics from the list below. Formally many of these topics are covered in standard econometrics course, but due to the lack of time are not studied in details. The course "Selected topics" will be problem-oriented, we will solve problems. This is not a catch-up course, it is designed for those who love hard problems. 
+
+1. Limits in probability theory. Limit in probability, limit in distribution. Law of large numbers, central limit theorem, delta-method. 
+Consistency of OLS estimators in fixed-regressors setup. 
+
+2. OLS with vectors and matrices. Eigen-values and eigenvectors, geometry of OLS. Frisch–Waugh–Lovell theorem. Differentiation with respect to vectors and matrices.
+
+3. Reproducible research. Literate programming, combining computer code and human readable text. Markdown, LaTeX.
+
+4. Maximum likelihood. Three classical tests: Wald, Likelihood Ratio and Lagrange multiplier. Estimating the variance of ML-estimators. Examples where ML fails. 
+
+5. Discriminant Analysis. Linear and quadratic discriminant analysis. Difference between logit regression and LDA. 
+
+6. Univariate time series. ARMA models, unit roots. Non-statistical forecast methods: exponential smoothing, theta-method. 
+
+7. Multivariate time series. Cointegration. VARs --- Vector Auto Regressions. Impulse response functions and decompositions.
+
+8. Problems from Student Econometrics Universiade.
+
+
