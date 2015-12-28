@@ -1,0 +1,183 @@
+\documentclass[pdftex,12pt,a4paper]{article}
+
+
+% размер листа бумаги
+\usepackage[paper=a4paper,top=13.5mm, bottom=13.5mm,left=16.5mm,right=13.5mm,includefoot]{geometry}
+\usepackage{makeidx} % создание индекса
+\usepackage{cmap} % поиск русских букв в pdf
+% \usepackage[pdftex]{graphicx} % omit pdftex option if not using pdflatex
+\usepackage[colorlinks,hyperindex,unicode]{hyperref}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{epsfig}
+\usepackage{bm}
+\usepackage{color}
+
+\usepackage{textcomp}  % Чтобы в формулах можно было русские буквы писать через \text{}
+\usepackage{multicol}
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+\def \b{\beta}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{s}}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \he{\hat{\varepsilon}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \P{\mathbb{P}}
+\def \E{\mathbb{E}}
+\DeclareMathOperator*{\plim}{plim}
+
+
+<<"setup", echo = TRUE, include = FALSE, tidy = FALSE>>=
+library("knitr")
+opts_chunk$set(cache = FALSE,
+               dev = "png", dpi = 300,
+               warning = FALSE,
+               tidy = FALSE,
+               echo = FALSE,
+               out.height = "7cm", out.width = "7cm")
+
+library("ggplot2")
+library("Hmisc")
+library("lmtest")
+library("xtable")
+library("texreg")
+
+theme_set(theme_bw())
+
+load(file="exam_data.Rdata")
+@
+
+
+
+
+\title{Метрика. Полуфинал. 28 декабря 2015.}
+
+\begin{document}
+%\maketitle
+\parindent=0 pt % no indent
+
+\section*{Метрика. Блокбастер, 28-12-2015}
+
+В этот день, 28 декабря 1895 года, в индийском салоне «Гран-кафе» на бульваре Капуцинок в Париже состоялся публичный показ «Синематографа братьев Люмьер» :)
+
+\begin{enumerate}
+\item Регрессионная модель $y_i=\b_1 + \b_2 x_i + \b_3 z_i + \e_i$  задана в матричном виде  $y=X\beta+\varepsilon$, где $\beta=(\beta_1,\beta_2,\beta_3)'$.
+Известно, что $\E(\varepsilon)=0$  и  $\Var(\varepsilon)=\sigma^2\cdot I$.
+Известно также, что
+
+$y=\left(
+\begin{array}{c}
+1\\
+2\\
+3\\
+4\\
+5
+\end{array}\right)$,
+$X=\left(\begin{array}{ccc}
+1 & 0 & 1 \\
+1 & 0 & 1 \\
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+1 & 1 & 0
+\end{array}\right)$.
+
+
+Для удобства расчетов приведены матрицы
+
+
+$X'X=\left(
+\begin{array}{ccc}
+5 & 2 & 2\\
+2 & 2 & 0\\
+2 & 0 & 2
+\end{array}\right)$ и $(X'X)^{-1}=\left(
+\begin{array}{ccc}
+1 & -1 & -1 \\
+-1 & 1.5 & 1 \\
+-1 & 1 & 1.5
+\end{array}\right)$.
+
+\begin{enumerate}
+\item Найдите вектор МНК-оценок коэффициентов $\hb$.
+\item Найдите коэффициент детерминации $R^2$
+\item Предполагая нормальное распределение вектора $\varepsilon$, проверьте гипотезу $H_0$: $\b_3=0$ против альтернативной $H_a$: $\b_3\neq 0$ на уровне значимости 5\%.
+\item Постройте точечный прогноз и 95\%-ый предиктивный интервал для $x_6=2$ и $z_6=0$.
+\end{enumerate}
+
+
+\item Рассмотрим модель со стохастическими регрессорами $y=X\b + \e$. При этом $\E(\e|X)=0$, как и положено, однако ошибки $\e$ хитро зависят друг от друга, и поэтому $\Var(\e|X)$ есть некоторая известная недиагональная матрица $V$. Несмотря на нарушение предпосылок теоремы Гаусса-Маркова Чак Норрис использует обычный МНК для получения оценок~$\hb$.
+
+Найдите $\E(\hb|X)$, $\Var(\hb|X)$ и $\Cov(\hy, \he | X)$
+
+\item Рассмотрим классическую линейную регрессионную модель:
+\[
+y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
+\]
+
+\begin{enumerate}
+\item Огюст Люмьер утверждает, что при нестохастических регрессорах математические ожидания $\E(y_i)$ различны. Луи Люмьер утверждает, что при стохастических регрессорах и предпосылке о том, что наблюдения являются случайной выборкой, все $\E(y_i)$ равны между собой. Кто из них прав?
+\item Помогите Луи Люмьеру найти $\plim \he_1$ и $\plim \hy_1$
+\end{enumerate}
+
+
+
+\newpage
+\item Рассмотрим классическую линейную регрессионную модель:
+\[
+y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
+\]
+
+Наблюдения является случайной выборкой. Истинная ковариция $\Cov(x_i, z_i)$ равна нулю. Мы оцениваем с помощью МНК две регрессии.
+
+Регрессия 1:
+\[
+\hy_i = \hb_1 + \hb_2 x_i + \hb_3 z_i
+\]
+
+Регрессия 2:
+\[
+\hy_i = \hat \gamma_1 + \hat \gamma_2 x_i
+\]
+
+\begin{enumerate}
+\item Верно ли, что $\hb_2$ совпадает с $\hat \gamma_2$?
+\item Верно ли, что $\plim \hb_2 = \plim \hat \gamma_2$?
+\end{enumerate}
+
+
+\item Аккуратно опишите процедуру сравнения с помощью $F$-теста двух вложенных (ограниченной и неограниченной) линейных моделей:
+\begin{enumerate}
+\item Сформулируйте $H_0$ и $H_a$
+\item Сформулируйте все предпосылки теста
+\item Укажите способ подсчёта тестовой статистики
+\item Укажите закон распределения тестовой статистики при верной $H_0$
+\item Сформулируйте правило, по которому делается вывод об $H_0$
+\end{enumerate}
+
+\item Чтобы не выдать себя, Джеймс Бонд оценивает с помощью МНК только однопараметрические регрессии вида $y_i=\b x_i + \e_i$. Однако он знаком с теоремой Фриша-Вау.
+\begin{enumerate}
+\item Сколько подобных однопараметрических регрессий ему придется оценить, чтобы получить оценку коэффициента $\beta_3$ в множественной регрессии $y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i$?
+\item Укажите, какие именно регрессии нужно построить для данной цели
+\end{enumerate}
+
+\end{enumerate}
+
+\begin{center}
+\includegraphics[scale=0.6]{50_bored.png}
+\end{center}
+
+\end{document}
