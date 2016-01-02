@@ -1,5 +1,5 @@
 ---
-title: "Selected topics in econometrics with R"
+title: "Selected topics in econometrics"
 author: "Boris Demeshev"
 output: pdf_document
 fontsize: 12pt
@@ -23,5 +23,7 @@ Consistency of OLS estimators in fixed-regressors setup.
 7. Multivariate time series. Cointegration. VARs --- Vector Auto Regressions. Impulse response functions and decompositions.
 
 8. Problems from Student Econometrics Universiade.
+
+Bibliography:
 
 
