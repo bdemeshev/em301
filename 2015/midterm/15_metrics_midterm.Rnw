@@ -1,4 +1,4 @@
-\documentclass[pdftex,12pt,a4paper]{article}
+\documentclass[pdftex, 12pt, a4paper]{article}
 
 
 % размер листа бумаги
