@@ -5,7 +5,7 @@ output: pdf_document
 fontsize: 12pt
 ---
 
-This course will cover hard topics in econometrics from the list below. Formally many of these topics are covered in standard econometrics course, but due to the lack of time are not studied in details. The course "Selected topics" will be problem-oriented, we will solve problems. This is not a catch-up course, it is designed for those who love hard problems. 
+This course is a part of ICEF-Academia project. The course will cover hard topics in econometrics from the list below. Formally many of these topics are covered in standard econometrics course, but due to the lack of time are not studied in details. The course "Selected topics" will be problem-oriented, we will solve problems. This is not a catch-up course! The course will be useful for those who would participate in Econometrics Olympiad, those who are doing econometrics-related researh project or those who love hard problems.
 
 1. Limits in probability theory. Limit in probability, limit in distribution. Law of large numbers, central limit theorem, delta-method. 
 Consistency of OLS estimators in fixed-regressors setup. 
@@ -18,12 +18,15 @@ Consistency of OLS estimators in fixed-regressors setup.
 
 5. Discriminant Analysis. Linear and quadratic discriminant analysis. Difference between logit regression and LDA. 
 
-6. Univariate time series. ARMA models, unit roots. Non-statistical forecast methods: exponential smoothing, theta-method. 
+6. Univariate time series. ARMA models, unit roots. Non-statistical forecast methods: exponential smoothing, theta-method. Non-stationary time series.
 
 7. Multivariate time series. Cointegration. VARs --- Vector Auto Regressions. Impulse response functions and decompositions.
 
-8. Problems from Student Econometrics Universiade.
 
 Bibliography:
 
+* Fumio Hayashi, Econometrics
+* Ruey Tsay, An Introduction to Analysis of Financial Data with R 
+* Ruey Tsay, Multivariate Time Series Analysis: with R and Financial Applications
 
+Grade policy: Final grade = 0.5 * Group project + 0.5 * Final exam
