@@ -25,6 +25,7 @@ completemulti]{automultiplechoice}
 
 \usepackage{amsmath} % куча стандартных математических плюшек
 
+\usepackage{multicol} % текст в несколько колонок
 
 \usepackage{lastpage} % чтобы узнать номер последней страницы
 

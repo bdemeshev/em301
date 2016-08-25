@@ -1,0 +1,308 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=2.5cm, bottom=2cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика}
+\chead{}
+\rhead{20.06.2016, вариант 17}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+\input{metrics_test_bank.tex}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat_a}
+\copygroup[10]{combat_15_v3}{combat_a}
+\shufflegroup{combat_a}
+\insertgroup{combat_a}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+\item На основании опроса была оценена следующая модель:
+\[
+\ln(wage_i) = \beta_1 + \beta_2 exper_i + \beta_3 exper_i^2 + \beta_4 married_i + \beta_5 educ_i + \beta_6 black_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ --- величина заработной платы в долларах
+\item $exper_i$ --- опыт работы в годах
+\item $educ_i$ --- количество лет обучения
+\item $married_i$ --- наличие супруга/супруги (1 --- есть, 0 --- нет)
+\item $black_i$ --- принадлежность к негроидной расе (1 --- да, 0 --- нет)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & \textbf{B6} \\
+Скорректированный $R^2$      & 0.164 \\
+Стандартная ошибка регрессии & \textbf{B7} \\
+Количество наблюдений        & \textbf{B1} \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrrr} \toprule
+ & df & SS & MS & F & P-значение \\
+\midrule
+Регрессия   & \textbf{B2}  & \textbf{B4}  & 7.425 & \textbf{В5} & 0.000 \\
+Остаток     & \textbf{B3} & 184.954 & 0.145 &    &       \\
+Итого       & 1279  & 222.079     &       &    &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Коэффициент & Оценка & $se(\hb)$ & t-статистика & P-Значение & Нижние 95\% & Верхние 95\% \\
+\midrule
+Константа & 4.906 & 0.106 & 46.129 & 0.000 & 4.698 & 5.115 \\
+$exper$ & 0.095 & 0.011 & 8.956 & 0.000 & 0.074 & 0.115 \\
+$exper^2$ & -0.003 & 0.001 & -5.437 & 0.000 & -0.004 & -0.002 \\
+$married$ & \textbf{В8} & \textbf{В9} & \textbf{В10} & 0.234 & -0.018 & 0.074 \\
+$educ$ & 0.064 & 0.006 & 11.582 & 0.000 & 0.053 & 0.075 \\
+$black$ & -0.183 & 0.028 & -6.490 & 0.000 & -0.238 & -0.127 \\
+\bottomrule
+\end{tabular}
+
+Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+Ответ округляйте до 3-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+\newpage
+\item Винни-Пух и Пятачок попробовали очень странный мёд. После его употребления, к ним пришли слоники в количестве 100 штук и начали водить вокруг них хороводы. Винни-Пух смог на глазок оценить вес и рост каждого слоника, а Пятачок --- его возраст. Эти данные позволили им оценить следующую модель:
+
+\[
+weight_i = \beta_1 + \beta_2 \ln(height_i) + \beta_3 \ln(age_i) + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $weight_i$ --- вес слоника
+\item $\ln(height_i)$ --- логарифм роста слоника
+\item $\ln(age_i)$ --- логарифм возраста слоника
+\end{itemize}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Выборка & $\hb_1$ & $\hb_2$ & $\hb_3$ & ESS & RSS & N  \\
+\midrule
+1. Самые молодые слоники  & 43.1 & 1.4 & 3.7 & 243 & 345 & 40\\
+2. Самые старые слоники & 48.4 & 3.6 & 1.1 & 489 & 194 & 40 \\
+3. Зелёные слоники & 39.6 & 2.1 & 2.4 & 311 & 268 & 45 \\
+4. Розовые слоники & 53.1 & 2.9 & 3.1 & 369 & 307 & 55 \\
+5. Все слоники & 45.7 & 2.6 & 2.9 & 615 & 741 & 100 \\
+\bottomrule
+\end{tabular}
+
+
+\begin{enumerate}
+\item Для выборки розовых слоников проинтерпретируйте коэффициент $\hb_2$
+\item Определите на 5\%-ом уровне значимости, можно ли использовать одну модель для розовых и зелёных слоников
+\item Пятачок уверен, что дисперсия ошибок модели падает с увеличением возраста слоника. Проверьте, так ли это, на 1\% уровне значимости на основании соответствующего теста
+\end{enumerate}
+
+При проверке гипотез: выпишите $H_0$, $H_a$, найдите значение тестовой статистики, укажите её распределение, найдите критическое значение, сделайте выводы
+
+\newpage
+\item Царевна Несмеяна по 146 дням наблюдений построила регрессию:
+\[
+\widehat{tear}_t = 200 - 5 sun_t - 10 prince_t - 15 chocolate_t, \; R^2 = 0.8
+\]
+
+где:
+\begin{itemize}
+\item $tear_t$ --- количество пролитых слёз в мл
+\item $sun_t$ --- дамми-переменная для погоды ($1$ --- солнечная, $0$ --- пасмурная)
+\item $prince_t$ --- дамми-переменная для посещений Прекрасным Принцем ($1$ --- Принц пришёл, $0$ --- нет)
+\item $chocolate_t$ --- количество съеденного шоколада в плитках
+\end{itemize}
+
+
+
+Известно, что $\sum_{t=2}^{146} (\he_t - \he_{t-1})^2 = 876$, $\sum_{t=1}^{146} \he_t^2 = 538$, $\sum_{t=2}^{146} |\he_t - \he_{t-1}| = 100$, $\sum_{t=1}^{146} |\he_t| = 150$.
+
+\begin{enumerate}
+\item На 1\%-ом уровне значимости проверьте гипотезу об адекватности регрессии
+\item Проведите тест Дарбина-Уотсона на 5\% уровне значимости
+\item Кроме того, была оценена следующая модель:
+
+\[
+\hat{\he}_t = 5 - 0.05 sun_t + 0.02 prince_t + 0.09 \he_{t-1} + 0.01 \he_{t-2} + 0.004 \he_{t-3}, \; R^2 = 0.06
+\]
+
+Проведите тест Бройша-Годфри на 1\% уровне значимости
+\end{enumerate}
+
+При проверке гипотез: выпишите $H_0$, $H_a$, найдите значение тестовой статистики, укажите её распределение, найдите критическое значение, сделайте выводы
+
+
+\item Ослик Иа-Иа горюет и считает количество мёда в горшочках. Сейчас у него 50 горшочков. Горшочки отличаются друг от друга цветом: есть более розовые и менее розовые. Иа-Иа считает, что степень розовости влияет на количество мёда. Он смог оценить следующую регрессию:
+
+\[
+\widehat{honey}_i = 15 + 3 pinkness_i
+\]
+
+Оценка ковариационной матрицы коэффициентов,
+$\hVar(\hb) = \begin{pmatrix}
+3 & 1.5 \\
+1.5 & 9 \\
+\end{pmatrix}$
+
+Оценка дисперсии ошибок равна $\hs^2 = 137$.
+
+Ослик нашёл новый горшочек с розовостью, равной 5.
+
+\begin{enumerate}
+\item Постройте точечный прогноз для количества мёда
+\item Постройте 95\%-ый доверительный интервал для $\E(honey_i | pinkness_i = 5)$, ожидаемого количества мёда в горшочке
+\item Постройте 95\%-ый предиктивный интервал для фактического количества мёда в горшочке
+\end{enumerate}
+
+
+\end{enumerate}
+
+\section*{Часть 3. Теоретические вопросы}
+
+
+\begin{enumerate}[resume]
+\item Опишите $F$-тест для гипотезы о нескольких линейных ограничениях: сформулируйте нулевую и альтернативную гипотезы, способ получения тестовой статистики, её распределение при верной нулевой гипотезе, вид критической области.
+
+\item В парной регрессии $y_t=\beta_1+ \beta_2 x_t+\e_t$ известно, что $\Var(\e_t) = \sigma^2 x_t^4$. Опишите процедуру получения эффективных оценок коэффициентов.
+
+\item Опишите двухшаговый МНК: сформулируйте условия для его применения и опишите процедуру построения оценок.
+
+\end{enumerate}
+
+\end{document}

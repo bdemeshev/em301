@@ -1,0 +1,309 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=1cm, right=1cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика}
+\chead{}
+\rhead{20.06.2016, вариант 24}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+\input{metrics_test_bank.tex}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat_a}
+\copygroup[10]{combat_15_v2}{combat_a}
+\shufflegroup{combat_a}
+\insertgroup{combat_a}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+\item На основании опроса была оценена следующая модель:
+\[
+\ln(wage_i)=\beta_1 + \beta_2 exper_i + \beta_3 exper_i^2 + \beta_4 married_i + \beta_5 educ_i + \beta_6 black_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ --- величина заработной платы в долларах
+\item $exper_i$ --- опыт работы в годах
+\item $educ_i$ --- количество лет обучения
+\item $married_i$ --- наличие супруга/супруги (1 --- есть, 0 --- нет)
+\item $black_i$ --- принадлежность к негроидной расе (1 --- да, 0 --- нет)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & \textbf{B6} \\
+Скорректированный $R^2$      & \textbf{B7} \\
+Стандартная ошибка регрессии & \textbf{B8} \\
+Количество наблюдений        & 340 \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrrr} \toprule
+ & df & SS & MS & F & P-значение \\
+\midrule
+Регрессия   & \textbf{B1}  & 17.637  & 3.527 & \textbf{В5} & 0.000 \\
+Остаток     & \textbf{B2}  & \textbf{B4} & 0.142 &    &       \\
+Итого       & \textbf{B3}  & 65.151     &       &    &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Коэффициент & Оценка & $se(\hb)$ & t-статистика & P-Значение & Нижние 95\% & Верхние 95\% \\
+\midrule
+Константа & 4.565 & 0.207 & 22.021 & 0.000 & 4.157 & 4.972 \\
+$exper$ & \textbf{В9} & \textbf{В10} & 3.670 & 0.000 & 0.036 & 0.119 \\
+$exper^2$ & -0.002 & 0.001 & -1.977 & 0.049 & -0.004 & 0.000 \\
+$married$ & 0.267 & 0.047 & 5.679 & 0.000 & 0.175 & 0.360 \\
+$educ$ & 0.085 & 0.011 & 7.930 & 0.000 & 0.064 & 0.106 \\
+$black$ & -0.090 & 0.078 & -1.162 & 0.246 & -0.243 & 0.063 \\
+\bottomrule
+\end{tabular}
+
+Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+Ответ округляйте до 3-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+\newpage
+\item По опросам женщин возраста 18--45 лет была оценена следующая модель для различных вариантов выборок (оценки моделей представлены в таблице, все коэффициенты значимы на 10\%-ом уровне значимости):
+
+\[
+child_i = \beta_1 + \beta_2 marst_i + \beta_3 age_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $child_i$ --- количество детей младше 18 лет
+\item $marst_i$ --- наличие мужа у женщины (1 --- есть, 0 --- нет)
+\item $age_i$ --- возраст женщины
+\end{itemize}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Выборка & $\hb_1$ & $\hb_2$ & $\hb_3$ & ESS & RSS & N  \\
+\midrule
+1. Молодые женщины  & -1.27 & 0.49 & 0.06 & 102.54 & 289.51 & 800 \\
+2. Женщины старше 25 лет & 6.13 & 0.39 & -0.13 & 105.71 & 544.29 & 800 \\
+3. Женщины с высшим образованием & -0.43 & 0.68 & 0.03 & 124.56 & 525.33 & 874 \\
+4. Женщины без высшего образования & 0.19 & 0.69 & 0.007 & 213.47 & 1360.66 & 1673 \\
+5. Все женщины & 0.04 & 0.67 & 0.01 & 328.67 & 1896.52 & 2548 \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item Для выборке всех женщин проинтерпретируйте коэффициент $\hb_2$
+\item Определите на 5\%-ом уровне значимости, можно ли использовать одну модель для женщин с высшим образованием и женщин без него
+\item Исследователь предположил, что дисперсия ошибок модели возрастает с увеличением возраста. Проверьте, есть ли в модели гетероскедастичность на 10\% уровне значимости на основании соответствующего теста
+\end{enumerate}
+
+При проверке гипотез: выпишите $H_0$, $H_a$, найдите значение тестовой статистики, укажите её распределение, найдите критическое значение, сделайте выводы
+
+\newpage
+
+\item Председатель ЦБ РФ Эльвира Набиуллина поручила стажеру Васе оценить, как валютный курс, $exch_t$, реагирует на изменение цены на нефть марки Brent, $brent_t$. Вася построил следующую модель по 194 наблюдениям:
+
+\[
+\Delta(\widehat{exch}_t) = 0.25 - 0.06 \Delta(brent_t), \; R^2 = 0.05
+\]
+
+Известно, что  $\sum_{t=2}^{194} (\he_t - \he_{t-1})^2 = 926.06$, $\sum_{t=1}^{194} \he_t^2 = 590.14$, $\sum_{t=2}^{194} |\he_t - \he_{t-1}| = 193.69$, $\sum_{t=1}^{194} |\he_t| = 163.45$.
+
+
+\begin{enumerate}
+\item На 1\%-ом уровне значимости проверьте гипотезу об адекватности исходной регрессии
+\item	Проведите тест Дарбина-Уотсона на 5\% уровне значимости
+\item	Оказалось, что Эльвире Сахипзадовне не понравилась Васина модель. Она попросила главного экономиста Петю её переделать. Вот что получилось у Пети:
+
+\[
+\Delta (\widehat{exch}_t) = 0.20 - 0.03 \Delta (brent_t) - 0.08 \Delta (brent_{t-1}) + 0.23 \Delta (exch_{t-1})  , \; R^2 = 0.20
+\]
+
+Кроме того, Петя оценил следующую регрессию:
+
+\[
+\hat{\he}_t = - 0.05 + 0.0008 \Delta (brent_t) + 0.001 \Delta (brent_{t-1}) + 0.23 \Delta (exch_{t-1}) - 0.24 \he_{t-1} - 0.06 \he_{t-2}, \; R^2 = 0.007
+\]
+
+Помогите Пете провести подходящий тест на автокорреляцию на 5\% уровне значимости
+\end{enumerate}
+
+При проверке гипотез: выпишите $H_0$, $H_a$, найдите значение тестовой статистики, укажите её распре- деление, найдите критическое значение, сделайте выводы
+
+\item Гарри Поттер и Рон Уизли активно готовятся к чемпионату мира по квиддичу. В течение 30 дней они сначала посещают Хогсмид и выпивают некоторое количество сливочного пива в пинтах, $beer_t$, после чего идут на тренировку, в течение которой забивают определённое количество квоффлов  в штуках, $quaffle_t$. Гермиона Грейнджер, понаблюдав за друзьями, оценила следующую регрессию:
+
+\[
+\widehat{quaffle}_t = 80 - 3 beer_t
+\]
+
+Оценка ковариационной матрицы коэффициентов,
+$\hVar(\hb) = \begin{pmatrix}
+8 & 0.25 \\
+0.25 & 1\\
+\end{pmatrix}$
+
+Оценка дисперсии ошибок равна $\hs^2 = 238$.
+
+Сегодня Гарри и Рон выпили 4 пинты сливочного пива.
+
+
+\begin{enumerate}
+\item Постройте точечный прогноз количества квоффлов, забитых Гарри Поттером и Роном Уизли
+\item Постройте 95\%-ый доверительный интервал для $\E(quaffle_t | beer_t = 4)$, ожидаемой величины забитых квоффлов
+\item Постройте 95\%-ый предиктивный интервал для  конкретной величины забитых квоффлов
+\end{enumerate}
+
+\end{enumerate}
+
+\section*{Часть 3. Теоретические вопросы}
+
+
+\begin{enumerate}[resume]
+\item Дана модель $y_t=\beta_1+ \beta_2 x_t+ \varepsilon_t$, в которой ошибки модели подчиняются авторегрессионной схеме первого порядка,
+$\varepsilon_t=\rho \varepsilon_{t-1}+u_t$, где $u_t \sim WN(0, \sigma^2)$ и $\rho$ известно.
+
+Опишите процедуру получения эффективных оценок коэффициентов для такой модели.
+
+\item Опишите тест Бройша-Пагана на гетероскедастичность:  сформулируйте нулевую и альтернативную гипотезы, способ получения тестовой статистики, её распределение при верной нулевой гипотезе, вид критической области.
+
+\item В модели $y_i=\beta_1+ \beta_2 x_i+\varepsilon_i$   переменная $x_i$ эндогенна. Для нее был найден инструмент $z_i$. Опишите процедуру получения состоятельных оценок коэффициентов регрессии.
+
+\end{enumerate}
+
+\end{document}
