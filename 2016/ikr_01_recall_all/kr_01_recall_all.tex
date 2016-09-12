@@ -1,0 +1,108 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+
+
+% \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, праздник номер 1!}
+\chead{Вспомнить всё!}
+\rhead{12.09.2016}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+
+\begin{document}
+
+
+Сегодня 256-ой день года, всех с днём программиста! :) А ещё 12 сентября в 490 году до нашей эры Фидиппид добежал из Марафона в Афины с криком «Νενικήκαμεν»\footnote{Ликуйте! Мы победили!}!
+
+
+\begin{enumerate}
+\item Найдите длины векторов $a=(1,1,1)$ и $b=(1,2,3)$ и косинус угла между ними. Найдите один любой вектор, перпенидкулярный вектору $b$.
+
+\item Сформулируйте теорему о трёх перпендикулярах и обратную к ней
+
+\item На плоскости $\alpha$ лежит прямая $\ell$. Вне плоскости $\alpha$ лежит точка $C$. Ромео проецирует точку $C$ на прямую $\ell$ и получает точку $R$. Джульетта проецирует точку $C$ сначала на плоскость $\alpha$, а затем проецирует полученную точку $A$ на прямую $\ell$. После двух действий Джульетта получает точку $D$. Обязательно ли $R$ и $D$ совпадают?
+
+\item Для матрицы
+
+\[
+A=\begin{pmatrix}
+5 & 4 \\
+4 & 5 \\
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Найдите собственные числа и собственные векторы матрицы
+\item Найдите $\det (A)$, $\tr(A)$
+\item Найдите собственные числа матрицы $A^{2016}$, $\det (A^{2016})$ и $\tr(A^{2016})$
+\end{enumerate}
+
+\item Известно, что $X$ --- матрица размера $n \times k$ и $n>k$, известно, что $X'X$ обратима. Рассмотрим матрицу $H=X(X'X)^{-1}X'$. Укажите размер матрицы $H$, найдите $H^{2016}$, $\tr(H)$, $\det(H)$, собственные числа матрицы $H$. Штрих означает транспонирование.
+
+\item Занудная халява: известно, что $\Cov(X, Y)=5$, $\Var(X)=10$, $\Var(Y)=20$, $\E(X)=10$, $\E(Y)=-10$. Найдите $\Cov(X+2Y, Y-X)$, $\Var(X+2Y)$, $\E(X+2Y)$.
+
+\item За 100 дней Ромео посчитал все глубокие вздохи Джульетты. Настроение Джульетты столь спонтанно, что глубокие вздохи за разные дни можно считать независимыми. В~сумме оказалось 890 вздохов. Сумма квадратов оказалась равна 8000. Постройте 95\%-ый доверительный интервал для математического ожидания ежедневного количества глубоких вздохов Джульетты. На~уровне значимости 5\%-ов проверьте гипотезу, что математическое ожидание равно~9.
+
+\item Ромео подкидывает монетку два раза. Если монетка выпадает орлом, то Ромео кладет в мешок черный шар, если решкой --— белый. Джульетта не~знает, как выпадала монетка, и~достает шары из мешка наугад по очереди. Первый шар оказался черного цвета. Какова вероятность того, что второй шар Джульетты будет белым?
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
