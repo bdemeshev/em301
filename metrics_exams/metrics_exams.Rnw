@@ -1,4 +1,4 @@
-\documentclass[pdftex,12pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 
 
 <<"init",echo=FALSE,include=FALSE>>=
@@ -12,15 +12,15 @@ library("gridExtra")
 library("lmtest")
 library("texreg")
 library("pander")
-opts_chunk$set(cache=FALSE,
-               dev="cairo_pdf",
-               warning=FALSE,
-               tidy=FALSE,
-               echo=FALSE)
-options(scipen=10)
+opts_chunk$set(cache = FALSE,
+               dev = "cairo_pdf",
+               warning = FALSE,
+               tidy = FALSE,
+               echo = FALSE)
+options(scipen = 10)
 theme_set(theme_bw())
 
-load(file="exam_data.Rdata")
+load(file = "exam_data.Rdata")
 @
 
 \input{title_bor_utf8} % use local copy
@@ -31,7 +31,8 @@ load(file="exam_data.Rdata")
 \date{\today}
 \author{Коллектив кафедры \\
 математической экономики и эконометрики,\\
- фольклор}
+ фольклор, \\
+ очень умные студенты}
 
 
 %%%%%%%%%%%%%%%%%% вставки
@@ -96,6 +97,8 @@ load(file="exam_data.Rdata")
 \parindent=0 pt % no indent
 
 \section{Описание}
+
+Свежая версия на \url{https://github.com/bdemeshev/em301/tree/master/metrics_exams}. Часть задач и многие решения придуманы студентами. Огромное спасибо всем тем, кто в мучениях, своей кровью дописывал этот документ :)
 
 \section{Вечное}
 
@@ -569,17 +572,17 @@ $X'X=\left(
 
 <<echo=FALSE,message=FALSE>>=
 # library(Hmisc)
-library(lmtest)
-library(apsrtable)
-library(xtable)
+library("lmtest")
+library("apsrtable")
+library("xtable")
 h <- swiss
-model1 <- glm(Agriculture~Examination+Catholic,data=h)
+model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
-dimnames(coef.t)[[2]] <- c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
-coef.t <- coef.t[,-4]
-coef.t[1,1] <- NA
-coef.t[2,2] <- NA
-coef.t[3,3] <- NA
+dimnames(coef.t)[[2]] <- c("Оценка", "Ст. ошибка", "t-статистика", "P-значение")
+coef.t <- coef.t[, -4]
+coef.t[1, 1] <- NA
+coef.t[2, 2] <- NA
+coef.t[3, 3] <- NA
 @
 
 <<echo=FALSE,results='asis'>>=
@@ -601,13 +604,12 @@ xtable(coef.t)
 Модель 2: $Fertility_i=\gamma_1+\gamma_2 (Education_i+Examination_i)+\gamma_3 Catholic_i+u_i$
 
 <<echo=FALSE>>=
-m1 <- lm(Fertility~Agriculture+Education+Examination+Catholic,data=h)
-m2 <- lm(Fertility~I(Education+Examination)+Catholic,data=h)
+m1 <- lm(Fertility ~ Agriculture + Education + Examination + Catholic, data = h)
+m2 <- lm(Fertility ~ I(Education + Examination) + Catholic, data = h)
 @
 
 <<echo=FALSE, results='asis'>>=
 apsrtable(m1, m2)
-
 @
 
 \begin{enumerate}
@@ -733,14 +735,14 @@ f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}  \right)
 Данные RLMS выложены на сайте в формате SPSS. SPSS это потихоньку погибающий статистический пакет для домохозяек. Для чтения формата .sav в таблицу данных R можно сделать так
 <<"read sav">>=
 library(foreign)
-file.name<-"/home/boris/downloads/r20hall23c.sav"
-h<-read.spss(file.name,to.data.frame=TRUE)
+file.name <- "/home/boris/downloads/r20hall23c.sav"
+h <- read.spss(file.name, to.data.frame = TRUE)
 @
 Первая команда, library(foreign), подгружает библиотеку R, в которой содержатся команды для чтения вражеских форматов, spss, stata, etc
 
 Описания переменных при этом также загружаются в таблицу данных. Можно их выделить в отдельный вектор и прочитать, например, про переменную pc9.631a.
 <<"description of vars">>=
-var.labels<-attr(h,"variable.labels")
+var.labels <- attr(h, "variable.labels")
 var.labels["pc9.631a"]
 @
 
@@ -979,14 +981,14 @@ H_0:
 
 <<echo=FALSE,message=FALSE>>=
 h <- swiss
-model1 <- glm(Agriculture~Examination+Catholic,data=h)
+model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
 dimnames(coef.t)[[2]] <-
-    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
-coef.t <- coef.t[,-4]
-coef.t[1,1] <- NA
-coef.t[2,2] <- NA
-coef.t[3,3] <- NA
+    c("Оценка", "Ст. ошибка", "t-статистика", "P-значение")
+coef.t <- coef.t[, -4]
+coef.t[1, 1] <- NA
+coef.t[2, 2] <- NA
+coef.t[3, 3] <- NA
 @
 
 
@@ -1286,7 +1288,7 @@ $X'X=\left(
 \item По данным о пассажирах Титаника оценивается логит-модель. Зависимая переменная \verb|survived| равна 1, если пассажир выжил. Объясняющая переменная \verb|sexmale| равна 1 для  мужчин.
 
 <<"titanic", results='asis'>>=
-mod.tit <- glm(data = titanic, survived~age+sex, family = "binomial")
+mod.tit <- glm(data = titanic, survived ~ age + sex, family = "binomial")
 texreg(mod.tit, float.pos = "h!", label = "table:titanic")
 @
 
@@ -1388,8 +1390,8 @@ $X'X=\left(
 \item По данным о пассажирах Титаника оценивается логит-модель. Зависимая переменная \verb|survived| равна 1, если пассажир выжил. Объясняющая переменная \verb|sexmale| равна 1 для  мужчин.
 
 <<"titanic_dup", results='asis'>>=
-mod.tit <- glm(data=titanic,survived~age+sex,family="binomial")
-texreg(mod.tit, float.pos="h!", label="table:titanic-2")
+mod.tit <- glm(data = titanic, survived ~ age + sex, family = "binomial")
+texreg(mod.tit, float.pos = "h!", label = "table:titanic-2")
 @
 
 \begin{enumerate}
@@ -1446,14 +1448,14 @@ $i=30,\ldots, 50$ & $0.87$ & $1.84$ & $3.66$ & $117.46$ \\
 Данные RLMS выложены на сайте в формате SPSS. SPSS это потихоньку погибающий статистический пакет для домохозяек. Для чтения формата .sav в таблицу данных R можно сделать так
 <<echo=TRUE, eval=FALSE>>=
 library(foreign)
-file.name<-"/home/boris/downloads/r20hall23c.sav"
-h<-read.spss(file.name,to.data.frame=TRUE)
+file.name <- "/home/boris/downloads/r20hall23c.sav"
+h <- read.spss(file.name, to.data.frame = TRUE)
 @
 Первая команда, \verb|library(foreign)|, подгружает библиотеку R, в которой содержатся команды для чтения вражеских форматов, spss, stata, etc
 
 Описания переменных при этом также загружаются в таблицу данных. Можно их выделить в отдельный вектор и прочитать, например, про переменную \verb|pc9.631a|.
 <<echo=TRUE, eval=FALSE>>=
-var.labels<-attr(h,"variable.labels")
+var.labels <- attr(h,"variable.labels")
 var.labels["pc9.631a"]
 @
 
@@ -1599,14 +1601,14 @@ $A=\left(%
 
 <<echo=FALSE,message=FALSE>>=
 h <- swiss
-model1 <- glm(Agriculture~Examination+Catholic,data=h)
+model1 <- glm(Agriculture ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
 dimnames(coef.t)[[2]] <-
-    c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
-coef.t <- coef.t[,-4]
-coef.t[1,1] <- NA
-coef.t[2,2] <- NA
-coef.t[3,3] <- NA
+    c("Оценка", "Ст. ошибка", "t-статистика", "P-значение")
+coef.t <- coef.t[, -4]
+coef.t[1, 1] <- NA
+coef.t[2, 2] <- NA
+coef.t[3, 3] <- NA
 @
 
 
@@ -1629,10 +1631,10 @@ B <- t(X) %*% X
 colnames(B) <- NULL
 rownames(B) <- NULL
 XXm <- solve(B)
-x <- xtable(B,align=rep("",ncol(B)+1),digits=0)
-xm <- xtable(XXm,align=rep("",ncol(B)+1),digits = 5)
-# print(xm, floating=FALSE, tabular.environment="bmatrix",
-#      hline.after=NULL, include.rownames=FALSE, include.colnames=FALSE)
+x <- xtable(B, align = rep("", ncol(B) + 1), digits = 0)
+xm <- xtable(XXm, align = rep("", ncol(B) + 1), digits = 5)
+# print(xm, floating=FALSE, tabular.environment = "bmatrix",
+#      hline.after = NULL, include.rownames = FALSE, include.colnames = FALSE)
 @
 
 
@@ -1839,11 +1841,11 @@ y_i=\beta_1 + \beta_2 x_i +\beta_3 w_i +\varepsilon_i
 x <- rnorm(100)
 z <- rnorm(100)
 x <- x - mean(x)
-pre_model <- lm(z~x)
+pre_model <- lm(z ~ x)
 z <- resid(pre_model) # X'X is diagonal :)
 
-y <- 2+3*x - 0.05*z + rnorm(100)
-model <- lm(y~x+z)
+y <- 2 + 3*x - 0.05*z + rnorm(100)
+model <- lm(y ~ x + z)
 #summary(model)
 #vcov(model)
 xtable(model)
@@ -1935,10 +1937,10 @@ $i=30,\ldots, 50$ & $0.87$ & $1.84$ & $3.66$ & $117.46$ \\
 
 \item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
 <<"flats - 2", results='asis'>>=
-model1 <- lm(price~totsp+livesp,data=flats)
+model1 <- lm(price ~ totsp + livesp, data = flats)
 report <- summary(model1)
 coef.table <- report$coefficients
-rownames(coef.table) <- c("Константа","Общая площадь", "Жилая площадь")
+rownames(coef.table) <- c("Константа", "Общая площадь", "Жилая площадь")
 xtable(coef.table)
 @
 
@@ -2379,17 +2381,17 @@ $y_i$ & $x_i$ & $z_i$ \\
 
 <<echo=FALSE, message=FALSE>>=
 # library(Hmisc)
-library(lmtest)
-library(apsrtable)
-library(xtable)
+library("lmtest")
+library("apsrtable")
+library("xtable")
 h <- swiss
-model1 <- lm(Fertility~Examination+Catholic,data=h)
+model1 <- lm(Fertility ~ Examination + Catholic, data = h)
 coef.t <- coeftest(model1)
-dimnames(coef.t)[[2]] <- c("Оценка","Ст. ошибка",  "t-статистика", "P-значение")
-coef.t <- coef.t[,-4]
-coef.t[1,1] <- NA
-coef.t[2,2] <- NA
-coef.t[3,3] <- NA
+dimnames(coef.t)[[2]] <- c("Оценка", "Ст. ошибка", "t-статистика", "P-значение")
+coef.t <- coef.t[, -4]
+coef.t[1, 1] <- NA
+coef.t[2, 2] <- NA
+coef.t[3, 3] <- NA
 @
 
 <<echo=FALSE,results='asis'>>=
@@ -2620,6 +2622,188 @@ $x_i$ & 2 & 1 & 3 & 1 & 0
 \end{enumerate}
 
 
+\subsection{Решение задач КР по Эконометрике, 2015-2016}
+
+\begin{enumerate}
+
+\item Функция максимального правдоподобия
+\begin{eqnarray}
+L = \prod_{i=1}^5 \mathbb{P}(Y_i = j), \text{ где } j \in \{0,1\} \implies
+\end{eqnarray}
+\begin{eqnarray}
+L = \mathbb{P}(Y_1 = 1) \times \mathbb{P}(Y_2 = 0) \times \mathbb{P}(Y_3 = 1) \times \mathbb{P}(Y_4 = 0) \times \mathbb{P}(Y_5 = 0) \implies
+\end{eqnarray}
+\begin{eqnarray}
+l = \log L = \sum_{i=1,3} \log(F(\beta_1 + x_i \beta_2)) + \sum_{i = 2,4,5} \log(1 - F(\beta_1 + x_i \beta_2))
+\end{eqnarray}
+
+Найдем теперь условия первого порядка
+\begin{eqnarray}
+\frac {\partial L}{\partial \beta_1} = \sum_{i=1,3} \frac{f(\beta_1 + x_i\beta_2)}{F(\beta_1 + x_i \beta_2)} - \sum_{i=2,4,5} \frac { f(\beta_1 + x_i\beta_2)}{1 - F(\beta_1 + x_i \beta_2)} = 0,
+\end{eqnarray}
+\begin{eqnarray}
+\frac {\partial L}{\partial \beta_2} = \sum_{i=1,3} \frac{x_i f(\beta_1 + x_i\beta_2)}{F(\beta_1 + x_i \beta_2)} - \sum_{i=2,4,5} \frac {x_i f(\beta_1 + x_i\beta_2)}{1 - F(\beta_1 + x_i \beta_2)} = 0.
+\end{eqnarray}
+
+\item
+Пример. \\
+Пусть $x_1 = 12, x_2 = 23, x_3 = 1223$ и $y_1 = y_2 = 0, y_3 = 1$.
+
+\item
+\underline{Краткий ответ.} Потому что $y^*$ сравнивается с 0. \\
+\underline{Немного более развернутый ответ.} Пробит модель в общем случае выглядит такие образом:
+\begin{eqnarray}
+y^*_i = \beta_1 + \beta_2 x_i + \epsilon_i,
+\end{eqnarray}
+где $\epsilon_i \sim \mathcal{N}(0, \sigma^2)$, а $y = 1$, когда $y^* \ge c$ и $y = 0$ иначе. Заметим, что замена $\tilde y^* = \sigma^{-1} (y^* - c)$ приводит к случаю, когда $\tilde y^* \sim \mathcal{N}(0, 1)$, следовательно всегда можно перейти к $\epsilon_i \sim \mathcal{N}(0, 1)$ и сравнивать $y^*$ с нулем.
+
+\item
+Функция максимального правдоподобия
+\begin{eqnarray}
+L = \prod_{i=1}^{50} \frac 1 {\sqrt{2\pi \sigma_M^2}} \exp\left\{-\frac{(y_i - \beta x_i)^2}{2\sigma^2_M}\right\} \times \prod_{i=51}^{100} \frac 1 {\sqrt{2\pi \sigma_J^2}} \exp\left\{-\frac{(y_i - \beta x_i)^2}{2\sigma^2_J}\right\} \implies
+\end{eqnarray}
+\begin{eqnarray}
+L = \frac{1}{(2\pi\cdot \sigma_M\cdot \sigma_J)^{50}} \exp\left\{-\sum_{i=1}^{50} \frac{(y_i - \beta x_i)^2}{2\sigma_M^2} - \sum_{i=51}^{100} \frac{(y_i - \beta x_i)^2}{2\sigma_J^2}\right\}
+\end{eqnarray}
+\begin{eqnarray}
+l = \log L = -50 \log(2\pi \cdot \sigma_M \cdot \sigma_J) -\sum_{i=1}^{50} \frac{(y_i - \beta x_i)^2}{2\sigma_M^2} - \sum_{i=51}^{100} \frac{(y_i - \beta x_i)^2}{2\sigma_J^2}
+\end{eqnarray}
+Запишем теперь условия первого порядка
+\begin{eqnarray}\label{m}
+\frac {\partial L}{\partial \sigma_M^2} = -\frac{25}{\sigma_M^2} + \frac{\sum_{i=1}^{50} (y_i - \beta x_i)^2}{2(\sigma_M^2)^{2}} = 0,
+\end{eqnarray}
+\begin{eqnarray}\label{j}
+\frac {\partial L}{\partial \sigma_J^2} = -\frac{25}{\sigma_J^2} + \frac{\sum_{i=51}^{100} (y_i - \beta x_i)^2}{2(\sigma_J^2)^{2}} = 0,
+\end{eqnarray}
+\begin{eqnarray}
+\frac {\partial L}{\partial \beta} = \frac{\sum_{i=1}^{50} 2(y_i - \beta x_i) x_i} {2\sigma_M^2} + \frac{\sum_{i=51}^{100} 2(y_i - \beta x_i) x_i} {2\sigma_J^2} = 0.
+\end{eqnarray}
+
+\item
+(a)
+\begin{eqnarray}
+H_0: \hat\beta_2 = 0 \\
+H_a: \hat\beta_2 \neq 0
+\end{eqnarray}
+$t_{\mathrm{obs}} = 3 / \sqrt{0.09} = 10 \implies$, гипотеза о незначимости коэффициента отвергается, т.е. коэффициент $\beta_2$ значим. \\
+(b)
+\begin{eqnarray}
+ \frac{\partial \mathbb{P}(y_i = 1)}{\partial x_i} |_{x_i = -0.5} = \frac {e^{\hat\beta_1 + \hat\beta_2 x_i}}{(1+ e^{\hat\beta_1 + \hat\beta_2 x_i})^2}\hat{\beta}_2 = \frac{e^{0.8}}{(1+e^{0.8})^2}\cdot3 = 0.64
+\end{eqnarray}
+(c)
+\begin{eqnarray}
+ \frac{\partial \mathbb{P}(y_i = 1)}{\partial x_i} = \frac {e^{\hat\beta_1 + \hat\beta_2 x_i}}{(1+ e^{\hat\beta_1 + \hat\beta_2 x_i})^2}\hat{\beta}_2 \to \max_{x_i} \implies \\
+ \frac{\hat\beta_2 e^{\hat\beta_1 + \hat\beta_2 x_i} (1+ e^{\hat\beta_1 + \hat\beta_2 x_i})^2 - 2\hat\beta_2(1+ e^{\hat\beta_1 + \hat\beta_2 x_i})(e^{\hat\beta_1 + \hat\beta_2x_i})^2}{(1+ e^{\hat\beta_1 + \hat\beta_2 x_i})^4}\hat{\beta}_2 = 0,
+\end{eqnarray}
+\begin{eqnarray}
+1 + e^{\hat\beta_1 + \hat\beta_2 x_i} - 2e^{\hat\beta_1 + \hat\beta_2 x_i} = 0 \implies x_i = -\frac{0.7}{3}.
+\end{eqnarray}
+(d)
+\begin{eqnarray}
+\mathbb{P}(y_i =1) = \Lambda(\hat\beta_1 + \hat\beta_2 x_i) = \frac 1{1 + \exp\{-0.7 + 1.5\}} = 0.3100255
+\end{eqnarray}
+(e) Здесь нужно использовать Дельта-метод. Линеаризуем функцию $F(\hat{\beta}) = \hat{\P}(y_i = 1) $ в окрестности точки $\beta = (\beta_1, \beta_2)'$:
+
+\[
+F(\hat{\beta}) \approx F(\beta) +   \nabla_F(\beta)'   \cdot (\hat{\beta} - \beta )
+\]
+Где все векторы --- столбцы. Тогда оценка дисперсии прогноза:
+\[
+\widehat{Var}(\hat{P}(y_i = 1)) = \nabla_F(\hat{\beta})' \cdot \widehat{\Var}(\hat{\beta}) \cdot \nabla_F(\hat{\beta})
+\]
+Градиент функции $F$:
+\[
+\nabla_F(\hat{\beta}) = \left( \frac{e^{\hat{\beta}_1 + \hat{\beta}_2 x_i}}{1 + e^{\hat{\beta}_1 + \hat{\beta}_2 x_i}} \hspace{3mm} x_i\cdot \frac{e^{\hat{\beta}_1 + \hat{\beta}_2 x_i}}{1 + e^{\hat{\beta}_1 + \hat{\beta}_2 x_i}}\right)' = (0.69 \hspace{2mm}-0.34)'
+\]
+Тогда стандартная ошибка прогноза:
+\[
+s.e(\hat{P}(y_i = 1)) = ( 0.69^2 \cdot 0.04 - 2\cdot0.01\cdot0.69\cdot0.34 + 0.34^2 \cdot 0.09 )^{1/2} =  0.18
+\]
+
+
+\item
+Используя формулы \eqref{m} и \eqref{j} получаем
+\begin{eqnarray}
+25 = \frac{\sum_{i=1}^{50} y_i^2} {2\sigma^2_M} \implies \hat\sigma_M^2 = 2, \\
+25 = \frac{\sum_{i=51}^{100} y_i^2} {2\sigma^2_J} \implies \hat\sigma_J^2 = 6.
+\end{eqnarray}
+Проверим следующую гипотезу
+\begin{eqnarray}
+H_0 : \sigma_M^2 = \sigma_J^2 \\
+H_a : \sigma_M^2 \neq \sigma_J^2
+\end{eqnarray}
+\textbf{Тест отношения правдоподобия}
+\begin{eqnarray}
+LR = 2 (\hat{l}_{UR} - \hat{l}_R) \sim \chi^2_{1},
+\end{eqnarray}
+где $\hat{l}_{UR}$ и $\hat{l}_R$ значение логарифмиеских функций правдоподобия в точках максимума для неограниченной и ограниченной моделей соответственно. Решим ограниченную модель. Функция правдоподобия:
+\[
+L(\sigma^2) = \prod\limits_{i=1}^{100}\frac{1}{\sqrt{2\pi\sigma^2}}exp\left\{-\frac{y_i^2}{2\sigma^2}\right\}  \to \max\limits_{\sigma^2}
+\]
+Логарифмическая функция правдоподобия:
+\[
+l(\sigma^2) = -50ln(2\pi) - 50ln(\sigma^2) - \sum\limits_{i=1}^{100}\frac{y_i^2}{2\sigma^2} \to \max\limits_{\sigma^2}
+\]
+Откуда:
+\[
+\hat{\sigma}^2 = \frac{\sum_{i=1}^{100}y_i^2}{100} = 4
+\]
+Тогда:
+\[
+LR = 2(-25ln(12) - 50 + 50ln(4) + 50) = 14.38 > \chi^2_{crit} = 3.84
+\]
+То есть нулевая гипотеза отвергается! \\
+\textbf{Тест Вальда}
+\[
+W = g(\hat{\theta}_{UR})'(\nabla_g \hat{I}(\hat{\theta}_{UR})^{-1} \nabla_g')^{-1}g(\hat{\theta}_{UR})
+\]
+
+где градиент $\nabla_g = (1 \hspace{2mm} -1)$ --- вектор строка. Нам пригодится информационная матрица Фишера в задачи без ограничений. Найти ее можно взяв вторые производные от функции правдоподобия в четвертой задаче по $\sigma^2_M$ и $\sigma^2_J$, положив $\beta = 0$ и домножив на -1.
+\[
+\hat{I}(\hat{\theta}_{UR}) =
+\begin{pmatrix}
+-\frac{25\hat{\sigma}^2_M - 100}{\left(\hat{\sigma}^2_M\right)^3} & 0 \\
+0 & -\frac{25\hat{\sigma}^2_J - 300}{\left(\hat{\sigma}^2_J\right)^3}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{50}{8} & 0 \\
+0 & \frac{150}{216}
+
+\end{pmatrix}
+\]
+
+Тогда:
+\[
+W = (6-2)^2\left((1 \hspace{2mm} -1) \begin{pmatrix}
+\frac{150}{216} & 0 \\
+0 & \frac{50}{8}
+\end{pmatrix}^{-1}
+ \begin{pmatrix}
+1 \\
+-1
+\end{pmatrix} \right)^{-1} = 10
+\]
+Как и ранее, нулевая гипотеза отвергается! \\
+\textbf{Тест множителей Лагранжа}\\
+Нужно посчитать статистику:
+\[
+LM = \left(\frac{\partial l(\hat{\theta}_R)}{\partial \theta}\right)'\hat{I}(\hat{\theta}_R)^{-1}\left(\frac{\partial l(\hat{\theta}_R)}{\partial \theta}\right) \sim \chi^2_r,
+\]
+При верной $H_0$ логарифмическая функция правдоподобия будет выглядеть следующим образом:
+\[
+l(\sigma^2) = -50ln(2\pi) - 50ln(\sigma^2) - \frac{1}{2\sigma^2}\sum \limits_{i=1}^{100}y_i^2
+\]
+Тогда:
+\[
+\frac{\partial l(\hat{\sigma^2})}{\partial \sigma^2} = -\frac{50}{\hat{\sigma}^2} + \frac{1}{2}\sum\limits_{i=1}^{100}y_i^2\frac{1}{(\hat{\sigma}^2)^2} = 0
+\]
+Откуда: $\hat{\sigma}^2_{R} = 4$. Заметим, что если подставить эту оценку в матрицу $\hat{I}(\theta)$, она не будет иметь обратной, что эквивалентно бесконечной $LM$ статистике. Гипотеза $H_0$, конечно, отвергается!
+
+\end{enumerate}
+
+
+
 \subsection{Большой Устный ЗАчёт - 2016}
 
 \begin{enumerate}
@@ -2737,6 +2921,55 @@ $x_i$ & 2 & 1 & 3 & 1 & 0
 
 
 \end{enumerate}
+
+
+\subsection{пара вариантов экзамена  --- добавить!!!!!}
+
+
+
+!!!!!!!
+
+
+\section{2012-2013}
+
+\subsection{Праздник 1. Вспомнить всё! 12.09.2016}
+
+Сегодня 256-ой день года, всех с днём программиста! :) А ещё 12 сентября в 490 году до нашей эры Фидиппид добежал из Марафона в Афины с криком «Νενικήκαμεν»\footnote{Ликуйте! Мы победили!}!
+
+
+\begin{enumerate}
+\item Найдите длины векторов $a=(1,1,1)$ и $b=(1,2,3)$ и косинус угла между ними. Найдите один любой вектор, перпенидкулярный вектору $b$.
+
+\item Сформулируйте теорему о трёх перпендикулярах и обратную к ней
+
+\item На плоскости $\alpha$ лежит прямая $\ell$. Вне плоскости $\alpha$ лежит точка $C$. Ромео проецирует точку $C$ на прямую $\ell$ и получает точку $R$. Джульетта проецирует точку $C$ сначала на плоскость $\alpha$, а затем проецирует полученную точку $A$ на прямую $\ell$. После двух действий Джульетта получает точку $D$. Обязательно ли $R$ и $D$ совпадают?
+
+\item Для матрицы
+
+\[
+A=\begin{pmatrix}
+5 & 4 \\
+4 & 5 \\
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+\item Найдите собственные числа и собственные векторы матрицы
+\item Найдите $\det (A)$, $\tr(A)$
+\item Найдите собственные числа матрицы $A^{2016}$, $\det (A^{2016})$ и $\tr(A^{2016})$
+\end{enumerate}
+
+\item Известно, что $X$ --- матрица размера $n \times k$ и $n>k$, известно, что $X'X$ обратима. Рассмотрим матрицу $H=X(X'X)^{-1}X'$. Укажите размер матрицы $H$, найдите $H^{2016}$, $\tr(H)$, $\det(H)$, собственные числа матрицы $H$. Штрих означает транспонирование.
+
+\item Занудная халява: известно, что $\Cov(X, Y)=5$, $\Var(X)=10$, $\Var(Y)=20$, $\E(X)=10$, $\E(Y)=-10$. Найдите $\Cov(X+2Y, Y-X)$, $\Var(X+2Y)$, $\E(X+2Y)$.
+
+\item За 100 дней Ромео посчитал все глубокие вздохи Джульетты. Настроение Джульетты столь спонтанно, что глубокие вздохи за разные дни можно считать независимыми. В~сумме оказалось 890 вздохов. Сумма квадратов оказалась равна 8000. Постройте 95\%-ый доверительный интервал для математического ожидания ежедневного количества глубоких вздохов Джульетты. На~уровне значимости 5\%-ов проверьте гипотезу, что математическое ожидание равно~9.
+
+\item Ромео подкидывает монетку два раза. Если монетка выпадает орлом, то Ромео кладет в мешок черный шар, если решкой --— белый. Джульетта не~знает, как выпадала монетка, и~достает шары из мешка наугад по очереди. Первый шар оказался черного цвета. Какова вероятность того, что второй шар Джульетты будет белым?
+
+\end{enumerate}
+
+
 
 
 \end{document}

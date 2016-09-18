@@ -296,7 +296,7 @@ $\hVar(\hb) = \begin{pmatrix}
 
 \begin{enumerate}[resume]
 \item Дана модель $y_t=\beta_1+ \beta_2 x_t+ \varepsilon_t$, в которой ошибки модели подчиняются авторегрессионной схеме первого порядка,
-$\varepsilon_t=\rho \varepsilon_{t-1}+u_t$, где $u_t \sim WN(0, \sigma^2)$ и $\rho$ известно.
+$\varepsilon_t=\rho \varepsilon_{t-1}+u_t$, где $u_t \sim WN(0, \sigma^2)$ и $\rho$ известно. Здесь $WN$ означает белый шум.
 
 Опишите процедуру получения эффективных оценок коэффициентов для такой модели.
 
