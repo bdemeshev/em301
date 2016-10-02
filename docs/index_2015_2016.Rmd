@@ -1,0 +1,296 @@
+---
+title: "Сезон 2015-2016"
+date: "`r format(Sys.time(), '%d.%m.%Y')`"
+output: html_document
+lang: russian
+---
+
+# Семинары по эконометрике
+
+Эконометрика, факультет экономики, 3 курс, бакалавриат, 2015-2016, ВШЭ
+
+Жаль, что в вышке пока нет системы коротких названий курсов. Вот я заранее застолбил EM301. Раз на третьем курсе, значит 300, а раз самый важный курс --- значит 1. :)
+
+* Текущие оценки [гр. 131 и 132](https://docs.google.com/spreadsheets/d/1RARpbkzi0PYaIOBrpfm7SdQZ3rf382n_m9E1q-Jl-VE/pubhtml?gid=1970984948&single=true)
+* [Подборка материалов](https://github.com/bdemeshev/em301/raw/master/metrics_exams/metrics_exams.pdf) (контрольные и немного теории)
+* [Конспект семинаров 2014-2015](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун). 
+
+## Компьютерное
+* [Наборы данных](https://github.com/bdemeshev/em301/wiki/Datasets)
+* [Про R](https://github.com/bdemeshev/em301/wiki/R)
+* [LaTeX](https://github.com/bdemeshev/pr201/wiki/latex_examples) 
+* [Весь используемый софт](https://github.com/bdemeshev/em301/wiki/Software)
+
+## Логи семинаров (исследовательский поток)
+
+#### Семинар 31. 09 июня 2016
+
+* Случайное блуждание
+* ACF и PACF по данным с [sophist.hse.ru](http://sophist.hse.ru/hse/nindex.html) ([в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_31_sophisthse.R))
+
+
+#### Семинар 30. 02 июня 2016
+
+* Большой Устный Зачёт 16 июня (список тем можно смотреть по прошлому году).
+* Письменный экзамен (с бп) 20 июня (длится полтора часа); в нём будет 10 тестовых вопросов с одним верным ответом, 4 задачи и 3 теоретических вопроса (что-то вроде опишите последствия гетероскедастичности).
+* Временные ряды: процессы ARMA, ARIMA
+* Тест Дики --- Фуллера
+* PACF
+
+#### Семинар 29. 19 мая 2016
+
+* Автокорреляционная функция; стационарное решение.
+
+#### Титаник
+* Дедлайн --- 30 апреля.
+* Зарегистрироваться на [kaggle](https://www.kaggle.com) и подать заявку на участие в [Титанике](https://www.kaggle.com/c/titanic).
+* Официальный [текст домашки про Титаник](https://github.com/bdemeshev/em301/raw/master/2015/ht_titanic/ht_titanic.pdf)
+* Начать разбираться в случайном лесе и в методе опорных векторов можно, например, [отсюда](http://bdemeshev.github.io/r_cycle/).
+
+#### Семинар 27. 21 апреля 2016
+
+* Метод опорных векторов
+* Можно решать задачи из главы про метод опорных векторов в задачнике
+* Официальный [текст домашки про Титаник](https://github.com/bdemeshev/em301/raw/master/2015/ht_titanic/ht_titanic.pdf)
+* Метод опорных векторов [в R](http://bdemeshev.github.io/r_cycle/cycle_files/11_svm.html).
+
+#### Семинар 26. 14 апреля 2016
+
+* Зачёт по графической интерпретации теоремы Гаусса --- Маркова.
+* Случайный лес.
+* Случайный лес [в R](http://bdemeshev.github.io/r_cycle/cycle_files/22_forest.html).
+
+#### Семинар 25. 07 апреля 2016
+
+* Метод главных компонент: руками и [в R](http://bdemeshev.github.io/r_cycle/cycle_files/06_pca.html).
+
+#### Семинар 24. 24 марта 2016
+
+* Медианная и квантильная регрессии.
+* Пример квантильной регрессии [в R](http://bdemeshev.github.io/r_cycle/cycle_files/07_quant_reg.html).
+
+#### Семинар 23. 17 марта 2016
+
+* Мультиколлинерность: VIF, число обусловленности матрицы.
+* LASSO и ridge регрессия.
+* [Скрипт R](https://github.com/bdemeshev/em301/raw/master/2015/sem_23_lasso.R), [ipynb notebook](https://github.com/bdemeshev/em301/blob/master/2015/sem_23_lasso.ipynb).
+* Открыть файл `.ipynb` можно с помощью [Jupyter Notebook](http://jupyter.org/). Осторожно: в Google Chrome могут некорректно отображаться теховские формулы.  
+
+#### Семинар 22. 10 марта 2016
+
+* Гетероскедастичность. Тест Уайта. Тест Бройша — Пагана. Тест Голдфелда — Квандта.
+* Тесты [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_22_hetero.R).
+* Д.з.: задачи 8.28--8.33.
+
+#### Семинар 21. 03 марта 2016
+
+* Гетероскедастичность, сравнение свойств коэффициентов при условной гомоскедастичности и условной гетероскедастичности.
+* Обнаружение гетероскедастичности [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_21_hetero_part_1.R).
+* Д.з.: задачи 8.1--8.7 из задачника + задача, которой в задачнике пока нет: 
+* Пусть уравнение регрессии имеет вид $y_i = 2 + 3x_i +\varepsilon_i$, где 
+	$\varepsilon_i \thicksim N(0, \sigma^2)$; $y_i^* = e^{y_i}, \; x_i^* = e^{x_i}$. Представьте зависимость в виде $y_i^* = \alpha_1 + \alpha_2 x_i^* +\varepsilon_i^*$, где $cov(\varepsilon_i^*, x_i^*) = 0$, и найдите $E(\varepsilon_i^*|x_i^*)$, $\alpha_1$, $\alpha_2$, $Var(\varepsilon_i^*|x_i^*)$.	
+
+#### Семинар 20. 25 февраля 2016
+
+* Контрольная работа 3 («Максимально правдоподобно»).
+
+#### Семинар 19. 18 февраля 2016
+
+* Прогнозирование в логит-моделях (на доске и [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_19_forecast_logit.R)).
+* Визуализация результатов логит-регрессии [в R](http://bdemeshev.github.io/r_cycle/cycle_files/04_qualit_graphs.html). 
+* Через неделю (25 февраля) --- <b>контрольная</b>. Темы: ML, LR, LM, тест Вальда, логит- и пробит-модели.
+
+#### Домашка по `shiny`
+* Дедлайн --- 10 марта
+* (подробное руководство к действию будет позже)
+
+
+#### Семинар 18. 04 февраля 2016
+
+* Предельные эффекты в логит модели.
+* Симуляции в `shiny` для логит-модели: [ui.R](https://github.com/bdemeshev/em301/raw/master/2015/winnie_shiny/ui.R) и [server.R](https://github.com/bdemeshev/em301/raw/master/2015/winnie_shiny/server.R).
+
+
+
+#### Семинар 17. 28 января 2016
+
+* Логит и пробит модели. 
+* Задача 6.1 и задача про Винни-Пуха и пчёл (на доске и [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_17_logit_simulation.R)).
+* Д.з.: 6.1--6.2, 6.4, 6.5, 6.6.
+
+#### Семинар 16. 21 января 2016
+
+* Метод максимального правдоподобия и три базовых теста [в R](https://github.com/bdemeshev/em301/raw/7397fd8c30c90f3c259dede3a7ec84702c19057d/2015/sem_ml.R).
+* Д.з.: точная формулировка нового большого домашнего задания будет позже, однако в течение этой недели очень рекомендуется продумать для него эконометрический факт и разобраться с устройством [Shiny](http://shiny.rstudio.com/) ([галерея](http://shiny.rstudio.com/gallery/) с примерами, [обучающее видео](http://shiny.rstudio.com/tutorial/)).
+
+#### Семинар 15. 14 января 2016
+
+* Метод максимального правдоподобия
+* Д.з.: проверить гипотезы $p_1 = p_2$; $p_1 = 2p_2$; $p_1 = 0.5$, $p_2 = 0.25$ с помощью теста множителей Лагранжа, теста Вальда и LR--теста
+
+#### [Экзамен 28.12.2015](https://github.com/bdemeshev/em301/raw/master/2015/midterm/15_metrics_midterm.pdf)
+
+* Время: примерно 3 часа
+
+
+#### [Домашка по RLMS](https://github.com/bdemeshev/em301/raw/master/2015/ht_rlms/ht_rlms_2015.pdf)
+* Сдаётся в печатном виде на первом семинаре после НГ (примерно 13 января 2016)
+* Обязательно использовать Rnw или Rmd
+
+#### Семинар 14. 15 декабря 2015
+
+* Геометрическое доказательство теоремы Фриша --- Вау.
+* Метод инструментальных переменных.
+* На зачёте задачи из глав 1---4, 10, 14---15.
+
+#### Семинар 13. 08 декабря 2015
+
+* Стохастические регрессоры.
+* Теорема Фриша --- Вау. 
+* Д.з.: 10.1---10.5.
+
+#### Семинар 12. 01 декабря 2015
+
+* Доверительные интервалы для средней длины тормозного пути.
+* Предиктивные интервалы для длины тормозного пути.
+* [В R](https://github.com/bdemeshev/em301/raw/master/2015/sem_12_interval_forecast.R): доверительный интервал для среднего значения зависимой переменной и предиктивный интервал для конкретного будущего значения. 
+
+#### Семинар 11. 24 ноября 2015
+
+* Задача 3.28.
+* Тесты Чоу: на структурные сдвиги и на прогнозную силу.
+* Тест Чоу на структурные сдвиги [в R](https://github.com/bdemeshev/em301/raw/113f32e6901665ca956a7e6685bac29d64297d04/2015/sem_11_chow_test.R).
+
+#### Семинар 10. 17 ноября 2015
+
+* Неограниченная и ограниченная модели, F-тест. 
+* Задача 3.27.
+* Проверка гипотезы о влиянии размеров бриллиантов на их цену при фиксированной массе [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_10_F_test.R).
+* Создание `.Rmd` файлов (сам [`.Rmd`](https://github.com/bdemeshev/em301/raw/master/2015/toy_research.Rmd) и  что получается в [`.pdf`](https://github.com/bdemeshev/em301/raw/master/2015/toy_research.pdf)).
+* Д.з.: 3.23---3.26, 3.28.
+
+#### Семинар 9. 10 ноября 2015
+
+* Контрольная работа 2 ([основная](https://github.com/bdemeshev/em301/raw/master/2015/kr_02_regression/kr_02_regression.pdf) и [R](https://github.com/bdemeshev/em301/raw/master/2015/kr_02_regression/kr_02_R_ex.pdf) части).
+
+#### Семинар 8. 03 ноября 2015
+
+* Задачи 4.26 и 4.13.
+* Задача 4.13 [в R](https://github.com/bdemeshev/em301/raw/master/2015/sem_08.R).
+* Контрольная работа 10 ноября в 9.00.
+
+#### Семинар 7. 20 октября 2015
+
+* Задачи 2.9, 2.27, 2.29, 2.33.
+* В R: 2.23.
+* Белая Роза: 4.13: 1--9, 16, 4.15, 4.18, 4.20, 3.29.
+* Алая Роза: 2.40, 2.41, 2.42, 2.43.
+
+#### Семинар 6. 13 октября 2015
+
+* Задачи 2.13, 2.18, 2.24, 4.26.
+* В R: оценка модели зависимости стандартизированного показателя плодовитости от количества мужчин, занятых в сельском хозяйстве, и доли католического населения.
+* Д.з.: минимум (Белая Роза) + дополнительные задачи (Алая Роза).
+* Белая Роза: 2.9, 2.10, 2.12, 2.27, 2.28, 2.29, 3.44.
+* Алая Роза: 2.33, 2.36, 2.38.
+
+#### Семинар 5. 06 октября 2015
+* Проверка несмещенности оценок (2.6). Дисперсия и свойства оценки $\small{\hat\beta_2}$ (2.17).
+* Д.з.: с прошлого семинара (4.16, 4.21, 4.22, 4.25, 4.26, 1.15, 1.20) + минимум (Белая Роза) + дополнительные задачи (Алая Роза).
+* Белая Роза: 2.8, 2.13, 2.18, 2.24, 2.28.
+* Алая Роза: 2.32, 2.34, 2.36, 2.42.
+
+#### Семинар 4. 29 сентября 2015
+
+* Упражнение по линейной алгебре. Математическое ожидание и ковариационная матрица вектора, аналогия с одномерным случаем. Предположения для неслучайного X. Мета-мега-матрица.
+* Д.з.: досчитать все математические ожидания и ковариации в мета-мега-матрице.
+
+#### Семинар 3. 22 сентября 2015
+
+* Задача про матрицу из контрольной.
+* МНК. Прогнозирование с двумя объясняющими переменными. Геометрическая интерпретация.
+* Д.з.: уметь рисовать картинку; найти как можно больше прямоугольных треугольников и выписать для них теоремы Пифагора в двух вариантах (с квадратами длин и с суммами). Сдавать не нужно.
+* Как сдавать любое д.з. в электронном виде: по почте отправить файлы `.Rnw` и `.pdf`, файл `.pdf` принести распечатанным. В теме письма обязательно указать EM301 с каким-нибудь пояснением (например, EM301 Домашнее задание 3). Сами файлы называть только английскими буквами, без пробелов, в названии как-нибудь отразить фамилию.
+
+#### Семинар 2. 15 сентября 2015
+
+* Контрольная работа 1. [Вспомнить всё!!!](https://github.com/bdemeshev/em301/raw/master/2015/kr_01_recall_all/kr_01_recall_all.pdf) Время —-- 1 час.
+
+#### Семинар 1. 08 сентября 2015
+* МНК. Модели зависимости роста от веса и погоды на улице (без параметра).
+* [Оценка моделей](https://github.com/bdemeshev/em301/raw/master/2015/sem_01.R) с помощью МНК в R.
+* Темы Контрольной работы 1: скалярное произведение и его связь с косинусом угла, т. Пифагора, т. о трех перпендикулярах; проверка гипотезы о среднем, уровень значимости, p-value, доверительные интервалы; свойства м.о., дисперсии, условная вероятность; умножение, обращение, транспонирование матриц, определитель и след матрицы, их связь с собственными значениями; det(AB), tr(AB).
+* Д.з.: установить [R/Rstudio/Latex](https://github.com/bdemeshev/em301/wiki/R); выслать два файла (`.Rnw` и `.pdf`) с пятью фактами о себе и картинкой до 10:40 22 сентября, распечатанным сдать только `.pdf` файл.
+* Пример домашнего [задания от Хрюши](https://github.com/bdemeshev/em301/raw/master/2015/ht_01_hrusha/ht_01_hrusha.zip). Можно разархивировать файл, открыть `.Rnw` в R-studio, нажать "compile pdf", должен получиться готовый pdf-файл.
+
+## Лекции
+
+* [Краткое содержание](http://bdemeshev.github.io/em301/log_lectures_2015.html) лекций
+
+## Литература и ссылки
+
+* [Официальная программа](http://www.hse.ru/edu/courses/150659374.html) курса
+* Программа [моей мечты](https://github.com/bdemeshev/em301/wiki/dream_econometrics)
+* Секретная [формула](https://github.com/bdemeshev/em301/raw/master/em301_grade_system.txt) расчёта оценки
+* Логи семинаров [2012-2013](https://github.com/bdemeshev/em301/wiki/wiki_2012_2013), [2013-2014](https://github.com/bdemeshev/em301/wiki/wiki_2013_2014), [2014-2015](http://bdemeshev.github.io/em301/index_2014_2015.html)
+* Видео-записи семинаров [2013-2014](https://vimeo.com/album/2517754) 
+
+
+### Правильное отношение к научным исследованиям:
+* Аркадий и Борис Стругацкие, [Понедельник начинается в субботу](http://www.e-reading.club/book.php?book=55060)
+* Douglas Adams, Hitchhiker's guide to the galaxy, [рус](http://royallib.com/book/adams_duglas/putevoditel_volnogo_strannika_perevod_vbakanova.html), [eng](http://www.ebooktrove.com/top_ten/DouglasAdams_TheHitchhikerTrilogy_5Books1ShortStory.pdf)
+
+### Конспекты вышкинского курса
+* [Заметки Ивана Назарова](https://github.com/bdemeshev/em301/raw/master/hse_notes/nazarov,%20emetrix-summary.pdf)
+* [Конспект Андрея Костырки лекций Г.Г. Канторовича](https://github.com/bdemeshev/em301/raw/master/hse_notes/kantorovich,%20lectures%20by%20kostyrka.pdf)
+* [Конспект Андрея Костырки семинаров А.А. Мамонтова](https://github.com/bdemeshev/em301/raw/master/hse_notes/mamontov,%20seminars%20by%20kostyrka.pdf)
+
+
+### Эконометрика, free books
+* Michael Creel, [Econometric lecture notes](http://econpapers.repec.org/paper/aubautbar/575.03.htm): graduate level и [github repository](https://github.com/mcreel/Econometrics)
+* Bruce Hansen, [Econometrics](http://www.ssc.wisc.edu/~bhansen/econometrics/): graduate level
+* John Stachurski, [First course on econometric theory](http://johnstachurski.net/_downloads/et.pdf): graduate level (?)
+* Breheny, [Applied Statistical Modeling for Medicine and Public Health](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/index.html) Замечательно изложены методы "за пределами" простой регрессии с примерами на R.
+* Wolter Sosa-Escudero, [Econometric analysis](http://www.econ.uiuc.edu/~wsosa/econ507/index.htm). Продвинутый магистерский курс с кучей интересных материалов внизу страницы.
+* Dolf Schluter, [Quantitative methods in ecology and evolution](https://www.zoology.ubc.ca/~bio501/R/) Курс по статистике для магистров биологов. Хорошая подборка статей по статистике, хорошее введение в R. 
+* Faraway, [Practical regression and ANOVA using R](http://cran.r-project.org/doc/contrib/Faraway-PRA.pdf) Гетероскедастичность, мультиколлинеарность, метод главных компонент, Ridge regression, ANOVA.
+* Никита Артамонов, [Введение в эконометрику](http://img1.liveinternet.ru/images/attach/c/2//3833/3833271_econometrics.pdf)
+* Кирилл Фурманов, [Сборник задач на личной страничке](http://www.hse.ru/org/persons/503346)
+* Стренг, [Линейная алгебра](http://elibrary.bsu.az/kitablar/1022.pdf), древний, но очень удачный учебник по линейной алгебре
+* A. Ian McLeod, Hao Yu, Esam Mahdi, [Time Series Analysis with R](http://www.stats.uwo.ca/faculty/aim/tsar/), замечательный обзор пакетов R по временным рядам с примерами кода. Заодно там рядом по ссылке толстая поваренная книга (777 страниц) по временным рядам.
+* Страничка Ruey Tsay [с его курсами по временным рядам с R](http://faculty.chicagobooth.edu/ruey.tsay/teaching/) и названиями его книжек
+* Kevin Sheppard, [Financial Econometrics](https://www.kevinsheppard.com/MFE). Хорошо изложен GMM, VaR. Есть многомерная волатильность.
+
+### Мелочи:
+* Теорема Фриша-Вау: [wikipedia](http://en.wikipedia.org/wiki/Frisch–Waugh–Lovell_theorem), [simple proof](http://mlovell.web.wesleyan.edu/Publications/SPFWLTheorem.pdf), [geometry](http://www.depeco.econo.unlp.edu.ar/doctrab/doc29.pdf)
+* Вывод [критерия BIС](http://nscs00.ucmerced.edu/~nkumar4/BhatKumarBIC.pdf)
+* Неплохое объяснения [эффекта возвращения к среднему](http://avva.livejournal.com/2426970.html)
+* Преобразования [Бокса-Кокса, Ю-Джонсона](http://www.ime.usp.br/~abe/lista/pdfm9cJKUmFZp.pdf)
+* История regression fallacy --- Maddala, Intro to econometrics, [p. 104](https://github.com/bdemeshev/em301/raw/master/useful_stuff/Maddala_regression_word.pdf)
+* Breheney, [Ridge regression](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/notes/9-1.pdf)
+* Гид по [прогнозированию рядов для чайников](http://people.duke.edu/~rnau/411fcst.htm)
+* Мелкие [ловушки с рядами в R](http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm)
+* Матричное дифференциирование: [Herman Kamper](http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf), [Thomas P. Minka](http://research.microsoft.com/en-us/um/people/minka/papers/matrix/minka-matrix.pdf)
+* Графики временных рядов: [примеры](http://timelyportfolio.github.io/rCharts_time_series/history.html), [пакет dygraphs](https://rstudio.github.io/dygraphs/index.html)
+* Gelman, [Missing data](http://www.stat.columbia.edu/~gelman/arm/missing.pdf)
+* [Best practice for outliers](http://www.researchgate.net/profile/Herman_Aguinis/publication/258174106_Best-Practice_Recommendations_for_Defining_Identifying_and_Handling_Outliers/links/004635276b1ff93ba8000000.pdf)
+* [Granger Causality: Eggs vs Chicken](http://www.econ.uiuc.edu/~econ508/Papers/eggs.pdf)
+
+### Форумы, где спросить совет...
+* [stats.stackexchange.com](http://stats.stackexchange.com) - по статистике
+* [maths.stackexchange.com](http://maths.stackexchange.com) - по студенческой математике
+* [stackoverflow.com](http://stackoverflow.com) - по программированию
+* [tex.stackexchange.com](http://tex.stackexchange.com) - по Теху
+ 
+
+
+### Прочие книжки
+
+Можно купить или найти в [чёрном](http://gen.lib.rus.ec/)-[чёрном](http://bookzz.org/)-[чёрном](http://sci-hub.org/) Интернете:
+
+* Freedman, Statistical models
+* Seber, Linear Regression Analysis, хорошо изложена матричная сторона дела. Есть перевод первого издания на русский. 
+
+
+## Лицензия
+Созданные мной для данного курса материалы распространяются по лицензии [Creative Commons Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru)

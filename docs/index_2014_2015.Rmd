@@ -1,0 +1,226 @@
+---
+title: "Сезон 2014-2015"
+date: "Дата обновления: `r format(Sys.time(), '%d.%m.%Y')`"
+output: html_document
+lang: russian
+---
+
+
+
+
+# Семинары по эконометрике
+
+Эконометрика, факультет экономики, 3 курс, бакалавриат, 2014-2015, ВШЭ
+
+Жаль, что в вышке пока нет системы коротких названий курсов. Вот я заранее застолбил EM301. Раз на третьем курсе, значит 300, а раз самый важный курс --- значит 1. :)
+
+* Текущие оценки [гр. 3108 и 311i](https://docs.google.com/spreadsheets/d/1R_pzi6ZuFjtp-HgirijQcWugoI48OO3FsvbRsNd08BU/pubhtml?gid=1860703175&single=true), по возможности [видео этого года](http://www.youtube.com/playlist?list=PL1poMUvVlAqedW-3luoAK72YUoYoiv3g0)
+* [Подборка материалов](https://github.com/bdemeshev/em301/raw/master/metrics_exams/metrics_exams.pdf) (контрольные и немного теории)
+* [Конспект семинаров](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун). 
+
+## Компьютерное
+* [Наборы данных](wiki/Datasets)
+* [Про R](https://github.com/bdemeshev/em301/wiki/R)
+* [LaTeX](https://github.com/bdemeshev/pr201/wiki/latex_examples) 
+* [Весь используемый софт](wiki/Software)
+
+## Логи семинаров
+
+
+## Базовый поток
+
+##### 21 мая 2015 года
+* MA(q) процесс
+* функция правдоподобия MA(q) процесса
+* автокорреляция 
+* частная автокорреляция - теоретический коэффициент в регрессии $y_t$ на константу, $y_{t-1}$, $y_{t-2}$, ..., $y_{t-k}$
+
+##### 14 мая 2015 года
+* Стационарные и нестационарные ряды
+* Автоковариационная и автокорреляционная функция
+
+##### 23 апреля 2015 года
+
+* Отмена занятий --- компьютерное тестирование 3 курса
+
+##### 16 апреля 2015 года
+
+* ROC кривые
+
+##### 9 апреля 2015 года
+* задачки на логит-пробит
+* [логит и пробит в R](http://bdemeshev.github.io/r_cycle/cycle_files/03_logit_regression.html)
+
+##### 12 марта 2015 года
+* метод [главных компонент руками и в R](./2014/sem_files/sem_pca_1_base.html)
+
+##### Семинар. 5 марта 2015
+* LASSO руками для трёх наблюдений
+* скрипт [LASSO в R](https://github.com/bdemeshev/em301/raw/master/2014/sem_lasso_b.R)
+* кратко про кросс-валидацию
+
+##### Семинар. 5 февраля 2015
+* табличка МНК, МНК+робастные SE, WLS, feasible WLS
+* [код в R](https://github.com/bdemeshev/em301/raw/master/2014/sem_wls.R) для разных оценок ковариационной матрицы
+
+
+## Исследовательский поток
+
+##### 25 мая 2015
+
+* кросс-валидация на примере ридж-регрессии
+* [бутстрэп](http://socserv.socsci.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-Bootstrapping.pdf)
+
+##### 18 мая 2015
+
+* Целевая функция метода опорных векторов
+* Немного геометрического смысла параметра $\sigma$ гауссовской ядерной функции
+* Метод опорных векторов (без кросс-валидации)
+
+##### 11 мая 2015
+
+* Геометрия метода опорных векторов
+
+
+
+##### 20 апреля 2015
+
+* Алгоритм случайного леса
+
+##### 13 апреля 2015 ???
+
+* Контрольная [по логит и методу главных компонент](https://github.com/bdemeshev/em301/raw/master/2014/kr_05_ml/kr_05_ml.pdf)
+
+
+##### i-Семинар. 16 февраля 2015
+* Дельта-метод. Логит-модель. Доверительный интервал для склонности $E(y^*_i|x_i)$.
+* Доверительный интервал для вероятности --- два способа построения. Через преобразование доверительного интервала для склонности. Через дельта-метод.
+* Код R для [доверительных интервалов в логит-модели](https://github.com/bdemeshev/em301/raw/master/2014/sem_logit_ci.R)
+
+
+
+##### i-Семинар. 2 февраля 2015
+* логистическое распределение
+* определение логит и пробит модели
+* задача про Винни-Пуха и правильность мёда
+
+##### Зачетная неделя. 26 декабря 2014.
+* [Промежуточный экзамен](https://github.com/bdemeshev/em301/raw/master/2014/midterm/14_metrics_midterm.pdf) исследовательский поток
+
+##### Семинар. 15 и 18 декабря 2014.
+* Контрольная работа: [i-поток](https://github.com/bdemeshev/em301/raw/master/2014/kr_03/kr_03i.pdf), [базовый поток](https://github.com/bdemeshev/em301/raw/master/2014/kr_03/kr_03b.pdf).
+
+
+
+
+##### Семинар 10. 13 и 17 ноября 2014
+* 3108: ограниченная и неограниченная модель, [скрипт](https://github.com/bdemeshev/em301/blob/master/2014/sem_restricted_b.R)
+* i: ограниченная и неограниченная модель, Кирилл Фурманов
+
+##### Семинар 9. 06 и 10 ноября 2014
+* Разбор кр 2, [скрипт с двумя подходами](https://github.com/bdemeshev/em301/raw/master/2014/kr_02/sol_04_kr_02.R) к решению задачи 4 
+* i-group: ограниченная и неограниченная модель: данные по [wages in USA](http://eu.wiley.com/legacy/wileychi/verbeek2ed/datasets.html), [R script](https://github.com/bdemeshev/em301/blob/master/2014/sem_restricted.R)
+
+##### Зачетная неделя 30 октября 2014, нет занятий
+
+##### Семинар 8. 23 октября 2014
+* [Контрольная работа 2](https://github.com/bdemeshev/em301/raw/master/2014/kr_02/kr_02.pdf)
+
+##### Семинар 7. 16 октября 2014
+
+##### Семинар 6. 09 октября 2014
+* 311i: находим E(RSS), оценка для Var(\hat{\beta})
+* 3108: свойства ковариационных матриц, утверждения про \hat{\sigma^2} и t-распределение
+
+##### Семинар 5. 02 октября 2014
+* рисунки мелками
+* 3108: регрессия в R
+* 311i: свойства ковариационных матриц
+
+##### Семинар 4. 25 сентября 2014
+* Матричная форма записи МНК
+* Картинка, теорема о [трёх перпендикулярах](http://mathus.ru/math/ttp.pdf)
+* Четыре теоремы Пифагора
+* Основные неслучайные характеристики
+* дз: Димина задача
+
+##### Семинар 3. 18 сентября 2014
+* отменен из-за простуды :)
+
+##### Семинар 2. 11 сентября 2014
+* [Контрольная 1](https://github.com/bdemeshev/em301/raw/master/2014/kr_01/kr_01.pdf). Время: 55 минут.
+* Rstudio: начали про 6 рабочих лошадей из dplyr. Подробнее про dplyr: [видео от Data School](http://www.youtube.com/watch?v=jWjqLW-u3hc), [официальное введение](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html).
+
+##### Семинар 1. 04 сентября 2014
+* Предупреждение о контрольной. Линейная алгебра (A+B, A*B, A', A^{-1}, det(A), tr(A), собственные числа и вектора), теорема о трех перпендикулярах, задача на условную вероятность, проверка гипотезы о среднем.
+* Метод наименьших квадратов.
+* Оцениваем зависимость роста от веса, задача про два слитка, оцениваем температуру за окном.
+* Установить: R+R-studio+Latex. [Инструкция](https://github.com/bdemeshev/em301/wiki/R)
+* 311i: успели оценить модели в R, [скрипт 1](https://github.com/bdemeshev/em301/raw/master/2014/sem_01i_ols.R)
+
+## Литература и ссылки
+
+* [Официальная программа](http://www.hse.ru/edu/courses/34461507.html) курса
+* Программа [моей мечты](wiki/dream_econometrics)
+* Секретная [формула](https://github.com/bdemeshev/em301/raw/master/em301_grade_system.txt) расчёта оценки
+* Логи семинаров [2012-2013](wiki/wiki_2012_2013), [2013-2014](wiki/wiki_2013_2014).
+* Видео-записи семинаров [2013-2014](https://vimeo.com/album/2517754) 
+
+
+### Правильное отношение к научным исследованиям:
+* Аркадий и Борис Стругацкие, [Понедельник начинается в субботу](http://royallib.ru/book/strugatskiy_arkadiy/ponedelnik_nachinaetsya_v_subbotu.html)
+* Douglas Adams, Hitchhiker's guide to the galaxy, [rus](http://www.modernlib.ru/books/adams_duglas_noel/putevoditel_volnogo_strannika/adams_duglas_noel-putevoditel_volnogo_strannika.fb2.zip), [eng](http://www.e-reading.org.ua/download.php?book=1009124)
+
+### Конспекты вышкинского курса
+* [Заметки Ивана Назарова](https://github.com/bdemeshev/em301/raw/master/hse_notes/nazarov,%20emetrix-summary.pdf)
+* [Конспект Андрея Костырки лекций Г.Г. Канторовича](https://github.com/bdemeshev/em301/raw/master/hse_notes/kantorovich,%20lectures%20by%20kostyrka.pdf)
+* [Конспект Андрея Костырки семинаров А.А. Мамонтова](https://github.com/bdemeshev/em301/raw/master/hse_notes/mamontov,%20seminars%20by%20kostyrka.pdf)
+
+
+### Эконометрика, free books
+* Michael Creel, [Econometric lecture notes](http://econpapers.repec.org/paper/aubautbar/575.03.htm): graduate level
+* Bruce Hansen, [Econometrics](http://www.ssc.wisc.edu/~bhansen/econometrics/): graduate level
+* John Stachurski, [First course on econometric theory](http://johnstachurski.net/personal/emet_book.html): graduate level (?)
+* Breheny, [Applied Statistical Modeling for Medicine and Public Health](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/index.html) Замечательно изложены методы "за пределами" простой регрессии с примерами на R.
+* Wolter Sosa-Escudero, [Econometric analysis](http://www.econ.uiuc.edu/~wsosa/econ507/index.htm). Продвинутый магистерский курс с кучей интересных материалов внизу страницы.
+* Dolf Schluter, [Quantitative methods in ecology and evolution](https://www.zoology.ubc.ca/~bio501/R/) Курс по статистике для магистров биологов. Хорошая подборка статей по статистике, хорошее введение в R. 
+* Farawae, [Practical regression and ANOVA using R](http://cran.r-project.org/doc/contrib/Faraway-PRA.pdf) Гетероскедастичность, мультиколлинеарность, метод главных компонент, Ridge regression, ANOVA.
+* Никита Артамонов, [Введение в эконометрику](http://img1.liveinternet.ru/images/attach/c/2//3833/3833271_econometrics.pdf)
+* Кирилл Фурманов, [Сборник задач на личной страничке](http://www.hse.ru/org/persons/503346)
+* Стренг, [Линейная алгебра](http://elibrary.bsu.az/kitablar/1022.pdf), древний, но очень удачный учебник по линейной алгебре
+* A. Ian McLeod, Hao Yu, Esam Mahdi, [Time Series Analysis with R](http://www.stats.uwo.ca/faculty/aim/tsar/), замечательный обзор пакетов R по временным рядам с примерами кода. Заодно там рядом по ссылке толстая поваренная книга (777 страниц) по временным рядам.
+
+### Мелочи:
+* Теорема Фриша-Вау: [wikipedia](http://en.wikipedia.org/wiki/Frisch–Waugh–Lovell_theorem), [simple proof](http://mlovell.web.wesleyan.edu/Publications/SPFWLTheorem.pdf), [geometry](http://www.depeco.econo.unlp.edu.ar/doctrab/doc29.pdf)
+* Вывод [критерия BIС](http://nscs00.ucmerced.edu/~nkumar4/BhatKumarBIC.pdf)
+* Неплохое объяснения [эффекта возвращения к среднему](http://avva.livejournal.com/2426970.html)
+* Преобразования [Бокса-Кокса, Ю-Джонсона](http://www.ime.usp.br/~abe/lista/pdfm9cJKUmFZp.pdf)
+* История regression fallacy --- Maddala, Intro to econometrics, p. ??
+* Breheney, [Ridge regression](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/notes/9-1.pdf)
+* Гид по [прогнозированию рядов для чайников](http://people.duke.edu/~rnau/411fcst.htm)
+* Мелкие [ловушки с рядами в R](http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm)
+* Матричное дифференциирование: [Herman Kamper](http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf), [Thomas P. Minka](http://research.microsoft.com/en-us/um/people/minka/papers/matrix/minka-matrix.pdf)
+* Графики временных рядов: [примеры](http://timelyportfolio.github.io/rCharts_time_series/history.html), [пакет dygraphs](https://rstudio.github.io/dygraphs/index.html)
+* Gelman, [Missing data](http://www.stat.columbia.edu/~gelman/arm/missing.pdf)
+
+### Форумы, где спросить совет...
+* [stats.stackexchange.com](http://stats.stackexchange.com) - по статистике
+* [maths.stackexchange.com](http://maths.stackexchange.com) - по студенческой математике
+* [stackoverflow.com](http://stackoverflow.com) - по программированию
+* [tex.stackexchange.com](http://tex.stackexchange.com) - по Теху
+ 
+
+
+### Прочие книжки
+
+Можно купить или найти в [чёрном](http://gen.lib.rus.ec/)-[чёрном](http://bookzz.org/) Интернете:
+
+* Freedman, Statistical models
+* Seber, Linear Regression Analysis, хорошо изложена матричная сторона дела. Есть перевод первого издания на русский. 
+
+### Разное
+* [Гимн-памятка](raw/master/hymn_reminder_econometrix.txt) эконометристу (коллектив авторов)
+
+
+## Лицензия
+Созданные мной для данного курса материалы распространяются по лицензии [Creative Commons Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru)

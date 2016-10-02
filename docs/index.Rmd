@@ -1,0 +1,108 @@
+---
+title: "Сезон 2016-2017"
+date: "`r format(Sys.time(), '%d.%m.%Y')`"
+output: html_document
+lang: russian
+---
+
+# Семинары по эконометрике
+
+Эконометрика, факультет экономики, 3 курс, бакалавриат, 2015-2016, ВШЭ
+
+Жаль, что в вышке пока нет системы коротких названий курсов. Вот я заранее застолбил EM301. Раз на третьем курсе, значит 300, а раз самый важный курс --- значит 1. :)
+
+* Текущие оценки [всех групп](https://docs.google.com/spreadsheets/d/1_stpRrS-Y0qa8Yu-2_g8dD4HBlnV01MFjUuJ7_mOU6A/pubhtml)
+* [Подборка материалов](https://github.com/bdemeshev/em301/raw/master/metrics_exams/metrics_exams.pdf) (контрольные и немного теории)
+* [Конспект семинаров 2014-2015](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун). 
+
+## Компьютерное
+* [Наборы данных](https://github.com/bdemeshev/em301/wiki/Datasets)
+* [Про R](https://github.com/bdemeshev/em301/wiki/R)
+* [LaTeX](https://github.com/bdemeshev/pr201/wiki/latex_examples) 
+* [Весь используемый софт](https://github.com/bdemeshev/em301/wiki/Software)
+
+## Логи семинаров (исследовательский поток)
+
+
+#### Семинар 2. 12 сентября 2015
+
+* Контрольная работа 1. [Вспомнить всё!!!](https://github.com/bdemeshev/em301/raw/master/2015/kr_01_recall_all/kr_01_recall_all.pdf) Время - примерно 1 час.
+* Дз: вывести оценки в регрессии без свободного члена и в парной регрессии
+
+#### Семинар 1. 05 сентября 2015
+* OLS и LAD
+* [Оценка моделей OLS и LAD](https://github.com/bdemeshev/em301/raw/master/2016/r_scripts/sem_01_2016_09_05_ols_lad.R) в R.
+* Темы Контрольной работы 1: скалярное произведение и его связь с косинусом угла, т. Пифагора, т. о трех перпендикулярах; проверка гипотезы о среднем, уровень значимости, p-value, доверительные интервалы; свойства м.о., дисперсии, условная вероятность; умножение, обращение, транспонирование матриц, определитель и след матрицы, их связь с собственными значениями; det(AB), tr(AB).
+* Д.з.: установить/обновить [R/Rstudio/Latex](https://github.com/bdemeshev/em301/wiki/R); 
+
+## Лекции
+
+* ...
+
+## Литература и ссылки
+
+* [Официальная программа](https://www.hse.ru/edu/courses/184774549) курса (пока висит старая!!!!)
+* Программа моей мечты 
+* Логи семинаров [2012-2013](https://github.com/bdemeshev/em301/wiki/wiki_2012_2013), [2013-2014](https://github.com/bdemeshev/em301/wiki/wiki_2013_2014), [2014-2015](http://bdemeshev.github.io/em301/index_2014_2015.html), [2015-2016](http://bdemeshev.github.io/em301/index_2014_2015.html)
+* Логи лекций [2015-2016](http://bdemeshev.github.io/em301/log_lectures_2015.html)
+* Частичные видео-записи семинаров [2013-2014](https://vimeo.com/album/2517754) 
+
+
+### Правильное отношение к научным исследованиям:
+* Аркадий и Борис Стругацкие, [Понедельник начинается в субботу](http://www.e-reading.club/book.php?book=55060)
+* Douglas Adams, Hitchhiker's guide to the galaxy, [рус](http://royallib.com/book/adams_duglas/putevoditel_volnogo_strannika_perevod_vbakanova.html), [eng](http://www.ebooktrove.com/top_ten/DouglasAdams_TheHitchhikerTrilogy_5Books1ShortStory.pdf)
+
+### Конспекты вышкинского курса
+* [Заметки Ивана Назарова](https://github.com/bdemeshev/em301/raw/master/hse_notes/nazarov,%20emetrix-summary.pdf)
+* [Конспект Андрея Костырки лекций Г.Г. Канторовича](https://github.com/bdemeshev/em301/raw/master/hse_notes/kantorovich,%20lectures%20by%20kostyrka.pdf)
+* [Конспект Андрея Костырки семинаров А.А. Мамонтова](https://github.com/bdemeshev/em301/raw/master/hse_notes/mamontov,%20seminars%20by%20kostyrka.pdf)
+
+
+### Эконометрика, free books
+* Michael Creel, [Econometric lecture notes](http://econpapers.repec.org/paper/aubautbar/575.03.htm): graduate level и [github repository](https://github.com/mcreel/Econometrics)
+* Bruce Hansen, [Econometrics](http://www.ssc.wisc.edu/~bhansen/econometrics/): graduate level
+* John Stachurski, [First course on econometric theory](http://johnstachurski.net/_downloads/et.pdf): graduate level (?)
+* Breheny, [Applied Statistical Modeling for Medicine and Public Health](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/index.html) Замечательно изложены методы "за пределами" простой регрессии с примерами на R.
+* Wolter Sosa-Escudero, [Econometric analysis](http://www.econ.uiuc.edu/~wsosa/econ507/index.htm). Продвинутый магистерский курс с кучей интересных материалов внизу страницы.
+* Dolf Schluter, [Quantitative methods in ecology and evolution](https://www.zoology.ubc.ca/~bio501/R/) Курс по статистике для магистров биологов. Хорошая подборка статей по статистике, хорошее введение в R. 
+* Faraway, [Practical regression and ANOVA using R](http://cran.r-project.org/doc/contrib/Faraway-PRA.pdf) Гетероскедастичность, мультиколлинеарность, метод главных компонент, Ridge regression, ANOVA.
+* Никита Артамонов, [Введение в эконометрику](http://img1.liveinternet.ru/images/attach/c/2//3833/3833271_econometrics.pdf)
+* Кирилл Фурманов, [Сборник задач на личной страничке](http://www.hse.ru/org/persons/503346)
+* Стренг, [Линейная алгебра](http://elibrary.bsu.az/kitablar/1022.pdf), древний, но очень удачный учебник по линейной алгебре
+* A. Ian McLeod, Hao Yu, Esam Mahdi, [Time Series Analysis with R](http://www.stats.uwo.ca/faculty/aim/tsar/), замечательный обзор пакетов R по временным рядам с примерами кода. Заодно там рядом по ссылке толстая поваренная книга (777 страниц) по временным рядам.
+* Страничка Ruey Tsay [с его курсами по временным рядам с R](http://faculty.chicagobooth.edu/ruey.tsay/teaching/) и названиями его книжек
+* Kevin Sheppard, [Financial Econometrics](https://www.kevinsheppard.com/MFE). Хорошо изложен GMM, VaR. Есть многомерная волатильность.
+
+### Мелочи:
+* Теорема Фриша-Вау: [wikipedia](http://en.wikipedia.org/wiki/Frisch–Waugh–Lovell_theorem), [simple proof](http://mlovell.web.wesleyan.edu/Publications/SPFWLTheorem.pdf), [geometry](http://www.depeco.econo.unlp.edu.ar/doctrab/doc29.pdf)
+* Вывод [критерия BIС](http://nscs00.ucmerced.edu/~nkumar4/BhatKumarBIC.pdf)
+* Неплохое объяснения [эффекта возвращения к среднему](http://avva.livejournal.com/2426970.html)
+* Преобразования [Бокса-Кокса, Ю-Джонсона](http://www.ime.usp.br/~abe/lista/pdfm9cJKUmFZp.pdf)
+* История regression fallacy --- Maddala, Intro to econometrics, [p. 104](https://github.com/bdemeshev/em301/raw/master/useful_stuff/Maddala_regression_word.pdf)
+* Breheney, [Ridge regression](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/notes/9-1.pdf)
+* Гид по [прогнозированию рядов для чайников](http://people.duke.edu/~rnau/411fcst.htm)
+* Мелкие [ловушки с рядами в R](http://www.stat.pitt.edu/stoffer/tsa3/Rissues.htm)
+* Матричное дифференциирование: [Herman Kamper](http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf), [Thomas P. Minka](http://research.microsoft.com/en-us/um/people/minka/papers/matrix/minka-matrix.pdf)
+* Графики временных рядов: [примеры](http://timelyportfolio.github.io/rCharts_time_series/history.html), [пакет dygraphs](https://rstudio.github.io/dygraphs/index.html)
+* Gelman, [Missing data](http://www.stat.columbia.edu/~gelman/arm/missing.pdf)
+* [Best practice for outliers](http://www.researchgate.net/profile/Herman_Aguinis/publication/258174106_Best-Practice_Recommendations_for_Defining_Identifying_and_Handling_Outliers/links/004635276b1ff93ba8000000.pdf)
+* [Granger Causality: Eggs vs Chicken](http://www.econ.uiuc.edu/~econ508/Papers/eggs.pdf)
+
+### Форумы, где спросить совет...
+* [stats.stackexchange.com](http://stats.stackexchange.com) - по статистике
+* [maths.stackexchange.com](http://maths.stackexchange.com) - по студенческой математике
+* [stackoverflow.com](http://stackoverflow.com) - по программированию
+* [tex.stackexchange.com](http://tex.stackexchange.com) - по Теху
+ 
+
+
+### Прочие книжки
+
+Можно купить или найти в [чёрном](http://gen.lib.rus.ec/)-[чёрном](http://bookzz.org/)-[чёрном](http://sci-hub.org/) Интернете:
+
+* Freedman, Statistical models
+* Seber, Linear Regression Analysis, хорошо изложена матричная сторона дела. Есть перевод первого издания на русский. 
+
+
+## Лицензия
+Созданные мной для данного курса материалы распространяются по лицензии [Creative Commons Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru)
