@@ -23,6 +23,19 @@ lang: russian
 
 ## Логи семинаров (исследовательский поток)
 
+#### Семинар 5. 03 октября 2015
+
+* ...
+
+#### Семинар 4. 26 сентября 2015
+
+* матрицы и ковариации
+* матрицы и производные
+
+#### Семинар 3. 19 сентября 2015
+
+* Геометрия МНК
+* дз: найти и сформулировать все теоремы Пифагора
 
 #### Семинар 2. 12 сентября 2015
 
@@ -49,16 +62,19 @@ lang: russian
 
 
 ### Правильное отношение к научным исследованиям:
+
 * Аркадий и Борис Стругацкие, [Понедельник начинается в субботу](http://www.e-reading.club/book.php?book=55060)
 * Douglas Adams, Hitchhiker's guide to the galaxy, [рус](http://royallib.com/book/adams_duglas/putevoditel_volnogo_strannika_perevod_vbakanova.html), [eng](http://www.ebooktrove.com/top_ten/DouglasAdams_TheHitchhikerTrilogy_5Books1ShortStory.pdf)
 
 ### Конспекты вышкинского курса
+
 * [Заметки Ивана Назарова](https://github.com/bdemeshev/em301/raw/master/hse_notes/nazarov,%20emetrix-summary.pdf)
 * [Конспект Андрея Костырки лекций Г.Г. Канторовича](https://github.com/bdemeshev/em301/raw/master/hse_notes/kantorovich,%20lectures%20by%20kostyrka.pdf)
 * [Конспект Андрея Костырки семинаров А.А. Мамонтова](https://github.com/bdemeshev/em301/raw/master/hse_notes/mamontov,%20seminars%20by%20kostyrka.pdf)
 
 
 ### Эконометрика, free books
+
 * Michael Creel, [Econometric lecture notes](http://econpapers.repec.org/paper/aubautbar/575.03.htm): graduate level и [github repository](https://github.com/mcreel/Econometrics)
 * Bruce Hansen, [Econometrics](http://www.ssc.wisc.edu/~bhansen/econometrics/): graduate level
 * John Stachurski, [First course on econometric theory](http://johnstachurski.net/_downloads/et.pdf): graduate level (?)
@@ -72,8 +88,10 @@ lang: russian
 * A. Ian McLeod, Hao Yu, Esam Mahdi, [Time Series Analysis with R](http://www.stats.uwo.ca/faculty/aim/tsar/), замечательный обзор пакетов R по временным рядам с примерами кода. Заодно там рядом по ссылке толстая поваренная книга (777 страниц) по временным рядам.
 * Страничка Ruey Tsay [с его курсами по временным рядам с R](http://faculty.chicagobooth.edu/ruey.tsay/teaching/) и названиями его книжек
 * Kevin Sheppard, [Financial Econometrics](https://www.kevinsheppard.com/MFE). Хорошо изложен GMM, VaR. Есть многомерная волатильность.
+* Kurt Schmidheiny, [Short guides on econometrics](http://schmidheiny.name/teaching/shortguides.htm)
 
 ### Мелочи:
+
 * Теорема Фриша-Вау: [wikipedia](http://en.wikipedia.org/wiki/Frisch–Waugh–Lovell_theorem), [simple proof](http://mlovell.web.wesleyan.edu/Publications/SPFWLTheorem.pdf), [geometry](http://www.depeco.econo.unlp.edu.ar/doctrab/doc29.pdf)
 * Вывод [критерия BIС](http://nscs00.ucmerced.edu/~nkumar4/BhatKumarBIC.pdf)
 * Неплохое объяснения [эффекта возвращения к среднему](http://avva.livejournal.com/2426970.html)
@@ -89,6 +107,7 @@ lang: russian
 * [Granger Causality: Eggs vs Chicken](http://www.econ.uiuc.edu/~econ508/Papers/eggs.pdf)
 
 ### Форумы, где спросить совет...
+
 * [stats.stackexchange.com](http://stats.stackexchange.com) - по статистике
 * [maths.stackexchange.com](http://maths.stackexchange.com) - по студенческой математике
 * [stackoverflow.com](http://stackoverflow.com) - по программированию
@@ -105,4 +124,5 @@ lang: russian
 
 
 ## Лицензия
+
 Созданные мной для данного курса материалы распространяются по лицензии [Creative Commons Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.ru)
