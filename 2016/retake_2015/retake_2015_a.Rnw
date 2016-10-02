@@ -1,0 +1,284 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=1cm, right=1cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+%separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика}
+\chead{}
+\rhead{12.09.2016, пересдача-1}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+\input{metrics_test_bank.tex}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat_a}
+\copygroup[10]{combat_15}{combat_a}
+\shufflegroup{combat_a}
+\insertgroup{combat_a}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+\item На основании опроса была оценена следующая модель:
+\[
+\ln(wage_i)=\beta_1 + \beta_2 exper_i + \beta_3 exper_i^2 + \beta_4 married_i + \beta_5 educ_i + \beta_6 black_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ --- величина заработной платы в долларах
+\item $exper_i$ --- опыт работы в годах
+\item $educ_i$ --- количество лет обучения
+\item $married_i$ --- наличие супруга/супруги (1 --- есть, 0 --- нет)
+\item $black_i$ --- принадлежность к негроидной расе (1 --- да, 0 --- нет)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & \textbf{B7} \\
+Скорректированный $R^2$      & 0.219 \\
+Стандартная ошибка регрессии & \textbf{B6} \\
+Количество наблюдений        & \textbf{B2} \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrrr} \toprule
+ & df & SS & MS & F & P-значение \\
+\midrule
+Регрессия   & \textbf{B1}  & 5.993  & 1.199 & \textbf{В5} & 0.000 \\
+Остаток     & 134 & 18.240 & 0.136 &    &       \\
+Итого       & \textbf{B3}  & \textbf{B4}     &       &    &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Коэффициент & Оценка & $se(\hb)$ & t-статистика & P-Значение & Нижние 95\% & Верхние 95\% \\
+\midrule
+Константа & 4.529 & 0.331 & 13.688 & 0.000 & 3.874 & 5.183 \\
+$exper$ & 0.090 & 0.037 & 2.419 & 0.017 & 0.016 & 0.164 \\
+$exper^2$ & -0.003 & 0.002 & -1.790 & 0.076 & -0.006 & 0.000 \\
+$married$ & 0.240 & 0.079 & 3.045 & 0.003 & \textbf{В8} & \textbf{В9} \\
+$educ$ & 0.078 & 0.017 & \textbf{В10} & 0.000 & 0.045 & 0.111 \\
+$black$ & 0.073 & 0.171 & 0.424 & 0.672 & -0.266 & 0.411 \\
+\bottomrule
+\end{tabular}
+
+Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+Ответ округляйте до 3-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+\newpage
+
+\item На основании данных по ценам на квартиры в Москве были построена модель
+\[
+\ln(price_i)=\beta_1 + \beta_2 totsp_i + \beta_3 metrdist_i + \beta_4 dist_i +\beta_5 floor_i +\e_i,
+\]
+
+где:
+\begin{itemize}
+\item $\ln(price_i)$ --- логарифм цены квартиры в тысячах долларов
+\item $totsp_i$ --- общая площадь квартиры в кв. м.
+\item $metrdist_i$ --- расстояние до метров в минутах
+\item $dist_i$ --- расстояние до центра города в км
+\item $floor_i$ --- дамми-переменная (1 --- если квартира не на первом и последнем этажах, 0 --- иначе)
+\end{itemize}
+
+Модели были оценены на пяти разных выборках, результаты представлены в таблице:
+
+
+\begin{tabular}{lrrrrr} \toprule
+Коэффициент & Выборка A & Выборка B & Выборка C & Выборка D & Выборка E \\
+\midrule
+Константа & 3.980$^{***}$ & 3.926$^{***}$ & 3.929$^{***}$ & 3.719$^{***}$ & 4.224$^{***}$ \\
+$totsp$ & 0.0155$^{***}$ & 0.0148$^{***}$ & 0.0163$^{***}$ & 0.0179$^{***}$ & 0.0139$^{***}$ \\
+$metrdist$ & -0.00858$^{***}$ & -0.0169$^{***}$ & -0.00566** & -0.0108$^{***}$ & -0.0077 \\
+$dist$ & -0.0267$^{***}$ & -0.0186$^{***}$ & -0.0253$^{***}$ & -0.0150$^{***}$ & -0.0350$^{***}$ \\
+$floor$ & 0.0419** & 0.0633* & 0.0224 & 0.0225 & 0.0228 \\
+Наблюдений & 460 & 145 & 315 & 150 & 150 \\
+$R^2$ & 0.693 & 0.684 & 0.723 & 0.328 & 0.520 \\
+$RSS$ & 15.120 & 4.503 & 9.408 & 2.163 & 8.545 \\
+\bottomrule
+\end{tabular}
+
+$^{*}$ --- значимость на 10\%, $^{**}$ --- значимость на 5\%, $^{***}$ --- значимость на 1\%.
+
+
+\begin{enumerate}
+\item Для всей выборки (выборка A) проинтерпретируйте коэффициент при переменной $dist_i$.
+\item Определите на 5\%-ом уровне значимости, можно ли использовать одну модель для квартир, находящихся в пешей доступности от метро (выборка C), и квартир, находящихся в транспортной доступности (выборка B).
+\item Исследователь предположил, что дисперсия ошибок модели возрастает с увеличением площади квартиры. Проверьте, есть ли в модели гетероскедастичность на 10\% уровне значимости на основании соответствующего теста. В выборку D включены 150 квартир с наименьшей общей площадью, в выборку E --- 150 квартир с наибольшей общей площадью.
+\end{enumerate}
+
+При проверке гипотез: выпишите $H_0$, $H_a$, найдите значение тестовой статистики, укажите её распределение, найдите критическое значение, сделайте выводы
+
+\newpage
+
+\item Эконометресса Эвридика хочет оценить модель $y_i=\beta_1 + \beta_2 x_i +\beta_3 z_i + \e_i$. К сожалению, она измеряет зависимую переменную с ошибкой. Т.е. вместо $y_i$ она знает значение $y_i^*=y_i+u_i$ и использует его в качестве зависимой переменной при оценке регрессии. Ошибки измерения $u_i$ некоррелированы между собой и с $\e_i$.
+\begin{enumerate}
+\item Будут ли оценки Эвридики несмещенными?
+\item Могут ли дисперсии оценок Эвридики быть ниже чем дисперсии МНК оценок при использовании настоящего $y_i$?
+\item Могут ли оценки дисперсий оценок Эвридики быть ниже оценок дисперсий МНК оценок при использовании настоящего $y_i$?
+\end{enumerate}
+
+
+Аргументируйте ответы.
+
+
+\item По наблюдениям $x=(1,2,3)'$, $y=(2,-1,3)'$ оценивается модель $y=\b x+\e$. Ошибки $\e_i$ гетероскедастичны и известно, что $\Var(\e_i)=\sigma^2 \cdot x_i^2$.
+\begin{enumerate}
+\item Найдите оценку $\hb_{ols}$ с помощью МНК и её дисперсию
+\item Найдите оценку $\hb_{gls}$ с помощью обобщенного МНК и её дисперсию
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+
+\section*{Часть 3. Теоретические вопросы}
+
+
+\begin{enumerate}[resume]
+\item Дана модель $y_t=\beta_1+ \beta_2 x_t+ \varepsilon_t$, в которой ошибки модели подчиняются авторегрессионной схеме первого порядка,
+$\varepsilon_t=\rho \varepsilon_{t-1}+u_t$, где $u_t \sim WN(0, \sigma^2)$ и $\rho$ известно. Здесь $WN$ означает белый шум.
+
+Опишите процедуру получения эффективных оценок коэффициентов для такой модели.
+\item В модели $y_i=\beta_1+ \beta_2 x_i+\varepsilon_i$   переменная $x_i$ эндогенна. Для нее был найден инструмент $z_i$. Опишите процедуру получения состоятельных оценок коэффициентов регрессии.
+\item Дайте определение гомоскедастичности и гетероскедастичности. Укажите последствия гетероскедастичности. Какие действия нужно сделать для получения корректных доверительных интервалов для коэффициентов при гетероскедастичности неизвестной формы?
+\end{enumerate}
+
+\end{document}
