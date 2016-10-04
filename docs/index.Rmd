@@ -13,6 +13,7 @@ lang: russian
 
 * Текущие оценки [всех групп](https://docs.google.com/spreadsheets/d/1_stpRrS-Y0qa8Yu-2_g8dD4HBlnV01MFjUuJ7_mOU6A/pubhtml)
 * [Подборка материалов](https://github.com/bdemeshev/em301/raw/master/metrics_exams/metrics_exams.pdf) (контрольные и немного теории)
+* [Конспект семинаров 2016-2017](http://bdemeshev.github.io/em301/notes_2016/)
 * [Конспект семинаров 2014-2015](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун). 
 
 ## Компьютерное
