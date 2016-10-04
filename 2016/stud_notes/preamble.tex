@@ -1,0 +1,45 @@
+
+% \usepackage{booktabs} % in by pandoc template by default
+
+%\setmainlanguage{russian} % moved to yaml part of index.Rmd
+%\setotherlanguages{english} % moved to yaml part of index.Rmd
+
+% moved to yaml part of index.Rmd:
+%\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+
+% moved to yaml part of index.Rmd:
+% download "Linux Libertine" fonts, OTF version
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+%\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+%\setmonofont{Linux Libertine O}
+%\setsansfont{Linux Libertine O}
+
+
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+\newfontfamily{\cyrillicfont}{Linux Libertine O}
+\newfontfamily{\cyrillicfontsf}{Linux Libertine O}
+
+%%%%% end russian xetex
+
+
+\usepackage{tikz}
+
+
+
+\usepackage{amsthm}
+\usepackage[framemethod=tikz]{mdframed}
+% \usepackage{lipsum}
+
+\newmdenv[
+  linecolor=cyan,
+  hidealllines=true,
+  leftline=true,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=0pt,
+]{warning}
+
+
+

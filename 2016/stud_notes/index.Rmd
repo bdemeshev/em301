@@ -1,0 +1,141 @@
+---
+title: "Конспект семинаров по метрике-2016"
+author: "Студенты ИП и Борис Демешев"
+date: '`r Sys.Date()`'
+output:
+  bookdown::gitbook:
+    config:
+      download: [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]]
+      edit:
+        link: https://github.com/bdemeshev/em301/issues
+      fontsettings:
+        family: sans
+        size: 2
+        theme: white
+      search: yes
+      sharing:
+        all:
+        - facebook
+        - google
+        - twitter
+        - weibo
+        - instapaper
+        - vk
+        facebook: yes
+        google: no
+        instapper: no
+        twitter: no
+        vk: yes
+        weibo: no
+      toc:
+        after: |
+          <li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
+        before: |
+          <li><a href="./">Конспект по метрике - 2016</a></li>
+        collapse: section
+        scroll_highlight: yes
+      toolbar:
+        position: fixed
+    css: style.css
+  bookdown::html_chapters:
+    includes:
+      in_header: style.css
+  bookdown::pdf_book:
+    citation_package: biblatex
+    includes:
+      in_header: preamble.tex
+    keep_tex: yes
+    latex_engine: xelatex
+  bookdown::epub_book: default
+  bookdown::kindlegen:
+    epub: _book/stud_notes.epub
+description: Конспект по метрике и не только :)
+documentclass: book
+fontsize: 11pt
+github-repo: bdemeshev/em301
+lang: ru-RU
+link-citations: yes
+mainfont: "Linux Libertine O"
+monofont: "Linux Libertine O"
+sansfont: "Linux Libertine O"
+otherlangs: en-GB
+bibliography:
+- book.bib
+- packages.bib
+site: bookdown::bookdown_site
+biblio-style: alphabetic
+---
+
+# О проекте {-}
+
+Метрика с R :)
+
+
+```{r "knitr options"}
+library("knitr")
+library("tikzDevice")
+
+activateTikz <- function() {
+
+  # tikz plots options
+  options(tikzDefaultEngine = "xetex")
+
+  # cash font metrics for speed:
+  # options(tikzMetricsDictionary = "./tikz_metrics")
+
+  add_xelatex <- c("\\defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}",
+                   "\\setmainfont{Linux Libertine O}",
+                   "\\setmonofont{Linux Libertine O}",
+                   "\\setsansfont{Linux Libertine O}",
+        "\\newfontfamily{\\cyrillicfonttt}{Linux Libertine O}",
+        "\\newfontfamily{\\cyrillicfont}{Linux Libertine O}",
+        "\\newfontfamily{\\cyrillicfontsf}{Linux Libertine O}")
+
+  options(tikzXelatexPackages = c(getOption("tikzXelatexPackages"),
+                                  add_xelatex))
+
+  # does remove warnings:
+  # it is important to remove fontenc package wich is loaded by default
+  options(tikzUnicodeMetricPackages = c("\\usetikzlibrary{calc}",
+                                        "\\usepackage{fontspec, xunicode}", add_xelatex))
+
+
+  opts_chunk$set(dev = "tikz", dev.args = list(pointsize = 11))
+}
+
+
+colFmt <- function(x, color) {
+  outputFormat <- opts_knit$get("rmarkdown.pandoc.to")
+  if (outputFormat == "latex") {
+    result <- paste0("\\textcolor{", color, "}{", x, "}")
+  } else if (outputFormat %in% c("html", "epub")) {
+    result <- paste0("<font color='", color, "'>", x, "</font>")
+  } else {
+    result <- x
+  }
+  return(result)
+}
+
+outputFormat <- opts_knit$get("rmarkdown.pandoc.to")
+
+
+if (outputFormat == "latex") {
+  activateTikz()
+  # другую тему для ggplot2 выставить?
+}
+
+```
+
+Данная версия конспекта скомпилирована для `r outputFormat`.
+
+
+```{r, warning=FALSE, message=FALSE}
+library("ggplot2") # графики
+library("sandwich") # оценка Var для гетероскедастичности
+library("lmtest") # тест Бройша-Пагана
+library("dplyr") # манипуляции с данными
+library("broom") # преобразование всего и вся в стандартные таблички
+library("data.table") # манипуляции с данными
+library("reshape2") # преобразование длинных таблиц в широкие
+library("tidyr") # причесывание данных
+```
