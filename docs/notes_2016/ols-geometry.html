@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.1.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="bdemeshev/em301" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+  
+<meta name="date" content="2016-10-05">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="ols-intro.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Конспект по метрике - 2016</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О проекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>2</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>2.1</b> Обозначения</a></li>
+<li class="chapter" data-level="2.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>2.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>2.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>2.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>2.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="2.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>2.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ols_geometry" class="section level1">
+<h1><span class="header-section-number">2</span> Геометрия МНК</h1>
+<p>конспект: Света Колесниченко</p>
+<p>дата: 19 сентября 2016</p>
+<div id="notation" class="section level2">
+<h2><span class="header-section-number">2.1</span> Обозначения</h2>
+<p><strong>Варианты представления регрессии:</strong></p>
+<ul>
+<li><p>Скалярный вариант: <span class="math inline">\(\hat y_{i} = \hat \beta_1 + \hat \beta_2\, x_{i} + \hat \beta_3\, z_{i}\)</span></p></li>
+<li><p>Векторный вариант: <span class="math inline">\(\hat y = \hat \beta_1\, e + \hat \beta_2\, x + \hat \beta_3\, z\)</span></p></li>
+</ul>
+<p><span class="math display">\[
+\begin{matrix} &amp; e = \vec 1 = \\ \end{matrix}
+\begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}
+\begin{matrix} \textit{ - единичный вектор размерности $n \times 1$}, \end{matrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{matrix} &amp; x = \\ \end{matrix}
+\begin{pmatrix} x_{1} \\ \vdots \\ x_{n} \end{pmatrix}
+\begin{matrix} &amp; y  = \\ \end{matrix}
+\begin{pmatrix} y_{1}  \\ \vdots  \\ y_{n} \end{pmatrix}
+\begin{matrix} &amp; z = \\ \end{matrix}
+\begin{pmatrix} z_{1}  \\ \vdots \\ z_{n} \end{pmatrix}
+\textit{ - векторы переменных}
+\]</span><br />
+Количество наблюдений = <span class="math inline">\(n\)</span>, количество коэффициентов <span class="math inline">\(\beta\)</span> = количество регрессоров = <span class="math inline">\(k\)</span>.</p>
+<ul>
+<li>Матричный вариант: <span class="math inline">\(\hat y = X\, \hat \beta\)</span></li>
+</ul>
+<p><span class="math display">\[
+\begin{matrix} &amp; \hat \beta = \\ \end{matrix}
+\begin{pmatrix} \hat \beta_{1} \\ \vdots \\ \hat \beta_{k} \end{pmatrix}
+\begin{matrix} \textit{ - вектор размера } k\times 1, \end{matrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{matrix} &amp; X = \\ \end{matrix}
+\begin{pmatrix}
+1 &amp; x_{1} &amp; z_{1} \\
+\vdots &amp; \vdots &amp; \vdots \\
+1 &amp; x_n &amp; z_{n}
+\end{pmatrix}
+\begin{matrix} \textit{ - матрица размера } n \times k \end{matrix}
+\]</span><br />
+<strong>Конвенция об обозначениях:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(y, \beta, \hat \beta, x, z\)</span> - векторы</p></li>
+<li><p><span class="math inline">\(y_{i}, \beta_{j}, \hat \beta_{7}, x_{45}, z_{37}\)</span> - числа (скаляры)</p></li>
+<li><p><span class="math inline">\(\Omega, X, H\)</span> - матрицы</p></li>
+</ol>
+</div>
+<div id="deep_in_rn" class="section level2">
+<h2><span class="header-section-number">2.2</span> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</h2>
+<p><span class="math display">\[
+\min_{i\in I} \sum_{i=1}^n (y_{i} - \hat y_{i})^{2} =
+\min_{i\in I} \sum_{i=1}^n |y_{i} - \hat y_{i}|^{2} \textit{ - минимизируем квадрат длины вектора}
+\]</span></p>
+<p><span class="math display">\[
+\begin{pmatrix} \bar y \\ \vdots \\ \bar y \end{pmatrix}
+\begin{matrix} &amp; = \bar y \cdot \\ \end{matrix}
+\begin{pmatrix} 1 \\ \vdots \\ 1 \end{pmatrix}
+\begin{matrix} &amp; = \bar y \cdot \vec 1 \end{matrix}
+\]</span></p>
+<p><span class="math inline">\(\bar y = \hat y\)</span> - т.к. <span class="math inline">\(\bar y \cdot \vec 1 = \hat y \cdot \vec 1\)</span></p>
+<p>среднее значение = среднее значение прогнозов (<span class="math inline">\(\hat y_{i}\)</span>)</p>
+<div class="figure">
+<img src="images/03_the_picture.png" alt="Картиночка Лапы" />
+<p class="caption"><em>Картиночка Лапы</em></p>
+</div>
+<p>“Лапа” = <span class="math inline">\(Lin (e, x, z) \leftarrow\)</span> выбираем через e, x, z положение <span class="math inline">\(\hat y\)</span></p>
+<p><span class="math inline">\(\hat y\)</span> - проекция y на “лапу”</p>
+<p>y - линейная комбинация e, x, z <span class="math inline">\(\rightarrow\)</span> лежит в линейной оболочке этих векторов</p>
+<p><span class="math inline">\(\hat \varepsilon = y - \hat y\)</span> - вектор “остатков”/ошибок прогнозов/resideals</p>
+<p><span class="math inline">\(\hat \varepsilon \,\bot\, e, \hat \varepsilon \,\bot\, x, \hat \varepsilon \,\bot\, y\)</span></p>
+<p><span class="math inline">\(\hat \varepsilon \cdot \vec 1 = 0\)</span>, <span class="math inline">\(\hat \varepsilon \cdot x = 0\)</span>, <span class="math inline">\(\hat \varepsilon \cdot z = 0\)</span> <span class="math inline">\(\leftarrow\)</span> скалярное произведение векторов (ссыль подробнее) перпендикулярных векторов равно 0.</p>
+<p><span class="math inline">\(\hat \varepsilon \, \bot \, \textit{Лапа} \rightarrow \hat \varepsilon \, \bot \, \textit{любому вектору, лежащему в Лапе}\)</span></p>
+<blockquote>
+<p><a href="https://ru.wikipedia.org/wiki/Теорема_о_трёх_перпендикулярах">Великая Теорема о 3 перпендикулярах</a> и аж в 2 формулировках и с чертёжиком.</p>
+</blockquote>
+<p><span class="math display">\[
+\sum_{i=1}^n \hat \varepsilon_{i}=0 ,
+\sum_{i=1}^n \hat \varepsilon_{i} x_{i}=0
+\]</span> <span class="math display">\[
+\begin{matrix} &amp; X&#39; = \\ \end{matrix}
+\begin{pmatrix}
+1 &amp; \dots &amp; 1\\
+x &amp; \dots &amp; x_{n} \\
+z &amp; \dots &amp; z_{n}
+\end{pmatrix}
+\begin{matrix} \textit{ - единичный вектор размерности $n \times 1$} \end{matrix}
+\begin{matrix} &amp; \hat \varepsilon = \\ \end{matrix}
+\begin{pmatrix} \hat \varepsilon_{1} \\ \vdots \\ \hat \varepsilon_{n} \end{pmatrix}
+\begin{matrix} \textit{ - единичный вектор размерности $n \times 1$} \end{matrix}
+\]</span></p>
+<p>Условие ортогональности: <span class="math inline">\(X&#39; \cdot \hat \varepsilon = 0\)</span> - размерность этого нуля - <span class="math inline">\(k \times 1\)</span></p>
+<p><span class="math inline">\(\hat y = X \cdot \hat \beta \rightarrow \hat \beta = \frac{\hat y}{X} = \frac{\hat \varepsilon - Y}{X}\)</span></p>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Упражнение 1</h3>
+<blockquote>
+<p>Выведите <span class="math inline">\(\hat \beta\)</span> из <span class="math inline">\(X&#39;\cdot(y-X\cdot\hat \beta) = 0\)</span></p>
+</blockquote>
+<p><span class="math inline">\(\hat \varepsilon = y - \hat y = y - X\cdot\hat \beta\)</span></p>
+<p><span class="math inline">\(X\)</span> - задает “лапу”.</p>
+<p><span class="math inline">\(\hat \beta\)</span> - отвечает за то, с каким весом в <span class="math inline">\(\hat y\)</span> входят базисные векторы «лапы».</p>
+<p><span class="math inline">\(\hat \beta = (\sum_{i=1}^n x^2_{i})^{-1}\, \sum_{i=1}^n x_{i} y_{i}=0\)</span> - для <span class="math inline">\(\hat y_{i} = \hat \beta \, x_{i}\)</span></p>
+<p><span class="math inline">\(X&#39;\cdot y = X&#39;\cdot X\cdot \hat \beta\)</span> <span class="math inline">\((X&#39; \cdot X)^{-1}\cdot X&#39; \cdot y = (X&#39; \cdot X)^{-1}\cdot X&#39;\cdot X \cdot \hat \beta\)</span> <span class="math inline">\(\hat \beta = (X&#39; \cdot X)^{-1}\cdot X&#39;\cdot y\)</span></p>
+</div>
+</div>
+<div id="more_projections" class="section level2">
+<h2><span class="header-section-number">2.3</span> Больше проекций</h2>
+<div id="-2" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Упражнение 2</h3>
+<blockquote>
+<p>Спроецируйте вектор <span class="math inline">\(\,\begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}\,\)</span> на прямую, порождённую вектором <span class="math inline">\(\,\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}\,.\)</span></p>
+</blockquote>
+<div class="figure">
+<img src="images/03_proj_on_1.png" alt="Визуализация задачи" />
+<p class="caption"><em>Визуализация задачи</em></p>
+</div>
+<p><span class="math display">\[
+\begin{matrix} &amp; \hat \beta = \\ \end{matrix}
+\begin{pmatrix} 1 &amp; 1 &amp; 1 &amp; 1 \end{pmatrix}
+\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}
+\begin{pmatrix} 1 &amp; 1 &amp; 1 &amp; 1 \end{pmatrix}
+\begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \end{pmatrix}
+\begin{matrix} = 4^{-1} \cdot 10 \cdot \frac{1}{4} \cdot 10 = 2.5 \\ \end{matrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{matrix} &amp; \hat y = X \cdot \hat \beta = \\ \end{matrix}
+\begin{pmatrix} 2.5 \\ 2.5 \\ 2.5 \\ 2.5 \end{pmatrix}
+\begin{matrix} = \\ \end{matrix}
+\begin{pmatrix} \bar y \\ \bar y \\ \bar y \\ \bar y \end{pmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\bar y = \frac{1+2+3+4}{4} = 2.5
+\]</span></p>
+<p><em>Проекция вектора на прямую из единиц даёт вектор из средних.</em></p>
+<blockquote>
+<p><em>By the way</em>, крутые читщиты по <a href="http://antongerdelan.net/teaching/3dprog1/maths_cheat_sheet.pdf">матрицам</a> и <a href="http://www.souravsengupta.com/cds2016/lectures/Savov_Notes.pdf">основам линейной алгебры</a>.</p>
+</blockquote>
+</div>
+<div id="-3" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Упражнение 3</h3>
+<blockquote>
+<p>Сформулируйте все теоремы Пифагора</p>
+</blockquote>
+<p><span class="math inline">\(\{\hat \varepsilon, \hat y - \bar y \cdot \vec 1, y - \bar y \cdot \vec 1\}\,\)</span></p>
+<div class="figure">
+<img src="images/03_right.png" alt="Чертёжик одного из треугольников" />
+<p class="caption"><em>Чертёжик одного из треугольников</em></p>
+</div>
+<p>По Теореме Пифагора:</p>
+<p><span class="math display">\[ |y - \bar y \cdot \vec 1|^{2} = |\hat \varepsilon|^2 + |\hat y - \bar y \cdot \vec 1|^2
+\]</span> <span class="math display">\[ \sum_{i=1}^n (y_{i}- \bar y)^2 = \sum_{i=1}^n \hat \varepsilon^2_{i} + \sum_{i=1}^n (\hat y_{i}- \bar y)^2
+\]</span> <span class="math display">\[
+\begin{matrix} &amp; y_{i}- \bar y = \\ \end{matrix}
+\begin{pmatrix} y_{1} - \bar y\\ \vdots \\ y_{n} - \bar y \end{pmatrix}
+\]</span></p>
+<p>Полное задание см. в <a href="https://github.com/bdemeshev/em_pset/">Задачнике</a> по координатам: 4.23, 4.24, 4.25</p>
+<p><strong>Коэффициент детерминации (<span class="math inline">\(R^2\)</span>)</strong> - примитивный показатель качества прогнозов.</p>
+<p><span class="math display">\[
+R^2 = \frac{ESS}{TSS} = \frac{\sum_{i=1}^n \hat \varepsilon^2_{i}}{\sum_{i=1}^n (y_{i}- \bar y)^2} = \frac{\sum_{i=1}^n (y_{i}- \hat y)^2}{\sum_{i=1}^n (y_{i}- \bar y)^2} = \frac{\text{residial sum of squares (cумма квадратов остатков)}}{\text{total sum of squares (полная сумма квадратов)}}
+\]</span></p>
+<p><span class="math display">\[
+ESS = \sum_{i=1}^n (\hat y_{i}- \bar y)^2 = \, \text{explained sum of squares (&quot;объясненная&quot; сумма квадратов)}
+\]</span></p>
+<p>В МНК работает (<em>и точно только в нём!</em>) соотношение: <span class="math inline">\(RSS + ESS = TSS\)</span>.</p>
+<p><em>В МНК решается задача минимизации RSS.</em></p>
+<p>Если прогнозы <span class="math inline">\(\hat y_i\)</span> идеально совпадают с <span class="math inline">\(y_i\)</span>, то <span class="math inline">\(R^2 = 1 \Rightarrow ESS = TSS\)</span>.</p>
+<p><span class="math inline">\(R^2 \in [0;1]\, , R^2 = \cos^2 \rho\)</span></p>
+<p><span class="math inline">\(\hat y\)</span> ближе к <span class="math inline">\(y\)</span> с ростом «лапы» <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(\angle \rho \downarrow \, \rightarrow R^2\,\)</span> т.к. <span class="math inline">\(\cos^2 \rho \uparrow\)</span></p>
+<div id="section-2.3.2.1" class="section level4">
+<h4><span class="header-section-number">2.3.2.1</span> ДЗ:</h4>
+<p>1.1, 1.2, 1.7, 1.12, 1.13, 4.13 (1-6), 4.23, 4.24, 4.25 из <a href="https://github.com/bdemeshev/em_pset/">Задачника</a></p>
+<div id="-" class="section level5">
+<h5><span class="header-section-number">2.3.2.1.1</span> Полезные ссылки:</h5>
+<p>Репозиторий <a href="https://github.com/bdemeshev/em301/">курса метрики</a> и <a href="https://github.com/bdemeshev/pr201/">теории вероятностей</a></p>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ols-intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bdemeshev/em301/issues",
+"text": null
+},
+"download": [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
