@@ -1,0 +1,239 @@
+# Борьба с матрицами {#matrix_fight}
+
+дата: 26 сентября 2016
+
+конспект: Вика Шрамова, Эд
+
+Семинар посвящен работе с матрицами - матричному дифференцированию и представлению многомерных случайных величин при помощи матриц.
+
+
+
+Перед тем как приступить к работе с матрицами, полезно повторить основные свойства операций над матрицами:
+
+1. $A(B+C) = AB+ AC$
+2. $(A+B)^T=A^T + B^T$
+3. $(AB)^T = B^T A^T$
+4. $(AB)^{-1} = B^{-1} A^{-1}$
+5. $(A^{-1})^T = (A^T)^{-1}$
+
+Производные следа и определителя:
+
+1. $tr(AB)'_A = B^T$
+
+2. $det(A)'_A = det(A) (A^{-1})^T$
+
+3. $(log det A(x) )'_x = tr(A^{-1} A'_x)$
+
+След  и определитель:
+
+1. $det(AB) = det(A) det(B)$
+
+2. $det(A^{-1})= 1/det(A)$
+
+3. $det(A) = \prod_j \lambda_j$
+
+4. $tr(A) = \sum_j A_{jj} = \sum_j \lambda_j$
+
+5. $tr(ABC) = tr(BCA) = tr(CAB)$
+
+
+
+Для начала напомним о разнице между одномерными и многомерными случайными величинами. Обозначим $y$ как случайный вектор  $\left( \begin{matrix}
+    y_1 \\
+    \vdots \\
+    y_n
+  \end{matrix} \right)$. Одномерную случайную величину будем обозначать маленькими латинскими буквами с индексами: $y_1$.
+
+
+
+\begin{table}[h]
+\center
+\begin{tabular}{|c|c|}
+\hline
+Многомерные с.в. & Одномерные с.в.\\
+\hline
+
+$\mathbb{E}(Ay+b)=A\mathbb{E}(y)+b$ & $\mathbb{E}(Ay_1+b)=A\mathbb{E}(y_1)+b$\\
+$ Var(Ay+b)=A Var(y) A^T$& $Var(ay_1+b)=a^2 Var(y_1)$\\
+$ Cov(Ay+b,Cz +d) = A Cov(y,z)D^T$ & $ Cov(a_1 y_1+b_1, a_2 y_2+b_2) = a_1 a_2 Cov(y_1, y_2)$ \\
+\hline
+
+\end{tabular}
+\end{table}
+
+
+
+
+$Var(y)$ = $\left( \begin{matrix}
+Var(y_1)  & Cov (y_1,_2) & \hdots Cov (y_1,_n) \\
+\vdots & \vdots & \vdots \\
+Cov(y_k,y_1)  & Var (y_k) & \hdots  Cov (y_k,y_n) \\
+\vdots & \vdots & \vdots \\
+Cov(y_n,y_1)  & Cov (y_n,_2) & \hdots Var (y_n)
+\end{matrix} \right)$
+
+
+
+Из такой записи ковариции векторов очевидно, что если в формуле ковариации поменять местами векторы, то их матрица ковариации будет являться  транспонированной матрицой ковариации векторов в исходной последовательности.
+ $Cov(y,z) =Cov (z,y)ˆ{T}$
+
+*Упражнение*
+
+Дана матрица
+ $A = \left( \begin{matrix}
+ 2 & 0 \\
+ 1 & 3\\
+ \end{matrix} \right)$
+  и случайный вектор
+ $y = \left( \begin{matrix}
+    y_1 \\
+    y_2
+  \end{matrix} \right)$ с матожиданием
+  $E(y) = \left( \begin{matrix}
+    2 \\
+    7
+  \end{matrix} \right)$ и дисперсией $Var(y) = \left( \begin{matrix}
+    3 & 1 \\
+    1 & 1
+  \end{matrix} \right)$
+
+Требуется найти $E(z), Var(z), Cov(y,z).$
+
+*Решение*
+
+
+1. $E(z) = A \cdot E(y) = \left( \begin{matrix}
+ 2 & 0 \\
+ 1 & 3\\
+ \end{matrix} \right)$ $\cdot$  $\left( \begin{matrix}
+    2 \\
+    7
+  \end{matrix} \right)$ = $\left( \begin{matrix}
+    4 \\
+    23
+  \end{matrix} \right)$
+
+2. $Var(z)$ = $A \cdot Var(y) \cdot Aˆ{T}$ = $\left( \begin{matrix}
+ 2 & 0 \\
+ 1 & 3\\
+ \end{matrix} \right)$ $\cdot$ $\left( \begin{matrix}
+ 3 & 1 \\
+ 1 & 7\\
+ \end{matrix} \right)$ $\cdot$ $\left( \begin{matrix}
+ 2 & 1 \\
+ 0 & 3\\
+ \end{matrix} \right)$ = $\left( \begin{matrix}
+ 12 & 12 \\
+ 12 & 72\\
+ \end{matrix} \right)$
+
+3. $t = Ay$ = $\left( \begin{matrix}
+    2y_1 \\
+    y_1 +3y_2
+  \end{matrix} \right)$
+
+4. $Cov(y,z)$ = $\left( \begin{matrix}
+Cov (y_1, z_1)  & Cov (y_1,z_2) \\
+Cov(y_2,z_1)  & Cov (y_1, z_2)
+\end{matrix} \right)$ = $Cov(y, Ay) = Cov(y,y) Aˆ{T}$ = $\left( \begin{matrix}
+ 3 & 1 \\
+ 1 & 7\\
+ \end{matrix} \right)$ $\cdot$ $\left( \begin{matrix}
+ 2 & 1 \\
+ 0 & 3\\
+ \end{matrix} \right)$
+
+*Упражнение*
+
+
+Предположим, существует истинная зависимость $y = X\beta +\varepsilon$  между оцениваемыми величиными.
+При оценивании параметров модели МНК будут фигурировать следующие величины: $y, \hat{y}, \varepsilon, \hat{\varepsilon}, \beta , \hat{\beta}$. Оценим все матожидания, дисперсии и ковариации указанных величин.
+
+Перед тем, как начать, необходимо сделать оговорку, что существуют две парадигмы исследования:
+1) Предполагается, что матрица X является детерминированной.
+2) Матрица  X  состоит из случайных величин.
+
+В ходе нашего курса мы будем работать со случайными X, однако пока будем считать, что матрица  Х детерминирована.
+
+
+*Решение*
+
+
+Оценка $\hat{\beta} = (X'X)^{T}  Xy$, $\hat{\varepsilon} = y- \hat{y}$, $\hat{y} =X\hat{\beta}$
+
+
+
+- Найдем матожидания:
+
+1. $E(\beta) = beta,$ так как $\beta$ -- вектор неизвестных констант
+
+2. $E(\epsilon) = 0$ (по предпосылкам МНК)
+
+3. $E(y) = E(X\beta + \epsilon) = XE(\beta) + E(\epsilon) = X\beta$
+
+4. $E(\hat{y}) = E(X\hat{\beta}) = XE(\hat{\beta}) = XE((X^{'}X)^{-1}X^{'}y) = X(X^{'}X)^{-1}X^{'}E(y) = X(X^{'}X)^{-1}X^{'}X\beta = X\beta$
+
+5. $E(\hat{\epsilon}) = E(y - \hat{y}) = E(y) - E(\hat{y}) =  X\beta - X\beta = 0$
+
+6. $E(\hat{\beta}) = (X^{'}X)^{-1}X^{'}E(y) = (X^{'}X)^{-1}X^{'}X\beta = \beta$
+
+- Найдем, к примеру, $Cov(\epsilon, \hat{\beta})$:
+
+$Cov(\epsilon,\hat{\beta}) = Cov(\epsilon,(X^{'}X)^{-1}X^{'}y) = Cov(\epsilon,(X^{'}X)^{-1}X^{'}(X\beta+\epsilon)) = Cov(\epsilon,(X^{'}X)^{-1}X^{'}X\beta+(X^{'}X)^{-1}X^{'}\epsilon) =  Cov(\epsilon,\epsilon)((X^{'}X)^{-1}X^{'})^{'} = \sigma^{2}I((X^{'}X)^{-1}X^{'})^{'} = \sigma^{2}X^{''}((X^{'}X)^{-1})^{'} = \sigma^{2}X((X^{'}X)^{'})^{-1} = \sigma^{2}X(X^{'}X)^{-1}$
+
+\subsection{Матрицы и Производные}
+
+Существует 2 традиции матричного дифференцирования, суть различия которых заключается в представлении вектора (матрицы) производной --- в виде столбца или в виде строки. Основные различия представлены в следующей таблице:
+
+<!-- \begin{table}[] -->
+\centering
+\label{my-label}
+\begin{tabular}{@{}|l|l|l|@{}}
+\hline
+       & Традиция 1        & Традиция 2     \\ \hline
+$x$    & вектор размера $n \times 1$    & вектор размера $n\times 1$  \\ \hline
+$X$    & матрица размера $n \times k$    & матрица размера $n\times k$  \\ \hline
+$f(x)$ & скаляр & скаляр \\ \hline
+$g(x)$ & вектор размера $k \times 1$ & вектор размера $k \times 1$ \\ \hline
+$\dfrac{\partial f}{\partial x}$ & вектор размера $n\times 1$ & вектор размера $1\times n$ \\[0.5cm] \hline
+$\dfrac{\partial f}{\partial X}$   & матрица размера $n \times k$   & матрица размера $k \times n$  \\[0.5cm] \hline
+$\dfrac{\partial g}{\partial x}$   & матрица размера $n \times k$   & матрица размера $k \times n$  \\[0.5cm] \hline
+\end{tabular}
+
+\begin{flushleft}
+Таким образом, мы, придерживаясь 1 традиции, будем записывать:
+\end{flushleft}
+
+\begin{align}
+    \frac{\partial f}{\partial x} &= \begin{pmatrix}
+           \dfrac{\partial f}{\partial x_{1}} \\
+           \dfrac{\partial f}{\partial x_{2}} \\
+           \vdots \\
+           \dfrac{\partial f}{\partial x_{n}}
+         \end{pmatrix}
+         \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+         \frac{\partial f}{\partial X} &= \begin{pmatrix}
+          \dfrac{\partial f}{\partial x_{11}} & \cdots & \dfrac{\partial f}{\partial x_{1k}} \\
+          \vdots & & \vdots \\
+          \dfrac{\partial f}{\partial x_{n1}} & \cdots & \dfrac{\partial f}{\partial x_{nk}}
+          \end{pmatrix}
+          \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+         \frac{\partial g}{\partial x} &= \begin{pmatrix}
+          \dfrac{\partial g_{1}}{\partial x_{1}} & \cdots & \dfrac{\partial g_{k}}{\partial x_{1}} \\
+          \vdots & & \vdots \\
+          \dfrac{\partial g_{1}}{\partial x_{n}} & \cdots & \dfrac{\partial g_{k}}{\partial x_{n}}
+          \end{pmatrix}
+\end{align}
+
+\begin{flushleft}
+
+\subsection{Свойства матричного дифференцирования}
+\end{flushleft}
+
+1. Если $x$ -- вектор, $f(x) = Ax$, то $\dfrac{\partial f}{\partial x} = A^{'}$
+
+2. Если $f(x) = x^{'}Ax$, то $\dfrac{\partial f}{\partial x} = (A + A^{'})x$
+
+3. Если $f(X) = det(X)$, то $\dfrac{\partial f}{\partial x} =det(X)(X^{-1})^{'}$
+
+Доказательство второго свойства и не только можно почитать [здесь](http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf)

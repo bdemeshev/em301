@@ -39,8 +39,8 @@ MathJax.Hub.Config({
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="ols-intro.html">
+<link rel="prev" href="ols-intro.html">
+<link rel="next" href="ols-geometry.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -153,74 +153,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Конспект семинаров по метрике-2016</h1>
-<h4 class="author"><em>Студенты ИП и Борис Демешев</em></h4>
-<h4 class="date"><em>2016-10-06</em></h4>
-</div>
-<div id="-" class="section level1 unnumbered">
-<h1>О проекте</h1>
-<p>Метрика с R :)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;knitr&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;tikzDevice&quot;</span>)
-
-activateTikz &lt;-<span class="st"> </span>function() {
-
-  <span class="co"># tikz plots options</span>
-  <span class="kw">options</span>(<span class="dt">tikzDefaultEngine =</span> <span class="st">&quot;xetex&quot;</span>)
-
-  <span class="co"># cash font metrics for speed:</span>
-  <span class="co"># options(tikzMetricsDictionary = &quot;./tikz_metrics&quot;)</span>
-
-  add_xelatex &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}&quot;</span>,
-                   <span class="st">&quot;</span><span class="ch">\\</span><span class="st">setmainfont{Linux Libertine O}&quot;</span>,
-                   <span class="st">&quot;</span><span class="ch">\\</span><span class="st">setmonofont{Linux Libertine O}&quot;</span>,
-                   <span class="st">&quot;</span><span class="ch">\\</span><span class="st">setsansfont{Linux Libertine O}&quot;</span>,
-        <span class="st">&quot;</span><span class="ch">\\</span><span class="st">newfontfamily{</span><span class="ch">\\</span><span class="st">cyrillicfonttt}{Linux Libertine O}&quot;</span>,
-        <span class="st">&quot;</span><span class="ch">\\</span><span class="st">newfontfamily{</span><span class="ch">\\</span><span class="st">cyrillicfont}{Linux Libertine O}&quot;</span>,
-        <span class="st">&quot;</span><span class="ch">\\</span><span class="st">newfontfamily{</span><span class="ch">\\</span><span class="st">cyrillicfontsf}{Linux Libertine O}&quot;</span>)
-
-  <span class="kw">options</span>(<span class="dt">tikzXelatexPackages =</span> <span class="kw">c</span>(<span class="kw">getOption</span>(<span class="st">&quot;tikzXelatexPackages&quot;</span>),
-                                  add_xelatex))
-
-  <span class="co"># does remove warnings:</span>
-  <span class="co"># it is important to remove fontenc package wich is loaded by default</span>
-  <span class="kw">options</span>(<span class="dt">tikzUnicodeMetricPackages =</span> <span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">usetikzlibrary{calc}&quot;</span>,
-                                        <span class="st">&quot;</span><span class="ch">\\</span><span class="st">usepackage{fontspec, xunicode}&quot;</span>, add_xelatex))
-
-
-  opts_chunk$<span class="kw">set</span>(<span class="dt">dev =</span> <span class="st">&quot;tikz&quot;</span>, <span class="dt">dev.args =</span> <span class="kw">list</span>(<span class="dt">pointsize =</span> <span class="dv">11</span>))
-}
-
-
-colFmt &lt;-<span class="st"> </span>function(x, color) {
-  outputFormat &lt;-<span class="st"> </span>opts_knit$<span class="kw">get</span>(<span class="st">&quot;rmarkdown.pandoc.to&quot;</span>)
-  if (outputFormat ==<span class="st"> &quot;latex&quot;</span>) {
-    result &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">textcolor{&quot;</span>, color, <span class="st">&quot;}{&quot;</span>, x, <span class="st">&quot;}&quot;</span>)
-  } else if (outputFormat %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;epub&quot;</span>)) {
-    result &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;&lt;font color=&#39;&quot;</span>, color, <span class="st">&quot;&#39;&gt;&quot;</span>, x, <span class="st">&quot;&lt;/font&gt;&quot;</span>)
-  } else {
-    result &lt;-<span class="st"> </span>x
-  }
-  <span class="kw">return</span>(result)
-}
-
-outputFormat &lt;-<span class="st"> </span>opts_knit$<span class="kw">get</span>(<span class="st">&quot;rmarkdown.pandoc.to&quot;</span>)
-
-
-if (outputFormat ==<span class="st"> &quot;latex&quot;</span>) {
-  <span class="kw">activateTikz</span>()
-  <span class="co"># другую тему для ggplot2 выставить?</span>
-}</code></pre></div>
-<p>Данная версия конспекта скомпилирована для html.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>) <span class="co"># графики</span>
-<span class="kw">library</span>(<span class="st">&quot;sandwich&quot;</span>) <span class="co"># оценка Var для гетероскедастичности</span>
-<span class="kw">library</span>(<span class="st">&quot;lmtest&quot;</span>) <span class="co"># тест Бройша-Пагана</span>
-<span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># манипуляции с данными</span>
-<span class="kw">library</span>(<span class="st">&quot;broom&quot;</span>) <span class="co"># преобразование всего и вся в стандартные таблички</span>
-<span class="kw">library</span>(<span class="st">&quot;data.table&quot;</span>) <span class="co"># манипуляции с данными</span>
-<span class="kw">library</span>(<span class="st">&quot;reshape2&quot;</span>) <span class="co"># преобразование длинных таблиц в широкие</span>
-<span class="kw">library</span>(<span class="st">&quot;tidyr&quot;</span>) <span class="co"># причесывание данных</span></code></pre></div>
+<div id="recall_all" class="section level1">
+<h1><span class="header-section-number">2</span> Вспомнить всё</h1>
 
 </div>
             </section>
@@ -228,8 +162,8 @@ if (outputFormat ==<span class="st"> &quot;latex&quot;</span>) {
           </div>
         </div>
       </div>
-
-<a href="ols-intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="ols-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ols-geometry.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

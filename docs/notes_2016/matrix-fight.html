@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.1.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="bdemeshev/em301" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+  
+<meta name="date" content="2016-10-06">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="ols-geometry.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Конспект по метрике - 2016</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О проекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="recall-all.html"><a href="recall-all.html"><i class="fa fa-check"></i><b>2</b> Вспомнить всё</a></li>
+<li class="chapter" data-level="3" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>3</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>3.1</b> Обозначения</a></li>
+<li class="chapter" data-level="3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>3.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>3.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>3.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>3.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>3.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-fight.html"><a href="matrix-fight.html"><i class="fa fa-check"></i><b>4</b> Борьба с матрицами</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrix_fight" class="section level1">
+<h1><span class="header-section-number">4</span> Борьба с матрицами</h1>
+<p>дата: 26 сентября 2016</p>
+<p>конспект: Вика Шрамова, Эд</p>
+<p>Семинар посвящен работе с матрицами - матричному дифференцированию и представлению многомерных случайных величин при помощи матриц.</p>
+<p>Перед тем как приступить к работе с матрицами, полезно повторить основные свойства операций над матрицами:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(A(B+C) = AB+ AC\)</span></li>
+<li><span class="math inline">\((A+B)^T=A^T + B^T\)</span></li>
+<li><span class="math inline">\((AB)^T = B^T A^T\)</span></li>
+<li><span class="math inline">\((AB)^{-1} = B^{-1} A^{-1}\)</span></li>
+<li><span class="math inline">\((A^{-1})^T = (A^T)^{-1}\)</span></li>
+</ol>
+<p>Производные следа и определителя:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(tr(AB)&#39;_A = B^T\)</span></p></li>
+<li><p><span class="math inline">\(det(A)&#39;_A = det(A) (A^{-1})^T\)</span></p></li>
+<li><p><span class="math inline">\((log det A(x) )&#39;_x = tr(A^{-1} A&#39;_x)\)</span></p></li>
+</ol>
+<p>След и определитель:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(det(AB) = det(A) det(B)\)</span></p></li>
+<li><p><span class="math inline">\(det(A^{-1})= 1/det(A)\)</span></p></li>
+<li><p><span class="math inline">\(det(A) = \prod_j \lambda_j\)</span></p></li>
+<li><p><span class="math inline">\(tr(A) = \sum_j A_{jj} = \sum_j \lambda_j\)</span></p></li>
+<li><p><span class="math inline">\(tr(ABC) = tr(BCA) = tr(CAB)\)</span></p></li>
+</ol>
+<p>Для начала напомним о разнице между одномерными и многомерными случайными величинами. Обозначим <span class="math inline">\(y\)</span> как случайный вектор <span class="math inline">\(\left( \begin{matrix}  y_1 \\  \vdots \\  y_n  \end{matrix} \right)\)</span>. Одномерную случайную величину будем обозначать маленькими латинскими буквами с индексами: <span class="math inline">\(y_1\)</span>.</p>
+
+<p><span class="math inline">\(Var(y)\)</span> = <span class="math inline">\(\left( \begin{matrix} Var(y_1) &amp; Cov (y_1,_2) &amp; \hdots Cov (y_1,_n) \\ \vdots &amp; \vdots &amp; \vdots \\ Cov(y_k,y_1) &amp; Var (y_k) &amp; \hdots Cov (y_k,y_n) \\ \vdots &amp; \vdots &amp; \vdots \\ Cov(y_n,y_1) &amp; Cov (y_n,_2) &amp; \hdots Var (y_n) \end{matrix} \right)\)</span></p>
+<p>Из такой записи ковариции векторов очевидно, что если в формуле ковариации поменять местами векторы, то их матрица ковариации будет являться транспонированной матрицой ковариации векторов в исходной последовательности. <span class="math inline">\(Cov(y,z) =Cov (z,y)ˆ{T}\)</span></p>
+<p><em>Упражнение</em></p>
+<p>Дана матрица <span class="math inline">\(A = \left( \begin{matrix}  2 &amp; 0 \\  1 &amp; 3\\  \end{matrix} \right)\)</span> и случайный вектор <span class="math inline">\(y = \left( \begin{matrix}  y_1 \\  y_2  \end{matrix} \right)\)</span> с матожиданием <span class="math inline">\(E(y) = \left( \begin{matrix}  2 \\  7  \end{matrix} \right)\)</span> и дисперсией <span class="math inline">\(Var(y) = \left( \begin{matrix}  3 &amp; 1 \\  1 &amp; 1  \end{matrix} \right)\)</span></p>
+<p>Требуется найти <span class="math inline">\(E(z), Var(z), Cov(y,z).\)</span></p>
+<p><em>Решение</em></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E(z) = A \cdot E(y) = \left( \begin{matrix}  2 &amp; 0 \\  1 &amp; 3\\  \end{matrix} \right)\)</span> <span class="math inline">\(\cdot\)</span> <span class="math inline">\(\left( \begin{matrix} 2 \\ 7  \end{matrix} \right)\)</span> = <span class="math inline">\(\left( \begin{matrix} 4 \\ 23  \end{matrix} \right)\)</span></p></li>
+<li><p><span class="math inline">\(Var(z)\)</span> = <span class="math inline">\(A \cdot Var(y) \cdot Aˆ{T}\)</span> = <span class="math inline">\(\left( \begin{matrix}  2 &amp; 0 \\  1 &amp; 3\\  \end{matrix} \right)\)</span> <span class="math inline">\(\cdot\)</span> <span class="math inline">\(\left( \begin{matrix}  3 &amp; 1 \\  1 &amp; 7\\  \end{matrix} \right)\)</span> <span class="math inline">\(\cdot\)</span> <span class="math inline">\(\left( \begin{matrix}  2 &amp; 1 \\  0 &amp; 3\\  \end{matrix} \right)\)</span> = <span class="math inline">\(\left( \begin{matrix}  12 &amp; 12 \\  12 &amp; 72\\  \end{matrix} \right)\)</span></p></li>
+<li><p><span class="math inline">\(t = Ay\)</span> = <span class="math inline">\(\left( \begin{matrix} 2y_1 \\ y_1 +3y_2  \end{matrix} \right)\)</span></p></li>
+<li><p><span class="math inline">\(Cov(y,z)\)</span> = <span class="math inline">\(\left( \begin{matrix} Cov (y_1, z_1) &amp; Cov (y_1,z_2) \\ Cov(y_2,z_1) &amp; Cov (y_1, z_2) \end{matrix} \right)\)</span> = <span class="math inline">\(Cov(y, Ay) = Cov(y,y) Aˆ{T}\)</span> = <span class="math inline">\(\left( \begin{matrix}  3 &amp; 1 \\  1 &amp; 7\\  \end{matrix} \right)\)</span> <span class="math inline">\(\cdot\)</span> <span class="math inline">\(\left( \begin{matrix}  2 &amp; 1 \\  0 &amp; 3\\  \end{matrix} \right)\)</span></p></li>
+</ol>
+<p><em>Упражнение</em></p>
+<p>Предположим, существует истинная зависимость <span class="math inline">\(y = X\beta +\varepsilon\)</span> между оцениваемыми величиными. При оценивании параметров модели МНК будут фигурировать следующие величины: <span class="math inline">\(y, \hat{y}, \varepsilon, \hat{\varepsilon}, \beta , \hat{\beta}\)</span>. Оценим все матожидания, дисперсии и ковариации указанных величин.</p>
+<p>Перед тем, как начать, необходимо сделать оговорку, что существуют две парадигмы исследования: 1) Предполагается, что матрица X является детерминированной. 2) Матрица X состоит из случайных величин.</p>
+<p>В ходе нашего курса мы будем работать со случайными X, однако пока будем считать, что матрица Х детерминирована.</p>
+<p><em>Решение</em></p>
+<p>Оценка <span class="math inline">\(\hat{\beta} = (X&#39;X)^{T} Xy\)</span>, <span class="math inline">\(\hat{\varepsilon} = y- \hat{y}\)</span>, <span class="math inline">\(\hat{y} =X\hat{\beta}\)</span></p>
+<ul>
+<li>Найдем матожидания:</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E(\beta) = beta,\)</span> так как <span class="math inline">\(\beta\)</span> – вектор неизвестных констант</p></li>
+<li><p><span class="math inline">\(E(\epsilon) = 0\)</span> (по предпосылкам МНК)</p></li>
+<li><p><span class="math inline">\(E(y) = E(X\beta + \epsilon) = XE(\beta) + E(\epsilon) = X\beta\)</span></p></li>
+<li><p><span class="math inline">\(E(\hat{y}) = E(X\hat{\beta}) = XE(\hat{\beta}) = XE((X^{&#39;}X)^{-1}X^{&#39;}y) = X(X^{&#39;}X)^{-1}X^{&#39;}E(y) = X(X^{&#39;}X)^{-1}X^{&#39;}X\beta = X\beta\)</span></p></li>
+<li><p><span class="math inline">\(E(\hat{\epsilon}) = E(y - \hat{y}) = E(y) - E(\hat{y}) = X\beta - X\beta = 0\)</span></p></li>
+<li><p><span class="math inline">\(E(\hat{\beta}) = (X^{&#39;}X)^{-1}X^{&#39;}E(y) = (X^{&#39;}X)^{-1}X^{&#39;}X\beta = \beta\)</span></p></li>
+</ol>
+<ul>
+<li>Найдем, к примеру, <span class="math inline">\(Cov(\epsilon, \hat{\beta})\)</span>:</li>
+</ul>
+<p><span class="math inline">\(Cov(\epsilon,\hat{\beta}) = Cov(\epsilon,(X^{&#39;}X)^{-1}X^{&#39;}y) = Cov(\epsilon,(X^{&#39;}X)^{-1}X^{&#39;}(X\beta+\epsilon)) = Cov(\epsilon,(X^{&#39;}X)^{-1}X^{&#39;}X\beta+(X^{&#39;}X)^{-1}X^{&#39;}\epsilon) = Cov(\epsilon,\epsilon)((X^{&#39;}X)^{-1}X^{&#39;})^{&#39;} = \sigma^{2}I((X^{&#39;}X)^{-1}X^{&#39;})^{&#39;} = \sigma^{2}X^{&#39;&#39;}((X^{&#39;}X)^{-1})^{&#39;} = \sigma^{2}X((X^{&#39;}X)^{&#39;})^{-1} = \sigma^{2}X(X^{&#39;}X)^{-1}\)</span></p>
+
+<p>Существует 2 традиции матричного дифференцирования, суть различия которых заключается в представлении вектора (матрицы) производной — в виде столбца или в виде строки. Основные различия представлены в следующей таблице:</p>
+<!-- \begin{table}[] -->
+
+
+
+<span class="math display">\[\begin{align}
+    \frac{\partial f}{\partial x} &amp;= \begin{pmatrix}
+           \dfrac{\partial f}{\partial x_{1}} \\
+           \dfrac{\partial f}{\partial x_{2}} \\
+           \vdots \\
+           \dfrac{\partial f}{\partial x_{n}}
+         \end{pmatrix}
+         \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+         \frac{\partial f}{\partial X} &amp;= \begin{pmatrix}
+          \dfrac{\partial f}{\partial x_{11}} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_{1k}} \\
+          \vdots &amp; &amp; \vdots \\
+          \dfrac{\partial f}{\partial x_{n1}} &amp; \cdots &amp; \dfrac{\partial f}{\partial x_{nk}}
+          \end{pmatrix}
+          \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+         \frac{\partial g}{\partial x} &amp;= \begin{pmatrix}
+          \dfrac{\partial g_{1}}{\partial x_{1}} &amp; \cdots &amp; \dfrac{\partial g_{k}}{\partial x_{1}} \\
+          \vdots &amp; &amp; \vdots \\
+          \dfrac{\partial g_{1}}{\partial x_{n}} &amp; \cdots &amp; \dfrac{\partial g_{k}}{\partial x_{n}}
+          \end{pmatrix}
+\end{align}\]</span>
+
+<ol style="list-style-type: decimal">
+<li><p>Если <span class="math inline">\(x\)</span> – вектор, <span class="math inline">\(f(x) = Ax\)</span>, то <span class="math inline">\(\dfrac{\partial f}{\partial x} = A^{&#39;}\)</span></p></li>
+<li><p>Если <span class="math inline">\(f(x) = x^{&#39;}Ax\)</span>, то <span class="math inline">\(\dfrac{\partial f}{\partial x} = (A + A^{&#39;})x\)</span></p></li>
+<li><p>Если <span class="math inline">\(f(X) = det(X)\)</span>, то <span class="math inline">\(\dfrac{\partial f}{\partial x} =det(X)(X^{-1})^{&#39;}\)</span></p></li>
+</ol>
+<p>Доказательство второго свойства и не только можно почитать <a href="http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf">здесь</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ols-geometry.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bdemeshev/em301/issues",
+"text": null
+},
+"download": [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
