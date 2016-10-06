@@ -66,12 +66,36 @@ site: bookdown::bookdown_site
 biblio-style: alphabetic
 ---
 
-# О проекте {-}
+# О конспекте {-}
 
 Метрика с R :)
 
+Напутствия:
 
-```{r "knitr options"}
+1. Идеальный конспект — интересный и без отклонений от здравомыслия. Примочки и пеночки нужны!
+
+1. Конспект одного семинара должен иметь одно заглавие уровня `#` и несколько, скажем от двух до пяти, подзаголовков уровня `##`.
+
+1. Помни об оформлении знаков препинания: после запятой есть пробел, а до запятой — нет. Существует длинное тире, `—`, которое отличается от просто дефиса `-`.
+
+1. Рисунки оформляй в открытом софте ([tex + tikz](http://www.computational-logic.org/content/study/master/documents/softskills_tikz.pdf), [inkscape](https://inkscape.org/en/), [graphviz](https://inkscape.org/en/), [geogebra](https://www.geogebra.org/), [draw.io](https://www.draw.io/) и прочее) и прикладывай к работе.
+
+1. Рисунки клади в подпапку `images`
+
+1. Соблюдай конвенцию о названиях файлов: файлы относящиеся к третьему семинару должны начинаться с `03_`, и сам конспект и рисунки.
+
+1. Никаких `здесь` и `тут` в ссылках. Текст, замещающий ссылку, должен быть осмысленным!
+
+1. Справка [про маркдаун](https://guides.github.com/features/mastering-markdown/).
+
+1. Справка [про тех от Воронцова](http://www.ccas.ru/voron/download/voron05latex.pdf).
+
+1. Посмотри, [как сделали другие](https://github.com/bdemeshev/em301/tree/master/2016/stud_notes), и сделай лучше! :)
+
+
+
+
+```{r, "knitr options", echo = FALSE}
 library("knitr")
 library("tikzDevice")
 
