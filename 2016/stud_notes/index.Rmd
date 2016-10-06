@@ -154,12 +154,9 @@ if (outputFormat == "latex") {
 
 
 ```{r, warning=FALSE, message=FALSE}
-library("ggplot2") # графики
+library("tidyverse") # ggplot2 for plots, dplyr for data manipulation, broom and more
 library("sandwich") # оценка Var для гетероскедастичности
 library("lmtest") # тест Бройша-Пагана
-library("dplyr") # манипуляции с данными
-library("broom") # преобразование всего и вся в стандартные таблички
 library("data.table") # манипуляции с данными
 library("reshape2") # преобразование длинных таблиц в широкие
-library("tidyr") # причесывание данных
 ```
