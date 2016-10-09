@@ -1,0 +1,281 @@
+# Доказательство свойств и оценка моделей. {#05_models_evaluation}
+
+конспект: Артём Калинин, Кирилл Улыбин
+
+дата: 9 сентября 2016
+
+
+### Пример из домашки
+Сначала разобрали пример из домашки прошлого семинара:
+
+Искали
+
+$cov(\hat{y}, \hat{\epsilon})=?$\
+$cov(\hat{y}, \hat{\epsilon})= cov(X\hat{\beta}, y - \hat{y})=cov(y-\hat{y}, X\hat{\beta})'=cov((I-\underbrace{X(X'X)^{-1}X'}_H)y ,    X(X'X)^{-1}X'y))'=$\
+$=((I-H)cov(y, y)(H)')'=(\sigma^{2}(IH-H))'=(\sigma^{2}(H-H))'=0$
+
+Интуитивное объяснение результата - предсказания не должны зависеть от ошибок. Например, если бы предсказания положительно зависели от ошибок, можно было бы сделать поправку в предсказании на известную величину ошибки. 
+
+Вспомогательно:
+
+H - матрица-шляпница! Почему?
+
+H*(любой вектор)=(его проекция)
+
+$Hy=\hat{y}$
+
+$H'=H$
+
+$H^{2}=X(X'X)^{-1}\underbrace{X'X(X'X)^{-1}}_IX'=H$
+
+###Упражнение 1
+Даны модель А: $y_i=\beta x_i + \epsilon_i$, модель B: $y_i = \beta_1+\beta_2 x_i + \epsilon_i$
+
+$\sum_{i=1}^n x_i=50$;$\sum_{i=1}^n x_iy_i=-50$; $\sum_{i=1}^n x_i^2=2000$; $\sum_{i=1}^n y_i=20$; $\sum_{i=1}^n y_i^2=500$; $n=100$
+
+Найти для модели B (для модели A - дома):
+
+$1)X-?$ $2)X'X-?$ $3)\hat{\beta}-?$ $4)Var(\hat{\beta})-?$ $5)X'y-?$
+
+Решение\
+1)$X$ =  $\left( \begin{matrix} 
+ 1 & x_1 \\
+ 1 & x_2 \\
+ \vdots & \vdots \\
+ 1 & x_n\\
+ \end{matrix} \right)$
+
+2)$X'$ = $\left( \begin{matrix} 
+ 1 & 1 & \dots & 1 \\
+ x_1 & x_2 & \dots & x_n \\
+ \end{matrix} \right)$
+
+$(X'X)$ = $\left( \begin{matrix} 
+ 1 & 1 & \dots & 1 \\
+ x_1 & x_2 & \dots & x_n \\
+ \end{matrix} \right)$ $\left( \begin{matrix} 
+ 1 & x_1 \\
+ 1 & x_2 \\
+ \vdots & \vdots \\
+ 1 & x_n\\
+ \end{matrix} \right)$=$\left( \begin{matrix} 
+ n & x_1+x_2+...x_n &\\
+ x_1+x_2+...+x_n & x_1^2+x_2^2+...+x_n^2 &\\
+ \end{matrix} \right)$=$\left( \begin{matrix} 
+ 100 & 50 &\\
+ 50 & 2000 &\\
+ \end{matrix} \right)$
+ 
+3)$X'y$=$\left( \begin{matrix} 
+ 1 & \dots & 1 &\\
+ x_1 & \dots & x_n &\\
+ \end{matrix} \right)$ $\left( \begin{matrix} 
+ y_1&\\
+ \vdots&\\
+ y_n&\\
+ \end{matrix} \right)$=$\left( \begin{matrix} 
+ \sum_{i=1}^n y_i &\\
+ \sum_{i=1}^n x_iy_i &\\
+ \end{matrix} \right)$=$\left( \begin{matrix} 
+ 20 \\
+ -50 \\
+ \end{matrix} \right)$
+ 
+4)$\hat{\beta}=(X'X)^{-1}X'y=\left( \begin{matrix} 
+ 100 & 50\\
+ 50 & 2000\\
+ \end{matrix} \right)^{-1}=\left( \begin{matrix} 
+ 20 \\
+ -50 \\
+ \end{matrix} \right)=\frac{1}{197500}\left( \begin{matrix} 
+ 2000 & -50\\
+ -50 & 100\\
+ \end{matrix} \right)\left( \begin{matrix} 
+ 20 \\
+ -50 \\
+ \end{matrix} \right)=\frac{1}{197500}\left( \begin{matrix} 
+ 42500 \\
+ -51000 \\
+ \end{matrix} \right)$
+ 
+5)$Var(\hat{\beta})=\sigma^2(X'X)^{-1}=\sigma^2*\frac{1}{197500}\left(\begin{matrix} 
+ 2000 & -50 \\
+ -50 & 100\\
+ \end{matrix} \right)$
+
+###Упражнение 2
+Доказать, что $Var(Ay)=AVar(y)A'$
+
+Напомним, что $Var(z) = \left(\begin{matrix} 
+ var(z_1) & cov(z1,z2) & \dots & cov(z_1,z_n) \\
+ \vdots & \vdots & \vdots & \vdots \\
+ cov(z_n, z_1) &\dots &\dots & var(z_n)\\
+ \end{matrix} \right)$
+
+Сначала докажем вспомогательные утверждения:
+
+а)$E(Ay)=AE(y)$\
+б)$E(zB)=E(z)B$\
+в)$Var(z)=E(zz') - E(z)E(z')$
+
+а)$E(Ay)=AE(y)$\
+Левая часть: $E(Ay)=Left_{ij} = E(\sum_{k=1}^s a_{ik}y_{kj})=\sum_{k=1}^s a_{ik}E(y_{kj})$\
+Правая часть: $AE(y) = Right_{ij}=\sum_{k=1}^s a_{ik}E(y_{kj})$
+
+б)$E(zB)=E(z)B$; Док-во такое же как в (а)
+
+в)$Var(z)=E(zz') - E(z)E(z')$\
+Левая часть: $Var(z) = Left_{ij}=cov(z_i,z_j)$\
+Правая часть: $Right_{ij}=E(zz')_{ij} - (E(z)E(z'))_{ij}=E(z_iz_j)-E(z_i)E(z_j)=cov(z_i,z_j)$
+
+$E(zz')= \left( \begin{matrix} 
+ E(z_1^2) & E(z_1z_2) & \dots & E(z_1z_n) \\
+ \vdots & \vdots & \vdots & \vdots\\
+ E(z_nz_1) & \dots & \dots & E(z_n^2)\\
+ \end{matrix} \right)$
+ 
+$E(z)E(z') = \left( \begin{matrix} 
+ E(z_1)E(z_1) & \dots & E(z_1)E(z_n) \\
+ \vdots & \vdots & \vdots \\
+ E(z_n)E(z_1) & \dots & E(z_n)E(z_n)\\
+ \end{matrix} \right)$
+
+Теперь вернемся к доказательству $Var(Ay)=AVar(y)A'$.
+
+$Var(Ay) = E(Ay(Ay)')-E(Ay)E((Ay)')=E(Ayy'A')-E(Ay)E(y'A')=AE(yy')A'-AE(y)E(y')A'=A(\underbrace{E(yy')-E(y)E(y'))}_{Var(y)}A'=AVar(y)A'$
+
+###Упражнение 3
+
+Дано $X_{n\times1}$, $A_{n\times n}$
+
+$f(A)_{1\times 1}=X'_{1\times n}A_{n\times n}X_{n\times 1}$
+
+Найти $\frac{\partial f}{\partial A}$, т.е. скаляр дифференцируем по каждому элементу матрицы А.
+
+Решение:
+
+$\frac{\partial f}{\partial A}_{ij}=\frac{\partial f}{\partial a_{ij}}$
+
+$X'A= \left( \begin{matrix} 
+ x_1 & x_2 &\dots & x_n \\
+ \end{matrix} \right) \left( \begin{matrix} 
+ a_{11} & a_{12}&\dots & a_{1n} \\
+ \vdots & \vdots & \vdots & \vdots\\
+ a_{n1} & \dots &\dots & a_{nn}
+ \end{matrix} \right) = \left( \begin{matrix} 
+ \sum_{i=1}^n x_ia_{i1} & \sum_{i=1}^n x_ia_{i2}& \dots & \sum_{i=1}^n x_ia_{in} \\
+ \end{matrix} \right)_{1\times n}$
+ 
+$X'AX = \left( \begin{matrix} 
+ \sum_{i=1}^n x_ia_{i1} & \sum_{i=1}^n x_ia_{i2}& \dots & \sum_{i=1}^n x_ia_{in} \\
+ \end{matrix} \right)\left( \begin{matrix} 
+ x_1 \\
+ x_2\\
+ \vdots\\
+ x_n\\
+ \end{matrix} \right)= \sum_{j=1}^n (x_j \sum_{i=1}^n x_i a_{ij})$
+ 
+Тогда можно переписать в виде:
+
+$f(A)= \sum_{j=1}^n (x_j \sum_{i=1}^n x_i a_{ij})= \sum_{i=1, j=1}^n x_ix_ja_{ij}$
+
+То есть $\frac{\partial f}{\partial A_{ij}}=x_ix_j$
+
+$\frac{\partial f}{\partial A}= \left( \begin{matrix} 
+ x_1^2 & x_1x_2 & \dots & x_1x_n\\
+ x_2x_1& x_2^2 & \dots & x_2x_n \\
+ \vdots & \vdots & \vdots & \vdots\\
+ x_nx_1& \dots & \dots & x_n^2\\
+ \end{matrix} \right)=XX'$
+
+### Упражнение 4. Оценим модель с помощью ML
+
+Пусть истинная зависимость $y = X\beta +\varepsilon$, причем
+$\varepsilon \sim N(0;\sigma^{2}I)$
+
+Всего n наблюдений и k регрессоров
+
+*Найти:*
+
+а) $\hat{\beta_{ML}}$, $\hat{\sigma^{2}_{ML}}$
+
+б) $E(\hat{\beta_{ML}})$, $E(\hat{\sigma}^{2}_{ML})$
+
+с) $Var(\hat{\beta_{ML}})$, $Var(\hat{\sigma}^{2}_{ML})$
+
+
+*Решение*
+
+а) Найдем ML оценки
+
+X и y известны, оцениваем $\beta = 
+  \left( \begin{matrix}
+    \beta_1 \\
+    \vdots \\
+    \beta_k 
+  \end{matrix} \right)$ и $\sigma^{2}$
+  
+Из $\varepsilon \sim N(0;\sigma^{2}I))$ и $y = X\beta +\varepsilon$ следует, что $y \sim N(X\beta;\sigma^{2}I)$
+
+Запишем формулу плотности многомерного нормального распределения:
+
+$p(y)=\frac{1}{\sqrt{(2\pi)^n}  \sqrt{det(\sigma^{2}I)}}e^{-\frac{1}{2}(y-X\beta)^{'}(\sigma^{2}I)^{-1}(y-X\beta)}$
+
+Для удобства логарифмируем и получим задачу максимизации фукции правдоподобия:
+
+$Q=ln(p(y))=-\frac{n}{2}ln(2\pi)-\frac{1}{2}ln(det(\sigma^{2}I))-\frac{1}{2}(y-X\beta)^{'}(\sigma^{2}I)^{-1}(y-X\beta) \rightarrow \max\limits_{\beta, \sigma^{2}}$
+
+Заметим, что первое слагаемое не влияет на решение задачи максимизации, а  $det(\sigma^{2}I)=\sigma^{2n}$
+
+
+
+$\frac{\partial Q}{\partial \beta}$:  $Q=-\frac{1}{2\sigma^{2}}(y^{'}-X^{'}\beta^{'})(y-X\beta)=-\frac{1}{2\sigma^{2}}(y^{'}y-\beta^{'}X^{'}y-y^{'}X\beta+\beta^{'}X^{'}X\beta)$
+
+ Заметим: $y^{'}X\beta$ - скаляр, причем  $(y^{'}X\beta)^{'}=\beta^{'}X^{'}y$, тогда можно записать в виде:
+
+$Q=-\frac{1}{2\sigma^{2}}(y^{'}y-2y^{'}X\beta+\beta^{'}X^{'}X\beta)$
+
+$\frac{\partial Q}{\partial \beta}=-\frac{1}{2\sigma^{2}}((-2y^{'}X)^{'}+(X^{'}X+(X^{'}X)^{-1})\hat{\beta})=0$
+
+$X^{'}X\hat{\beta}=X^{'}y$
+
+$\hat{\beta}=(X^{'}X)^{-1}X^{'}y$
+
+$\frac{\partial Q}{\partial \sigma^{2}}$: $Q=-\frac{n}{2}ln(\sigma^{2})-\frac{1}{2\sigma^{2}}(y-X\beta)^{'}(y-X\beta)$
+
+$\frac{\partial Q}{\partial \sigma^{2}}=\frac{n}{\hat{\sigma}^{2}}-\frac{(y-X\hat{\beta})^{'}(y-X\hat{\beta})}{\hat{\sigma}^{2}}$
+
+$\hat{\sigma}^{2}=\frac{(y-X\hat{\beta})^{'}(y-X\hat{\beta})}{n}$
+
+б) По свойству ML оценок: $E(\hat{\beta})=\beta$, $E(\hat{\sigma}^{2})=\sigma^{2}$
+
+с) Чтобы найти $Var(\hat{\beta_{ML}})$, $Var(\hat{\sigma}^{2}_{ML})$ посчитаем вторые производные:
+
+$\frac{\partial^2 Q}{\partial \beta^2}=-\frac{X^{'}X}{\sigma^{2}}$
+
+$\frac{\partial^2 Q}{\partial (\sigma^{2})^2}=\frac{n}{2(\sigma^{2})^2}-\frac{(y-X\hat{\beta})^{'}(y-X\hat{\beta})}{(\sigma^{2})^3}$
+
+$\frac{\partial^2 Q}{\partial \beta \partial \sigma^{2}}=-\frac{X^{'}(y-X\hat{\beta})}{(\sigma^{2})^{2}}=-\frac{X^{'}(y-(X^{'}X)^{-1}X^{'}Xy)}{(\sigma^{2})^{2}}=0$
+
+тогда Var
+  $\left( \begin{matrix}
+    \hat{\beta} \\
+    \hat{\sigma}^2 \\
+  \end{matrix} \right) = \left( \begin{matrix} 
+ -\frac{1}{n}\frac{\partial^2 Q}{\partial \beta^2} & 0 \\
+ 0 & -\frac{1}{n}\frac{\partial^2 Q}{\partial (\sigma^2)^2}\\
+ \end{matrix} \right)^{-1} = \left( \begin{matrix} 
+ \frac{n\sigma^2}{X'X} & 0 \\
+ 0 & 2(\sigma^2)^2\\
+ \end{matrix} \right)$
+
+### ДЗ
+1) В упражнении 1 сделать те же пункты для модели А
+2) Даны $A_{r\times s}$, $B_{s\times r}$\
+Записать через эти матрицы ( и их преобразования) сумму: $\sum_{i=1, j=1}^n a_{ij}b_{ij}=?$
+
+
+### Ссылки
+В [лекции 5 Бостонского университета](http://math.bu.edu/people/cgineste/classes/ma575/p/w5_1.pdf) подробнее изложено про матрицу-шляпницу и её свойста
+
+Да и [в целом курс Бостонского университета](http://math.bu.edu/people/cgineste/classes/ma575/w/index.html) хорош :) 

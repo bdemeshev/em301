@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.1.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="bdemeshev/em301" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+  
+<meta name="date" content="2016-10-09">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="matrix-fight.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Конспект по метрике - 2016</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О конспекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="recall-all.html"><a href="recall-all.html"><i class="fa fa-check"></i><b>2</b> Вспомнить всё</a></li>
+<li class="chapter" data-level="3" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>3</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>3.1</b> Обозначения</a></li>
+<li class="chapter" data-level="3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>3.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>3.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>3.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>3.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>3.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-fight.html"><a href="matrix-fight.html"><i class="fa fa-check"></i><b>4</b> Борьба с матрицами</a></li>
+<li class="chapter" data-level="5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html"><i class="fa fa-check"></i><b>5</b> Доказательство свойств и оценка моделей. {#05_models_evaluation}</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>5.0.1</b> Пример из домашки</a></li>
+<li class="chapter" data-level="5.0.2" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-1-1"><i class="fa fa-check"></i><b>5.0.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="5.0.3" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-2-1"><i class="fa fa-check"></i><b>5.0.3</b> Упражнение 2</a></li>
+<li class="chapter" data-level="5.0.4" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-3-1"><i class="fa fa-check"></i><b>5.0.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="5.0.5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-4.-----ml"><i class="fa fa-check"></i><b>5.0.5</b> Упражнение 4. Оценим модель с помощью ML</a></li>
+<li class="chapter" data-level="5.0.6" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>5.0.6</b> ДЗ</a></li>
+<li class="chapter" data-level="5.0.7" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#section-5.0.7"><i class="fa fa-check"></i><b>5.0.7</b> Ссылки</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="----.-05_models_evaluation" class="section level1">
+<h1><span class="header-section-number">5</span> Доказательство свойств и оценка моделей. {#05_models_evaluation}</h1>
+<p>конспект: Артём Калинин, Кирилл Улыбин</p>
+<p>дата: 9 сентября 2016</p>
+<div id="--" class="section level3">
+<h3><span class="header-section-number">5.0.1</span> Пример из домашки</h3>
+<p>Сначала разобрали пример из домашки прошлого семинара:</p>
+<p>Искали</p>
+<p><span class="math inline">\(cov(\hat{y}, \hat{\epsilon})=?\)</span><br />
+<span class="math inline">\(cov(\hat{y}, \hat{\epsilon})= cov(X\hat{\beta}, y - \hat{y})=cov(y-\hat{y}, X\hat{\beta})&#39;=cov((I-\underbrace{X(X&#39;X)^{-1}X&#39;}_H)y , X(X&#39;X)^{-1}X&#39;y))&#39;=\)</span><br />
+<span class="math inline">\(=((I-H)cov(y, y)(H)&#39;)&#39;=(\sigma^{2}(IH-H))&#39;=(\sigma^{2}(H-H))&#39;=0\)</span></p>
+<p>Интуитивное объяснение результата - предсказания не должны зависеть от ошибок. Например, если бы предсказания положительно зависели от ошибок, можно было бы сделать поправку в предсказании на известную величину ошибки.</p>
+<p>Вспомогательно:</p>
+<p>H - матрица-шляпница! Почему?</p>
+<p>H*(любой вектор)=(его проекция)</p>
+<p><span class="math inline">\(Hy=\hat{y}\)</span></p>
+<p><span class="math inline">\(H&#39;=H\)</span></p>
+<p><span class="math inline">\(H^{2}=X(X&#39;X)^{-1}\underbrace{X&#39;X(X&#39;X)^{-1}}_IX&#39;=H\)</span></p>
+</div>
+<div id="-1-1" class="section level3">
+<h3><span class="header-section-number">5.0.2</span> Упражнение 1</h3>
+<p>Даны модель А: <span class="math inline">\(y_i=\beta x_i + \epsilon_i\)</span>, модель B: <span class="math inline">\(y_i = \beta_1+\beta_2 x_i + \epsilon_i\)</span></p>
+<p><span class="math inline">\(\sum_{i=1}^n x_i=50\)</span>;<span class="math inline">\(\sum_{i=1}^n x_iy_i=-50\)</span>; <span class="math inline">\(\sum_{i=1}^n x_i^2=2000\)</span>; <span class="math inline">\(\sum_{i=1}^n y_i=20\)</span>; <span class="math inline">\(\sum_{i=1}^n y_i^2=500\)</span>; <span class="math inline">\(n=100\)</span></p>
+<p>Найти для модели B (для модели A - дома):</p>
+<p><span class="math inline">\(1)X-?\)</span> <span class="math inline">\(2)X&#39;X-?\)</span> <span class="math inline">\(3)\hat{\beta}-?\)</span> <span class="math inline">\(4)Var(\hat{\beta})-?\)</span> <span class="math inline">\(5)X&#39;y-?\)</span></p>
+<p>Решение<br />
+1)<span class="math inline">\(X\)</span> = <span class="math inline">\(\left( \begin{matrix}  1 &amp; x_1 \\  1 &amp; x_2 \\  \vdots &amp; \vdots \\  1 &amp; x_n\\  \end{matrix} \right)\)</span></p>
+<p>2)<span class="math inline">\(X&#39;\)</span> = <span class="math inline">\(\left( \begin{matrix}  1 &amp; 1 &amp; \dots &amp; 1 \\  x_1 &amp; x_2 &amp; \dots &amp; x_n \\  \end{matrix} \right)\)</span></p>
+<p><span class="math inline">\((X&#39;X)\)</span> = <span class="math inline">\(\left( \begin{matrix}  1 &amp; 1 &amp; \dots &amp; 1 \\  x_1 &amp; x_2 &amp; \dots &amp; x_n \\  \end{matrix} \right)\)</span> <span class="math inline">\(\left( \begin{matrix}  1 &amp; x_1 \\  1 &amp; x_2 \\  \vdots &amp; \vdots \\  1 &amp; x_n\\  \end{matrix} \right)\)</span>=<span class="math inline">\(\left( \begin{matrix}  n &amp; x_1+x_2+...x_n &amp;\\  x_1+x_2+...+x_n &amp; x_1^2+x_2^2+...+x_n^2 &amp;\\  \end{matrix} \right)\)</span>=<span class="math inline">\(\left( \begin{matrix}  100 &amp; 50 &amp;\\  50 &amp; 2000 &amp;\\  \end{matrix} \right)\)</span></p>
+<p>3)<span class="math inline">\(X&#39;y\)</span>=<span class="math inline">\(\left( \begin{matrix}  1 &amp; \dots &amp; 1 &amp;\\  x_1 &amp; \dots &amp; x_n &amp;\\  \end{matrix} \right)\)</span> <span class="math inline">\(\left( \begin{matrix}  y_1&amp;\\  \vdots&amp;\\  y_n&amp;\\  \end{matrix} \right)\)</span>=<span class="math inline">\(\left( \begin{matrix}  \sum_{i=1}^n y_i &amp;\\  \sum_{i=1}^n x_iy_i &amp;\\  \end{matrix} \right)\)</span>=<span class="math inline">\(\left( \begin{matrix}  20 \\  -50 \\  \end{matrix} \right)\)</span></p>
+<p>4)<span class="math inline">\(\hat{\beta}=(X&#39;X)^{-1}X&#39;y=\left( \begin{matrix}  100 &amp; 50\\  50 &amp; 2000\\  \end{matrix} \right)^{-1}=\left( \begin{matrix}  20 \\  -50 \\  \end{matrix} \right)=\frac{1}{197500}\left( \begin{matrix}  2000 &amp; -50\\  -50 &amp; 100\\  \end{matrix} \right)\left( \begin{matrix}  20 \\  -50 \\  \end{matrix} \right)=\frac{1}{197500}\left( \begin{matrix}  42500 \\  -51000 \\  \end{matrix} \right)\)</span></p>
+<p>5)<span class="math inline">\(Var(\hat{\beta})=\sigma^2(X&#39;X)^{-1}=\sigma^2*\frac{1}{197500}\left(\begin{matrix}  2000 &amp; -50 \\  -50 &amp; 100\\  \end{matrix} \right)\)</span></p>
+</div>
+<div id="-2-1" class="section level3">
+<h3><span class="header-section-number">5.0.3</span> Упражнение 2</h3>
+<p>Доказать, что <span class="math inline">\(Var(Ay)=AVar(y)A&#39;\)</span></p>
+<p>Напомним, что <span class="math inline">\(Var(z) = \left(\begin{matrix}  var(z_1) &amp; cov(z1,z2) &amp; \dots &amp; cov(z_1,z_n) \\  \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\  cov(z_n, z_1) &amp;\dots &amp;\dots &amp; var(z_n)\\  \end{matrix} \right)\)</span></p>
+<p>Сначала докажем вспомогательные утверждения:</p>
+<p>а)<span class="math inline">\(E(Ay)=AE(y)\)</span><br />
+б)<span class="math inline">\(E(zB)=E(z)B\)</span><br />
+в)<span class="math inline">\(Var(z)=E(zz&#39;) - E(z)E(z&#39;)\)</span></p>
+<p>а)<span class="math inline">\(E(Ay)=AE(y)\)</span><br />
+Левая часть: <span class="math inline">\(E(Ay)=Left_{ij} = E(\sum_{k=1}^s a_{ik}y_{kj})=\sum_{k=1}^s a_{ik}E(y_{kj})\)</span><br />
+Правая часть: <span class="math inline">\(AE(y) = Right_{ij}=\sum_{k=1}^s a_{ik}E(y_{kj})\)</span></p>
+<p>б)<span class="math inline">\(E(zB)=E(z)B\)</span>; Док-во такое же как в (а)</p>
+<p>в)<span class="math inline">\(Var(z)=E(zz&#39;) - E(z)E(z&#39;)\)</span><br />
+Левая часть: <span class="math inline">\(Var(z) = Left_{ij}=cov(z_i,z_j)\)</span><br />
+Правая часть: <span class="math inline">\(Right_{ij}=E(zz&#39;)_{ij} - (E(z)E(z&#39;))_{ij}=E(z_iz_j)-E(z_i)E(z_j)=cov(z_i,z_j)\)</span></p>
+<p><span class="math inline">\(E(zz&#39;)= \left( \begin{matrix}  E(z_1^2) &amp; E(z_1z_2) &amp; \dots &amp; E(z_1z_n) \\  \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\  E(z_nz_1) &amp; \dots &amp; \dots &amp; E(z_n^2)\\  \end{matrix} \right)\)</span></p>
+<p><span class="math inline">\(E(z)E(z&#39;) = \left( \begin{matrix}  E(z_1)E(z_1) &amp; \dots &amp; E(z_1)E(z_n) \\  \vdots &amp; \vdots &amp; \vdots \\  E(z_n)E(z_1) &amp; \dots &amp; E(z_n)E(z_n)\\  \end{matrix} \right)\)</span></p>
+<p>Теперь вернемся к доказательству <span class="math inline">\(Var(Ay)=AVar(y)A&#39;\)</span>.</p>
+<p><span class="math inline">\(Var(Ay) = E(Ay(Ay)&#39;)-E(Ay)E((Ay)&#39;)=E(Ayy&#39;A&#39;)-E(Ay)E(y&#39;A&#39;)=AE(yy&#39;)A&#39;-AE(y)E(y&#39;)A&#39;=A(\underbrace{E(yy&#39;)-E(y)E(y&#39;))}_{Var(y)}A&#39;=AVar(y)A&#39;\)</span></p>
+</div>
+<div id="-3-1" class="section level3">
+<h3><span class="header-section-number">5.0.4</span> Упражнение 3</h3>
+<p>Дано <span class="math inline">\(X_{n\times1}\)</span>, <span class="math inline">\(A_{n\times n}\)</span></p>
+<p><span class="math inline">\(f(A)_{1\times 1}=X&#39;_{1\times n}A_{n\times n}X_{n\times 1}\)</span></p>
+<p>Найти <span class="math inline">\(\frac{\partial f}{\partial A}\)</span>, т.е. скаляр дифференцируем по каждому элементу матрицы А.</p>
+<p>Решение:</p>
+<p><span class="math inline">\(\frac{\partial f}{\partial A}_{ij}=\frac{\partial f}{\partial a_{ij}}\)</span></p>
+<p><span class="math inline">\(X&#39;A= \left( \begin{matrix}  x_1 &amp; x_2 &amp;\dots &amp; x_n \\  \end{matrix} \right) \left( \begin{matrix}  a_{11} &amp; a_{12}&amp;\dots &amp; a_{1n} \\  \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\  a_{n1} &amp; \dots &amp;\dots &amp; a_{nn}  \end{matrix} \right) = \left( \begin{matrix}  \sum_{i=1}^n x_ia_{i1} &amp; \sum_{i=1}^n x_ia_{i2}&amp; \dots &amp; \sum_{i=1}^n x_ia_{in} \\  \end{matrix} \right)_{1\times n}\)</span></p>
+<p><span class="math inline">\(X&#39;AX = \left( \begin{matrix}  \sum_{i=1}^n x_ia_{i1} &amp; \sum_{i=1}^n x_ia_{i2}&amp; \dots &amp; \sum_{i=1}^n x_ia_{in} \\  \end{matrix} \right)\left( \begin{matrix}  x_1 \\  x_2\\  \vdots\\  x_n\\  \end{matrix} \right)= \sum_{j=1}^n (x_j \sum_{i=1}^n x_i a_{ij})\)</span></p>
+<p>Тогда можно переписать в виде:</p>
+<p><span class="math inline">\(f(A)= \sum_{j=1}^n (x_j \sum_{i=1}^n x_i a_{ij})= \sum_{i=1, j=1}^n x_ix_ja_{ij}\)</span></p>
+<p>То есть <span class="math inline">\(\frac{\partial f}{\partial A_{ij}}=x_ix_j\)</span></p>
+<p><span class="math inline">\(\frac{\partial f}{\partial A}= \left( \begin{matrix}  x_1^2 &amp; x_1x_2 &amp; \dots &amp; x_1x_n\\  x_2x_1&amp; x_2^2 &amp; \dots &amp; x_2x_n \\  \vdots &amp; \vdots &amp; \vdots &amp; \vdots\\  x_nx_1&amp; \dots &amp; \dots &amp; x_n^2\\  \end{matrix} \right)=XX&#39;\)</span></p>
+</div>
+<div id="-4.-----ml" class="section level3">
+<h3><span class="header-section-number">5.0.5</span> Упражнение 4. Оценим модель с помощью ML</h3>
+<p>Пусть истинная зависимость <span class="math inline">\(y = X\beta +\varepsilon\)</span>, причем <span class="math inline">\(\varepsilon \sim N(0;\sigma^{2}I)\)</span></p>
+<p>Всего n наблюдений и k регрессоров</p>
+<p><em>Найти:</em></p>
+<p>а) <span class="math inline">\(\hat{\beta_{ML}}\)</span>, <span class="math inline">\(\hat{\sigma^{2}_{ML}}\)</span></p>
+<p>б) <span class="math inline">\(E(\hat{\beta_{ML}})\)</span>, <span class="math inline">\(E(\hat{\sigma}^{2}_{ML})\)</span></p>
+<p>с) <span class="math inline">\(Var(\hat{\beta_{ML}})\)</span>, <span class="math inline">\(Var(\hat{\sigma}^{2}_{ML})\)</span></p>
+<p><em>Решение</em></p>
+<p>а) Найдем ML оценки</p>
+<p>X и y известны, оцениваем <span class="math inline">\(\beta =  \left( \begin{matrix}  \beta_1 \\  \vdots \\  \beta_k  \end{matrix} \right)\)</span> и <span class="math inline">\(\sigma^{2}\)</span></p>
+<p>Из <span class="math inline">\(\varepsilon \sim N(0;\sigma^{2}I))\)</span> и <span class="math inline">\(y = X\beta +\varepsilon\)</span> следует, что <span class="math inline">\(y \sim N(X\beta;\sigma^{2}I)\)</span></p>
+<p>Запишем формулу плотности многомерного нормального распределения:</p>
+<p><span class="math inline">\(p(y)=\frac{1}{\sqrt{(2\pi)^n} \sqrt{det(\sigma^{2}I)}}e^{-\frac{1}{2}(y-X\beta)^{&#39;}(\sigma^{2}I)^{-1}(y-X\beta)}\)</span></p>
+<p>Для удобства логарифмируем и получим задачу максимизации фукции правдоподобия:</p>
+<p><span class="math inline">\(Q=ln(p(y))=-\frac{n}{2}ln(2\pi)-\frac{1}{2}ln(det(\sigma^{2}I))-\frac{1}{2}(y-X\beta)^{&#39;}(\sigma^{2}I)^{-1}(y-X\beta) \rightarrow \max\limits_{\beta, \sigma^{2}}\)</span></p>
+<p>Заметим, что первое слагаемое не влияет на решение задачи максимизации, а <span class="math inline">\(det(\sigma^{2}I)=\sigma^{2n}\)</span></p>
+<p><span class="math inline">\(\frac{\partial Q}{\partial \beta}\)</span>: <span class="math inline">\(Q=-\frac{1}{2\sigma^{2}}(y^{&#39;}-X^{&#39;}\beta^{&#39;})(y-X\beta)=-\frac{1}{2\sigma^{2}}(y^{&#39;}y-\beta^{&#39;}X^{&#39;}y-y^{&#39;}X\beta+\beta^{&#39;}X^{&#39;}X\beta)\)</span></p>
+<p>Заметим: <span class="math inline">\(y^{&#39;}X\beta\)</span> - скаляр, причем <span class="math inline">\((y^{&#39;}X\beta)^{&#39;}=\beta^{&#39;}X^{&#39;}y\)</span>, тогда можно записать в виде:</p>
+<p><span class="math inline">\(Q=-\frac{1}{2\sigma^{2}}(y^{&#39;}y-2y^{&#39;}X\beta+\beta^{&#39;}X^{&#39;}X\beta)\)</span></p>
+<p><span class="math inline">\(\frac{\partial Q}{\partial \beta}=-\frac{1}{2\sigma^{2}}((-2y^{&#39;}X)^{&#39;}+(X^{&#39;}X+(X^{&#39;}X)^{-1})\hat{\beta})=0\)</span></p>
+<p><span class="math inline">\(X^{&#39;}X\hat{\beta}=X^{&#39;}y\)</span></p>
+<p><span class="math inline">\(\hat{\beta}=(X^{&#39;}X)^{-1}X^{&#39;}y\)</span></p>
+<p><span class="math inline">\(\frac{\partial Q}{\partial \sigma^{2}}\)</span>: <span class="math inline">\(Q=-\frac{n}{2}ln(\sigma^{2})-\frac{1}{2\sigma^{2}}(y-X\beta)^{&#39;}(y-X\beta)\)</span></p>
+<p><span class="math inline">\(\frac{\partial Q}{\partial \sigma^{2}}=\frac{n}{\hat{\sigma}^{2}}-\frac{(y-X\hat{\beta})^{&#39;}(y-X\hat{\beta})}{\hat{\sigma}^{2}}\)</span></p>
+<p><span class="math inline">\(\hat{\sigma}^{2}=\frac{(y-X\hat{\beta})^{&#39;}(y-X\hat{\beta})}{n}\)</span></p>
+<p>б) По свойству ML оценок: <span class="math inline">\(E(\hat{\beta})=\beta\)</span>, <span class="math inline">\(E(\hat{\sigma}^{2})=\sigma^{2}\)</span></p>
+<p>с) Чтобы найти <span class="math inline">\(Var(\hat{\beta_{ML}})\)</span>, <span class="math inline">\(Var(\hat{\sigma}^{2}_{ML})\)</span> посчитаем вторые производные:</p>
+<p><span class="math inline">\(\frac{\partial^2 Q}{\partial \beta^2}=-\frac{X^{&#39;}X}{\sigma^{2}}\)</span></p>
+<p><span class="math inline">\(\frac{\partial^2 Q}{\partial (\sigma^{2})^2}=\frac{n}{2(\sigma^{2})^2}-\frac{(y-X\hat{\beta})^{&#39;}(y-X\hat{\beta})}{(\sigma^{2})^3}\)</span></p>
+<p><span class="math inline">\(\frac{\partial^2 Q}{\partial \beta \partial \sigma^{2}}=-\frac{X^{&#39;}(y-X\hat{\beta})}{(\sigma^{2})^{2}}=-\frac{X^{&#39;}(y-(X^{&#39;}X)^{-1}X^{&#39;}Xy)}{(\sigma^{2})^{2}}=0\)</span></p>
+<p>тогда Var <span class="math inline">\(\left( \begin{matrix}  \hat{\beta} \\  \hat{\sigma}^2 \\  \end{matrix} \right) = \left( \begin{matrix}  -\frac{1}{n}\frac{\partial^2 Q}{\partial \beta^2} &amp; 0 \\  0 &amp; -\frac{1}{n}\frac{\partial^2 Q}{\partial (\sigma^2)^2}\\  \end{matrix} \right)^{-1} = \left( \begin{matrix}  \frac{n\sigma^2}{X&#39;X} &amp; 0 \\  0 &amp; 2(\sigma^2)^2\\  \end{matrix} \right)\)</span></p>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">5.0.6</span> ДЗ</h3>
+<ol style="list-style-type: decimal">
+<li>В упражнении 1 сделать те же пункты для модели А</li>
+<li>Даны <span class="math inline">\(A_{r\times s}\)</span>, <span class="math inline">\(B_{s\times r}\)</span><br />
+Записать через эти матрицы ( и их преобразования) сумму: <span class="math inline">\(\sum_{i=1, j=1}^n a_{ij}b_{ij}=?\)</span></li>
+</ol>
+</div>
+<div id="section-5.0.7" class="section level3">
+<h3><span class="header-section-number">5.0.7</span> Ссылки</h3>
+<p>В <a href="http://math.bu.edu/people/cgineste/classes/ma575/p/w5_1.pdf">лекции 5 Бостонского университета</a> подробнее изложено про матрицу-шляпницу и её свойста</p>
+<p>Да и <a href="http://math.bu.edu/people/cgineste/classes/ma575/w/index.html">в целом курс Бостонского университета</a> хорош :)</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matrix-fight.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bdemeshev/em301/issues",
+"text": null
+},
+"download": [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
