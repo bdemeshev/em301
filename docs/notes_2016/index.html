@@ -26,7 +26,7 @@
 <meta name="author" content="Студенты ИП и Борис Демешев">
 
   
-<meta name="date" content="2016-10-06">
+<meta name="date" content="2016-10-09">
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -156,7 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Конспект семинаров по метрике-2016</h1>
 <h4 class="author"><em>Студенты ИП и Борис Демешев</em></h4>
-<h4 class="date"><em>2016-10-06</em></h4>
+<h4 class="date"><em>2016-10-09</em></h4>
 </div>
 <div id="-" class="section level1 unnumbered">
 <h1>О конспекте</h1>
@@ -164,15 +164,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Напутствия:</p>
 <ol style="list-style-type: decimal">
 <li><p>Идеальный конспект — интересный и без отклонений от здравомыслия. Примочки и пеночки нужны!</p></li>
-<li><p>Конспект одного семинара должен иметь одно заглавие уровня <code>#</code> и несколько, скажем от двух до пяти, подзаголовков уровня <code>##</code>.</p></li>
+<li><p>Конспект одного семинара должен иметь одно заглавие уровня <code>#</code> и несколько, скажем от двух до пяти, подзаголовков уровня <code>##</code>. После «решёточек» должен идти пробел. После заголовка должен стоять краткий английский уникальный идентификатор, например, <code>{#04_matrix_algebra}</code>.</p></li>
 <li><p>Помни об оформлении знаков препинания: после запятой есть пробел, а до запятой — нет. Существует длинное тире, <code>—</code>, которое отличается от просто дефиса <code>-</code>.</p></li>
 <li><p>Рисунки оформляй в открытом софте (<a href="http://www.computational-logic.org/content/study/master/documents/softskills_tikz.pdf">tex + tikz</a>, <a href="https://inkscape.org/en/">inkscape</a>, <a href="https://inkscape.org/en/">graphviz</a>, <a href="https://www.geogebra.org/">geogebra</a>, <a href="https://www.draw.io/">draw.io</a> и прочее) и прикладывай к работе.</p></li>
 <li><p>Рисунки клади в подпапку <code>images</code></p></li>
-<li><p>Соблюдай конвенцию о названиях файлов: файлы относящиеся к третьему семинару должны начинаться с <code>03_</code>, и сам конспект и рисунки.</p></li>
+<li><p>Соблюдай конвенцию о названиях файлов: файлы относящиеся к третьему семинару должны начинаться с <code>03_</code>, и сам конспект и рисунки. Имена файлов не должны содержать русских букв и пробелов.</p></li>
 <li><p>Никаких <code>здесь</code> и <code>тут</code> в ссылках. Текст, замещающий ссылку, должен быть осмысленным!</p></li>
-<li><p>Справка <a href="https://guides.github.com/features/mastering-markdown/">про маркдаун</a>.</p></li>
-<li><p>Справка <a href="http://www.ccas.ru/voron/download/voron05latex.pdf">про тех от Воронцова</a>.</p></li>
-<li><p>Посмотри, <a href="https://github.com/bdemeshev/em301/tree/master/2016/stud_notes">как сделали другие</a>, и сделай лучше! :)</p></li>
+<li><p>Немного <a href="https://guides.github.com/features/mastering-markdown/">про маркдаун</a>.</p></li>
+<li><p>Немного <a href="http://www.ccas.ru/voron/download/voron05latex.pdf">про тех от Воронцова</a>.</p></li>
+<li><p>Посмотри, <a href="https://github.com/bdemeshev/em301/tree/master/2016/stud_notes">как сделали конспект другие</a>, и сделай лучше! :) Обрати внимание на название .Rmd файлов, на структуру внутри .Rmd файлов.</p></li>
+<li><p>Каждый кусок кода должен иметь уникальное название, например, <code>{r, &quot;plotting_histogram&quot;}</code></p></li>
+<li><p>Уважай букву <code>ё</code> – ставь над ней точки! :)</p></li>
 </ol>
 <p>Данная версия конспекта скомпилирована для html.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># ggplot2 for plots, dplyr for data manipulation, broom and more</span>

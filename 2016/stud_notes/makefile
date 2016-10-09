@@ -4,6 +4,7 @@ preclean:
 	export LC_ALL=en_US.UTF-8
 	export LC_CTYPE=en_US.UTF-8
 	rm -rf `biber --cache`
+	-rm -rfv _book
 	-rm stud_notes.run.xml
 	-rm stud_notes.Rmd
 
@@ -37,7 +38,7 @@ deploy:
 	Rscript -e 'bookdown::publish_book(render="local", account="bdemeshev")'
 	# what the hell?
 
-moveto_docs:
+copy:
 	-rm -rfv ../../docs/notes_2016
 	cp -rfv _book ../../docs/notes_2016
 
