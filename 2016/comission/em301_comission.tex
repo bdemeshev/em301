@@ -1,0 +1,125 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ}
+%\renewcommand{\theenumi}{\asbuk{enumi}}
+\renewcommand{\theenumii}{\asbuk{enumii}}
+
+
+% \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, комиссия}
+\chead{}
+\rhead{10.10.2016}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\hVar}{\widehat{\mathbb{V}ar}}
+\newcommand{\hb}{\hat\beta}
+\newcommand{\hs}{\hat\sigma}
+
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+
+\begin{document}
+
+
+
+\begin{enumerate}
+\item Пусть $y_i = \beta_1 + \beta_2 x_i + \varepsilon_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 100, \sum_{i=1}^5 x_i^2 = 100, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3.$
+
+\begin{enumerate}
+\item Найдите $\hat{\beta_1}$ и $\hat{\beta_2}$
+\item Найдите $TSS$, $ESS$, $RSS$ и $R^2$
+\item Предполагая нормальность случайной составляющей проверьте на уровне значимости 5\% гипотезу $H_0$: $\beta_2 = 0$.
+\end{enumerate}
+
+
+\item Домохозяйка Глаша очень любит читать романы Л.Н.~Толстого и смотреть сериалы. Её сын Петя учится на третьем курсе ВШЭ.  Последние 30 дней он записывал, сколько Глаша прочитала страниц «Анны Карениной», $pages_t$, и посмотрела серий «Доктора Хауса», $series_t$. На основании этих наблюдений при помощи МНК Петя оценил следующую модель:
+
+\[
+\widehat{pages}_t=200-3series_t
+\]
+
+Оценка ковариационной матрицы коэффициентов,
+$\hVar(\hb) = \begin{pmatrix}
+11 & 1 \\
+1 & 2 \\
+\end{pmatrix}$
+
+Оценка дисперсии ошибок равна $\hs^2=323$.
+
+Завтра Глаша собирается посмотреть 10 серий «Доктора Хауса».
+
+\begin{enumerate}
+\item Постройте точечный прогноз количества прочитанных Глашей страниц романа
+\item Постройте 95\%-ый доверительный интервал для $\E(pages_t |series_t=10)$, ожидаемого количества прочитанных страниц
+\item	Постройте 95\%-ый предиктивный интервал для фактического количества прочитанных страниц
+\end{enumerate}
+
+
+\item В модели $y_i = \beta_1 + \beta_2 x_i + u_i$ выполнены все предпосылки теоремы Гаусса-Маркова кроме одной, а именно, $\Var(u_i) = i^2 \sigma^2$.
+\begin{enumerate}
+  \item Какими свойствами будут обладать обычные МНК-оценки в этой модели?
+  \item Подробно опишите, какой метод разумно применить в этой задаче помимо обычного МНК. Какими свойствами будут обладать оценки этого метода? Если метод требует построения регрессий, то подробно опишите, как выглядит вектор зависимых переменных и матрица регрессоров в каждой оцениваемой регрессии.
+\end{enumerate}
+
+
+
+\item Сформулируйте логит-модель. Опишите метод, которым оцениваются коэффициенты в логит-модели. Явно выпишите целевую функцию. Опишите как оцениваются стандартные ошибки коэффициентов в логит-модели.
+
+
+\end{enumerate}
+
+\end{document}
