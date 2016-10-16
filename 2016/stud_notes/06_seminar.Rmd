@@ -82,7 +82,7 @@ _объявление публикуется на правах рекламы_
 \hat{\sigma^2} = \dfrac{(y -X\hat{\beta})'(y-X\hat{\beta})}{n}
 \]
 
-Теперь вспоминаем, что \(\hat{y} = X\hat{\beta} \), \(\hat{\epsilon} = y - \hat{y} \), а \(\hat{\epsilon}'\hat{\epsilon} = RSS\), откуда:
+Теперь вспоминаем, что \(\hat{y} = X\hat{\beta} \), \(\hat{\varepsilon} = y - \hat{y} \), а \(\hat{\varepsilon}'\hat{\varepsilon} = RSS\), откуда:
 
 \[
 \hat{\sigma^2} = \dfrac{RSS}{n} 
@@ -195,7 +195,7 @@ H' = H
 
 * \(\mathbb{E}(yy')_{n\times n} =\) ?, можно найти из \(Var(y) = \mathbb{E}(yy') - \mathbb{E}(y)\mathbb{E}(y')\)
 * \(Var(y) = \sigma^2 I\ \)
-* \(\mathbb{E}(y)\mathbb{E}(y') = X\beta \beta'X' \), т.к. \(y = X\beta + \epsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\epsilon) = X\beta \)
+* \(\mathbb{E}(y)\mathbb{E}(y') = X\beta \beta'X' \), т.к. \(y = X\beta + \varepsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\varepsilon) = X\beta \)
 * \(\Rightarrow  \mathbb{E}(yy') = \sigma^2 I + (X\beta \beta' X')_{n \times n}\)
 
 
@@ -231,10 +231,10 @@ H' = H
 
 
 \[ 
-= (n-k)\sigma^2 = RSS 
+= (n-k)\sigma^2 = E(RSS)
 \]
 
-Наконец-то мы посчитали $RSS$. Теперь ясно, что оценка дисперсии параметра $\beta$ методом максимального правдоподобия --- смещенная!
+Наконец-то мы посчитали $E(RSS)$. Теперь ясно, что оценка дисперсии случайной ошибки $\varepsilon_i$ методом максимального правдоподобия --- смещенная!
 
 \[
 \mathbb{E} (\hat{\sigma}^2_{ML}) = \dfrac{n-k}{n} \sigma^2 \ne \sigma^2 
@@ -256,9 +256,9 @@ H' = H
 
 1. Найти как распределено $\dfrac{RSS}{\sigma^2}$
 
-2. Посчитать руками $H$, $I-H$, $rk(H)$, $rk(I-H)$, $tr(H)$, $tr(I-H)$, найти закон распределения $\dfrac{\epsilon'H\epsilon}{\sigma^2}$, $\dfrac{\epsilon'(I-H)\epsilon}{\sigma^2}$,  $\dfrac{y'(I-H)y}{\sigma^2}$ и $\dfrac{RSS}{\sigma^2}$ если известно, что 
+2. Посчитать руками $H$, $I-H$, $rk(H)$, $rk(I-H)$, $tr(H)$, $tr(I-H)$, найти закон распределения $\dfrac{\varepsilon'H\varepsilon}{\sigma^2}$, $\dfrac{\varepsilon'(I-H)\varepsilon}{\sigma^2}$,  $\dfrac{y'(I-H)y}{\sigma^2}$ и $\dfrac{RSS}{\sigma^2}$ если известно, что 
 
 \[
-X = \left( \begin{matrix} 1 & 0.1 \\ 1 & 0.2 \\ 1 & 0.3 \end{matrix} \right), \quad y = X\beta + \epsilon, \quad \epsilon \sim \mathbb{N}(0, \sigma^2 I)
+X = \left( \begin{matrix} 1 & 0.1 \\ 1 & 0.2 \\ 1 & 0.3 \end{matrix} \right), \quad y = X\beta + \varepsilon, \quad \varepsilon \sim \mathbb{N}(0, \sigma^2 I)
 \]
 

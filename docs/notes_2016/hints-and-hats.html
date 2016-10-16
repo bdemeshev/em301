@@ -232,7 +232,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 \]</span> <span class="math display">\[
 \hat{\sigma^2} = \dfrac{(y -X\hat{\beta})&#39;(y-X\hat{\beta})}{n}
 \]</span></p>
-<p>Теперь вспоминаем, что <span class="math inline">\(\hat{y} = X\hat{\beta} \)</span>, <span class="math inline">\(\hat{\epsilon} = y - \hat{y} \)</span>, а <span class="math inline">\(\hat{\epsilon}&#39;\hat{\epsilon} = RSS\)</span>, откуда:</p>
+<p>Теперь вспоминаем, что <span class="math inline">\(\hat{y} = X\hat{\beta} \)</span>, <span class="math inline">\(\hat{\varepsilon} = y - \hat{y} \)</span>, а <span class="math inline">\(\hat{\varepsilon}&#39;\hat{\varepsilon} = RSS\)</span>, откуда:</p>
 <p><span class="math display">\[
 \hat{\sigma^2} = \dfrac{RSS}{n} 
 \]</span></p>
@@ -311,7 +311,7 @@ H&#39; = H
 <ul>
 <li><span class="math inline">\(\mathbb{E}(yy&#39;)_{n\times n} =\)</span> ?, можно найти из <span class="math inline">\(Var(y) = \mathbb{E}(yy&#39;) - \mathbb{E}(y)\mathbb{E}(y&#39;)\)</span></li>
 <li><span class="math inline">\(Var(y) = \sigma^2 I\ \)</span></li>
-<li><span class="math inline">\(\mathbb{E}(y)\mathbb{E}(y&#39;) = X\beta \beta&#39;X&#39; \)</span>, т.к. <span class="math inline">\(y = X\beta + \epsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\epsilon) = X\beta \)</span></li>
+<li><span class="math inline">\(\mathbb{E}(y)\mathbb{E}(y&#39;) = X\beta \beta&#39;X&#39; \)</span>, т.к. <span class="math inline">\(y = X\beta + \varepsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\varepsilon) = X\beta \)</span></li>
 <li><span class="math inline">\(\Rightarrow \mathbb{E}(yy&#39;) = \sigma^2 I + (X\beta \beta&#39; X&#39;)_{n \times n}\)</span></li>
 </ul>
 <p><span class="math display">\[
@@ -339,9 +339,9 @@ H&#39; = H
 \end{cases} 
 \]</span></p>
 <p><span class="math display">\[ 
-= (n-k)\sigma^2 = RSS 
+= (n-k)\sigma^2 = E(RSS)
 \]</span></p>
-<p>Наконец-то мы посчитали <span class="math inline">\(RSS\)</span>. Теперь ясно, что оценка дисперсии параметра <span class="math inline">\(\beta\)</span> методом максимального правдоподобия — смещенная!</p>
+<p>Наконец-то мы посчитали <span class="math inline">\(E(RSS)\)</span>. Теперь ясно, что оценка дисперсии случайной ошибки <span class="math inline">\(\varepsilon_i\)</span> методом максимального правдоподобия — смещенная!</p>
 <p><span class="math display">\[
 \mathbb{E} (\hat{\sigma}^2_{ML}) = \dfrac{n-k}{n} \sigma^2 \ne \sigma^2 
 \]</span></p>
@@ -359,10 +359,10 @@ H&#39; = H
 <h2><span class="header-section-number">6.3</span> Домашка</h2>
 <ol style="list-style-type: decimal">
 <li><p>Найти как распределено <span class="math inline">\(\dfrac{RSS}{\sigma^2}\)</span></p></li>
-<li><p>Посчитать руками <span class="math inline">\(H\)</span>, <span class="math inline">\(I-H\)</span>, <span class="math inline">\(rk(H)\)</span>, <span class="math inline">\(rk(I-H)\)</span>, <span class="math inline">\(tr(H)\)</span>, <span class="math inline">\(tr(I-H)\)</span>, найти закон распределения <span class="math inline">\(\dfrac{\epsilon&#39;H\epsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{\epsilon&#39;(I-H)\epsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{y&#39;(I-H)y}{\sigma^2}\)</span> и <span class="math inline">\(\dfrac{RSS}{\sigma^2}\)</span> если известно, что</p></li>
+<li><p>Посчитать руками <span class="math inline">\(H\)</span>, <span class="math inline">\(I-H\)</span>, <span class="math inline">\(rk(H)\)</span>, <span class="math inline">\(rk(I-H)\)</span>, <span class="math inline">\(tr(H)\)</span>, <span class="math inline">\(tr(I-H)\)</span>, найти закон распределения <span class="math inline">\(\dfrac{\varepsilon&#39;H\varepsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{\varepsilon&#39;(I-H)\varepsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{y&#39;(I-H)y}{\sigma^2}\)</span> и <span class="math inline">\(\dfrac{RSS}{\sigma^2}\)</span> если известно, что</p></li>
 </ol>
 <p><span class="math display">\[
-X = \left( \begin{matrix} 1 &amp; 0.1 \\ 1 &amp; 0.2 \\ 1 &amp; 0.3 \end{matrix} \right), \quad y = X\beta + \epsilon, \quad \epsilon \sim \mathbb{N}(0, \sigma^2 I)
+X = \left( \begin{matrix} 1 &amp; 0.1 \\ 1 &amp; 0.2 \\ 1 &amp; 0.3 \end{matrix} \right), \quad y = X\beta + \varepsilon, \quad \varepsilon \sim \mathbb{N}(0, \sigma^2 I)
 \]</span></p>
 
 </div>
