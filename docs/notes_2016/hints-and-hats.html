@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.1.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="bdemeshev/em301" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+  
+<meta name="date" content="2016-10-16">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="-05-models-evaluation.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Конспект по метрике - 2016</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О конспекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="recall-all.html"><a href="recall-all.html"><i class="fa fa-check"></i><b>2</b> Вспомнить всё</a></li>
+<li class="chapter" data-level="3" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>3</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>3.1</b> Обозначения</a></li>
+<li class="chapter" data-level="3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>3.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>3.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>3.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>3.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>3.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-fight.html"><a href="matrix-fight.html"><i class="fa fa-check"></i><b>4</b> Борьба с матрицами</a></li>
+<li class="chapter" data-level="5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html"><i class="fa fa-check"></i><b>5</b> Доказательство свойств и оценка моделей. {#05_models_evaluation}</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>5.0.1</b> Пример из домашки</a></li>
+<li class="chapter" data-level="5.0.2" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-1-1"><i class="fa fa-check"></i><b>5.0.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="5.0.3" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-2-1"><i class="fa fa-check"></i><b>5.0.3</b> Упражнение 2</a></li>
+<li class="chapter" data-level="5.0.4" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-3-1"><i class="fa fa-check"></i><b>5.0.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="5.0.5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-4.-----ml"><i class="fa fa-check"></i><b>5.0.5</b> Упражнение 4. Оценим модель с помощью ML</a></li>
+<li class="chapter" data-level="5.0.6" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>5.0.6</b> ДЗ</a></li>
+<li class="chapter" data-level="5.0.7" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#section-5.0.7"><i class="fa fa-check"></i><b>5.0.7</b> Ссылки</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hints-and-hats.html"><a href="hints-and-hats.html"><i class="fa fa-check"></i><b>6</b> Статистические свойства RSS</a><ul>
+<li class="chapter" data-level="6.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#problem1"><i class="fa fa-check"></i><b>6.1</b> Упражнение 1</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_exp_value"><i class="fa fa-check"></i><b>6.1.1</b> Матожидание оценки</a></li>
+<li class="chapter" data-level="6.1.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_var"><i class="fa fa-check"></i><b>6.1.2</b> Дисперсия оценки</a></li>
+<li class="chapter" data-level="6.1.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#trivial_hints"><i class="fa fa-check"></i><b>6.1.3</b> Тривиальщина, которая здорово упрощает жизнь</a></li>
+<li class="chapter" data-level="6.1.4" data-path="hints-and-hats.html"><a href="hints-and-hats.html#hat_matrix"><i class="fa fa-check"></i><b>6.1.4</b> Магические свойства “матрицы-шляпницы”</a></li>
+<li class="chapter" data-level="6.1.5" data-path="hints-and-hats.html"><a href="hints-and-hats.html#eigenvalue"><i class="fa fa-check"></i><b>6.1.5</b> Собственные числа</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#theorem"><i class="fa fa-check"></i><b>6.2</b> Теорема</a></li>
+<li class="chapter" data-level="6.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#home_tasks"><i class="fa fa-check"></i><b>6.3</b> Домашка</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hints_and_hats" class="section level1">
+<h1><span class="header-section-number">6</span> Статистические свойства RSS</h1>
+<ul>
+<li>Датa <strong>10/10/16</strong></li>
+<li>Конспект: <strong>Мария Такташева, Алексей Панков</strong></li>
+</ul>
+<blockquote>
+<p>Главный спонсор этого семинара – Алеся Бердникович, которая все решила дома.</p>
+</blockquote>
+<p><em>объявление публикуется на правах рекламы</em></p>
+<div id="problem1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Упражнение 1</h2>
+<p>Найти матожидание и дисперсию оценки параметра <span class="math inline">\(\hat{\beta}\)</span> методом максимального правдоподобия. Для этого построим функцию правдоподобия: <span class="math display">\[ Q = \ln p(y)  = - \dfrac{n}{2} \ln 2 \pi - \dfrac{1}{2} \ln \det\left(\sigma^2 I\right) - \dfrac{1}{2} (y - X\beta)&#39; (\sigma^2 I)^{-1} (y - X \beta) \rightarrow \max_{\hat{\beta}, \hat{\sigma^2}} \]</span></p>
+<div id="beta_exp_value" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Матожидание оценки</h3>
+<p>Продифференцируем функцию правдоподобия по <span class="math inline">\(\hat{\beta}\)</span>, чтобы найти оценку ML параметра <span class="math inline">\(\beta\)</span></p>
+<span class="math display">\[\begin{align} 
+\dfrac{\partial Q}{\partial \hat{\beta}} = \dfrac{\partial}{\partial \hat{\beta}}
+\left[ -\dfrac{1}{2} \left(y - X\hat{\beta} \right)&#39;\left(\sigma^2 I\right)^{-1}\left(y- X\hat{\beta} \right) \right] = 
+-\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[\left(y&#39; - \hat{\beta}&#39;X&#39;\right)\left(y - X\hat{\beta}\right)\right] = \\
+= -\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[ y&#39;y -\hat{\beta}&#39;X&#39;y - y&#39;X\hat{\beta} - \hat{\beta}X&#39;X\hat{\beta} \right] = 0
+\end{align}\]</span>
+<p>А теперь заметим, что это выражение состоит из скаляров. И действительно:</p>
+<ul>
+<li><span class="math inline">\(y&#39;y = y&#39;_{1 \times n} \times y_{n \times 1} = y&#39;y_{1 \times 1} \)</span></li>
+<li><span class="math inline">\(\hat{\beta}&#39;X&#39;y = \hat{\beta}&#39;_{1\times k} \times X&#39;_{k \times n} \times y_{n \times 1} = \hat{\beta}&#39;X&#39;y_{1 \times 1} \)</span></li>
+<li><span class="math inline">\(y&#39;X\hat{\beta} = y&#39;_{1 \times n} \times X_{n \times k} \times \hat{\beta}_{k \times 1} = y&#39;X\hat{\beta}_{1 \times 1} \)</span></li>
+<li>ну и без лишних подробностей <span class="math inline">\(\hat{\beta}&#39;X&#39;X\hat{\beta}_{1 \times 1} \)</span></li>
+</ul>
+<p>При этом известно, что если матрица <span class="math inline">\(A = A_{1 \times 1}\)</span> — скаляр, то <span class="math inline">\(A&#39;= A\)</span>. Значит <span class="math display">\[ \hat{\beta}&#39;X&#39;y = \left( y&#39;X\hat{\beta} \right)&#39; = y&#39;X\hat{\beta} \]</span> и выражение выше принимает вид <span class="math display">\[ -\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[ y&#39;y -\hat{\beta}&#39;X&#39;y - 2\hat{\beta}X&#39;X\hat{\beta} \right]  = 0 \]</span></p>
+Вспомнив некоторые правила матричного дифференцирования, можно прийти к виду:
+<span class="math display">\[\begin{align} 
+-\dfrac{1}{2\sigma^2 I} \left[ -2X&#39;y + X&#39;X\hat{\beta} + \left(X&#39;X\right)&#39;\hat{\beta} \right] = 
+\nonumber \\ = 
+-\dfrac{1}{2\sigma^2 I} \left[ -2X&#39;y + 2X&#39;X \hat{\beta} \right] = 0 
+\end{align}\]</span>
+<p>Для тех, кто не помнит, <a href="http://www.atmos.washington.edu/~dennis/MatrixCalculus.pdf">как работать с матрицами</a> <span class="math display">\[ \dfrac{\partial}{\partial x} x&#39;Ax = \left(A&#39; + A \right) \]</span> <span class="math display">\[ \dfrac{\partial}{\partial x} x&#39;A = A \]</span> <span class="math display">\[ \dfrac{\partial}{\partial x} Ax = A&#39; \]</span></p>
+<hr />
+<p>В итоге мы получаем оценку <span class="math inline">\(\hat{\beta}_{ML} = \left(X&#39;X\right)^{-1}X&#39;y\)</span>, которая совпадает с оценкой <span class="math inline">\(\hat{\beta}_{OLS}\)</span>, построенной методом наименьших квадратов.</p>
+</div>
+<div id="beta_var" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Дисперсия оценки</h3>
+<p>До того как мы будем искать производную функции правдоподобия, неплохо бы заметить, что из-за свойств определителя диагональной матрицы</p>
+<hr />
+<p><span class="math display">\[
+\det\left(\sigma^2 I\right) = \left(\sigma^2\right)^n
+\]</span></p>
+Зная этот хинт, можно дифференцировать функцию правдоподобия по <span class="math inline">\(\hat{\sigma^2}\)</span>:
+<span class="math display">\[\begin{align}
+\dfrac{\partial Q}{\partial \hat{\sigma^2}} = \dfrac{1}{2} \left(y -X\hat{\beta}\right)&#39;\left(y-X\hat{\beta}\right)\cdot \dfrac{1}{(\hat{\sigma^2})^2} - \dfrac{1}{2} \cdot \dfrac{n}{\hat{\sigma^2}} = 0 
+\end{align}\]</span>
+<p><span class="math display">\[
+\left(y -X\hat{\beta}\right)&#39;\left(y-X\hat{\beta}\right) = n\hat{\sigma^2} 
+\]</span> <span class="math display">\[
+\hat{\sigma^2} = \dfrac{(y -X\hat{\beta})&#39;(y-X\hat{\beta})}{n}
+\]</span></p>
+<p>Теперь вспоминаем, что <span class="math inline">\(\hat{y} = X\hat{\beta} \)</span>, <span class="math inline">\(\hat{\epsilon} = y - \hat{y} \)</span>, а <span class="math inline">\(\hat{\epsilon}&#39;\hat{\epsilon} = RSS\)</span>, откуда:</p>
+<p><span class="math display">\[
+\hat{\sigma^2} = \dfrac{RSS}{n} 
+\]</span></p>
+</div>
+<div id="trivial_hints" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Тривиальщина, которая здорово упрощает жизнь</h3>
+<p>Пусть у нас есть матрица <span class="math inline">\(a_{1\times 1}\)</span>, тогда магически</p>
+<p><span class="math display">\[
+a&#39; = a \quad \det(a) = a \quad tr(a) = a 
+\]</span></p>
+<p>Теперь в более общем виде c <span class="math inline">\(Z_{n\times m}\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>А правда ли, что <span class="math display">\[ 
+\mathbb{E} \left(Z&#39;\right) = \left( \mathbb{E} \left( Z \right)\right)&#39; 
+\]</span>? Да! Математическое ожидание матрицы — это матрица, в которой от каждого элемента взято математическое ожидание. Транспонирование просто переставляет элементы матрицы, не изменяя их.</p></li>
+<li><p>А это тоже верно? <span class="math display">\[ 
+\det \left(\mathbb{E} \left(Z\right)\right) = \mathbb{E}\left(\det\left(Z\right)\right) 
+\]</span>? Нет. Приведем простой контрпример: пусть <span class="math inline">\(A\)</span> — матрица <span class="math inline">\(2\times 2\)</span>, тогда её определитель легко посчитать по формуле <span class="math display">\[
+\det\left(\mathbb{E}(A)\right) = \det 
+  \left( 
+  \begin{matrix}
+\mathbb{E}(a_{1,1}) &amp; \mathbb{E}(a_{1,2}) \\
+\mathbb{E}(a_{2,1}) &amp; \mathbb{E}(a_{2,2})
+ \end{matrix} 
+ \right) = \mathbb{E}(a_{1,1})\mathbb{E}(a_{2,2}) + ... \ne 
+ \mathbb{E}\left(a_{1,1}a_{2,2} + ...\right) = \mathbb{E}(\det(A)) 
+\]</span> Математическое ожидание произведения не равно произведению математических ожиданий в общем случае. Однако, это может быть верно, когда элементы матрицы не зависят друг от друга.</p></li>
+<li><p>Может быть <span class="math display">\[
+tr\left(\mathbb{E}\left(Z\right)\right) = \mathbb{E}\left(tr\left(Z\right)\right)
+\]</span>? Точно! Ведь след — это сумма диагональных элементов</p></li>
+</ol>
+<blockquote>
+<p><strong>Вывод</strong>: математическое ожидание любит след и транспонирование</p>
+</blockquote>
+<p>Продолжаем. <span class="math display">\[
+RSS = (y - X\hat{\beta})&#39; (y - X\hat{\beta}) = (y - X(X&#39;X)^{-1} X&#39; y)&#39;(...), 
+\]</span> где <span class="math inline">\(H = X(X&#39;X)^{-1} X&#39;\)</span> — “матрица-шляпница” или “hat matrix”</p>
+</div>
+<div id="hat_matrix" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Магические свойства “матрицы-шляпницы”</h3>
+<blockquote>
+<p>А матрица <span class="math inline">\(X\)</span> у Себера называется «матрица плана»</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li><p>Это матрица проекции. <span class="math display">\[
+Hy = \hat{y}, \quad H\times \text{любой вектор = проекция этого вектора на &quot;лапу&quot;} 
+\]</span> Напоминаем, что “лапа” — линейная оболочка вектора <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Два раза проецировать можно, но результат не изменится :) <span class="math display">\[
+H^2 y = Hy = \hat{y} 
+\]</span></p></li>
+<li><p><span class="math display">\[
+H&#39; = H
+\]</span></p></li>
+</ol>
+<p>Возвращаемся к дисперсии оценки <span class="math inline">\(\hat{\beta_{ML}}\)</span></p>
+<p><span class="math display">\[ RSS = ((I-H)y)&#39;((I-H)y) = y&#39;(I-H)&#39;(I-H)y = \]</span></p>
+<hr />
+<ul>
+<li><span class="math inline">\((A-B)&#39; = A&#39; - B&#39; \Rightarrow \)</span></li>
+</ul>
+<p><span class="math display">\[
+= y&#39; (II - HI - IH +H^2) y = y&#39;(I-H) y 
+\]</span></p>
+<p>Поскольку <span class="math inline">\(RSS\)</span> имеет размерность <span class="math inline">\(1\times 1\)</span>, можно перейти к следу, для того, чтобы переставить местами множители</p>
+<p><span class="math display">\[
+\mathbb{E}(RSS) = \mathbb{E}(tr(RSS)) =\mathbb{E}(tr(y&#39;(I-H) y) =  
+\]</span></p>
+<hr />
+<ul>
+<li><span class="math inline">\(tr(A\cdot B) = tr(B \cdot A), \quad tr(A+B) = tr(A) + tr(B) \Rightarrow \)</span></li>
+</ul>
+<p><span class="math display">\[
+= \mathbb{E}(tr((I-H)y&#39;y) =  \mathbb{E}(tr(yy&#39;) - tr(Hyy&#39;)) = tr(\mathbb{E}(yy&#39;)) - tr(\mathbb{E}(Hyy&#39;)) = tr(\mathbb{E}(yy&#39;)) - tr(H \mathbb{E}(yy&#39;))  = 
+\]</span></p>
+<hr />
+<ul>
+<li><span class="math inline">\(\mathbb{E}(yy&#39;)_{n\times n} =\)</span> ?, можно найти из <span class="math inline">\(Var(y) = \mathbb{E}(yy&#39;) - \mathbb{E}(y)\mathbb{E}(y&#39;)\)</span></li>
+<li><span class="math inline">\(Var(y) = \sigma^2 I\ \)</span></li>
+<li><span class="math inline">\(\mathbb{E}(y)\mathbb{E}(y&#39;) = X\beta \beta&#39;X&#39; \)</span>, т.к. <span class="math inline">\(y = X\beta + \epsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\epsilon) = X\beta \)</span></li>
+<li><span class="math inline">\(\Rightarrow \mathbb{E}(yy&#39;) = \sigma^2 I + (X\beta \beta&#39; X&#39;)_{n \times n}\)</span></li>
+</ul>
+<p><span class="math display">\[
+= tr((I-H)(\sigma^2 I + X\beta \beta&#39; X&#39;)  = tr(\sigma^2(I-H)) = 
+\]</span></p>
+<ul>
+<li><span class="math inline">\((I-H)(X\beta \beta&#39;X&#39;) = X\beta \beta&#39;X&#39; - X\beta \beta&#39;X&#39; = 0\)</span></li>
+</ul>
+<blockquote>
+<p>Хорошее свойство следа: <span class="math inline">\(tr(X) = \sum_i \lambda_i \)</span> — равен сумме собственных чисел матрицы</p>
+</blockquote>
+<p><span class="math display">\[ 
+= \sigma^2 (\lambda_1 + ... + \lambda_n) =  
+\]</span></p>
+</div>
+<div id="eigenvalue" class="section level3">
+<h3><span class="header-section-number">6.1.5</span> Собственные числа</h3>
+<p>Для матрицы <span class="math inline">\(I\)</span> — <span class="math inline">\(\underbrace{1 ... 1}_{\text{n штук}}\)</span>.</p>
+<p>Для матрицы <span class="math inline">\(H\)</span> — <span class="math inline">\(\underbrace{1 ... 1}_{\text{k штук}}\underbrace{0 ... 0}_{\text{n-k штук}}\)</span>. Множество собственных чисел устроено так, поскольку</p>
+<p><span class="math display">\[ 
+(I-H) v = 
+\begin{cases}
+1 \cdot v \text{ для перпендикуляров лапе}\\
+0 \cdot v \text{ для лежащих в лапе}
+\end{cases} 
+\]</span></p>
+<p><span class="math display">\[ 
+= (n-k)\sigma^2 = RSS 
+\]</span></p>
+<p>Наконец-то мы посчитали <span class="math inline">\(RSS\)</span>. Теперь ясно, что оценка дисперсии параметра <span class="math inline">\(\beta\)</span> методом максимального правдоподобия — смещенная!</p>
+<p><span class="math display">\[
+\mathbb{E} (\hat{\sigma}^2_{ML}) = \dfrac{n-k}{n} \sigma^2 \ne \sigma^2 
+\]</span></p>
+<p>Зато можно построить несмещенную</p>
+<p><span class="math display">\[
+\hat{\sigma}^2_{\text{скорр}} = \dfrac{RSS}{n-k} 
+\]</span></p>
+</div>
+</div>
+<div id="theorem" class="section level2">
+<h2><span class="header-section-number">6.2</span> Теорема</h2>
+<p>Если <span class="math inline">\(M\)</span> — проектор — выполняет проецирование (<span class="math inline">\(M&#39; = M\)</span>, <span class="math inline">\(M^2 = M\)</span>) и вектор <span class="math inline">\(u \sim \mathbb{N}(0, I)\)</span>, то <span class="math inline">\(u&#39;Mu \sim \chi^2_{rk (M)}\)</span>. Для проектора <span class="math inline">\(rk(M)= tr(M)\)</span> — количество линейно независимых собственных векторов (или просто столбцов в матрице <span class="math inline">\(M\)</span>)</p>
+</div>
+<div id="home_tasks" class="section level2">
+<h2><span class="header-section-number">6.3</span> Домашка</h2>
+<ol style="list-style-type: decimal">
+<li><p>Найти как распределено <span class="math inline">\(\dfrac{RSS}{\sigma^2}\)</span></p></li>
+<li><p>Посчитать руками <span class="math inline">\(H\)</span>, <span class="math inline">\(I-H\)</span>, <span class="math inline">\(rk(H)\)</span>, <span class="math inline">\(rk(I-H)\)</span>, <span class="math inline">\(tr(H)\)</span>, <span class="math inline">\(tr(I-H)\)</span>, найти закон распределения <span class="math inline">\(\dfrac{\epsilon&#39;H\epsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{\epsilon&#39;(I-H)\epsilon}{\sigma^2}\)</span>, <span class="math inline">\(\dfrac{y&#39;(I-H)y}{\sigma^2}\)</span> и <span class="math inline">\(\dfrac{RSS}{\sigma^2}\)</span> если известно, что</p></li>
+</ol>
+<p><span class="math display">\[
+X = \left( \begin{matrix} 1 &amp; 0.1 \\ 1 &amp; 0.2 \\ 1 &amp; 0.3 \end{matrix} \right), \quad y = X\beta + \epsilon, \quad \epsilon \sim \mathbb{N}(0, \sigma^2 I)
+\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="-05-models-evaluation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bdemeshev/em301/issues",
+"text": null
+},
+"download": [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"search": true,
+"toolbar": {
+"position": "fixed"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

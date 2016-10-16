@@ -1,0 +1,264 @@
+# Статистические свойства RSS {#hints_and_hats}
+
+* Датa __10/10/16__
+* Конспект: __Мария Такташева, Алексей Панков__
+
+> Главный спонсор этого семинара -- Алеся Бердникович, которая все решила дома.
+
+_объявление публикуется на правах рекламы_
+
+## Упражнение 1 {#problem1}
+
+Найти матожидание и дисперсию оценки параметра $\hat{\beta}$ методом максимального правдоподобия. Для этого построим функцию правдоподобия:
+\[ Q = \ln p(y)  = - \dfrac{n}{2} \ln 2 \pi - \dfrac{1}{2} \ln \det\left(\sigma^2 I\right) - \dfrac{1}{2} (y - X\beta)' (\sigma^2 I)^{-1} (y - X \beta) \rightarrow \max_{\hat{\beta}, \hat{\sigma^2}} \]
+
+### Матожидание оценки {#beta_exp_value}
+Продифференцируем функцию правдоподобия по $\hat{\beta}$, чтобы найти оценку ML параметра $\beta$
+
+\begin{align} 
+\dfrac{\partial Q}{\partial \hat{\beta}} = \dfrac{\partial}{\partial \hat{\beta}}
+\left[ -\dfrac{1}{2} \left(y - X\hat{\beta} \right)'\left(\sigma^2 I\right)^{-1}\left(y- X\hat{\beta} \right) \right] = 
+-\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[\left(y' - \hat{\beta}'X'\right)\left(y - X\hat{\beta}\right)\right] = \\
+= -\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[ y'y -\hat{\beta}'X'y - y'X\hat{\beta} - \hat{\beta}X'X\hat{\beta} \right] = 0
+\end{align}
+
+А теперь заметим, что это выражение состоит из скаляров. И действительно:
+
+* \(y'y = y'_{1 \times n} \times y_{n \times 1} = y'y_{1 \times 1} \)
+* \(\hat{\beta}'X'y = \hat{\beta}'_{1\times k} \times X'_{k \times n} \times y_{n \times 1} = \hat{\beta}'X'y_{1 \times 1} \)
+* \(y'X\hat{\beta} = y'_{1 \times n} \times X_{n \times k} \times \hat{\beta}_{k \times 1} = y'X\hat{\beta}_{1 \times 1} \)
+* ну и без лишних подробностей \(\hat{\beta}'X'X\hat{\beta}_{1 \times 1} \)
+
+
+ 
+При этом известно, что если матрица $A = A_{1 \times 1}$ --- скаляр, то $A'= A$. 
+Значит \[ \hat{\beta}'X'y = \left( y'X\hat{\beta} \right)' = y'X\hat{\beta} \]
+и выражение выше принимает вид
+\[ -\dfrac{1}{2\sigma^2 I} \dfrac{\partial}{\partial \hat{\beta}} 
+\left[ y'y -\hat{\beta}'X'y - 2\hat{\beta}X'X\hat{\beta} \right]  = 0 \]
+
+Вспомнив некоторые правила матричного дифференцирования, можно прийти к виду:
+\begin{align} 
+-\dfrac{1}{2\sigma^2 I} \left[ -2X'y + X'X\hat{\beta} + \left(X'X\right)'\hat{\beta} \right] = 
+\nonumber \\ = 
+-\dfrac{1}{2\sigma^2 I} \left[ -2X'y + 2X'X \hat{\beta} \right] = 0 
+\end{align}
+
+Для тех, кто не помнит, [как работать с матрицами](http://www.atmos.washington.edu/~dennis/MatrixCalculus.pdf)
+\[ \dfrac{\partial}{\partial x} x'Ax = \left(A' + A \right) \]
+\[ \dfrac{\partial}{\partial x} x'A = A \] 
+\[ \dfrac{\partial}{\partial x} Ax = A' \] 
+
+
+
+***
+В итоге мы получаем оценку $\hat{\beta}_{ML} = \left(X'X\right)^{-1}X'y$, которая совпадает с оценкой $\hat{\beta}_{OLS}$, построенной методом наименьших квадратов. 
+
+### Дисперсия оценки {#beta_var}
+До того как мы будем искать производную функции правдоподобия, неплохо бы заметить, что из-за свойств определителя диагональной матрицы
+
+
+
+***
+
+
+\[
+\det\left(\sigma^2 I\right) = \left(\sigma^2\right)^n
+\]
+
+
+
+Зная этот хинт, можно дифференцировать функцию правдоподобия по $\hat{\sigma^2}$:
+\begin{align}
+\dfrac{\partial Q}{\partial \hat{\sigma^2}} = \dfrac{1}{2} \left(y -X\hat{\beta}\right)'\left(y-X\hat{\beta}\right)\cdot \dfrac{1}{(\hat{\sigma^2})^2} - \dfrac{1}{2} \cdot \dfrac{n}{\hat{\sigma^2}} = 0 
+\end{align}
+
+\[
+\left(y -X\hat{\beta}\right)'\left(y-X\hat{\beta}\right) = n\hat{\sigma^2} 
+\]
+\[
+\hat{\sigma^2} = \dfrac{(y -X\hat{\beta})'(y-X\hat{\beta})}{n}
+\]
+
+Теперь вспоминаем, что \(\hat{y} = X\hat{\beta} \), \(\hat{\epsilon} = y - \hat{y} \), а \(\hat{\epsilon}'\hat{\epsilon} = RSS\), откуда:
+
+\[
+\hat{\sigma^2} = \dfrac{RSS}{n} 
+\]
+
+
+
+### Тривиальщина, которая здорово упрощает жизнь {#trivial_hints}
+
+Пусть у нас есть матрица $a_{1\times 1}$, тогда магически
+
+\[
+a' = a \quad \det(a) = a \quad tr(a) = a 
+\]
+
+
+
+Теперь в более общем виде c $Z_{n\times m}$. 
+
+1. А правда ли, что
+\[ 
+\mathbb{E} \left(Z'\right) = \left( \mathbb{E} \left( Z \right)\right)' 
+\]?
+Да! Математическое ожидание матрицы --- это матрица, в которой от каждого элемента взято математическое ожидание. Транспонирование просто переставляет элементы матрицы, не изменяя их.
+
+2. А это тоже верно?
+\[ 
+\det \left(\mathbb{E} \left(Z\right)\right) = \mathbb{E}\left(\det\left(Z\right)\right) 
+\]?
+Нет. Приведем простой контрпример: пусть $A$ --- матрица $2\times 2$, тогда её определитель легко посчитать по формуле 
+\[
+\det\left(\mathbb{E}(A)\right) = \det 
+  \left( 
+  \begin{matrix}
+    \mathbb{E}(a_{1,1}) & \mathbb{E}(a_{1,2}) \\
+    \mathbb{E}(a_{2,1}) & \mathbb{E}(a_{2,2})
+ \end{matrix} 
+ \right) = \mathbb{E}(a_{1,1})\mathbb{E}(a_{2,2}) + ... \ne 
+ \mathbb{E}\left(a_{1,1}a_{2,2} + ...\right) = \mathbb{E}(\det(A)) 
+\]
+Математическое ожидание произведения не равно произведению математических ожиданий в общем случае. Однако, это может быть верно, когда элементы матрицы не зависят друг от друга.
+
+
+
+3. Может быть
+\[
+tr\left(\mathbb{E}\left(Z\right)\right) = \mathbb{E}\left(tr\left(Z\right)\right)
+\]?
+Точно! Ведь след --- это сумма диагональных элементов
+
+> __Вывод__:
+математическое ожидание любит след и транспонирование
+
+Продолжаем.
+\[
+RSS = (y - X\hat{\beta})' (y - X\hat{\beta}) = (y - X(X'X)^{-1} X' y)'(...), 
+\]
+где $H = X(X'X)^{-1} X'$ --- "матрица-шляпница" или "hat matrix"
+
+### Магические свойства "матрицы-шляпницы" {#hat_matrix}
+
+> А матрица $X$ у Себера называется «матрица плана»
+
+1. Это матрица проекции. 
+\[
+Hy = \hat{y}, \quad H\times \text{любой вектор = проекция этого вектора на "лапу"} 
+\] 
+Напоминаем, что "лапа" --- линейная оболочка вектора $X$.
+
+2. Два раза проецировать можно, но результат не изменится :) 
+\[
+H^2 y = Hy = \hat{y} 
+\]
+
+3. 
+\[
+H' = H
+\]
+
+Возвращаемся к дисперсии оценки $\hat{\beta_{ML}}$
+
+ \[ RSS = ((I-H)y)'((I-H)y) = y'(I-H)'(I-H)y = \]
+
+***
+* \((A-B)' = A' - B' \Rightarrow \)
+
+\[
+= y' (II - HI - IH +H^2) y = y'(I-H) y 
+\]
+
+
+
+Поскольку $RSS$ имеет размерность $1\times 1$, можно перейти к следу, для того, чтобы переставить местами множители
+
+\[
+\mathbb{E}(RSS) = \mathbb{E}(tr(RSS)) =\mathbb{E}(tr(y'(I-H) y) =  
+\]
+
+***
+* \(tr(A\cdot B) = tr(B \cdot A), \quad tr(A+B) = tr(A) + tr(B) \Rightarrow \)
+
+
+
+\[
+= \mathbb{E}(tr((I-H)y'y) =  \mathbb{E}(tr(yy') - tr(Hyy')) = tr(\mathbb{E}(yy')) - tr(\mathbb{E}(Hyy')) = tr(\mathbb{E}(yy')) - tr(H \mathbb{E}(yy'))  = 
+\]
+
+
+***
+
+* \(\mathbb{E}(yy')_{n\times n} =\) ?, можно найти из \(Var(y) = \mathbb{E}(yy') - \mathbb{E}(y)\mathbb{E}(y')\)
+* \(Var(y) = \sigma^2 I\ \)
+* \(\mathbb{E}(y)\mathbb{E}(y') = X\beta \beta'X' \), т.к. \(y = X\beta + \epsilon, \mathbb{E}(y) = \mathbb{E}(X\beta) + \mathbb{E}(\epsilon) = X\beta \)
+* \(\Rightarrow  \mathbb{E}(yy') = \sigma^2 I + (X\beta \beta' X')_{n \times n}\)
+
+
+
+\[
+= tr((I-H)(\sigma^2 I + X\beta \beta' X')  = tr(\sigma^2(I-H)) = 
+\]
+
+* \((I-H)(X\beta \beta'X') = X\beta \beta'X' - X\beta \beta'X' = 0\)
+
+> Хорошее свойство следа: \(tr(X) = \sum_i \lambda_i \) --- равен сумме собственных чисел матрицы 
+
+
+
+\[ 
+= \sigma^2 (\lambda_1 + ... + \lambda_n) =  
+\]
+
+### Собственные числа{#eigenvalue}
+
+Для матрицы $I$ --- $\underbrace{1 ... 1}_{\text{n штук}}$.
+
+Для матрицы $H$ --- $\underbrace{1 ... 1}_{\text{k штук}}\underbrace{0 ... 0}_{\text{n-k штук}}$. Множество собственных чисел устроено так, поскольку
+
+\[ 
+(I-H) v = 
+\begin{cases}
+1 \cdot v \text{ для перпендикуляров лапе}\\
+0 \cdot v \text{ для лежащих в лапе}
+\end{cases} 
+\]
+
+
+
+\[ 
+= (n-k)\sigma^2 = RSS 
+\]
+
+Наконец-то мы посчитали $RSS$. Теперь ясно, что оценка дисперсии параметра $\beta$ методом максимального правдоподобия --- смещенная!
+
+\[
+\mathbb{E} (\hat{\sigma}^2_{ML}) = \dfrac{n-k}{n} \sigma^2 \ne \sigma^2 
+\]
+
+Зато можно построить несмещенную
+
+\[
+\hat{\sigma}^2_{\text{скорр}} = \dfrac{RSS}{n-k} 
+\]
+
+
+
+## Теорема {#theorem}
+
+Если $M$ --- проектор --- выполняет проецирование ($M' = M$, $M^2 = M$) и вектор $u \sim \mathbb{N}(0, I)$, то $u'Mu \sim \chi^2_{rk (M)}$. Для проектора $rk(M)= tr(M)$ --- количество линейно независимых собственных векторов (или просто столбцов в матрице $M$)
+
+## Домашка {#home_tasks}
+
+1. Найти как распределено $\dfrac{RSS}{\sigma^2}$
+
+2. Посчитать руками $H$, $I-H$, $rk(H)$, $rk(I-H)$, $tr(H)$, $tr(I-H)$, найти закон распределения $\dfrac{\epsilon'H\epsilon}{\sigma^2}$, $\dfrac{\epsilon'(I-H)\epsilon}{\sigma^2}$,  $\dfrac{y'(I-H)y}{\sigma^2}$ и $\dfrac{RSS}{\sigma^2}$ если известно, что 
+
+\[
+X = \left( \begin{matrix} 1 & 0.1 \\ 1 & 0.2 \\ 1 & 0.3 \end{matrix} \right), \quad y = X\beta + \epsilon, \quad \epsilon \sim \mathbb{N}(0, \sigma^2 I)
+\]
+
