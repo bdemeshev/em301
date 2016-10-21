@@ -1,0 +1,301 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, контрольная 1}
+\chead{}
+\rhead{24.10.2016, вариант демо}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+\input{metrics_test_bank.tex}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{demo_a}
+\copygroup[10]{demo_kr_01_16}{demo_a}
+%\shufflegroup{demo_a}
+\insertgroup{demo_a}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+
+\item Эконометресса Ефросинья исследует, как зависит надой молока, $milk_i$, (в литрах) от возраста коровы, $age_i$, (в годах):
+\[
+milk_i = \beta_1 + \beta_2 age_i + u_i
+\]
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$RSS$                        & \textbf{B1} \\
+$ESS$                        & \textbf{B2} \\
+$TSS$                        & \textbf{1240} \\
+$R^2$                        & \textbf{B3} \\
+Стандартная ошибка регрессии & \textbf{1.45} \\
+Количество наблюдений        & 340 \\
+\bottomrule
+\end{tabular}
+
+\begin{tabular}{lrrrrrr} \toprule
+Коэффициент & Оценка & $se(\hb)$ & t-статистика & P-значение & Левая (95\%) & Правая (95\%) \\
+\midrule
+Константа & 4.565 & 0.207 & \textbf{В4} & \textbf{B9} & \textbf{В5} & \textbf{В6} \\
+$age$ & \textbf{В7} & \textbf{В8} & 3.670 & 0.000 & 0.036 & 0.119 \\
+\bottomrule
+\end{tabular}
+
+Найдите пропущенные числа \textbf{B1}--\textbf{B9}.
+
+Ответ округляйте до 2-х знаков после запятой. Кратко поясняйте формулой, как были получены результаты.
+
+\[
+B1 = 1.45^2 \cdot (340-2)
+\]
+
+\[
+B2 = ESS = TSS - RSS
+\]
+
+\[
+B3 = R^2 = ESS / TSS
+\]
+
+\[
+B4 = t_c = 4.565 / 0.207 = 22
+\]
+
+По таблицам ($t$-распределение с 338 степенями свободы или примерно нормальное) $t_{crit} = 1.96$
+
+\[
+B5 = CI_{left} = 4.565 - 1.96 \cdot 0.207
+\]
+
+
+\[
+B6 = CI_{right} = 4.565 + 1.96 \cdot 0.207
+\]
+
+
+\[
+B7 = \hat \beta_{milk} = (0.036 + 0.119) /2 = 0.0775
+\]
+
+\[
+B8 = se(\hat \beta_{milk}) = \hat \beta_{milk} / t_{milk} = 0.0775 / 3.670
+\]
+
+\[
+B9 = P-value (22) \approx 0.000
+\]
+
+
+\item Гарри Поттер и Рон Уизли активно готовятся к чемпионату мира по квиддичу. В течение 30 дней они сначала посещают Хогсмид и выпивают некоторое количество сливочного пива в пинтах, $beer_t$, после забивают определённое количество квоффлов в штуках, $quaffle_t$. Гермиона Грейнджер оценила следующую регрессию:
+
+\[
+\widehat{quaffle}_t = \underset{(2.83)}{80} - \underset{(1)}{3} beer_t
+\]
+
+В скобках приведены стандартные ошибки. Оценка дисперсии ошибок равна $\hs^2 = 238$.
+
+Сегодня Гарри и Рон выпили 4 пинты сливочного пива.
+
+\begin{enumerate}
+\item Проверьте гипотезы о значимости каждого коэффициента на уровне значимости 5\%.
+
+Находим $t$-статистики: $t_c = 80/2.83 = 28.3$, $t_{beer} = -3/1 = -3$. Если предположить нормальность ошибок, то $t_{crit} = 2.05$. Следовательно, в обоих случаях $H_0$: $\beta = 0$ отвергается и оба коэффициента значимо отличны от нуля.
+
+
+\item Постройте точечный прогноз количества квоффлов, забитых сегодня Гарри Поттером и Роном Уизли
+
+\[
+\hat Y_i = 80 - 3 \cdot 4 = 80 - 12 = 68
+\]
+
+\item Постройте 90\%-ый доверительный интервал для коэффициента наклона регрессии
+% \item Постройте 95\%-ый предиктивный интервал (доверительный интервал для фактической величины) забитых квоффлов
+
+Для уровня доверия 90\% получаем критическое значение $t_{crit}=1.7$. Отсюда доверительный интервал равен
+\[
+[-3-1\cdot 1.7;-3 + 1\cdot 1.7]
+\]
+
+
+\end{enumerate}
+
+\newpage
+
+
+\item Для модели $Y_i = \beta_1 + \beta_2 X_i + u_i$ выполнены все предпосылки теоремы Гаусса-Маркова.
+\begin{enumerate}
+\item Докажите, что МНК-оценка коэффициента $\beta_2$ является случайной величиной
+\item Докажите, что эта оценка является несмещённой
+\item Найдите дисперсию этой оценки
+\end{enumerate}
+
+Решение изложено в лекциях
+
+
+\item Для модели $Y_i = \beta_1 + \beta_2 X_i + u_i$ выполнены все предпосылки теоремы Гаусса-Маркова. Для МНК-оценок коэффициентов найдите $\hCov(\hb_1, \hb_2)$.
+
+Решение изложено в лекциях
+
+
+\item Дайте определения следующих понятий
+\begin{enumerate}
+\item Несмещённая оценка
+
+Оценка $\hat \theta$ называется несмещённой, если $\E(\hat\theta)=\theta$
+
+\item Эффективная оценка
+
+Оценка $\hat \theta$ называется эффективной среди множества оценок $\Theta$, если для любой оценки $\hat \theta'$ из множества $\Theta$ выполнено неравенство $\Var(\hat \theta) \leq \Var(\hat \theta')$
+
+\item Состоятельная последовательность оценок
+
+Последовательность оценок $\hat \theta_1$, $\hat \theta_2$, \ldots, называется состоятельной, если
+\[
+\lim_{n\to\infty} P(|\hat \theta_n - \theta| < \varepsilon) = 1
+\]
+для любого числа $\varepsilon >0$.
+
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}
