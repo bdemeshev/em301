@@ -5,6 +5,10 @@
 file_name_1 = kr_01_demo_1
 file_name_2 = kr_01_var_1
 
+all: $(file_name_1).pdf $(file_name_2).pdf
+
+
+
 $(file_name_1).pdf: $(file_name_1).tex metrics_test_bank.tex
 	# protection against biber error
 	# http://tex.stackexchange.com/questions/140814/
