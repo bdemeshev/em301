@@ -1,5 +1,10 @@
 \documentclass[12pt]{article}
 
+<<echo=FALSE>>=
+var_no <- 1
+# demo, just to avoid errors
+@
+
 \usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
 
 \usepackage[box, % запрет на перенос вопросов
@@ -132,7 +137,8 @@ theme_set(theme_bw())
 
 \begin{document}
 
-\input{metrics_test_bank.tex}
+<<child="metrics_test_bank.Rnw">>=
+@
 
 
 \section*{Часть 1. Тест.}
