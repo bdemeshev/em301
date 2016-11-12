@@ -97,6 +97,12 @@ biblio-style: alphabetic
 1. Уважай букву `ё` – ставь над ней точки! :)
 
 
+Тут всякие полезные для латеха:
+
+\newcommand{\rank}{\mathrm{rank}}
+
+
+
 ```{r, "knitr options", echo = FALSE}
 library("knitr")
 library("tikzDevice")

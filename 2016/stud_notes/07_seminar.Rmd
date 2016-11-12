@@ -1,0 +1,251 @@
+# Подготовка к празднику №2 {#holyday2_preparation}
+
+* Дата: **31.11.2016** 
+* Авторы: **Герман Никита, Ишмаева Бэлла**
+
+## Упражнение 1
+
+Найти как распределена случайная величина: 
+\[ \frac{RSS}{\sigma^2} \sim {?} \]
+Для этого надо вспомнить теорему:
+
+Если одновременно выполнено:
+
+* $H$ — проектор: $H^2 = H$, $H^T = H$
+* $u\sim N(0; I)$
+
+То:
+
+$u^{T}\cdot H \cdot u \sim \chi^2_{k}$, где $k$ — это размерность пространства, куда $H$ проецирует.
+
+Вспомним, как распределена случайная ошибка в модели регрессии:
+\[ \varepsilon \sim N(0; \sigma^2{I}) \]
+
+При этом: 
+\[ 
+\frac{RSS}{\sigma^2} = \frac{\hat{\varepsilon}^{T}\cdot\hat{\varepsilon}}{\sigma^2} 
+\]
+Теперь вспомним, что такое наблюдаемая ошибка:
+\[
+\hat{\varepsilon} = y - \hat{y} = y - Hy = (I - H)y = (I - H)(X\beta + \varepsilon) = X\beta - HX\beta + (I - H)\varepsilon
+\]
+
+Вспомним, что $H=X(X^{T}X)^{-1}X^{T}$
+
+Также вспомним, что матрица H проецирует любой вектор на линейную оболочку, порожденную X. Тогда проекция X будет тоже X. То есть $HX=X$. Тогда $\hat{\varepsilon} = (I - H)\varepsilon$. Отсюда:
+\[
+\frac{{RSS}}{\sigma^2} = \frac{
+\varepsilon^{T}(I - H)^{T}\cdot(I - H)\varepsilon
+}{\sigma^2}
+\]
+
+Вспомним, что $(I - H)^{T} = (I - H)$ и $(I - H)^2 = (I - H)$. Тогда:
+\[
+\frac{{RSS}}{\sigma^2} = \frac{
+\varepsilon^{T}(I - H)\varepsilon}{\sigma^2} = u^T(I-H)u,
+\]
+где $u = \frac{\varepsilon}{\sigma^2}$, $u \sim N(0;I)$.
+
+Вспоминая теорему и, используя свойство, что $\rank(I - H) = tr(I - H) = n - k$, получаем:
+\[
+\frac{RSS}{\sigma^2} \sim \chi^2_{n - k}
+\]
+
+## Упражнение 2
+Необходимо посчитать:
+\[
+E\left(y^{T}\cdot\frac{1}{n}\cdot{S}\cdot{y}\right)
+\]
+Если известно, что y задается регрессионной моделью:
+\[
+\begin{aligned}
+y &= {X}\beta + \varepsilon \\
+\varepsilon & \sim N(0;\sigma^2 I)
+\end{aligned}
+\]
+
+
+
+S — матрица строевого леса:
+\[
+S = \begin{pmatrix}
+1 & \cdots & 1\\
+\vdots & 	\ddots & 	\vdots\\
+1 & \cdots & 1
+\end{pmatrix}
+\]
+Заметим, что $({y}^{T}\cdot\frac{1}{n}\cdot{S}\cdot{y})$ имеет размерностнь 1 x 1. Возьмем след, потому что след матрицы 1 x 1 равняется самой матрице:
+\[
+tr\left(E({y}^{T}\cdot\frac{1}{n}\cdot{S}\cdot{y})\right) = E\left(tr(y^{T}\cdot\frac{1}{n}\cdot{S}\cdot{y})\right) = E\left(\frac{1}{n}S\cdot tr(y^{T}y)\right) = tr\left(\frac{1}{n}{S}\cdot{E}(y^{T}y)\right)
+\]
+Вспомним, что:
+\[
+E(yy^{T}) = Var(y) + E(y)E(y^{T})
+\]
+Тогда:
+\[
+tr\left(E(y^{T}\cdot\frac{1}{n}\cdot{S}\cdot{y})\right) = \frac{1}{n}tr\left[ S(\sigma^2 I + X\beta\beta^{T}X^{T})\right] = \frac{1}{n}{tr}(S\sigma^2 I) + \frac{1}{n} tr(SX\beta\beta^{T}X^{T})
+\]
+Заметим, что след матрицы  $S\sigma^2 I$ равен $n\sigma^2$. Также заметим, что $SX\beta\beta^{T}X^{T}$ - скаляр. Отсюда:
+\[
+tr\left(E(y^{T}\cdot\frac{1}{n}\cdot S\cdot{y})\right) = \sigma^2 + \frac{1}{n}SX\beta\beta^{T}X^{T}
+\]
+
+## Подготовка к контрольной!
+####Сначала вспомним модель парной регрессии
+Общая формула нахождения оценок $\beta$ для множественной регрессии:
+\[
+\hat{\beta} = (X^{T}X)^{-1}X^{T}y
+\]
+А для парной:
+\[
+\begin{aligned}
+{y}_{i} &= \beta_1 + \beta_2 x_{i} +
+\varepsilon_{i}, \, \text{где} \\
+X &= 
+\begin{pmatrix}
+1 & x_1\\
+\vdots & \vdots\\
+1 & x_n
+\end{pmatrix}\\
+X^{T}X &= \begin{pmatrix}
+n & \sum_{i}x_{i}\\
+\sum_{i}x_{i} & \sum_{i}x_{i^2}
+\end{pmatrix}\\
+X^{T}y &= \begin{pmatrix}
+\sum_{i} y_{i}\\
+\sum_{i} x_{i}y_{i}\\
+\end{pmatrix}
+\end{aligned}
+\]
+
+В этом случае можно воспользоваться шаманским способом обращения матриц:
+
+\[
+A^{-1} =
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}^{-1} =\frac{1}{detA}
+\begin{pmatrix}
+d & -b\\
+-c & a
+\end{pmatrix} 
+\]
+
+####А теперь перейдем к задачам про доверительный интервал
+Когда мы решали подобного рода задачи в прошлом году, мы обычно находили статистику и сравнивали ее с критическим значением нормального распределения, распределения Стьюдента или Фишера, в зависимости от того, как распределена была сама статистика. В нашем случае нам нужно проверять гипотезы и строить доверительные интервалы для $\beta$, а значит нужно понять, какое распределение имеет статистика: 
+\[
+\frac{\hat\beta - \beta}{{se}\left(\hat\beta\right)}
+\]
+Если с числителем еще более или менее понятно: $\hat\beta$ имеет нормальное распределение, то вот со знаменателем стоит разобраться, что мы и будем делать дальше.
+
+В домашнем задании мы уже выводили, что:
+\[
+\begin{cases}
+Cov\left(\hat\varepsilon,\hat\beta\right) = 0\\
+Cov\left(\hat\beta\right) = \sigma^2 \left(X^{T}X\right)^{-1}
+\end{cases}
+\]
+
+А скорректированная $ML$ оценка для сигмы-квадрат :
+\[
+\hat\sigma^2 = \left(\frac{RSS}{n-k}\right)
+\]
+Стоит отметить, что в начале семинара мы уже показали, что, если отмасштабировать, $RSS$ будет иметь распределение $\chi^2_{n - k}$, которое здесь делится на количество степеней свободы $n - k\,$(должно напоминать нам $t-$ или $F-$ распределение)\
+Теперь вернемся к условию $Cov(\hat\varepsilon,\hat\beta) = 0$: вообще говоря, равенство нулю ковариации не говорит нам о независимости случайных величин, но в нашем случае $\hat\epsilon$ и $\hat\beta$ имеют совместное нормальное распределение, а значит мы можем сказать, что они независимы.\
+Имеем:
+\[
+Var\left(\hat\beta\right) = \sigma^2 \left(X^{T}X\right)^{-1}
+\hat{Var}\left(\hat\beta\right) = \hat{\sigma^2} \left(X^{T}X\right)^{-1}
+\hat{Var}\left(\hat\beta\right) = \left(\frac{RSS}{n-k}\right) \left(X^{T}X\right)^{-1}
+\]
+Матрица $\hat{Var}\left(\hat\beta\right)$ имеет вид: 
+\[
+\begin{aligned}
+\begin{pmatrix}
+\hat{Var}\left(\hat\beta_1\right) & \cdots & \hat{Cov}\left(\hat\beta_n,\hat\beta_1\right)\\
+\vdots & 	\ddots & 	\vdots\\
+\hat{Cov}\left(\hat\beta_1,\hat\beta_n\right) & \cdots & \hat{Var}\left(\hat\beta_{n}\right)
+\end{pmatrix}\\
+\end{aligned}
+\]
+А каждый элемент матрицы мы можем посчитать исходя из данных.
+
+Вспомним, как выглядит распределение Стьюдента:
+\[
+\begin{aligned}
+\frac{N\left({0,1}\right)}{\sqrt{\frac{\chi^2_{r}}{r}}} \sim t_{r}
+\end{aligned}
+\]
+Тогда мы можем получить следующую теорему:
+
+Если:
+
+* $Y = X\beta +\varepsilon$
+* $\varepsilon \sim N\left(0, \sigma^2 I\right)$
+
+То:
+
+\[
+\frac{\hat\beta_{j} - \beta_{j}}{se\left(\hat\beta_{j}\right)} \sim {t}_{n-k},
+\]
+где $se  = \sqrt{\hat{Var}\left(\hat\beta_{j}\right)}$ — это стандартная ошибка.
+
+##Упражнение 3
+
+Дано: 
+
+$\sum_{i} x_{i} = 5$, $\sum_{i} y_{i} = 2$,  $\sum_{i} x_{i}y_{i} = 20$, $\sum_{i}x_{i}^2 = 10$, $\sum_{i} y_{i}^2 = 80$, $n=5$
+
+$y_{i}=\beta{x}_{i}+\varepsilon_{i}$
+
+$\varepsilon_{i} \sim N\left(0, \sigma^2\right)$
+
+Найти:
+
+a) $X^{T}X$, $X^{T}y$
+
+b) $\hat\beta$, $RSS$, $\hat\epsilon^2$,  $se\left(\hat\beta\right)$
+
+c) Построить 95% доверительный интервал для $\hat\beta$ при $\alpha=0.05$ и проверить гипотезу:
+
+\[
+\begin{aligned}
+H_{0}:\, \beta &= 0\\
+H_{a}:\, \beta &\neq 0
+\end{aligned}
+\]
+
+Решение:\
+a) $X^{T}X = \sum_{i}x_{i}^2 = 10$, $X^{T}y = \sum_{i}x_{i}y_{i} = 20$\
+b) $\hat\beta = (X^{T}X)^{-1}{X}^{{T}}{y} = \left(10^{-1}20\right) = 2$. Для нахождения $RSS$, нужно вспомнить, что: $H={X}({X}^{{T}}{X})^{-1}{X}^{{T}}$
+\[
+RSS = y^{T}\left(I-H\right)y = y^{T}Iy - y^{T}Hy
+=y^{T}y - y^{T}X\left(X^{T}X\right)^{-1}X^{T}y = \sum_{i} y_{i}^2 - \sum_{i}x_{i}y_{i}\left(\sum_{i} x_{i}^2\right)^{-1}\sum_{i}x_{i}y_{i}
+\]
+\[
+\begin{aligned}
+  RSS &= 80 - 20\frac{1}{10}20 = 40\\  
+  \hat\sigma^2 &= \frac{RSS}{n-k} = \frac{40}{4} = 10\\
+  \hat{Var}\left(\hat\beta\right) &= \hat\sigma^2\left(X^{T}X\right)^{-1} =    10\frac{1}{10} = 1\\
+  se\left(\hat\beta\right) &= \sqrt{\hat{Var}\left(\hat\beta\right)} = 1
+\end{aligned}
+\]
+c) В общем случае доверительный интервал выглядит так:
+\[
+\beta\in\left[\hat\beta - t_{crit}\cdot{se}\left(\hat\beta\right);\hat\beta + t_{crit}\cdot{se}\left(\hat\beta\right)\right]
+\]
+Находим в таблице критическое значение для t-распределения с $\left({n-1}\right) = 4$ степенями свободы и 5% уровнем значимости: ${t}_{crit} = 2,77$.\
+Тогда наш интервал выглядит следующим образом:
+\[
+\beta\in[2 - 2,77;2 + 2,77]
+\]
+Чтобы проверить гипотезу, найдем ${t}$ наблюдаемое:
+\[
+\frac{\hat\beta - \beta}{se\left(\hat\beta\right)} = \frac{2-0}{1} = 2
+\]
+Получаем, что ${H}_{{0}}$ не отвергается.
+
+##ДЗ
+Демоверсия и разделы 3-4
