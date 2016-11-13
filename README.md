@@ -1,5 +1,7 @@
 Эконометрика, EM301
 =====
+
+[![Join the chat at https://gitter.im/em301/Lobby](https://badges.gitter.im/em301/Lobby.svg)](https://gitter.im/em301/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Все материалы семинаров по Эконометрике, для группы 3101 ВШЭ в 2012-2013.
 
 
