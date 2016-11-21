@@ -1,0 +1,199 @@
+---
+title: "Первый после Праздника"
+author: ''
+date: ''
+output:
+  pdf_document:
+    keep_tex: yes
+  html_document: default
+language: ru-RU
+header-includes:
+- \usepackage[utf8]{inputenc}
+- \usepackage[russian]{babel}
+---
+\section{Конспект Семинара 8. Множественная регрессия (7 ноября 2016)}
+
+\section{Гипотезы о нескольких ограничениях в регрессии:}
+
+\subsection{Примеры:}
+
+$H_{0}: \beta_{2} = 0$
+
+$H_{0}: \beta_{2} = \beta_{7}$
+
+\[
+  H_{0}: \begin{cases}
+  \beta_{2} = \beta_{7}\\
+  \beta_{2} = \beta_{3}\\
+  \end{cases}
+\]
+
+\[
+  H_{0}: \begin{cases}
+  \beta_{1} = 1\\
+  \beta_{2} = 1\\
+  \beta_{3} = 2\\
+  \end{cases}
+\]
+
+\subsection{Проверка гипотез по шагам:}
+1. Строим регрессию, забыв про ограничения;\newline
+Получим $RSS_{UR} - RSS_{Unrestricted}$\newline
+2. Строим регрессию с учетом ограничений.\newline
+Получим $RSS_{R} - RSS_{Кestricted}$\newline
+
+\subsection{Замечание:}
+МНК минимизирует RSS, поэтому безусловный RSS($RSS_{UR}$) будет меньше или равен условного RSS($RSS_{R}$).\newline
+
+\subsection{Теорема:}
+  Если выполнены предпоссылки теоремы Гаусса-Маркова, $H_{0}$ верна ии $\epsilon \sim N(0; \sigma * I)$, тогда:\newline
+  
+  F = $\dfrac{(RSS_{R} - RSS{UR})/(\text{кол-во ограничений})}{RSS_{UR}/(n - k_{UR})}$\newline
+  $F \sim F_{\text{кол-во ограничений}; n - k_{UR}}$\newline
+  где $k_{UR}$ - колличество коэффициентов в неограниченной модели.\newline
+\subsection{Упражнение:}
+  Харис пытается понять, что лучше помогает решать задачи по эконометрике:\newline
+-поедание пирожков(штуки)\newline
+-посещение лекций(академические часы)\newline
+
+$problems_{t} = \beta_{1} + \beta_{2}lecture_{t} + \beta_{3}pie_{t} + u_{t}$\newline
+$H_{0}: \beta_{2} = \beta_{3}$\newline
+  Какую регрессию нужно оценить, чтобы найти $RSS_{R}$?\newline
+  
+Согласно $H_{0}$ должно выполняться: $\beta_{2}  \beta_{3}$. Тогда:\newline
+$problem_{i} = \beta_{1} + \beta_{2}(lecture_{i} + pie_{i}) + u_{i} = \beta_{1} + \beta_{2}lp_{i} + u_{i}$\newline
+где  $lp_{i} = lecture_{i} + pie_{i}$\newline
+
+
+А что, если Харис захочет проверить гипотезу о постоянной отдаче от масштабов? Как тогда будут выглядеть $H_{0}$ и ограниченная регрессия?\newline
+
+UR: $ln problem_{i} = \gamma_{1} + \gamma_{2}ln lecture_{i} + \gamma_{3}ln pie_{i} + u_{i}$\newline
+
+$problem_{i} = e^{\gamma_{1}}*lecture_{i}^{\gamma_{2}}*pie_{i}^{\gamma_{3}}*e^{u_{i}}$\newline
+
+$H_{0} = \gamma_{1} + \gamma_{3} = 1$\newline
+
+R: $ln problem_{i} = \gamma_{1} + \gamma_{2}ln lecture_{i} + (1 - \gamma_{2})ln pie_{i} + u_{i}$\newline
+После преобразований получим:\newline
+$(ln problem_{i} - ln pie_{i}) = \gamma_{1} + \gamma_{2} (ln lecture_{i} - ln pie_{i}) + u_{i}$\newline
+Введём новые переменные:\newline
+$\tilde{y_{i}} = ln problem_{i} - ln pie_{i}$\newline
+$\tilde{x_{i}} = ln lecture_{i} - ln pie_{i}$\newline
+Получим:\newline
+$\tilde{y_{i}} = \gamma_{1} + \gamma_{2}\tilde{x_{i}} + u_{i}$\newline
+
+\subsection{Упражнение:}
+10 наблюдений\newline
+$UR: RSS = 50  R^2 = 0,3$\newline
+$problem_{i} = \beta_{1} + \beta_{2}lecture_{i} + \beta_{3}pie_{i} + u_{i}$\newline
+\[
+  H_{0}: \begin{cases}
+  \beta_{2} = 0\\
+  \beta_{3} = 0\\
+  \end{cases}
+\]
+
+$H_{A}: хотя бы одна из \beta_{2} и \beta_{3} \ne 0$\newline
+
+а) Как выглядит ограниченная регрессия?\newline
+Чему равен $RSS_{R}$?\newline
+
+б) Как выглядит $F$?\newline
+Проверить $H_{0}$ на 5% уровне значимости.\newline
+
+Решение:\newline
+
+
+а) $problem_{i} = \beta_{1} + \mu_{i}$\newline
+$ESS = 0$\newline
+$TSS = RSS$\newline
+$R^2 = \dfrac{ESS}{TSS}$\newline
+
+\[
+R_{UR}^2 = 0,3 = \dfrac{TSS_{UR} - 50}{TSS_{UR}}
+TSS_{UR} = 500/7 = 71
+\]
+$problem_{i} = \beta_{1} + \mu_{i}$\newline
+Следовательно, $TSS_{R} = TSS_{UR} = RsS_{R} = 71$\newline
+
+б) $F = \dfrac{(71-50)/2}{50/(10-3)} = \dfrac{10,5}{7} = 1,4$\newline
+
+$F_{cr} = 4,7$. Получается, что основная гипотеза не отвергается.\newline
+
+\subsection{Упражнение:}
+Пусть Харис решил заново оценить модель после второго модуля чтобы понять, изменилась ли зависимость.\newline
+В первом модуле было 10 наблюдений. Во втором модуле было 8 наблюдейний.\newline
+Кроме того, известно:\newline
+по двум модулям: $RSS = 150$\newline
+по первому модулю: $RSS = 50$\newline
+по второму модулю: $RSS = 70$\newline
+
+$H_{0}$: зависимость не и зменилась\newline
+$H_{A}$: зависимость изменилась, но осталась линейной\newline
+
+а) Как выглядят ограниченная и неограниченная регрессии?\newline
+б) $RSS_{UR} - ?$\newline
+$RSS_{R} - ?$\newline
+в) Проверить гипотезу $H_{0}$.\newline
+
+Решение:
+I модуль: $\beta_{1}, \beta_{2}, \beta_{3}$\newline
+II модуль: $\gamma_{1}, \gamma_{2}, \gamma_{3}$\newline
+
+\[
+H_{0} = \begin{cases}
+\beta_{1} = \gamma_{1}\\
+\beta_{2} = \gamma_{2}\\
+\beta_{3} = \gamma_{3}\\
+\end{cases}
+\]
+
+Ограниченная модель строится по всем наблюдениям(по 18), то есть $RSS_{R} = 150$.\newline
+Теперь рассмотрим неограниченную модель.\newline
+
+
+\[
+\begin{matrix} & X = \\ \end{matrix}
+\begin{pmatrix}
+1 & lecture_{1} & pie_{1} \\
+\vdots & \vdots & \vdots \\
+1 & lecture_n & pie_{n}
+\end{pmatrix}
+\]
+
+\[y_{I} = X_{I}\cdot\beta + u_{I}
+\]
+\[y_{II} = X_{II}\cdot\beta + u_{I}
+\]
+\[
+\begin{pmatrix}
+y_{I} \\
+y_{II}
+\end{pmatrix}
+\begin{matrix} = 
+\begin{pmatrix}
+X_{I} & ... & 0 & 0 \\
+\vdots & \vdots & \vdots & \vdots \\
+0 & 0 & ... & X_{II}
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+\beta_{1} \\ \beta_{2}\\ \beta_{2}\\ \gamma_{1} \\ \gamma_{2}\\ \gamma_{2}
+\end{pmatrix}
++ 
+\begin{pmatrix}
+u_{I} \\ u_{II}
+\end{pmatrix}
+\end{matrix}
+\] 
+
+\[
+y_{i} = \beta_{1} \cdot m^1_{i} + \beta_{2} \cdot lect_{i} \cdot m^1_{i} + \beta_{3} \cdot pie_{i}\cdot m^1_{i} + \gamma_{1} \cdot m^2_{i} + \gamma_{2} \cdot lect_{i} \cdot m^2_{i} + \gamma_{3} \cdot pie_{i}\cdot m^2_{i}
+\]
+
+\[
+m^2 = 1 - m^1
+\]
+
+\[=> RSS_{UR} = RSS_{1} +  RSS_{} = 50 + 70 = 120\]
+
