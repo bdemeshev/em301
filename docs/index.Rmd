@@ -56,7 +56,7 @@ lang: ru-RU
 
 ## Литература и ссылки
 
-* [Официальная программа](https://www.hse.ru/edu/courses/184774549) курса (пока висит старая!!!!)
+* [Официальная программа](https://www.hse.ru/edu/courses/184774549) курса 
 * Программа моей мечты 
 * Логи семинаров [2012-2013](https://github.com/bdemeshev/em301/wiki/wiki_2012_2013), [2013-2014](https://github.com/bdemeshev/em301/wiki/wiki_2013_2014), [2014-2015](http://bdemeshev.github.io/em301/index_2014_2015.html), [2015-2016](http://bdemeshev.github.io/em301/index_2014_2015.html)
 * Логи лекций [2015-2016](http://bdemeshev.github.io/em301/log_lectures_2015.html)
@@ -79,7 +79,7 @@ lang: ru-RU
 
 * Michael Creel, [Econometric lecture notes](http://econpapers.repec.org/paper/aubautbar/575.03.htm): graduate level и [github repository](https://github.com/mcreel/Econometrics)
 * Bruce Hansen, [Econometrics](http://www.ssc.wisc.edu/~bhansen/econometrics/): graduate level
-* John Stachurski, [First course on econometric theory](http://johnstachurski.net/_downloads/et.pdf): graduate level (?)
+* John Stachurski, [First course on econometric theory](http://lectures.quantecon.org/_downloads/course_notes.pdf): graduate level (?)
 * Breheny, [Applied Statistical Modeling for Medicine and Public Health](http://web.as.uky.edu/statistics/users/pbreheny/764-F11/index.html) Замечательно изложены методы "за пределами" простой регрессии с примерами на R.
 * Wolter Sosa-Escudero, [Econometric analysis](http://www.econ.uiuc.edu/~wsosa/econ507/index.htm). Продвинутый магистерский курс с кучей интересных материалов внизу страницы.
 * Dolf Schluter, [Quantitative methods in ecology and evolution](https://www.zoology.ubc.ca/~bio501/R/) Курс по статистике для магистров биологов. Хорошая подборка статей по статистике, хорошее введение в R. 
@@ -107,6 +107,8 @@ lang: ru-RU
 * Gelman, [Missing data](http://www.stat.columbia.edu/~gelman/arm/missing.pdf)
 * [Best practice for outliers](http://www.researchgate.net/profile/Herman_Aguinis/publication/258174106_Best-Practice_Recommendations_for_Defining_Identifying_and_Handling_Outliers/links/004635276b1ff93ba8000000.pdf)
 * [Granger Causality: Eggs vs Chicken](http://www.econ.uiuc.edu/~econ508/Papers/eggs.pdf)
+* [Tristan Fletcher](http://www.tristanfletcher.co.uk/): SVM, RVM, фильтр Калмана
+* [Gaussian Processes](http://lasa.epfl.ch/teaching/lectures/ML_Phd/Notes/GP-GMM.pdf)
 
 ### Форумы, где спросить совет...
 

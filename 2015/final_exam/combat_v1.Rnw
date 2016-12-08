@@ -98,8 +98,6 @@ theme_set(theme_bw())
 % http://tex.stackexchange.com/questions/91507/
 \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
 
-\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
-
 
 %% эконометрические сокращения
 \DeclareMathOperator{\plim}{plim}

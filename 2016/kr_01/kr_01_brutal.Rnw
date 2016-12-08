@@ -99,7 +99,9 @@ theme_set(theme_bw())
 % http://tex.stackexchange.com/questions/91507/
 \newfontfamily{\cyrillicfonttt}{Linux Libertine O}
 
+
 \AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
 
 
 %% эконометрические сокращения
@@ -124,8 +126,6 @@ theme_set(theme_bw())
 \def \cN{\mathcal{N}}
 
 
-\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
-\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
 
 
 
