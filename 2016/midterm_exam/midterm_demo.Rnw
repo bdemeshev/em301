@@ -1,0 +1,320 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE>>=
+var_no <- 1
+# demo, just to avoid errors
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, контрольная 1}
+\chead{}
+\rhead{24.10.2016, вариант демо}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+<<child="metrics_test_bank.Rnw">>=
+@
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{demo_a}
+\copygroup[10]{midterm_demo_16}{demo_a}
+%\shufflegroup{demo_a}
+\insertgroup{demo_a}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+
+\item На основании опроса была оценена следующая модель:
+\[
+\ln(wage_i)=\beta_1 + \beta_2 exper_i + \beta_3 age_i + \beta_4 sex_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ — величина заработной платы в долларах
+\item $exper_i$ — опыт работы в годах
+\item $age_i$ — возраст в годах
+\item $sex_i$ — пол (1 — мужской, 0 — женский)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & 0.903 \\
+Скорректированный $R^2$      & \textbf{B7} \\
+Стандартная ошибка регрессии & \textbf{B6} \\
+Количество наблюдений        & \textbf{B2} \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrrr} \toprule
+ & df & SS & MS & F & P-значение \\
+\midrule
+Регрессия   &  3 & 2638.3  & 879.4 & \textbf{В5} & 0.000 \\
+Остаток     & \textbf{B1} & 282.1 & 16.6 &    &       \\
+Итого       & \textbf{B3}  & \textbf{B4}     &       &    &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{lrrrrrr} \toprule
+Коэффициент & Оценка & $se(\hb)$ & t-статистика & P-Значение & Нижние 95\% & Верхние 95\% \\
+\midrule
+Константа & -6.96 & 12.38 & -0.56 & 0.58 & -33.08 & 19.16 \\
+$exper$ & 2.65 & 0.32 & 8.38 & 0.000 & 1.98 & 3.32 \\
+$age$ & \textbf{В8} & \textbf{В9} & 8.06 & 0.000 & 4.13 & 7.06 \\
+$sex$ & -10.73 & 1.79 & \textbf{В10} & 0.000 & -14.49 & -6.95 \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+\item Как изменятся результаты оценки регрессии, если переменную $sex_i$ переопределить так, чтобы 0 соответствовал мужчинам, 1 — женщинам?
+\end{enumerate}
+
+Ответ округляйте до 2-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+
+
+\item Юный эконометрист Вениамин очень любит опаздывать на первую пару. Он считает, что время (в минутах), на которое он опаздывает, $time_t$, зависит от количества снега (в миллиметрах), выпавшего за последние сутки, $snow_t$. После месяца упорного сбора данных, он смог оценить следующую модель:
+
+\[
+\widehat{time}_t=12+0.2snow_t
+\]
+
+Оценка ковариационной матрицы коэффициентов,
+$\hVar(\hb) = \begin{pmatrix}
+5 & 0.03 \\
+0.03 & 0.01\\
+\end{pmatrix}$
+
+Оценка дисперсии ошибок равна $\hs^2=1.45$.
+
+За последние сутки выпало 15 миллиметров снега.
+
+\begin{enumerate}
+\item Постройте точечный прогноз времени опоздания Вениамина
+\item Постройте 95\%-ый доверительный интервал для $\E(time_t |snow_t=15)$ для ожидаемого опоздания Вениамина
+\item	Постройте 95\%-ый предиктивный интервал (доверительный интервал) для фактического опоздания Вениамина
+\end{enumerate}
+
+\item По данным 27 фирм, упорядоченных по капиталу, $K_1 < K_2 < \ldots < K_n$, была оценена зависимость выпуска $Y_i$ от труда $L_i$ и капитала $K_i$ с помощью моделей
+
+\begin{enumerate}
+\item[(1)] $\ln Y_i = \beta_1 + \beta_2 \ln L_i + \beta_3 \ln K_i + u_i$
+\item[(2)] $\ln Y_i = \beta_1 + \beta_2 \ln \frac{L_i}{K_i} + u_i$
+\end{enumerate}
+
+
+\begin{tabular}{lD{.}{.}{3}cD{.}{.}{3}}
+\toprule
+&\multicolumn{1}{c}{Модель (1)}&&\multicolumn{1}{c}{Модель (2)}\\
+\midrule
+константа &1.1706&&1.0692\\
+          &(0.326)&&(0.1317)\\
+$\ln L$       &0.6029&&\\
+          &(0.125)&&\\
+$\ln K$       &0.375&&\\
+          &(0.085)&&\\
+$\ln \frac{L}{K}$    &&&0.6369\\
+                     &&&(0.0754)\\
+\midrule
+R-squared&0.943 && 0.74 \\
+F&200.24&&71.351\\
+P-value&0.0&&0.0\\
+RSS&0.851&&\\
+N&27&&27\\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item На уровне значимости $\alpha = 0.05$ проверьте для модели (1) гипотезы $H_0$: $\beta_2 = \beta_3=0$ и $H_0$: $\beta_3=0.5$.
+\item Объясните, почему модель (2) является ограниченной версией модели (1). Явно выпишите ограничения. На уровне значимости $\alpha = 0.05$ проверьте гипотезу об этих ограничениях.
+\item Фирмы разделили на маленькие, $i \leq 14$, и большие, $i \geq 15$. Для этих двух групп оценили отдельные регрессии. Можно ли считать, что производственные функции для больших и маленьких фирм не различаются? Ответ подтвердите подходящим тестом.
+
+
+
+\begin{tabular}{lD{.}{.}{3}cD{.}{.}{3}}
+\toprule
+&\multicolumn{1}{c}{Модель для $i\leq 14$}&&\multicolumn{1}{c}{Модель для $i\geq 15$}\\
+\midrule
+константа &0.6998&&  1.4082\\
+          &(0.649)&& (0.678)\\
+$\ln L$   &0.9000&&  0.0081 \\
+          &(0.133)&& (0.226)\\
+$\ln K$   &0.2100&& 0.805\\
+          &(0.056)&& (0.179)\\
+\midrule
+R-squared&0.896 && 0.908 \\
+F&47.84&&49.81\\
+P-value&0.0&&0.0\\
+RSS&0.119&&0.362\\
+N&14&&13\\
+\bottomrule
+\end{tabular}
+
+
+\end{enumerate}
+
+\newpage
+
+\item С помощью теста Бокса-Кокса оценили зависимость веса индивида (в килограммах) от его роста (в сантиметрах):
+
+\includegraphics[width=\textwidth]{images/box_cox.png}
+
+Какую спецификацию модели (линейную, линейную в логарифмах, полулогарифмическую) следует предпочесть и почему?
+
+\newpage
+
+\item По данным для  23 демократических стран оценили зависимость индекса Джини\footnote{Индекс Джини — это мера неравенства доходов. Чем выше индекс Джини, тем выше неравенство.} от ВВП на душу населения с учетом ППС (паритета покупательной способности). Затем провели тест Рамсея.
+
+\includegraphics[width=\textwidth]{images/ramsey.png}
+
+\begin{enumerate}
+\item Сформулируйте нулевую и альтернативную гипотезу теста Рамсея
+\item Опишите пошагово, как проводится тест Рамсея
+\item Прокомментируйте результаты теста Рамсея
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
