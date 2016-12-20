@@ -23,7 +23,7 @@ wrong0 <- round(wrong, 1)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
 %  %\AMCnoCompleteMulti
 \begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-В множественное регрессии матрица $X$ имеет размер $\Sexpr{n} \times \Sexpr{k}$, $TSS=\Sexpr{TSS}$, $ESS=\Sexpr{ESS}$. Несмещённая оценка для дисперсии случайных ошибок модели равна
+В множественной регрессии с константой матрица $X$ имеет размер $\Sexpr{n} \times \Sexpr{k}$, $TSS=\Sexpr{TSS}$, $ESS=\Sexpr{ESS}$. Несмещённая оценка для дисперсии случайных ошибок модели равна
 \begin{multicols}{3} % располагаем ответы в 3 колонки
 \begin{choices} % опция [o] не рандомизирует порядок ответов
        \correctchoice{$\Sexpr{hs2}$}
@@ -128,15 +128,14 @@ wrong0 <- round(wrong, 1)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
- \begin{multicols}{3} % располагаем ответы в 3 колонки
+    Если в регрессии отсутствует свободный член, то в общем случае
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{$TSS \neq ESS + RSS$}
+      \wrongchoice{$R^2$ является мерой качества подгонки регрессии}
+      \wrongchoice{сумма остатков равна нулю}
+      \wrongchoice{сумма квадратов остатков равна нулю}
+      \wrongchoice{$\sum_i \hat Y_i = \sum_i Y_i$}
    \end{choices}
   \end{multicols}
   \end{questionmult}
@@ -145,32 +144,40 @@ wrong0 <- round(wrong, 1)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
- \begin{multicols}{3} % располагаем ответы в 3 колонки
+    На третьем шаге теста МакАлера исследователь получил следующие результаты:
+    \[
+       \widehat{\ln Y_i} = \underset{(0.20)}{1.54} - \underset{(0.05)}{1.2}X_i + \underset{(0.3)}{3.1}\hat v_{\exp(\widehat{\ln Y}),i}
+    \]
+    \[
+       \hat Y_i = \underset{(0.02)}{1.24} + \underset{(0.03)}{1.1}X_i + \underset{(0.2)}{2.4}\hat v_{\ln \hat Y, i}
+    \]
+
+
+На основании этих результатов исследователь
+ %\begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{не может выбрать ни логарифмическую, ни линейную модель}
+      \wrongchoice{должен предпочесть полулогарифмическую модель}
+      \wrongchoice{должен предпочесть линейную модель}
+      \wrongchoice{должен отвергнуть гипотезу об адекватности исходной модели}
+      \wrongchoice{должен сделать вывод о наличии пропущенных переменных}
+      \wrongchoice{должен сделать вывод об отсутствии пропущенных переменных}
    \end{choices}
-  \end{multicols}
+  %\end{multicols}
   \end{questionmult}
 }
 
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+    Известны 95\%-ые доверительные интервалы для коэффициентов регрессии: $\beta_1 \in [-4; 10]$, $\beta_2 \in [2; 10]$. На уровне значимости 5\%
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{$\hb_1$ не значим, $\hb_2$ значим}
+      \wrongchoice{$\hb_1$ значим, $\hb_2$ значим}
+      \wrongchoice{$\hb_1$ значим, $\hb_2$ не значим}
+      \wrongchoice{$\hb_1$ не значим, $\hb_2$ не значим}
+      \wrongchoice{значимость проверить невозможно}
    \end{choices}
   \end{multicols}
   \end{questionmult}
