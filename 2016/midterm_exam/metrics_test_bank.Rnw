@@ -96,15 +96,13 @@ wrong0 <- round(wrong, 1)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+    По данным  500 индивидуумов оценили зависимость веса индивидуума $Y$, измеряемого в фунтах (1 фунт $\approx$ 0.5 кг) от его роста $Х$, измеряемого в в футах (1 фут $\approx$ 30 см): $\widehat{\ln Y}_i = -4.4 + 2.4 \ln X_i$. Если рост индивидуума будет измерен в метрах, а вес — в килограммах, то коэффициент перед $\ln X$ будет равен
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{$2.4$}
+      \wrongchoice{$8$}
+      \wrongchoice{$1.2$}
+      \wrongchoice{$4.8$}
    \end{choices}
   \end{multicols}
   \end{questionmult}
@@ -113,15 +111,15 @@ wrong0 <- round(wrong, 1)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+    Если оценивается модель  $\hat Y_i = \hb_1 + \hb_2 X_i$, а истинной является модель $Y_i = \beta_1 + \beta_2 X_i + \beta_3 Z_i + u_i$, то МНК-оценка $\hb_2$ оказывается
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{несмещённой при $\sCov(X, Z) = 0$}
+      \wrongchoice{всегда смещённой}
+      \wrongchoice{эффективной}
+      \wrongchoice{равной нулю}
+      \wrongchoice{всегда несмещённой}
+      \wrongchoice{несмещённой при $\beta_1 = 0$}
    \end{choices}
   \end{multicols}
   \end{questionmult}
