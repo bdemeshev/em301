@@ -22,6 +22,7 @@ completemulti]{automultiplechoice}
 \usepackage{microtype} % свешивание пунктуации
 
 \usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment}
 
 \usepackage{array} % для столбцов фиксированной ширины
 
@@ -126,6 +127,13 @@ theme_set(theme_bw())
 \def \e{\varepsilon}
 \def \he{\hat{\e}}
 \def \z{z}
+
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
 \def \hVar{\widehat{\Var}}
 \def \hCorr{\widehat{\Corr}}
 \def \hCov{\widehat{\Cov}}
@@ -270,8 +278,7 @@ N&27&&27\\
 \item На уровне значимости $\alpha = 0.05$ проверьте для модели (1) гипотезы $H_0$: $\beta_2 = \beta_3=0$ и $H_0$: $\beta_3=0.5$.
 \item Объясните, почему модель (2) является ограниченной версией модели (1). Явно выпишите ограничения. На уровне значимости $\alpha = 0.05$ проверьте гипотезу об этих ограничениях.
 \item Фирмы разделили на маленькие, $i \leq 14$, и большие, $i \geq 15$. Для этих двух групп оценили отдельные регрессии. Можно ли считать, что производственные функции для больших и маленьких фирм не различаются? Ответ подтвердите подходящим тестом.
-
-
+\end{enumerate}
 
 \begin{tabular}{lD{.}{.}{3}cD{.}{.}{3}}
 \toprule
@@ -292,8 +299,6 @@ N&14&&13\\
 \bottomrule
 \end{tabular}
 
-
-\end{enumerate}
 
 \newpage
 

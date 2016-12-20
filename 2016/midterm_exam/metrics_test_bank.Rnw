@@ -15,14 +15,15 @@ ESS <- 100
 TSS <- RSS + ESS
 
 wrong <- RSS / (n - 2)
-wrong0 <- round(wrong)
+wrong0 <- round(wrong, 1)
 @
+
 
 
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
 %  %\AMCnoCompleteMulti
 \begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-В множественное регрессии матрица $X$ имеет размер $\Sexpr{n} \times \Sexpr{k}$, $TSS=\Sexpr{TSS}$, $ESS=\Sexpr{ESS}$. Несмещённая оценка для дисперсии случайных ошибок модели примерно равна
+В множественное регрессии матрица $X$ имеет размер $\Sexpr{n} \times \Sexpr{k}$, $TSS=\Sexpr{TSS}$, $ESS=\Sexpr{ESS}$. Несмещённая оценка для дисперсии случайных ошибок модели равна
 \begin{multicols}{3} % располагаем ответы в 3 колонки
 \begin{choices} % опция [o] не рандомизирует порядок ответов
        \correctchoice{$\Sexpr{hs2}$}
@@ -40,49 +41,53 @@ wrong0 <- round(wrong)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
- \begin{multicols}{3} % располагаем ответы в 3 колонки
+  Коэффициент $R^2$ может быть представлен в виде
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{$\sum_{j=2}^k \hb_j \frac{\sCov(X_j, Y)}{\sVar(Y)}$}
+      \wrongchoice{$\sum_{j=2}^k \hb_j \frac{\sVar(Y)}{\sCov(X_j, Y)}$}
+      \wrongchoice{$\sum_{j=2}^k \hb_j \frac{\sCorr(X_j, Y)}{\sVar(Y)}$}
+      \wrongchoice{$\sum_{j=2}^k \hb_j \frac{\sCorr(X_j, Y)}{\sVar(\hat Y)}$}
+      \wrongchoice{$\sum_{j=2}^k \beta_j \frac{\sCorr(X_j, Y)}{\sVar(\hat Y)}$}
+      \wrongchoice{$\sum_{j=2}^k \beta_j \frac{\sVar(Y)}{\sCov(X_j, Y)}$}
    \end{choices}
   \end{multicols}
   \end{questionmult}
 }
+
 
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
- \begin{multicols}{3} % располагаем ответы в 3 колонки
+    По данным 570 индивидуумов оценили зависимость почасовой оплаты в долларах, $EARN$, от длительности обучения индивидуума в годах, $S$, от результата тестирования индивида в баллах, $ASVABC$, и пола индивидуума, $MALE$, (1 — для мужчин, 0 — для женщин):
+\[
+\widehat{\ln EARN}_i = \underset{(0.124)}{0.904} +
+    \underset{(0.056)}{0.01}S_i + \underset{(0.002)}{0.0157} ASVABC_i + \underset{(0.1)}{0.27} MALE_i
+\]
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{больше на 27 процентов}
+      \wrongchoice{не отличается от оплаты труда женщин}
+      \wrongchoice{больше на 0.27 доллара}
+      \wrongchoice{больше на 27 долларов}
+      \wrongchoice{больше на 0.27 процента}
    \end{choices}
   \end{multicols}
   \end{questionmult}
 }
 
+
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+    Зависимость спроса на некоторый вид услуг $Y$ от его цены $Р$ имеет вид $\hat Y_i = \underset{(2)}{30} - \underset{(0.001)}{0.03} P_i$. Чтобы спрос в среднем снизился на 3\% цена должна увеличиться на
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{1 единицу}
+      \wrongchoice{100 единиц}
+      \wrongchoice{10 единиц }
+      \wrongchoice{1\%}
+      \wrongchoice{10\%}
    \end{choices}
   \end{multicols}
   \end{questionmult}
@@ -176,15 +181,15 @@ wrong0 <- round(wrong)
 \element{midterm_demo_16}{ % в фигурных скобках название группы вопросов
  %\AMCnoCompleteMulti
   \begin{questionmult}{10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
-    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+    Запись $3.20E-16$ означает
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{\Sexpr{var_no * (-8)}}
-      \wrongchoice{\Sexpr{var_no * (8)}}
-      \wrongchoice{\Sexpr{var_no * (4)}}
-      \wrongchoice{\Sexpr{var_no * (-4)}}
-      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
-      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+      \correctchoice{$3.2\cdot 10^{-16}$}
+      \wrongchoice{$3.2\cdot e^{-16}$}
+      \wrongchoice{$3.2\cdot e - 16$}
+      \wrongchoice{$3.2\cdot (e - 16)$}
+      \wrongchoice{$3.2^{e-16}$}
+      \wrongchoice{Ошибка с кодом 16}
    \end{choices}
   \end{multicols}
   \end{questionmult}
