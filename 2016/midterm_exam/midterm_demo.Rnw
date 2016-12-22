@@ -67,9 +67,9 @@ theme_set(theme_bw())
 
 \usepackage{fancyhdr} % весёлые колонтитулы
 \pagestyle{fancy}
-\lhead{Эконометрика, контрольная 1}
+\lhead{Эконометрика, промежуточный экзамен}
 \chead{}
-\rhead{24.10.2016, вариант демо}
+\rhead{24.12.2016, вариант демо}
 \lfoot{}
 \cfoot{}
 \rfoot{\thepage/\pageref{LastPage}}
@@ -341,7 +341,7 @@ se_forecast_error <- se_y_hat + 1.45
 t_crit <- qt(0.975, df = 30 - 2)
 @
 
-\item 
+\item
 <<>>=
 t_obs <- (0.385-0.5) / 0.085
 t_crit <- qt(0.975, df = 27 - 3)
