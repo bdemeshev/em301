@@ -1,0 +1,1187 @@
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_01} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Если $\E(X) = \Sexpr{var_no + 3}$, $\E(Y) = \Sexpr{var_no + 2}$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Cov(\Sexpr{var_no} - X + 2Y, \Sexpr{var_no}X)$  равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{\Sexpr{var_no * (-8)}}
+      \wrongchoice{\Sexpr{var_no * (8)}}
+      \wrongchoice{\Sexpr{var_no * (4)}}
+      \wrongchoice{\Sexpr{var_no * (-4)}}
+      \wrongchoice{\Sexpr{var_no * (-8 + var_no)}}
+      \wrongchoice{\Sexpr{var_no * (-8 - var_no)}}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_kr_01_16_rejected}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_02} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Джеймс Бонд оценил парную регрессию и оказалось, что $\hat Y_i = 5 + 6 X_i$. Если Джеймс Бонд оценит регрессию без константы, то окажется, что
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      %\correctchoice{}
+      \wrongchoice{$\hat Y_i = 6 X_i$}
+      \wrongchoice{$\hat Y_i = 11 X_i$}
+      \wrongchoice{$\hat Y_i = 5$}
+      \wrongchoice{$\hat Y_i = 11$}
+      \wrongchoice{$\hat Y_i = 5.5 X_i$}
+      \wrongchoice{$\hat Y_i = 5.5$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+<<"ci_block", echo=FALSE>>=
+n_all <- c(5, 6, 7, 8, 9)
+ci_level_all <- c(0.80, 0.90)
+
+set.seed(var_no)
+n <- sample(n_all, 1)
+ci_level <- sample(ci_level_all, 1)
+
+t_crit <- round(qt(ci_level + (1 - ci_level) / 2, df = n - 2), 2)
+
+
+@
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_03} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Предпосылки теоремы Гаусса-Маркова выполнены, случайные ошибки нормально распределены, уровень доверия равен $\Sexpr{ci_level * 100}$\%, критическое значение $t$-статистики равно $\Sexpr{t_crit}$, всего $n$ наблюдений. Регрессия имеет вид $\hat Y_i = \underset{(3)}{-4} + \underset{(0.2)}{5}X_i$, в скобках указаны стандартные ошибки. Доверительный интервал для $\beta_2$ равен
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$[\Sexpr{round(5 - 0.2 * t_crit, 2)}; \Sexpr{round(5 + 0.2 * t_crit, 2)}]$}
+      \wrongchoice{$[\Sexpr{5 -  t_crit}; \Sexpr{5 +  t_crit}]$}
+      \wrongchoice{$[\Sexpr{5 - 2 * t_crit}; \Sexpr{5 + 2 * t_crit}]$}
+      \wrongchoice{$[\Sexpr{round(5 - 0.2/sqrt(n) * t_crit, 2)}; \Sexpr{round(5 + 0.2/sqrt(n) * t_crit, 2)}]$}
+      \wrongchoice{$[\Sexpr{round(5 - 0.2 * sqrt(n) * t_crit, 2)}; \Sexpr{round(5 + 0.2 * sqrt(n) * t_crit, 2)}]$}
+%      \wrongchoice{не существует}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_04} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Имеются данные по доходу жены, мужа и продолжительности брака. Доход семьи складывается из дохода жены и мужа. Вася оценил зависимость дохода семьи от продолжительности брака и получил регрессию $\hat Y_i  = 20 + 3X_i$, Петя оценил зависимость дохода мужа от продолжительности брака и получил регрессию $\hat Y_i  = 10 + 2X_i$. Маша оценивает зависимость дохода жены от продолжительности брака. Она получит регрессию:
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\hat Y_i  = 10+X_i$}
+      \wrongchoice{$\hat Y_i  = 10-X_i$}
+      \wrongchoice{$\hat Y_i  = 30+5X_i$}
+      \wrongchoice{$\hat Y_i  = 20+3X_i$}
+      \wrongchoice{$\hat Y_i  = 15+2.5X_i$}
+      \wrongchoice{недостаточно данных для ответа}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_05} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    В парной регрессии на уровне значимости 5\%-ов гипотеза $H_0$: $\beta_2 = 2016$ не отвергается. Из этого можно сделать вывод, что на соответствующем уровне значимости
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$H_0$: $\beta_2 = 0$ отвергается}
+      \wrongchoice{$H_0$: $\beta_2 = 0$ не отвергается}
+      \wrongchoice{$H_a$: $\beta_2 \neq 0$ не отвергается}
+      \wrongchoice{$H_a$: $\beta_2 \neq 0$ отвергается}
+      \wrongchoice{доверительный интервал для $\beta_2$ не содержит ноль}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+<<echo=FALSE>>=
+zero_condition_all <- c("$\\bar Y - \\hat\\beta_1 - \\hat\\beta_2 \\bar X$",
+"$\\bar Y - \\sum \\hat Y_i / n$", "$\\sum Y_i - \\sum \\hat Y_i$")
+
+set.seed(var_no)
+zero_condition <- sample(zero_condition_all, 1)
+
+@
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_06} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    В парной регрессии величина \Sexpr{zero_condition}
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{равна 0}
+      \wrongchoice{равна 1}
+      \wrongchoice{равна (-1)}
+      \wrongchoice{не существует}
+      \wrongchoice{может принимать любое неотрицательное значение}
+      \wrongchoice{может принимать любое положительное значение}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_07} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Условием теоремы Гаусса-Маркова, необходимым для несмещённости оценок коэффициентов регрессии в модели $Y_i = \beta_1 + \beta_2 X_i + u_i$ является
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\E(u_i)=0$}
+      \wrongchoice{гомоскедастичность случайных ошибок}
+      \wrongchoice{гетероскедастичность случайных ошибок}
+      \wrongchoice{нормальность случайных ошибок}
+      \wrongchoice{некоррелированность случайных ошибок}
+      \wrongchoice{$\E(u_i)\neq 0$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+<<echo=FALSE>>=
+r2_all <- c(0.9, 0.8, 0.7, 0.6)
+TSS_all <- c(100, 200, 300, 400)
+n <- 12
+k <- 2
+
+set.seed(var_no)
+r2 <- sample(r2_all, 1)
+TSS <- sample(TSS_all, 1)
+ESS <- TSS * r2
+RSS <- TSS - ESS
+hat_s2 <- round(RSS / (n - k), 2)
+@
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_08} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    В модели парной регрессии $R^2 = \Sexpr{r2}$, $TSS = \Sexpr{TSS}$ и $\Sexpr{n}$ наблюдений. Несмещённая оценка дисперсии случайной ошибки равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\Sexpr{hat_s2}$}
+      \wrongchoice{$\Sexpr{hat_s2 + 0.1}$}
+      \wrongchoice{$\Sexpr{hat_s2 + 0.2}$}
+      \wrongchoice{$\Sexpr{hat_s2 - 0.2}$}
+      \wrongchoice{$\Sexpr{hat_s2 - 0.1}$}
+      \wrongchoice{$\Sexpr{hat_s2 + 0.3}$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+<<echo=FALSE>>=
+multiplier_text_all <- c("два раза", "три раза", "четыре раза")
+multiplier_all <- 2:4
+
+set.seed(var_no)
+i <- sample(length(multiplier_all), 1)
+multiplier_text <- multiplier_text_all[i]
+multiplier <- multiplier_all[i]
+@
+
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_09} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Если все $Y_i$ в линейной регрессии увеличить в \Sexpr{multiplier_text}, то оценка $\hat\beta_2$
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{помножится на $\Sexpr{multiplier}$}
+      \wrongchoice{помножится на $\Sexpr{2 * multiplier}$}
+      \wrongchoice{поделится на $\Sexpr{multiplier}$}
+      \wrongchoice{поделится на $\Sexpr{2 * multiplier}$}
+      \wrongchoice{не изменится}
+      \wrongchoice{изменится в произвольную сторону, в зависимости от $X_i$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+<<echo=FALSE>>=
+set.seed(var_no)
+alpha <- sample(c(0.05, 0.1, 0.01, 0.07), 1)
+p_value <- alpha - 0.01
+@
+
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+   Если $\alpha = \Sexpr{alpha}$ и $P$-значение равно $\Sexpr{p_value}$, то
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$H_0$ отвергается}
+      \wrongchoice{$H_0$ принимается}
+      \wrongchoice{$H_a$ отвергается}
+      \wrongchoice{$H_a$ не отвергается}
+      \wrongchoice{$H_a$ принимается}
+      \wrongchoice{недостаточно информации для ответа}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{combat_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_11} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Свободно распространяемым программным обеспечением является
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{R}
+      \wrongchoice{Excel}
+      \wrongchoice{Stata}
+      \wrongchoice{Eviews}
+      \wrongchoice{SPSS}
+      \wrongchoice{Matlab}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+%%% демо и всякая фигня с прошлого
+
+
+
+
+
+
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Если $\E(X) = -3$, $\E(Y) = 2$, $\Var(X) = 6$, $\Var(Y) = 7$, $\Cov(X,Y) = -1$, то $\Var(5X + 2Y-1)$  равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{158}
+      \wrongchoice{178}
+      \wrongchoice{198}
+      \wrongchoice{148}
+      \wrongchoice{168}
+      \wrongchoice{169}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При добавлении нового наблюдения
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$TSS$ не уменьшится; $R^2$ может и вырасти, и упасть}
+      \wrongchoice{$TSS$ может измениться произвольно; $R^2$ не уменьшится}
+      \wrongchoice{$TSS$ не увеличится; $R^2$ не уменьшится}
+      \wrongchoice{$TSS$ может измениться произвольно; $R^2$ не увеличиться}
+      \wrongchoice{$TSS$ может измениться произвольно; $R^2$ может измениться произвольно}
+   \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{2} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если в модели парной регрессии $Y_i=\beta_1 + \beta_2 X_i + u_i$ все $X_i$ равны константе $2016$, то оценка $\hat \beta_2$ равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$2016$}
+      \wrongchoice{$1/2016$}
+      \wrongchoice{$-2016$}
+      \wrongchoice{$-1/2016$}
+      \wrongchoice{$0$}
+      \correctchoice{не существует}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{3} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если в модели парной регрессии $Y_i=\beta_1 + \beta_2 X_i + u_i$ все $Y_i$ равны константе $2016$, то оценка $\hat \beta_2$ равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$2016$}
+      \wrongchoice{$1/2016$}
+      \wrongchoice{$-2016$}
+      \wrongchoice{$-1/2016$}
+      \correctchoice{$0$}
+      \wrongchoice{не существует}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{4} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Квартальные данные о ВВП России за 10 лет являются
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{панельными данными}
+      \wrongchoice{перекрестной выборкой}
+      \wrongchoice{случайной выборкой}
+      \wrongchoice{сходящимся рядом}
+      \correctchoice{временным рядом}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{5} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Предпосылки теоремы Гаусса-Маркова выполнены, случайные ошибки нормально распределены. Регрессия по 25 наблюдениям имеет вид $\hat Y_i = \underset{(2)}{-1}  + \underset{(0.1)}{4}X_i$. В скобках указаны стандартные ошибки. На уровне значимости $0.05$
+ \begin{multicols}{1} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{оба коэффициента значимы}
+      \correctchoice{значим только коэффициент наклона}
+      \wrongchoice{оба коэффициента незначимы}
+      \wrongchoice{недостаточно информации для определения значимости}
+      \wrongchoice{значим только свободный член}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{6} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если $P$-значение $t$-статистики при проверке значимости коэффициента регрессии равно $0.04$, то этот коэффициент не значим при уровне значимости
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$0.05$}
+      \wrongchoice{$0.95$}
+      \wrongchoice{$0.9$}
+      \wrongchoice{$0.1$}
+      \correctchoice{$0.01$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{7} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Регрессия по 25 наблюдениям имеет вид $\hat Y_i = \underset{(2)}{-1}  - \underset{(0.5)}{1.5}X_i$. В скобках указаны стандартные ошибки. При проверке гипотезы о равенстве коэффициента наклона $(-1)$ расчётное значение $t$-статистики равно
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$-2$}
+      \wrongchoice{$0.5$}
+      \wrongchoice{$2$}
+      \wrongchoice{$-0.5$}
+      \correctchoice{$-1$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{8} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В регрессии с константой, оценённой с помощью МНК, сумма остатков
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{может принимать любое неположитлеьное значение}
+      \wrongchoice{может принимать любое положительное значение}
+      \wrongchoice{может принимать любое значение из $\mathbb{R}$}
+      \wrongchoice{равна $1$}
+      \correctchoice{равна $0$}
+      \wrongchoice{не существует}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_kr_01_16_rejected}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{9} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если в регрессии с константой, оценённой с помощью МНК, сумма квадратов остатков равна нулю, то показатель $R^2$
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{равен $0$}
+      \wrongchoice{равен $-1$}
+      \wrongchoice{не существует}
+      \wrongchoice{может принимать любое значение на $[0;1]$}
+      \correctchoice{равен $1$}
+      \wrongchoice{не существует}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_kr_01_16}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Необходимым условием теоремы Гаусса-Маркова является
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{наличие в матрице $X$ единичного столбца}
+      \wrongchoice{нормальность остатков}
+      \wrongchoice{нормальность $Y_i$}
+      \wrongchoice{постоянство дисперсии остатков}
+      \correctchoice{постоянство дисперсии случайной ошибки}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При добавлении новой переменной скорректированный $R^2$
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{обязательно вырастет}
+      \wrongchoice{обязательно упадёт}
+       \correctchoice{может как вырасти, так и упасть}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{2} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При добавлении новой переменной коэффициент детерминации $R^2$:
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{обязательно вырастет}
+      \wrongchoice{обязательно упадёт}
+      \wrongchoice{может как вырасти, так и упасть}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{3} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Для проверки гипотезы о значимости коэффициентов при мультиколлинеарности стандартные $t$-статистики
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{можно использовать, т.к. они по прежнему имеют $t$-распределение}
+      \wrongchoice{нельзя использовать т.к. они не имеют $t$-распределения}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{4} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При условной гетероскедастичности и наблюдениях, представляющих случайную выборку, оценки МНК
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{остаются состоятельными}
+      \wrongchoice{перестают быть состоятельными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{5} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При условной гетероскедастичности и наблюдениях, представляющих случайную выборку, оценки МНК
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{остаются несмещёнными}
+      \wrongchoice{перестают быть несмещёнными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{6} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При предпосылке о нормально распределенных ошибках в классической линейной регрессионной модели оценки коэффициентов уравнения с помощью МНК и оценки с помощью максимального правдоподобия
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{совпадают}
+      \wrongchoice{отличаются}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{7} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При условной гетероскедастичности использование робастных стандартных ошибок позволяет
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{устранить смещённость оценок коэффициентов}
+      \wrongchoice{устранить несостоятельность оценок коэффициентов}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{8} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При автокорреляции первого порядка в ошибках использование робастных стандартных ошибок Нью-Веста позволяет
+% \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+     \wrongchoice{устранить смещённость оценок коэффициентов}
+     \wrongchoice{устранить несостоятельность оценок коэффициентов}
+      \end{choices}
+%  \end{multicols}
+  \end{questionmult}
+}
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{9} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если нарушена только предпосылка $\E(u_i) = 0$, то при оценке модели $y_i = \beta_1 + \beta_2 x_i + u_i$ оценка $\hat \beta_2$ окажется
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{несмещённой}
+      \wrongchoice{смещённой}
+      \end{choices}
+ \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{demo_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если все выборочные корреляции между регрессорами по модулю меньше 0.1 то строгая мультиколлинеарность
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{возможна}
+      \wrongchoice{невозможна}
+      \end{choices}
+ \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Предпосылка об отсутствии систематической ошибки в модели означает, что для всех наблюдений
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$\Var(\varepsilon_i)=0$}
+      \wrongchoice{$\Var(\varepsilon_i) \neq 0$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{2} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Стандартные ошибки в форме Уайта в случае гетероскедастичности помогают устранить несостоятельность оценок коэффициентов
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{3} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Незначимость всех коэффициентов регрессии
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{может быть не связана с мультиколлинеарностью}
+      \wrongchoice{обязательно свидетельствует о наличии мультиколлинеарности}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{4} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  После применения МНК к модели $y_i=\beta x_i + \varepsilon_i$   сумма $ESS+RSS$
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{может быть не равна $TSS$}
+      \wrongchoice{обязательно равна $TSS$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{5} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При наличии ошибок измерения зависимой переменной МНК-оценки коэффициентов модели
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{состоятельны}
+      \wrongchoice{несостоятельны}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{6} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если выполнены все предпосылки теоремы Гаусса-Маркова, но остатки модели не подчиняются нормальному закону распределения, то МНК-оценки коэффициентов регрессии являются
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{несмещёнными}
+      \wrongchoice{смещёнными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{7} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Индексы вздутия дисперсии (VIF) в случае отсутствия мультиколлинеарности лежат в интервале
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$[1;+\infty)$}
+      \wrongchoice{$[0;1]$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{8} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Нулевая гипотеза в тесте Дарбина-Уотсона состоит в
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{отсутствии автокорреляции}
+      \wrongchoice{наличии автокорреляции}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{9} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если в модель добавили незначимый фактор, то коэффициент детерминации $R^2$
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{вырастет}
+      \wrongchoice{упадёт}
+      \wrongchoice{не изменится}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При диагностике автокорреляции третьего порядка тест Бройша-Годфри
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{применим}
+      \wrongchoice{неприменим}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{11} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Нормальность остатков является одной из предпосылок теоремы Гаусса-Маркова
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{12} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В случае гетероскедастичности применение стандартных ошибок в форме Уайта позволяет сделать оценки коэффициентов регрессии
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{несмещёнными}
+      \wrongchoice{состоятельными}
+      \wrongchoice{эффективными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{13} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  С помощью МНК оценивается модель $y_i = \beta_1 + \beta_2 x_i + \varepsilon_i$. Наблюдения представляют собой случайную выборку, и $\Cov(\varepsilon_i, x_i) = 1$. В этом случае $\plim \hat \beta_2^{ols}$
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{не равен $\beta_2$}
+      \wrongchoice{равен $\beta_2$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{14} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  После применения МНК к модели $y_i=\beta x_i+\varepsilon_i$ сумма остатков $\sum \hat \varepsilon_i$
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{не равна нулю}
+      \wrongchoice{равна нулю}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{15} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В результате применения МНК к модели $y_i=\beta_1 + \beta_2 x_i+\varepsilon_i$ сумма $\sum x_i \hat \varepsilon_i$
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{обязательно равна нулю}
+      \wrongchoice{может быть не равна нулю}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{16} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В случае мультиколлинеарности применение гребневой регрессии (ridge-regression) делает оценки коэффициентов
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{смещёнными}
+      \wrongchoice{несмещёнными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{17} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В случае мультиколлинеарности оценки дисперсий коэффициентов модели становятся
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{несмещёнными}
+      \wrongchoice{смещёнными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{18} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  После применения МНК к исходной модели дополнительно можно оценить модель $\ln(\hat \varepsilon_i^2 )=\gamma_1 + \gamma_2 \ln(x_i) + u_i$  для диагностики
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{гетероскедастичности}
+      \wrongchoice{автокорреляции}
+      \wrongchoice{мультиколлинеарности}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{19} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Для сравнения качества моделей $y_i=\beta_1+ \beta_2 x_i+\varepsilon_i$ и $\ln(y_i)=\gamma_1+ \gamma_2 x_i + \varepsilon_i$, оцененных на одном наборе данных, используют
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{коэффициент детерминации $R^2$}
+      \wrongchoice{скорректированный коэффициент $R_{adj}^2$}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v2}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{20} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При диагностике автокорреляции первого порядка тест Бройша-Годфри
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{применим}
+      \wrongchoice{неприменим}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Ошибки измерения независимой переменной являются одной из причин
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{эндогенности}
+      \wrongchoice{мультиколлинеарности}
+      \wrongchoice{автокорреляции}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{2} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Во временных рядах гетероскедастичность
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{возможна}
+      \wrongchoice{невозможна}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{3} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Оценка $\hb$ называется несмещённой, если с ростом числа наблюдений она стремится к истинной $\beta$
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{4} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  С ростом числа наблюдений распределение статистики Дарбина-Уотсона стремится к
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{особому распределению Дарбина-Уотсона}
+      \wrongchoice{стандартному нормальному распределению}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{5} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Одним из способов борьбы с нестрогой мультиколлинеарностью является
+ %\begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{увеличение количества наблюдений}
+      \wrongchoice{деление всех регрессоров на одно и то же большое число}
+      \wrongchoice{использование взвешенного МНК}
+    \end{choices}
+ %\end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{6} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+ Нестрогая мультиколлинеарность нарушает теорему Гаусса-Маркова
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{7} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Если ошибки распределены не нормально, то МНК-оценки коэффициентов регрессии
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{эффективны и несмещены}
+      \wrongchoice{неэффективны и смещены}
+      \wrongchoice{эффективны и смещены}
+      \wrongchoice{неэффективны и несмещены}
+    \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{8} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+ Если в модели присутствуют лаги независимой переменной, то тест Дарбина-Уотсона
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{применим}
+      \wrongchoice{неприменим}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{9} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При гетероскедастичности оценки коэффициентов
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{остаются несмещёнными}
+      \wrongchoice{в среднем завышены}
+      \wrongchoice{в среднем занижены}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v3}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  У разностного  уравнения $y_t=0.1y_{t-1} + \e_t +0.4\e_{t-1}$
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{есть единственное стационарное решение}
+      \wrongchoice{нет стационарных решений}
+      \wrongchoice{есть бесконечное количество стационарных решений}
+    \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{1} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В теореме Гаусса-Маркова предполагается, что ошибки
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{имеют нулевое математическое ожидание и единичную дисперсию}
+      \wrongchoice{имеют ненулевое математическое ожидание и неединичную дисперсию}
+    \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{2} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При условной гетероскедастичности оценки коэффициентов
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{состоятельны}
+      \wrongchoice{несостоятельны}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCcompleteMulti
+  \begin{questionmult}{3} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Двухшаговый метод наименьших квадратов --- это стандартный способ борьбы с
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{эндогенностью}
+      \wrongchoice{автокорреляцией}
+      \wrongchoice{гетероскедастичностью}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{4} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  После применения МНК к модели $y_i=\beta x_i + \varepsilon_i$   сумма $\sum \he_i^2$
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{равна нулю}
+      \wrongchoice{не обязательно равна нулю}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{5} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При автокорреляции МНК-оценки коэффициентов являются
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{несмещёнными}
+      \wrongchoice{смещёнными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{6} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Нестрогая мультиколлинеарность --- это одно из нарушений предпосылок теоремы Гаусса-Маркова
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{7} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  В случае мультиколлинеарности оценки дисперсий коэффициентов являются
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{несмещёнными}
+      \wrongchoice{в среднем завышенными}
+      \wrongchoice{в среднем заниженными}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{8} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Тест Дарбина-Уотсона в регрессии без свободного члена
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неприменим}
+      \wrongchoice{применим}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{9} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Нулевой гипотезой в тесте Уайта является гипотеза о
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{гомоскедастичности}
+      \wrongchoice{гетероскедастичности}
+      \wrongchoice{наличии автокорреляции}
+      \wrongchoice{отсутствии автокорреляции}
+    \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{combat_15_v4}{ % в фигурных скобках название группы вопросов
+ \AMCnoCompleteMulti
+  \begin{questionmult}{10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+   Величина $R^2_{adj}$ показывает, какую долю дисперсии зависимой переменной объясняют использованные регрессоры
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{неверно}
+      \wrongchoice{верно}
+      \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}

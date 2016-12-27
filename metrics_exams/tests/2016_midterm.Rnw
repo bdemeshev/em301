@@ -1,0 +1,201 @@
+<<"ci_block_combat_midterm", echo=FALSE, include=FALSE>>=
+k_all <- c(5, 6, 7, 8, 9)
+hs2_all <- c(10, 20, 30, 40)
+
+
+
+set.seed(var_no)
+k <- sample(k_all, 1)
+hs2 <- sample(hs2_all, 1)
+
+n <- 50 + k
+
+RSS <- (n - k) * hs2
+ESS <- 100
+TSS <- RSS + ESS
+
+wrong <- RSS / (n - 2)
+wrong0 <- round(wrong, 1)
+@
+
+
+
+<<include=FALSE>>=
+n_obs <- var_no + 30
+hs2 <- var_no + 5
+k <- 4
+RSS <- hs2 * (n_obs - k)
+@
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+В регрессии с константой и тремя объясняющими переменными сумма квадратов остатков равна $\Sexpr{RSS}$, а число наблюдений равно $\Sexpr{n_obs}$. Точечная оценка дисперсии случайной составляющей равна
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Sexpr{hs2}$}
+       \wrongchoice{$\Sexpr{hs2 + 1}$}
+       \wrongchoice{$\Sexpr{hs2 + 2}$}
+       \wrongchoice{$\sqrt{\Sexpr{hs2}}$}
+       \wrongchoice{$\sqrt{\Sexpr{hs2 + 1}}$}
+       \wrongchoice{$\sqrt{\Sexpr{hs2 + 2}}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если для регрессора используется преобразование Бокса-Кокса с параметром $\theta=-1$, а для зависимой переменной — с параметром $\lambda = 1$, то регрессионное уравнение представимо в виде
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_i = \beta_1 + \beta_2 \frac{1}{X_i} + u_i$}
+       \wrongchoice{$\ln Y_i = \beta_1 + \beta_2 \ln X_i + u_i$}
+       \wrongchoice{$\ln Y_i = \beta_1 + \beta_2 X_i + u_i$}
+       \wrongchoice{$Y_i = \beta_1 + \beta_2 \ln X_i + u_i$}
+       \wrongchoice{$Y_i = \beta_1 + \beta_2 X_i + u_i$}
+       \wrongchoice{$\ln Y_i = \beta_1 - \beta_2 \ln X_i + u_i$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Известно, что регрессоры $X$ и $Z$ ортогональны, а истинная зависимость описывается уравнением $Y_i = \alpha_1 + \alpha_2 X_i + \alpha_3 Z_i + u_i$. Исследователь оценивает с помощью МНК две регрессии: $\hat Y_i = \hb_1 + \hb_2 X_i$ и $\hat Y_i = \hat \gamma_1 + \hat \gamma_2 Z_i$. При этом
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\hb_2$ — несмещённая оценка для $\alpha_2$; $\hat \gamma_2$ — несмещённая оценка для $\alpha_3$}
+       \wrongchoice{$\hb_2$ — смещённая оценка для $\alpha_2$; $\hat \gamma_2$ — смещённая оценка для $\alpha_3$}
+       \wrongchoice{$\hb_2$ — несмещённая оценка для $\alpha_2$; $\hat \gamma_2$ — смещённая оценка для $\alpha_3$}
+       \wrongchoice{$\hb_2$ — смещённая оценка для $\alpha_2$; $\hat \gamma_2$ — несмещённая оценка для $\alpha_3$}
+       \wrongchoice{$\hb_2$ — эффективная оценка для $\alpha_2$; $\hat \gamma_2$ — эффективная оценка для $\alpha_3$}
+    \end{choices}
+   %\end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Гипотеза о том, что одновременно $\beta_1 + \beta_2 =1$  и $\beta_3=0$ в множественной линейной регрессии построенной по $n$ наблюдениям  проверяется с помощью  статистики, имеющей распределение
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$F$}
+       \wrongchoice{$t_n$}
+       \wrongchoice{$t_{n-2}$}
+       \wrongchoice{$t_{n-k}$}
+       \wrongchoice{$N(0;1)$}
+       \wrongchoice{Демешева-Мамонтова}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Элеонора исследует зависимость цены номера в отеле от звёздности отеля, $star$, (от 1 до 3 звёзд) и расстояния до моря, $dist$. Элеонора хочет оценить модель вида $price_i = \beta_1 + \beta_2 star_i + \beta_3 dist_i + u_i$. Чтобы считаться богиней эконометрики Элеоноре стоит
+\begin{multicols}{1} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+        \correctchoice{заменить переменную $star_i$ на дамми-переменные $one_i$ и $two_i$, равные 1 для отелей с одной и двумя звёздами соответственно}
+       \wrongchoice{использовать МНК для оценки данной модели}
+       \wrongchoice{добавить в модель переменную $z_i = star_i \cdot dist_i$}
+       \wrongchoice{добавить в модель переменную $z_i = star^2_i$, так как эффект звёздности наверняка нелинейный}
+       \wrongchoice{заменить переменную $star_i$ на дамми-переменные $one_i$, $two_i$ и $three_i$, равные 1 для отелей с одной, двумя и тремя звёздами соответственно}
+        \wrongchoice{добавить дамми-переменные $one_i$, $two_i$ и $three_i$, равные 1 для отелей с одной, двумя и тремя звёздами соответственно}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Показатель $R^2_{adj}$ можно вычислить по формуле
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$R^2_{adj} = (-1)\cdot \frac{k-1}{n-k} + R^2 \cdot \frac{n-1}{n-k}$}
+       \wrongchoice{$R^2_{adj} = \frac{k-1}{n-k} + R^2 \cdot \frac{n-1}{n-k}$}
+       \wrongchoice{$R^2_{adj} = \frac{k-1}{n-k} - R^2 \cdot \frac{n-1}{n-k}$}
+       \wrongchoice{$R^2_{adj} = \frac{k-1}{n-k} + R^2 \cdot \frac{n-k}{n-1}$}
+       \wrongchoice{$R^2_{adj} = \frac{k}{n-k} + R^2 \cdot \frac{n-1}{n-k}$}
+       \wrongchoice{$R^2_{adj} = \frac{n-k}{k-1} + R^2 \cdot \frac{n-1}{n-k}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если гипотеза $\beta_2 + \beta_3 = 1$ верна, то модель $\ln Y_i = \beta_1 + \beta_2 \ln X_i + \beta_3 \ln Z_i + u_i$ совпадает с моделью
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\ln (Y_i/Z_i) = \beta_1 + \beta_2 \ln (X_i/Z_i) + u_i $}
+       \wrongchoice{$\ln Y_i = \beta_1 + \beta_2 \ln (X_i/Z_i) + u_i $}
+       \wrongchoice{$\ln Y_i = \beta_1 + \beta_2 \ln (Z_i/Y_i) + u_i $}
+       \wrongchoice{$\ln (Y_i/Z_i) = \beta_1 + \beta_2 \ln (Y_i/Z_i) + u_i $}
+       \wrongchoice{$\ln (Y_i/Z_i) = \beta_1 + \beta_2 \ln (Y_i/X_i) + u_i $}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Гипотеза о неадекватности множественной регрессии проверяется с помощью статистики равной
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\frac{ESS/(k-1)}{RSS/(n-k)}$}
+       \wrongchoice{$\frac{\hb - \beta}{se(\hb)}$}
+       \wrongchoice{$\frac{TSS/(n-1)}{RSS/(n-k)}$}
+       \wrongchoice{$\frac{TSS/(n-1)}{ESS/(k-1)}$}
+       \wrongchoice{$\frac{ESS}{TSS}$}
+       \wrongchoice{$\frac{RSS}{TSS}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Исследователь выполнил второй шаг в PE-тесте МакКиннона. В регрессии $\ln Y_i$ на исходные регрессоры и $Z_i = \hat Y_i - \exp(\widehat{\ln Y_i})$ коэффициент при $Z_i$ оказался значимым. А в регрессии $Y_i$ на исходные регрессоры и $W_i = \ln \hat Y_i - \widehat{\ln Y_i}$ коэффициент при $W_i$ оказался незначимым. Из результатов следует сделать вывод, что
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{следует предпочесть линейную модель}
+       \wrongchoice{следует предпочесть полулогарифмеческую модель}
+       \wrongchoice{следует предпочесть логарифмическую модель}
+       \wrongchoice{тесты противоречат друг другу, ни одна из моделей не предпочитается}
+       \wrongchoice{в исходной модели пропущен регрессор $Z_i$}
+       \wrongchoice{в исходной модели пропущен регрессор $W_i$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{midterm_16}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Истинной является модель $Y_i = \beta_1 + \beta_2 X_i + u_i$. Глафира оценивает две регрессии: $\hat Y_i = \hb_1 + \hb_2X_i$ и  $\hat Y_i = \hat \gamma_1 + \hat \gamma_2 X_i + \hat \gamma_3 Z_i$ с помощью МНК. Для коэффициента $\beta_2$
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{оценки $\hb_2$ и $\hat\gamma_2$ являются несмещёнными}
+       \wrongchoice{оценки $\hb_2$ и $\hat\gamma_2$ являются эффективными}
+       \wrongchoice{оценка $\hb_2$ является несмещённой, а оценка  $\hat\gamma_2$ — смещённой}
+       \wrongchoice{оценки $\hb_2$ и $\hat\gamma_2$ являются неэффективными}
+       \wrongchoice{оценка $\hb_2$ является смещённой, а оценка  $\hat\gamma_2$ — несмещённой}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}

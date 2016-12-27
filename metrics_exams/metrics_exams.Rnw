@@ -1,11 +1,11 @@
 \documentclass[12pt, a4paper]{article}
 
 
+
 <<"init", echo=FALSE, include=FALSE>>=
-library("ggplot2")
+library("tidyverse")
 library("knitr")
 # library("plyr")
-library("dplyr")
 library("reshape2")
 library("xtable")
 library("gridExtra")
@@ -23,6 +23,22 @@ theme_set(theme_bw())
 load(file = "exam_data.Rdata")
 @
 
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" OTF-fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+\newfontfamily{\cyrillicfont}{Linux Libertine O}
+\newfontfamily{\cyrillicfontsf}{Linux Libertine O}
+
+\usepackage{etoolbox} % to use ifdef, must be after babel
 \input{title_bor_utf8} % use local copy
 \input{emetrix_preamble} % use local copy
 
@@ -87,8 +103,6 @@ load(file = "exam_data.Rdata")
 
 
 
-
-
 \begin{document}
 \maketitle
 
@@ -106,6 +120,7 @@ load(file = "exam_data.Rdata")
 \subsection{Гимн-памятка для эконометриста}
 
 Эмилю Борисовичу Ершову посвящается
+
 
 \begin{verse}
 Ничего на свете лучше нету, \\
@@ -207,6 +222,11 @@ BLUE-оценки мы предъявим людям! \\
 Подпись ...............
 
 \section{Немного теории}
+
+
+
+
+
 
 \subsection{Конвенция об обозначениях}
 
@@ -404,7 +424,7 @@ $Var(\hat{\beta}_j^{alt} )\geq Var(\hat{\beta}_j )$
 \subsection{Праздник 1. Пролетарий на коня!}
 
 \begin{center}
-\includegraphics[height=3in]{proletarii.jpg}
+\includegraphics[height=3in]{figures/proletarii.jpg}
 \end{center}
 \begin{enumerate}
 \item Найдите длины векторов $a=(1,2,3)$ и $b=(1,0,-1)$ и косинус угла между ними.
@@ -451,7 +471,7 @@ $A=\left(%
 \subsection{Праздник 2. Базовая задача}
 
 
-\begin{comment}
+
 Плывут облака \\
 Отдыхать после знойного дня,\\
 
@@ -467,7 +487,6 @@ $A=\left(%
 \quote{Ли Бо, Одиноко сижу в горах Цзинтиншань}
 
 \vspace{30pt}
-\end{comment}
 
 
 
@@ -765,7 +784,7 @@ var.labels["pc9.631a"]
 
 \end{enumerate}
 
-\subsection{Домашнее задание \No $(n+1)$ по эконометрике-1.}
+\subsection{Домашнее задание 1 $(n+1)$ по эконометрике-1.}
 
 \textbf{Задача 1}. «CAPM»
 
@@ -2555,7 +2574,7 @@ y_i = \b_1 + \b_2 x_i + \b_3 z_i + \e_i
 \end{enumerate}
 
 \begin{center}
-\includegraphics[scale=0.6]{50_bored.png}
+\includegraphics[scale=0.6]{figures/50_bored.png}
 \end{center}
 
 \subsection{Максимально правдоподобно, 25-02-2016}
@@ -3288,6 +3307,24 @@ A=\begin{pmatrix}
 \subsection{Контрольная работа-1, демо-версия}
 
 
+
+<<"set_var_no", include=FALSE>>=
+var_no <- 1
+@
+
+
+<<child="tests/2016_kr_01.Rnw">>=
+@
+
+\AMCnumero{1} % сбрасываем номер вопроса на 1
+
+\cleargroup{test}
+\copygroup[10]{demo_kr_01_16}{test}
+\insertgroup{test}
+
+
+
+
 \begin{enumerate}
 
 
@@ -3469,9 +3506,14 @@ B9 = P-value (22) \approx 0.000
 
 \subsection{Контрольная работа-1, 24.10.2016}
 
-<<"set_varno">>=
-var_no <- 1
-@
+
+\AMCnumero{1} % сбрасываем номер вопроса на 1
+
+\cleargroup{test}
+\copygroup[10]{combat_kr_01_16}{test}
+\insertgroup{test}
+
+
 
 \begin{enumerate}
 
@@ -3617,7 +3659,7 @@ cat(all_problems_permuted)
 \begin{figure}[h!]
 \floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,bottom},capbesidewidth=4cm}}]{figure}[\FBwidth]
 {\caption*{Randall Munroe, xkcd}}
-{\includegraphics[width=12cm]{linear_regression.png}}
+{\includegraphics[width=12cm]{figures/linear_regression.png}}
 \end{figure}
 
 
@@ -3657,7 +3699,7 @@ cat(all_problems_permuted)
 \begin{figure}[h!]
 \floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,bottom},capbesidewidth=4cm}}]{figure}[\FBwidth]
 {\caption*{Randall Munroe, xkcd}}
-{\includegraphics[width=10cm]{extrapolating.png}}
+{\includegraphics[width=10cm]{figures/extrapolating.png}}
 \end{figure}
 
 \subsection{Битва под Малоярославцем, 24.10.2016/24.10.1812}
@@ -3737,7 +3779,7 @@ D = \frac{1}{14} \begin{pmatrix}
 \begin{figure}[h!]
 % \floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,bottom},capbesidewidth=4cm}}]{figure}[\FBwidth]
 % {\caption*{Randall Munroe, xkcd}}
-\includegraphics[width=19cm]{Minard.png}
+\includegraphics[width=19cm]{figures/Minard.png}
 \caption*{Charles Joseph Minard, Схема потерь наполеоновской армии в компании 1812-1813 годов}
 \end{figure}
 
@@ -3909,6 +3951,28 @@ u'u \sim \chi_{n}^2 \Rightarrow q = u'Au \sim \chi_{n-1}^2
 \end{enumerate}
 
 
+\subsection{Экзамен за I семестр — демо}
+
+<<child="tests/2016_midterm_demo.Rnw">>=
+@
+
+\AMCnumero{1} % сбрасываем номер вопроса на 1
+
+\cleargroup{test}
+\copygroup[10]{midterm_demo_16}{test}
+\insertgroup{test}
+
+
+\subsection{Экзамен за I семестр, 24.12.2016}
+
+<<child="tests/2016_midterm.Rnw">>=
+@
+
+\AMCnumero{1} % сбрасываем номер вопроса на 1
+
+\cleargroup{test}
+\copygroup[10]{midterm_16}{test}
+\insertgroup{test}
 
 
 \end{document}

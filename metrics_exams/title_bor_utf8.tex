@@ -1,43 +1,47 @@
+% dec 2015
+
+
 \usepackage[paper=a4paper, top=13.5mm, bottom=13.5mm, left=16.5mm, right=13.5mm, includefoot]{geometry}
 
 \usepackage{etex} % расширение классического tex
 % в частности позволяет подгружать гораздо больше пакетов, чем мы и займёмся далее
 
+\usepackage{floatrow} % сильно вниз если сдвинуть - ругается!
 
-% sudo yum install texlive-bbm texlive-bbm-macros texlive-asymptote texlive-cm-super texlive-cyrillic texlive-pgfplots texlive-subfigure
-% yum install texlive-chessboard texlive-skaknew % for \usepackage{chessboard}
-% yum install texlive-minted texlive-navigator texlive-yax texlive-texapi
-
-% растягиваем границы страницы
-%\emergencystretch=2em \voffset=-2cm \hoffset=-1cm
-%\unitlength=0.6mm \textwidth=17cm \textheight=25cm
 
 \usepackage{makeidx} % для создания предметных указателей
 \usepackage{verbatim} % для многострочных комментариев
-
+%\usepackage[pdftex]{graphicx} % для вставки графики
+% omit pdftex option if not using pdflatex
 
 
 %\usepackage{dsfont} % шрифт для единички с двойной палочкой (для индикатора события)
 \usepackage{bbm} % шрифт - двойные буквы
 
+
+\usepackage[usenames, dvipsnames, svgnames, table, rgb]{xcolor}
+
+\usepackage{colortbl}
+
+
+% пакет для тестов:
+\usepackage[box, % запрет на перенос вопросов
+nopage, % убираем колонтитулы страницы
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+indivanswers,  % показываем верные ответы
+%answers,
+lang=RU, % локализация слов "нет верных ответов", "вопрос" и тд
+completemulti % добавлять "нет правильного ответа" во всех вопросах множественного выбора
+]{automultiplechoice}
+
+
+\usepackage{multicol}
+
 \usepackage[colorlinks, hyperindex, unicode, breaklinks]{hyperref} % гиперссылки в pdf
 
-
-\usepackage{fontspec}
-\usepackage{polyglossia}
-
-\setmainlanguage{russian}
-\setotherlanguages{english}
-
-% download "Linux Libertine" fonts:
-% http://www.linuxlibertine.org/index.php?id=91&L=1
-\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
-% why do we need \newfontfamily:
-% http://tex.stackexchange.com/questions/91507/
-\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
-
-\usepackage{floatrow} % для выравнивания рисунка и подписи
-\usepackage{caption} % для пустых подписей
+\usepackage{dcolumn}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
@@ -46,17 +50,13 @@
 \usepackage{bm}
 \usepackage{color}
 
-\usepackage[usenames, dvipsnames, svgnames, table, rgb]{xcolor}
-\usepackage{colortbl}
 
-\usepackage{multicol}
+
 \usepackage{multirow} % Слияние строк в таблице
-\usepackage{dcolumn} % apsr table requirement
 
 \usepackage{textcomp}  % Чтобы в формулах можно было русские буквы писать через \text{}
 
-% \usepackage{embedfile} % Чтобы код LaTeXа включился как приложение в PDF-файл
-% в топку ибо гитхаб
+%\usepackage{embedfile} % Чтобы код LaTeXа включился как приложение в PDF-файл
 
 \usepackage{subfigure} % для создания нескольких рисунков внутри одного
 
@@ -64,9 +64,6 @@
 \usetikzlibrary{trees} % прибамбас в нем для рисовки деревьев
 \usetikzlibrary{arrows} % прибамбас в нем для рисовки стрелочек подлиннее
 \usepackage{tikz-qtree} % прибамбас в нем для рисовки деревьев
-\pgfplotsset{compat=1.8}
-
-%\usepackage{verse} % для стихов
 
 
 
@@ -76,7 +73,7 @@
 
 %\embedfile[desc={Исходный LaTeX файл}]{\jobname.tex} % Включение кода в выходной файл
 %\embedfile[desc={Стилевой файл}]{title_bor_utf8.tex}
-% в топку ибо гитхаб!
+
 
 
 % вместо горизонтальной делаем косую черточку в нестрогих неравенствах
@@ -140,11 +137,9 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Corr}{Corr}
-\DeclareMathOperator{\trace}{tr}
-%\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\trace}{trace}
 \DeclareMathOperator{\rank}{rank}
-\DeclareMathOperator{\rk}{rank}
-
 
 \def \xfs{(x_1,\ldots,x_{n-1})}
 \def \ti{\tilde}
@@ -191,7 +186,6 @@
 \def \Tt{\Theta}
 \def \Om{\Omega}
 \def \om{\omega}
-\newcommand{\No}{\textnumero}
 
 
 \def \ni{\noindent}
@@ -212,7 +206,7 @@
 \def \VSIII{\vspace{3cm}}
 
 
-\newcommand{\grad}{\mathrm{grad}}
+
 \newcommand{\dx}[1]{\,\mathrm{d}#1} % для интеграла: маленький отступ и прямая d
 \newcommand{\ind}[1]{\mathbbm{1}_{\{#1\}}} % Индикатор события
 %\renewcommand{\to}{\rightarrow}
@@ -222,7 +216,7 @@
 
 %на всякий случай пока есть
 %теоремы без нумерации и имени
-%\newtheorem*{theor}{Теорема}
+\newtheorem*{theorem}{Теорема}
 
 %"Определения","Замечания"
 %и "Гипотезы" не нумеруются
@@ -232,7 +226,7 @@
 
 %"Теоремы" и "Леммы" нумеруются
 %по главам и согласованно м/у собой
-\newtheorem{theorem}{Теорема}
+%\newtheorem{theorem}{Теорема}
 %\newtheorem{lemma}[theorem]{Лемма}
 
 % Утверждения нумеруются по главам
