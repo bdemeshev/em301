@@ -3,10 +3,10 @@
 # .Rnw extension is automatically added
 
 file_name_1 = midterm_demo
-file_name_2 = kr_01_demo_1_ans
-file_name_3 = kr_01_var_1
-file_name_4 = kr_01_var_2
-file_name_5 = kr_01_var_3
+file_name_2 = midterm_combat_v_01
+file_name_3 = midterm_combat_v_02
+file_name_4 = midterm_combat_v_03
+file_name_5 = midterm_combat_v_04
 file_name_6 = kr_01_var_4
 file_name_7 = kr_01_var_5
 file_name_8 = kr_01_brutal
@@ -14,7 +14,7 @@ file_name_9 = kr_01_brutal_demo
 
 
 
-all: $(file_name_1).pdf 
+all: $(file_name_1).pdf $(file_name_2).pdf $(file_name_3).pdf $(file_name_4).pdf $(file_name_5).pdf 
 
 
 

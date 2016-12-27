@@ -22,7 +22,7 @@ completemulti]{automultiplechoice}
 \usepackage{microtype} % свешивание пунктуации
 
 \usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
-\usepackage{comment}
+\usepackage{comment} % для многострочных комментарией
 
 \usepackage{array} % для столбцов фиксированной ширины
 

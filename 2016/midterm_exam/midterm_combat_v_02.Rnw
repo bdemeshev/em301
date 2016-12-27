@@ -1,0 +1,385 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE>>=
+var_no <- 2
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("tidyverse")
+library("texreg")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+library("memisc")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, контрольная 2}
+\chead{}
+\rhead{24.12.2016, вариант \Sexpr{var_no + sample(c(0, 10), 1)}}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+<<child="combat_test_bank.Rnw">>=
+@
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{midterm_16}{combat}
+%\shufflegroup{demo_a}
+\insertgroup{combat}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+<<include = FALSE>>=
+set.seed(var_no)
+n_obs <- 200
+opros <- data_frame(exper = rnorm(n_obs, mean = 7, sd = 2),
+                    exper2 = exper^2,
+                    sex = sample(0:1, n_obs, rep = TRUE),
+                    eps = rnorm(n_obs, sd = 2),
+                    wage = 3 + 6 * exper - 0.2 * exper2 + 1.5 * sex + eps)
+model <- lm(data = opros, wage ~ exper + exper2 + sex)
+report <- summary(model)
+coefs <- coef(model)
+@
+
+\item На основании опроса 200 человек была оценена следующая модель:
+\[
+\ln(wage_i)=\beta_1 + \beta_2 exper_i + \beta_3 exper^2_i + \beta_4 sex_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ — величина заработной платы в долларах
+\item $exper_i$ — опыт работы в годах
+\item $exper^2_i$ — опыт работы в годах
+\item $sex_i$ — пол (1 — мужской, 0 — женский)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & 0.911 \\
+Скорректированный $R^2$      & \textbf{B7} \\
+Стандартная ошибка регрессии & \textbf{B6} \\
+Количество наблюдений        & \textbf{B2} \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrr} \toprule
+            &  df           & сумма квадратов & F           & P-значение \\
+\midrule
+Регрессия   & 3            & \textbf{B9}     & \textbf{В5}  & 0.000 \\
+Остаток     & \textbf{B1}  &  830.1          &              &       \\
+Итого       & \textbf{B3}  & \textbf{B4}     &              &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Оценка & Ст. ошибка & t-статистика & P-Значение \\
+  \hline
+Константа & 3.6869 & 1.1960 & 3.08 & 0.0023 \\
+  $exper$ & \textbf{В8} & 0.3525 & 16.45 & 0.0000 \\
+  $exper^2$ & -0.1916 & 0.0254 & -7.54 & 0.0000 \\
+  $sex$ & 1.5745 & 0.2937 & \textbf{В10} & 0.0000 \\
+   \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{enumerate}
+\item Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+\item Как изменятся результаты оценки регрессии, если переменную $sex_i$ переопределить так, чтобы 0 соответствовал мужчинам, 1 — женщинам?
+\end{enumerate}
+
+Ответ округляйте до 2-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+\newpage
+\item Исследовательница Глафира изучает спрос на молоко. В её распоряжении есть следующие переменные:
+
+\begin{itemize}
+\item $price$ — цена молока в рублях за литр
+\item $income$ — ежемесячный доход семьи в тысячах рублей
+\item $milk$ — расходы семьи на молоко за последние семь дней в рублях
+\end{itemize}
+
+В данных указано, проживает ли семья в сельской или городской местности. Поэтому Глафира оценила три регрессии: (All) — по всем данным, (Urban) — по городским семьям, (Rural) — по сельским семьям.
+
+<<results="asis", echo=FALSE>>=
+set.seed(var_no)
+n_obs <- 100
+
+milk_demand <- data_frame(
+  eps = rnorm(n_obs, sd = 5),
+  price = rnorm(n_obs, mean = 20, sd = 3),
+  city = sample(0:1, n_obs, rep = TRUE),
+  income = rnorm(n_obs, mean = 70, sd = 10))
+
+milk_demand <- mutate(milk_demand, milk = ifelse(city == 1,
+                                                 1 + 0.2 * income - 0.1 * price + eps,
+                                                 0 + 0.3 * income - 0.5 * price + eps))
+
+model_all <- lm(data = milk_demand, milk ~ income + price)
+model_urban <- lm(data = filter(milk_demand, city == 1), milk ~ income + price)
+model_rural <- lm(data = filter(milk_demand, city == 0), milk ~ income + price)
+
+model_table <- mtable("(All)" = model_all, "(Urban)" = model_urban, "(Rural)" = model_rural,
+                      summary.stats = c("R-squared", "adj. R-squared", "sigma", "F", "p", "Deviance", "N"))
+
+model_table <- relabel(model_table, Deviance = "RSS", p = "P-value", N = "n observations")
+
+toLatex(model_table)
+@
+
+\begin{enumerate}
+\item Проверьте значимость в целом регрессии (All) на 5\%-ом уровне значимости.
+\item На 5\%-ом уровне значимости проверьте гипотезу, что зависимость спроса на молоко является единой для городской и сельской местности.
+\end{enumerate}
+
+\newpage
+\item Исследовательница Глафира продолжает изучать спрос на молоко. В её распоряжении по-прежнему данные по трём переменным:
+\begin{itemize}
+\item $price$ — цена молока в рублях за литр
+\item $income$ — ежемесячный доход семьи в тысячах рублей
+\item $milk$ — расходы семьи на молоко за последние семь дней в рублях
+\end{itemize}
+
+Имеются результаты оценивания модели $milk_i = \beta_1 + \beta_2 income_i + \beta_3 price_i + u_i$ по $\Sexpr{n_obs}$ наблюдениям:
+<<echo=FALSE, results="asis">>=
+xtable(model_all)
+@
+
+
+Коэффициент детерминации $R^2$ оказался равен $\Sexpr{round(summary(model_all)$r.squared, 3)}$.
+
+
+Глафира рассчитала оценку ковариационной матрицы исходных переменных:
+<<echo=FALSE, results="asis">>=
+xtable(var(dplyr::select(milk_demand, price, income, milk)))
+@
+
+
+\begin{enumerate}
+\item Постройте точечный прогноз расходов на молоко семьи c доходом 100 тысяч рублей при цене на молоко 30 рублей за литр.
+\item Найдите выборочную корреляцию между фактическими расходами на молоко и их прогнозами.
+\item Разложите коэффициент детерминации $R^2$ в модели в сумму эффектов переменных $income$ и $price$.
+\end{enumerate}
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+ESS_old <- sample(c(100, 110, 120), 1)
+ESS_new <- sample(c(150, 160, 170), 1)
+@
+
+\newpage
+\item По квартальным данным 1958-1976 годов была оценена модель с тремя объясняющими факторами:
+\[
+\hat Y_i = 2.2 + 0.104 X_i - 3.48 Z_i + 0.34 W_i, \; ESS = \Sexpr{ESS_old}, \; RSS = 20
+\]
+
+\begin{enumerate}
+\item Какую модель необходимо оценить исследователю, если он считает, что в различные сезоны среднее значение зависимой переменной помимо зависимости от трёх регрессоров может отличаться на константу?
+\item При оценивании модели, допускающей сезонные эффекты, оказалось, что значение $ESS$ увеличилось до $\Sexpr{ESS_new}$.
+На уровне значимости 5\% проверьте гипотезу о наличии сезонности.
+\end{enumerate}
+
+<<include=FALSE>>=
+set.seed(var_no)
+hb_w <- sample(c(3, 4, 5), 1)
+hb_r <- sample(c(6, 7, 8), 1)
+
+X <- mvtnorm::rmvnorm(n = 24, mean = c(1, 1, 1),
+             sigma = matrix(c(0, 0, 0, 0, 0.4, -0.1, 0, -0.1, 0.9), nrow = 3))
+XXm <- solve(crossprod(X))
+xmatrix <- function(a, environment = "pmatrix", output = TRUE, digits = 3) {
+
+  # override default alignment for xtable
+  xa <- xtable::xtable(a, align = rep("", ncol(a) + 1), digits = digits)
+
+  res <- print(xa,
+               floating = FALSE,
+               tabular.environment = environment,
+               hline.after = NULL,
+               include.rownames = FALSE,
+               include.colnames = FALSE,
+               file = "junk.txt")
+
+  res <- paste0("\\ensuremath{", res, "}")
+
+  if (output) {
+    cat(res)
+  }
+  return(invisible(res))
+}
+@
+
+\item По 24 наблюдениям была оценена модель:
+
+\[
+\widehat{Y}_i=15-4Z_i+\Sexpr{hb_w}W_i
+\]
+
+Известно, что случайные ошибки нормально распределены, $RSS=180$, и
+
+\[
+(X'X)^{-1} =
+<<echo=FALSE, results="asis">>=
+xmatrix(XXm)
+@
+\]
+
+
+\begin{enumerate}
+\item Проверьте гипотезу $H_0: \beta_Z = 0$ против $H_a: \beta_Z \neq 0$ на уровне значимости~5\%.
+\item Проверьте гипотезу $H_0: \beta_Z + \beta_W = 0$  против $H_a: \beta_Z + \beta_W \neq 0$ на уровне значимости~5\%.
+\item Выпишите использованные при проверке гипотез предпосылки о случайных ошибках модели.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
