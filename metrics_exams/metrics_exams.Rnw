@@ -23,22 +23,7 @@ theme_set(theme_bw())
 load(file = "exam_data.Rdata")
 @
 
-\usepackage{fontspec}
-\usepackage{polyglossia}
 
-\setmainlanguage{russian}
-\setotherlanguages{english}
-
-% download "Linux Libertine" OTF-fonts:
-% http://www.linuxlibertine.org/index.php?id=91&L=1
-\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
-% why do we need \newfontfamily:
-% http://tex.stackexchange.com/questions/91507/
-\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
-\newfontfamily{\cyrillicfont}{Linux Libertine O}
-\newfontfamily{\cyrillicfontsf}{Linux Libertine O}
-
-\usepackage{etoolbox} % to use ifdef, must be after babel
 \input{title_bor_utf8} % use local copy
 \input{emetrix_preamble} % use local copy
 
