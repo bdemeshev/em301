@@ -308,7 +308,7 @@ ESS_new <- sample(c(150, 160, 170), 1)
 \newpage
 \item По квартальным данным 1958-1976 годов была оценена модель с тремя объясняющими факторами:
 \[
-\hat Y_i = 2.2 + 0.104 X_i - 3.48 Z_i + 0.34 W_i, \; ESS = \Sexpr{ESS_old}, \; RSS = 120
+\hat Y_i = 2.2 + 0.104 X_i - 3.48 Z_i + 0.34 W_i, \; ESS = \Sexpr{ESS_old}, \; RSS = 20
 \]
 
 \begin{enumerate}

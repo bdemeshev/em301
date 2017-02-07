@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 <<echo=FALSE>>=
-var_no <- 5
+var_no <- 6
 @
 
 \usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
@@ -68,7 +68,7 @@ theme_set(theme_bw())
 \pagestyle{fancy}
 \lhead{Эконометрика, пересдача}
 \chead{}
-\rhead{16.01.2016}
+\rhead{30.01.2016}
 \lfoot{}
 \cfoot{}
 \rfoot{\thepage/\pageref{LastPage}}
@@ -146,7 +146,7 @@ theme_set(theme_bw())
 
 \begin{document}
 
-<<child="combat_test_bank.Rnw">>=
+<<child="retake2_test_bank.Rnw">>=
 @
 
 
@@ -155,7 +155,7 @@ theme_set(theme_bw())
 \onecopy{1}{
 
 \cleargroup{combat}
-\copygroup[10]{midterm_16}{combat}
+\copygroup[10]{midterm_16_retake2}{combat}
 \shufflegroup{combat}
 \insertgroup{combat}
 
