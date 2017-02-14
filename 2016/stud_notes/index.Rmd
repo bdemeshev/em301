@@ -1,18 +1,14 @@
----
+--- 
 title: "Конспект семинаров по метрике-2016"
 author: "Студенты ИП и Борис Демешев"
-date: '`r Sys.Date()`'
-output:
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
   bookdown::gitbook:
     config:
-      download: [["stud_notes.pdf", "PDF"], ["stud_notes.epub", "EPUB"], ["stud_notes.mobi", "MOBI"]]
-      edit:
-        link: https://github.com/bdemeshev/em301/issues
-      fontsettings:
-        family: sans
-        size: 2
-        theme: white
       search: yes
+      toc:
+        collapse: section
       sharing:
         all:
         - facebook
@@ -27,44 +23,19 @@ output:
         twitter: no
         vk: yes
         weibo: no
-      toc:
-        after: |
-          <li><a href="https://github.com/rstudio/bookdown"   target="blank">Создано с использованием пакета bookdown</a></li>
-        before: |
-          <li><a href="./">Конспект по метрике - 2016</a></li>
-        collapse: section
-        scroll_highlight: yes
-      toolbar:
-        position: fixed
-    css: style.css
-  bookdown::html_chapters:
-    includes:
-      in_header: style.css
-  bookdown::pdf_book:
-    citation_package: biblatex
-    includes:
-      in_header: preamble.tex
-    keep_tex: yes
-    latex_engine: xelatex
-  bookdown::epub_book: default
-  bookdown::kindlegen:
-    epub: _book/stud_notes.epub
-description: Конспект по метрике и не только :)
 documentclass: book
+github-repo: https://github.com/bdemeshev/em301
+description: "Конспект по метрике и не только :)"
+split_by: chapter
 fontsize: 11pt
-github-repo: bdemeshev/em301
 lang: ru-RU
+otherlangs: en-GB
 link-citations: yes
 mainfont: "Linux Libertine O"
 monofont: "Linux Libertine O"
 sansfont: "Linux Libertine O"
-otherlangs: en-GB
-bibliography:
-- book.bib
-- packages.bib
-site: bookdown::bookdown_site
-biblio-style: alphabetic
 ---
+
 
 # О конспекте {-}
 
@@ -78,7 +49,7 @@ biblio-style: alphabetic
 
 1. Помни об оформлении знаков препинания: после запятой есть пробел, а до запятой — нет. Существует длинное тире, `—`, которое отличается от просто дефиса `-`.
 
-1. Рисунки оформляй в открытом софте ([tex + tikz](http://www.computational-logic.org/content/study/master/documents/softskills_tikz.pdf), [inkscape](https://inkscape.org/en/), [graphviz](https://inkscape.org/en/), [geogebra](https://www.geogebra.org/), [draw.io](https://www.draw.io/) и прочее) и прикладывай к работе.
+1. Рисунки оформляй в открытом софте ([tex + tikz](http://www.computational-logic.org/content/study/master/documents/softskills_tikz.pdf), [inkscape](https://inkscape.org/en/), [graphviz](https://inkscape.org/en/), [geogebra](https://www.geogebra.org/), [draw.io](https://www.draw.io/) и прочее) и прикладывай к работе. Есть ещё [Ipe]() и [tikzit]().
 
 1. Рисунки клади в подпапку `images`
 
@@ -162,7 +133,7 @@ outputFormat <- opts_knit$get("rmarkdown.pandoc.to")
 
 if (outputFormat == "latex") {
   activateTikz()
-  # другую тему для ggplot2 выставить?
+  theme_set(theme_bw()) # другую тему для ggplot2 выставить?
 }
 
 ```

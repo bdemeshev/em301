@@ -2,7 +2,7 @@
 output: html_document
 
 ---
-# Стохастические бобры и прочие условности{#12_everything_about_beavers}
+# Стохастические бобры и прочие условности {#12_everything_about_beavers}
 
 Дата: **05.12.2016** 
 
