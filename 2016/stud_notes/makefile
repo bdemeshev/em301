@@ -1,4 +1,4 @@
-all: preclean pdf_noclean html epub mobi moveto_docs
+all: preclean pdf_noclean html epub mobi copy
 
 preclean:
 	export LC_ALL=en_US.UTF-8

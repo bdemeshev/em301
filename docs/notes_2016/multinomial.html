@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="<a href="https://github.com/bdemeshev/em301" class="uri">https://github.com/bdemeshev/em301</a>" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="bayesian-approach.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О конспекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="recall-all.html"><a href="recall-all.html"><i class="fa fa-check"></i><b>2</b> Вспомнить всё</a></li>
+<li class="chapter" data-level="3" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>3</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>3.1</b> Обозначения</a></li>
+<li class="chapter" data-level="3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>3.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>3.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>3.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>3.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>3.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-fight.html"><a href="matrix-fight.html"><i class="fa fa-check"></i><b>4</b> Борьба с матрицами</a></li>
+<li class="chapter" data-level="5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html"><i class="fa fa-check"></i><b>5</b> Доказательство свойств и оценка моделей. {#05_models_evaluation}</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>5.0.1</b> Пример из домашки</a></li>
+<li class="chapter" data-level="5.0.2" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-1-1"><i class="fa fa-check"></i><b>5.0.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="5.0.3" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-2-1"><i class="fa fa-check"></i><b>5.0.3</b> Упражнение 2</a></li>
+<li class="chapter" data-level="5.0.4" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-3-1"><i class="fa fa-check"></i><b>5.0.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="5.0.5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-4.-----ml"><i class="fa fa-check"></i><b>5.0.5</b> Упражнение 4. Оценим модель с помощью ML</a></li>
+<li class="chapter" data-level="5.0.6" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>5.0.6</b> ДЗ</a></li>
+<li class="chapter" data-level="5.0.7" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#section-5.0.7"><i class="fa fa-check"></i><b>5.0.7</b> Ссылки</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hints-and-hats.html"><a href="hints-and-hats.html"><i class="fa fa-check"></i><b>6</b> Статистические свойства RSS</a><ul>
+<li class="chapter" data-level="6.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#problem1"><i class="fa fa-check"></i><b>6.1</b> Упражнение 1</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_exp_value"><i class="fa fa-check"></i><b>6.1.1</b> Матожидание оценки</a></li>
+<li class="chapter" data-level="6.1.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_var"><i class="fa fa-check"></i><b>6.1.2</b> Дисперсия оценки</a></li>
+<li class="chapter" data-level="6.1.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#trivial_hints"><i class="fa fa-check"></i><b>6.1.3</b> Тривиальщина, которая здорово упрощает жизнь</a></li>
+<li class="chapter" data-level="6.1.4" data-path="hints-and-hats.html"><a href="hints-and-hats.html#hat_matrix"><i class="fa fa-check"></i><b>6.1.4</b> Магические свойства “матрицы-шляпницы”</a></li>
+<li class="chapter" data-level="6.1.5" data-path="hints-and-hats.html"><a href="hints-and-hats.html#eigenvalue"><i class="fa fa-check"></i><b>6.1.5</b> Собственные числа</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#theorem"><i class="fa fa-check"></i><b>6.2</b> Теорема</a></li>
+<li class="chapter" data-level="6.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#home_tasks"><i class="fa fa-check"></i><b>6.3</b> Домашка</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html"><i class="fa fa-check"></i><b>7</b> Подготовка к празднику №2</a><ul>
+<li class="chapter" data-level="7.1" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-1-2"><i class="fa fa-check"></i><b>7.1</b> Упражнение 1</a></li>
+<li class="chapter" data-level="7.2" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-2-2"><i class="fa fa-check"></i><b>7.2</b> Упражнение 2</a></li>
+<li class="chapter" data-level="7.3" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>7.3</b> Подготовка к контрольной!</a></li>
+<li class="chapter" data-level="7.4" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-3-2"><i class="fa fa-check"></i><b>7.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="7.5" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>7.5</b> ДЗ</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="many-restrictions.html"><a href="many-restrictions.html"><i class="fa fa-check"></i><b>8</b> Гипотезы о нескольких ограничениях в регрессии</a><ul>
+<li class="chapter" data-level="8.1" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> Примеры:</a></li>
+<li class="chapter" data-level="8.2" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>8.2</b> Проверка гипотез по шагам:</a></li>
+<li class="chapter" data-level="8.3" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> Замечание:</a></li>
+<li class="chapter" data-level="8.4" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.4"><i class="fa fa-check"></i><b>8.4</b> Теорема:</a></li>
+<li class="chapter" data-level="8.5" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.5"><i class="fa fa-check"></i><b>8.5</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.5.1"><i class="fa fa-check"></i><b>8.5.1</b> Решение</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="many-restrictions.html"><a href="many-restrictions.html#-4"><i class="fa fa-check"></i><b>8.6</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>8.6.1</b> Решение:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="many-restrictions.html"><a href="many-restrictions.html#-5"><i class="fa fa-check"></i><b>8.7</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>8.7.1</b> Решение:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="frish-and-co.html"><a href="frish-and-co.html"><i class="fa fa-check"></i><b>9</b> Фриш и Ко</a><ul>
+<li class="chapter" data-level="9.1" data-path="frish-and-co.html"><a href="frish-and-co.html#-1-3"><i class="fa fa-check"></i><b>9.1</b> Упражнение 1</a></li>
+<li class="chapter" data-level="9.2" data-path="frish-and-co.html"><a href="frish-and-co.html#-2-3"><i class="fa fa-check"></i><b>9.2</b> Упражнение 2</a></li>
+<li class="chapter" data-level="9.3" data-path="frish-and-co.html"><a href="frish-and-co.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> Домашка</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html"><i class="fa fa-check"></i><b>10</b> Стохастические бобры и прочие условности {#12_everything_about_beavers}</a><ul>
+<li class="chapter" data-level="10.1" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#-0"><i class="fa fa-check"></i><b>10.1</b> Упражнение № 0</a></li>
+<li class="chapter" data-level="10.2" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>10.2</b> Условные свойства</a></li>
+<li class="chapter" data-level="10.3" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#-1-4"><i class="fa fa-check"></i><b>10.3</b> Упражнение № 1</a></li>
+<li class="chapter" data-level="10.4" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#----------"><i class="fa fa-check"></i><b>10.4</b> Случайность? Не думаю! Или история о том, как отличить стохастические '{и}ксы</a></li>
+<li class="chapter" data-level="10.5" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#--------"><i class="fa fa-check"></i><b>10.5</b> Теорема (как на все это смотрели Гаусс и Марков)</a></li>
+<li class="chapter" data-level="10.6" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>10.6</b> А что если гетероскедастичность?</a></li>
+<li class="chapter" data-level="10.7" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>10.7</b> В чем прелесть гетероскедастичности?</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hetero-exercises.html"><a href="hetero-exercises.html"><i class="fa fa-check"></i><b>11</b> Упражнения на гетероскедастичость</a><ul>
+<li class="chapter" data-level="11.1" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex0"><i class="fa fa-check"></i><b>11.1</b> Упражнение 0</a></li>
+<li class="chapter" data-level="11.2" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex1"><i class="fa fa-check"></i><b>11.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="11.3" data-path="hetero-exercises.html"><a href="hetero-exercises.html#stoch_regressors"><i class="fa fa-check"></i><b>11.3</b> Стохастические регрессоры</a></li>
+<li class="chapter" data-level="11.4" data-path="hetero-exercises.html"><a href="hetero-exercises.html#gm_stochastic"><i class="fa fa-check"></i><b>11.4</b> Теорема Гаусса Маркова для стохастических регрессоров</a></li>
+<li class="chapter" data-level="11.5" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex2"><i class="fa fa-check"></i><b>11.5</b> Упражнение 2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html"><i class="fa fa-check"></i><b>12</b> Конспект семинара 14. Гетеро или гомо? {hetero_or_homo}</a><ul>
+<li class="chapter" data-level="12.0.1" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>12.0.1</b> Какие последствия отсюда вытекают?</a></li>
+<li class="chapter" data-level="12.0.2" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>12.0.2</b> Обнаружение гетероскедастичности</a></li>
+<li class="chapter" data-level="12.0.3" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>12.0.3</b> Так делать нехорошо:</a></li>
+<li class="chapter" data-level="12.0.4" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html#section-12.0.4"><i class="fa fa-check"></i><b>12.0.4</b> Примечание</a></li>
+<li class="chapter" data-level="12.0.5" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>12.0.5</b> Пакеты для <strong>R</strong>:</a></li>
+<li class="chapter" data-level="12.0.6" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html#-r"><i class="fa fa-check"></i><b>12.0.6</b> Немного <strong>R</strong></a></li>
+<li class="chapter" data-level="12.0.7" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>12.0.7</b> Полезные ссылочки</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bayesian-approach.html"><a href="bayesian-approach.html"><i class="fa fa-check"></i><b>13</b> Байесовский подход</a><ul>
+<li class="chapter" data-level="13.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#brutal_hints"><i class="fa fa-check"></i><b>13.1</b> Хинты к брутальной части (16 января 2017)</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#first_brutal"><i class="fa fa-check"></i><b>13.1.1</b> Первая задача</a></li>
+<li class="chapter" data-level="13.1.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#brutal_third"><i class="fa fa-check"></i><b>13.1.2</b> Третья задача</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#bayes_vs_freq"><i class="fa fa-check"></i><b>13.2</b> Отличие классического подхода от байесовского</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#frequentist_approach"><i class="fa fa-check"></i><b>13.2.1</b> Классический подход</a></li>
+<li class="chapter" data-level="13.2.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#bayesian_approach_nutshell"><i class="fa fa-check"></i><b>13.2.2</b> Байесовский подход</a></li>
+<li class="chapter" data-level="13.2.3" data-path="bayesian-approach.html"><a href="bayesian-approach.html#hat_with_coins"><i class="fa fa-check"></i><b>13.2.3</b> Упражнение №1 (про шапку с монетками)</a></li>
+<li class="chapter" data-level="13.2.4" data-path="bayesian-approach.html"><a href="bayesian-approach.html#masha_and_mices"><i class="fa fa-check"></i><b>13.2.4</b> Упражнение №2 (про Машу и мышек)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="multinomial.html"><a href="multinomial.html"><i class="fa fa-check"></i><b>14</b> Мультиномиальное распределение</a><ul>
+<li class="chapter" data-level="14.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>14.1</b> Задание 1</a></li>
+<li class="chapter" data-level="14.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>14.2</b> Задание 2</a></li>
+<li class="chapter" data-level="14.3" data-path="multinomial.html"><a href="multinomial.html#--n-"><i class="fa fa-check"></i><b>14.3</b> Определение симплекса (n-мерного)</a></li>
+<li class="chapter" data-level="14.4" data-path="multinomial.html"><a href="multinomial.html#--stan"><i class="fa fa-check"></i><b>14.4</b> Переходим в STAN</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multinomial" class="section level1">
+<h1><span class="header-section-number">14</span> Мультиномиальное распределение</h1>
+<p><strong>Конспект: Молдованов Александр, Умрихин Александр</strong></p>
+<p><strong>Дата: 08.02.2017</strong></p>
+<p>Можно почитать о мультиномиальном распределении на <a href="https://en.wikipedia.org/wiki/Multinomial_distribution">википедии</a></p>
+<div id="-1" class="section level2">
+<h2><span class="header-section-number">14.1</span> Задание 1</h2>
+<p><strong>Дано:</strong> Вы решили сходить в лес 100 раз. Вероятность встретить там волка составляет 0,3, Бабу-Ягу - 0,1, а Хариса - 0,6.</p>
+<p>Пусть <span class="math display">\[
+\begin{pmatrix}
+х_{1} \\
+х_{2} \\
+х_{3}
+\end{pmatrix} ,
+\]</span> где <span class="math inline">\(х_{1}\)</span> - количество раз, когда вы встретили волка, <span class="math inline">\(х_{2}\)</span> - Бабу-Ягу, <span class="math inline">\(х_{3}\)</span> - Хариса.</p>
+<p>Этот вектор имеет мультиномиальное распределение с параметрами (n=100, p(0,3; 0,1; 0,6)), т. е. <span class="math display">\[
+\begin{pmatrix}
+х_{1} \\
+х_{2} \\
+х_{3}
+\end{pmatrix} \sim multi (n=100, p(0,3; 0,1; 0,6))
+\]</span> <strong>Вопрос:</strong> Какова вероятность встретить волка 10 раз, Бабу-Ягу - 20, а Хариса - 70? p(<span class="math inline">\(х_{1}\)</span>=10, <span class="math inline">\(х_{2}\)</span>=20, <span class="math inline">\(х_{3}\)</span>=70)-?</p>
+<p><strong>Решение:</strong> <span class="math display">\[
+\left.
+\begin{array}
+[c]{ll}0,3^{10} - \text{вероятность встретить 10 волков}\\
+0,1^{20} - \text{вероятность встретить 20 раз Бабу-Ягу}\\
+0,6^{70} - \text{вероятность встретить 70 раз заблудившегося Хариса}
+\end{array}
+\right\} =&gt;
+\]</span> вероятность встретить их всех за 100 раз = <span class="math inline">\(0,3^{10}\times0,1^{20}\times0,6^{70}\)</span></p>
+<p>Важен коэффициент перед этим всем: !!!!!! обосновать !!!!!</p>
+<p><span class="math inline">\(C^{10}_{100} \times C^{20}_{90}\)</span> = <span class="math inline">\(\frac{100!}{10!\times90!} \times \frac{90!}{20!\times70!} = \frac{100!}{10!\times20!\times70!}\)</span>\</p>
+<p><strong>Ответ:</strong> <span class="math inline">\(\frac{100!}{10!\times20!\times70!}\times0,3^{10}\times0,1^{20}\times0,6^{70}\)</span></p>
+</div>
+<div id="-2" class="section level2">
+<h2><span class="header-section-number">14.2</span> Задание 2</h2>
+<p><strong>Дано:</strong> <span class="math display">\[
+p =
+\begin{pmatrix}
+p_{1} \\
+p_{2} \\
+p_{3}
+\end{pmatrix} ,
+\]</span> <span class="math display">\[
+x =
+\begin{pmatrix}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{pmatrix} \sim mult(n, (p_{1}, p_{2}, p_{3}))
+\]</span></p>
+<p><strong>Вопрос:</strong> <span class="math inline">\(E(X), Var(X)\)</span> - ?</p>
+<strong>Решение:</strong> <span class="math display">\[
+E(X)=\begin{pmatrix}
+np_{1} \\
+np_{2} \\
+np_{3}
+\end{pmatrix}
+\]</span>
+<span class="math display">\[\begin{multline}
+Cov(x_{1}; x_{2}) = Cov(I_{1,1} + I_{1,2} + ... + I_{1,100}; I_{2,1} + I_{2,2} + ... + I_{2, 100})=\\
+= \sum\ Cov(I_{1,i}; I_{2,i}) = nCov(I_{1,1};I_{2,1})=n(E(I_{1,1}I_{2,1})-E(I_{1,1})E(I_{2,1}))=-np_{1}p_{2} \Rightarrow\\
+Var(X)=\begin{pmatrix}
+np_{1}(1 - p_{1}) &amp; -np_{1}p_{2} &amp; -np_{1}p_{3} \\
+-np_{1}p_{2} &amp; np_{2}(1 - p_{2}) &amp; -np_{2}p_{3}\\
+-np_{1}p_{3} &amp; -np_{2}p_{3} &amp; np_{2}(1 - p_{2})
+\end{pmatrix} = 
+n\Bigg(\begin{pmatrix}
+p_{1} &amp; 0 &amp; 0 \\
+0 &amp; p_{2} &amp; 0\\
+0 &amp; 0 &amp; p_{3}
+\end{pmatrix}-pp^{T}\Bigg)
+\end{multline}\]</span>
+</div>
+<div id="--n-" class="section level2">
+<h2><span class="header-section-number">14.3</span> Определение симплекса (n-мерного)</h2>
+<p>Опять же можно почитать на <a href="https://en.wikipedia.org/wiki/Simplex#The_standard_simplex">википедии</a></p>
+<p><span class="math inline">\(\Delta^n = \{x | x_1 , ..., x_n \geq 0 , x_1 + ... + x_n =1 \}\)</span></p>
+<div class="figure">
+<img src="images/18_simplex.png" alt="Рисунок для n = 3" />
+<p class="caption">Рисунок для n = 3</p>
+</div>
+</div>
+<div id="--stan" class="section level2">
+<h2><span class="header-section-number">14.4</span> Переходим в STAN</h2>
+<p>Для Байевского подхода нужна модель, которая описывает данные:</p>
+<p><span class="math display">\[
+\begin{pmatrix}
+х_{1} \\
+х_{2} \\
+х_{3}
+\end{pmatrix} \sim multi (n=100, p(0,3; 0,1; 0,6))\]</span></p>
+<p>Давайте уточним вводные данные:</p>
+<p>Мы были в гостях у бабушки. Она нам сказала, что волки водятся в лесу также часто, как и Баб-Яжки.</p>
+<p>Следовательно у вероятность встретить волка равна <span class="math inline">\(\alpha\)</span>, Бабу-Ягу тоже <span class="math inline">\(\alpha\)</span>, а Хариса: <span class="math inline">\(1-2\alpha\)</span></p>
+<p>Зададим априорное распределение на <span class="math inline">\(\alpha\)</span>:</p>
+<p><span class="math inline">\(\alpha\sim U[0,0.5]\)</span>, где <span class="math inline">\(U\)</span> - равномерное распределение</p>
+<p>Следовательно, наша задача сводится к тому, чтобы получить апостериорное распределение <span class="math inline">\(\alpha\)</span>: f(<span class="math inline">\(\alpha\)</span>(x))</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rstan)
+<span class="kw">library</span>(bayesplot)
+
+data &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">5</span>, <span class="dv">80</span>))
+
+model &lt;-<span class="st"> </span><span class="kw">stan_model</span>(<span class="dt">file =</span> <span class="st">&#39;multinomial.stan&#39;</span>)
+
+fit &lt;-<span class="st"> </span><span class="kw">sampling</span>(model, <span class="dt">data =</span> data, <span class="dt">seed =</span> <span class="dv">42</span>)
+
+fit
+
+fit_array &lt;-<span class="st"> </span><span class="kw">as.array</span>(fit)
+<span class="kw">mcmc_hist</span>(fit_array)</code></pre></div>
+<p><img src="_main_files/figure-html/1-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mcmc_trace</span>(fit_array, <span class="dt">pars =</span> <span class="st">&#39;a&#39;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/1-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mcmc_violin</span>(fit_array, <span class="dt">pars =</span> <span class="st">&#39;a&#39;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/1-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mcmc_hist</span>(fit_array, <span class="dt">pars =</span> <span class="st">&#39;y_new[3]&#39;</span>)</code></pre></div>
+<p><img src="_main_files/figure-html/1-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit_array[ , <span class="dv">2</span>, <span class="dv">1</span>]</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bayesian-approach.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

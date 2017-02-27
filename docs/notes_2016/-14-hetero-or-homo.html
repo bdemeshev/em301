@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html  lang="ru-RU">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Конспект семинаров по метрике-2016</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Конспект по метрике и не только :)">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Конспект семинаров по метрике-2016" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Конспект по метрике и не только :)" />
+  <meta name="github-repo" content="<a href="https://github.com/bdemeshev/em301" class="uri">https://github.com/bdemeshev/em301</a>" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Конспект семинаров по метрике-2016" />
+  
+  <meta name="twitter:description" content="Конспект по метрике и не только :)" />
+  
+
+<meta name="author" content="Студенты ИП и Борис Демешев">
+
+
+<meta name="date" content="2017-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="hetero-exercises.html">
+<link rel="next" href="bayesian-approach.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>О конспекте</a></li>
+<li class="chapter" data-level="1" data-path="ols-intro.html"><a href="ols-intro.html"><i class="fa fa-check"></i><b>1</b> Метод наименьших квадратов</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1</b> Основная задача</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="ols-intro.html"><a href="ols-intro.html#---ols"><i class="fa fa-check"></i><b>1.1.1</b> Метод наименьших квадратов (OLS):</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ols-intro.html"><a href="ols-intro.html#---lad"><i class="fa fa-check"></i><b>1.1.2</b> Метод наименьших модулей (LAD):</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>1.2</b> Реализация в R:</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>1.2.1</b> График штрафной функции:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.3</b> Домашнее задание</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="recall-all.html"><a href="recall-all.html"><i class="fa fa-check"></i><b>2</b> Вспомнить всё</a></li>
+<li class="chapter" data-level="3" data-path="ols-geometry.html"><a href="ols-geometry.html"><i class="fa fa-check"></i><b>3</b> Геометрия МНК</a><ul>
+<li class="chapter" data-level="3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#notation"><i class="fa fa-check"></i><b>3.1</b> Обозначения</a></li>
+<li class="chapter" data-level="3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#deep_in_rn"><i class="fa fa-check"></i><b>3.2</b> Ныряем в <span class="math inline">\(n\)</span>-мерное пространство</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>3.2.1</b> Упражнение 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ols-geometry.html"><a href="ols-geometry.html#more_projections"><i class="fa fa-check"></i><b>3.3</b> Больше проекций</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>3.3.1</b> Упражнение 2</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-3"><i class="fa fa-check"></i><b>3.3.2</b> Упражнение 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-fight.html"><a href="matrix-fight.html"><i class="fa fa-check"></i><b>4</b> Борьба с матрицами</a></li>
+<li class="chapter" data-level="5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html"><i class="fa fa-check"></i><b>5</b> Доказательство свойств и оценка моделей. {#05_models_evaluation}</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>5.0.1</b> Пример из домашки</a></li>
+<li class="chapter" data-level="5.0.2" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-1-1"><i class="fa fa-check"></i><b>5.0.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="5.0.3" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-2-1"><i class="fa fa-check"></i><b>5.0.3</b> Упражнение 2</a></li>
+<li class="chapter" data-level="5.0.4" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-3-1"><i class="fa fa-check"></i><b>5.0.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="5.0.5" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#-4.-----ml"><i class="fa fa-check"></i><b>5.0.5</b> Упражнение 4. Оценим модель с помощью ML</a></li>
+<li class="chapter" data-level="5.0.6" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>5.0.6</b> ДЗ</a></li>
+<li class="chapter" data-level="5.0.7" data-path="-05-models-evaluation.html"><a href="-05-models-evaluation.html#section-5.0.7"><i class="fa fa-check"></i><b>5.0.7</b> Ссылки</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="hints-and-hats.html"><a href="hints-and-hats.html"><i class="fa fa-check"></i><b>6</b> Статистические свойства RSS</a><ul>
+<li class="chapter" data-level="6.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#problem1"><i class="fa fa-check"></i><b>6.1</b> Упражнение 1</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_exp_value"><i class="fa fa-check"></i><b>6.1.1</b> Матожидание оценки</a></li>
+<li class="chapter" data-level="6.1.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#beta_var"><i class="fa fa-check"></i><b>6.1.2</b> Дисперсия оценки</a></li>
+<li class="chapter" data-level="6.1.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#trivial_hints"><i class="fa fa-check"></i><b>6.1.3</b> Тривиальщина, которая здорово упрощает жизнь</a></li>
+<li class="chapter" data-level="6.1.4" data-path="hints-and-hats.html"><a href="hints-and-hats.html#hat_matrix"><i class="fa fa-check"></i><b>6.1.4</b> Магические свойства “матрицы-шляпницы”</a></li>
+<li class="chapter" data-level="6.1.5" data-path="hints-and-hats.html"><a href="hints-and-hats.html#eigenvalue"><i class="fa fa-check"></i><b>6.1.5</b> Собственные числа</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="hints-and-hats.html"><a href="hints-and-hats.html#theorem"><i class="fa fa-check"></i><b>6.2</b> Теорема</a></li>
+<li class="chapter" data-level="6.3" data-path="hints-and-hats.html"><a href="hints-and-hats.html#home_tasks"><i class="fa fa-check"></i><b>6.3</b> Домашка</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html"><i class="fa fa-check"></i><b>7</b> Подготовка к празднику №2</a><ul>
+<li class="chapter" data-level="7.1" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-1-2"><i class="fa fa-check"></i><b>7.1</b> Упражнение 1</a></li>
+<li class="chapter" data-level="7.2" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-2-2"><i class="fa fa-check"></i><b>7.2</b> Упражнение 2</a></li>
+<li class="chapter" data-level="7.3" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>7.3</b> Подготовка к контрольной!</a></li>
+<li class="chapter" data-level="7.4" data-path="holyday2-preparation.html"><a href="holyday2-preparation.html#-3-2"><i class="fa fa-check"></i><b>7.4</b> Упражнение 3</a></li>
+<li class="chapter" data-level="7.5" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>7.5</b> ДЗ</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="many-restrictions.html"><a href="many-restrictions.html"><i class="fa fa-check"></i><b>8</b> Гипотезы о нескольких ограничениях в регрессии</a><ul>
+<li class="chapter" data-level="8.1" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> Примеры:</a></li>
+<li class="chapter" data-level="8.2" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>8.2</b> Проверка гипотез по шагам:</a></li>
+<li class="chapter" data-level="8.3" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.3"><i class="fa fa-check"></i><b>8.3</b> Замечание:</a></li>
+<li class="chapter" data-level="8.4" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.4"><i class="fa fa-check"></i><b>8.4</b> Теорема:</a></li>
+<li class="chapter" data-level="8.5" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.5"><i class="fa fa-check"></i><b>8.5</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="many-restrictions.html"><a href="many-restrictions.html#section-8.5.1"><i class="fa fa-check"></i><b>8.5.1</b> Решение</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="many-restrictions.html"><a href="many-restrictions.html#-4"><i class="fa fa-check"></i><b>8.6</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>8.6.1</b> Решение:</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="many-restrictions.html"><a href="many-restrictions.html#-5"><i class="fa fa-check"></i><b>8.7</b> Упражнение:</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>8.7.1</b> Решение:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="frish-and-co.html"><a href="frish-and-co.html"><i class="fa fa-check"></i><b>9</b> Фриш и Ко</a><ul>
+<li class="chapter" data-level="9.1" data-path="frish-and-co.html"><a href="frish-and-co.html#-1-3"><i class="fa fa-check"></i><b>9.1</b> Упражнение 1</a></li>
+<li class="chapter" data-level="9.2" data-path="frish-and-co.html"><a href="frish-and-co.html#-2-3"><i class="fa fa-check"></i><b>9.2</b> Упражнение 2</a></li>
+<li class="chapter" data-level="9.3" data-path="frish-and-co.html"><a href="frish-and-co.html#section-9.3"><i class="fa fa-check"></i><b>9.3</b> Домашка</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html"><i class="fa fa-check"></i><b>10</b> Стохастические бобры и прочие условности {#12_everything_about_beavers}</a><ul>
+<li class="chapter" data-level="10.1" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#-0"><i class="fa fa-check"></i><b>10.1</b> Упражнение № 0</a></li>
+<li class="chapter" data-level="10.2" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>10.2</b> Условные свойства</a></li>
+<li class="chapter" data-level="10.3" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#-1-4"><i class="fa fa-check"></i><b>10.3</b> Упражнение № 1</a></li>
+<li class="chapter" data-level="10.4" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#----------"><i class="fa fa-check"></i><b>10.4</b> Случайность? Не думаю! Или история о том, как отличить стохастические '{и}ксы</a></li>
+<li class="chapter" data-level="10.5" data-path="-12-everything-about-beavers.html"><a href="-12-everything-about-beavers.html#--------"><i class="fa fa-check"></i><b>10.5</b> Теорема (как на все это смотрели Гаусс и Марков)</a></li>
+<li class="chapter" data-level="10.6" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>10.6</b> А что если гетероскедастичность?</a></li>
+<li class="chapter" data-level="10.7" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>10.7</b> В чем прелесть гетероскедастичности?</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hetero-exercises.html"><a href="hetero-exercises.html"><i class="fa fa-check"></i><b>11</b> Упражнения на гетероскедастичость</a><ul>
+<li class="chapter" data-level="11.1" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex0"><i class="fa fa-check"></i><b>11.1</b> Упражнение 0</a></li>
+<li class="chapter" data-level="11.2" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex1"><i class="fa fa-check"></i><b>11.2</b> Упражнение 1</a></li>
+<li class="chapter" data-level="11.3" data-path="hetero-exercises.html"><a href="hetero-exercises.html#stoch_regressors"><i class="fa fa-check"></i><b>11.3</b> Стохастические регрессоры</a></li>
+<li class="chapter" data-level="11.4" data-path="hetero-exercises.html"><a href="hetero-exercises.html#gm_stochastic"><i class="fa fa-check"></i><b>11.4</b> Теорема Гаусса Маркова для стохастических регрессоров</a></li>
+<li class="chapter" data-level="11.5" data-path="hetero-exercises.html"><a href="hetero-exercises.html#hetero_ex2"><i class="fa fa-check"></i><b>11.5</b> Упражнение 2</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html"><i class="fa fa-check"></i><b>12</b> Конспект семинара 14. Гетеро или гомо? {hetero_or_homo}</a><ul>
+<li class="chapter" data-level="12.0.1" data-path="many-restrictions.html"><a href="many-restrictions.html#---"><i class="fa fa-check"></i><b>12.0.1</b> Какие последствия отсюда вытекают?</a></li>
+<li class="chapter" data-level="12.0.2" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>12.0.2</b> Обнаружение гетероскедастичности</a></li>
+<li class="chapter" data-level="12.0.3" data-path="ols-intro.html"><a href="ols-intro.html#--"><i class="fa fa-check"></i><b>12.0.3</b> Так делать нехорошо:</a></li>
+<li class="chapter" data-level="12.0.4" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html#section-12.0.4"><i class="fa fa-check"></i><b>12.0.4</b> Примечание</a></li>
+<li class="chapter" data-level="12.0.5" data-path="ols-intro.html"><a href="ols-intro.html#--r"><i class="fa fa-check"></i><b>12.0.5</b> Пакеты для <strong>R</strong>:</a></li>
+<li class="chapter" data-level="12.0.6" data-path="-14-hetero-or-homo.html"><a href="-14-hetero-or-homo.html#-r"><i class="fa fa-check"></i><b>12.0.6</b> Немного <strong>R</strong></a></li>
+<li class="chapter" data-level="12.0.7" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>12.0.7</b> Полезные ссылочки</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="bayesian-approach.html"><a href="bayesian-approach.html"><i class="fa fa-check"></i><b>13</b> Байесовский подход</a><ul>
+<li class="chapter" data-level="13.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#brutal_hints"><i class="fa fa-check"></i><b>13.1</b> Хинты к брутальной части (16 января 2017)</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#first_brutal"><i class="fa fa-check"></i><b>13.1.1</b> Первая задача</a></li>
+<li class="chapter" data-level="13.1.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#brutal_third"><i class="fa fa-check"></i><b>13.1.2</b> Третья задача</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#bayes_vs_freq"><i class="fa fa-check"></i><b>13.2</b> Отличие классического подхода от байесовского</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="bayesian-approach.html"><a href="bayesian-approach.html#frequentist_approach"><i class="fa fa-check"></i><b>13.2.1</b> Классический подход</a></li>
+<li class="chapter" data-level="13.2.2" data-path="bayesian-approach.html"><a href="bayesian-approach.html#bayesian_approach_nutshell"><i class="fa fa-check"></i><b>13.2.2</b> Байесовский подход</a></li>
+<li class="chapter" data-level="13.2.3" data-path="bayesian-approach.html"><a href="bayesian-approach.html#hat_with_coins"><i class="fa fa-check"></i><b>13.2.3</b> Упражнение №1 (про шапку с монетками)</a></li>
+<li class="chapter" data-level="13.2.4" data-path="bayesian-approach.html"><a href="bayesian-approach.html#masha_and_mices"><i class="fa fa-check"></i><b>13.2.4</b> Упражнение №2 (про Машу и мышек)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="multinomial.html"><a href="multinomial.html"><i class="fa fa-check"></i><b>14</b> Мультиномиальное распределение</a><ul>
+<li class="chapter" data-level="14.1" data-path="ols-geometry.html"><a href="ols-geometry.html#-1"><i class="fa fa-check"></i><b>14.1</b> Задание 1</a></li>
+<li class="chapter" data-level="14.2" data-path="ols-geometry.html"><a href="ols-geometry.html#-2"><i class="fa fa-check"></i><b>14.2</b> Задание 2</a></li>
+<li class="chapter" data-level="14.3" data-path="multinomial.html"><a href="multinomial.html#--n-"><i class="fa fa-check"></i><b>14.3</b> Определение симплекса (n-мерного)</a></li>
+<li class="chapter" data-level="14.4" data-path="multinomial.html"><a href="multinomial.html#--stan"><i class="fa fa-check"></i><b>14.4</b> Переходим в STAN</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Конспект семинаров по метрике-2016</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="--14.----hetero_or_homo" class="section level1">
+<h1><span class="header-section-number">12</span> Конспект семинара 14. Гетеро или гомо? {hetero_or_homo}</h1>
+<p>Для начала стоит определить, что такое <strong>Гетероскедастичность</strong>!!!</p>
+<p><em>Определение, украденное с Википедии</em>: Гетероскедастичность (англ. heteroscedasticity) — понятие, используемое в прикладной статистике (чаще всего — в эконометрике), означающее неоднородность наблюдений, выражающуюся в неодинаковой (непостоянной) дисперсии случайной ошибки регрессионной (эконометрической) модели. Гетероскедастичность противоположна гомоскедастичности, означающей однородность наблюдений, то есть постоянство дисперсии случайных ошибок модели.</p>
+<p>Другими словами: <span class="math display">\[Var(u_i|X) \neq {const} = f(x_i)\]</span></p>
+<div id="---" class="section level3">
+<h3><span class="header-section-number">12.0.1</span> Какие последствия отсюда вытекают?</h3>
+<p><strong>Хорошие последствия:</strong></p>
+<ul>
+<li><p><span class="math inline">\(\widehat{\beta}\)</span> - несмещенно</p></li>
+<li><p><span class="math inline">\(\widehat{\beta}\)</span> - состоятельно</p></li>
+</ul>
+<p><strong>Плохие последствия:</strong></p>
+<ul>
+<li><span class="math inline">\(\widehat{\beta}\)</span> - неэффективно</li>
+</ul>
+<p><span class="math display">\[\left(\frac{\widehat{\beta}_i-\beta_i}{se(\widehat{\beta}_i)}\right)
+\nrightarrow N(0, 1)\]</span></p>
+<p><strong>(!)</strong> Для борьбы с гетероскедастичностью нужно знать структуру самой гетероскедастичности!</p>
+<p>Например, на прошлом семинаре была доказано, что:</p>
+<p><span class="math display">\[\left(\frac{\widehat{\beta}_i-\beta_i}{se_{hco} (\widehat{\beta}_i)}\right)
+\rightarrow N(0, 1)\]</span></p>
+<p>В данном случае индекс <em>hco</em> означает <em>heteroscedasticity consistent</em>, т.е. гетероскедастично устойчиво. Говоря языком программистов и статистов, берутся робастные стандартные ошибки.</p>
+<p><span class="math inline">\(se_{hco} (\widehat{\beta}_i)\)</span> добывается с диоганали матрицы <span class="math inline">\(\widehat{var}(\widehat{\beta}|X)=(X&#39;X)^{-1}\widehat{\Omega}X(X&#39;X)\)</span></p>
+<p><span class="math display">\[
+\widehat{\Omega}_{hco}=\begin{pmatrix}
+\widehat{u}^2_1 &amp; \ldots &amp; \ldots &amp; 0 \\
+0 &amp; \widehat{u}^2_2 &amp; \ldots &amp; \ldots \\
+\ldots &amp; \ldots &amp; \ldots &amp; \ldots \\
+0 &amp; \ldots &amp; \ldots &amp; \widehat{u}^2_n \\
+\end{pmatrix}
+\]</span></p>
+</div>
+<div id="-" class="section level3">
+<h3><span class="header-section-number">12.0.2</span> Обнаружение гетероскедастичности</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Графическое</strong></li>
+</ol>
+<p>Для наглядного примера возьмём датасет про зависимость стоимости квартир от площади.</p>
+<div class="figure">
+<img src="images/14_hetero.png" alt="График с явной гетероскедастичностью" />
+<p class="caption">График с явной гетероскедастичностью</p>
+</div>
+<p>На данном графике красными линиями обозначены примерные отклонения. Отчетливо видно, что в зависимости от значения площади наблюдается разный разброс в ценах квартир.</p>
+<p>Как правило, причиной возникновения гетероскедастичности является размер объекта.</p>
+<p>Например:</p>
+<ul>
+<li>размер семьи влияет на диспресию расходов и доходов</li>
+<li>размер компании влияет на разброс в доходах сотрудников</li>
+<li>можно придумать ещё много примеров</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Более утончённое графическое</em></li>
+</ol>
+<p>Если <span class="math inline">\(Var(u_i|X) = \sigma^2\)</span>, то <span class="math inline">\(var(\widehat{u}|X) = (I-H)\sigma^2\)</span>. Можно заметить, что если <strong>u</strong> - гомоскедастично, тогда дисперсии всё равно будут разными (<span class="math inline">\(H=X(X&#39;X)^{-1}X&#39;\)</span>). То есть <span class="math inline">\(Var(\widehat{u}_i|X)=g_i(X)\)</span></p>
+<p><em>Что же делать?</em></p>
+<p>Можно отнормировать остатки!</p>
+<p><span class="math display">\[
+\widehat{u}^{*}_i=\frac{\widehat{u}^*_i}{\sqrt{1-h_{ii}}}
+\]</span></p>
+<p>В данном случае <span class="math inline">\(h_{ii}\)</span> это диагональные элементы матрицы <strong>H</strong></p>
+<p><span class="math display">\[\Rightarrow Var(\widehat{u}^*_i)=\sigma^2\]</span></p>
+<p>Следовательно, в случае в случае гомоскедастичности дисперсия будет постоянной величиной.</p>
+<p>В случае же гетероскедастичности график будет выглядить следующим образом (возьмём тот же пример с квартирами):</p>
+<p><img src="_main_files/figure-html/grafick-1.png" width="672" /></p>
+<p>В даном случае строится график зависимости <span class="math inline">\(\widehat{u}^{*2}_i\)</span> или <span class="math inline">\(|{\widehat{u}^*_i}|\)</span> от переменной, преположительно виновной в гетероскедастичности.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><em>Тесты</em></li>
+</ol>
+<p><strong>Как делаются большинство тестов:</strong></p>
+<p><em>Шаг №1</em></p>
+<p>Оценим <span class="math inline">\(y_i = \beta_i+\beta_2x_i+u_i\)</span></p>
+<p>Отсюда получим <span class="math inline">\(\widehat{u}_i\)</span></p>
+<p><em>Шаг №1.5</em></p>
+<p><span class="math display">\[\widehat{u}^*_i=\frac{\widehat{u}_i}{\sqrt{1-h_{ii}}}\]</span> <em>Шаг 2: вспомогательная регрессия</em></p>
+<p>Строим регрессию «размера остатка», это может быть <span class="math inline">\(\widehat{u}^2_i\)</span>, <span class="math inline">\(|\widehat{u}_i|\)</span> или <span class="math inline">\(\log\widehat{u}_i\)</span> на объясняющие переменные:</p>
+<p><span class="math display">\[
+\text{размер остатка}_i = \gamma_1+\gamma_2z_i+\gamma_3w_i + \ldots+ \gamma_h r_i + \nu_i
+\]</span></p>
+<ul>
+<li><strong>В случае</strong> <span class="math inline">\(\hat u^2_i\)</span> <strong>используется тест Бройша — Пагана (про него можно подробно почитать на википедии)</strong></li>
+</ul>
+<p>Далее проверем гипотезу о гетероскедастичности:</p>
+<p><span class="math display">\[
+H_0:\gamma_1=\gamma_2=...=\gamma_h=0, \text{гомоскедастичность}
+\]</span></p>
+<p><span class="math inline">\(H_a\)</span>: хотя бы один из коэффициентов <span class="math inline">\(\gamma_1\)</span>, <span class="math inline">\(\gamma_2\)</span>, , <span class="math inline">\(\gamma_h\)</span> отличен от нуля.</p>
+<p>Далее для проверки можно взять одну из тестовых статистик:</p>
+<p><em>F-test</em></p>
+<p><span class="math display">\[
+F_{test}=\frac{(RSS_R-RSS_{UR})/q}{RSS_{UR}/n-k_{UR}}
+\]</span></p>
+<p>где</p>
+<ul>
+<li><span class="math inline">\(RSS_{R}\)</span> - это сумма квадратов остатков модели с ограничениями</li>
+<li><span class="math inline">\(RSS_{UR}\)</span> - это сумма квадратов остатков модели без ограничений</li>
+<li><span class="math inline">\(q\)</span> - это количество ограничений</li>
+<li><span class="math inline">\(n\)</span> - это объём выборки</li>
+<li><span class="math inline">\(k_{UR}\)</span> - это количество параметров модели без ограничений</li>
+</ul>
+<p><em>Тест множителей Лагранжа</em></p>
+<p><span class="math display">\[
+LM=nR^2_{step2} \sim \chi^2_{n-1}
+\]</span></p>
+<p>где</p>
+<ul>
+<li><span class="math inline">\(R\)</span> - коэффициент детерминации</li>
+<li><span class="math inline">\(n\)</span> - количество ограниченй</li>
+</ul>
+<p><em>Тест Голдфельда-Квандта (Goldfeld-Quandt)</em></p>
+<p><span class="math display">\[
+\begin{cases}
+H_0:Var(u_i|x_i)=\sigma^2\\
+H_a:Var(u_i|x_i)=f(x_i) \\
+\end{cases}
+\]</span></p>
+<p>Далее наблюдения сортируются по подозреваемому росту (по дисперсии). Из сортированной выборки выкидываются наблюдения с средней дисперсией (как правило, избавляются примерно от 20%). Далее берётся F-статистика.</p>
+<p>Выходит примерно следующая картина:</p>
+<p><img src="_main_files/figure-html/grafic-1.png" width="672" /></p>
+<p><span class="math display">\[
+F=\frac{RSS2/(n_2-k)}{RSS_1/(n_1-k)} \sim F(n_2-k, n_1-k)
+\]</span></p>
+<p>где</p>
+<ul>
+<li><span class="math inline">\(RSS_1\)</span> - сумма квадратов остатков части выборки с низкой дисперсией</li>
+<li><span class="math inline">\(RSS_2\)</span> - сумма квадратов остатков части выборки с высокой дисперсией</li>
+<li><span class="math inline">\(n_1\)</span> - количество наблюдений с низкой дисперсией</li>
+<li><span class="math inline">\(n_2\)</span> - количество наблюдений с высокой дисперсией</li>
+<li><span class="math inline">\(k\)</span> - количество ограничений</li>
+</ul>
+<p><strong>Примечание:</strong> если <span class="math inline">\(n_1=n_2\)</span>, тогда статистика равна:</p>
+<p><span class="math display">\[
+F=\frac{RSS_2}{RSS_1}
+\]</span></p>
+<p>Если <strong>F</strong> большое <span class="math inline">\(\Rightarrow H_0\)</span> отвергается (т.е. наблюдается гетероскедастичность).</p>
+</div>
+<div id="--" class="section level3">
+<h3><span class="header-section-number">12.0.3</span> Так делать нехорошо:</h3>
+<ol style="list-style-type: decimal">
+<li><p>Протестировать наличие гетероскедастичности</p></li>
+<li><p>Если гипотеза о гомоскедаксичности отвергнута, использовать робастные стандартные ошибки(<span class="math inline">\(se_{hco} (\widehat{\beta}_i)\)</span>)</p></li>
+<li><p>Если гипотеза о гомоскедастичности отвергнута, использовать обычные стандартные ошибки (<span class="math inline">\(se(\widehat{\beta}_i)\)</span>)</p></li>
+</ol>
+</div>
+<div id="section-12.0.4" class="section level3">
+<h3><span class="header-section-number">12.0.4</span> Примечание</h3>
+<p>Как делают нормальные люди:</p>
+<p><em>RSS</em> - Residiual Sum of sq = <span class="math inline">\(\widehat{u}^2_i\)</span></p>
+<p><em>ESS</em> - Explained Sum of sq = <span class="math inline">\(\sum (\widehat{y}^2_i-\bar{y}_i)^2\)</span></p>
+<p>Как делают гопники:</p>
+<p><em>ESS</em> - Error Sum of sq = <span class="math inline">\(\widehat{u}^2_i\)</span></p>
+<p><em>RSS</em> - Regression Sum of sq = <span class="math inline">\(\sum (\widehat{y}^2_i-\bar{y}_i)^2\)</span></p>
+</div>
+<div id="--r" class="section level3">
+<h3><span class="header-section-number">12.0.5</span> Пакеты для <strong>R</strong>:</h3>
+<ul>
+<li>tidyvers</li>
+<li>lmtest</li>
+<li>memisc</li>
+<li>sandwich</li>
+</ul>
+</div>
+<div id="-r" class="section level3">
+<h3><span class="header-section-number">12.0.6</span> Немного <strong>R</strong></h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(diamonds)</code></pre></div>
+<pre><code>## Observations: 53,940
+## Variables: 10
+## $ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, ...
+## $ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very G...
+## $ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, ...
+## $ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI...
+## $ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, ...
+## $ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54...
+## $ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339,...
+## $ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, ...
+## $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, ...
+## $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, ...</code></pre>
+<p>Посмотрим на график зависимости цены и карата бриллианта</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data =</span> diamonds, <span class="dt">x =</span> carat, <span class="dt">y =</span> price)</code></pre></div>
+<p><img src="_main_files/figure-html/plot1-1.png" width="672" /> Видна гетероскедастичность Поробуем прологарифмировать.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(<span class="dt">data =</span> diamonds, <span class="dt">x =</span> <span class="kw">log</span>(carat), <span class="dt">y =</span> <span class="kw">log</span>(price))</code></pre></div>
+<p><img src="_main_files/figure-html/plot2-1.png" width="672" /> Гетероскедастичность осталась.</p>
+<p>Построим модель регрессии, где карат - объясняющая переменнаяб цена - зависимая переменная.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> diamonds,
+            <span class="kw">log</span>(price) ~<span class="st"> </span><span class="kw">log</span>(carat))
+<span class="kw">coeftest</span>(model)</code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##              Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) 8.4486607  0.0013647 6190.90 &lt; 2.2e-16 ***
+## log(carat)  1.6758167  0.0019338  866.59 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeftest</span>(model, <span class="dt">vcov. =</span> vcovHC)</code></pre></div>
+<pre><code>## 
+## t test of coefficients:
+## 
+##              Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept) 8.4486607  0.0014750  5728.1 &lt; 2.2e-16 ***
+## log(carat)  1.6758167  0.0020278   826.4 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>тест Breush-Pagan (White)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bptest</span>(model, <span class="dt">varformula =</span> ~<span class="st"> </span><span class="kw">log</span>(table) +<span class="st"> </span><span class="kw">log</span>(carat), <span class="dt">data =</span> diamonds)</code></pre></div>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  model
+## BP = 449.18, df = 2, p-value &lt; 2.2e-16</code></pre>
+<p>тест Goldfeld-Quandt</p>
+<p>Чтобы отловить какая величина виновата в гетероскедастичности</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gqtest</span>(model, <span class="dt">fraction =</span> <span class="fl">0.2</span>, <span class="dt">order.by =</span> diamonds$table)</code></pre></div>
+<pre><code>## 
+##  Goldfeld-Quandt test
+## 
+## data:  model
+## GQ = 1.004, df1 = 21574, df2 = 21574, p-value = 0.3834</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gqtest</span>(model, <span class="dt">fraction =</span> <span class="fl">0.2</span>, <span class="dt">order.by =</span> diamonds$carat)</code></pre></div>
+<pre><code>## 
+##  Goldfeld-Quandt test
+## 
+## data:  model
+## GQ = 1.3634, df1 = 21574, df2 = 21574, p-value &lt; 2.2e-16</code></pre>
+</div>
+<div id="-" class="section level3">
+<h3><span class="header-section-number">12.0.7</span> Полезные ссылочки</h3>
+<p>Ссылки на одну свободную энциклопедию:</p>
+<ul>
+<li><p>Собственно гетероскедастичность <a href="https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D1%82%D0%B5%D1%80%D0%BE%D1%81%D0%BA%D0%B5%D0%B4%D0%B0%D1%81%D1%82%D0%B8%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C">Википедия</a></p></li>
+<li><p>F-тест <a href="https://en.wikipedia.org/wiki/F-test">Википедия</a></p></li>
+<li><p>Тест множителей Лагранжа <a href="https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D1%81%D1%82_%D0%BC%D0%BD%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9_%D0%9B%D0%B0%D0%B3%D1%80%D0%B0%D0%BD%D0%B6%D0%B0">Википедия</a></p></li>
+<li><p>Тест Бройша — Пагана <a href="https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D1%81%D1%82_%D0%91%D1%80%D0%BE%D0%B9%D1%88%D0%B0_%E2%80%94_%D0%9F%D0%B0%D0%B3%D0%B0%D0%BD%D0%B0">Википедия</a></p></li>
+<li><p>Тест Голдфелда — Куандта <a href="https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D1%81%D1%82_%D0%93%D0%BE%D0%BB%D0%B4%D1%84%D0%B5%D0%BB%D0%B4%D0%B0_%E2%80%94_%D0%9A%D1%83%D0%B0%D0%BD%D0%B4%D1%82%D0%B0">Википедия</a></p></li>
+</ul>
+<p>Прочие ссылки:</p>
+<ul>
+<li>Компьютерная гетероскедастичность от занимательного исследователя <a href="https://rpubs.com/boris_demeshev/r_cycle_12">Гетероскедастичность в R</a></li>
+<li>Еще один рример определения гетероскедастичности в R <a href="https://www.r-bloggers.com/how-to-detect-heteroscedasticity-and-rectify-it/">R-bloggers</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hetero-exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayesian-approach.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": false,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": true,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper", "vk"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"toc": {
+"collapse": "section"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
