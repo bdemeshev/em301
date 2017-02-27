@@ -1,0 +1,276 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE, include=FALSE>>=
+var_no <- 8
+load("pset_data.Rdata")
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+% indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("tidyverse")
+library("texreg")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+library("memisc")
+library("lmtest")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, пересдача}
+\chead{}
+\rhead{15.02.2017}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+
+%<<child="retake2_test_bank.Rnw">>=
+%@
+\input{comission.tex}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{comission}{combat}
+\shufflegroup{combat}
+\insertgroup{combat}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+\item Пусть $y_i = \beta_1 + \beta_2 x_i + \e_i$ и $i = 1, \dots, 5$ — классическая регрессионная модель. Также имеются следующие данные: $\sum_{i=1}^5 y_i^2 = 55, \sum_{i=1}^5 x_i^2 = 3, \sum_{i=1}^5 x_iy_i = 12, \sum_{i=1}^5 y_i = 15, \sum_{i=1}^5 x_i = 3$.
+
+\begin{enumerate}
+\item Найдите $\hat{\beta_1}$, $\hat{\beta_2}$
+\item Найдите $TSS$, $ESS$, $RSS$, $R^2$, $\hs^2$
+\end{enumerate}
+
+
+\item Исследовательница Глафира изучает зависимость спроса на молоко от цены молока и дохода семьи. В её распоряжении есть следующие переменные:
+
+\begin{itemize}
+\item $price$ — цена молока в рублях за литр
+\item $income$ — ежемесячный доход семьи в тысячах рублей
+\item $milk$ — расходы семьи на молоко за последние семь дней в рублях
+\end{itemize}
+
+В данных указано, проживает ли семья в сельской или городской местности. Поэтому Глафира оценила три регрессии: (All) — по всем данным, (Urban) — по городским семьям, (Rural) — по сельским семьям.
+
+<<results="asis", echo=FALSE>>=
+set.seed(var_no)
+n_obs <- 100
+
+milk_demand <- data_frame(
+  eps = rnorm(n_obs, sd = 5),
+  price = rnorm(n_obs, mean = 20, sd = 3),
+  city = sample(0:1, n_obs, rep = TRUE),
+  income = rnorm(n_obs, mean = 70, sd = 10))
+
+milk_demand <- mutate(milk_demand, milk = ifelse(city == 1,
+                                                 1 + 0.2 * income - 0.1 * price + eps,
+                                                 0 + 0.3 * income - 0.5 * price + eps))
+
+model_all <- lm(data = milk_demand, milk ~ income + price)
+model_urban <- lm(data = filter(milk_demand, city == 1), milk ~ income + price)
+model_rural <- lm(data = filter(milk_demand, city == 0), milk ~ income + price)
+
+model_table <- mtable("(All)" = model_all, "(Urban)" = model_urban, "(Rural)" = model_rural,
+                      summary.stats = c("R-squared", "adj. R-squared", "sigma", "F", "p", "Deviance", "N"))
+
+model_table <- relabel(model_table, Deviance = "RSS", p = "P-value", N = "n observations")
+
+toLatex(model_table)
+@
+
+\begin{enumerate}
+\item Проверьте значимость в целом регрессии (All) на 5\%-ом уровне значимости.
+\item На 5\%-ом уровне значимости проверьте гипотезу, что зависимость спроса на молоко является единой для городской и сельской местности.
+\end{enumerate}
+
+\newpage
+
+
+\item У Эконометрессы Глафиры было четыре наблюдения и она решила оценить модель парной регрессии $y_i = \beta_1 + \beta_2 x_i + u_i$. Её подруга эконометресса Анжелла решила, что четыре наблюдения — мало, и поэтому учла каждое наблюдение 10 раз, так что в результате у неё вышло 40 наблюдений.
+
+\begin{enumerate}
+\item Во сколько раз будут отличаться оценки $\hb_1$ у Глафиры и Анжелы? Оценки $\hb_2$?
+\item Во сколько раз у будут отличаться $RSS$? $TSS$? $ESS$? $R^2$?
+\end{enumerate}
+
+
+\item У эконометрессы Агнессы есть дамми-переменная $male_i$, равная 1 для мужчин, и дамми-переменная $female_i$, равная 1 для женщин. Зависимая переменная $y_i$ — доход индивида.
+\[
+A: \hy_i = \hat{\beta}male_i
+\]
+\[
+B: \hy_i = \hat{\gamma}female_i
+\]
+\[
+C: \hy_i = \hat{\alpha}_1male_i+\hat{\alpha}_2 female_i
+\]
+\[
+D: \hy_i =  \hat{\delta}_1 + \hat{\delta}_2male_i
+\]
+
+\begin{enumerate}
+\item Проинтерпретируйте оценки коэффициентов во всех регрессиях.
+\item Как связаны между собой оценки коэффициентов в регрессиях C и D?
+\end{enumerate}
+
+
+\newpage
+
+\item По \Sexpr{nrow(flats)} наблюдениям оценена модель зависимости стоимости квартиры в Москве (в 1000\$) от общего метража и метража жилой площади.
+<<results='asis', echo=FALSE>>=
+model1 <- lm(price~totsp+livesp,data=flats)
+report <- summary(model1)
+coef.table <- report$coefficients
+rownames(coef.table) <-
+  c("Константа","Общая площадь", "Жилая площадь")
+xtable(coef.table)
+@
+
+Сумма квадратов остатков равна $RSS=\Sexpr{deviance(model1)}$. Оценка ковариационной матрицы $\widehat{Var}(\hat{\beta})$ имеет вид
+<<results='asis', echo=FALSE>>=
+xtable(vcov(model1), digits=4)
+@
+
+\begin{enumerate}
+\item Постройте 95\%-ый доверительный интервал для ожидаемой стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\item Постройте 95\%-ый прогнозный интервал для фактической стоимости квартиры с жилой площадью $30$ м$^2$ и общей площадью $60$ м$^2$.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

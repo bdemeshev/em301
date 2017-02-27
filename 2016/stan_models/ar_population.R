@@ -19,7 +19,8 @@ fit_array <- as.array(fit)
 fit_array
 
 sigma_chain_2 <- fit_array[, 2, "sigma"]
-sigma_chain_2
+sigma_all_chains <- fit_array[, , "sigma"]
+str(sigma_all_chains)
 
 mcmc_hist(fit_array)
 

@@ -1,6 +1,6 @@
 data {
-  int N; // количество наблюдений
-  int y[N]; // 0 или 1, данные о вытащенных монетках
+  int N; // number of observations
+  int y[N]; // 0 or 1, observed color of a coin
 }
 
 parameters {
@@ -8,9 +8,9 @@ parameters {
 }
 
 model {
-  // априорное мнение о параметрах:
-  p ~ uniform(0, 1); 
-  // устройство данных:
+  // prior info about parameters:
+  p ~ uniform(0, 1);
+  // model for observed data:
   for (n in 1:N) {
     y[n] ~ bernoulli(p);
   }

@@ -82,6 +82,14 @@ a^2 + b^2 = c^2
 \newcommand{\rank}{\mathrm{rank}}
 
 
+```{r, warning=FALSE, message=FALSE}
+library("tidyverse") # ggplot2 for plots, dplyr for data manipulation, broom and more
+library("sandwich") # оценка Var для гетероскедастичности
+library("lmtest") # тест Бройша-Пагана
+library("data.table") # манипуляции с данными
+library("reshape2") # преобразование длинных таблиц в широкие
+```
+
 
 ```{r, "knitr options", echo = FALSE}
 library("knitr")
@@ -132,8 +140,11 @@ outputFormat <- opts_knit$get("rmarkdown.pandoc.to")
 
 
 if (outputFormat == "latex") {
-  activateTikz()
-  theme_set(theme_bw()) # другую тему для ggplot2 выставить?
+  # activateTikz() # чёрт! опять возиться!
+  # вместо activateTikz:
+  opts_chunk$set(dev = "png", dpi = 500)
+  
+  theme_set(theme_bw()) # печатная тема
 }
 
 ```
@@ -141,10 +152,4 @@ if (outputFormat == "latex") {
 Данная версия конспекта скомпилирована для `r outputFormat`.
 
 
-```{r, warning=FALSE, message=FALSE}
-library("tidyverse") # ggplot2 for plots, dplyr for data manipulation, broom and more
-library("sandwich") # оценка Var для гетероскедастичности
-library("lmtest") # тест Бройша-Пагана
-library("data.table") # манипуляции с данными
-library("reshape2") # преобразование длинных таблиц в широкие
-```
+

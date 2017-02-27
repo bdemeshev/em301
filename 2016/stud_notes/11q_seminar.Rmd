@@ -6,18 +6,18 @@ output:
   word_document: default
 pdf_document: default
 ---
- 
+
 
 * Датa __21/11/16__
 * Конспект: __Козловский Евгений, Ермакова Мария__
 
 # Фриш и Ко {#frish_and_co}
 
-Вспомним теорему Фриша-Вау-Ловелла. Допустим, имеется следующая модель: 
+Вспомним теорему Фриша-Вау-Ловелла. Допустим, имеется следующая модель:
 \[ y_{i}=\beta_1{x}_{i}+\beta_2{z}_{i}+u_{i}  \]
 Заметим сначала, что вышеупомянутую теорему можно применять вне зависимости от того, есть ли в модели константа или нет. Мы хотим оценить коэффициент $\beta_1$. Стандартный способ — построить регрессию вида:
 \[ \hat{y_{i}}=\hat{\beta_1}{x}_{i}+\hat{\beta_2}{z}_{i}+u_{i}  \]
-исходя из которой мы легко с помощью МНК можем вычислить $\hat{\beta_1}$. 
+исходя из которой мы легко с помощью МНК можем вычислить $\hat{\beta_1}$.
 Теорема имени Фриша-Вау-Ловелла гласит, что есть и другой путь, состоящий из нескольких шагов:
 
 1) строим регрессию $\hat{y_i}=\hat{\lambda}z_i$, вычисляем остатки $\tilde{y_i}=y_i-\hat{y_i}$
@@ -31,7 +31,7 @@ $$ y_i = \beta x_i + u_i$$
 $$ \hat{\beta} = \frac{\sum{x_i y_i}}{\sum x_i^{2}}$$
 $$  y_i = \beta_1x_i+\beta_2z_i + u_i $$
 $$ \hat{\beta} = \frac{\sum{\tilde{x_i} \tilde{y_i}}}{\sum \tilde{x_i^{2}}}$$
-,где  $\tilde{y_i}$ и $\tilde{x_i}$ остатки от регрессий $y_{i}$ на $z_{i}$ и $x_{i}$ на $z_{i}$ 
+,где  $\tilde{y_i}$ и $\tilde{x_i}$ остатки от регрессий $y_{i}$ на $z_{i}$ и $x_{i}$ на $z_{i}$
 
 
 ## Упражнение 1
@@ -44,14 +44,16 @@ $$ \hat{\beta} = \frac{\sum{\tilde{x_i} \tilde{y_i}}}{\sum \tilde{x_i^{2}}}$$
 * $hp$ — мощность (в л.с.)
 Пусть имеются следующие модели с соответствующими остатками:
 
-\[mpg_i = \beta_1 + \beta_2 hp_i + u_i; \widetilde{mpg_i}=mpg_i-\widehat{mpg_i} \]
-\[wt_i = \gamma_1 + \gamma_2 hp_i + u_i; \widetilde{wt_i}=wt_i-\widehat{wt_i}\]
+\[
+mpg_i = \beta_1 + \beta_2 hp_i + u_i; \widetilde{mpg}_i=mpg_i-\widehat{mpg_i}
+\]
+\[wt_i = \gamma_1 + \gamma_2 hp_i + u_i; \widetilde{wt}_i=wt_i-\widehat{wt_i}\]
 Пусть также дана ковариационная матрица остатков:
 \[
 \begin{aligned}
 \widehat{Var}\left( \begin{matrix}
-    \widetilde{mpg_i} \\
-    \widetilde{wt_i}
+    \widetilde{mpg}_i \\
+    \widetilde{wt}_i
   \end{matrix} \right) &= \begin{pmatrix}
 14.4 & -2.10\\
 -2.10 & 0.542
@@ -61,17 +63,21 @@ $$ \hat{\beta} = \frac{\sum{\tilde{x_i} \tilde{y_i}}}{\sum \tilde{x_i^{2}}}$$
 Найдем всевозможные коэффициенты в следующих регрессиях:
 $$ mpg_i = \alpha_1+ \alpha_2 wt_i + \alpha_3 hp_i + \upsilon_i$$
 $$ wt_i = \delta_1 + \delta_2 mpg_i + \delta_3 hp_i + \varepsilon_i $$
-Чтобы отыскать оценку $\alpha_2$, нужно построить регрессию $ \widetilde{mpg_i} =  \alpha_2  \widetilde{wt_i}$
+Чтобы отыскать оценку $\alpha_2$, нужно построить регрессию $\widetilde{mpg}_i =  \alpha_2  \widetilde{wt}_i$
 
 Можем воспользоваться ковариационной матрицей для нахождения оценки коэффициента $\alpha_2$:
-$$ \widehat{\alpha_2} = \frac{{\sum{\widetilde{mpg_i} \widetilde{wt_i}}/(n-1)}}{{\sum \widetilde{wt_i^{2}}/(n-1)}}=\frac{-2.10}{0.542}=-3.87454 $$
+\[
+\widehat{\alpha_2} = \frac{{\sum{\widetilde{mpg}_i \widetilde{wt}_i}/(n-1)}}{{\sum \widetilde{wt_i^{2}}/(n-1)}}=\frac{-2.10}{0.542}=-3.87454
+\]
 По такой же схеме можем найти $\hat{\delta_2}$:
-$$ \widehat{\delta_2} = \frac{{\sum{\widetilde{mpg_i} \widetilde{wt_i}}/(n-1)}}{{\sum \widetilde{mpg_i^{2}}/(n-1)}}=\frac{-2.10}{14.4}=-0,14583 $$
+\[
+\widehat{\delta_2} = \frac{{\sum{\widetilde{mpg}_i \widetilde{wt}_i}/(n-1)}}{{\sum \widetilde{mpg_i^{2}}/(n-1)}}=\frac{-2.10}{14.4}=-0,14583
+\]
 
 ## Упражнение 2
 В глубокий тыл противника заброшен майор Пейн. Оказалось, что ему под силу в уме оценивать $\widehat{\beta}$ для регрессий типа $y_i= \beta x_i + u_i$, а также он что-то слышал про теорему Фриша-Вау-Ловелла.
 
-Что мы хотим? Узнать, сколько нужно построить регрессий, чтобы найти все коэффициенты для: 
+Что мы хотим? Узнать, сколько нужно построить регрессий, чтобы найти все коэффициенты для:
 
 a) $y_i=\gamma_1 z_i + \gamma_2 x_i + u_i$
 
@@ -83,11 +89,11 @@ a) $y_i=\gamma_1 z_i + \gamma_2 x_i + u_i$
 
 1) Очистим y от z
 
-2) Очистим x от z 
+2) Очистим x от z
 
 3) Строим регрессию очищенного y на очищенный x
 
-Оценим $\gamma_1$ 
+Оценим $\gamma_1$
 
 1) Очистим y от x
 
@@ -116,4 +122,3 @@ a) $y_i=\gamma_1 z_i + \gamma_2 x_i + u_i$
 
 ## Домашка
 4.51, 4.49, 4.47, 4.40, 4.45, 4.46, 4.43, 3.61, 3.60, 3.48, 3.49, 3.47
-

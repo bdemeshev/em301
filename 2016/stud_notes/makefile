@@ -16,8 +16,8 @@ html:
 epub:
 	Rscript -e 'bookdown::render_book("index.Rmd", output_format = "bookdown::epub_book")'
 
-mobi: _book/stud_notes.epub
-	Rscript -e 'bookdown::kindlegen("_book/stud_notes.epub")'
+mobi: _book/_main.epub
+	Rscript -e 'bookdown::kindlegen("_book/_main.epub")'
 
 
 pdf:
