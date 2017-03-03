@@ -1,0 +1,165 @@
+# Ручной Байес {#handmade_bayes}
+
+Конспект: Соколов Харис
+
+Дата семинара: 20.02.2017
+
+## Упражнение №1 {#hand_bayes_ex1}
+
+
+У нас есть модель для данных:
+\[
+y_1, \ldots, y_n \ \Big| \ \mu, \sigma^2 \ \sim \ \mathcal{N}(\mu, \sigma^2)
+\]
+И априорное мнение:
+\begin{align}
+& \sigma^2 \ \sim \ InvGamma(\underline{s}, \underline{r}) \\
+& \mu \ \Big| \ \sigma^2 \ \sim \ \mathcal{N}(\underline{m}, \underline{a}\cdot h(\sigma^2))
+\end{align}
+Необходимо подобрать такую функцию $h(\sigma^2)$, чтобы апостериорные рапределения имели такой же вид:
+\begin{align}
+& \sigma^2 \ \Big| \ \vec{y} \ \sim \ InvGamma(\overline{s}, \overline{r}) \\
+& \mu \ \Big| \ \sigma^2, \vec{y} \ \sim \ \mathcal{N}(\overline{m}, \overline{a} \cdot h(\sigma^2))
+\end{align}
+
+Итого: у нас есть модель для данных и есть априорные распределения, применяя формулу условной вероятности (или используя алгоритм Монте-Карло на компьютере), мы получаем апостериорные распределения. И в данном упражнении мы хотим, чтобы апостериорные распределения были из того же класса распределений, что и априорные: априорно у нас были обратное гамма-распределение и нормальное распределение, значит, и апостериорно должны остаться обратное гамма-распределение и нормальное распределение.
+
+Необходимо понимать, где здесь случайные величины, а где константы. **Константы:** $\underline{s}, \underline{r}, \underline{a}, \underline{m}$ (так как это наше мнение). **Случайные величины:** $\mu, \sigma^2$ (так как мы в Байесовском подходе), $y_1, \ldots, y_n$, (так как все наблюдения случайны), $\overline{s}, \overline{r}, \overline{a}, \overline{m}$ (так как параметры апостериорных распределений зависят от наблюдений, которые являются случайными величинами).
+
+Начинаем решать!
+
+Нам нужна функция апостериорной плотности:
+
+\begin{align} f(\mu, \sigma^2 \ \Big| \ y_1, \ldots, y_n) & = \frac{f(\mu, \sigma^2, \ y_1, \ldots, y_n)}{f(y_1, \ldots, y_n)} \propto \underbrace{f(y_1, \ldots, y_n \ \Big| \ \mu, \sigma^2)}_{\text{функция правдоподобия}} \cdot \underbrace{f(\mu, \sigma^2)}_{\substack{\text{априорная} \\ \text{плотность}}} =  \\
+ & = f(y_1, \ldots, y_n \ \Big| \ \mu, \sigma^2) \cdot f(\mu \ \Big| \ \sigma^2) \cdot f(\sigma^2)
+\end{align}
+\[
+\Rightarrow \ \ f(\mu, \sigma^2 \ \Big| \ y_1, \ldots, y_n) \propto \prod\limits_{i=1}^{n} \frac{1}{\sqrt{\sigma^2}}\cdot e^{-\frac{1}{2}\frac{(y_i-\mu)^2}{\sigma^2}} \times 
+\frac{1}{\sqrt{\underline{a}\cdot h(\sigma^2)}}\cdot e^{-\frac{1}{2}\frac{(\mu - \underline{m})^2}{\underline{a}\cdot h(\sigma^2)}}
+\times \left(\sigma^2\right)^{-\underline{s}-1}\cdot e^{-\frac{\underline{r}}{\sigma^2}} \equiv A
+\]
+Хотим получить:
+\[
+\frac{1}{\sqrt{\overline{a}\cdot h(\sigma^2)}}\cdot e^{-\frac{1}{2}\frac{(\mu - \overline{m})^2}{\overline{a}\cdot h(\sigma^2)}}
+\times \left(\sigma^2\right)^{-\overline{s}-1}\cdot e^{-\frac{\overline{r}}{\sigma^2}} \equiv B
+\]
+Необходимо подобрать такие параметры $h(\sigma^2), \overline{s}, \overline{r}, \overline{a}, \overline{m}$, чтобы $A$ было равно $B$.
+
+Сначала посмотрим на то, что находится снаружи экспоненты.
+
+\[
+\underbrace{\left(\frac{1}{\sigma^2}\right)^{\frac{n}{2}} \cdot \left(\frac{1}{h(\sigma^2)}\right)^{\frac{1}{2}} \cdot \left(\sigma^2\right)^{-\underline{s}-1}}_{\text{Есть}} = \underbrace{\left(\frac{1}{h(\sigma^2)}\right)^{\frac{1}{2}} \cdot \left(\sigma^2\right)^{-\overline{s}-1}}_{\text{Хотим}} \qquad \text{(про $\overline{a}$ и $\underline{a}$ пока можно забыть})
+\]
+Отсюда видно, что $h(\sigma^2)$ может быть любой, так дробь как сокращается, а $\ \overline{s}=\underline{s}+\frac{n}{2}$, $\overline{a}$ получим позже.
+
+Теперь посмотрим на то, что находится внутри экспоненты.
+\[
+\underbrace{-\frac{1}{2}\cdot \frac{\sum_{i=1}^{n}(y_i-\mu)^2}{\sigma^2} - 
+\frac{1}{2}\cdot \frac{(\mu-\underline{m})^2}{\underline{a}h(\sigma^2)} - \frac{\underline{r}}{\sigma^2}}_{\text{Есть}} = \underbrace{- 
+\frac{1}{2}\cdot \frac{(\mu-\overline{m})^2}{\overline{a}h(\sigma^2)} - \frac{\overline{r}}{\sigma^2}}_{\text{Хотим}} \]
+Для упрощения жизни можно взять $h(\sigma^2) = \sigma^2$. Тогда получим:
+\[
+\dfrac{-\frac{1}{2}\cdot \sum_{i=1}^{n}(y_i - \mu)^2 - \frac{1}{2\underline{a}}(\mu - \underline{m})^2-\underline{r}}{\sigma^2}=\dfrac{- \frac{1}{2\overline{a}}(\mu - \overline{m})^2-\overline{r}}{\sigma^2}
+\]
+Нам нужно, чтобы обе эти функции (слева и справа от знака равно) совпадали как функции от $\sigma^2$ и $\mu$. Как функции от $\sigma^2$ они уже совпадают, так как $\sigma^2$ в знаменателе и слева, и справа. Значит, нам осталось сделать так, чтобы они совпадали как функции от $\mu$. Заметим, что в числителе обеих дробей стоят квадратичные по $\mu$ функции. Следовательно, чтобы они были одинаковыми, нам нужно просто приравнять коэффициенты перед $\mu^2, \ \mu$ и свободным членом.
+
+Сделаем это!
+
+\begin{align}
+& \text{Коэффициенты перед $\mu^2$: } \ \frac{n}{2} - \frac{1}{2\underline{a}} = -\frac{1}{2\overline{a}} \\
+& \text{Коэффициенты перед $\mu$: } \  -\frac{1}{2}\cdot 2\cdot \sum_{i=1}^{n}y_i \cdot  \frac{1}{2\underline{a}}+2\underline{m} = 2\overline{m}\cdot \left(-\frac{1}{2\overline{a}}\right) \\
+& \text{Коэффициенты перед свободным членом: } \ 
+-\frac{1}{2}\sum_{i=1}^{n}y_i^2 - \frac{1}{2\underline{a}}\underline{m}^2-\underline{r} = -\overline{r}- \frac{1}{2\overline{a}}\cdot \overline{m}^2
+\end{align}
+
+Чуть-чуть упростим:
+\[
+\begin{cases}
+\frac{1}{\overline{a}} = \frac{1}{\underline{a}}+n \\
+-\frac{\overline{m}}{\overline{a}} = -\sum_{i=1}^{n}y_i - \frac{\underline{m}}{\underline{a}} \\
+-\frac{1}{2}\sum_{i=1}^{n}y_i^2 - \frac{1}{2\underline{a}}\underline{m}^2-\underline{r} = -\overline{r}- \frac{1}{2\overline{a}}\cdot \overline{m}^2
+\end{cases}
+\]
+У нас есть система из трех уравнений с тремя неизвестными, из которой легко получить $\overline{a}, \ \overline{m}$ и $\overline{r}$.
+
+**Итог**
+
+**Если:**
+
+Модель имеет вид:
+\[
+y_1, \ldots, y_n \ \Big| \ \mu, \sigma^2 \ \sim \ \mathcal{N}(\mu, \sigma^2)
+\]
+Априорно мы считаем:
+\begin{align}
+& \sigma^2 \ \sim \ InvGamma(\underline{s}, \underline{r}) \\
+& \mu \ \Big| \ \sigma^2 \ \sim \ \mathcal{N}(\underline{m}, \underline{a}\cdot \sigma)
+\end{align}
+
+**То:**
+
+Апостериорные распределния имеют следующий вид: 
+\begin{align}
+& \sigma^2 \ \Big| \ \vec{y} \ \sim \ InvGamma(\overline{s}=\underline{s}+\frac{n}{2}, \overline{r}) \\
+& \mu \ \Big| \ \sigma^2, \vec{y} \ \sim \ \mathcal{N}(\overline{m}, \overline{a} \cdot \sigma^2)
+\end{align}
+где $\overline{a}, \ \overline{m}$ и $\overline{r}$ находятся из следующей системы уравнений:
+\[
+\begin{cases}
+\frac{1}{\overline{a}} = \frac{1}{\underline{a}}+n \\
+-\frac{\overline{m}}{\overline{a}} = -\sum_{i=1}^{n}y_i - \frac{\underline{m}}{\underline{a}} \\
+-\frac{1}{2}\sum_{i=1}^{n}y_i^2 - \frac{1}{2\underline{a}}\underline{m}^2-\underline{r} = -\overline{r}- \frac{1}{2\overline{a}}\cdot \overline{m}^2
+\end{cases}
+\]
+
+
+## Упражнение №2 {#hand_bayes_ex2}
+
+У нас есть модель:
+\[
+y_i = \beta \cdot x_i +u_i \qquad \qquad u_i \ \sim \ \mathcal{N}(0, \sigma^2) 
+\]
+Каким должно быть априорное мнение о $\beta$ и $\sigma^2$, чтобы выполнялось $\hat{\beta}_{\text{MAP}} = \hat{\beta}_{Ridge(\lambda)}$, где MAP --- это maximum of posterior density.
+
+Напомним, что $\hat{\beta}_{Ridge(\lambda)}$ ищется из следующей задачи оптимизации:
+\[
+\sum\limits_{i=1}^{n}(y_i - \hat{y_i})^2 + \lambda\cdot \beta^2 \longrightarrow \min\limits_{\beta}
+\]
+
+*А смысл всего этого в том, чтобы показать, что Байесовский подход содержит в себе Ridge-регрессию как частный случай.*
+
+Теперь сформулируем априорное мнение (если мы считаем иксы детерминированными):
+\begin{align}
+& \beta \ \Big| \ \sigma^2 \ \sim \ \mathcal{N}(\underline{\beta}, \underline{a}\cdot \sigma^2) \\
+& \sigma^2 \ \sim \ InvGamma(\underline{s}, \underline{r}) \\
+& y_i \ \Big| \ \beta, \ \sigma^2 \ \sim \ \mathcal{N}(\beta \cdot x_i, \sigma^2)
+\end{align}
+Если же мы считаем иксы стохастическими, то априорное мнение будет выглядеть так:
+\begin{align}
+& \beta \ \Big| \ \sigma^2, \ X \ \sim \ \mathcal{N}(\underline{\beta}, \underline{a}\cdot \sigma^2) \\
+& \sigma^2 \ \Big| \ X \ \sim \ InvGamma(\underline{s}, \underline{r}) \\
+& y_i \ \Big| \ X, \ \beta, \ \sigma^2 \ \sim \ \mathcal{N}(\beta \cdot x_i, \sigma^2)
+\end{align}
+
+На следующем шаге мы найдем апостериорное мнение, далее мы получим $\hat{\beta}_{\text{MAP}}$, которое максимизирует апостериорное мнение, и сделаем его таким, чтобы выполнялось $\hat{\beta}_{\text{MAP}} = \hat{\beta}_{Ridge(\lambda)}$.
+
+Напомним, что в матричном виде $\hat{\beta}_{Ridge(\lambda)} = \left((X'X)+\lambda \cdot I\right)^{-1}X'y$, а в скалярном $\hat{\beta}_{Ridge(\lambda)} = \frac{\sum_{i=1}^{n}x_i \cdot y_i}{\sum_{i=1}^{n}x_i^2 + \lambda}$.
+
+В качестве точечной Байесовской оценки берем **моду** апостериорного распределения (то есть максимум функции апостериорной плотности).
+
+В результате получим $\hat{\beta}_{\text{MAP}} = g(y_i, x_i, \underline{\beta}, \underline{s}, \underline{a}, \underline{r})$, где $g$ --- функция.
+
+
+Подсказки: $\underline{\beta}=0, \ \underline{a}=\frac{1}{\lambda}$, а от $\underline{s}$ и $\underline{r}$ ответ не зависит. *(но это неточно (с))*
+
+## Дополнительные материалы {#hand_bayes_links}
+
+  * [Нано-задачник по байесовскому подходу](https://github.com/bdemeshev/mcmc_pset/raw/master/mcmc_pset_main.pdf)
+
+Особо интересующиеся Байесовским подходом могут почитать следующие две книжки:
+
+  * Gelman A. et al. Bayesian data analysis. – Boca Raton, FL, USA : Chapman & Hall/CRC, 2014. – Т. 2.
+
+  * McElreath R. Statistical rethinking: A Bayesian course with examples in R and Stan. – CRC Press, 2016. – Т. 122.
+  
+  А скачать их можно в [ознакомительных целях :)](https://www.dropbox.com/sh/15pensmv2kggui3/AAB-aR8jR8Y2yuoqjUCWbuG-a?dl=0)
