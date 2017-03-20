@@ -1,0 +1,431 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE>>=
+var_no <- 3
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+color2xcolor <- function(old_x) {
+  new_x <- sub("\\usepackage[]{color}",
+     "\\usepackage[svgnames]{xcolor}", old_x, fixed = TRUE)
+  return(new_x)
+}
+knit_hooks$set(document = color2xcolor)
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("tidyverse")
+library("texreg")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+library("memisc")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, контрольная 3}
+\chead{}
+\rhead{20.03.2017, вариант \Sexpr{var_no + sample(c(3, 6, 9, 12, 15, 18), 1)}}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_01} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Если квадраты остатков оценённой с помощью МНК регрессионной модели линейно и значимо зависят от квадрата регрессора $Z$, то гетероскедастичность можно попытаться устранить,
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{поделив исходное уравнение на $Z$}
+      \wrongchoice{умножив исходное уравнение на $Z$}
+      \wrongchoice{поделив исходное уравнение на $\sqrt Z$}
+      \wrongchoice{умножив исходное уравнение на $\sqrt Z$}
+      \wrongchoice{поделив исходное уравнение на ${Z^2}$}
+      \wrongchoice{умножив исходное уравнение на ${Z^2}$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_02} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Оценки коэффициентов линейной регрессии, полученные методом максимального правдоподобия и методом наименьших квадратов в случае нормально распределенной случайной составляющей, будут совпадать
+ %\begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      %\correctchoice{}
+      \correctchoice{если ковариационная матрица случайной составляющей пропорциональна единичной}
+      \wrongchoice{никогда}
+      \wrongchoice{всегда}
+      \wrongchoice{если ковариационная матрица случайной составляющей диагональна}
+      \wrongchoice{если ковариационная матрица случайной составляющей нулевая}
+   \end{choices}
+  %\end{multicols}
+  \end{questionmult}
+}
+
+
+<<"ci_block", echo=FALSE>>=
+n_all <- c(5, 6, 7, 8, 9)
+ci_level_all <- c(0.80, 0.90)
+
+set.seed(var_no)
+n <- sample(n_all, 1)
+ci_level <- sample(ci_level_all, 1)
+
+t_crit <- round(qt(ci_level + (1 - ci_level) / 2, df = n - 2), 2)
+
+
+@
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_03} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Методом максимального правдоподобия Гоша оценил модель
+    \[
+    Y_i = \beta_1 + \beta_2 X_{i2} +  \ldots  + \beta _6 X_{i6} + \varepsilon_i,
+    \]
+ где $\e \sim \cN (0,\sigma_{\e}^2I)$, по 12 наблюдениям. Оказалось, что $RSS = 24$.  Оценка дисперсии случайной составляющей равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$2$}
+      \wrongchoice{$0.5$}
+      \wrongchoice{$0.48$}
+      \wrongchoice{$2.4$}
+      \wrongchoice{$24/7$}
+%      \wrongchoice{не существует}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_04} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Метод максимального правдоподобия для оценки коэффициентов регрессии $Y = X\beta  + \varepsilon$ НЕ МОЖЕТ быть применён, если
+    \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\e \sim \cN(0; \Omega)$ и структура $\Omega$ неизвестна}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и структура $\Omega$ известна, но зависит от набора неизвестных параметров}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и $\Omega = 2017 \cdot I$}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и  $\Omega =  b \cdot I$, где $b$ — неизвестный параметр}
+      \wrongchoice{закон  распределения вектора $\e$ известен, но не является нормальным}
+   \end{choices}
+
+\end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_05} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При наличии сильной практической мультиколлинеарности нарушается следующее свойство МНК-оценок параметров классической регрессии:
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{линейность по зависимой переменой}
+      \wrongchoice{несмещённость}
+      \wrongchoice{эффективность в классе линейных и несмещенных оценок}
+      \wrongchoice{равенство нулю суммы остатков}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+<<echo=FALSE>>=
+zero_condition_all <- c("$\\bar Y - \\hat\\beta_1 - \\hat\\beta_2 \\bar X$",
+"$\\bar Y - \\sum \\hat Y_i / n$", "$\\sum Y_i - \\sum \\hat Y_i$")
+
+set.seed(var_no)
+zero_condition <- sample(zero_condition_all, 1)
+@
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_06} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Имеются данные по 100 работникам: затраты на проезд в общественном транспорте ($E_i$, руб.), количество часов работы в день ($WH_i$, руб.), количество часов отдыха в день ($LH_i$, руб.) и количество часов сна в день ($SH_i$, руб.). Считая, что всё время суток распределяется между трудом, сном и отдыхом, оценка регрессии в виде
+\[
+E_i = {\beta_1} + {\beta_2}WH_i + {\beta _3}LH_i + {\beta _4}SH_i + u_i
+\]
+приведет к тому, что
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{МНК–оценки получить не удастся}
+      \wrongchoice{МНК-оценки параметров окажутся смещёнными}
+      \wrongchoice{МНК-оценки параметров окажутся неэффективными в классе линейных и несмещённых}
+      \wrongchoice{коэффициент детерминации $R^2$ окажется отрицательным}
+      \wrongchoice{МНК-оценки параметров регрессии будут несмещенными и эффективными}
+   \end{choices}
+  \end{questionmult}
+}
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_07} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Оценка максимального правдоподобия параметра  $\lambda$ по случайной выборке $X_1$, \ldots, $X_n$ из распределения с функцией плотности
+\[
+f(x|\lambda ) = \begin{cases}
+\lambda^{-1} x^{- 1 + 1/\lambda},
+          \text{ если }0 < x < 1; \\
+0, \text{ иначе.}
+\end{cases}
+\]
+имеет вид:
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\hat\lambda_{ML} = -\frac{\ln X_1 + \ldots + \ln X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{\ln X_1 + \ldots + \ln X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = -\frac{X_1 + \ldots + X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{X_1 + \ldots + X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{X_1^2 + \ldots + X_n^2}{n}$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_08} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  По $n=\Sexpr{400 + 50 * var_no}$ наблюдениям была оценена регрессия:
+ \[
+    Y_i = \beta_1 + \beta_2 X_{i2} + \ldots + \beta_k X_{ik} + u_i.
+ \]
+Затем была оценена регрессия $|\hat u_i| = \alpha_1 + \alpha_2 \frac{1}{Z_i} + \nu_i$. Оказалось, что $\hat\alpha_2 = \Sexpr{16 + 4 * var_no}$ и $se(\hat\alpha_2) = 5$.
+
+Согласно этим данным, на уровне значимости 5\% гипотеза о
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{гомоскедастичности отвергается}
+      \wrongchoice{гомоскедастичности не отвергается}
+      \wrongchoice{верной функциональной форме отвергается}
+      \wrongchoice{верной функциональной форме не отвергается}
+      \wrongchoice{пропущенной переменной $1/Z_{i}$ отвергается}
+      \wrongchoice{пропущенной переменной $1/Z_{i}$ не отвергается}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_09} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Обобщенный МНК служит для оценивания регрессионных моделей в случае нарушений следующего условия теоремы Гаусса-Маркова:
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\Var(u) = \sigma^2 I$}
+      \wrongchoice{$\E(u_i)=0$}
+      \wrongchoice{$\rank X = k$}
+      \wrongchoice{$u_i$ распределены нормально}
+      \wrongchoice{Величина $Y_i$ линейна по $\beta_1$, $\beta_2$, \ldots}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Василий хочет оценить константу $\mu$ в  модели $Y_i = \mu + u_i$, где $\E(u_i)=0$, $\E(u_i u_j)=0$ при $i\neq j$, $\Var(u_i)=\sigma^2 X_i$ и $X_i>0$.
+
+В классе линейных несмещенных оценок наиболее эффективной является:
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\frac{\sum Y_i / \sqrt{X_i}}{\sum 1/X_i}$}
+      \wrongchoice{$\frac{\sum Y_i / X_i}{\sum 1/X_i^2}$}
+      \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i}$}
+      \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i^2}$}
+      \wrongchoice{$\bar Y$}
+      \wrongchoice{$(I'I)^{-1}I'Y$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{kr_03}{combat}
+\shufflegroup{combat}
+\insertgroup{combat}
+
+\clearpage
+
+\AMCformBegin
+\AMCform
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+\item По данным для 39 районов Балтимора в 1970 г. были оценены уравнения
+\[\ln {\hat Y_i} = \mathop {10.093}\limits_{t = 54.7}  - \mathop {0.239}\limits_{t =  - 12.28} {X_i},\quad {R^2} = 0.803\]
+и
+\[\frac{{\ln {{\hat Y}_i}}}{{\sqrt {{X_i}} }} = \mathop {9.093}\limits_{t = 47.87} \frac{1}{{\sqrt {{X_i}} }} - \mathop {0.2258}\limits_{t =  - 15.10} \sqrt {{X_i}} ,\]
+где $Y_i$ — плотность населения района, $X_i$ — расстояние до центрального делового квартала.
+
+\begin{enumerate}
+\item С какой целью оценили второе уравнение? Какое при этом было сделано предположение о дисперсии ошибок?
+\item Дайте интерпретацию полученным результатам.
+\end{enumerate}
+
+\item Были обследованы 36 предприятий по трём показателям:  $K_i$ — основным фондам (млн. руб.), $W_i$ — фонду оплаты труда (млн. руб.), $R_i$ — расходам на НИОКР (млн. руб.). Получены оценки вектора средних $\hat \mu = (3, 4, \Sexpr{var_no})'$ и ковариационной матрицы  $\hat\Sigma = \begin{pmatrix}
+2 & 3 & 0 \\
+3 & 10 & 0 \\
+0 & 0 & \Sexpr{var_no + 2} \\
+\end{pmatrix}
+$.
+
+Найдите первую главную компоненту и определите долю суммарной дисперсии, которую она объясняет.
+
+\item Мартовский Заяц и Безумный Шляпник почти все время пьют чай. Известно, что количество выпитого за день чая (в чашках) зависит от количества пирожных (в штуках) и печенья (в штуках). Алиса, гостившая у героев в течение \Sexpr{20 + 5 * var_no} дней, заметила, что если оценить зависимость выпитого чая от закуски для Мартовского Зайца и Шляпника
+\[
+Tea_i = \beta_1 + \beta_2 Biscuit_i + \beta_3 Cake_i + u_i,
+\]
+то получится регрессия с $RSS = \Sexpr{14 + 3 * var_no}$.
+
+Чтобы понять, удачную ли модель она построила, Алиса оценила еще одну регрессию
+\[
+Tea_i = \beta_1 + \beta_2 Biscuit_i + \beta_3 Cake_i +
+   +\gamma_2 \widehat{Tea_i^2} +\gamma_3 \widehat{Tea_i^3} +\gamma_4 \widehat{Tea_i^4} + \nu_i,
+\]
+с $RSS = 10$.
+
+Помогите Алисе понять, верную ли спецификацию модели она выбрала: сформулируйте основную и альтернативную гипотезы и проведите подходящий тест.
+
+
+
+\end{enumerate}
+
+\end{document}
