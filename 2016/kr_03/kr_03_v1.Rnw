@@ -355,7 +355,7 @@ f(x|\lambda ) = \begin{cases}
 
  \begin{multicols}{3} % располагаем ответы в 3 колонки
    \begin{choices} % опция [o] не рандомизирует порядок ответов
-      \correctchoice{$\frac{\sum Y_i / \sqrt{X_i}}{\sum 1/X_i}$}
+      \wrongchoice{$\frac{\sum Y_i / \sqrt{X_i}}{\sum 1/X_i}$}
       \wrongchoice{$\frac{\sum Y_i / X_i}{\sum 1/X_i^2}$}
       \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i}$}
       \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i^2}$}
