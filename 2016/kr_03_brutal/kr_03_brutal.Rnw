@@ -1,0 +1,304 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=2.5cm, left=1.5cm, right=1.5cm]{geometry} % размер текста на странице
+
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{floatrow} % для выравнивания рисунка и подписи
+\usepackage{caption} % для пустых подписей
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+\usepackage{comment} % для комментариев
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("ggplot2")
+library("texreg")
+library("xtable")
+library("dplyr")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика}
+\chead{}
+\rhead{Комоедица, 24.03.2016}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+\begin{document}
+
+
+Комоедица — белорусский народный праздник, посвящённый пробуждению медведя :)
+
+
+\begin{enumerate}
+
+\item Докажем свойства оценок максимального правдоподобия!
+
+
+Пусть $L(y|\theta)$ — функция правдоподобия, $y$ — вектор-столбец из $n$ наблюдений, $\theta$ — вектор-столбец из $m$ параметров. Кроме того, введём дополнительные обозначения, $\ell(\theta)=\ln L(y|\theta)$, $s(\theta) = \partial \ell/\partial \theta$. Буква $s$ сокращает слово «score».
+
+Для наших целей мы определим информацию Фишера как $I=\Var(s(theta))$. То есть информация Фишера — это ковариационная матрица первых производных лог-функции правдоподобия. По определению.
+
+
+\begin{enumerate}
+  \item Чтобы взбодриться, укажите размеры векторов и матриц $s(\theta)$, $\E(s(\theta))$, $\Var(s(\theta))$.
+  \item Собрав всю силу воли в кулак, найдите $\E(1)$.
+  \item Запишите $\E(1)$ с помощью интеграла по $dy$ и функции правдоподобия $L()$.
+  \item Продифференциировав обе части найденного тождества по $\theta_j$, найдите $\int \frac{\partial L}{\partial \theta_j} \, dy$.
+  \item Найдите $\E\left( \frac{\partial \ell}{\partial \theta_j} \right)$.
+  \item Найдите $\E(s(\theta))$.
+  \item Докажите, что $I=\E(s(\theta)s(\theta)')$.
+  \item Вспомнив магию дифференциирования ещё раз, найдите    $\int \frac{\partial^2 L}{\partial \theta_j\partial \theta_i} \, dy$.
+  \item Найдите $\E\left(\frac{\partial^2 L}{\partial \theta_j\partial \theta_i} \frac{1}{L}\right)$.
+  \item Выразите $\frac{\partial^2 \ell}{\partial \theta_j\partial \theta_i}$ через $\frac{\partial \ell}{\partial \theta_j}$, $\frac{\partial \ell}{\partial \theta_i}$ и $\frac{\partial^2 L}{\partial \theta_j\partial \theta_i}$.
+  \item Докажите, что $\E(\frac{\partial^2 \ell}{\partial \theta_j\partial \theta_i}) = - \E\left(\frac{\partial \ell}{\partial \theta_j} \frac{\partial \ell}{\partial \theta_i}\right)$.
+  \item Докажите, что $I=-\E\left(\frac{\partial^2 \ell}{\partial \theta\partial \theta'}\right)$.
+
+\end{enumerate}
+
+\item ML в линейных моделях:
+
+Можно смело считать первое упражнение сделанным, то есть использовать тот факт, что $I=-E(\frac{\partial^2 \ell}{\partial \theta\partial\theta'})$.
+
+Рассмотрим задачу линейной регрессии, $y=X\beta+u$, где $u\sim \cN(0;\sigma^2)$. Для удобства определим $x_i'$ — $i$-ую строку матрицы $X$ и будем считать регрессоры неслучайными.
+
+В нашем случае $\theta=(\beta', \sigma^2)'$.
+
+
+Хинты для забывших матричное дифференцирование: $\frac{\partial Ar}{\partial r}=A$, $\frac{\partial^2 r'Ar}{\partial r\partial r'}=A+A'$, $\frac{\partial r'Ar}{\partial r'}=Ar+A'r$.
+
+\begin{enumerate}
+\item Выпишите $\ell(\theta)$ в виде суммы.
+\item Выпишите вектор $s(\theta)$ в виде
+$s(\theta) = \begin{pmatrix}
+? \\
+? \\
+\end{pmatrix}$, где первый элемент — это сразу вектор производных по всем $\beta$ одним махом.
+\item Найдите ML оценки $\hat\theta$.
+\item Докажите, что $L(\hat\theta)=a \cdot RSS^{b}$, где $a$ и $b$ — некоторые константы. Забейте на $a$ и найдите $b$.
+\item Найдите $\frac{\partial^2 \ell}{\partial \theta\partial\theta'}$ в виде четырёх блоков:
+\[
+\frac{\partial^2 \ell}{\partial \theta\partial\theta'}=\begin{pmatrix}
+\frac{\partial^2 \ell}{\partial \beta\partial\beta'} & \frac{\partial^2 \ell}{\partial \beta\partial \sigma^2} \\
+\frac{\partial^2 \ell}{\partial \sigma^2\partial\beta'} & \frac{\partial^2 \ell}{\partial \sigma^2\partial\sigma^2} \\
+\end{pmatrix}.
+\]
+\item В предыдущем пункте все блоки должны были получится ненулевые. Однако найдите $I$ и пара блоков занулится :)
+\item Найдите $I^{-1}$.
+\end{enumerate}
+
+\item Выведите формулу для $R^2$ в регрессии вектора $y=X\beta+u$.
+
+\item LM-тест в линейных моделях.
+
+Обозначим: $\hat\theta_R$ и $\hat\theta_{UR}$ — ограниченные и неограниченные экстремумы правдоподобия, а $\hat u_R$ и $\hat u_{UR}$ — соответствующие остатки.
+
+Определим LM статистику как $LM = s(\hat\theta_R)'\widehat{\Var}^{-1}(s)s(\hat\theta_R)$.
+
+Будем считать первое упражнение сделанным, поэтому
+\[
+LM = s(\hat\theta_R)'I^{-1}(\hat\theta_R)s(\hat\theta_R).
+\]
+
+Также можно считать сделанным второе упражнение, поэтому:
+\[
+s=\begin{pmatrix}
+\frac{X'u}{\sigma^2} \\
+\frac{u'u - n\sigma^2}{2\sigma^4} \\
+\end{pmatrix}, \quad
+I^{-1} =
+\begin{pmatrix}
+\sigma^2(X'X)^{-1} & 0 \\
+0 & \frac{2\sigma^4}{n} \\
+\end{pmatrix}.
+\]
+
+\begin{enumerate}
+\item Кстати, а чему равно $s(\hat\theta_{UR})$?
+\item Найдите $s(\hat\theta_R)$ и $I^{-1}(\hat\theta_R)$.
+\item Выведите формулу для $LM$ статистики, содержащую только $X$, $\hat u_R$ и $n$.
+\item Какую регрессию надо построить, чтобы $R^2$ в ней оказался таким, что $LM=nR^2$?
+\end{enumerate}
+
+
+\item Исследовательница Елизавета оценила модель множественной регрессии, $y=X\beta + u$. Затем Елизавета проверяет гипотезу о незначимости отдельного коэффициента $\beta_j$ двумя способами: через $t$-статистику и через $F$-статистику с ограниченной и неограниченной регрессией.
+
+Докажите, что $t^2 = F$.
+
+
+\item Василий обнаружил странную монетку и решил произвести над ней эксперименты. Выпадение орла он кодирует $y_i=1$, решки — $y_i=0$.
+
+При известном параметре $p$, наблюдаемые $y_1$, \ldots, $y_n$ независимы и имеют распределение Бернулли, $y_i|p \sim Bernoulli(p)$. Априорно по мнению Василия параметр $p$ имеет бета-распределение, $p \sim beta(\alpha, \beta)$, где $\alpha$ и $\beta$ — некоторые неслучайные константы, описывающие мнения Василия.
+
+Функция плотности бета-распределения имеет вид:
+\[
+f(p) \propto p^{\alpha - 1}(1-p)^{\beta-1}
+\]
+
+Василий подкинул неизвестную монетку 100 раз и оказалось, что орёл выпал 70 раз и решка — 30.
+
+\begin{enumerate}
+  \item При каких $\alpha$ и $\beta$ априорное распределение совпадает с равномерным?
+  \item Найдите апостериорное распределение параметра $p$.
+  \item Найдите апостериорный прогнозный закон распределения для $y_{n+1}$.
+  \item Проинтерпретируйте смысл чисел $\alpha$ и $\beta$.
+\end{enumerate}
+
+\item В $i$-ый день Тимофей встречает $y_i$ покемонов. Тимофей предполагает, что при известном параметре $\lambda$, наблюдаемые $y_1$, \ldots, $y_n$ независимы и имеют пуассоновское распределение, $y_i|\lambda \sim Pois(\lambda)$. Априорно по мнению Тимофея параметр $\lambda$ имеет гамма-распределение, $p \sim Gamma(shape=\alpha, rate=\beta)$, где $\alpha$ и $\beta$ — некоторые константы, определяющие мнение Тимофея о встречаемости покемонов.
+
+Функция плотности гамма-распределения имеет вид:
+\[
+f(\lambda) \propto \lambda^{\alpha - 1}\exp(-\lambda\beta)
+\]
+
+За прошедшие 100 дней Тимофей встретил 70 покемонов.
+
+
+\begin{enumerate}
+  \item Найдите апостериорное распределение параметра $\lambda$.
+  \item Найдите апостериорный прогнозный закон распределения $y_{n+1}$.
+  \item Проинтерпретируйте смысл констант $\alpha$ и $\beta$.
+\end{enumerate}
+
+
+\item Андрей генерирует случайные величины $X_i$ и $Y_i$ по следующим принципам. Начинает Андрей с $X_0=0$. При $i\geq 1$ Василий генерирует $Y_i$ из нормального распределения $Y_i|X_{i-1}\sim \cN(0.5X_{i-1} + 2, 1)$. Затем Андрей генерирует $X_i$ из нормального распределения $X_i|Y_i \sim \cN(0.5Y_i+4, 1)$.
+
+\begin{enumerate}
+\item Как в пределе распределена величина $X_i$?
+\item Как в пределе распределена величина $Y_i$?
+\end{enumerate}
+
+
+\item Василий генерирует случайные величины $X_i$ и $Y_i$ по следующим принципам. Начинает Василий с $X_0=0$. При $i\geq 1$ Василий генерирует $Y_i$ из нормального распределения $Y_i|X_{i-1}\sim \cN(X_{i-1}, 1)$. Затем Василий генерирует независимую от $Y_i$ величину $Z_i \sim \cN(0; 1)$. Если оказалось, что $Z_i>Y_i$, то Василий берёт $X_i=1$, и $X_i=0$ иначе.
+
+\begin{enumerate}
+\item Как в пределе распределена величина $X_i$?
+\item Как в пределе распределена величина $Y_i$?
+\end{enumerate}
+
+\item Рассмотрим линейную модель $y=X\beta+u$, причем $u\sim \cN(0;\sigma^2 I)$.
+
+Пусть априорно считается, что $\beta \sim \cN(0; \tau I)$.
+
+Константы $X$, $\tau$ и $\sigma^2$ известны. Для удобства все $X$ и $y$ центрированы.
+
+\begin{enumerate}
+\item Найдите апостериорное распределение $\beta$ с учётом наблюдаемых $y$.
+\item Найдите, при каком $\lambda$ апостериорное среднее совпадёт с результатом гребневой регрессии
+\[
+\min_{\beta} \sum (y_i - \hat y_i)^2 + \lambda \sum \beta_j^2.
+\]
+\item Как надо изменить целевую функцию гребневой регрессии, чтобы результат совпал с апостериорным среднем $\beta$ при априорном распределении $\beta \sim \cN(0; \Sigma)$?
+\end{enumerate}
+
+\end{enumerate}
+
+
+\begin{comment}
+\begin{figure}[h!]
+% \floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,bottom},capbesidewidth=4cm}}]{figure}[\FBwidth]
+% {\caption*{Randall Munroe, xkcd}}
+\includegraphics[width=19cm]{Minard.png}
+\caption*{Charles Joseph Minard, Схема потерь наполеоновской армии в компании 1812-1813 годов}
+\end{figure}
+\end{comment}
+
+
+
+\end{document}

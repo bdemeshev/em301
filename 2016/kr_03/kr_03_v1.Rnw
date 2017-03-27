@@ -428,4 +428,23 @@ Tea_i = \beta_1 + \beta_2 Biscuit_i + \beta_3 Cake_i +
 
 \end{enumerate}
 
+Несколько решений
+\begin{enumerate}
+  \item
+
+  \item
+<<>>=
+eigen(matrix(c(2, 3, 3, 10), nrow = 2))
+@
+
+Доля дисперсии: $\Sexpr{11/(11 + 1 + var_no + 2)}$
+
+  \item
+  \[
+  F = \frac{(RSS_R - RSS_{UR})/3}{RSS_{UR}/(n-k_{UR})}=
+  \Sexpr{(14 + 3 * var_no - 10)*(20 + 5 * var_no - 3)/3/10}
+  \]
+
+\end{enumerate}
+
 \end{document}
