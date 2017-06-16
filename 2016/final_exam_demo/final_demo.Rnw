@@ -1,0 +1,248 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE>>=
+var_no <- 1
+set.seed(var_no)
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("tidyverse")
+library("texreg")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+library("memisc")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, финальный экзамен}
+\chead{}
+\rhead{} % URFU version
+%\rhead{19.06.2017, демо-вариант} % \Sexpr{var_no + sample(c(0, 10), 1)}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+<<child="demo_test_bank.Rnw">>=
+@
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{final_spring_2017_demo}{combat}
+%\shufflegroup{demo_a}
+\insertgroup{combat}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+
+
+\begin{enumerate}
+
+\item Величины $X_i$ равномерны на отрезке $[-a; 3a]$ и независимы. Есть несколько наблюдений, $X_1=0.5$, $X_2=0.7$, $X_3=-0.1$.
+
+\begin{enumerate}
+\item Найдите $\E(X_i)$ и $\E(|X_i|)$
+\item Постройте оценку параметра $a$ методом моментов, используя $\E(|X_i|)$
+\item Постройте оценку параметра $a$ обобщённым методом моментов, используя моменты $\E(X_i)$, $\E(|X_i|)$ и взвешивающую матрицу
+\[
+W=\begin{pmatrix}
+2 & 0 \\
+0 & 1 \\
+\end{pmatrix}.
+\]
+\end{enumerate}
+
+
+\item Рассмотрим логит-модель, задаваемую системой
+\[
+\begin{cases}
+Y_i = 
+\begin{cases}
+1, \text{ если } Y_i^* \geq 0; \\
+0, \text{ иначе;} \\
+\end{cases} \\
+Y_i^* = \beta_1 + \beta_2 X_i + u_i \\
+\end{cases}.
+\]
+
+<<include=FALSE>>=
+df_logit <- tibble(x = c(0, 2, 3, 4), y = c(0, 1, 0, 1))
+logit <- glm(data = df_logit, family = binomial(link = "logit"), y ~ x)
+logit
+@
+
+\begin{enumerate}
+\item Выпишите функцию правдоподобия для набора из четырёх наблюдений: $(X_1, Y_1) = (4, 1)$, $(X_2, Y_2) = (0, 0)$,  $(X_3, Y_3) = (2, 1)$,  $(X_4, Y_4) = (3, 0)$.
+\item Оценки коэффициентов равны $\hb_1 = -1.95$ и $\hb_2 = 0.85$. Оцените вероятность того, что $Y_5 = 1$ при $X_5 = 1$.
+\end{enumerate}
+
+
+\item Фирмы определяют необходимый запас товаров $Y_i$ в зависимости от ожидаемых годовых продаж $X^e_i$, используя линейную форму зависимости $Y_i = \beta_1  + \beta_2 X^e_i + \e_i$.
+
+
+Исследователю доступны только данные о реальных продажах $X_i = X^e_i + u_i$, где ошибки $u_i$ распределены независимо от $X_i$ и удовлетворяют условию теоремы Гаусса–Маркова.  
+
+\begin{enumerate}
+\item Какие проблемы возникнут при оценке исходной модели с помощью МНК, если вместо данных по $X^e_i$ будут использованы данные по $X_i$?
+\item Каков возможный способ решения этих проблем?
+\end{enumerate}
+
+
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+c <- sample(2:5, size = 1)
+lambda_1 <- sample(c(0.1, 0.2, 0.3), size = 1)
+lambda_2 <- sample(c(0.4, 0.5, 0.6), size = 1)
+a_1 <- lambda_1 + lambda_2
+a_2_minus <- lambda_1 * lambda_2
+sigma2 <- sample(2:5, size = 1)
+@
+
+
+\item Рассмотрим стационарный случайный процесс $y_t$, удовлетворяющий уравнению
+\[
+y_t = \Sexpr{c} + \Sexpr{a_1} y_{t-1} - \Sexpr{a_2_minus} y_{t-2} + u_t, 
+\]
+где $u_t$ — белый шум с дисперсией $\Sexpr{sigma2}$.
+
+Найдите $\E(y_t)$, $\Var(y_t)$, $\Cov(y_t, y_{t-1})$, $\Cov(y_t, y_{t-2})$.
+
+\item Что такое коинтегрированные временные ряды? Как проверить, являются ли два временных ряда коинтегрированными?
+
+\item Модели панельных данных с фиксированными эффектами: определение, способы оценивания.
+
+\end{enumerate}
+
+\end{document}
