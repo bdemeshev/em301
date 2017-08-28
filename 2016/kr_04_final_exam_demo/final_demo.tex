@@ -1,0 +1,455 @@
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[svgnames]{xcolor}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+
+
+
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, финальный экзамен}
+\chead{}
+\rhead{} % URFU version
+%\rhead{19.06.2017, демо-вариант} % var_no + sample(c(0, 10), 1)
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+
+
+
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если основная гипотеза в тесте Дики-Фуллера отвергается, то временной ряд является
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{стационарным}
+       \wrongchoice{нестационарным}
+       \wrongchoice{коинтегрированным}
+       \wrongchoice{стационарным в первых разностях}
+       \wrongchoice{нормально распределённым}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Взятием разностей может быть сведен к стационарному
+
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{как временной ряд с детерминированным трендом, так и со случайным трендом}
+       \wrongchoice{только временной ряд с детерминированным трендом}
+       \wrongchoice{только временной ряд со случайным трендом}
+       \wrongchoice{ни временной ряд с детерминированным трендом, ни со случайным трендом}
+       \wrongchoice{только коинтегрированный ряд}
+    \end{choices}
+%   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если в регрессии обнаружена автокорреляция типа AR(1), то статистика Дарбина-Уотсона и оценка коэффициента автокорреляции $\hat\rho$ связаны между собой соотношением
+
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$DW \approx 2(1-\hat\rho)$}
+       \wrongchoice{$DW \approx \hat\rho / 2$}
+       \wrongchoice{$DW \approx \hat\rho$}
+       \wrongchoice{$\hat\rho \approx DW/2$}
+       \wrongchoice{$\hat\rho \approx 2(1-DW)$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Выберите верное утверждение о модели бинарного выбора:
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{недостатком линейной вероятностной модели является возможная нереалистичность значений вероятности}
+       \wrongchoice{нельзя включать в качестве независимых дамми-переменные}
+       \wrongchoice{значимость коэффициентов проверяется с помощью статистики, имеющей $t$-распределение}
+       \wrongchoice{ROC кривая является выпуклой для любой логит-модели}
+       \wrongchoice{оценки коэффициентов логит и пробит моделей всегда имеют один и тот же знак}
+    \end{choices}
+ %  \end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+При оценивании модели $Y_t = X_t' \beta + u_t$ была обнаружена автокорреляция первого порядка с $\hat\rho = -0.6$. Чтобы провести корректное оценивание, можно применить метод наименьших квадратов  к преобразованным данным. При этом первое наблюдение окажется домноженным на 
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+        \correctchoice{$0.8$}
+       \wrongchoice{$0.6$}
+       \wrongchoice{$-0.6$}
+       \wrongchoice{$0.4$}
+       \wrongchoice{$\sqrt{0.6}$}
+        \wrongchoice{$\sqrt{0.84}$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Условие порядка для любого уравнения из системы может быть сформулировано следующим образом.
+Число эндогенных переменных, включенных в уравнение, уменьшенное на 1, должно быть
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{не больше числа экзогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа экзогенных переменных, включенных в это уравнение}
+       \wrongchoice{не меньше числа экзогенных переменных, включенных в это уравнение}
+       \wrongchoice{не меньше числа экзогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа эндогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа эндогенных переменных, включенных в это уравнение}
+    \end{choices}
+   %\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Инструмент $Z_t$ для оценивания динамической модели $Y_t = \beta_1 + \beta_2 X_t + \beta_3 Y_{t-1} + u_t$ с экзогенным вектором $X$ и AR(1) процессом в ошибках $u_t$ должен удовлетворять требованию
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Corr(Y_{t-1}, Z_t) \to 1$}
+       \wrongchoice{$\Corr(Y_{t-1}, Z_t)=0$}
+       \wrongchoice{$\Corr(X_t, Z_t)=0$}
+       \wrongchoice{$\Corr(u_t, Z_t)=0$}
+       \wrongchoice{$\Corr(u_t, Z_t) \to 1$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Рассмотрим модель $Y_i = {\beta_1} + {\beta_2}{X_{i2}} + {\beta_3}{X_{i3}} + {\beta_4}{X_{i4}} + {\beta_5}{X_{i5}} + u_i$.
+Гипотезу 
+\[
+\begin{cases}
+{\beta_2} + {\beta _3} = 1\\
+{\beta_5} = 0 \\
+\end{cases}
+\]
+можно проверить с помощью оценки дополнительной модели 
+
+
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_i - X_{i3} = \beta_1 + \beta_2 (X_{i2} - X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - X_{i2} = \beta_1 + \beta_2 (X_{i2} - X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - X_{i3} = \beta_1 + \beta_2 (X_{i2} + X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - \beta_2 = \beta_1 + \beta_2 (X_{i2} + X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i = \beta_1 + \beta_2 (X_{i2} + X_{i3} - 1) + \beta_4 X_{i4} + u_i$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+К несостоятельности МНК-оценок вектора коэффициентов приводит
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{эндогенность одного из регрессоров}
+       \wrongchoice{корреляция ошибок по схеме AR(1)}
+       \wrongchoice{корреляция ошибок по схеме MA(1)}
+       \wrongchoice{нестрогая мультиколлинеарность}
+       \wrongchoice{корреляция между регрессорами}
+       \wrongchoice{условная гетероскедастичность ошибок}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Процесс $u_t$ является белым шумом. Нестационарным является процесс
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_t = - Y_{t-1} + u_t$}
+       \wrongchoice{$Y_t$ независимо и одинаково распределены $\cN(7; 16)$}
+       \wrongchoice{$Y_t = u_t + 2u_{t-1}$}
+       \wrongchoice{$Y_t = 7 + u_t + 0.2 u_{t-1} - 1.2 u_t{-2}$}
+       \wrongchoice{$Y_t = 5 + 0.1 Y_{t-1} + u_{t} + 0.2 u_{t-1}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{final_spring_2017_demo}{combat}
+%\shufflegroup{demo_a}
+\insertgroup{combat}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+
+
+\begin{enumerate}
+
+\item Величины $X_i$ равномерны на отрезке $[-a; 3a]$ и независимы. Есть несколько наблюдений, $X_1=0.5$, $X_2=0.7$, $X_3=-0.1$.
+
+\begin{enumerate}
+\item Найдите $\E(X_i)$ и $\E(|X_i|)$
+\item Постройте оценку параметра $a$ методом моментов, используя $\E(|X_i|)$
+\item Постройте оценку параметра $a$ обобщённым методом моментов, используя моменты $\E(X_i)$, $\E(|X_i|)$ и взвешивающую матрицу
+\[
+W=\begin{pmatrix}
+2 & 0 \\
+0 & 1 \\
+\end{pmatrix}.
+\]
+\end{enumerate}
+
+
+\item Рассмотрим логит-модель, задаваемую системой
+\[
+\begin{cases}
+Y_i = 
+\begin{cases}
+1, \text{ если } Y_i^* \geq 0; \\
+0, \text{ иначе;} \\
+\end{cases} \\
+Y_i^* = \beta_1 + \beta_2 X_i + u_i \\
+\end{cases}.
+\]
+
+
+
+\begin{enumerate}
+\item Выпишите функцию правдоподобия для набора из четырёх наблюдений: $(X_1, Y_1) = (4, 1)$, $(X_2, Y_2) = (0, 0)$,  $(X_3, Y_3) = (2, 1)$,  $(X_4, Y_4) = (3, 0)$.
+\item Оценки коэффициентов равны $\hb_1 = -1.95$ и $\hb_2 = 0.85$. Оцените вероятность того, что $Y_5 = 1$ при $X_5 = 1$.
+\end{enumerate}
+
+
+\item Фирмы определяют необходимый запас товаров $Y_i$ в зависимости от ожидаемых годовых продаж $X^e_i$, используя линейную форму зависимости $Y_i = \beta_1  + \beta_2 X^e_i + \e_i$.
+
+
+Исследователю доступны только данные о реальных продажах $X_i = X^e_i + u_i$, где ошибки $u_i$ распределены независимо от $X_i$ и удовлетворяют условию теоремы Гаусса–Маркова.  
+
+\begin{enumerate}
+\item Какие проблемы возникнут при оценке исходной модели с помощью МНК, если вместо данных по $X^e_i$ будут использованы данные по $X_i$?
+\item Каков возможный способ решения этих проблем?
+\end{enumerate}
+
+
+
+
+
+
+
+\item Рассмотрим стационарный случайный процесс $y_t$, удовлетворяющий уравнению
+\[
+y_t = 3 + 0.7 y_{t-1} - 0.1 y_{t-2} + u_t, 
+\]
+где $u_t$ — белый шум с дисперсией $5$.
+
+Найдите $\E(y_t)$, $\Var(y_t)$, $\Cov(y_t, y_{t-1})$, $\Cov(y_t, y_{t-2})$.
+
+\item Что такое коинтегрированные временные ряды? Как проверить, являются ли два временных ряда коинтегрированными?
+
+\item Модели панельных данных с фиксированными эффектами: определение, способы оценивания.
+
+\end{enumerate}
+
+\end{document}

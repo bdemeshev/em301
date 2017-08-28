@@ -1,0 +1,584 @@
+\documentclass[12pt]{article}\usepackage[]{graphicx}\usepackage[svgnames]{xcolor}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+% indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+
+
+
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, пересдача}
+\chead{}
+\rhead{30.01.2016}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    В множественной регрессии с 3 регрессорами выборочная корреляция между переменной $Y$ и $\hat Y$ оказалась равна 0.8. Тогда $R^2$ будет равен
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{0.64}
+      \wrongchoice{0.8}
+      \wrongchoice{0.36}
+      \wrongchoice{0.2}
+      \wrongchoice{1}
+      \wrongchoice{Не хватает данных для ответа}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    По некоему набору данных оценили регресиию. Потом выкинули одно наблюдение и оценили ту же самую регрессию по уменьшенной выборке. Что из этого НЕ могло произойти?
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$R^2$ и $R^2_{adj}$ оба не изменились}
+      \wrongchoice{$R^2$ и $R^2_{adj}$ оба выросли}
+      \wrongchoice{$R^2$ и $R^2_{adj}$ оба упали}
+      \wrongchoice{$R^2$ вырос и стал равен 1}
+      \wrongchoice{один из коэффициентов поменял знак}
+      \wrongchoice{один из коэффициентов стал незначимым}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Исследовательница Алевтина изучает зависимость размера порции, $size$, в мишленовском ресторане от его звёздности, $star$ (от 1 до 3), и уровня цен, $price$. Она оценила модель вида $size_i = \beta_1 star1_i + \beta_2 star2_i + \beta_3 star3_i + \beta_4 price_i + u_i$, где $star1, star2, star3$ - дамми-переменные, равные 1 для ресторанов с соответствующим числом звезд, и 0 иначе. Алевтина считает, что размер порции никак не зависит от звездности ресторана. Какую гипотезу ей надо проверить?
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ $H_0 : \beta_1 = \beta_2 = \beta_3$ }
+      \wrongchoice{ $H_0 : \beta_1 = \beta_2 = \beta_3 = 0$ }
+      \wrongchoice{ $H_0 : \beta_1 = \beta_2 = \beta_3 = 1$ }
+      \wrongchoice{ $H_0 : \beta_1 = 2\beta_2 = 3\beta_3$ }
+      \wrongchoice{ $H_0 : 3\beta_1 = 2\beta_2 = \beta_3$ }
+      \wrongchoice{ $H_0 : \beta_2 = \beta_3 = 0$ }
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Исследовательница Алевтина по-прежнему изучает зависимость размера порции, $size$, в мишленовском ресторане от его звёздности, $star$ (от 1 до 3), и уровня цен, $price$. Она оценила модель вида $size_i = \beta_1 star1_i + \beta_2 star2_i + \beta_3 star3_i + \beta_4 price_i + u_i$, где $star1, star2, star3$ - дамми-переменные, равные 1 для ресторанов с соответствующим числом звезд, и 0 иначе. Алевтина считает, что у трёхзвездочных ресторанов цена должна влиять сильнее, чем у 1- и 2-звездочных (у этих категорий цена влияет одинаково). Какую модель ей надо оценить?
+
+ %\begin{multicols}{1} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ $size_i = \beta_1 star1_i + \beta_2 star2_i + \beta_3 star3_i + \beta_4 price_i + \beta_5 price_i star3_i + u_i$ }
+      \wrongchoice{ $size_i = \beta_1 star1_i + \beta_3 star3_i + \beta_4 price_i + u_i$ }
+      \wrongchoice{ $size_i = \beta_1 star1_i + \beta_2 star2_i + \beta_3 star3_i + \beta_4 price_i star3_i + u_i$ }
+      \wrongchoice{ $size_i = \beta_1 star1_i + \beta_2 star2_i + \beta_3 star3_i + \beta_4 price_i + 10 price_i star3_i + u_i$ }
+      \wrongchoice{ $size_i = \beta_0 + \beta_3 star3_i + \beta_4 price_i + u_i$ }
+      \wrongchoice{ $size_i = \beta_0 + \beta_1 star3_i + \beta_2 price_i + \beta_3 price_i star3_i + u_i$ }
+   \end{choices}
+  %\end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Вася оценил модель $\ln Y_i = \beta_0 + \beta_1 X_i + \beta_2 \ln Z_i + u_i$. Какую модель для $Y_i$ он предполагал?
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ $Y_i = e^{\beta_0 + \beta_1 X_i} Z_i^{\beta_2} e^{u_i}$ }
+      \wrongchoice{ $Y_i = e^{\beta_0 + \beta_1 X_i} Z_i^{\beta_2} + e^{u_i}$ }
+      \wrongchoice{ $Y_i = e^{\beta_0} X_i^{\beta_1} Z_i^{\beta_2} u_i$ }
+      \wrongchoice{ $Y_i = e^{\beta_0 + \beta_1 X_i} Z_i^{\beta_2} + {u_i}$ }
+      \wrongchoice{ $Y_i = \beta_0 X_i^{\beta_1} Z_i^{\beta_2} u_i$ }
+      \wrongchoice{ $Y_i = e^{\beta_0} X_i^{\beta_1} Z_i^{\beta_2} e^{u_i}$ }
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    В регрессии с 4 регрессорами, оцененной по 21 наблюдению, оказалось, что $TSS = 150$, $R^2 = 0.6$. Тогда $R^2_{adj}$ равен
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ 1/2 }
+      \wrongchoice{ 1/3 }
+      \wrongchoice{ 1/4 }
+      \wrongchoice{ 3/4 }
+      \wrongchoice{ 2/5 }
+      \wrongchoice{ 3/5 }
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Регрессия с 3 регрессорами оценена по 100 наблюдениям. Какая из этих гипотез может быть проверена при помощи статистики, имеющей $F_{1, 96}$ распределение?
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ $H_0: \beta_2 = 2 \beta_3$ }
+      \wrongchoice{ $H_0: \beta_2 = \beta_3 = 0$ }
+      \wrongchoice{ $H_0: \beta_1 < \beta_2 < \beta_3$ }
+      \wrongchoice{ $H_0: \beta_2 = \beta_3 = 0$ }
+      \wrongchoice{ $H_0: 0 < \beta_2 < 3$ }
+      \wrongchoice{ $H_0: \beta_1 = \beta_2 = \beta_3$ }
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Исследователь выполнил второй шаг в PE-тесте МакКиннона. В регрессии $\ln Y_i$ на исходные регрессоры и $Z_i = \hat Y_i - \exp(\widehat{\ln Y_i})$ коэффициент при $Z_i$ оказался незначимым. А в регрессии $Y_i$ на исходные регрессоры и $W_i = \ln \hat Y_i - \widehat{\ln Y_i}$ коэффициент при $W_i$ оказался значимым. Из результатов следует сделать вывод, что
+
+ %\begin{multicols}{1} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{следует предпочесть логарифмическую модель}
+      \wrongchoice{следует предпочесть линейную модель}
+      \wrongchoice{следует предпочесть полулогарифмическую модель}
+      \wrongchoice{тесты противоречат друг другу, ни одна из моделей не предпочитается}
+      \wrongchoice{в исходной модели пропущен регрессор $Z_i$}
+      \wrongchoice{в исходной модели пропущен регрессор $W_i$}
+   \end{choices}
+  %\end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Истинной является модель $Y_i = \beta_1 + \beta_2 X_i + u_i$. Глафира оценивает две регрессии: $\hat Y_i = \hb_1 + \hb_2X_i$ и  $\hat Y_i = \hat \gamma_1 + \hat \gamma_2 X_i + \hat \gamma_3 Z_i$ с помощью МНК. Известно, что $corr(X_i, Z_i) = 0.7$. Тогда $\gamma_2$
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{Нет верного ответа}
+      \wrongchoice{является смещенной, но состоятельной оценкой для $\beta_2$}
+      \wrongchoice{является несмещенной, но несостоятельной оценкой для $\beta_2$}
+      \wrongchoice{смещена на $0.7 \hat \gamma_3$ относительно $\beta_2$}
+      \wrongchoice{смещена на $0.7$ относительно $\beta_2$}
+      \wrongchoice{смещена на $\hat \gamma_3$ относительно $\beta_2$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{midterm_16_retake2}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+
+    Если для регрессора используется преобразование Бокса-Кокса с параметром $\theta = 0$, а для зависимой переменной - с параметром $\lambda = 2$, то регрессионное уравнение представимо в виде
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{ $Y^2_i = \beta_1 + \beta_2 \ln X_i + u_i$ }
+      \wrongchoice{ $Y_i = \beta_1 + \beta_2 \ln X_i + u_i$ }
+      \wrongchoice{ $\ln Y_i = \beta_1 + \beta_2 \ln X_i + u_i$ }
+      \wrongchoice{ $Y_i = \beta_1 + \beta_2 X_i + u_i$ }
+      \wrongchoice{ $Y^2_i = \beta_1 + \beta_2 \ln X^2_i + u_i$ }
+      \wrongchoice{ $Y^2_i = \beta_1 + \beta_2 X^2_i + u_i$ }
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\copygroup[10]{midterm_16_retake2}{combat}
+\shufflegroup{combat}
+\insertgroup{combat}
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+\begin{enumerate}
+
+
+
+\item На основании опроса 200 человек была оценена следующая модель:
+\[
+\ln(wage_i)=\beta_1 + \beta_2 exper_i + \beta_3 exper^2_i + \beta_4 sex_i + \e_i
+\]
+
+где:
+\begin{itemize}
+\item $wage_i$ — величина заработной платы в долларах
+\item $exper_i$ — опыт работы в годах
+\item $exper^2_i$ — опыт работы в годах
+\item $sex_i$ — пол (1 — мужской, 0 — женский)
+\end{itemize}
+
+\begin{tabular}{lr} \toprule
+Показатель & Значение \\
+\midrule
+$R^2$                        & 0.917 \\
+Скорректированный $R^2$      & \textbf{B7} \\
+Стандартная ошибка регрессии & \textbf{B6} \\
+Количество наблюдений        & \textbf{B2} \\
+\bottomrule
+\end{tabular}
+
+Результаты дисперсионного анализа:
+
+\begin{tabular}{lrrrr} \toprule
+            &  df           & сумма квадратов & F           & P-значение \\
+\midrule
+Регрессия   & 3            & \textbf{B9}     & \textbf{В5}  &   \\
+Остаток     & \textbf{B1}  &  783.8  &              &       \\
+Итого       & \textbf{B3}  & \textbf{B4}     &              &       \\
+\bottomrule
+\end{tabular}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Оценка & Ст. ошибка & t-статистика  \\
+  \hline
+Константа & 1.9238 & 1.4149 & 1.3597 \\
+  $exper$ & \textbf{В8} & 0.4111 & 15.0799  \\
+  $exper^2$ & -0.2079 & 0.0288 & -7.2074  \\
+  $sex$ & 1.6218 & 0.2847 & \textbf{В10}  \\
+   \hline
+\end{tabular}
+\end{table}
+
+
+
+\begin{enumerate}
+\item Найдите пропущенные числа \textbf{B1}--\textbf{B10}.
+
+\item Как изменятся результаты оценки регрессии, если из регрессии удалить константу и добавить переменную $f_i$, равную 0 для мужчин и 1 — для женщин?
+\end{enumerate}
+
+Ответ округляйте до 2-х знаков после запятой. Кратко поясняйте, например, формулой, как были получены результаты.
+
+\newpage
+\item Исследовательница Глафира изучает зависимость спроса на молоко от цены молока и дохода семьи. В её распоряжении есть следующие переменные:
+
+\begin{itemize}
+\item $price$ — цена молока в рублях за литр
+\item $income$ — ежемесячный доход семьи в тысячах рублей
+\item $milk$ — расходы семьи на молоко за последние семь дней в рублях
+\end{itemize}
+
+В данных указано, проживает ли семья в сельской или городской местности. Поэтому Глафира оценила три регрессии: (All) — по всем данным, (Urban) — по городским семьям, (Rural) — по сельским семьям.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Calls:
+% (All):  lm(formula = milk ~ income + price, data = milk_demand) 
+% (Urban):  lm(formula = milk ~ income + price, data = filter(milk_demand, city == 1)) 
+% (Rural):  lm(formula = milk ~ income + price, data = filter(milk_demand, city == 0)) 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{lD{.}{.}{3}cD{.}{.}{3}cD{.}{.}{3}}
+\toprule
+&\multicolumn{1}{c}{(All)}&&\multicolumn{1}{c}{(Urban)}&&\multicolumn{1}{c}{(Rural)}\\
+\midrule
+(Intercept)&-6.027&&0.504&&-14.446\\
+&(5.753)&&(7.650)&&(8.053)\\
+income&0.230^{***}&&0.198^{*}&&0.280^{***}\\
+&(0.056)&&(0.078)&&(0.075)\\
+price&0.101&&-0.033&&0.264\\
+&(0.194)&&(0.235)&&(0.299)\\
+\midrule
+R-squared&0.1&&0.1&&0.2\\
+adj. R-squared&0.1&&0.1&&0.2\\
+sigma&5.3&&4.9&&5.2\\
+F&8.5&&3.4&&7.3\\
+P-value&0.0&&0.0&&0.0\\
+RSS&2716.1&&1134.2&&1264.9\\
+n observations&100&&51&&49\\
+\bottomrule
+\end{tabular}
+
+
+
+\begin{enumerate}
+\item Проверьте значимость в целом регрессии (All) на 5\%-ом уровне значимости.
+\item На 5\%-ом уровне значимости проверьте гипотезу, что зависимость спроса на молоко является единой для городской и сельской местности.
+\end{enumerate}
+
+\newpage
+
+\item Исследователь Луноликий оценил модель $y_i = \beta_1 + \beta_2 x_i + u_i$. На плоскости изображены наблюдения и линия регрессии:
+
+\begin{center}
+\begin{figure}
+\begin{tikzpicture}[scale = 0.025]
+\input{regression_on_plot.tikz}
+\end{tikzpicture}
+\end{figure}
+\end{center}
+
+\begin{enumerate}
+\item Изобразите на плоскости $\hat y_{20}$, $y_{20}$, $\bar y$, $\hat u_{20}$, $\hb_1$.
+\item Что произойдёт с каждой из указанных величин при добавлении нового наблюдения равного $(\bar x + 1, \bar y + \hb_2)$?
+\end{enumerate}
+
+
+
+
+\newpage
+\item По квартальным данным 1958-1976 годов была оценена модель с тремя объясняющими факторами:
+\[
+\hat Y_i = 2.2 + 0.104 X_i - 3.48 Z_i + 0.34 W_i, \; ESS = 110, \; RSS = 120
+\]
+
+\begin{enumerate}
+\item Какую модель необходимо оценить исследователю, если он считает, что в различные сезоны среднее значение зависимой переменной помимо зависимости от трёх регрессоров может отличаться на константу?
+\item При оценивании модели, допускающей сезонные эффекты, оказалось, что значение $ESS$ увеличилось до $170$.
+На уровне значимости 5\% проверьте гипотезу о наличии сезонности.
+\end{enumerate}
+
+
+
+\item По 24 наблюдениям была оценена модель:
+
+\[
+\widehat{Y}_i=15-4Z_i+4W_i
+\]
+
+Известно, что случайные ошибки нормально распределены, $RSS=180$, и
+
+\[
+(X'X)^{-1} =
+\ensuremath{% latex table generated in R 3.3.2 by xtable 1.8-2 package
+% Mon Jan 30 08:38:02 2017
+\begin{pmatrix}{}
+  0.204 & -0.149 & -0.041 \\ 
+  -0.149 & 0.163 & 0.006 \\ 
+  -0.041 & 0.006 & 0.046 \\ 
+  \end{pmatrix}
+}
+\]
+
+
+\begin{enumerate}
+\item Проверьте гипотезу $H_0: \beta_Z = 0$ против $H_a: \beta_Z \neq 0$ на уровне значимости~5\%.
+\item Проверьте гипотезу $H_0: \beta_Z - \beta_W = 0$  против $H_a: \beta_Z - \beta_W \neq 0$ на уровне значимости~5\%.
+\item Выпишите использованные при проверке гипотез предпосылки о случайных ошибках модели.
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}

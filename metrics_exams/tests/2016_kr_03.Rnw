@@ -1,0 +1,216 @@
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_01} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Если квадраты остатков оценённой с помощью МНК регрессионной модели линейно и значимо зависят от квадрата регрессора $Z$, то гетероскедастичность можно попытаться устранить,
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{поделив исходное уравнение на $Z$}
+      \wrongchoice{умножив исходное уравнение на $Z$}
+      \wrongchoice{поделив исходное уравнение на $\sqrt Z$}
+      \wrongchoice{умножив исходное уравнение на $\sqrt Z$}
+      \wrongchoice{поделив исходное уравнение на ${Z^2}$}
+      \wrongchoice{умножив исходное уравнение на ${Z^2}$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_02} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Оценки коэффициентов линейной регрессии, полученные методом максимального правдоподобия и методом наименьших квадратов в случае нормально распределенной случайной составляющей, будут совпадать
+ %\begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      %\correctchoice{}
+      \correctchoice{если ковариационная матрица случайной составляющей пропорциональна единичной}
+      \wrongchoice{никогда}
+      \wrongchoice{всегда}
+      \wrongchoice{если ковариационная матрица случайной составляющей диагональна}
+      \wrongchoice{если ковариационная матрица случайной составляющей нулевая}
+   \end{choices}
+  %\end{multicols}
+  \end{questionmult}
+}
+
+
+<<"ci_block_kr_03", echo=FALSE>>=
+n_all <- c(5, 6, 7, 8, 9)
+ci_level_all <- c(0.80, 0.90)
+
+set.seed(var_no)
+n <- sample(n_all, 1)
+ci_level <- sample(ci_level_all, 1)
+
+t_crit <- round(qt(ci_level + (1 - ci_level) / 2, df = n - 2), 2)
+
+
+@
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_03} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Методом максимального правдоподобия Гоша оценил модель
+    \[
+    Y_i = \beta_1 + \beta_2 X_{i2} +  \ldots  + \beta _6 X_{i6} + \varepsilon_i,
+    \]
+ где $\e \sim \cN (0,\sigma_{\e}^2I)$, по 12 наблюдениям. Оказалось, что $RSS = 24$.  Оценка дисперсии случайной составляющей равна
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$2$}
+      \wrongchoice{$0.5$}
+      \wrongchoice{$0.48$}
+      \wrongchoice{$2.4$}
+      \wrongchoice{$24/7$}
+%      \wrongchoice{не существует}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_04} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+Метод максимального правдоподобия для оценки коэффициентов регрессии $Y = X\beta  + \varepsilon$ НЕ МОЖЕТ быть применён, если
+    \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\e \sim \cN(0; \Omega)$ и структура $\Omega$ неизвестна}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и структура $\Omega$ известна, но зависит от набора неизвестных параметров}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и $\Omega = 2017 \cdot I$}
+      \wrongchoice{$\e \sim \cN(0; \Omega)$ и  $\Omega =  b \cdot I$, где $b$ — неизвестный параметр}
+      \wrongchoice{закон  распределения вектора $\e$ известен, но не является нормальным}
+   \end{choices}
+
+\end{questionmult}
+}
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_05} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  При наличии сильной практической мультиколлинеарности нарушается следующее свойство МНК-оценок параметров классической регрессии:
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{линейность по зависимой переменой}
+      \wrongchoice{несмещённость}
+      \wrongchoice{эффективность в классе линейных и несмещенных оценок}
+      \wrongchoice{равенство нулю суммы остатков}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+<<echo=FALSE>>=
+zero_condition_all <- c("$\\bar Y - \\hat\\beta_1 - \\hat\\beta_2 \\bar X$",
+"$\\bar Y - \\sum \\hat Y_i / n$", "$\\sum Y_i - \\sum \\hat Y_i$")
+
+set.seed(var_no)
+zero_condition <- sample(zero_condition_all, 1)
+@
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_06} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Имеются данные по 100 работникам: затраты на проезд в общественном транспорте ($E_i$, руб.), количество часов работы в день ($WH_i$, руб.), количество часов отдыха в день ($LH_i$, руб.) и количество часов сна в день ($SH_i$, руб.). Считая, что всё время суток распределяется между трудом, сном и отдыхом, оценка регрессии в виде
+\[
+E_i = {\beta_1} + {\beta_2}WH_i + {\beta _3}LH_i + {\beta _4}SH_i + u_i
+\]
+приведет к тому, что
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{МНК–оценки получить не удастся}
+      \wrongchoice{МНК-оценки параметров окажутся смещёнными}
+      \wrongchoice{МНК-оценки параметров окажутся неэффективными в классе линейных и несмещённых}
+      \wrongchoice{коэффициент детерминации $R^2$ окажется отрицательным}
+      \wrongchoice{МНК-оценки параметров регрессии будут несмещенными и эффективными}
+   \end{choices}
+  \end{questionmult}
+}
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_07} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Оценка максимального правдоподобия параметра  $\lambda$ по случайной выборке $X_1$, \ldots, $X_n$ из распределения с функцией плотности
+\[
+f(x|\lambda ) = \begin{cases}
+\lambda^{-1} x^{- 1 + 1/\lambda},
+          \text{ если }0 < x < 1; \\
+0, \text{ иначе.}
+\end{cases}
+\]
+имеет вид:
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\hat\lambda_{ML} = -\frac{\ln X_1 + \ldots + \ln X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{\ln X_1 + \ldots + \ln X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = -\frac{X_1 + \ldots + X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{X_1 + \ldots + X_n}{n}$}
+      \wrongchoice{$\hat\lambda_{ML} = \frac{X_1^2 + \ldots + X_n^2}{n}$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_08} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  По $n=\Sexpr{400 + 50 * var_no}$ наблюдениям была оценена регрессия:
+ \[
+    Y_i = \beta_1 + \beta_2 X_{i2} + \ldots + \beta_k X_{ik} + u_i.
+ \]
+Затем была оценена регрессия $|\hat u_i| = \alpha_1 + \alpha_2 \frac{1}{Z_i} + \nu_i$. Оказалось, что $\hat\alpha_2 = \Sexpr{16 + 4 * var_no}$ и $se(\hat\alpha_2) = 5$.
+
+Согласно этим данным, на уровне значимости 5\% гипотеза о
+
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{гомоскедастичности отвергается}
+      \wrongchoice{гомоскедастичности не отвергается}
+      \wrongchoice{верной функциональной форме отвергается}
+      \wrongchoice{верной функциональной форме не отвергается}
+      \wrongchoice{пропущенной переменной $1/Z_{i}$ отвергается}
+      \wrongchoice{пропущенной переменной $1/Z_{i}$ не отвергается}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_09} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+    Обобщенный МНК служит для оценивания регрессионных моделей в случае нарушений следующего условия теоремы Гаусса-Маркова:
+ \begin{multicols}{2} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \correctchoice{$\Var(u) = \sigma^2 I$}
+      \wrongchoice{$\E(u_i)=0$}
+      \wrongchoice{$\rank X = k$}
+      \wrongchoice{$u_i$ распределены нормально}
+      \wrongchoice{Величина $Y_i$ линейна по $\beta_1$, $\beta_2$, \ldots}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}
+
+
+\element{kr_03}{ % в фигурных скобках название группы вопросов
+ %\AMCnoCompleteMulti
+  \begin{questionmult}{pr_10} % тип вопроса (questionmult --- множественный выбор) и в фигурных --- номер вопроса
+  Василий хочет оценить константу $\mu$ в  модели $Y_i = \mu + u_i$, где $\E(u_i)=0$, $\E(u_i u_j)=0$ при $i\neq j$, $\Var(u_i)=\sigma^2 X_i$ и $X_i>0$.
+
+В классе линейных несмещенных оценок наиболее эффективной является:
+
+ \begin{multicols}{3} % располагаем ответы в 3 колонки
+   \begin{choices} % опция [o] не рандомизирует порядок ответов
+      \wrongchoice{$\frac{\sum Y_i / \sqrt{X_i}}{\sum 1/X_i}$}
+      \wrongchoice{$\frac{\sum Y_i / X_i}{\sum 1/X_i^2}$}
+      \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i}$}
+      \wrongchoice{$\frac{\sum Y_i X_i}{\sum X_i^2}$}
+      \wrongchoice{$\bar Y$}
+      \wrongchoice{$(I'I)^{-1}I'Y$}
+   \end{choices}
+  \end{multicols}
+  \end{questionmult}
+}

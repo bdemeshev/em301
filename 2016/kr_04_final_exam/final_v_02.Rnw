@@ -1,0 +1,297 @@
+\documentclass[12pt]{article}
+
+<<echo=FALSE>>=
+var_no <- 2
+set.seed(var_no)
+@
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+\usepackage[box, % запрет на перенос вопросов
+%nopage,
+insidebox, % ставим буквы в квадратики
+separateanswersheet, % добавляем бланк ответов
+nowatermark, % отсутствие надписи "Черновик"
+%indivanswers,  % показываем верные ответы
+%answers,
+lang=RU,
+nopage, % убираем оформление страницы (идентификаторы для распознавания)
+completemulti]{automultiplechoice}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+<<"knitr", include = FALSE>>=
+library("knitr")
+knit_hooks$set(document = function(x) {
+  sub('\\usepackage[]{color}', '\\usepackage[svgnames]{xcolor}', x, fixed = TRUE)
+})
+opts_chunk$set(warnings = FALSE)
+@
+
+
+<<"packages", include = FALSE>>=
+library("tidyverse")
+library("texreg")
+library("gridExtra")
+library("tikzDevice")
+library("xtable")
+library("memisc")
+theme_set(theme_bw())
+@
+
+
+
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, финальный экзамен}
+\chead{}
+\rhead{19.06.2017, вариант \Sexpr{var_no + sample(c(4, 8, 12, 16), 1)}}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+<<child="metrics_test_bank.Rnw">>=
+@
+
+
+\section*{Часть 1. Тест.}
+
+\onecopy{1}{
+
+\cleargroup{combat}
+\shufflegroup{final_spring_2017}
+\copygroup[10]{final_spring_2017}{combat}
+\shufflegroup{combat}
+\shufflegroup{combat}
+\insertgroup{combat}
+
+
+%\AMCcleardoublepage
+\clearpage
+
+\AMCformBegin
+
+% добавляем/убираем коммент
+Ура! На этой страничке вопросов уже нет :)
+%Это листок для ответов. Учитываются только ответы, перенесённые на этот листок.
+
+\namefield{\fbox{
+  \begin{minipage}{42em}
+    Имя, фамилия и номер группы:\vspace*{3ex}\par
+    \noindent\dotfill\vspace{2mm}
+  \end{minipage}
+}}
+
+
+\vspace{2ex}
+
+\AMCform
+
+
+}
+
+\section*{Часть 2. Задачи.}
+
+
+
+
+\begin{enumerate}
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+coef <- sample(c(0.3, 0.4, 0.5, 0.6), size = 1)
+mu <- sample(2:9, size = 1)
+@
+\item Рассмотрим AR(2) процесс $Y_t = \Sexpr{mu} + Y_{t-1} - \Sexpr{coef} Y_{t-2} + u_t$, где $u_t$ — белый шум с единичной дисперсией.
+\begin{enumerate}
+\item Является ли данный процесс стационарным?
+\item Найдите $\Cov(Y_t, Y_{t-1})$, $\Cov(Y_t, Y_{t-2})$.
+\end{enumerate}
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+beta1 <- sample(c(20, 30, 40, 50), size = 1)
+beta2 <- sample(c(5, 6, 7, 8), size = 1)
+covta <- sample(c(2, 3, 4, 5), size = 1)
+@
+\item Начинающий исследователь Елисей исследует зависимость успехов в учёбе своих однокурсников, $G_i$, от времени, которое они тратят на учёбу, $T_i$. По выборке из 100 человек он смог оценить следующую регрессию: 
+\[
+\hat G_i = \Sexpr{beta1} + \Sexpr{beta2}T_i
+\]
+
+Елисей был бы рад полученному результату, но тут на лекции по эконометрике ему рассказали про эндогенность и пропущенные переменные, и он решил, что в его модели эти проблемы точно есть. Изучив литературу, он узнал, что на успехи в учёбе кроме времени влияют ещё и способности студента, $A_i$, при этом способности коррелированы со временем, которое студент тратит на учёбу. 
+
+\begin{enumerate}
+\item Проверьте, является ли найденная Елисеем оценка коэффициента при времени состоятельной;
+\item Если оценка не состоятельна, то предложите способ получения состоятельной оценки;
+\item Найдите асимптотическую величину смещения оценки, если $\Cov(G_i, A_i) = 6$, $\Cov(T_i, A_i) = \Sexpr{covta}$, $\Var(G_i) = 16$, $\Var(A_i) = 100$, $\Var(T_i) = 49$.
+\end{enumerate}
+
+
+\item Для определения, сколько земли следует фермеру отвести под клубнику, если ее будущие цены неизвестны, используется  модель адаптивных ожиданий:
+\[
+\begin{cases}
+A_t = \beta_1 + \beta_2 P_{t+1}^e + u_t \\
+P_{t+1}^e - P_{t}^e = \lambda (P_t - P_t^e) \\
+\end{cases},
+\]
+где $A_t$ — количество акров, отведенное под клубнику в году $t$, $P_t$ — фактическая цена клубники, а $P_t^e$ — ожидаемая цена клубники. Константа $\lambda$ — коэффициент адаптации. Ошибки $u_t$ удовлетворяют условию теоремы Гаусса-Маркова.
+
+\begin{enumerate}
+\item Объясните, как исследователь перешёл от исходной модели к преобразованной модели $A_t = \alpha_1 + \alpha_2 P_t + \alpha_3 A_{t-1} + \nu_t$.
+\item Какие проблемы возникнут при оценивании коэффициентов преобразованной модели с помощью МНК? Как с ними справиться?
+\end{enumerate}
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+c <- sample(2:5, size = 1)
+lambda_1 <- sample(c(0.1, 0.2, 0.3), size = 1)
+lambda_2 <- sample(c(0.4, 0.5, 0.6), size = 1)
+a_1 <- lambda_1 + lambda_2
+a_2_minus <- lambda_1 * lambda_2
+sigma2 <- sample(2:5, size = 1)
+@
+
+
+\item Рассмотрим систему одновременных уравнений
+\[
+    \begin{cases}
+    c_t = \alpha_1 + \alpha_2 y_t + \alpha_3 c_{t-1} + u_{1t} \\
+    i_t = \beta_1 + \beta_2 r_t + \beta_3 y_t + u_{2t} \\
+    y_t = c_t + g_t + i_t \\
+    \end{cases},
+\]
+где  $c_t$ — потребление, $i_t$ — инвестиции, $y_t$ — ВНР, $i_t$ — процентная ставка, $g_t$ — правительственные расходы. Первые три переменные являются эндогенными.
+    
+\begin{enumerate}
+\item Возможно ли оценить коэффициенты данной системы уравнений и почему?
+\item Если возможно, то опишите последовательность Ваших действий. 
+\end{enumerate}
+
+
+<<include=FALSE>>=
+set.seed(var_no)
+n <- sample(c(860, 870, 880, 890), size = 1)
+mean_asv <- sample(c(40, 50, 60, 70), size = 1)
+@
+\item Исследователь, используя данные по \Sexpr{n} индивидуумам, оценил вероятность получения степени бакалавра после четырехлетнего обучения в колледже в зависимости от обобщённых результатов тестов ASVABC. Переменная BACH равна 1, если индивидуум получил степень бакалавра, и равна 0 иначе. Исследователь оценил линейную модель с помощью МНК:
+\[
+\widehat{BACH}_i = -\underset{(0.04)}{0.8} + \underset{(0.001)}{0.02}ASVABC.
+\]
+А также логит-модель:
+\[
+\widehat{BACH^*}_i =  -\underset{(0.5)}{11.1} + \underset{(0.01)}{0.2}ASVABC,
+\]
+где $BACH_i=1$ если $BACH^*_i > 0$.
+
+\begin{enumerate}
+\item Как оценивается логит-модель?
+\item Каковы недостатки линейной модели в данном случае?
+\item Оцените предельный эффект объясняющего фактора для среднего значения ASVABC, равного \Sexpr{mean_asv}.
+\end{enumerate}
+
+
+\item Модели панельных данных со случайными эффектами: определение, способы оценивания.
+
+\end{enumerate}
+
+\end{document}

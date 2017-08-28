@@ -1,0 +1,194 @@
+
+<<include=FALSE>>=
+set.seed(var_no)
+hbeta2 <- sample(c(-0.2, -0.3, -0.4, -0.5), size = 1)
+hbeta2_st <- sample(c(-0.6, -0.7, -0.8, -0.9), size = 1)
+@
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+С помощью МНК оценена зависимость потребления $Y_i$ от дохода $X_i$, $\hat Y_i = 0.5 \Sexpr{hbeta2}X_i$. Если же использовать центрированные и нормированные переменные, то зависимость примет вид $\hat Y_i^{st} = \Sexpr{hbeta2_st} X_i^{st}$. Коэффициент множественной детерминации $R^2$ для первой модели равен
+
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Sexpr{hbeta2_st^2}$}
+       \wrongchoice{$\Sexpr{hbeta2^2}$}
+       \wrongchoice{$\Sexpr{abs(hbeta2)}$}
+       \wrongchoice{$\Sexpr{abs(hbeta2_st)}$}
+       \wrongchoice{$\Sexpr{abs(hbeta2_st * hbeta2)}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Оценка $\hb_{2SLS}$  модели  $Y = X\beta + \e$ получена двухшаговым МНК с матрицей инструментальных переменных  $Z$. Если число инструментов превышает количество включенных в модель факторов, то $\hb_{2SLS}$ имеет вид 
+
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$(X'Z(Z'Z)^{-1}Z'X)^{-1}X'Z(Z'Z)^{-1}Z'Y$}
+       \wrongchoice{$(X'Z(Z'Z)^{-1}Z'X)^{-1}Z'Z(Z'Z)^{-1}X'Y$}
+       \wrongchoice{$(Z'X)^{-1}Z'Y$}
+       \wrongchoice{$(Z'Z)^{-1}Z'Y$}
+       \wrongchoice{$Z(Z'Z)^{-1}Z'X$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Обобщенный МНК служит для оценивания регрессионной модели $Y=X\beta + \e$ в случае нарушения следующего условия теоремы Гаусса-Маркова
+
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Var(\e_i)=\sigma^2_{\e}$}
+       \wrongchoice{$\E(\e_i)=0$}
+       \wrongchoice{$\rank X = k$}
+       \wrongchoice{$\Cov(\e_i, X_i)=0$}
+       \wrongchoice{$\Cov(Y_i, \e_i)=0$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+При работе с панельными данными для выбора между моделью с фиксированными эффектами и моделью со случайными эффектами используется
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{тест Хаусмана}
+       \wrongchoice{тест Бройша–Пагана}
+       \wrongchoice{тест Голдфелда-Квандта}
+       \wrongchoice{тест отношения правдоподобия}
+       \wrongchoice{поиск на сетке}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+При отсутствии автокорреляции в регрессии по $n$ наблюдениям статистика Дарбина-Уотсона имеет
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$t_n$-распределение}
+       \wrongchoice{$\cN(0;1)$-распределение}
+       \wrongchoice{$\cN(\mu;\sigma^2)$-распределение}
+       \wrongchoice{$F_{k,n}$-распределение}
+       \wrongchoice{$t_{n-k}$-распределение}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+При оценивании коэффициентов моделей бинарного выбора
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \wrongchoice{оценки логит и пробит моделей всегда совпадают}
+       \wrongchoice{оценки логит моделей всегда выше, чем пробит}
+       \wrongchoice{оценки пробит моделей всегда выше, чем логит}
+       \wrongchoice{оценки логит и пробит моделей имеют противоположные знаки}
+       \wrongchoice{оценки пробит модели имеют более высокую значимосить, чем логит}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Рассмотрим логит-модель $\hat Y_i^* = \hb_1 + \hb_2 X_i + \hb_3 D_i$, и $Y_i = 1$, если $Y_i^* > 0$. Если переменная $X_i$ является количественной, то предельный эффект увеличения $X_i$ можно посчитать по формуле
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\hb_2 f(\hat Y_i^*)$}
+       \wrongchoice{$\hb_2 /f(\hat Y_i^*)$}
+       \wrongchoice{$\hb_2 / F(\hat Y_i^*)$}
+       \wrongchoice{$\hb_2 / f^2(\hat Y_i^*)$}
+       \wrongchoice{$\hb_2 /F^2(\hat Y_i^*)$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Процесс $\e_t$ является белым шумом. Нестационарным является процесс
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_t = -1Y_{t-1} + \e_t$}
+       \wrongchoice{$Y_t = 2017\e_t$}
+       \wrongchoice{$Y_t = 0.1Y_{t-1} + \e_t$}
+       \wrongchoice{$Y_t = 2017$}
+       \wrongchoice{$Y_t = \e_t + 0.1\e_{t-1} + 1.5\e_{t-2}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Использование робастных стандартных ошибок в форме Уайта при гетероскедастичности позволяет
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{строить корректные доверительные интервалы для коэффициентов}
+       \wrongchoice{получить эффективные оценки коэффициентов}
+       \wrongchoice{устранить смещённость оценок коэффициентов}
+       \wrongchoice{увеличить точность прогнозов}
+       \wrongchoice{сузить доверительные интервалы для коэффициентов}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+<<include=FALSE>>=
+set.seed(var_no)
+var_lin <- sample(c(16, 25, 36, 49), size = 1)
+var_b3 <- var_lin - 4 - 2 * 1.5
+se_lin <- sqrt(var_lin)
+@
+
+\element{final_spring_2017}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Оценка регрессионной зависимости с помощью МНК по 1234 наблюдениям имеет вид $\hat Y_i = 1 - 3X_i + 4Z_i$. Оценка ковариационной матрицы имеет вид 
+\[
+\Var(\hb)=
+\begin{pmatrix}
+1 & 0.1 & 0.2 \\
+0.1 & 4 & 1.5 \\
+0.2 & 1.5 & \Sexpr{var_b3} \\
+\end{pmatrix}.
+\]
+
+Длина 95\%-го доверительного интервала для $\beta_2 + \beta_3$ примерно равна 
+
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Sexpr{4 * se_lin}$}
+       \wrongchoice{$\Sexpr{2 * se_lin}$}
+       \wrongchoice{$\Sexpr{se_lin}$}
+       \wrongchoice{$\Sexpr{var_lin}$}
+       \wrongchoice{$1.96$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}

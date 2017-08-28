@@ -1,0 +1,235 @@
+\documentclass{article}
+
+\usepackage[top=3cm, left=2cm, right=2cm]{geometry} % размер текста на странице
+
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{dcolumn} % для разделения по десятичной точке (для функции mtable)
+\usepackage{comment} % для многострочных комментариев
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts} % куча стандартных математических плюшек
+
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Большой Устный ЗАчёт — 2017}
+\chead{}
+\rhead{16.06.2016, темы} %
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+
+
+%% эконометрические сокращения
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+
+\def \sVar{\widehat{\Var}}
+\def \sCorr{\widehat{\Corr}}
+\def \sCov{\widehat{\Cov}}
+
+
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+
+\begin{document}
+
+
+\begin{enumerate}
+
+\item Метод Наименьших Квадратов.
+
+\begin{enumerate}
+\item МНК-картинка
+\item Нахождение всего-всего, если известен вектор $y$ и матрица $X$
+  \end{enumerate}
+
+\item Теорема Гаусса-Маркова
+\begin{enumerate}
+\item Формулировка с детерминистическими регрессорами
+\item Доказательство с детерминистическими регрессорами
+\item Формулировки со стохастическими регрессорами
+\item Что даёт дополнительное предположение о нормальности $\varepsilon$?
+\item Теорема Фриша-Вау
+\item Матрица-Мать всех регрессий
+\end{enumerate}
+
+\item Проверка гипотез о линейных ограничениях
+\begin{enumerate}
+\item Проверка гипотезы о значимости коэффициента
+\item Проверка гипотезы о значимости регрессии в целом
+\item Проверка гипотезы об одном линейном соотношении с помощью ковариационной матрицы
+\item Ограниченная и неограниченная модель
+\item Тест Чоу на стабильность коэффициентов
+\item Тест Чоу на прогнозную силу
+\end{enumerate}
+
+\item Метод максимального правдоподобия
+
+\begin{enumerate}
+\item Свойства оценок
+\item Два способа получения оценки дисперсии
+\item Три теста (LM, Wald, LR)
+\item Выписать функцию ML для обычной регрессии
+\item для AR(1) процесса
+\item для MA(1) процесса
+\item для логит модели
+\item для пробит модели
+\item для модели с заданным видом гетероскедастичности
+\end{enumerate}
+
+\item Мультиколлинеарность
+\begin{enumerate}
+\item Определение, последствия
+\item Величины, измеряющие силу мультиколлинеарности
+\item Методы борьбы
+\item Сюда же: метод главных компонент, хотя он используется и для других целей
+\end{enumerate}
+
+
+\item Гетероскедастичность
+\begin{enumerate}
+\item Определение, последствия
+\item Тесты, график
+\item Стьюдентизированные остатки
+\item HC оценки ковариации
+\item GLS и FGLS
+\end{enumerate}
+
+\item Временные ряды
+\begin{enumerate}
+\item Стационарный временной ряд
+\item ACF, PACF
+\item Модель ARMA
+\item ARIMA-SARIMA
+% \item GARCH
+\end{enumerate}
+
+
+\item Логит и пробит
+\begin{enumerate}
+\item Описание моделей
+\item Предельные эффекты
+\item Чувствительность, специфичность 
+\item Кривая ROC — смотрим лекции :)
+\end{enumerate}
+
+\item Эндогенность
+\begin{enumerate}
+\item Три примера: одновременность, пропущенные переменные, ошибки измерения
+\item IV, двухшаговый МНК
+\end{enumerate}
+
+
+\item Модели панельных данных — смотрим лекции :)
+\begin{enumerate}
+\item  RE, FE, сквозная регрессии
+\item  Тест Хаусмана
+\end{enumerate}
+
+\item Больше алгоритмов. Уметь объяснить суть метода. Уметь реализовать его. %Если не считать упоминания Ridge regression, эти методы официально не входят в программу. Поэтому наивысшую оценку за Большой Устный Зачет можно получить не зная их. Но зная их можно подстраховать себя от ошибки на остальных задачах.
+\begin{enumerate}
+% \item Метод опорных векторов
+\item Классификационные деревья, случайный лес, xgboost
+\item Гребневая регрессия (ridge regression)
+\item LASSO
+\item Квантильная регрессия
+\end{enumerate}
+
+\item Байесовский подход
+\begin{enumerate}
+\item Описать суть байесовского подхода.
+\item Описать простенькую модель на языке STAN.
+\item Быть готовым реализовать готовую модель с помощью пакета \verb|rstanarm| в духе: байесовской линейной регрессии, байесовской логит модели.
+\end{enumerate}
+
+\item R. Можно принести файл со своей заготовкой, можно пользоваться Интернетом для поиска информации, но не для общения. Примеры заданий:
+\begin{enumerate}
+\item Загрузить данные из \verb|.csv| файла в R
+\item Посчитать описательные статистики: среднее, мода, медиана и т.д.
+\item Построить подходящие описательные графики для переменных
+\item Оценить линейную регрессию с помощью МНК. Провести диагностику на что-нибудь. 
+\item Оценить logit, probit модели, посчитать предельные эффекты
+\item Оценить ARMA модель
+\item Выделить главные компоненты
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,212 @@
+<<"ci_block_kr_04_demo", echo=FALSE, include=FALSE>>=
+k_all <- c(5, 6, 7, 8, 9)
+hs2_all <- c(10, 20, 30, 40)
+
+
+
+set.seed(var_no)
+k <- sample(k_all, 1)
+hs2 <- sample(hs2_all, 1)
+
+n <- 50 + k
+
+RSS <- (n - k) * hs2
+ESS <- 100
+TSS <- RSS + ESS
+
+wrong <- RSS / (n - 2)
+wrong0 <- round(wrong, 1)
+@
+
+
+
+<<include=FALSE>>=
+n_obs <- var_no + 30
+hs2 <- var_no + 5
+k <- 4
+RSS <- hs2 * (n_obs - k)
+@
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{1} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если основная гипотеза в тесте Дики-Фуллера отвергается, то временной ряд является
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{стационарным}
+       \wrongchoice{нестационарным}
+       \wrongchoice{коинтегрированным}
+       \wrongchoice{стационарным в первых разностях}
+       \wrongchoice{нормально распределённым}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{2} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Взятием разностей может быть сведен к стационарному
+
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{как временной ряд с детерминированным трендом, так и со случайным трендом}
+       \wrongchoice{только временной ряд с детерминированным трендом}
+       \wrongchoice{только временной ряд со случайным трендом}
+       \wrongchoice{ни временной ряд с детерминированным трендом, ни со случайным трендом}
+       \wrongchoice{только коинтегрированный ряд}
+    \end{choices}
+%   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{3} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Если в регрессии обнаружена автокорреляция типа AR(1), то статистика Дарбина-Уотсона и оценка коэффициента автокорреляции $\hat\rho$ связаны между собой соотношением
+
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$DW \approx 2(1-\hat\rho)$}
+       \wrongchoice{$DW \approx \hat\rho / 2$}
+       \wrongchoice{$DW \approx \hat\rho$}
+       \wrongchoice{$\hat\rho \approx DW/2$}
+       \wrongchoice{$\hat\rho \approx 2(1-DW)$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{4} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Выберите верное утверждение о модели бинарного выбора:
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{недостатком линейной вероятностной модели является возможная нереалистичность значений вероятности}
+       \wrongchoice{нельзя включать в качестве независимых дамми-переменные}
+       \wrongchoice{значимость коэффициентов проверяется с помощью статистики, имеющей $t$-распределение}
+       \wrongchoice{ROC кривая является выпуклой для любой логит-модели}
+       \wrongchoice{оценки коэффициентов логит и пробит моделей всегда имеют один и тот же знак}
+    \end{choices}
+ %  \end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{5} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+При оценивании модели $Y_t = X_t' \beta + u_t$ была обнаружена автокорреляция первого порядка с $\hat\rho = -0.6$. Чтобы провести корректное оценивание, можно применить метод наименьших квадратов  к преобразованным данным. При этом первое наблюдение окажется домноженным на
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+        \correctchoice{$0.8$}
+       \wrongchoice{$0.6$}
+       \wrongchoice{$-0.6$}
+       \wrongchoice{$0.4$}
+       \wrongchoice{$\sqrt{0.6}$}
+        \wrongchoice{$\sqrt{0.84}$}
+    \end{choices}
+\end{multicols}
+\end{questionmult}
+}
+
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{6} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Условие порядка для любого уравнения из системы может быть сформулировано следующим образом.
+Число эндогенных переменных, включенных в уравнение, уменьшенное на 1, должно быть
+%\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{не больше числа экзогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа экзогенных переменных, включенных в это уравнение}
+       \wrongchoice{не меньше числа экзогенных переменных, включенных в это уравнение}
+       \wrongchoice{не меньше числа экзогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа эндогенных переменных, исключенных из этого уравнения}
+       \wrongchoice{не больше числа эндогенных переменных, включенных в это уравнение}
+    \end{choices}
+   %\end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{7} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Инструмент $Z_t$ для оценивания динамической модели $Y_t = \beta_1 + \beta_2 X_t + \beta_3 Y_{t-1} + u_t$ с экзогенным вектором $X$ и AR(1) процессом в ошибках $u_t$ должен удовлетворять требованию
+\begin{multicols}{3} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$\Corr(Y_{t-1}, Z_t) \to 1$}
+       \wrongchoice{$\Corr(Y_{t-1}, Z_t)=0$}
+       \wrongchoice{$\Corr(X_t, Z_t)=0$}
+       \wrongchoice{$\Corr(u_t, Z_t)=0$}
+       \wrongchoice{$\Corr(u_t, Z_t) \to 1$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{8} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Рассмотрим модель $Y_i = {\beta_1} + {\beta_2}{X_{i2}} + {\beta_3}{X_{i3}} + {\beta_4}{X_{i4}} + {\beta_5}{X_{i5}} + u_i$.
+Гипотезу
+\[
+\begin{cases}
+{\beta_2} + {\beta _3} = 1\\
+{\beta_5} = 0 \\
+\end{cases}
+\]
+можно проверить с помощью оценки дополнительной модели
+
+
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_i - X_{i3} = \beta_1 + \beta_2 (X_{i2} - X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - X_{i2} = \beta_1 + \beta_2 (X_{i2} - X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - X_{i3} = \beta_1 + \beta_2 (X_{i2} + X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i - \beta_2 = \beta_1 + \beta_2 (X_{i2} + X_{i3}) + \beta_4 X_{i4} + u_i$}
+       \wrongchoice{$Y_i = \beta_1 + \beta_2 (X_{i2} + X_{i3} - 1) + \beta_4 X_{i4} + u_i$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{9} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+К несостоятельности МНК-оценок вектора коэффициентов приводит
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{эндогенность одного из регрессоров}
+       \wrongchoice{корреляция ошибок по схеме AR(1)}
+       \wrongchoice{корреляция ошибок по схеме MA(1)}
+       \wrongchoice{нестрогая мультиколлинеарность}
+       \wrongchoice{корреляция между регрессорами}
+       \wrongchoice{условная гетероскедастичность ошибок}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
+
+
+\element{final_spring_2017_demo}{ % в фигурных скобках название группы вопросов
+%  %\AMCnoCompleteMulti
+\begin{questionmult}{10} % тип вопроса (questionmult — множественный выбор) и в фигурных — номер вопроса
+Процесс $u_t$ является белым шумом. Нестационарным является процесс
+\begin{multicols}{2} % располагаем ответы в 3 колонки
+\begin{choices} % опция [o] не рандомизирует порядок ответов
+       \correctchoice{$Y_t = - Y_{t-1} + u_t$}
+       \wrongchoice{$Y_t$ независимо и одинаково распределены $\cN(7; 16)$}
+       \wrongchoice{$Y_t = u_t + 2u_{t-1}$}
+       \wrongchoice{$Y_t = 7 + u_t + 0.2 u_{t-1} - 1.2 u_t{-2}$}
+       \wrongchoice{$Y_t = 5 + 0.1 Y_{t-1} + u_{t} + 0.2 u_{t-1}$}
+    \end{choices}
+   \end{multicols}
+\end{questionmult}
+}
