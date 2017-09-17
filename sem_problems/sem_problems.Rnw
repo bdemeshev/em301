@@ -1,0 +1,128 @@
+\documentclass[12pt, a4paper]{article}
+
+% If you can't see cyrillic letters in R-studio choose
+% File-Reopen with encoding
+% utf8 is the preferred encoding
+
+
+\input{title_bor_utf8_knitr}
+\input{emetrix_preamble}
+
+
+
+
+\usepackage[bibencoding = auto, backend = biber,
+sorting = none]{biblatex}
+
+\addbibresource{probability_dna.bib}
+
+\def \RR{\mathbb{R}}
+\def \cN{\mathcal{N}}
+
+\title{Заметки к семинарам по эконометрике}
+\author{Винни-Пух}
+\date{\today}
+
+
+% делаем короче интервал в списках
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+
+
+\DeclareMathOperator{\Med}{Med}
+
+
+\usepackage{answers}
+
+\newtheorem{problem}{Задача}
+\numberwithin{problem}{section}
+
+\Newassociation{sol}{solution}{solution_file}
+% sol — имя окружения внутри задач
+% solution — имя окружения внутри solution_file
+% solution_file — имя файла в который будет идти запись решений
+% можно изменить далее по ходу
+\Opensolutionfile{solution_file}[all_solutions]
+% в квадратных скобках фактическое имя файла
+
+
+
+\begin{document}
+
+% \maketitle % ставим сюда название, автора и время создания
+
+\section{МНК — это\ldots}
+
+
+<<"init", echo=FALSE, include=FALSE, message=FALSE>>=
+# загружаем библиотеки:
+library(knitr) # взаимодействие R-Latex
+library(tidyverse) # подборка добра
+opts_chunk$set(cache = FALSE) # cache = TRUE ускоряет работу, но на сложных проектах может глючить
+opts_chunk$set(echo = TRUE) # echo = TRUE включает программный код в готовый pdf
+opts_chunk$set(warning = FALSE, message = FALSE, dev = 'png', dpi = 300)
+# warning = TRUE включает предупреждения в готовый pdf
+# message = TRUE включает системные сообщения от функций в pdf
+@
+Минитеория:
+
+\begin{enumerate}
+\item Истинная модель. Например, $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + u_i$.
+\item Формула для прогнозов. Например, $\hy_i = \hb_1 + \hb_2 x_i + \hb_3 z_i$.
+\item Метод наименьших квадратов, $\sum (y_i - \hy_i)^2 \to \min$.
+\end{enumerate}
+
+Задачи:
+
+\begin{problem}
+Каждый день Маша ест конфеты и решает задачи по эконометрике. Пусть $x_i$ — количество решённых задач, а $y_i$ — количество съеденных конфет.
+
+\begin{tabular}{cc}
+\toprule
+$x_i$ & $y_i$ \\
+\midrule
+1 & 1 \\
+2 & 2 \\
+2 & 4 \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item Рассмотрим модель $y_i = \beta x_i + u_i$:
+\begin{enumerate}
+\item Найдите МНК-оценку $\hb$ для имеющихся трёх наблюдений.
+\item Нарисуйте исходные точки и полученную прямую регрессии.
+\item Выведите формулу для $\hb$ в общем виде для $n$ наблюдений.
+\end{enumerate}
+
+\item Рассмотрим модель $y_i = \beta_1 + \beta_2 x_i + u_i$:
+\begin{enumerate}
+\item Найдите МНК-оценки $\hb_1$ и $\hb_2$ для имеющихся трёх наблюдений.
+\item Нарисуйте исходные точки и полученную прямую регрессии.
+\item Выведите формулу для $\hb_2$ в общем виде для $n$ наблюдений.
+\end{enumerate}
+
+\end{enumerate}
+
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
+
+
+\section{Хочу ещё задач!}
+
+
+
+
+\Closesolutionfile{solution_file}
+\section{Решения}
+\input{all_solutions}
+
+\section{Источники мудрости}
+\printbibliography[heading=none]
+
+
+\end{document}

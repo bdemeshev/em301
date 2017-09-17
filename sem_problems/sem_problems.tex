@@ -1,0 +1,167 @@
+\documentclass[12pt, a4paper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+
+% If you can't see cyrillic letters in R-studio choose
+% File-Reopen with encoding
+% utf8 is the preferred encoding
+
+
+\input{title_bor_utf8_knitr}
+\input{emetrix_preamble}
+
+
+
+
+\usepackage[bibencoding = auto, backend = biber,
+sorting = none]{biblatex}
+
+\addbibresource{probability_dna.bib}
+
+\def \RR{\mathbb{R}}
+\def \cN{\mathcal{N}}
+
+\title{Заметки к семинарам по эконометрике}
+\author{Винни-Пух}
+\date{\today}
+
+
+% делаем короче интервал в списках
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+
+
+\DeclareMathOperator{\Med}{Med}
+
+
+\usepackage{answers}
+
+\newtheorem{problem}{Задача}
+\numberwithin{problem}{section}
+
+\Newassociation{sol}{solution}{solution_file}
+% sol — имя окружения внутри задач
+% solution — имя окружения внутри solution_file
+% solution_file — имя файла в который будет идти запись решений
+% можно изменить далее по ходу
+\Opensolutionfile{solution_file}[all_solutions]
+% в квадратных скобках фактическое имя файла
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+% \maketitle % ставим сюда название, автора и время создания
+
+\section{МНК — это\ldots}
+
+
+
+Минитеория:
+
+\begin{enumerate}
+\item Истинная модель. Например, $y_i = \beta_1 + \beta_2 x_i + \beta_3 z_i + u_i$.
+\item Формула для прогнозов. Например, $\hy_i = \hb_1 + \hb_2 x_i + \hb_3 z_i$.
+\item Метод наименьших квадратов, $\sum (y_i - \hy_i)^2 \to \min$.
+\end{enumerate}
+
+Задачи:
+
+\begin{problem}
+Каждый день Маша ест конфеты и решает задачи по эконометрике. Пусть $x_i$ — количество решённых задач, а $y_i$ — количество съеденных конфет.
+
+\begin{tabular}{cc}
+\toprule
+$x_i$ & $y_i$ \\
+\midrule
+1 & 1 \\
+2 & 2 \\
+2 & 4 \\
+\bottomrule
+\end{tabular}
+
+\begin{enumerate}
+\item Рассмотрим модель $y_i = \beta x_i + u_i$:
+\begin{enumerate}
+\item Найдите МНК-оценку $\hb$ для имеющихся трёх наблюдений.
+\item Нарисуйте исходные точки и полученную прямую регрессии.
+\item Выведите формулу для $\hb$ в общем виде для $n$ наблюдений.
+\end{enumerate}
+
+\item Рассмотрим модель $y_i = \beta_1 + \beta_2 x_i + u_i$:
+\begin{enumerate}
+\item Найдите МНК-оценки $\hb_1$ и $\hb_2$ для имеющихся трёх наблюдений.
+\item Нарисуйте исходные точки и полученную прямую регрессии.
+\item Выведите формулу для $\hb_2$ в общем виде для $n$ наблюдений.
+\end{enumerate}
+
+\end{enumerate}
+
+
+\begin{sol}
+\end{sol}
+\end{problem}
+
+
+
+\section{Хочу ещё задач!}
+
+
+
+
+\Closesolutionfile{solution_file}
+\section{Решения}
+\input{all_solutions}
+
+\section{Источники мудрости}
+\printbibliography[heading=none]
+
+
+\end{document}

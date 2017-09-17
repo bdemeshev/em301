@@ -11,8 +11,10 @@ lang: ru-RU
 
 Жаль, что в вышке пока нет системы коротких названий курсов. Вот я заранее застолбил EM301. Раз на третьем курсе, значит 300, а раз самый важный курс — значит 1. :)
 
-* Текущие оценки [всех групп]()
-* [Подборка материалов](https://github.com/bdemeshev/em301/raw/master/metrics_exams/metrics_exams.pdf): контрольные и немного теории
+
+* Текущие оценки [всех групп](https://docs.google.com/spreadsheets/d/e/2PACX-1vQOnO--pLbo_CTEeP3u0lPh3_jmXASTBwBrNZ8inmpggZsGR5QfSWVXxwNdMg75_Srjp3jKO1dPmZcZ/pubhtml)
+* [Листки к семинарам](https://github.com/bdemeshev/metrics_pro/raw/master/metrics_pro.pdf) Бориса Демешева
+* [Контрольные работы прошлых лет](https://github.com/bdemeshev/metrics_hse_exams/raw/master/metrics_hse_exams.pdf): плюс немного теории
 * [gitter-чат](https://gitter.im/hse_em301/Lobby)
 
 ## Компьютерное
