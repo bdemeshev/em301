@@ -1,0 +1,76 @@
+---
+title: "Беда"
+author: "Жирафа"
+date: "10/16/2017"
+output: html_document
+---
+
+# Приветы!
+
+Передаём привет Арине, Александру и родным из Хабаровска!
+
+С нами Гаусс!
+
+![это лично Гаусс](https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg)
+
+Ура-уравнение:
+\[
+f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2}
+\]
+Или попроще:
+\[
+a^2 + b^2 = c^2 
+\]
+
+Специально для Ани уравнение посреди строки, $z - x = \sqrt{w}$. Так?
+
+Манипуляции со шрифтом: *курсив*, **жирный** и ~~зачёркнутый~~.
+
+# Вставляем куски кода
+
+```{r "setup chunk", message=FALSE, warning=FALSE}  
+library(tidyverse)
+library(rio)
+library(knitr) # перегонка Rmd -> md
+opts_chunk$set(message = FALSE) # глобально
+```
+
+Возьмём встроенный набор данных по Швейцарии:
+```{r}
+glimpse(swiss)
+```
+
+Первые графики.
+
+Гистограмма
+```{r}
+qplot(data = swiss, x = Catholic)
+```
+
+```{r, messag=FALSE, echo=FALSE}
+qplot(data = swiss, x = Catholic) + 
+  xlab("Доля католического населения в кантоне") +
+  ylab("Количество кантонов") +
+  ggtitle("Население Швейцарии, 1888 год")
+```
+
+Диаграмма рассеяния:
+```{r, echo=FALSE}
+qplot(data = swiss, x = Agriculture, y = Fertility)
+```
+
+
+Первая регрессия
+```{r}
+model_a <- lm(data = swiss, 
+              Fertility ~ Agriculture + Catholic)
+summary(model_a)
+```
+
+Оценка ковариационной матрицы $\widehat{Var}(\hat\beta) = (X'X)^{-1}\hat\sigma^2$:
+```{r}
+vcov(model_a)
+```
+
+
+

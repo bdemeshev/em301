@@ -1,0 +1,50 @@
+---
+title: "Ворчалка"
+author: "Винни-Пух"
+date: "10/16/2017"
+output: html_document
+---
+
+# Приветы!
+
+Юля, привет! Улыбайся :)
+
+Поиграться со шрифтом: *курсив*, **жирненький** или ~~зачеркнутый~~.
+
+## Теоремки
+
+Теорема Пифагора
+\[
+a^2 + b^2 = c^2
+\]
+
+Формула посреди строки $\sqrt{x^2 +7}$.
+
+С нами батька Гаусс
+
+![это сам Гаусс](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Carl_Friedrich_Gauss_1840_by_Jensen.jpg/220px-Carl_Friedrich_Gauss_1840_by_Jensen.jpg)
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Посмотрил на встроенный набор данных по бриллиантам:
+
+```{r}
+glimpse(diamonds)
+```
+
+Первый график
+```{r}
+qplot(data = diamonds, x = price)
+```
+
+Регрессию в студию!
+```{r}
+reg_a <- lm(data = diamonds, 
+            price ~ carat + x + y + z)
+summary(reg_a)
+```
+
+
+
