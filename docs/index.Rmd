@@ -26,9 +26,19 @@ lang: ru-RU
 
 ## Логи семинаров (исследовательский поток)
 
+#### Семинар 7. 16 октября 2017
+
+* [Установка R, Rstudio](https://bdemeshev.github.io/installation/r/R_installation.html), [Rmd-файл beda](https://github.com/bdemeshev/em301/raw/master/2017/sem_07/beda.Rmd).
+* До 1го ноября пройти курс [Data Manipulations with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)
+
 #### Семинар 1. 4 сентября 2017
 
 ## Логи семинаров (базовый поток)
+
+#### Семинар 7. 16 октября 2017
+
+* [Установка R, Rstudio](https://bdemeshev.github.io/installation/r/R_installation.html), [Rmd-файл vorchalka](https://github.com/bdemeshev/em301/raw/master/2017/sem_07/vorchalka.Rmd).
+* До 1го ноября пройти курс [Data Manipulations with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)
 
 #### Семинар 1. 4 сентября 2017
 
