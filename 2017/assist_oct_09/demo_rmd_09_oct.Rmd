@@ -1,0 +1,55 @@
+---
+title: "Ура!"
+author: "Винни-Пух :)"
+date: "10/9/2017"
+output:
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+  word_document: default
+  html_document: default
+mainfont: Arial
+lang: ru-RU
+header-includes:
+- \newfontfamily{\cyrillicfonttt}{Arial}
+- \newfontfamily{\cyrillicfont}{Arial}
+- \newfontfamily{\cyrillicfontsf}{Arial}
+---
+
+# О мёде
+
+Простой текст, *курсив*, **жирный**, ~~зачёркнутый~~ :)
+
+Мёд бывает:
+
+* Правильный;
+* Неправильный;
+
+# О пчёлах
+
+Пчёлы бывают:
+
+1. Правильные;
+1. Неправильные;
+1. Прочие;
+
+По последним сводкам с фронта логарифм двух равен `r log(2)`.
+
+# Табличка
+
+| 4   | 4   | 5  | 5  | 4   |
+|-----|-----|----|----|-----|
+| 45  |     |    |    |  54 |
+| 45  | 54  |    |    |  54 |
+|  54 | 54  |    |    |  54 |
+
+# Полезности
+
+[Генератор таблиц](http://tablesgenerator.com)
+
+Воронцов, [Введение в Латех](www.ccas.ru/voron/download/voron05latex.pdf)
+
+[Шпаргалка по rmarkdown](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+Книжка по [knitr](https://yihui.name/knitr/options/)
+
