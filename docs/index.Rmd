@@ -26,6 +26,16 @@ lang: ru-RU
 
 ## Логи семинаров (исследовательский поток)
 
+
+Всем привет!
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+qplot(rnorm(100))
+```
+
+
+
 #### Семинар 7. 16 октября 2017
 
 * [Установка R, Rstudio](https://bdemeshev.github.io/installation/r/R_installation.html), [Rmd-файл beda](https://github.com/bdemeshev/em301/raw/master/2017/sem_07/beda.Rmd).
