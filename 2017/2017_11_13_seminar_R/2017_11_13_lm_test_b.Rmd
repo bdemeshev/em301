@@ -1,0 +1,69 @@
+---
+title: "Письмо счастья!"
+author: "Пуассон"
+date: "11/13/2017"
+output: html_document
+---
+
+Подключаем как хомяки кучу пакетов
+```{r}
+library(tidyverse) # манипуляции с данными + график
+# две важные составные части tidyverse:
+library(dplyr)
+library(ggplot2)
+
+library(lmtest) # всякие тесты для линейных моделей
+library(broom) # превращение моделей в таблички
+library(pander) # оформление табличек в html
+library(sandwich) # для любителей фастфуда и гетероскедастичности
+library(rio) # для импорта данных
+```
+
+Смотрим на встроенный набор данных по бриллиантам
+```{r}
+glimpse(diamonds)
+```
+
+график по быстрому!
+```{r}
+qplot(data = diamonds, x = carat, y = price)
+```
+
+график по быстрому!
+```{r}
+qplot(data = diamonds, x = log(carat), y = log(price))
+```
+
+две регрессии:
+```{r}
+model_ur <- lm(data = diamonds, 
+  log(price) ~ log(carat) + x + y + z + depth + table)
+
+model_r <- lm(data = diamonds, 
+  log(price) ~ log(carat) + depth + table)
+```
+
+Отчёт по модели в студию:
+```{r}
+summary(model_ur)
+```
+
+Табличка с общими характеристиками модели
+```{r}
+glance(model_ur)
+```
+
+две таблички с $t$-статистиками:
+* для тех, кто верит в гомоскедастичность $Var(u_i|x_i) = const$:
+```{r}
+coeftest(model_ur)
+```
+
+* для тех, кто верит в гетероскедастичность $Var(u_i|x_i)=f(x_i)$:
+```{r}
+coeftest(model_ur, vcov. = vcovHC)
+```
+
+
+
+

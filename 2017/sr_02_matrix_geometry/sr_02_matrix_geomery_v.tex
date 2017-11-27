@@ -1,0 +1,172 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[top=1.5cm, left=2cm, right=2cm, bottom=1.5cm]{geometry} % размер текста на странице
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+\usepackage{amssymb} % и символов
+\usepackage{bbm}
+
+\usepackage{multicol} % текст в несколько колонок
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+
+
+
+\usepackage{fontspec} % хз
+\usepackage{polyglossia} % для выбора языка в xelatex
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*} % списки уровня 2 будут буквами а) б) ...
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo[inline]{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет картина Последний день Помпеи}
+% команда \listoftodos — печатает все поставленные \todo'шки
+
+\usepackage{booktabs} % красивые таблицы
+% заповеди из документации:
+% 1. Не используйте вертикальные линии
+% 2. Не используйте двойные линии
+% 3. Единицы измерения помещайте в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+% \usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, проверка дз 2}
+\chead{}
+\rhead{2017-11-06}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+
+
+
+%% эконометрические сокращения
+\def \hb{\hat{\beta}}
+\DeclareMathOperator{\sVar}{sVar}
+\DeclareMathOperator{\sCov}{sCov}
+\DeclareMathOperator{\sCorr}{sCorr}
+
+\def \1{\mathbbm{1}}
+
+\def \hs{\hat{s}}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \he{\hat{\varepsilon}}
+\def \v1{\vec{1}}
+\def \cN{\mathcal{N}}
+\def \e{\varepsilon}
+\def \z{z}
+
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\plim}{plim}
+
+%% лаг
+\renewcommand{\L}{\mathrm{L}}
+
+
+\begin{document}
+
+
+\begin{enumerate}
+
+\item Рассмотрим векторы: $x = (2, 1, 0)$, $z = (1, 1, 0)$.
+\begin{enumerate}
+  \item Найдите матрицу-шляпницу, проецирующую любой вектор на линейную оболочку векторов $x$ и $z$.
+  \item Найдите $\partial \hat y_1 / \partial y_3$ и $\partial \hat y_3/ \partial y_1$.
+\end{enumerate}
+
+
+
+\item В рамках классической регрессионной модели $y=X\beta + u$, где $\E(u)=0$, $\Var(u)=\sigma^2 \cdot I$, вектор $\hb$ оценивается с помощью МНК. Обозначим $\hy=X\hb$, $\hat{u}=y-\hy$.
+
+Найдите $\E(\hy)$, $\E(\hat{u})$, $\Var(\hat u)$, $\Cov(\hat u, \hb)$.
+
+\item Рассмотрим модель парной регрессии $y = \beta_1 \cdot \1 + \beta_2 x + u$.
+
+\begin{enumerate}
+  \item Нарисуйте векторы $x$, $\1$, $y$, $\hy$, $\bar y \cdot \1$.
+  \item Укажите все прямые углы на рисунке.
+  \item Отметьте угол, квадрат косинуса которого равен $R^2$.
+  \item Закончите фразу так, чтобы она была корректной
+  \begin{enumerate}
+    \item Вектор $\bar{y}\cdot \1$ — это проекция вектора $y$ на \ldots
+    \item Вектор $\hb_2 (x - \bar x\cdot \1)$ — это проекция вектора $y$ на \ldots
+  \end{enumerate}
+\end{enumerate}
+
+\item Для регрессии $\hat y_i = \hb_1 + \hb_2 x_i$ геометрически докажите, что $\bar y = \hb_1 + \hb_2 \bar x$.
+
+Попытайтесь обобщить это геометрическое доказательство на случай $k$ коэффициентов $\hb_j$.
+
+\item Рассмотрим парную регрессию $\hat y_i = \hb_1 + \hb_2 x_i$. Исследователь Василий посчитал величину $t/\sqrt{n-2}$, где $t$ — это $t$-статистика, проверяющая гипотезу $H_0$: $\beta_2 = 0$.
+
+Какой геометрический смысл имеет эта величина?
+
+Подсказка: отношение катетов называется\ldots
+
+\item
+Пусть $y_i = \beta_1 + \beta_2 x_{i2} + \beta_3 x_{i3} + \e_i$ — регрессионная модель, где $X = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$, $y = \begin{pmatrix} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{pmatrix}$, $\beta = \begin{pmatrix} \beta_1 \\ \beta_2 \\ \beta_3 \end{pmatrix}$, $\e = \begin{pmatrix} \e_1 \\ \e_2 \\ \e_3 \\ \e_4 \\ \e_5  \end{pmatrix}$, ошибки $\e_i$ независимы и нормально распределены с $\E(\e)$ = 0, $Var(\e) = \sigma^2 I$. Для удобства расчётов даны матрицы: $X'X = \begin{pmatrix} 5 & 2 & 1 \\ 2 & 2 & 1\\ 1 & 1 & 1 \end{pmatrix}$ и $(X'X)^{-1}= \begin{pmatrix} 0.3333 & -0.3333 & 0.0000 \\ -0.3333 & 1.3333 & -1.0000 \\ 0.0000 & -1.0000 & 2.0000 \end{pmatrix}$.
+
+
+
+\begin{enumerate}
+\item Укажите число наблюдений.
+\item Методом МНК найдите оценку для вектора неизвестных коэффициентов.
+
+\item Укажите число регрессоров в модели, учитывая константу.
+\item Найдите $TSS = \sum_{i=1}^n (y_i - \bar y)^2$.
+\item Найдите $RSS = \sum_{i=1}^n (y_i - \hy_i)^2$.
+\end{enumerate}
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}

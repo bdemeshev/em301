@@ -1,0 +1,105 @@
+---
+title: "Здравствуй, солнце!"
+author: "Пуассон"
+date: "11/13/2017"
+output: html_document
+lang: ru-RU
+---
+
+# Поехали
+
+Сначала загружаем необходимые пакеты
+```{r}
+library(tidyverse) # манипуляции с данными и графики
+library(broom) # превращение моделей в таблички
+library(lmtest) # тесты для линейных моделей (F и прочие)
+library(sandwich) # для тех кто проголодался и хочет гетероскедастичности
+library(rio) # для импорта каких-нибудь данных
+library(pander)
+```
+
+Возьмем набор данных по бриллиантам
+```{r}
+glimpse(diamonds)
+```
+
+Оформление по умолчанию :) Скромно, серенько как мышка!
+```{r}
+head(diamonds)
+```
+
+Симпатявая табличка в html
+```{r, results='asis'}
+pander(head(diamonds))
+```
+Посмотрим на наши данные:
+```{r}
+qplot(data = diamonds, x = carat, y = price)
+```
+Тот же график в логарифмах:
+```{r}
+qplot(data = diamonds, x = log(carat), y = log(price))
+```
+
+Оценим две модели:
+```{r}
+model_ur <- lm(data = diamonds, log(price) ~ 
+  log(carat) + clarity + depth + table + x + y + z)
+model_r <- lm(data = diamonds, log(price) ~
+  log(carat) + depth + table + x + y + z)
+```
+
+Отдельно отчёт по неограниченной (UR) модели
+```{r}
+summary(model_ur)
+```
+
+Табличка с коэффициентами
+```{r}
+tidy(model_ur)
+```
+
+Табличка с краткими характеристиками модели
+```{r}
+glance(model_ur)
+```
+
+Та же табличка чуть симпатичнее
+```{r, results='asis'}
+glance(model_ur) %>% pander()
+```
+
+
+Обычная оценка ковариационной матрицы. Состоятельно оценивает исстиную ковариционную матрицу при гомоскедастичности.
+```{r}
+vcov(model_r)
+```
+
+Устойчивая к гетероскедастичности оценка ковариационной матрицы
+```{r}
+vcovHC(model_r)
+```
+
+два t-теста:
+
+* нескорректированный на гетероскедастичность:
+```{r}
+coeftest(model_r)
+```
+
+* скорректированный на гетероскедастичность:
+```{r}
+coeftest(model_r, vcov. = vcovHC)
+```
+
+два теста Вальда
+* нескорректированный на гетероскедастичность:
+```{r}
+waldtest(model_r, model_ur)
+```
+
+* скорректированный на гетероскедастичность:
+```{r}
+waldtest(model_r, model_ur, vcov = vcovHC)
+```
+
