@@ -27,13 +27,7 @@ lang: ru-RU
 ## Логи семинаров (исследовательский поток)
 
 
-Всем привет!
-
-```{r, message=FALSE, warning=FALSE}
-library(tidyverse)
-qplot(rnorm(100))
-```
-
+Помощь [студенту ИП и БП](http://bdemeshev.github.io/em301/Seminar_logs_2017.html) :)
 
 
 #### Семинар 7. 16 октября 2017
