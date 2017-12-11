@@ -1,0 +1,116 @@
+---
+title: "Seminar_logs"
+author: "Galina"
+date: '27 ноября 2017 г '
+output: html_document
+---
+#Привет, дорогой студент!
+
+Я буду помогать ~~себе~~ тебе быть в курсе всех новостей с семинаров Б. Б. Демешева по эконометрике в 2017 году.
+
+Давай же начнем наше увлекательное приключение в мир регрессий, тестов и красивых графиков! :)
+
+Так как записи семинаров ведутся не с первого сентября, а с 27 ноября 2017 года, то переписывать сюда всё с самого начала трудно, поэтому я прикладываю краткий summary всего самого важного, что было пройдено на лекциях и семинарах за пропущенный период. Если ты нашел неточность или <span style="color:red">ошибку</span>, то скорее пиши Борису Борисовичу или мне.
+
+***
+
+##Конвенция об обозначениях
+Во всех последующих записях мы используем следующие обозначения.
+
+1. $a , b$ - это векторы $(n \times 1)$  из констант,
+
+2. $A, B$ - это матрицы $(n \times k)$ из констант,
+
+3. $\alpha, \gamma$ - это скаляры,в виды констант,
+
+4. $r, s$ - это тоже векторы $(n \times 1)$, но состоят они из случайных величин,
+
+5. $R , S$ - это матрицы $(n \times k)$, каждый компонент которых теперь случайная величина,
+
+6. $t$ - это скаляр в виде случайной величины.
+
+Чтобы быть успешным эконометристом (эконометрессой), нужно ~~все-таки выучить~~ вспомнить школьную программу, линейную алгебру и курс ТВ и МС.
+
+###Начнем со старой доброй геометрии.
+
+1. [Теорема Пифагора](http://www.webmath.ru/poleznoe/formules_19_1.php)
+
+2. [Теорема Фалеса](http://www.webmath.ru/poleznoe/formules_19_17.php)
+
+3. [Теорема о трех перпендикулярах](http://www.webmath.ru/poleznoe/formules_19_13.php)
+
+4. [Теорема косинусов и синусов](http://www.math.com.ua/mathdir/teorema_sinus_kosinus.html)
+
+5. [Скалярное произведение векторов и кое-что еще](http://www.webmath.ru/poleznoe/formules_4_10.php)
+
+###Линейная алгебра
+
+1. Матрицы
+  
+  1.1 [Сложение и вычитание](http://www.webmath.ru/poleznoe/formules_6_5.php)
+  
+  1.2 [Умножение матриц](http://www.webmath.ru/poleznoe/formules_6_6.php)
+  
+  1.3 [Обращение матриц](http://www.mathprofi.ru/kak_naiti_obratnuyu_matricu.html)
+  
+  1.4 [Транспонирование](http://www.webmath.ru/poleznoe/formules_6_7.php)
+  
+  1.5 [Определитель матрицы](http://www.webmath.ru/poleznoe/formules_6_11.php)
+  
+  1.6 [След матрицы](https://studopedia.ru/7_45971_sled-matritsi.html)
+  
+
+2. [Собственные числа и векторы матриц](http://www.mathprofi.ru/sobstvennye_znachenija_i_sobstvennye_vektory.html)
+
+###ТВиМС
+
+1. Вероятности
+
+  1.1 [Безусловные вероятности](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node2.html#SECTION000200)
+  
+  1.2 [Условные вероятности](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node11.html#SECTION000500)
+
+2. Характеристики распределений и зависимостей
+
+  2.1 [Математическое ожидание](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node42.html#SECTION0001010)
+  
+  2.2 [Дисперсия](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node44.html#SECTION0001030)
+  
+  2.3 [Ковариация](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node48.html#SECTION0001110)
+  
+  2.4 [Корреляция](http://www.nsu.ru/mmf/tvims/chernova/tv/lec/node49.html)
+  
+
+3. [Проверка гипотез](http://www.nsu.ru/mmf/tvims/chernova/ms/lec/node40.html#SECTION000700)
+
+4. [p-value](http://datascientist.one/p-value/)
+
+***
+#Еще немного теории
+
+Уже не терпится строить регрессии? Всё, всё, это последний ~~но это неточно~~ ликбез.
+Давай вспомним про нашего старого друга с первого курса, про дифференциал. 
+
+##Правила дифференцирования векторов и матриц
+1. $d(A\times R\times B$ = $A\times d(R) \times B$
+
+2. $d(\alpha \times a$ = 0<sub>$(n\times 1$)</sub>
+
+3. $d(\alpha \times A$ = 0<sub>$(n\times k$)</sub>
+
+4. $d(R+S)$ = $dR +dS$
+
+5. $d(R)'$ = $(dR)'$,  где ' означает транспонирование
+
+6. $d$ сам знает, как дифференцировать сложную функцию.
+
+7. $d(\frac{R}{t})$ = $\frac{d(R) \times t - R \times d(t)}{t^2}$
+
+8. $d(r' \times A \times r)$ = $r' \times (A'+A) d(r)$ (настоятельно рекомендую проверить этот результат, а то мало ли что)
+
+9. $d(R^{-1}) = -R^{-1}\times dR \times R^{-1}$, где $R^{-1}$ это обратная матрица для R
+
+***
+
+Вот теперь мы готовы к изучению эконометрики!
+
