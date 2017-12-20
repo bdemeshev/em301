@@ -196,9 +196,9 @@ $(document).ready(function () {
 <div id="----" class="section level2">
 <h2>Правила дифференцирования векторов и матриц</h2>
 <ol style="list-style-type: decimal">
-<li><p><span class="math inline">\(d(A\times R\times B\)</span> = <span class="math inline">\(A\times d(R) \times B\)</span></p></li>
-<li><p><span class="math inline">\(d(\alpha \times a\)</span> = 0<sub><span class="math inline">\((n\times 1\)</span>)</sub></p></li>
-<li><p><span class="math inline">\(d(\alpha \times A\)</span> = 0<sub><span class="math inline">\((n\times k\)</span>)</sub></p></li>
+<li><p><span class="math inline">\(d(A\times R\times B)\)</span> = <span class="math inline">\(A\times d(R) \times B\)</span></p></li>
+<li><p><span class="math inline">\(d(\alpha \times a)\)</span> = 0<sub><span class="math inline">\((n\times 1\)</span>)</sub></p></li>
+<li><p><span class="math inline">\(d(\alpha \times A)\)</span> = 0<sub><span class="math inline">\((n\times k\)</span>)</sub></p></li>
 <li><p><span class="math inline">\(d(R+S)\)</span> = <span class="math inline">\(dR +dS\)</span></p></li>
 <li><p><span class="math inline">\(d(R)'\)</span> = <span class="math inline">\((dR)'\)</span>, где ’ означает транспонирование</p></li>
 <li><p><span class="math inline">\(d\)</span> сам знает, как дифференцировать сложную функцию.</p></li>
@@ -208,6 +208,113 @@ $(document).ready(function () {
 </ol>
 <hr />
 <p>Вот теперь мы готовы к изучению эконометрики!</p>
+<p>Начнем с самой главной лошадки эконометриста -МНК</p>
+</div>
+<div id="--" class="section level2">
+<h2>Что такое регрессия?</h2>
+<p>Начать нужно с того, а что такое регрессия и зачем она нужна. Много чего в жизни можно описать уравнением, но чаще это дает нам статический результат вот здесь и сейчас. Примером такого статического и 100% верного описания будет любая теорема, вот у меня любимая теорема - теорема косинусов, которая утверждает, что если ты знаешь длины двух сторон и косинус угла между ними, то ты без особого труда найдешь третью сторону в треугольнике. Такую зависимость очень просто выразить в виде уравнения, которое описвает зависимость, но является ли оно регрессией? Нет, не является. Почему? Потому что регрессия это не просто описание зависимости между зависимой и объясняемыми переменными, это ожидание значения зависимой переменной при заданных объясняющих переменных, то есть регрессия - это условное математическое ожидание от некоторого процесса, содержащего случайню величину. Заметим важную вещь, что пока мы работаем только с <span style="color:red">линейными</span> связями. Вот мы и получили первый важный вывод:</p>
+<p><span class="math inline">\(E(y_i|x_i) = E((\beta_0+\sum\limits_{i=1}^n\beta_i*x_i +\epsilon_i) | x_i)=\hat{\beta_0}+\sum\limits_{i=1}^n\hat{\beta_i}*x_i=\hat{y}\)</span></p>
+<hr />
+<div id="ols--" class="section level3">
+<h3>OLS без матриц</h3>
+<p>В чем смысл метода МНК? Считая, что вся случайность i-го наблюдения и непредсказуемость находится в <span class="math inline">\(\epsilon_i\)</span>, то мы можем минимизировать ошибку нашего прогноза, сложив и возвеля в квадрат разницу между истинным результатом модели и его оценкой. Зачем нужен квадрат? Что бы не “схлопывались” ошибки прогноза.</p>
+<p>Формализация МНК:</p>
+<p><span class="math inline">\(\sum\limits_{i=1}^N (y-\hat{y})^2 \rightarrow \underset{\hat{\beta_j},\; j\in Z}{min}\)</span></p>
+<p>F.O.C. дают нам оценки для всех <span class="math inline">\(\hat{\beta_j}\)</span></p>
+<p>Если регрессия парная и содержит константу, тогда справедливы следующие результаты минимизации</p>
+<p><span class="math inline">\(\hat{\beta_0} = \overline{y}-\hat{\beta_1}*\overline{x}\)</span></p>
+<p><span class="math inline">\(\hat{\beta_1}= \frac{\sum\limits_{i=0}^N (x_i-\overline{x})*(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2}= \frac{\hat{cov(x_i,y_i)}}{\hat{var(x)}}\)</span></p>
+<p>У МНК есть красивая геометрическая интерпретация, которая верна как для парного, так и для многомерного случая, которую я нарисую внизу :)</p>
+<pre class="r"><code>#Тут будет график. Скоро.</code></pre>
+<p>В трехметрном пространстве есть 4 n-мерных вектора: <span class="math inline">\(y, x, z \; и \; 1\)</span>, где <span class="math inline">\(y \notin Lin(x,z,1)\)</span></p>
+<p>Если спроектировать <span class="math inline">\(y \; на\; Lin(x,z,1)\)</span>, то полyчим <span class="math inline">\(\hat{y}, \;а \;вектор, \; который \; соединяет \;y \; и\; \hat{y} \; является \; вектором \; ошибок\; прогноза\; -\; RSS\)</span>. Теперь спроектируем <span class="math inline">\(\hat{y}\)</span> на единичный вектор, тем самым мы получим вектор средних значений - <span class="math inline">\(\overline{y}\)</span> - через вычитание из вектора <span class="math inline">\(\hat{y}\)</span> необъясняемых квадратов отклонений - <span class="math inline">\(ESS\)</span>. Получается, что, так как <span class="math inline">\(RSS \perp \hat{y}, \; а \; ESS \perp \overline{y}\)</span>, тогда проекция <span class="math inline">\(y \;на\; 1\)</span> дает в рузультате вектор средних значений <span class="math inline">\(y\)</span> и равен <span class="math inline">\(ESS^2+RSS^2\)</span></p>
+<p>Вот так мы получили еще три столба для эконометрики</p>
+<p><span class="math inline">\(RSS=\sum\limits_{i=1}^N (y-\hat{y})^2\)</span> -это объясненная сумма квадратов отклонений</p>
+<p><span class="math inline">\(ESS = \sum\limits_{i=1}^N (\hat{y}- \overline{y})^2\)</span> - это необъясненная сумма квадратов отклонений</p>
+<p><span class="math inline">\(TSS = \sum\limits_{i=1}^N (y-\overline{y})^2\)</span> - это общая сумма квадратов отклонений</p>
+<p>И соотношения между ними:</p>
+<p><span class="math inline">\(TSS^2= RSS^2+ESS^2\)</span></p>
+<p><span class="math inline">\(R^2 = \frac{ESS}{TSS}= 1- \frac{RSS}{TSS}\)</span>, <span class="math inline">\(R^2 \in [0;1]\)</span> - это коэффициент детерминации, то есть показатель качества подгонки или ( культурным языком ) соответствия нашей модели к реальности.</p>
+<p>Интересно заметить, что <span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \overline{\rho_{y_i, x_i}}\)</span>. Это также имеет красивую геометрическую интерпретацию, которую я привожу ниже.</p>
+<pre class="r"><code>#тут будет график. Скоро</code></pre>
+<p>Тоже самое пространство, но только оно перевернуто с ног на голову. Заметим, что если <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span>, то <span class="math inline">\(R^2= cos^2(\phi)\)</span>, а косинус можно расписать немного иначе, а именно <span class="math inline">\(cos(\phi) =\frac{(\sum\limits_{i=0}^n (y-\overline{y})*(\hat{y}-\overline{y}))^2}{\sum\limits_{i=0}^n (y-\overline{y})^2*\sum\limits_{i=0}^n(\hat{y}-\overline{y})^2}= \frac{\hat{cov(y, \hat{y})}}{\hat{\sigma^2_y}*\hat{\sigma^2_{\hat{y}}}} = \hat{\rho_{y, \hat{y}}}\)</span></p>
+<p>Заметим еще, что задачи <span class="math inline">\(RSS \rightarrow min\; и\; R^2\rightarrow max\)</span> эквивалентны.</p>
+<p>Еще раз повторяю. Это справедливо только если есть константа в построенном прогнозе!</p>
+</div>
+<div id="--epsilon" class="section level3">
+<h3>Почему пропал <span class="math inline">\(\epsilon\)</span> ?</h3>
+<p>Действительно, а почему я так смело убрала случайную величину? Магия, жульничество, тайна за семью печатями? Нет, все проще. Пришло время знакомиться с OLS и теоремой Гаусса-Маркова, в рамках которой мы будем работать довольно долго.</p>
+<hr />
+<div id="---" class="section level4">
+<h4>Теорема Гаусса-Маркова (ТГМ)</h4>
+<p>Работает для парной регрессионной модели, которая</p>
+<ul>
+<li><p>Правильно специфицирована</p></li>
+<li><p><span class="math inline">\(\exists x_i, что\; x_i\neq x_j, i,j \in Z\)</span></p></li>
+<li><p><span class="math inline">\(\forall \epsilon_i, E(\epsilon_i)=0, Var(\epsilon_i)=\sigma_{\epsilon_i}^2 \; \epsilon_i \sim N(0, \sigma^2_{\epsilon_i})\)</span></p></li>
+<li><p><span class="math inline">\(cov(\epsilon_i, \epsilon_j) = 0\)</span></p></li>
+</ul>
+<p>Для такой модели оценки МНК:</p>
+<ul>
+<li><p>Best (<span class="math inline">\(\forall \hat{\beta_i}, MSE^2(\hat{\beta_i})\le MSE^2(\tilde{\beta_i}))\)</span>)</p></li>
+<li><p>Linear (модель линейна по <span class="math inline">\(y\)</span>)</p></li>
+<li><p>Unbiased (<span class="math inline">\(E(\hat{\beta_i})=\beta_i\)</span>)</p></li>
+<li><p>Estimator (с английского - оценка параметра)</p></li>
+</ul>
+<p>На веру ничего и никогда принимать нельзя, поэтому докажем каждый из пунтов последовательно, но перед этим сделаем подготовительные упрощения:</p>
+<p><span class="math inline">\(var(\hat{\beta_0}) = var(\overline{y}-\hat{\beta_1}*\overline{x})=var(\hat{\beta_1}*\overline{x})=\overline{x}^2*var(\frac{\sum\limits_{i=0}^N (x_i-\overline{x})*(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2})=\sigma^2_{\epsilon}(\frac{\sum\limits_{i=1}^n x_i^2 +n*\overline{x}^2}{n*\sum\limits_{i=1}^n x_i^2})=\sigma^2_{\epsilon}(\frac{1}{n}+\frac{\overline{x}^2}{\sum\limits_{i=1}^n x_i^2})\)</span> <span class="math inline">\(var(\beta_1)=\frac{\sigma^2_{\epsilon}}{\sum\limits_{i=1}^n x_i^2}\)</span></p>
+<p>Давайте буде считать, что <span class="math inline">\(w_i=\frac{x_i}{\sum\limits_{j=1}^n x_j^2}\)</span>, тогда будет справедливы следующие свойства:</p>
+<p>1.<span class="math inline">\(\sum\limits_{i=0}^n w_i = \frac{\sum\limits_{i=0}^n (x_i-\overline{x})}{\sum\limits_{i=0}^nx_i^2}= 0\)</span></p>
+<p>2.<span class="math inline">\(\sum\limits_{i=0}^n x_i*w_i = 1\)</span></p>
+<p>3.<span class="math inline">\(\sum\limits_{i=0}^n w_i^2 = \frac{1}{\sum\limits_{i=0}^nx_i^2}\)</span></p>
+<p>Перепишем наши оценки параметров в новом виде</p>
+<p><span class="math inline">\(\hat{\beta_0}= \sum\limits_{i=1}^n (\frac{1}{n}-w_i*\overline{x})*y_i\)</span></p>
+<p><span class="math inline">\(\hat{\beta_1}= \sum\limits_{i=1}^nw_i*y_i\)</span></p>
+<div id="best" class="section level5">
+<h5>Best</h5>
+<p>Рассмотрим <span class="math inline">\(\tilde{\beta_1}=\sum\limits_{i=1}^n \tilde{w_i}*y_i\)</span>, которая является несмещенной оценкой лля <span class="math inline">\(\beta_1\)</span>, ф значит справедливо <span class="math inline">\(\sum\limits_{i=1}^n \tilde{w_i}=0, \; \sum\limits_{i=1}^n \tilde{w_i}*x_i = 1\)</span>.</p>
+<p><span class="math inline">\(var(\tilde{\beta_1}) = var(\sum\limits_{i=1}^n\tilde{w_i}*y_i)= \sigma_{\epsilon}^2*\sum\limits_{i=1}^n\tilde{w_i}^2 \rightarrow min\)</span></p>
+<p>Рассмотрим поближе <span class="math inline">\(\sum\limits_{i=1}^n\tilde{w_i}^2 = \sum\limits_{i=1}^n(\tilde{w_i} -w_i+w_i)^2=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}-w_i)w_i+ \sum\limits_{i=1}^nw_i^2=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}w_i-w_i^2)+ \sum\limits_{i=1}^n w_i^2=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}\frac{(x_i-\overline{x})}{\sum\limits_{i=1}^nx_i^2})+ \frac{1}{\sum\limits_{i=1}^n x_i^2}=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2(\frac{\sum\limits_{i=1}^n(\tilde w_i*x_i - \overline{x}*\sum\limits_{i=1}^n(\tilde w_i) - \sum\limits_{i=1}^n(\tilde x^2_i)}{\sum\limits_{i=1}^n(\tilde x^2_i)}) + \frac{1}{\sum\limits_{i=1}^n x_i^2}=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ \frac{1}{\sum\limits_{i=1}^n x^2_i}\)</span></p>
+<p>В таком случае, только при <span class="math inline">\(\tilde w_i = w_i, var(\hat{\beta_1})= \frac{\sigma^2_{\epsilon}}{\sum\limits_{i=1}^n x_i^2}\)</span></p>
+</div>
+<div id="linear" class="section level5">
+<h5>Linear</h5>
+<p>МНК изначально предполагает линейную связь между <span class="math inline">\(y \;и\;x\)</span></p>
+</div>
+<div id="unbiased" class="section level5">
+<h5>Unbiased</h5>
+<p><span class="math inline">\(E(\hat{\beta_1})=E(\beta_1 + \frac{\hat{cov(\epsilon, x)}}{\hat{var(x)}})= \beta_1+\frac{E(\sum\limits_{i=1}^n(\epsilon- \hat{\epsilon})*(x-\hat{x}))}{(n-1)*\hat{var(x)}}= \beta_1\)</span></p>
+<p><span class="math inline">\(E(\hat{\beta_0})= E(\hat{y}-\hat{\beta_1}*\hat{x})=\beta_0\)</span></p>
+</div>
+</div>
+<div id="----" class="section level4">
+<h4>Полезные результаты МНК без матриц</h4>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\overline{\hat{\epsilon}} = 0, \; \hat{\epsilon}= y-\hat{y}\)</span></p></li>
+<li><p><span class="math inline">\(\overline{y}=\overline{\hat{y}}\)</span></p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=0}^n x_i*\hat{\epsilon} =0\)</span></p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=0}^n \hat{y}*\hat{\epsilon} =0\)</span></p></li>
+<li><p>Несмещенная оценка дисперсии ошибки прогноза выражается <span class="math inline">\(\hat{\sigma^2_{\epsilon}}=\frac{RSS}{n-2}\)</span></p></li>
+<li><p><span class="math inline">\(\frac{RSS}{\sigma^2_{\epsilon}}\sim \chi^2_{n-2}\)</span></p></li>
+<li><p>Нормальность случайных возмущений</p></li>
+</ol>
+<p>Последнее неочевидно, поэтому требует доказательства. Из ТГМ нам известно, что <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2_{\epsilon_i}), \; cov(\epsilon_i, \epsilon_j) = 0\)</span>, это дает нам право считать, что <span class="math inline">\(\hat{\beta_1} =\beta_1 + \frac{\hat{cov(x_i,\epsilon_i)}}{\hat{var(x)}}\)</span>, поэтому <span class="math inline">\(\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\beta_1})\)</span>. Аналочичный анализ справедлив и для <span class="math inline">\(\hat{\beta_0}\)</span></p>
+<ol start="8" style="list-style-type: decimal">
+<li><span class="math inline">\(\forall i \in [1,2] \:оценки \:\hat{\beta_i} \; и\; \hat{\sigma^2_{\epsilon}}\)</span> являются независимыми</li>
+</ol>
+<hr />
+</div>
+<div id="--." class="section level4">
+<h4>МНК в матрицах.</h4>
+<p>Тут будет линал, поэтому <del>слабонервным не смотреть</del> нужно кое-что дополнительно ввести.</p>
+<p>Да, если бы все в мире описывалось простыми парными регрессиями, то жизнь была бы сказкой, но <del>к сожалению</del> реальность многогранная и парные регрессии используются редко, так как плохо отображают действительность, вместо них используют многофакторные модели или множественные регрессии, поэтому визуализация сложной, а взаимосвязи - неочевидными.</p>
+</div>
+</div>
 </div>
 </div>
 
