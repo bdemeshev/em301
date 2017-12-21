@@ -209,11 +209,12 @@ $(document).ready(function () {
 <hr />
 <p>Вот теперь мы готовы к изучению эконометрики!</p>
 <p>Начнем с самой главной лошадки эконометриста -МНК</p>
+<hr />
 </div>
 <div id="--" class="section level2">
 <h2>Что такое регрессия?</h2>
 <p>Начать нужно с того, а что такое регрессия и зачем она нужна. Много чего в жизни можно описать уравнением, но чаще это дает нам статический результат вот здесь и сейчас. Примером такого статического и 100% верного описания будет любая теорема, вот у меня любимая теорема - теорема косинусов, которая утверждает, что если ты знаешь длины двух сторон и косинус угла между ними, то ты без особого труда найдешь третью сторону в треугольнике. Такую зависимость очень просто выразить в виде уравнения, которое описвает зависимость, но является ли оно регрессией? Нет, не является. Почему? Потому что регрессия это не просто описание зависимости между зависимой и объясняемыми переменными, это ожидание значения зависимой переменной при заданных объясняющих переменных, то есть регрессия - это условное математическое ожидание от некоторого процесса, содержащего случайню величину. Заметим важную вещь, что пока мы работаем только с <span style="color:red">линейными</span> связями. Вот мы и получили первый важный вывод:</p>
-<p><span class="math inline">\(E(y_i|x_i) = E((\beta_0+\sum\limits_{i=1}^n\beta_i*x_i +\epsilon_i) | x_i)=\hat{\beta_0}+\sum\limits_{i=1}^n\hat{\beta_i}*x_i=\hat{y}\)</span></p>
+<p><span class="math inline">\(E(y_i|x_i) = E((\beta_0+\sum\limits_{i=1}^n\beta_i\times x_i +\epsilon_i) | x_i)=\hat{\beta_0}+\sum\limits_{i=1}^n\hat{\beta_i}\times x_i=\hat{y}\)</span></p>
 <hr />
 <div id="ols--" class="section level3">
 <h3>OLS без матриц</h3>
@@ -222,8 +223,8 @@ $(document).ready(function () {
 <p><span class="math inline">\(\sum\limits_{i=1}^N (y-\hat{y})^2 \rightarrow \underset{\hat{\beta_j},\; j\in Z}{min}\)</span></p>
 <p>F.O.C. дают нам оценки для всех <span class="math inline">\(\hat{\beta_j}\)</span></p>
 <p>Если регрессия парная и содержит константу, тогда справедливы следующие результаты минимизации</p>
-<p><span class="math inline">\(\hat{\beta_0} = \overline{y}-\hat{\beta_1}*\overline{x}\)</span></p>
-<p><span class="math inline">\(\hat{\beta_1}= \frac{\sum\limits_{i=0}^N (x_i-\overline{x})*(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2}= \frac{\hat{cov(x_i,y_i)}}{\hat{var(x)}}\)</span></p>
+<p><span class="math inline">\(\hat{\beta_0} = \overline{y}-\hat{\beta_1}\times\overline{x}\)</span></p>
+<p><span class="math inline">\(\hat{\beta_1}= \frac{\sum\limits_{i=0}^N (x_i-\overline{x})\times(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2}= \frac{\hat{cov(x_i,y_i)}}{\hat{var(x)}}\)</span></p>
 <p>У МНК есть красивая геометрическая интерпретация, которая верна как для парного, так и для многомерного случая, которую я нарисую внизу :)</p>
 <pre class="r"><code>#Тут будет график. Скоро.</code></pre>
 <p>В трехметрном пространстве есть 4 n-мерных вектора: <span class="math inline">\(y, x, z \; и \; 1\)</span>, где <span class="math inline">\(y \notin Lin(x,z,1)\)</span></p>
@@ -234,10 +235,10 @@ $(document).ready(function () {
 <p><span class="math inline">\(TSS = \sum\limits_{i=1}^N (y-\overline{y})^2\)</span> - это общая сумма квадратов отклонений</p>
 <p>И соотношения между ними:</p>
 <p><span class="math inline">\(TSS^2= RSS^2+ESS^2\)</span></p>
-<p><span class="math inline">\(R^2 = \frac{ESS}{TSS}= 1- \frac{RSS}{TSS}\)</span>, <span class="math inline">\(R^2 \in [0;1]\)</span> - это коэффициент детерминации, то есть показатель качества подгонки или ( культурным языком ) соответствия нашей модели к реальности.</p>
-<p>Интересно заметить, что <span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \overline{\rho_{y_i, x_i}}\)</span>. Это также имеет красивую геометрическую интерпретацию, которую я привожу ниже.</p>
+<p><span class="math inline">\(R^2 = \frac{ESS}{TSS}= 1- \frac{RSS}{TSS}\)</span>, <span class="math inline">\(R^2 \in [0;1]\)</span> - это коэффициент детерминации, то есть показатель качества подгонки или ( культурным языком ) соответствия нашей модели к реальности. При добавлении в уравнение регрессии любого фактора, <span class="math inline">\(R^2\)</span> не уменьшится.</p>
+<p>Интересно заметить, что <span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, x_i}^2}\)</span>. Это также имеет красивую геометрическую интерпретацию, которую я привожу ниже.</p>
 <pre class="r"><code>#тут будет график. Скоро</code></pre>
-<p>Тоже самое пространство, но только оно перевернуто с ног на голову. Заметим, что если <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span>, то <span class="math inline">\(R^2= cos^2(\phi)\)</span>, а косинус можно расписать немного иначе, а именно <span class="math inline">\(cos(\phi) =\frac{(\sum\limits_{i=0}^n (y-\overline{y})*(\hat{y}-\overline{y}))^2}{\sum\limits_{i=0}^n (y-\overline{y})^2*\sum\limits_{i=0}^n(\hat{y}-\overline{y})^2}= \frac{\hat{cov(y, \hat{y})}}{\hat{\sigma^2_y}*\hat{\sigma^2_{\hat{y}}}} = \hat{\rho_{y, \hat{y}}}\)</span></p>
+<p>Тоже самое пространство, но только оно перевернуто с ног на голову. Заметим, что если <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span>, то <span class="math inline">\(R^2= cos^2(\phi)\)</span>, а косинус можно расписать немного иначе, а именно <span class="math inline">\(cos(\phi) =\frac{(\sum\limits_{i=0}^n (y-\overline{y})\times(\hat{y}-\overline{y}))^2}{\sum\limits_{i=0}^n (y-\overline{y})^2\times\sum\limits_{i=0}^n(\hat{y}-\overline{y})^2}= \frac{\hat{cov(y, \hat{y})}}{\hat{\sigma^2_y}\times\hat{\sigma^2_{\hat{y}}}} = \hat{\rho_{y, \hat{y}}}\)</span></p>
 <p>Заметим еще, что задачи <span class="math inline">\(RSS \rightarrow min\; и\; R^2\rightarrow max\)</span> эквивалентны.</p>
 <p>Еще раз повторяю. Это справедливо только если есть константа в построенном прогнозе!</p>
 </div>
@@ -247,73 +248,289 @@ $(document).ready(function () {
 <hr />
 <div id="---" class="section level4">
 <h4>Теорема Гаусса-Маркова (ТГМ)</h4>
-<p>Работает для парной регрессионной модели, которая</p>
+<p>Работает для регрессионной модели, если выполняются следующие предпосылки</p>
 <ul>
-<li><p>Правильно специфицирована</p></li>
+<li><p>Модель правильно специфицирована, то есть в нее включен только необходимый <span class="math inline">\(x\)</span>, объясняющий <span class="math inline">\(y\)</span></p></li>
 <li><p><span class="math inline">\(\exists x_i, что\; x_i\neq x_j, i,j \in Z\)</span></p></li>
-<li><p><span class="math inline">\(\forall \epsilon_i, E(\epsilon_i)=0, Var(\epsilon_i)=\sigma_{\epsilon_i}^2 \; \epsilon_i \sim N(0, \sigma^2_{\epsilon_i})\)</span></p></li>
-<li><p><span class="math inline">\(cov(\epsilon_i, \epsilon_j) = 0\)</span></p></li>
+<li><p><span class="math inline">\(\forall \epsilon_i, E(\epsilon_i)=0\)</span></p></li>
+<li><p><span class="math inline">\(\forall \epsilon_i \: Var(\epsilon_i)=\sigma_{\epsilon_i}^2\)</span></p></li>
+<li><p><span class="math inline">\(\forall \epsilon_i \:\epsilon_i \sim N(0, \sigma^2_{\epsilon_i})\)</span> - случайный член <del>гомоскен</del>гомоскедастичен</p></li>
+<li><p><span class="math inline">\(cov(\epsilon_i, \epsilon_j) = 0\)</span> - отсутствие автокорреляции</p></li>
+<li><p>Объясняющая переменная содержит некоторую вариацию. Это значит, что <span class="math inline">\(x\)</span> не является константой, иначе мы бы не смогли рассчитать коэффициенты регрессии, так как напомню, что</p></li>
 </ul>
+<p><span class="math inline">\(\hat{\beta_0} = \overline{y}-\hat{\beta_1}\times\overline{x}\)</span></p>
+<p><span class="math inline">\(\hat{\beta_1}= \frac{\sum\limits_{i=0}^N (x_i-\overline{x})\times(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2}= \frac{\hat{cov(x_i,y_i)}}{\hat{var(x)}}\)</span></p>
+<p>А это значит, что <span class="math inline">\(\overline{x}=x\)</span>, а следовательно <span class="math inline">\(\hat{\beta_1}\)</span> была бы неопределена, так как числитель и знамеатель дроби были бы равны 0</p>
+<p>Это гарантирует, что стахостический компонент содержится только в <span class="math inline">\(\epsilon\)</span>.</p>
 <p>Для такой модели оценки МНК:</p>
 <ul>
-<li><p>Best (<span class="math inline">\(\forall \hat{\beta_i}, MSE^2(\hat{\beta_i})\le MSE^2(\tilde{\beta_i}))\)</span>)</p></li>
-<li><p>Linear (модель линейна по <span class="math inline">\(y\)</span>)</p></li>
-<li><p>Unbiased (<span class="math inline">\(E(\hat{\beta_i})=\beta_i\)</span>)</p></li>
-<li><p>Estimator (с английского - оценка параметра)</p></li>
+<li>Best</li>
 </ul>
+<p><span class="math inline">\(\forall \hat{\beta_i}, MSE(\hat{\beta_i})\le MSE(\tilde{\beta_i}))\)</span></p>
+<ul>
+<li>Linear</li>
+</ul>
+<p>Модель линейна по <span class="math inline">\(y\)</span></p>
+<ul>
+<li>Unbiased</li>
+</ul>
+<p><span class="math inline">\(E(\hat{\beta_i})=\beta_i\)</span></p>
+<ul>
+<li>Estimator</li>
+</ul>
+<p>С английского - оценка параметра</p>
+<hr />
 <p>На веру ничего и никогда принимать нельзя, поэтому докажем каждый из пунтов последовательно, но перед этим сделаем подготовительные упрощения:</p>
-<p><span class="math inline">\(var(\hat{\beta_0}) = var(\overline{y}-\hat{\beta_1}*\overline{x})=var(\hat{\beta_1}*\overline{x})=\overline{x}^2*var(\frac{\sum\limits_{i=0}^N (x_i-\overline{x})*(y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2})=\sigma^2_{\epsilon}(\frac{\sum\limits_{i=1}^n x_i^2 +n*\overline{x}^2}{n*\sum\limits_{i=1}^n x_i^2})=\sigma^2_{\epsilon}(\frac{1}{n}+\frac{\overline{x}^2}{\sum\limits_{i=1}^n x_i^2})\)</span> <span class="math inline">\(var(\beta_1)=\frac{\sigma^2_{\epsilon}}{\sum\limits_{i=1}^n x_i^2}\)</span></p>
-<p>Давайте буде считать, что <span class="math inline">\(w_i=\frac{x_i}{\sum\limits_{j=1}^n x_j^2}\)</span>, тогда будет справедливы следующие свойства:</p>
-<p>1.<span class="math inline">\(\sum\limits_{i=0}^n w_i = \frac{\sum\limits_{i=0}^n (x_i-\overline{x})}{\sum\limits_{i=0}^nx_i^2}= 0\)</span></p>
-<p>2.<span class="math inline">\(\sum\limits_{i=0}^n x_i*w_i = 1\)</span></p>
-<p>3.<span class="math inline">\(\sum\limits_{i=0}^n w_i^2 = \frac{1}{\sum\limits_{i=0}^nx_i^2}\)</span></p>
+<hr />
+<p><span class="math inline">\(var(\hat{\beta_0}) = var(\overline{y}-\hat{\beta_1}\times \overline{x})=var(\hat{\beta_1}\times \overline{x})=\)</span></p>
+<p><span class="math inline">\(\overline{x}^2\times var(\frac{\sum\limits_{i=0}^N (x_i-\overline{x})\times (y_i-\overline{y})}{\sum\limits_{i=0}^N(x_i-\overline{x})^2})=\)</span> <span class="math inline">\(\sigma^2_{\epsilon}(\frac{\sum\limits_{i=1}^n x_i^2 +n\times \overline{x}^2}{n\times \sum\limits_{i=1}^n (x_i- \overline{x})^2})=\)</span> <span class="math inline">\(\sigma^2_{\epsilon}(\frac{1}{n}+\frac{\overline{x}^2}{\sum\limits_{i=1}^n (x_i- \overline{x})^2})\)</span></p>
+<hr />
+<p><span class="math inline">\(var(\beta_1)=E([\hat{\beta_1}-E(\hat{\beta_1})^2]^2)=E(\hat{\beta_1}-\beta_1)^2=\)</span></p>
+<p><span class="math inline">\(E([\sum\limits_{i=1}^n\frac{\epsilon_i\times (x_i-\overline{x})}{\sum\limits_{j=1}^n(x_j-\overline{x})^2}]\;^2)=E(\sum\limits_{i=1}^n\frac{\epsilon_i^2\times (x_i-\overline{x})^2}{\sum\limits_{j=1}^n(x_j-\overline{x})^4})+\sum\limits_{j=1}^n\sum\limits_{i=1}^n\frac{\epsilon_i\times (x_i-\overline{x})}{\sum\limits_{j=1}^n(x_j-\overline{x})^2}\times \frac{\epsilon_j\times (x_j-\overline{x})}{\sum\limits_{j=1}^n(x_j-\overline{x})^2})=\)</span></p>
+<p><span class="math inline">\((\sum\limits_{i=1}^n\frac{E(\epsilon_i^2)\times (x_i-\overline{x})^2}{\sum\limits_{j=1}^n(x_j-\overline{x})^4})+\sum\limits_{j=1}^n\sum\limits_{i=1}^n\frac{E(\epsilon_i)\times (x_i-\overline{x})}{\sum\limits_{j=1}^n(x_j-\overline{x})^2}\times \frac{E(\epsilon_j)\times (x_j-\overline{x})}{\sum\limits_{j=1}^n(x_j-\overline{x})^2})\)</span></p>
+<p>С учетом, что <span class="math inline">\(E(\epsilon_i)^2=\sigma^2_{\epsilon_i},\:\; E(\epsilon_i\times \epsilon_j)=0\)</span> получаем, что</p>
+<p><span class="math inline">\(var(\beta_1)=\frac{\sigma^2_{\epsilon}}{\sum\limits_{i=1}^n (x_i- \overline{x})^2}\)</span></p>
+<p>Ты герой, если дочитал до этого места, а не пропустил доказательство.</p>
+<hr />
+<p>Давайте буде считать, что <span class="math inline">\(w_i=\frac{x_i - \overline{x}}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}\)</span>, тогда будет справедливы следующие свойства:</p>
+<p>1.<span class="math inline">\(\sum\limits_{i=0}^n w_i = \frac{\sum\limits_{i=0}^n (x_i-\overline{x})}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}= 0\)</span></p>
+<p>2.<span class="math inline">\(\sum\limits_{i=0}^n x_i\times w_i = 1\)</span></p>
+<p>3.<span class="math inline">\(\sum\limits_{i=0}^n w_i^2 = \frac{1}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}\)</span></p>
 <p>Перепишем наши оценки параметров в новом виде</p>
-<p><span class="math inline">\(\hat{\beta_0}= \sum\limits_{i=1}^n (\frac{1}{n}-w_i*\overline{x})*y_i\)</span></p>
-<p><span class="math inline">\(\hat{\beta_1}= \sum\limits_{i=1}^nw_i*y_i\)</span></p>
+<p><span class="math inline">\(\hat{\beta_0}= \sum\limits_{i=1}^n (\frac{1}{n}-w_i\times \overline{x})\times y_i\)</span></p>
+<p><span class="math inline">\(\hat{\beta_1}= \sum\limits_{i=1}^nw_i\times y_i\)</span></p>
+<hr />
 <div id="best" class="section level5">
 <h5>Best</h5>
-<p>Рассмотрим <span class="math inline">\(\tilde{\beta_1}=\sum\limits_{i=1}^n \tilde{w_i}*y_i\)</span>, которая является несмещенной оценкой лля <span class="math inline">\(\beta_1\)</span>, ф значит справедливо <span class="math inline">\(\sum\limits_{i=1}^n \tilde{w_i}=0, \; \sum\limits_{i=1}^n \tilde{w_i}*x_i = 1\)</span>.</p>
-<p><span class="math inline">\(var(\tilde{\beta_1}) = var(\sum\limits_{i=1}^n\tilde{w_i}*y_i)= \sigma_{\epsilon}^2*\sum\limits_{i=1}^n\tilde{w_i}^2 \rightarrow min\)</span></p>
+<p>Рассмотрим <span class="math inline">\(\tilde{\beta_1}=\sum\limits_{i=1}^n \tilde{w_i}\times y_i\)</span>, которая является несмещенной оценкой лля <span class="math inline">\(\beta_1\)</span>, ф значит справедливо <span class="math inline">\(\sum\limits_{i=1}^n \tilde{w_i}=0, \; \sum\limits_{i=1}^n \tilde{w_i}\times x_i = 1\)</span>.</p>
+<p><span class="math inline">\(var(\tilde{\beta_1}) = var(\sum\limits_{i=1}^n\tilde{w_i}\times y_i)= \sigma_{\epsilon}^2\times \sum\limits_{i=1}^n\tilde{w_i}^2 \rightarrow min\)</span></p>
 <p>Рассмотрим поближе <span class="math inline">\(\sum\limits_{i=1}^n\tilde{w_i}^2 = \sum\limits_{i=1}^n(\tilde{w_i} -w_i+w_i)^2=\)</span></p>
 <p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}-w_i)w_i+ \sum\limits_{i=1}^nw_i^2=\)</span></p>
 <p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}w_i-w_i^2)+ \sum\limits_{i=1}^n w_i^2=\)</span></p>
-<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}\frac{(x_i-\overline{x})}{\sum\limits_{i=1}^nx_i^2})+ \frac{1}{\sum\limits_{i=1}^n x_i^2}=\)</span></p>
-<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2(\frac{\sum\limits_{i=1}^n(\tilde w_i*x_i - \overline{x}*\sum\limits_{i=1}^n(\tilde w_i) - \sum\limits_{i=1}^n(\tilde x^2_i)}{\sum\limits_{i=1}^n(\tilde x^2_i)}) + \frac{1}{\sum\limits_{i=1}^n x_i^2}=\)</span></p>
-<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ \frac{1}{\sum\limits_{i=1}^n x^2_i}\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2\sum\limits_{i=1}^n(\tilde{w_i}\times (\frac{(x_i-\overline{x})}{\sum\limits_{j=1}^n (x_j - \overline{x})^2})- \frac{1}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ 2(\frac{\sum\limits_{i=1}^n(\tilde w_i\times x_i) - \overline{x}\times \sum\limits_{i=1}^n(\tilde w_i)}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}) - \frac{1}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}=\)</span></p>
+<p><span class="math inline">\(\sum\limits_{i=1}^n(\tilde{w_i}-w_i)^2+ \frac{1}{\sum\limits_{j=1}^n (x_j - \overline{x})^2}\)</span></p>
 <p>В таком случае, только при <span class="math inline">\(\tilde w_i = w_i, var(\hat{\beta_1})= \frac{\sigma^2_{\epsilon}}{\sum\limits_{i=1}^n x_i^2}\)</span></p>
+<hr />
 </div>
 <div id="linear" class="section level5">
 <h5>Linear</h5>
-<p>МНК изначально предполагает линейную связь между <span class="math inline">\(y \;и\;x\)</span></p>
+<p>Линейность оценки следует из детерминированности <span class="math inline">\(x\)</span> и линейности <span class="math inline">\(\hat{cov}(x,\epsilon)\)</span></p>
+<hr />
 </div>
 <div id="unbiased" class="section level5">
 <h5>Unbiased</h5>
-<p><span class="math inline">\(E(\hat{\beta_1})=E(\beta_1 + \frac{\hat{cov(\epsilon, x)}}{\hat{var(x)}})= \beta_1+\frac{E(\sum\limits_{i=1}^n(\epsilon- \hat{\epsilon})*(x-\hat{x}))}{(n-1)*\hat{var(x)}}= \beta_1\)</span></p>
-<p><span class="math inline">\(E(\hat{\beta_0})= E(\hat{y}-\hat{\beta_1}*\hat{x})=\beta_0\)</span></p>
+<p><span class="math inline">\(E(\hat{\beta_1})=E(\beta_1 + \frac{\hat{cov(\epsilon, x)}}{\hat{var(x)}})= \beta_1+\frac{E(\sum\limits_{i=1}^n(\epsilon- \hat{\epsilon})\times (x-\hat{x}))}{(n-1)\times \hat{var(x)}}= \beta_1\)</span></p>
+<p><span class="math inline">\(E(\hat{\beta_0})= E(\hat{y}-\hat{\beta_1}\times \hat{x})=\beta_0\)</span></p>
+<hr />
 </div>
 </div>
 <div id="----" class="section level4">
 <h4>Полезные результаты МНК без матриц</h4>
+<p>В этой главе мы закинем удочку в тему проверки гипотез,так как именно это задача любого анализа модели: доказать, что построенная модель -это не просто набор из рандомно напиханных факторов, которые каким-то образом попались на глаза в процессе исследования, а обдуманные и очень тщательно выбранные факторы, адекватно отображающие интересующий процесс в жизни.</p>
+<hr />
+<p>Важно помнить следующие выводы из парной регрессии в условиях ТГМ</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(\overline{\hat{\epsilon}} = 0, \; \hat{\epsilon}= y-\hat{y}\)</span></p></li>
 <li><p><span class="math inline">\(\overline{y}=\overline{\hat{y}}\)</span></p></li>
-<li><p><span class="math inline">\(\sum\limits_{i=0}^n x_i*\hat{\epsilon} =0\)</span></p></li>
-<li><p><span class="math inline">\(\sum\limits_{i=0}^n \hat{y}*\hat{\epsilon} =0\)</span></p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=0}^n x_i\times \hat{\epsilon} =0\)</span></p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=0}^n \hat{y}\times \hat{\epsilon} =0\)</span></p></li>
 <li><p>Несмещенная оценка дисперсии ошибки прогноза выражается <span class="math inline">\(\hat{\sigma^2_{\epsilon}}=\frac{RSS}{n-2}\)</span></p></li>
-<li><p><span class="math inline">\(\frac{RSS}{\sigma^2_{\epsilon}}\sim \chi^2_{n-2}\)</span></p></li>
-<li><p>Нормальность случайных возмущений</p></li>
 </ol>
-<p>Последнее неочевидно, поэтому требует доказательства. Из ТГМ нам известно, что <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2_{\epsilon_i}), \; cov(\epsilon_i, \epsilon_j) = 0\)</span>, это дает нам право считать, что <span class="math inline">\(\hat{\beta_1} =\beta_1 + \frac{\hat{cov(x_i,\epsilon_i)}}{\hat{var(x)}}\)</span>, поэтому <span class="math inline">\(\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\beta_1})\)</span>. Аналочичный анализ справедлив и для <span class="math inline">\(\hat{\beta_0}\)</span></p>
+<hr />
+<p>Давай подумаем, какая из всех возможных прямых будет ближе всего ко всем точкам - выборке наблюдений?</p>
+<p>Конечно, регрессионная, просто по ее определени,ведь разброс остатков для нее минимальный, а значит среднее квадратичное отклонение для разброса еще меньше. Зная это, выведем еще одну несмещенную оценку для <span class="math inline">\(\sigma^2_{\epsilon_i}\)</span>.</p>
+<p><span class="math inline">\(E(MSD(\epsilon_i))=E(\frac{1}{n}\sum\limits_{i=1}^n(\epsilon_i-\overline{\epsilon})^2)=\frac{1}{n}E(\sum\limits_{i=1}^n(\epsilon_i)^2)=\frac{n-2}{n}\times \sigma^2_{\epsilon}\)</span></p>
+<p><span class="math inline">\(s^2_{\epsilon}=\frac{n}{n-2}\times MSD(\epsilon)= \frac{n}{(n-2)\times n} \;\times \sum\limits_{i=1}^n(\epsilon_i)^2=\frac{RSS}{n-2}=\sigma^2_{\epsilon}\)</span></p>
+<hr />
+<ol start="6" style="list-style-type: decimal">
+<li><span class="math inline">\(\frac{RSS}{\sigma^2_{\epsilon}}\sim \chi^2_{n-2}\)</span></li>
+</ol>
+<hr />
+<p>Тут надо вспомнить, из чего же складывается распределение <span class="math inline">\(\chi^2_n\)</span></p>
+<p>Если <span class="math inline">\(\forall z_i\sim N(0;1),\;z_j\sim N(0;1), \;i\in(1,n)\; и \;при\; условии, \; что \; cov(z_i,z_j)=0\)</span>, верно <span class="math inline">\(\sum\limits_{i=1}^nz_i^2\sim\chi^2_n\)</span></p>
+<p>Используем метод пристального взгляда и… очевидно!</p>
+<hr />
+<ol start="7" style="list-style-type: decimal">
+<li>Нормальность случайных возмущений</li>
+</ol>
+<p>Последнее неочевидно, поэтому требует доказательства.</p>
+<hr />
+<p>Из ТГМ нам известно, что <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2_{\epsilon_i}), \; cov(\epsilon_i, \epsilon_j) = 0\)</span>, это дает нам право считать, что</p>
+<p><span class="math inline">\(\hat{\beta_1} =\frac{\hat{cov}(x_i,y_i)}{\hat{var}(x)} = \frac{\hat{cov}(x_i, \beta_0 +\beta_1\times x_i +\epsilon_i)}{\hat{var}(x)}= \frac{\hat{cov}(x_i, \beta_0}{\hat{var}(x)}+\beta_1 \times \frac{\hat{cov}(x_i, x_i}{\hat{var}(x)}+\frac{\hat{cov}(x_i, \epsilon_i)}{\hat{var}(x)}=\)</span></p>
+<p><span class="math inline">\(\beta_1 + \frac{\hat{cov(x_i,\epsilon_i)}}{\hat{var(x)}}\)</span>,</p>
+<p>поэтому <span class="math inline">\(\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\beta_1})\)</span>. Аналочичный анализ справедлив и для <span class="math inline">\(\hat{\beta_0}\)</span></p>
+<hr />
 <ol start="8" style="list-style-type: decimal">
-<li><span class="math inline">\(\forall i \in [1,2] \:оценки \:\hat{\beta_i} \; и\; \hat{\sigma^2_{\epsilon}}\)</span> являются независимыми</li>
+<li><span class="math inline">\(\forall i \in [1,2] \: оценки \:\hat{\beta_i} \; и\; \hat{\sigma^2_{\epsilon}}\)</span> являются независимыми</li>
 </ol>
+<hr />
+<p>Это доказывается через ковариацию</p>
+<hr />
+</div>
+<div id="----" class="section level4">
+<h4>Тестирование гипотез в парной регрессии</h4>
+<p>Ну вот наконец-то я добралась до второго модуля.</p>
+<p>Гипотезы!</p>
+<p>Для начала обозначим план работ :)</p>
+<p>Всего нам нужно знать 2 гипотезы для случая парной регресии.</p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Гипотеза о конкретном значении коэффициентов</li>
+</ol>
+<p>Рассмотрим только случай двусторонней гипотезы:</p>
+<p><span class="math inline">\(H_0: \beta_1=\beta_1^0\)</span></p>
+<p><span class="math inline">\(H_a: \beta_1 \neq \beta_1^0\)</span></p>
+<p>Как мы уже знаем <span class="math inline">\(\beta_1 \sim N(\beta_1, \sigma^2_{\hat{\beta_1}})\)</span>, тогда наша тестовая статистика принимает вид</p>
+<p><span class="math inline">\(\frac{\hat{\beta_1}-\beta_1^0}{\sigma_{\hat{\beta_1}}}\sim N(0, 1)\)</span>, но вот же грусть-печаль, нам никак не узнать <span class="math inline">\(\sigma^2_{\hat{\beta_1}}\)</span>, так как в нее входит неизвестный никому параметр <span class="math inline">\(\sigma^2_{\epsilon_i}\)</span>. Тогда поступим классическим образом и используем оценку неизвестного параметра: <span class="math inline">\(\hat{\sigma^2_{\hat{\beta_1}}}\)</span></p>
+<p>В таком случае <span class="math inline">\(\frac{\hat{\beta_1}-\beta_1^0}{\hat{\sigma_{\hat{\beta_1}}}}\sim t_{n-2}\)</span>, тогда доверительный интервал для проверки будет иметь вид:</p>
+<p><span class="math inline">\(\hat{\beta_1}-t_{n-2, 1-\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_1}}} \le \beta_1^0 \le \hat{\beta_1}+t_{n-2,\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_1}}}\)</span></p>
+<p>Если заданное в нулевой гипотезе значение беты попадает в доверительный интервал, тогда гипотеза не отвергается.</p>
+<hr />
+<ol start="2" style="list-style-type: decimal">
+<li>Гипотеза о значимости коэффициента</li>
+</ol>
+<p>Рассмотрим только случай двусторонней гипотезы:</p>
+<p><span class="math inline">\(H_0: \beta_1=0\)</span></p>
+<p><span class="math inline">\(H_a: \beta_1 \neq 0\)</span></p>
+<p>В таком случае <span class="math inline">\(\frac{\hat{\beta_1}}{\hat{\sigma_{\hat{\beta_1}}}}\sim t_{n-2}\)</span>, тогда доверительный интервал для проверки будет иметь вид:</p>
+<p><span class="math inline">\(\hat{\beta_1}-t_{n-2, 1-\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_1}}} \le \beta_1^0 \le \hat{\beta_1}+t_{n-2,\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_1}}}\)</span></p>
+<p>Если 0 попадает в доверительный интервал, тогда гипотеза не отвергается или иными словами, коэффициент НЕ значим.</p>
 <hr />
 </div>
 <div id="--." class="section level4">
 <h4>МНК в матрицах.</h4>
 <p>Тут будет линал, поэтому <del>слабонервным не смотреть</del> нужно кое-что дополнительно ввести.</p>
-<p>Да, если бы все в мире описывалось простыми парными регрессиями, то жизнь была бы сказкой, но <del>к сожалению</del> реальность многогранная и парные регрессии используются редко, так как плохо отображают действительность, вместо них используют многофакторные модели или множественные регрессии, поэтому визуализация сложной, а взаимосвязи - неочевидными.</p>
+<p>Да, если бы все в мире описывалось простыми парными регрессиями, то жизнь была бы сказкой, но <del>к сожалению</del> реальность многогранная и парные регрессии используются редко, так как плохо отображают действительность, вместо них используют многофакторные модели или множественные регрессии, поэтому визуализация становится сложной, а взаимосвязи между факторами и регрессантом - не очевидными. Что же нам делать? Вспоминать линейную алгебру конечно!</p>
+<p>Не пугайся, мой друг, больно не будет. :)</p>
+<p>Для начала определимся с обозначениями, следуя Конвенции:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(y_{n\times1}\)</span> - это вектор регрессант</p></li>
+<li><p><span class="math inline">\(X_{n\times(k+1)}\)</span> - это матрица констант</p></li>
+<li><p><span class="math inline">\(\beta_{(k+1)\times1}\)</span> -это вектор из <span class="math inline">\(k+1\)</span> коэффициентов</p></li>
+<li><p><span class="math inline">\(u_{n\times1}\)</span> -это вектор случайных величин</p></li>
+</ol>
+<p>Поэтому справедливо следущее</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(y=X\beta+u\)</span></p></li>
+<li><p><span class="math inline">\(\hat{y}=X\hat{\beta}\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\beta}=(X'X)^{-1}X'y\)</span></p></li>
+<li><p><span class="math inline">\(\hat{u}= y- \hat{y}\)</span></p></li>
+<li><p><span class="math inline">\(E(u)=0_{n \times1}\)</span></p></li>
+<li><p><span class="math inline">\(Var(u)=\sigma^2\times I_{n\times n}\)</span></p></li>
+<li><p><span class="math inline">\(RSS= u'u= (y-X\hat{\beta})'(y-X\hat{\beta})=y'y-2\hat{\beta}'X'y+\hat{\beta}'X'X\hat{\beta}\)</span></p></li>
+</ol>
+<hr />
+<p>Посмотрим теперь на показатели качества подгонки множественной регрессии</p>
+<p>В общем-то коэффициент множественной детерминации будет определяться по той же самой формуле, как и раньше <span class="math inline">\(R^2=\frac{ESS}{TSS}\)</span>,и почти все свойства сохраняются с небольшими изменениями.</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(R^2=1-\frac{RSS}{TSS}\)</span>, но опять же оговоримся о надобности константы в модели для работы этого свойства.</p></li>
+<li><p><span class="math inline">\(R^2=\frac{\hat{var}(\hat{y})}{\hat{var}(y)}\)</span></p></li>
+<li><p><span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, x_i}^2}\)</span></p></li>
+<li><p><span class="math inline">\(RSS \rightarrow min \Leftrightarrow R^2\rightarrow max\)</span></p></li>
+<li><p>При добавлении фактора <span class="math inline">\(R^2\)</span> не уменьшается</p></li>
+</ol>
+<hr />
+<p><span class="math inline">\(R^2=1-\frac{\sum\limits_{i=1}^n \hat{u}(\hat{\beta_0}...\beta_{k})}{\sum\limits_{i=1}^n(y-\overline{y})^2}\)</span></p>
+<p><span class="math inline">\(R^2=1-\frac{\sum\limits_{i=1}^n \hat{u}(\hat{\beta_0}...\beta_{k+1})}{\sum\limits_{i=1}^n(y-\overline{y})^2}\)</span></p>
+<p>Если решить задачу максимизации для двух таких <span class="math inline">\(R^2\)</span>, то окажется, что второй <span class="math inline">\(R^2\)</span> не уменьшится. Проверь это сам, а то вдруг я тебя обманываю.</p>
+<hr />
+<p>Как мы уже знаем, чем больше <span class="math inline">\(R^2\)</span>, тем по идее наша модель лучше описывает реальность, то есть напихать <del>доф</del> очень много факторов, то даже при единичном значении <span class="math inline">\(R^2\)</span> модель будет плохой, поэтому умные люди придумали корректировать коэффициент детерминации регрессии на число степеней свободы и назвали его <span class="math inline">\(R_{adj}\)</span>.</p>
+<p><span class="math inline">\(R_{adj}=\overline{R^2}=1- \frac{RSS/(n-k-1)}{TSS/(n-1)}\)</span></p>
+<p>Свойства:</p>
+<ol style="list-style-type: decimal">
+<li>Cвязь коэффициентов <span class="math inline">\(R^2\)</span> и <span class="math inline">\(R^2_{adj}\)</span></li>
+</ol>
+<p><span class="math inline">\(R^2_{adj}= 1-(1-R^2)-\frac{n-1}{n-k-1}\)</span>, это следует из из простой фрифметики <span class="math inline">\(R^2=1-\frac{RSS}{TSS} \rightarrow \frac{RSS}{TSS}= 1-R^2\)</span></p>
+<p>2.<span class="math inline">\(R^2 \le R^2_{adj}\)</span></p>
+<p>Замечу еще, что последнее свойство справедливо только для регрессий с одинаковыми зависимыми переменными, но можно взять разные наборы НЕзависимых переменных.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Лучше модель с большим <span class="math inline">\(R^2_{adj}\)</span></li>
+</ol>
+<p>Вот так незаметно закончидась глава, а ты боялся. :)</p>
+<hr />
 </div>
+<div id="----" class="section level4">
+<h4>Теорема Гаусса-Маркова в матрицах</h4>
+<p>В каком-то смысле использоваие упрощает нашу жизнь, например, теперь нужно писать только одну формулу для оценок коэффициентов.</p>
+<p>Из-за того что когда-то давно мы предположили, что ошибки - это случайная величина, мы имеем право считать оценки коэффициентов случайными величинами. Это работает и в матрицах, так как матрица <span class="math inline">\(X\)</span> детерминирована, а вектор <span class="math inline">\(u\)</span> случаен.</p>
+<p><span class="math inline">\(\hat{\beta}=(X'X)^{-1}X'y= (X'X)^{-1}X'(X\beta+u)= \beta+(X'X)^{-1}X'u\)</span></p>
+<div id="-_---" class="section level5">
+<h5>Теорема Гаусса_макркова для множественной регрессии</h5>
+<p>Если в <span class="math inline">\(y=X\beta+u\)</span> выполнены предпосылки</p>
+<ul>
+<li><p>Модель правильно специфицирована, то есть в нее включены все необходимые факторы, а лишних факторов нет и выбрана правильная функциональная форма модели</p></li>
+<li><p>Ранг матрицы <span class="math inline">\(x\)</span> максимален, то есть матрица невырожденная</p></li>
+<li><p><span class="math inline">\(E(u)=0\)</span></p></li>
+<li><p><span class="math inline">\(Var(u)=\sigma_{u}^2\times I_{n\times n}\)</span></p></li>
+<li><p><span class="math inline">\(\forall\epsilon_i,\epsilon_j \in u, \:\: cov(\epsilon_i, \epsilon_j) = 0\)</span></p></li>
+</ul>
+<p>тогда оценки МНК являются <span style="color:blue">BLUE</span></p>
+<p>Если ТГМ выполняется, то верно</p>
+<p><span class="math inline">\(\hat{\sigma_{u}}^2= \frac{RSS}{n-k-1}\)</span>, где <span class="math inline">\(k\)</span> - это количество факторов в модели.</p>
+<hr />
+</div>
+</div>
+<div id="------" class="section level4">
+<h4>Ура! Тестируем гипотезы в рамках множественной регрессии!</h4>
+<p>Я исренне верю, что ты умеешь считать односторонние доверительные интервалы, поэтому распишу только двусторонние. Анализ проверки гипотезы немного усложняется, так как мы работаем не с одной бетой, а с одной из большого множества бет.</p>
+<p>Каков наш план, капитан? А вот, собственно:</p>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Гипотеза о конкретном значении коэффициента</li>
+</ol>
+<p><span class="math inline">\(H_0: \beta_i=\beta_i^0\)</span></p>
+<p><span class="math inline">\(H_a: \beta_i \neq \beta_i^0\)</span></p>
+<p>В случае множественной регрессии <span class="math inline">\(\frac{\hat{\beta_i}-\beta_i^0}{\hat{\sigma_{\hat{\beta_i}}}}\sim t_{n-k-1}\)</span>, тогда доверительный интервал для проверки будет иметь вид:</p>
+<p><span class="math inline">\(\hat{\beta_i}-t_{n-k-1, \frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_i}}} \le \beta_i^0 \le \hat{\beta_i}+t_{n-k-1,1-\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_i}}}\)</span></p>
+<p>Если заданное в нулевой гипотезе значение беты попадает в доверительный интервал, тогда гипотеза не отвергается. Похоже на что-то?</p>
+<hr />
+<ol start="2" style="list-style-type: decimal">
+<li>Гипотеза о значимости коэффициента</li>
+</ol>
+<p>Рассмотрим только случай двусторонней гипотезы:</p>
+<p><span class="math inline">\(H_0: \beta_i=0\)</span></p>
+<p><span class="math inline">\(H_a: \beta_i \neq 0\)</span></p>
+<p>В таком случае <span class="math inline">\(\frac{\hat{\beta_1}}{\hat{\sigma_{\hat{\beta_1}}}}\sim t_{n-k-1}\)</span>, тогда доверительный интервал для проверки будет иметь вид:</p>
+<p><span class="math inline">\(\hat{\beta_i}-t_{n-k-1, \frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_i}}} \le \beta_1^0 \le \hat{\beta_i}+t_{n-k-1,1-\frac{\alpha}{2}}\times \hat{\sigma_{\hat{\beta_i}}}\)</span></p>
+<p>Если 0 попадает в доверительный интервал, тогда гипотеза не отвергается или иными словами, коэффициент <em>НЕ</em> значим.</p>
+<hr />
+<ol start="3" style="list-style-type: decimal">
+<li>Проверка гипотез об адекватности регрессии</li>
+</ol>
+<p>Эта гипотеза необходима для проверки наличия линейной зависимости между <span class="math inline">\(x\)</span> и <span class="math inline">\(y\)</span>. Если раньше достаточно было проверить значимость <span class="math inline">\(x\)</span>, то сейчас надо поступить хитрее. Так как в множественной регрессии существует совокупное влияние нескольких <span class="math inline">\(x_{i,j}\)</span> на <span class="math inline">\(y\)</span>, то давай проверим гипотезу о том, что все коэффициенты равны 0.</p>
+<p><span class="math inline">\(H_0: \beta_0=...= \beta_k=0\)</span></p>
+<p><span class="math inline">\(H_a: \exists \beta_i \neq 0, \; \forall i=1... k\)</span></p>
+<p>Иными словами нулевая гипотеза гласит, что выбранный набор независимых переменных <em>НЕ</em> оказывает линейного воздействия на <span class="math inline">\(y\)</span>.</p>
+<p>Teстовая статистика для проверки гипотезы имеет вид:</p>
+<p><span class="math inline">\(\frac{ESS/k}{RSS/(n-k-1)}=\frac{R^2/k}{(1-R^2)/(n-k-1)} = F_{k, \; n-k-1}\)</span></p>
+<p>Грустно тут придумывать доверительный интервал, поэтому просто нужно сравнить полученное значение F-теста с критическим для обозначенного количества степеней свободы</p>
+<p>Гипотеза <em>отвергается</em>, если <span class="math inline">\(F_{k, \; n-k-1} &gt; F_{\alpha (k, \; n-k-1)}^{cr}\)</span></p>
+<p>А теперь разовьем мысль: а что если в <span class="math inline">\(y\)</span> добавить скажем <span class="math inline">\(m-k\)</span> переменных, а чего мелочиться, то каков будет вклад новых факторов в регрессии?</p>
+<p>Для этого уже есть гипотеза и статистика.</p>
+<p><span class="math inline">\(H_0:\:\beta_{k+1}=...= \beta_m=0\)</span></p>
+<p><span class="math inline">\(H_a: \exists \beta_i \neq 0, \; \forall i=k+1... m\)</span></p>
+<p><span class="math inline">\(\frac{(RSS-RSS_m)/m-k}{RSS_m/(n-m)} = F_{m-k, \; n-m}\)</span></p>
+<p>Если гипотеза отвергается, то вклада новые факторы не приносят.</p>
+<hr />
+<ol start="4" style="list-style-type: decimal">
+<li>Проверка общей гипотезы о наличии линейных соотношений между коэффициетнов</li>
+</ol>
+<p>Что такое линейные ограничения? Это когда несколько бет при разных факторах равны между собой или просто равны 0.</p>
+<p>Строго говоря, есть три варианта, как проверить такую гипотезу: громоздким t-тестом, тестом Вальда и F-тестом, о последнем, как о наиболее удобном мы и поговорим ниже.</p>
+<p>Пусть <span class="math inline">\(Q\)</span> это некоторая матрица размера <span class="math inline">\((q\times k+1)\)</span>, где q -это количество линейно независимых ограничений на коэффициенты (то есть количество не выражаемых друг из друга ограничений).</p>
+<p><span class="math inline">\(H_0: Q\beta= q\)</span></p>
+<p><span class="math inline">\(H_a: Q\beta \neq q\)</span></p>
+<p><span class="math inline">\(F=\frac{(RSS_r-RSS_{ur})/q}{RSS_{ur}/(n-k-1)} = \frac{(R^2_{ur}-R^2_r)/q}{(1-R^2_{ur})/(n-k-1)}\)</span>, где <span class="math inline">\(RSS)r\)</span> -модель с учетом всех ограничений <span class="math inline">\(RSS_{ur}\)</span>- модель без ограничений.</p>
+<p>Если гипотеза не отвергается, то лучше использовать короткую модель, потому что она удобнее для анализа. И знаешь, для объяснения такой статистики есть геометрическая интерпретация.</p>
+<pre class="r"><code>#Тут будет график. Скоро. А вообще, если ты знаешь, как тут рисовать 3д модели, помоги мне, пожалуйста.</code></pre>
+<hr />
+</div>
+</div>
+<div id="-----" class="section level3">
+<h3>Фиктивные переменные и зачем они нужны</h3>
+<p>Фиктивные переменные или их еще называют дамми - это такие классые переменные, которые принимают только два значения: 0 и 1. Такие переменные нужны для “разветвления” регрессий на два или больше путей развития событий.</p>
+<p>Продолжение следует</p>
 </div>
 </div>
 </div>
