@@ -234,7 +234,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(ESS = \sum\limits_{i=1}^N (\hat{y}- \overline{y})^2\)</span> - это необъясненная сумма квадратов отклонений</p>
 <p><span class="math inline">\(TSS = \sum\limits_{i=1}^N (y-\overline{y})^2\)</span> - это общая сумма квадратов отклонений</p>
 <p>И соотношения между ними:</p>
-<p><span class="math inline">\(TSS^2= RSS^2+ESS^2\)</span></p>
+<p><span class="math inline">\(TSS= RSS+ESS\)</span></p>
 <p><span class="math inline">\(R^2 = \frac{ESS}{TSS}= 1- \frac{RSS}{TSS}\)</span>, <span class="math inline">\(R^2 \in [0;1]\)</span> - это коэффициент детерминации, то есть показатель качества подгонки или ( культурным языком ) соответствия нашей модели к реальности. При добавлении в уравнение регрессии любого фактора, <span class="math inline">\(R^2\)</span> не уменьшится.</p>
 <p>Интересно заметить, что <span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, x_i}^2}\)</span>. Это также имеет красивую геометрическую интерпретацию, которую я привожу ниже.</p>
 <pre class="r"><code>#тут будет график. Скоро</code></pre>
@@ -441,7 +441,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Cвязь коэффициентов <span class="math inline">\(R^2\)</span> и <span class="math inline">\(R^2_{adj}\)</span></li>
 </ol>
-<p><span class="math inline">\(R^2_{adj}= 1-(1-R^2)-\frac{n-1}{n-k-1}\)</span>, это следует из из простой фрифметики <span class="math inline">\(R^2=1-\frac{RSS}{TSS} \rightarrow \frac{RSS}{TSS}= 1-R^2\)</span></p>
+<p><span class="math inline">\(R^2_{adj}= 1-(1-R^2)\times\frac{n-1}{n-k-1}\)</span>, это следует из из простой фрифметики <span class="math inline">\(R^2=1-\frac{RSS}{TSS} \rightarrow \frac{RSS}{TSS}= 1-R^2\)</span></p>
 <p>2.<span class="math inline">\(R^2 \le R^2_{adj}\)</span></p>
 <p>Замечу еще, что последнее свойство справедливо только для регрессий с одинаковыми зависимыми переменными, но можно взять разные наборы НЕзависимых переменных.</p>
 <ol start="3" style="list-style-type: decimal">
@@ -526,11 +526,32 @@ $(document).ready(function () {
 <pre class="r"><code>#Тут будет график. Скоро. А вообще, если ты знаешь, как тут рисовать 3д модели, помоги мне, пожалуйста.</code></pre>
 <hr />
 </div>
+<div id="-------" class="section level4">
+<h4>Функциональна форма регрессии и еще немножко о тестах</h4>
+<hr />
 </div>
-<div id="-----" class="section level3">
-<h3>Фиктивные переменные и зачем они нужны</h3>
+<div id="-----" class="section level4">
+<h4>Фиктивные переменные и зачем они нужны</h4>
 <p>Фиктивные переменные или их еще называют дамми - это такие классые переменные, которые принимают только два значения: 0 и 1. Такие переменные нужны для “разветвления” регрессий на два или больше путей развития событий.</p>
-<p>Продолжение следует</p>
+<p>Классическим примером всегда является уравнение минцеровского типа (да-да, экономика труда) для заработной платы.</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}\times D_1( Male)+ \hat{\beta_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
+<p>Пусть</p>
+<span class="math display">\[\begin{equation*}
+D_i = 
+ \begin{cases}
+   1 &amp;\text{, for Male}\\
+  0 &amp;\text{, for Female}
+ \end{cases}
+\end{equation*}\]</span>
+<p>Заметим, что постановка задачи не толерантная, тут рассматривается не только два гендера, но еще и женщинам определен 0. Грусть и боль, но мы идем далее.</p>
+<p>Так вот, в нашей нетолерантной задаче респонденты делятся на два вида, и для каждого существует своя регрессия.</p>
+<p>Для мужчин <span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}+ \hat{\beta_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
+<p>Для женщин <span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+ \hat{\beta_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
+<p>очевидно, что зарплаты мужчин в среднем на <span class="math inline">\(\hat{\psi_0}\)</span> процентов выше, чем у женщин.</p>
+<p>Но можно еще поиграть с моделью.</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}\times D_1( Male)+\hat{\beta_1}\times\hat{\psi_1}\times D_1 Edu+\hat{\beta_2}\times City\)</span></p>
+<p>Интерпретация дамми переменной все такая же не толерантная, даже хуже. Теперь мы не просто мужчин от женщин разделяем, а высокообразованных людей и женщин от не очень образованных.</p>
+</div>
 </div>
 </div>
 </div>
