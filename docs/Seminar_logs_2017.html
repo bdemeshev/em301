@@ -238,7 +238,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(R^2 = \frac{ESS}{TSS}= 1- \frac{RSS}{TSS}\)</span>, <span class="math inline">\(R^2 \in [0;1]\)</span> - это коэффициент детерминации, то есть показатель качества подгонки или ( культурным языком ) соответствия нашей модели к реальности. При добавлении в уравнение регрессии любого фактора, <span class="math inline">\(R^2\)</span> не уменьшится.</p>
 <p>Интересно заметить, что <span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, x_i}^2}\)</span>. Это также имеет красивую геометрическую интерпретацию, которую я привожу ниже.</p>
 <pre class="r"><code>#тут будет график. Скоро</code></pre>
-<p>Тоже самое пространство, но только оно перевернуто с ног на голову. Заметим, что если <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span>, то <span class="math inline">\(R^2= cos^2(\phi)\)</span>, а косинус можно расписать немного иначе, а именно <span class="math inline">\(cos(\phi) =\frac{(\sum\limits_{i=0}^n (y-\overline{y})\times(\hat{y}-\overline{y}))^2}{\sum\limits_{i=0}^n (y-\overline{y})^2\times\sum\limits_{i=0}^n(\hat{y}-\overline{y})^2}= \frac{\hat{cov(y, \hat{y})}}{\hat{\sigma^2_y}\times\hat{\sigma^2_{\hat{y}}}} = \hat{\rho_{y, \hat{y}}}\)</span></p>
+<p>То же самое пространство, но только оно перевернуто с ног на голову. Заметим, что если <span class="math inline">\(R^2 = \frac{ESS}{TSS}\)</span>, то <span class="math inline">\(R^2= cos^2(\phi)\)</span>, то косинус можно расписать немного иначе, а именно <span class="math inline">\(cos(\phi) =\frac{(\sum\limits_{i=0}^n (y-\overline{y})\times(\hat{y}-\overline{y}))^2}{\sum\limits_{i=0}^n (y-\overline{y})^2\times\sum\limits_{i=0}^n(\hat{y}-\overline{y})^2}= \frac{\hat{cov(y, \hat{y})}}{\hat{\sigma^2_y}\times\hat{\sigma^2_{\hat{y}}}} = \hat{\rho_{y, \hat{y}}}\)</span></p>
 <p>Заметим еще, что задачи <span class="math inline">\(RSS \rightarrow min\; и\; R^2\rightarrow max\)</span> эквивалентны.</p>
 <p>Еще раз повторяю. Это справедливо только если есть константа в построенном прогнозе!</p>
 </div>
@@ -359,7 +359,7 @@ $(document).ready(function () {
 <p>Из ТГМ нам известно, что <span class="math inline">\(\epsilon_i \sim N(0, \sigma^2_{\epsilon_i}), \; cov(\epsilon_i, \epsilon_j) = 0\)</span>, это дает нам право считать, что</p>
 <p><span class="math inline">\(\hat{\beta_1} =\frac{\hat{cov}(x_i,y_i)}{\hat{var}(x)} = \frac{\hat{cov}(x_i, \beta_0 +\beta_1\times x_i +\epsilon_i)}{\hat{var}(x)}= \frac{\hat{cov}(x_i, \beta_0}{\hat{var}(x)}+\beta_1 \times \frac{\hat{cov}(x_i, x_i}{\hat{var}(x)}+\frac{\hat{cov}(x_i, \epsilon_i)}{\hat{var}(x)}=\)</span></p>
 <p><span class="math inline">\(\beta_1 + \frac{\hat{cov(x_i,\epsilon_i)}}{\hat{var(x)}}\)</span>,</p>
-<p>поэтому <span class="math inline">\(\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\beta_1})\)</span>. Аналочичный анализ справедлив и для <span class="math inline">\(\hat{\beta_0}\)</span></p>
+<p>поэтому <span class="math inline">\(\hat{\beta_1} \sim N(\beta_1, \sigma^2_{\beta_1})\)</span>. Аналогичный анализ справедлив и для <span class="math inline">\(\hat{\beta_0}\)</span></p>
 <hr />
 <ol start="8" style="list-style-type: decimal">
 <li><span class="math inline">\(\forall i \in [1,2] \: оценки \:\hat{\beta_i} \; и\; \hat{\sigma^2_{\epsilon}}\)</span> являются независимыми</li>
@@ -442,7 +442,7 @@ $(document).ready(function () {
 <li>Cвязь коэффициентов <span class="math inline">\(R^2\)</span> и <span class="math inline">\(R^2_{adj}\)</span></li>
 </ol>
 <p><span class="math inline">\(R^2_{adj}= 1-(1-R^2)\times\frac{n-1}{n-k-1}\)</span>, это следует из из простой фрифметики <span class="math inline">\(R^2=1-\frac{RSS}{TSS} \rightarrow \frac{RSS}{TSS}= 1-R^2\)</span></p>
-<p>2.<span class="math inline">\(R^2 \le R^2_{adj}\)</span></p>
+<p>2.<span class="math inline">\(R^2_{adj} \le R^2\)</span></p>
 <p>Замечу еще, что последнее свойство справедливо только для регрессий с одинаковыми зависимыми переменными, но можно взять разные наборы НЕзависимых переменных.</p>
 <ol start="3" style="list-style-type: decimal">
 <li>Лучше модель с большим <span class="math inline">\(R^2_{adj}\)</span></li>
@@ -528,7 +528,87 @@ $(document).ready(function () {
 </div>
 <div id="-------" class="section level4">
 <h4>Функциональна форма регрессии и еще немножко о тестах</h4>
+<p>Всегда ли удобно использовать регрессию для выборки в лоб? Если я задаю такой вопрос, то очевидно, что ответ “нет”, и это так. Действительно, а зачем тогда люди придумывали логарифмы и всякие разные преобразования? Конечно, чтобы облегчить нам жизнь. ~~ если нет, то гуманитария ответ ~~. Давай разбираться, как можно преобразовывать переменные в регрессиях.</p>
+<p>Что делать, если зависимость задана <span class="math inline">\(\hat{y_i}= \hat{\beta_0}+\frac{\hat{\beta_1}}{x_i}\)</span> или <span class="math inline">\(y= \hat{\beta_1}X^{\hat{\beta_2}}\)</span> ? Ну не плакать же, ведь в конце концов к обеим зависимостям можно применить линейный регрессионный анализ :)</p>
+<p>Заметим опять же, что для метрики важна линейность по параметрам, а не по переменным, поэтому можно заменить <span class="math inline">\(z_i=\frac{1}{x_i}\)</span> и радоваться жизни дальше. А что делать с <span class="math inline">\(y= \hat{\beta_1}X^{\hat{\beta_2}}\)</span>, ведь преобразование вида <span class="math inline">\(z_i=\sqrt[\hat{\beta_2}]x_i\)</span> приведет в ужас эконометриста, потому что модель <em><em>мамочки</em></em> не линейна и по параметрам, и по переменным. Но все же можно к ней применять линейный регрессионный анализ, если ты владеешь темной-темной магией логарифми-и-ирования. Но если серьезно, то сейчас ты поймешь, что без логарифмов никуда, ведь он подобен утюжку для волос, который из кудельков делает прямые волосы, но только для функций.</p>
+<p>:sparkles: А теперь магия</p>
+<p><span class="math inline">\(y= \hat{\beta_1}X^{\hat{\beta_2}}\)</span></p>
+<p><span class="math inline">\(lny= ln\hat{\beta_1}+ \hat{\beta_2}lnx\)</span></p>
+<p>Вот и все :)</p>
+<p>Такое преобразование дает нам логлинейную зависимость, ибо она линейна относительно логарифмов. Как интерпретировать такую зависимость? В нашем случае трудно дать интерпретацию <span class="math inline">\(\hat{\beta_1}\)</span>, но для <span class="math inline">\(\hat{\beta_2}\)</span> она есть, бэта при факторе показывает, на сколько процентов изменится наш <span class="math inline">\(y\)</span> при изменении на 1% <span class="math inline">\(x\)</span>. Ничего не напоминает? Да, эластичность даже тут нас нашла</p>
+<p>Иногда природные процессы бывают сложными и описываются так: <span class="math inline">\(y= \hat{\beta_1}e^{\hat{X\beta_2}}\)</span>. Что же делать? Так, ну-ка утер слезы! Зовем логарифм!</p>
+<p><span class="math inline">\(y= \hat{\beta_1}e^{\hat{X\beta_2}}\)</span></p>
+<p><span class="math inline">\(lny= ln\hat{\beta_1}+ lne^{\hat{X\beta_2}}\)</span></p>
+<p><span class="math inline">\(lny= ln\hat{\beta_1}+ \hat{X\beta_2}\)</span></p>
+<p>Вот так мы снова справились с нелинейностью! Такие модели называют полулогарифмическими моделями. Но как же интерпретировать нашу модель? Теперь <span class="math inline">\(\beta_2\)</span> означает изменение <span class="math inline">\(y\)</span> в <em>процентах</em> при изменении <span class="math inline">\(x\)</span> на одну <em>абсолютную</em> величину.</p>
+<p>А теперь вопрос на миллион. Как выбрать нужную модель, если они все классненькие и линейные, да еще и все адекватно описывают. Ответ: надо тестировать.</p>
 <hr />
+<div id="---------" class="section level5">
+<h5>Как выбрать функциональную форму модели, если все они тебе нравятся?</h5>
+<p>Умение линеризировать модель в неком роде формализует линейный регрессионный анализ, что на руку исследователю, но одновременно это здорово усложняет ему жизнь, так как при непосредственном выборе формы модели нельзя сравнивать сумму квадратов отклонений и <span class="math inline">\(R^2\)</span>, как мы делали в случае наличия ограничений в модели, потому что теперь эти показатели не измеряют одно и тоже, а если еще и безразмерный <span class="math inline">\(R^2\)</span> в двух регрессиях почти одинаковый, то все равно надо держать себя в руках и не плакать!</p>
+<p>Есть три теста, которые надо знать:</p>
+<p><strong>1.Тест Бера-МакАлера или как выбрать за четыре шага между полулогарифмической и линейной моделью.</strong></p>
+<p>Шаг 1:</p>
+<p>Найдем оцененные значения зависимой переменной в каждой модели <span class="math inline">\(\hat{y}, \;\hat{lny}\)</span></p>
+<p>Шаг 2:</p>
+<p>Составим вспомогательные регресии</p>
+<p><span class="math inline">\(e^{\hat{y}}= \beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\epsilon_{1,i}\)</span></p>
+<p><span class="math inline">\(ln\hat{y}= \beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\epsilon_{2,i}\)</span></p>
+<p>Шаг 3: Оценим совсем новые регрессии</p>
+<p><span class="math inline">\(lny= \beta_0+\sum\limits_{i=1}^k\beta_ix_i +\theta_1\hat{\epsilon_{1,i}} +u_i\)</span></p>
+<p><span class="math inline">\(y= \beta_0+\sum\limits_{i=1}^k\beta_ix_i +\theta_1\hat{\epsilon_{2,i}} +u_i\)</span></p>
+<p>Шаг 4: Сравним <span class="math inline">\(\hat{\theta_1}\)</span> и <span class="math inline">\(\hat{\theta_2}\)</span>, если <span class="math inline">\(\hat{\theta_1}\)</span> значим, то выбираем полулогарифмическую модель, если значим <span class="math inline">\(\hat{\theta_2}\)</span> - то линейную, а если оба коэффициента одновременно значимы или незначимы, то можно наконец-то пустить скупую слезу, потому что придется применить другой тест.</p>
+<p><strong>2. РЕ-тест МакКиннона для выбора между полулогарифмической и линейной моделью.</strong></p>
+<p>Шаг 1:</p>
+<p>Найдем оцененные значения зависимой переменной в каждой модели <span class="math inline">\(\hat{y}, \;\hat{lny}\)</span></p>
+<p>Шаг 2: Оценим вспомогательные регрессии</p>
+<p><span class="math inline">\(ln\hat{y}= \beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\gamma_1 (\hat{y}- e^{\hat{lny}})+ \epsilon_1\)</span></p>
+<p><span class="math inline">\(\hat{y}= \beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\gamma_2 (ln\hat{y}- \hat{lny}) +\epsilon_2\)</span></p>
+<p>Шаг 3: Оцениваем эту модель и сравниваем значимость <span class="math inline">\(\gamma\)</span></p>
+<p>Eсли <span class="math inline">\(\hat{\gamma_1}\)</span> <strong>НЕ</strong>значим, то выбираем полулогарифмическую модель, если <strong>НЕ</strong>значим <span class="math inline">\(\hat{\gamma_2}\)</span> - то линейную, а если оба коэффициента одновременно значимы или незначимы, то вообще есть повод забеспокоиться.</p>
+<p><strong>2. РЕ-тест МакКиннона для выбора между логарифмической и линейной моделью.</strong></p>
+<p>Шаг 1:</p>
+<p>Найдем оцененные значения зависимой переменной в каждой модели</p>
+<p><span class="math inline">\(\hat{y}=\beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\epsilon_{1,i}\)</span></p>
+<p><span class="math inline">\(\hat{lny}\beta_0 +\sum\limits_{i=1}^k \beta_i lnx_i +\epsilon_{1,i}\)</span></p>
+<p>Шаг 2: Оценим вспомогательные регрессии</p>
+<p><span class="math inline">\(ln\hat{y}= \beta_0 +\sum\limits_{i=1}^k \beta_i lnx_i +\delta_1 (\hat{y}- e^{\hat{lny}})+ \epsilon_1\)</span></p>
+<p><span class="math inline">\(\hat{y}= \beta_0 +\sum\limits_{i=1}^k \beta_i x_i +\delta_2 (ln\hat{y}- \hat{lny}) +\epsilon_2\)</span></p>
+<p>Шаг 3: Оцениваем эту модель и сравниваем значимость <span class="math inline">\(\delta\)</span></p>
+<p>Eсли <span class="math inline">\(\hat{\delta_1}\)</span> <strong>НЕ</strong>значим, то выбираем логарифмическую модель, если <strong>НЕ</strong>значим <span class="math inline">\(\hat{\delta_2}\)</span> - то линейную, а если оба коэффициента одновременно значимы или незначимы, то есть серьезный такой повод забеспокоиться.</p>
+<p><strong>3. Универсальный тест Бокса-Кокса №1</strong></p>
+<p>Это волшебный тест, где мы меняем масштаб наблюдений <span class="math inline">\(y\)</span>, чтобы сравнивать <span class="math inline">\(RSS\)</span> непосредственно.</p>
+<p>Шаг 1: Вспомним, что среднее геометрическое должно быть равно экспоненте среднего арифметического</p>
+<p><span class="math inline">\(e^{\frac{1}{n}\sum\limits_{i=1}^n ln(y)}=e^{\frac{1}{n}ln(П_{i=1}^n y)}=(П_{i=1}^n y)^\frac{1}{n}\)</span></p>
+<p>Шаг 2: Масштабируем наблюдения</p>
+<p><span class="math inline">\(y_i^* = \frac{y_i}{(П_{i=1}^n y)^\frac{1}{n}}\)</span></p>
+<p><span class="math inline">\(ln(y_i^*)= ln(\frac{y_i}{(П_{i=1}^n y)^\frac{1}{n}})\)</span></p>
+<p>Шаг 3:</p>
+<p>Оценим модели с использованием <span class="math inline">\(y_i^*\)</span> и <span class="math inline">\(ln(y_i^*)\)</span>, а потом просто оценим <span class="math inline">\(RSS\)</span> двух моделей</p>
+<p><strong>3. Тест Бокса-Кокса №2 интуитивно труднопонимаемый, но легко заучиваемый</strong></p>
+<p>По сути это такой же Бокс-Кокс как и раньше, но с неочевидной трансформацией переменных.</p>
+<p>Шаг 1: Введем саму трансформацию</p>
+<p><span class="math inline">\(y^{(\lambda)}=\frac{y^{\lambda}-1}{\lambda}, \: \lambda \neq 0\)</span>, чтобы избежать неопределенности Если устремить лямбду к нулю и воспользоваться правилом Лопиталя, то получим логарифм игрека</p>
+<p>В общем виде</p>
+<span class="math display">\[\begin{equation*}
+y^{(\lambda)} = 
+ \begin{cases}
+   \frac{y^{\lambda}-1}{\lambda}, \lambda \neq 0\\
+  lny, \lambda = 0
+ \end{cases}
+\end{equation*}\]</span>
+<p>Тогда линейная форма принимает интересный вид</p>
+<p><span class="math inline">\(\hat{y^{(\lambda)}}=\beta_0 +\sum\limits_{i=1}^k \beta_i x_i^{(\theta)} +\epsilon_{1,i}\)</span></p>
+<span class="math display">\[\begin{equation*}
+x^{(\theta)} = 
+ \begin{cases}
+   \frac{x^{\theta}-1}{\theta}, \theta \neq 0\\
+  lnx, \theta = 0
+ \end{cases}
+\end{equation*}\]</span>
+<p>В оцененной модели нас теперь интересуют сразу значимость и лямбды, и теты. Если лямбда и тета одновремено равны 1, то выбираем линейную модель, если лямбда и тета равны 0, то выбираем логлинейную модель. Если только тета равна 1, то без сомнений используем линейную модель,а если только лямбда равна нулю, то нужно использовать полулогарифмическую модельку.</p>
+<hr />
+</div>
 </div>
 <div id="-----" class="section level4">
 <h4>Фиктивные переменные и зачем они нужны</h4>
@@ -543,14 +623,45 @@ D_i =
   0 &amp;\text{, for Female}
  \end{cases}
 \end{equation*}\]</span>
-<p>Заметим, что постановка задачи не толерантная, тут рассматривается не только два гендера, но еще и женщинам определен 0. Грусть и боль, но мы идем далее.</p>
+<p>Заметим, что постановка задачи нетолерантная, тут рассматривается не только два гендера, но еще и женщинам определен 0. Грусть и боль, но мы идем далее.</p>
 <p>Так вот, в нашей нетолерантной задаче респонденты делятся на два вида, и для каждого существует своя регрессия.</p>
 <p>Для мужчин <span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}+ \hat{\beta_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
 <p>Для женщин <span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+ \hat{\beta_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
 <p>очевидно, что зарплаты мужчин в среднем на <span class="math inline">\(\hat{\psi_0}\)</span> процентов выше, чем у женщин.</p>
 <p>Но можно еще поиграть с моделью.</p>
 <p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}\times D_1( Male)+\hat{\beta_1}\times\hat{\psi_1}\times D_1 Edu+\hat{\beta_2}\times City\)</span></p>
-<p>Интерпретация дамми переменной все такая же не толерантная, даже хуже. Теперь мы не просто мужчин от женщин разделяем, а высокообразованных людей и женщин от не очень образованных.</p>
+<p>Пусть</p>
+<span class="math display">\[\begin{equation*}
+D_1 = 
+ \begin{cases}
+   1 &amp;\text{, for Male}\\
+  0 &amp;\text{, for Female}
+ \end{cases}
+\end{equation*}\]</span>
+<p>Пусть</p>
+<span class="math display">\[\begin{equation*}
+D_2 = 
+ \begin{cases}
+   1 &amp;\text{, for High education}\\
+  0 &amp;\text{, for only School graduation}
+ \end{cases}
+\end{equation*}\]</span>
+<p>Интерпретация дамми переменной все такая же не толерантная, даже хуже. Теперь мы не просто мужчин от женщин разделяем, а еще высокообразованных людей от не очень образованных. Наши регрессии принимают вид</p>
+<p>Образованные</p>
+<p>Для мужчин</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}+\hat{\beta_1}\times\hat{\psi_1}Edu+\hat{\beta_2}\times City\)</span></p>
+<p>Для женщин</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\beta_1}\times\hat{\psi_1}\times Edu+\hat{\beta_2}\times City\)</span></p>
+<p>Youtube бьюти блоггеры и те, кто ушел после 9-го класса.</p>
+<p>Для мужчин</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_0}+\hat{\beta_2}\times City\)</span></p>
+<p>Для женщин</p>
+<p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\beta_2}\times City\)</span></p>
+<p>В этом случае у нас 4 регрессии, и если рассматривать их отдельно по группам, то можно заметить, что кроме константы для мужчин и женщин меняется угол наклона для бразованных и не очень (простите меня за нетолерантность и оскорбление чувств выбравших иной путь… хотя.. надеюсь, что вторая группа в выборке никогда этого не прочитает)</p>
+<div id="------" class="section level5">
+<h5>Тесты на единую зависимость во множественной регресии</h5>
+<p>Продолжение следует</p>
+</div>
 </div>
 </div>
 </div>
