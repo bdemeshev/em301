@@ -679,8 +679,8 @@ D_2 =
 <p>Начнем с самой простой <em>гипотезы, которая состоит в том, что разница <span class="math inline">\(\gamma\)</span> равна нулю</em>, её проверяют стандартным <span class="math inline">\(t\)</span>-тестом в случае одной фиктивной переменной, а что делать, если таких “пустых” переменных много?</p>
 <p>Предположим, что тестируется наша гипотеза</p>
 <p><span class="math inline">\(ln(\hat{W})=\hat{\beta_0}+\hat{\psi_1}\times D_1 Sch+\hat{\psi_2}\times D_2 Tech+\hat{\psi_3}\times D_3 Coll+\hat{\beta_1}\times City\)</span></p>
-<p><span class="math inline">\(H_0=\psi_1=\psi_2=\psi_3=0\)</span></p>
-<p><span class="math inline">\(H_a= \exists\psi_i\neq0\;\forall i\in[1,2,3]\)</span></p>
+<p><span class="math inline">\(H_0:\psi_1=\psi_2=\psi_3=0\)</span></p>
+<p><span class="math inline">\(H_a: \exists\psi_i\neq0\;\forall i\in[1,2,3]\)</span></p>
 <p>Как мы уже знаем, такие гипотезы проверяю F-тестом</p>
 <p>тестируемая старистика имеет фид</p>
 <p><span class="math inline">\(F=\frac{(RSS_{NO\;DUMMIES}-RSS_{WITH\; DUMMIES})/\:\:(k+1)}{(RSS_{WITH\; DUMMIES})/(n-2k-1)}\)</span></p>
@@ -692,8 +692,8 @@ D_2 =
 <p>Предположим, что все дамми равны 1, это конечно же, невозможно, но вдруг… на самом деле в таком случае, мы просто используем факт, что у человека есть какое-то образование, что простосоответствует фактору <span class="math inline">\(Edu\)</span>, тогда всмомним историю про усталых ученых и гамму. <span class="math inline">\(\beta_i'=\beta_i+\psi_i\)</span>, тогда регрессия будет вида</p>
 <p><span class="math inline">\(ln({W_1})=(\beta_0+\psi_0)+(\psi_1+\beta_1)\times Sch+(\psi_2+beta_2) Tech+(\psi_3+\beta_3)Coll+(\psi_4+\beta_4) City\)</span></p>
 <p>Тогда наша нулевая гипотеза принимает вид</p>
-<p><span class="math inline">\(H_0=\psi_i=\beta_i'\)</span></p>
-<p><span class="math inline">\(H_a= \exists\psi_i\neq \beta_i'\:\;\forall i\in[1,2,3]\)</span></p>
+<p><span class="math inline">\(H_0:\psi_i=\beta_i'\)</span></p>
+<p><span class="math inline">\(H_a: \exists\psi_i\neq \beta_i'\:\;\forall i\in[1,2,3]\)</span></p>
 <p>А теперь сама статистика</p>
 <p><span class="math inline">\(F=\frac{(RSS_{pooled}-RSS_1-RSS_2)/(k+1)}{(RSS_1+RSS_2)/(n-2k-2)}\)</span></p>
 <p>Eсли посмотреть внимательно, то будет ясно, что эта статистика очень похожа на статистику, которая проверяет нличие линейных ограничений, а значит <span class="math inline">\(RSS_{pooled}=RSS_R\)</span>, a <span class="math inline">\(RSS_1+RSS_2=RSS_{ur}\)</span>, поэтому можно сделать вывод, что <span class="math inline">\((RSS_1+RSS_2) \le RSS_{pooled}\)</span></p>

@@ -903,9 +903,9 @@ $ln(\hat{W})=\hat{\beta_0}+\hat{\beta_2}\times City$
 
 $ln(\hat{W})=\hat{\beta_0}+\hat{\psi_1}\times D_1 Sch+\hat{\psi_2}\times D_2 Tech+\hat{\psi_3}\times D_3 Coll+\hat{\beta_1}\times City$
 
-$H_0=\psi_1=\psi_2=\psi_3=0$
+$H_0:\psi_1=\psi_2=\psi_3=0$
 
-$H_a= \exists\psi_i\neq0\;\forall i\in[1,2,3]$
+$H_a: \exists\psi_i\neq0\;\forall i\in[1,2,3]$
 
 Как мы уже знаем, такие гипотезы проверяю F-тестом
 
@@ -930,9 +930,9 @@ $ln({W_1})=(\beta_0+\psi_0)+(\psi_1+\beta_1)\times Sch+(\psi_2+beta_2) Tech+(\ps
 
 Тогда наша нулевая гипотеза принимает вид
 
-$H_0=\psi_i=\beta_i'$
+$H_0:\psi_i=\beta_i'$
 
-$H_a= \exists\psi_i\neq \beta_i'\:\;\forall i\in[1,2,3]$
+$H_a: \exists\psi_i\neq \beta_i'\:\;\forall i\in[1,2,3]$
 
 А теперь сама статистика
 
