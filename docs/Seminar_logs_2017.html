@@ -442,7 +442,7 @@ $(document).ready(function () {
 <p><span class="math inline">\(\frac{y'y-(y-X\hat{\beta})'*(y-X\hat{\beta})}{y'y}=\)</span></p>
 <p><span class="math inline">\(\frac{y'y-(y'y-\hat{\beta}'X'y-y'X\hat{\beta}+\hat{\beta}'*X'X\hat{\beta})}{y'y}=\)</span></p>
 <p><span class="math inline">\(\frac{\hat{\beta}'(X'y-X'X\hat{\beta})+y'X\hat{\beta}}{y'y}=\)</span></p>
-<p><span class="math inline">\(\frac{(n-1)(y'X\hat{\beta})'}{(n-1)y'y}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}\)</span></p>
+<p><span class="math inline">\(\frac{(n-1)\sum\limits_{i=1}^k((y-\overline{y})(x_i-\overline{x})\hat{\beta_i})}{(n-1)\sum\limits_{i=1}^k(y-\overline{y})^2}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}\)</span></p>
 <p>Поэтому наш фактор <span class="math inline">\(x_i\)</span> объясняет долю <span class="math inline">\(\frac{\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}}{R^2}\)</span> в регрессии</p>
 <hr />
 <p>Как мы уже знаем, чем больше <span class="math inline">\(R^2\)</span>, тем по идее наша модель лучше описывает реальность, то есть напихать <del>доф</del> очень много факторов, то даже при единичном значении <span class="math inline">\(R^2\)</span> модель будет плохой, поэтому умные люди придумали корректировать коэффициент детерминации регрессии на число степеней свободы и назвали его <span class="math inline">\(R_{adj}\)</span>.</p>
