@@ -228,9 +228,9 @@ $(document).ready(function () {
 <p>У МНК есть красивая геометрическая интерпретация, которая верна как для парного, так и для многомерного случая, которую я нарисую внизу :)</p>
 <pre class="r"><code>#Тут будет график. Скоро.</code></pre>
 <p>В трехметрном пространстве есть 4 n-мерных вектора: <span class="math inline">\(y, x, z \; и \; 1\)</span>, где <span class="math inline">\(y \notin Lin(x,z,1)\)</span></p>
-<p>Если спроектировать <span class="math inline">\(y \; на\; Lin(x,z,1)\)</span>, то полyчим <span class="math inline">\(\hat{y}, \;а \;вектор, \; который \; соединяет \;y \; и\; \hat{y} \; является \; вектором \; ошибок\; прогноза\; -\; RSS\)</span>. Теперь спроектируем <span class="math inline">\(\hat{y}\)</span> на единичный вектор, тем самым мы получим вектор средних значений - <span class="math inline">\(\overline{y}\)</span> - через вычитание из вектора <span class="math inline">\(\hat{y}\)</span> необъясняемых квадратов отклонений - <span class="math inline">\(ESS\)</span>. Получается, что, так как <span class="math inline">\(RSS \perp \hat{y}, \; а \; ESS \perp \overline{y}\)</span>, тогда проекция <span class="math inline">\(y \;на\; 1\)</span> дает в рузультате вектор средних значений <span class="math inline">\(y\)</span> и равен <span class="math inline">\(ESS+RSS\)</span></p>
+<p>Если спроектировать <span class="math inline">\(y \; на\; Lin(x,z,1)\)</span>, то полyчим <span class="math inline">\(\hat{y}, \;а \;вектор, \; который \; соединяет \;y \; и\; \hat{y} \; является \; вектором \; ошибок\; прогноза\; -\; RSS\)</span>. Теперь спроектируем <span class="math inline">\(\hat{y}\)</span> на единичный вектор, тем самым мы получим вектор средних значений - <span class="math inline">\(\overline{y}\)</span> - через вычитание из вектора <span class="math inline">\(\hat{y}\)</span> объясняемых квадратов отклонений - <span class="math inline">\(ESS\)</span>. Получается, что, так как <span class="math inline">\(RSS \perp \hat{y}, \; а \; ESS \perp \overline{y}\)</span>, тогда проекция <span class="math inline">\(y \;на\; 1\)</span> дает в рузультате вектор средних значений <span class="math inline">\(y\)</span> и равен <span class="math inline">\(ESS+RSS\)</span></p>
 <p>Вот так мы получили еще три столба для эконометрики</p>
-<p><span class="math inline">\(RSS=\sum\limits_{i=1}^N (y-\hat{y})^2\)</span> -это необъясненная сумма квадратов отклонений</p>
+<p><span class="math inline">\(RSS=\sum\limits_{i=1}^N (y-\hat{y})^2\)</span> -это необъясненная сумма квадратов остатков регрессии, мы ее минимизируем</p>
 <p><span class="math inline">\(ESS = \sum\limits_{i=1}^N (\hat{y}- \overline{y})^2\)</span> - это объясненная сумма квадратов отклонений</p>
 <p><span class="math inline">\(TSS = \sum\limits_{i=1}^N (y-\overline{y})^2\)</span> - это общая сумма квадратов отклонений</p>
 <p>И соотношения между ними:</p>
@@ -732,8 +732,8 @@ D_2 =
 </div>
 </div>
 </div>
-<div id="---" class="section level2">
-<h2>Удачи тебе на экзамене!</h2>
+<div id="------" class="section level2">
+<h2>Удачи тебе на экзамене! Все будет хорошо!</h2>
 </div>
 </div>
 
