@@ -230,8 +230,8 @@ $(document).ready(function () {
 <p>В трехметрном пространстве есть 4 n-мерных вектора: <span class="math inline">\(y, x, z \; и \; 1\)</span>, где <span class="math inline">\(y \notin Lin(x,z,1)\)</span></p>
 <p>Если спроектировать <span class="math inline">\(y \; на\; Lin(x,z,1)\)</span>, то полyчим <span class="math inline">\(\hat{y}, \;а \;вектор, \; который \; соединяет \;y \; и\; \hat{y} \; является \; вектором \; ошибок\; прогноза\; -\; RSS\)</span>. Теперь спроектируем <span class="math inline">\(\hat{y}\)</span> на единичный вектор, тем самым мы получим вектор средних значений - <span class="math inline">\(\overline{y}\)</span> - через вычитание из вектора <span class="math inline">\(\hat{y}\)</span> необъясняемых квадратов отклонений - <span class="math inline">\(ESS\)</span>. Получается, что, так как <span class="math inline">\(RSS \perp \hat{y}, \; а \; ESS \perp \overline{y}\)</span>, тогда проекция <span class="math inline">\(y \;на\; 1\)</span> дает в рузультате вектор средних значений <span class="math inline">\(y\)</span> и равен <span class="math inline">\(ESS+RSS\)</span></p>
 <p>Вот так мы получили еще три столба для эконометрики</p>
-<p><span class="math inline">\(RSS=\sum\limits_{i=1}^N (y-\hat{y})^2\)</span> -это объясненная сумма квадратов отклонений</p>
-<p><span class="math inline">\(ESS = \sum\limits_{i=1}^N (\hat{y}- \overline{y})^2\)</span> - это необъясненная сумма квадратов отклонений</p>
+<p><span class="math inline">\(RSS=\sum\limits_{i=1}^N (y-\hat{y})^2\)</span> -это необъясненная сумма квадратов отклонений</p>
+<p><span class="math inline">\(ESS = \sum\limits_{i=1}^N (\hat{y}- \overline{y})^2\)</span> - это объясненная сумма квадратов отклонений</p>
 <p><span class="math inline">\(TSS = \sum\limits_{i=1}^N (y-\overline{y})^2\)</span> - это общая сумма квадратов отклонений</p>
 <p>И соотношения между ними:</p>
 <p><span class="math inline">\(TSS= RSS+ESS\)</span></p>
@@ -426,8 +426,8 @@ $(document).ready(function () {
 <p>В общем-то коэффициент множественной детерминации будет определяться по той же самой формуле, как и раньше <span class="math inline">\(R^2=\frac{ESS}{TSS}\)</span>,и почти все свойства сохраняются с небольшими изменениями.</p>
 <ol style="list-style-type: decimal">
 <li><p><span class="math inline">\(R^2=1-\frac{RSS}{TSS}\)</span>, но опять же оговоримся о надобности константы в модели для работы этого свойства.</p></li>
-<li><p><span class="math inline">\(R^2=\frac{\hat{var}(\hat{y})}{\hat{var}(y)}\)</span></p></li>
-<li><p><span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, x_i}^2}\)</span></p></li>
+<li><p><span class="math inline">\(R^2=\frac{\hat{var}(\hat{y})}{\hat{var}(y)}=\sum\limits_{i=1}^k\frac{\hat{cov}(x_i,y)}{\hat{var}(x_i)}\)</span></p></li>
+<li><p><span class="math inline">\(R^2= \frac{\sum\limits_{i=1}^N (\hat{y}- \overline{y})^2}{\sum\limits_{i=1}^N (y-\overline{y})^2} = \hat{\rho_{y_i, y_i}^2}\)</span></p></li>
 <li><p><span class="math inline">\(RSS \rightarrow min \Leftrightarrow R^2\rightarrow max\)</span></p></li>
 <li><p>При добавлении фактора <span class="math inline">\(R^2\)</span> не уменьшается</p></li>
 </ol>
@@ -709,6 +709,7 @@ D_2 =
 <p>Но по каким-то неведомым причинам, скажем, потому что решили оценивать модель в 2 часа ночи из-за бессоницы, наша оцененная модель имеет вид:</p>
 <p><span class="math inline">\(\hat{y_i}=\hat{\beta_0}+\hat{\beta_2}x_{1,i}+\hat{\beta_2}x_{2,i}\)</span></p>
 <p>Тогда бэта 2 будет одновременно играть две роли, а именно отражать влияние второго фактора и мнимый эффект третьего фактора, который определяется способностью имитировать поведение третьего фактора вторым фактором и,собственно, чистым эффектом влияния третьего фактора на объясняемую переменную.Все это порождает смещение оценок бэточек, а те в свою очередь делают некорректным результат оценивания стандартной ошибки, что уже в свою очередь ведет к смещению Т-статистик, а это черевато тем, что какой-нибудь важный в реальности фактор при проверке гипотез станет незначимым, что может привести к очень большим проблемам мирового масштаба.</p>
+<p>Формально это записывается таким образом при “неучете важного фактора” <span class="math inline">\(\hat{\beta_i}=\beta_i+ \beta_j\times \frac{\hat{cov}(x_i,x_j)}{\hat{var}(x_j)}\)</span> и если ковариация между иксами или сама бета пропущенного фактора равны нулю, то оценка будет несмещенной, потому что мнимого следа не будет.</p>
 <p>Поэтому, чтобы даже в 2 ночи правильно выбирать факторы для регрессий, был разработан ряд тестов.</p>
 <p>Давай рассмотрим самый популярный тест - тест Рамсея или RESET-test.</p>
 <p>Этот тест отвечает на вопрос, а надо ли включать в регрессию еще факторы или может уже все нужные учтены?</p>
