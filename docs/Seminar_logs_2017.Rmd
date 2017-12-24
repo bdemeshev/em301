@@ -495,7 +495,7 @@ $\frac{y'y-(y'y-\hat{\beta}'X'y-y'X\hat{\beta}+\hat{\beta}'*X'X\hat{\beta})}{y'y
 
 $\frac{\hat{\beta}'(X'y-X'X\hat{\beta})+y'X\hat{\beta}}{y'y}=$
 
-$\frac{(y'X\hat{\beta})'}{y'y}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}$
+$\frac{(n-1)(y'X\hat{\beta})'}{(n-1)y'y}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}$
 
 Поэтому наш фактор $x_i$ объясняет долю $\frac{\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}}{R^2}$ в регрессии 
 
