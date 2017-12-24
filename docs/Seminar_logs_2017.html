@@ -435,6 +435,15 @@ $(document).ready(function () {
 <p><span class="math inline">\(R^2=1-\frac{\sum\limits_{i=1}^n \hat{u}(\hat{\beta_0}...\beta_{k})}{\sum\limits_{i=1}^n(y-\overline{y})^2}\)</span></p>
 <p><span class="math inline">\(R^2=1-\frac{\sum\limits_{i=1}^n \hat{u}(\hat{\beta_0}...\beta_{k+1})}{\sum\limits_{i=1}^n(y-\overline{y})^2}\)</span></p>
 <p>Если решить задачу максимизации для двух таких <span class="math inline">\(R^2\)</span>, то окажется, что второй <span class="math inline">\(R^2\)</span> не уменьшится. Проверь это сам, а то вдруг я тебя обманываю.</p>
+<p>А пока поговорим про факторное разложение <span class="math inline">\(R^2\)</span>. Сейчас мы будем работать в матриах, напомню, чтобы получить вектор, который состоит из квадратов каких-то велечин, нужно трансонированный вектор умножитm на себя.</p>
+<p><span class="math inline">\(R^2=\frac{ESS}{TSS}=\)</span></p>
+<p><span class="math inline">\(\frac{TSS-RSS}{TSS}=\frac{y'y-u'u}{y'y}=\)</span></p>
+<p><span class="math inline">\(\frac{y'y-(y-\hat{y})'*(y-\hat{y})}{y'y}=\)</span></p>
+<p><span class="math inline">\(\frac{y'y-(y-X\hat{\beta})'*(y-X\hat{\beta})}{y'y}=\)</span></p>
+<p><span class="math inline">\(\frac{y'y-(y'y-\hat{\beta}'X'y-y'X\hat{\beta}+\hat{\beta}'*X'X\hat{\beta})}{y'y}=\)</span></p>
+<p><span class="math inline">\(\frac{\hat{\beta}'(X'y-X'X\hat{\beta})+y'X\hat{\beta}}{y'y}=\)</span></p>
+<p><span class="math inline">\(\frac{(y'X\hat{\beta})'}{y'y}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}\)</span></p>
+<p>Поэтому наш фактор <span class="math inline">\(x_i\)</span> объясняет долю <span class="math inline">\(\frac{\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}}{R^2}\)</span> в регрессии</p>
 <hr />
 <p>Как мы уже знаем, чем больше <span class="math inline">\(R^2\)</span>, тем по идее наша модель лучше описывает реальность, то есть напихать <del>доф</del> очень много факторов, то даже при единичном значении <span class="math inline">\(R^2\)</span> модель будет плохой, поэтому умные люди придумали корректировать коэффициент детерминации регрессии на число степеней свободы и назвали его <span class="math inline">\(R_{adj}\)</span>.</p>
 <p><span class="math inline">\(R_{adj}=\overline{R^2}=1- \frac{RSS/(n-k-1)}{TSS/(n-1)}\)</span></p>
