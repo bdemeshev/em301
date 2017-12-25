@@ -495,9 +495,11 @@ $\frac{y'y-(y'y-\hat{\beta}'X'y-y'X\hat{\beta}+\hat{\beta}'*X'X\hat{\beta})}{y'y
 
 $\frac{\hat{\beta}'(X'y-X'X\hat{\beta})+y'X\hat{\beta}}{y'y}=$
 
+Тут магия линейной алгебры (Просто в лоб и последовательно совешаются арифмитические дейстрия с матрицами, а потом числитель и знеменатель делятся на $(n-1)$. Зачем? А вот смотри... )
+
 $\frac{(n-1)\sum\limits_{i=1}^k((y-\overline{y})(x_i-\overline{x})\hat{\beta_i})}{(n-1)\sum\limits_{i=1}^k(y-\overline{y})^2}=\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}$
 
-Поэтому наш фактор $x_i$ объясняет долю $\frac{\frac{\sum\limits_{i=1}^k\times \hat{cov}(x_i,y)}{\hat{var}(y)}}{R^2}$ в регрессии 
+Поэтому наш фактор $x_i$ объясняет долю $\frac{\frac{\hat{cov}(x_i,y)}{\hat{var}(y)}}{R^2}$ в регрессии 
 
 ***
 
