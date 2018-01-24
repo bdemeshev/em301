@@ -1,4 +1,7 @@
 # data goo.gl/Pbgo7Y
+# all files goo.gl/2Y1yrV
+# form for emails: goo.gl/YdZYgd
+
 library(tidyverse)
 library(rio)
 library(lmtest)
@@ -67,3 +70,75 @@ model_2 <- lm(data = flats3, price ~ livesp + kitsp + othersp + totsp)
 summary(model_2)
 
 
+# list is a bag of junk!
+mylist <- list(a = 5, model = model_1, v = c(1, 2, 3, 7))
+
+mylist$v
+mylist[[3]]
+
+mylist[["model"]]
+mylist$model
+
+summary_2 <- summary(model_2)
+summary_2[["adj.r.squared"]]
+summary_2[["fstatistic"]][["value"]]
+
+# group_by and regressions :)
+reg_table <- group_by(flats3, code) %>%
+  do(model = lm(data = ., price ~ livesp + kitsp + othersp))
+
+reg_table
+
+# working with lists :)
+m2 <- reg_table$model[[2]]
+# structure of a list
+str(m2)
+
+# extract second coefficient:
+m2$coefficients[2]
+m2[["coefficients"]][2]
+
+# all coefficients:
+m2$coefficients
+attr(m2$coefficients, "names")
+
+# get the class of an object
+class(m2)
+
+reg_table2 <- mutate(reg_table, 
+                     beta_hat = map_dbl(model, ~ .$coefficients[2]))
+# ??? ??? ???
+
+reg_table$beta_hat <- map_dbl(reg_table$model, ~ .$coefficients[2])
+
+extract_r2 <- function(model) {
+  model_summ <- summary(model)
+  r2 <- model_summ[["r.squared"]]
+  return(r2)
+}
+
+# test a function on one model
+extract_r2(model_1)
+
+# apply a function to all models
+reg_table$r2 <- map_dbl(reg_table$model, ~ extract_r2(.))
+
+reg_table
+
+# confidence intervals
+confint(model_1, level = 0.9)
+
+# compare two nested models using F-test
+glimpse(flats3)
+model_big <- lm(data = flats3, price ~ livesp + kitsp + othersp + 
+                  floor + walk + brick)
+# H0: beta_floor = beta_walk = beta_brick = 0
+model_1 <- lm(data = flats3, price ~ livesp + kitsp + othersp)
+
+# F-test in R
+waldtest(model_1, model_big)
+# conclusion: big model is preferred            
+
+# pick up RSS
+deviance(model_1)
+deviance(model_big)
