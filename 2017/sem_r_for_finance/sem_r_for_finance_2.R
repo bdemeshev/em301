@@ -36,3 +36,23 @@ flats3 <- mutate(flats2, othersp = totsp - livesp - kitsp)
 flats4 <- filter(flats3, price > mean(price))
 
 # filter flats in zone 1 of moscow (center), look at the code variable
+flats5 <- filter(flats3, code == 1)
+
+# 3. selecting variables
+flats6 <- select(flats3, price, totsp, livesp, kitsp)
+# drop some variables
+flats7 <- select(flats3, -n, -floor)
+
+
+# small remark on nesting functions :)
+log(cos(0))
+0 %>% cos %>% log
+
+# 4. group by
+flats8 <- group_by(flats3, code) %>% 
+  summarise(average_price = mean(price), n_flats = n()) %>%
+  arrange(average_price)
+flats8
+
+flats8$average_price
+
