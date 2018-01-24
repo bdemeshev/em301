@@ -48,11 +48,22 @@ flats7 <- select(flats3, -n, -floor)
 log(cos(0))
 0 %>% cos %>% log
 
-# 4. group by
+# 4. group by and arranging
 flats8 <- group_by(flats3, code) %>% 
   summarise(average_price = mean(price), n_flats = n()) %>%
   arrange(average_price)
 flats8
 
 flats8$average_price
+
+options(digits = 6)
+
+# linear regression
+model_1 <- lm(data = flats3, price ~ livesp + kitsp + othersp)
+summary(model_1)
+
+# strict linear dependancy in regressors
+model_2 <- lm(data = flats3, price ~ livesp + kitsp + othersp + totsp)
+summary(model_2)
+
 
