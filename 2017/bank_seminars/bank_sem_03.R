@@ -2,6 +2,8 @@ library(tidyverse)
 library(rio)
 library(lmtest)
 
+# данные: goo.gl/4JQ9kM
+
 # если знаю, где лежит файл
 flats <- import("C:/Users/student/Downloads/flats_moscow.txt")
 flats <- import("D:\\flats_moscow.txt")
