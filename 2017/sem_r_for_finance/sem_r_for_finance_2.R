@@ -84,8 +84,12 @@ summary_2[["adj.r.squared"]]
 summary_2[["fstatistic"]][["value"]]
 
 # group_by and regressions :)
+# important!!!! DO NOT FORGET ungroup()!!!
 reg_table <- group_by(flats3, code) %>%
-  do(model = lm(data = ., price ~ livesp + kitsp + othersp))
+  do(model = lm(data = ., price ~ livesp + kitsp + othersp)) %>%
+  ungroup()
+# important!!!! DO NOT FORGET ungroup()!!!
+# otherwise mutate + map will not work later!!!
 
 reg_table
 
@@ -105,11 +109,11 @@ attr(m2$coefficients, "names")
 # get the class of an object
 class(m2)
 
+
 reg_table2 <- mutate(reg_table, 
                      beta_hat = map_dbl(model, ~ .$coefficients[2]))
-# ??? ??? ???
-
-reg_table$beta_hat <- map_dbl(reg_table$model, ~ .$coefficients[2])
+# Everything is fine with this line. 
+# The problem during the class arised because reg_table was grouped data frame.
 
 extract_r2 <- function(model) {
   model_summ <- summary(model)
@@ -120,8 +124,11 @@ extract_r2 <- function(model) {
 # test a function on one model
 extract_r2(model_1)
 
-# apply a function to all models
-reg_table$r2 <- map_dbl(reg_table$model, ~ extract_r2(.))
+# extract all R^2
+reg_table3 <- mutate(reg_table, 
+                     r2 = map_dbl(model, ~ extract_r2(.))
+
+
 
 reg_table
 
