@@ -2,6 +2,8 @@ library(tidyverse)
 library(rio)
 library(lmtest)
 
+# данные goo.gl/4JQ9kM
+
 # если я не знаю, где лежит файл
 file.choose()
 
