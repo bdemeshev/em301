@@ -1,0 +1,57 @@
+---
+title: "Very important research"
+author: "Winnie the Pooh"
+output:
+  html_document: default
+  word_document: default
+lang: en-GB
+---
+
+# Chapter 1: Preliminary data analysis
+
+Let's attach some packages
+```{r, message=FALSE}
+library(tidyverse)
+library(rio)
+library(broom)
+library(DT)
+library(texreg)
+```
+
+Let's plot the diamonds dataset
+```{r, echo=FALSE}
+qplot(data = diamonds, x = carat, y = price) + 
+  xlab("Weight of a diamond (carat)") +
+  ylab("Price of a diamond (dollars)") +
+  ggtitle("Built-in dataset")
+```
+
+My data set contains `r nrow(diamonds)` observations.
+
+Today logarithm of five is equal to `r log(5)`.
+
+# Chapter 2: Estimate models
+
+```{r}
+model_1 <- lm(data = diamonds, price ~ carat)
+model_2 <- lm(data = diamonds, price ~ carat + x +  y + z)
+```
+
+```{r}
+summary(model_2)
+```
+
+Let's look at our data interactively
+```{r, results='asis'}
+datatable(diamonds)
+```
+
+Let's compare two models:
+```{r, results='asis'}
+htmlreg(list(model_1, model_2))
+```
+
+
+\[
+\sqrt{x^2 + y^2}  = c
+\]
