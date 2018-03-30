@@ -14,7 +14,7 @@ No previous knowledge of programming is assumed.
 
 We cover standard topics as linear regression and logistic regression. 
 We also include topics usually omitted from introductory econometrics courses:
-LASSO, classification trees, random forest, clasterisation and dimensionality reduction. 
+LASSO, classification trees, random forest, clusterisation and dimensionality reduction. 
 
 
 Prospective students are strongly encouraged 
@@ -68,15 +68,15 @@ Principal component method.
 Singular value decomposition approach (if time permits).
 Stochastic neighborhood embedding.
 
-8. Clasterisation techniques
+8. Clusterisation techniques
 
-K-means clasterisation.
+K-means clusterisation.
 K-means regression.
-Hierarchical clasterisation.
+Hierarchical clusterisation.
 
 ## Grading policy
 
-Four mini-courses at datacamp 25% each or two hands-on toy dataset analyses 50% each.
+Four practice minicourses at datacamp — 40%, final written exam — 60%.
 
 ## Literature
 
