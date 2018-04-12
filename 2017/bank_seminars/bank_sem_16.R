@@ -37,3 +37,4 @@ y_ma1 <- arima.sim(n = 200,
 ggtsdisplay(y_ma1)
 
 
+
