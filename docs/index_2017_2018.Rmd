@@ -1,5 +1,5 @@
 ---
-title: "Эконометрика, em301. Сезон 2018-2019"
+title: "Эконометрика, em301. Сезон 2017-2018"
 date: "`r format(Sys.time(), '%d.%m.%Y')`"
 output: html_document
 lang: ru-RU
@@ -12,10 +12,10 @@ lang: ru-RU
 Жаль, что в вышке пока нет системы коротких названий курсов. Вот я заранее застолбил EM301. Раз на третьем курсе, значит 300, а раз самый важный курс — значит 1. :)
 
 
-* Текущие оценки [ИП](https://docs.google.com/spreadsheets/d/14Q-8sBDcWKXh4Z4z9Py1H7dbKioen8hLLxM3HjDcA_s/)
+* Текущие оценки [всех групп](https://docs.google.com/spreadsheets/d/e/2PACX-1vQOnO--pLbo_CTEeP3u0lPh3_jmXASTBwBrNZ8inmpggZsGR5QfSWVXxwNdMg75_Srjp3jKO1dPmZcZ/pubhtml)
 * [Листки к семинарам](https://github.com/bdemeshev/metrics_pro/raw/master/metrics_pro.pdf) Бориса Демешева
 * [Контрольные работы прошлых лет](https://github.com/bdemeshev/metrics_hse_exams/raw/master/metrics_hse_exams.pdf): плюс немного теории
-* [группа-телеграм](https://t.me/joinchat/DtwHDEVeP5ankEnNY6ul2w)
+* [gitter-чат](https://gitter.im/hse_em301/Lobby)
 
 ## Компьютерное
 * Инструкция по [установке STAN](http://bdemeshev.github.io/em301/r_stan_installation/r_stan_installation.html) от Андрея Горюшева
@@ -27,17 +27,32 @@ lang: ru-RU
 ## Логи семинаров (исследовательский поток)
 
 
-[Амбициозный план семинаров](https://github.com/bdemeshev/em301/blob/master/plan_2.Rmd)
+Помощь [студенту ИП и БП](http://bdemeshev.github.io/em301/Seminar_logs_2017.html) :)
 
+
+#### Семинар 7. 16 октября 2017
+
+* [Установка R, Rstudio](https://bdemeshev.github.io/installation/r/R_installation.html), [Rmd-файл beda](https://github.com/bdemeshev/em301/raw/master/2017/sem_07/beda.Rmd).
+* До 1го ноября пройти курс [Data Manipulations with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)
+
+#### Семинар 1. 4 сентября 2017
+
+## Логи семинаров (базовый поток)
+
+#### Семинар 7. 16 октября 2017
+
+* [Установка R, Rstudio](https://bdemeshev.github.io/installation/r/R_installation.html), [Rmd-файл vorchalka](https://github.com/bdemeshev/em301/raw/master/2017/sem_07/vorchalka.Rmd).
+* До 1го ноября пройти курс [Data Manipulations with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)
+
+#### Семинар 1. 4 сентября 2017
 
 ## Литература и ссылки
 
 * [Официальная программа](https://www.hse.ru/edu/courses/205507541) курса
 * Программа моей мечты
-* Логи семинаров [2012-2013](https://github.com/bdemeshev/em301/wiki/wiki_2012_2013), [2013-2014](https://github.com/bdemeshev/em301/wiki/wiki_2013_2014), [2014-2015](http://bdemeshev.github.io/em301/index_2014_2015.html), [2015-2016](http://bdemeshev.github.io/em301/index_2015_2016.html), [2016-2017](http://bdemeshev.github.io/em301/index_2016_2017.html),
-[2017-2018](http://bdemeshev.github.io/em301/index_2016_2017.html)
+* Логи семинаров [2012-2013](https://github.com/bdemeshev/em301/wiki/wiki_2012_2013), [2013-2014](https://github.com/bdemeshev/em301/wiki/wiki_2013_2014), [2014-2015](http://bdemeshev.github.io/em301/index_2014_2015.html), [2015-2016](http://bdemeshev.github.io/em301/index_2015_2016.html), [2016-2017](http://bdemeshev.github.io/em301/index_2016_2017.html)
 * Логи лекций [2015-2016](http://bdemeshev.github.io/em301/log_lectures_2015.html)
-* Конспекты семинаров [2016-2017](http://bdemeshev.github.io/em301/notes_2016/), [2014-2015](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун), [частично 2017](http://bdemeshev.github.io/em301/Seminar_logs_2017.html)
+* Конспекты семинаров [2016-2017](http://bdemeshev.github.io/em301/notes_2016/), [2014-2015](https://github.com/bdemeshev/em301/raw/master/2014/ec301_Alex_notes.pdf) с дополнениями (автор: Александр Левкун)
 * Частичные видео-записи семинаров [2013-2014](https://vimeo.com/album/2517754)
 
 
