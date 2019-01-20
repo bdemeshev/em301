@@ -121,6 +121,7 @@ base + labs(x = "Масса бриллианта в каратах",
 # домашка:
 # зарегаться на datacamp.com
 # внести datacamp-мейл на tiny.cc/7hpb2y
+# пройти курсы
 # Intro to tidyverse
 # Communicating with data in tidyverse
 # дедлайн: 10 февраля 2019, 20:35
