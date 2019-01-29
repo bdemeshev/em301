@@ -1,0 +1,119 @@
+---
+title: "Untitled"
+author: "Winnie the Pooh"
+date: "1/24/2019"
+output: html_document
+lang: ru-RU
+editor_options: 
+  chunk_output_type: console
+---
+
+Hi everyone!
+
+Привет всем!
+
+# Introduction
+
+In this **important research** _we will_...
+
+# Main part
+
+\[
+r = \sqrt{x^2 + y^2}
+\]
+
+Here is the list:
+
+1. First point
+1. Second point
+1. Third point
+
+Code - Insert chunk
+
+```{r, message=FALSE, echo=TRUE}
+library(tidyverse) # data manipulations
+library(skimr) # summary statistics
+library(texreg) # beautiful tables to compare models
+library(lmtest) # tests in linear models
+library(estimatr) # regression with robust se
+```
+
+Let's estimate some OLS models with robust standart errors and make a report.
+
+```{r}
+model_a = lm_robust(data = diamonds, price ~ carat)
+model_b = lm_robust(data = diamonds, price ~ carat + x + y + z + table)
+```
+
+Each model can be summarized separately:
+```{r}
+summary(model_b)
+```
+Create one table summarizing results from both regressions:
+```{r, results='asis'}
+htmlreg(list(model_a, model_b))
+```
+
+No problem with plots
+```{r}
+qplot(data = diamonds, x = carat, y = price, color = color) + 
+  facet_wrap(~ cut) + 
+  labs(x = "Weight of a diamond in carats",
+       y = "Price in dollars",
+       title = "Price of 50000+ diamonds")
+```
+
+Let's download russian monthly wages:
+```{r}
+library(sophisthse)
+data = sophisthse("WAG_M")
+```
+
+Look at what we have downloaded:
+```{r}
+head(data)
+```
+
+Let's do forecasting
+```{r}
+library(forecast)
+```
+
+Let's use auto-arima model:
+```{r}
+y = data[, 1] # select first column!
+model_arima = auto.arima(y)
+model_arima
+```
+
+Do forecasts
+```{r}
+future_arima = forecast(model_arima, h = 24)
+future_arima
+autoplot(future_arima)
+```
+
+Let's use TBATS model
+```{r}
+model_tbats = tbats(y)
+model_tbats
+future_tbats = forecast(model_tbats, h = 24)
+future_tbats
+autoplot(future_tbats)
+```
+
+Let's beautify a table with forecasts!
+```{r}
+library(huxtable)
+huxtable(future_tbats)
+```
+
+
+
+
+
+
+
+
+
+
