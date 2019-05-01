@@ -1,127 +1,61 @@
-/*.md~
-/*.txt~
-/.gitignore~
-/em301_r.Rmd~
-/log_file.txt
-/NA
-/*.aux
-/em301_theory.log
-/em301_theory.fdb_latexmk
-/em301_theory.fls
-/em301_theory.out
-/em301_theory.pyg
-/em301_theory.synctex.gz
-/em301_theory.tdo
+.idea/
+session.inp
+
+*-concordance.tex
+*.aux
+*.log
+*.toc
+*.fdb_latexmk
+*.fls
+*.amc
+*.blg
+*.out
+*.pyg
+*.run.xml
+*.idx
+*.synctex.gz
+*.tdo
 /*.R~
 /*.csv~
-/*.Rhistory
+.Rhistory
 /regression_in_R.html
 /regression_in_R.md
 /em301_theory.lyx
 /*.Rdata
 /.RData
 
-em301_pset_v2/dollar_test.log
 
 em301_pset_v2/dollar_test.Rnw
-
-em301_pset_v2/dollar_test.aux
-
-em301_pset_v2/dollar_test.out
-
 em301_pset_v2/dollar_test.pdf
 
 2013/kr_04/kr_04.tex
 
-*.aux
-
-2013/kr_04/rk_04.log
-
-*.out
-
-2013/kr_04/rk_04.synctex.gz
-
 2013/kr_04/rk_04.tex
 
 em301_pset_v2/chapters/em1_pset_v2.tex
-
 em301_pset_v2/em1_pset_v2.pdf
 
 
 
-em301_pset_v2/solutions.idx
-
-em301_pset_v2/solutions.log
-
-em301_pset_v2/solutions.synctex.gz
 
 em301_pset_v2/solutions.tex
 
-em301_pset_v2/solutions.toc
 
 em301_pset_v2/zadachnik_po_ekonometrike.zip
-
-2013/kr_ml_2014_02/kr_ml.blg
-
-2013/kr_ml_2014_02/kr_ml.log
-
-2013/kr_ml_2014_02/kr_ml.synctex.gz
-
-em301_pset_v2/chapters/020_ols_2_no_matr.log
 
 em301_pset_v2/zadachnik_po_ekonometrike.pdf
 
 em301_pset_v2/chapters/020_ols_2_no_matr.tex
 
-em301_pset_v2/texput.log
-
-em301_pset_v2/texput.log
-
-2013/ht_rlms/ht_rlms.log
-
-2013/ht_rlms/ht_rlms.synctex.gz
 
 2013/ht_rlms/ht_rlms.tex
-
-2013/ht_rlms/ht_rlms-concordance.tex
-
-2013/binst_metrix_exam_14/binst_metr_exam_14.log
-
-2013/binst_metrix_exam_14/binst_metr_exam_14.synctex.gz
-
-2013/binst_ts_exam_14/binst_ts_exam_14.log
-
-2013/binst_ts_exam_14/binst_ts_exam_14.synctex.gz
-
-2013/kr_hetero/kr_hetero.log
-
-2013/kr_hetero/kr_hetero.synctex.gz
-
-2013/kr_ml_2/kr_ml2.log
-
-2013/kr_ml_2/kr_ml2.synctex.gz
-
-em301_pset_v2/em1_pset_solo.idx
-
-em301_pset_v2/em1_pset_solo.log
-
-em301_pset_v2/em1_pset_solo.synctex.gz
 
 em301_pset_v2/em1_pset_solo.tex
 
 R_cycle/figure/*.*
 
 
-
-2013/ht_titanic/ht_titanic.log
-
-2013/ht_titanic/ht_titanic.synctex.gz
-
 R_cycle/03_logit_regression.html
-
-
-
-
 
 
 
@@ -135,17 +69,9 @@ R_cycle/figure/unnamed-chunk-4.png
 
 R_cycle/figure/unnamed-chunk-5.png
 
-em301_pset_v2/chapters/120_series.log
-
-buza/topics/buza_2014.synctex.gz
-
-buza/topics/buza_2014.log
 
 exam_project/Untitled.R
 
-buza/buza_pamiatka.log
-
-buza/buza_pamiatka.synctex.gz
 
 buza/buza_pamiatka.tex
 
@@ -159,37 +85,8 @@ buza/buza_pamiatka.pdf
 
 2013/sem_01_rnw_demo/figure/unnamed-chunk-22.png
 
-2014/kr_01/kr_01.log
-
-2014/kr_01/kr_01.synctex.gz
-
 exam_project/em301_exam_14_retake.tex
 
-em301_pset_v2/errata/metrics_errata.blg
-
-em301_pset_v2/errata/metrics_errata.log
-
-em301_pset_v2/errata/metrics_errata.synctex.gz
-
-2014/kr_02/kr_02.synctex.gz
-
-2014/kr_02/kr_02.log
-
-2014/kr_02/kr_02-concordance.tex
-
-em301_pset_v2/solutions_only/solutions.idx
-
-em301_pset_v2/solutions_only/solutions.log
-
-em301_pset_v2/solutions_only/solutions.synctex.gz
-
-em301_pset_v2/solutions_only/solutions.toc
-
-em301_pset_v2/problems_only/em1_pset_solo.synctex.gz
-
-em301_pset_v2/problems_only/em1_pset_solo.log
-
-em301_pset_v2/problems_only/em1_pset_solo.idx
 em301_pset_v2/solutions_only/figure/*.*
 .Rproj.user
 
@@ -209,45 +106,10 @@ em301_pset_v2/solutions_only/figure/*.*
 
 2014/binst_sem_01/binst_sem_01.Rproj
 
-2014/ht_rlms/ht_rlms_package.log
-
-2014/ht_rlms/ht_rlms_package.synctex.gz
-
 2014/ht_rlms/ht_rlms_package.tex
-
-2014/kr_03/kr_03i.log
-
-2014/kr_03/kr_03i.synctex.gz
-
-2014/kr_03/kr_03b.log
-
-2014/kr_03/kr_03b.synctex.gz
-
-2014/kr_03/kr_03i2.log
-
-2014/kr_03/kr_03i2.synctex.gz
-
-2014/midterm/14_metrics_midterm.log
-
-2014/midterm/14_metrics_midterm.synctex.gz
-
-metrics_exams/metrics_exams.log
-
-metrics_exams/metrics_exams.synctex.gz
-
-metrics_exams/metrics_exams.toc
 
 metrics_exams/metrics_exams.tex
 
-metrics_exams/metrics_exams.bbl
-
-metrics_exams/metrics_exams.bcf
-
-metrics_exams/metrics_exams.bib
-
-metrics_exams/metrics_exams.blg
-
-metrics_exams/metrics_exams.run.xml
 
 2014/midterm/14_metrics_midterm_retake.tex
 
@@ -257,9 +119,6 @@ metrics_exams/metrics_exams.run.xml
 
 2014/midterm/14_metrics_midterm_retake.pdf
 
-2014/midterm/14_metrics_midterm_comission.log
-
-2014/midterm/14_metrics_midterm_comission.synctex.gz
 
 2014/midterm/14_metrics_midterm_comission.tex
 
@@ -267,35 +126,18 @@ metrics_exams/metrics_exams.run.xml
 
 2014/kr_05_ml/kr_05_ml_files/figure-latex/unnamed-chunk-1-2.pdf
 
-2014/kr_05_ml/kr_05_ml.log
-
-2014/kr_05_ml/kr_05_ml.synctex.gz
-
 2014/kr_05_ml/kr_05_ml.tex
 
-2014/binst_ht_rlms/binst_ht_rlms-concordance.tex
-
-2014/binst_ht_rlms/binst_ht_rlms.log
-
-2014/binst_ht_rlms/binst_ht_rlms.synctex.gz
 
 2014/binst_ht_rlms/binst_ht_rlms.tex
 
-metrics_exams/metrics_exams-concordance.tex
-
 buza/demotivators/buza_demotivators.zip
 
-*.log
-
-2015/kr_01_recall_all/kr_01_recall_all.synctex.gz
 
 2015/ht_01_hrusha/ht_01_hrusha.tex
 
-2015/retake_of_2014/em301_ret_2014.synctex.gz
 
 2015/all_J.csv
-
-2015/kr_02_regression/kr_02_R_ex.synctex.gz
 
 2015/kr_02_regression/kr_02_regression.tex
 
@@ -307,22 +149,11 @@ buza/demotivators/buza_demotivators.zip
 
 2015/ht_rlms/ht_rlms_2015.tex
 
-2015/ht_rlms/ht_rlms_2015.synctex.gz
-
-2015/ht_rlms/ht_rlms_2015-concordance.tex
-
 2015/midterm/15_metrics_midterm.tex
 
-2015/ht_titanic/ht_titanic.fls
-
-2015/ht_titanic/ht_titanic.fdb_latexmk
 2015/ht_titanic_received/
 
 2015/final_exam/demo_a.tex
-
-2015/final_exam/demo_a.amc
-
-*.amc
 
 2015/final_exam/combat_v1.tex
 
@@ -354,14 +185,12 @@ backslash_xtable/missfont.log
 
 2016/retake_2015/retake_2015_c.tex
 
-2015/final_exam/demo_a-concordance.tex
 
 2016/vector_diff/vector_differentiation.html
 
 2016/stud_notes/_book
 
 2016/stud_notes/_bookdown_files
-
 
 
 2016/comission/.ipynb_checkpoints/Untitled-checkpoint.ipynb
@@ -416,9 +245,6 @@ kr_01/kr_01_var_4.tex
 
 kr_01/kr_01_var_5.tex
 
-2016/kr_01/kr_01_retake-concordance.tex
-
-2016/kr_01/kr_01_retake.synctex.gz
 
 2016/kr_01/kr_01_retake.tex
 
@@ -434,9 +260,6 @@ kr_01/kr_01_var_5.tex
 
 metrics_exams/junk.txt
 
-2016/kr_02_brutal/kr_02_brutal-concordance.tex
-
-2016/kr_02_brutal/kr_02_brutal.synctex.gz
 
 2016/kr_02_brutal/kr_02_brutal.tex
 
@@ -454,7 +277,6 @@ midterm_retake2/junk.txt
 
 midterm_retake2/midterm_combat_retake2.tex
 
-2016/stan_models/.Rhistory
 
 2016/midterm_commission/midterm_combat_comission.tex
 
@@ -462,9 +284,6 @@ midterm_retake2/midterm_combat_retake2.tex
 
 2016/midterm_commission/com.zip
 
-2016/midterm_commission/.Rhistory
-
-2016/.Rhistory
 
 2016/kr_03/kr_03_v1.tex
 
@@ -472,25 +291,9 @@ midterm_retake2/midterm_combat_retake2.tex
 
 2016/kr_03/kr_03_v3.tex
 
-2016/kr_03_brutal/kr_03_brutal-concordance.tex
-
-2016/kr_03_brutal/kr_03_brutal.synctex.gz
 
 2016/kr_03_brutal/kr_03_brutal.tex
 
-2016/buza_17_spring/buza_2017-concordance.tex
-
-2016/buza_17_spring/buza_2017.synctex.gz
-
-2016/kr_01_retake/kr_01_retake-concordance.tex
-
-2016/kr_03_retake/kr_03_retake.synctex.gz
-
-2016/kr_04_final_exam_demo/final_demo-concordance.tex
-
-2016/kr_04_final_exam_demo/final_demo.synctex.gz
-
-2016/kr_04_final_exam/final_v_01-concordance.tex
 
 2016/kr_04_final_exam/final_v_01.tex
 
@@ -508,22 +311,13 @@ midterm_retake2/midterm_combat_retake2.tex
 
 2016/kr_02_midterm_exam/midterm_combat_v_04.tex
 
-2016/kr_03_retake/kr_03_retake-concordance.tex
 
 2016/kr_03_retake/kr_03_retake.tex
 
 2016/buza_17_spring/buza_2017.tex
 
-sem_problems/.Rhistory
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery.fdb_latexmk
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery.fls
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery.xdv
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery_v.fdb_latexmk
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery_v.fls
-2017/sr_02_matrix_geometry/sr_02_matrix_geomery_v.xdv
 2017/2017_11_13_seminar_R/2017_11_13_lm_test_b.html
 2017/2017_11_13_seminar_R/2017_11_13_lm_test.html
 2017/2016_17_retake_2/2016_17_retake_2.tex
 2017/2016_17_retake_1/2016_17_retake_1.tex
 
-.Rhistory

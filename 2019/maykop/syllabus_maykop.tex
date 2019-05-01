@@ -1,0 +1,313 @@
+\documentclass[11pt,russian,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+    \setmainfont[]{Arial}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Программа по эконометрике},
+            pdfauthor={Борис Демешев},
+            colorlinks=true,
+            linkcolor=blue,
+            citecolor=blue,
+            urlcolor=blue,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=russian]{babel}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[]{russian}
+\fi
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Программа по эконометрике}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Борис Демешев}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-04-04}
+
+\newfontfamily{\cyrillicfonttt}{Arial}
+\newfontfamily{\cyrillicfont}{Arial}
+\newfontfamily{\cyrillicfontsf}{Arial}
+
+\begin{document}
+\maketitle
+
+\subsection{Темы}
+
+\hypertarget{-1.-----}{%
+\subsubsection{Тема 1. Множественная регрессия без статистических
+предпосылок}\label{-1.-----}}
+
+Задача оптимизации. Правила работы с матричным дифференциалом.
+Геометрическая интерпретация. Показатели RSS, ESS, TSS, R\^{}2.
+
+\hypertarget{-2.------}{%
+\subsubsection{Тема 2. Множественная регрессия с предпосылками на
+дисперсию}\label{-2.------}}
+
+Свойства ковариационных матриц. Теорема Гаусса-Маркова с
+доказательством.
+
+\hypertarget{-3.-----}{%
+\subsubsection{Тема 3. Множественная регрессия и нормальные
+остатки}\label{-3.-----}}
+
+Тестирование гипотезы об отдельном коэффициенте. Ограниченная и
+неограниченная модель. F-тест для выбора вложенных моделей.
+
+\hypertarget{-4.-}{%
+\subsubsection{Тема 4. Гетероскедастичность}\label{-4.-}}
+
+Нахождение эффективных оценок при известной форме гетероскедастичности.
+Корректировка стандартных ошибок при неизвестной форме
+гетероскедастичности. Тест Уайта на гетероскедастичность
+
+\hypertarget{-5.---}{%
+\subsubsection{Тема 5. Метод максимального правдоподобия}\label{-5.---}}
+
+Идея метода максимального правдоподобия. Информация Фишера. Тест
+отношения правдоподобия. Тест Вальда
+
+\hypertarget{-6.---}{%
+\subsubsection{Тема 6. Модель логистической регрессии}\label{-6.---}}
+
+Предпосылки модели. Оценка коэффициентов и их стандартных ошибок.
+Интерпретация коэффициентов. Нахождение предельных эффектов.
+
+\hypertarget{-7.----}{%
+\subsubsection{Тема 7. Модели одномерных временных
+рядов}\label{-7.----}}
+
+ARIMA-модель. ETS-модель. Уравнение модели. Алгоритм подбора
+гиперпараметров. Прогнозирование в рамках модели.
+
+\subsection{Литература}
+
+\begin{itemize}
+\item
+  Никита Артамонов, Введение в эконометрику. Курс лекций.
+\item
+  Kurt Schmidheiny, Short guides on econometrics,
+  \href{http://schmidheiny.name/teaching/shortguides.htm}{schmidheiny.name/teaching/shortguides.htm}
+\item
+  Michael Creel, Econometric Lecture notes,
+  \href{http://econpapers.repec.org/paper/aubautbar/575.03.htm}{econpapers.repec.org/paper/aubautbar/575.03.htm}
+\item
+  Материалы курса эконометрики ВШЭ,
+  \href{https://bdemeshev.github.io/em301/}{bdemeshev.github.io/em301/}
+\end{itemize}
+
+\hypertarget{-}{%
+\subsection{Формула оценивания}\label{-}}
+
+Итоговая оценка = 0.4 * Домашнее задание + 0.6 * Письменный экзамен
+
+\hypertarget{--}{%
+\subsection{Пример домашнего задания}\label{--}}
+
+Пройдите курсы на datacamp:
+
+\url{https://www.datacamp.com/courses/introduction-to-the-tidyverse},
+
+\url{https://www.datacamp.com/courses/multiple-and-logistic-regression},
+
+\url{https://www.datacamp.com/courses/communicating-with-data-in-the-tidyverse},
+
+\url{https://www.datacamp.com/courses/forecasting-using-r}
+
+\hypertarget{-}{%
+\subsection{Пример экзамена}\label{-}}
+
+Задача 1.
+
+Майор пронин наблюдает хочет оценить модель \(y_t = \beta x_t + u_t\),
+величины \(u_t\) независимы с нулевым ожиданием и дисперсией
+пропорциональной \(1/x_t\). Известны наблюдения:
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\(y_t\) & 1 & 2 & 3\tabularnewline
+\midrule
+\endhead
+\(x_t\) & 1 & 1 & 2\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+ \item Оцените параметр $\beta$ с помощью МНК. Является ли оценка $\hat\beta_{ols}$ несмещённой? 
+ \item Найдите самую эффективную линейную оценку параметра $\beta$, $\hat\beta_{eff}$? 
+ \item Найдите стандартную ошибку $se(\hat\beta_{eff})$.
+\end{enumerate}
+
+Задача 2.
+
+Билл Гейтс оценил регрессию \(\hat Y_i = 4 + 0.4 X_i + 0.9 W_i\),
+\(RSS = 520\), \(R^2 = 2/15\).
+
+Про матрицу регрессоров \(X\) известно, что \[
+X'X = \begin{pmatrix}
+    29 & 0 & 0 \\
+    0 & 50 & 10 \\
+    0 & 10 & 80 \\
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+ \item Сколько наблюдений было у Билла Гейтса?
+ \item Найдите выборочное среднее переменных $X$, $W$ и $Y$.
+ \item Постройте 95\%-й доверительный интервал для фактического значения зависимой переменной при $X=1$ и $W=3$.
+\end{enumerate}
+
+Задача 3.
+
+По 200 наблюдениям исследователь Иннокентий строит модель зависимости
+финального балла за метрику от числа часов подготовки для разных
+студентов.
+
+Он оценил одну и ту же модель на трёх выборках
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+выборка & уравнение & \(RSS\) & наблюдений\tabularnewline
+\midrule
+\endhead
+все студенты & \(\hat y_i = 40 + 2x_i\) & 7000 & 200\tabularnewline
+любители пиццы & \(\hat y_i = 50 + 3x_i\) & 3000 & 100\tabularnewline
+нелюбители пиццы & \(\hat y_i = 37 + 1.8x_i\) & 2000 &
+100\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+    \item Переменная $d_i$ равна 1 для любителей пиццы и 0 для остальных студентов.
+Какие оценки коэффициентов получит Иннокентий при оценке модели по всей выборке?
+    \[
+    \hat y_i = \hat \beta_1 + \hat \beta_2 x_i + \hat \beta_3 d_i + \hat\beta_4 d_i x_i
+    \]
+    \item Протестируйте гипотезу о том, что симпатия к пицце не влияет на ожидаемый балл по эконометрике.
+\end{enumerate}
+
+Задача 4.
+
+Джеймс Бонд наблюдает значения независимых случайных величин \(y_1\),
+\(y_2\), \ldots, \(y_{400}\), закон распределения которых задан
+табличкой:
+
+\begin{longtable}[]{@{}lccc@{}}
+\toprule
+\(y_i\) & 1 & 2 & 3\tabularnewline
+\midrule
+\endhead
+вероятность & \(2a\) & \(3a\) & \(1-5a\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+Из 400 наблюдений: \(100\) наблюдений равны \(1\), \(100\) наблюдений
+равны \(2\), и \(200\) наблюдений равны \(3\).
+
+\begin{enumerate}
+ \item Оцените неизвестный параметр $a$ методом моментов и методом максимального правдоподобия.
+ \item Постройте 95\%-й доверительный интервал для параметра $a$.
+\end{enumerate}
+
+Задача 5.
+
+По 200 наблюдениям исследователь Иннокентий оценил модель логистической
+регрессии для вероятности сдать экзамен по метрике: \[
+\hat P(Y_i = 1) = \Lambda(1.5 + 0.3X_i - 0.4 D_i),
+\] где \(Y_i\) --- бинарная переменная равная 1, если студент сдал
+экзамен; \(X_i\) --- количество часов подготовки студента; \(D_i\) ---
+бинарная переменная равная 1, если студент любит пиццу.
+
+Оценка ковариационной матрицы оценок коэффициентов имеет вид:
+
+\[
+\begin{pmatrix}
+0.04 & -0.01 & 0 \\
+-0.01 & 0.01 & 0 \\
+0 & 0 & 0.09 \\
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+  \item Проверьте гипотезу о том, что количество часов подготовки не влияет на вероятность сдать экзамен.
+  \item Посчитайте предельный эффект увеличения каждого регрессора на вероятность сдать экзамен для студента не любящего пиццу и готовившегося 24 часа.
+Кратко, одной-двумя фразами, прокомментируйте смысл полученных цифр.
+ \item Постройте 95\%-й доверительный интервал для разницы вероятностей сдать экзамен двумя студентами, если оба студента готовились 20 часов, однако один любит пиццу, а второй — нет.
+  \item При каком значении $D_i$ предельный эффект увеличения $X_i$ на вероятность сдать экзамен максимален,
+  если $X_i=20$?
+\end{enumerate}
+
+
+\end{document}
