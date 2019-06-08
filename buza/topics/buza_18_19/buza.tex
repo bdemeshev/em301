@@ -1,0 +1,234 @@
+\documentclass[12pt]{article}
+
+\usepackage{hyperref} % гиперссылки
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+\usepackage{comment} % добавление длинных комментариев
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+
+\usepackage{caption} % что-то делает с подписями рисунков :)
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика}
+\chead{}
+\rhead{2018-06-04, БУЗА-VI}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos — печатает все поставленные \todo'шки
+
+
+
+\usepackage{booktabs} % красивые таблицы
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec} % что-то про шрифты?
+\usepackage{polyglossia} % русификация xelatex
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+
+\usepackage[bibencoding = auto,
+backend = biber,
+sorting = none,
+style=alphabetic]{biblatex}
+
+\addbibresource{em1_pset_v2.bib}
+
+
+\begin{document}
+
+Минимум для подготовки к БУЗЕ, \cite{creel2018econometrics} :)
+
+
+\begin{enumerate}
+
+ \item Разное :)
+ \begin{enumerate}
+   \item Математический анализ. Особо: матричный дифференциал.
+   \item Линейная алгебра. Особо: SVD, матричный дифференциал.
+   \item Теория вероятностей. Особо: дифференциальная форма вместо функции плотности. 
+   \item Математическая статистика.
+ \end{enumerate}
+
+ \item Метод Наименьших Квадратов до предположения о законе распределения $u$,
+ \cite{schmidheiny2016guides}, \cite{decrouez2018mmdm}
+
+\begin{enumerate}
+ \item МНК-картинка;
+ \item Нахождение всего-всего из $y$ и $X$;
+ \item Матрица-шляпница;
+ \item Ковариационная матрица как матрица-мать всех регрессий;
+ \item Теорема Фриша-Вау или Во;
+ \item LASSO, гребневая регрессия (ridge)
+ \item {[не успели]} Квантильная регрессия
+\end{enumerate}
+
+ \item Теорема Гаусса-Маркова,  \cite{schmidheiny2016guides}
+ \begin{enumerate}
+ \item Формулировка и доказательство с детерминистическими регрессорами;
+ \item Формулировки со стохастическими регрессорами
+ \end{enumerate}
+
+ \item МНК с нормальными ошибками,  \cite{schmidheiny2016guides}
+
+ \begin{enumerate}
+ \item Закон распределения оценок коэффициентов, $RSS$;
+ \item Проверка гипотез об отдельном коэффициенте, о регрессии в целом, о системе линейных ограничений;
+ \item Тест Чоу на стабильность коэффициентов;
+ \item Тест Чоу на прогнозную силу;
+ \end{enumerate}
+
+ \item Метод максимального правдоподобия
+
+ \begin{enumerate}
+ \item Свойства оценок;
+ \item Три теста (LM, Wald, LR);
+ \item Функции правдоподобия стандартных моделей: линейная регрессия, логит/пробит, ARMA, ETS,
+ линейная регрессия с гетероскедастичностью.
+ \end{enumerate}
+
+ \item Мультиколлинеарность;
+
+ \item Методы снижения размерности:
+ \begin{enumerate}
+   \item Метод главных компонент, \cite{decrouez2016sm}, Сингулярное разложение (SVD)
+   \item {[не успели]} t-SNE;
+ \end{enumerate}
+
+
+ \item {[не успели]} Кластеризация;
+ \begin{enumerate}
+   \item {[не успели]} Метод k-средних, \cite{decrouez2016sm}
+   \item {[не успели]} Иерархическая кластеризация
+ \end{enumerate}
+
+
+ \item Гетероскедастичность,  \cite{schmidheiny2016guides}
+ \begin{enumerate}
+ \item Определение, последствия;
+ \item Тесты, графики;
+ \item {[не успели]} Стьюдентизированные остатки;
+ \item HC оценки ковариации;
+ \item GLS и FGLS;
+ \end{enumerate}
+
+ \item Временные ряды, \cite{hyndman2014forecasting}, \cite{van2002time}.
+
+ \begin{enumerate}
+ \item Стационарный временной ряд, ACF, PACF;
+ \item ARIMA-SARIMA;
+ \item ETS;
+ \item {[не успели]} тригонометрическое моделирование сезонности; \cite{pollock2010lectures}
+ \item {[не успели]} преобразование Фурье; \cite{3blue1brown2017fourier}
+ \item {[не успели]} TBATS;
+ \item {[не успели]} DLM или модели состояние-наблюдение.
+ \item {[не успели]} Фильтр Калмана, \cite{decrouez2016sm}
+ \end{enumerate}
+
+
+ \item Логит и пробит,  \cite{schmidheiny2016guides}
+ \begin{enumerate}
+ \item Описание моделей;
+ \item Предельные эффекты;
+ \item Чувствительность, специфичность;
+ \item Кривая ROC — смотрим лекции :)
+ \end{enumerate}
+
+ \item Эндогенность,  \cite{schmidheiny2016guides}
+ \begin{enumerate}
+ \item Три примера: системы уравнений, пропущенные переменные, ошибки измерения;
+ \item IV, двухшаговый МНК;
+ \end{enumerate}
+
+ \item GMM, \cite{creel2018econometrics}
+
+ \item Модели панельных данных, \cite{schmidheiny2016guides}
+ \begin{enumerate}
+ \item  RE, FE, сквозная регрессии;
+ \item  Тест Хаусмана;
+ \end{enumerate}
+
+ \item {[не успели]} Зелёные друзья, \cite{decrouez2018mmdm}
+ \begin{enumerate}
+ \item {[не успели]} Классификационные деревья, случайный лес, градиентный бустинг;
+ \end{enumerate}
+
+ \item R или python по выбору решающего. Разрешено всем пользоваться (заготовки, интернет), кроме общения.
+ \begin{enumerate}
+ \item Описательный анализ набора данных;
+ \item Оценивание упомянутых выше моделей;
+ \end{enumerate}
+
+\end{enumerate}
+­
+\section*{Источники мудрости}
+\printbibliography[heading=none]
+
+\end{document}
