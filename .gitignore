@@ -15,6 +15,7 @@ session.inp
 *.idx
 *.synctex.gz
 *.tdo
+*.xdv
 /*.R~
 /*.csv~
 .Rhistory

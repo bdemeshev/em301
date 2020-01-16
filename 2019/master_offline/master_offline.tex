@@ -1,0 +1,341 @@
+\documentclass[12pt]{article}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amssymb, amsthm} % куча стандартных математических плюшек
+
+\usepackage{amsfonts}
+
+\usepackage{dcolumn} % 
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+
+\usepackage{hyperref} % гиперссылки
+
+\usepackage{multicol} % текст в несколько столбцов
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Эконометрика, НИУ-ВШЭ}
+\chead{экзамен}
+\rhead{2019-12-26}
+\lfoot{Вариант $\xi$}
+\cfoot{Ни пуха, ни пера!}
+\rfoot{\thepage/3}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\let\P\relax
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\tr}{trace}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+
+
+
+
+\def \putyourname{\fbox{
+    \begin{minipage}{42em}
+      Фамилия, имя, номер группы:\vspace*{3ex}\par
+      \noindent\dotfill\vspace{2mm}
+    \end{minipage}
+  }
+}
+
+\def \checktable{
+\begin{minipage}{42em}
+\begin{tabular}{|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|m{1.8cm}|}
+\hline
+Тест & 1 &  2 & 3 & 4 &  Итого \\ \hline
+&  &  &  &  & \\
+ &  &   & & & \\
+ \hline
+\end{tabular} $\leftarrow$ для проверяющего!
+\end{minipage}
+}
+
+\def \testtable{
+\begin{minipage}{42em}
+\vspace{4pt}
+
+Ответы на тест:
+
+\vspace{2pt}
+\begin{tabular}{|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|m{1cm}|}
+\hline
+1 & 2 &  3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ 
+\hline
+ &  &   &  &  &  &  &  &  &  \\ 
+ &  &   &  &  &  &  &  &  &  \\ 
+\hline
+\end{tabular}
+\end{minipage}
+
+}
+
+
+
+
+
+% [1][3] 1 = one argument, 3 = value if missing
+% эта магия создаёт окружение answerlist
+% именно в окружении answerlist записаны варианты ответов в подключаемых exerciseXX
+% просто \begin{answerlist} сделает ответы в три столбца
+% если ответы длинные, то надо в них руками сделать
+% \begin{answerlist}[1] чтобы они шли в один столбец
+\newenvironment{answerlist}[1][3]{
+\begin{multicols}{#1}
+\begin{enumerate}[label=\fbox{\emph{\Alph*}},ref=\emph{\alph*}]
+}
+{
+\end{enumerate}
+\end{multicols}
+}
+
+\newenvironment{answerlist1}{
+\begin{enumerate}[label=\fbox{\emph{\Alph*}},ref=\emph{\alph*}]
+}
+{
+\end{enumerate}
+}
+
+
+
+\excludecomment{solution} % without solutions
+
+\theoremstyle{definition}
+\newtheorem{question}{Вопрос}
+
+
+
+
+\begin{document}
+
+% \checktable
+
+\putyourname
+
+% \testtable
+
+
+\begin{enumerate}
+\item Исследователь рассматривает уравнение зависимости расходов на питание (W) от доходов (Income), с учетом сезона. Переменная сезон (S) принимает следующие значения: 1 – зима, 2 – весна, 3 – лето и 4 – осень. Исследователь предполагает, что в каждый сезон может выполняться своя линейная зависимость. 
+
+\begin{enumerate}
+    \item (2 балла) Выпишите уравнение оцениваемой модели. Укажите смысл всех включенных в модель переменных.
+    \item (2 балла) Как проверить гипотезу о единой линейной зависимости расходов на питание для всех сезонов? Выпишите аккуратно основную и альтернативную гипотезы, формулу расчета статистики и способ проверки.
+\end{enumerate}
+
+% q2 done
+\item Начинающий исследователь Елисей исследует зависимость успехов в учёбе своих однокурсников, $G_i$, от времени, которое они тратят на учёбу, $T_i$. По выборке из 100 человек он смог оценить следующую регрессию:
+\[
+\hat G_i = 30 + 6T_i
+\]
+
+Елисей был бы рад полученному результату, но тут на лекции по эконометрике ему рассказали про эндогенность и пропущенные переменные, и он решил, что в его модели эти проблемы точно есть. Изучив литературу, он узнал, что на успехи в учёбе кроме времени влияют ещё и способности студента, $A_i$, при этом способности коррелированы со временем, которое студент тратит на учёбу.
+
+\begin{enumerate}
+\item Проверьте, является ли найденная Елисеем оценка коэффициента при времени состоятельной;
+\item Если оценка не состоятельна, то предложите способ получения состоятельной оценки;
+\item Найдите асимптотическую величину смещения оценки, если $\Cov(G_i, A_i) = 6$,
+$\Cov(T_i, A_i) = 4$, $\Var(G_i) = 16$, $\Var(A_i) = 100$, $\Var(T_i) = 49$.
+\end{enumerate}
+
+
+
+
+\item По 24 наблюдениям была оценена модель:
+
+\[
+\widehat{Y}_i=15-4Z_i+3W_i
+\]
+
+Известно, что случайные ошибки нормально распределены, $RSS=180$, и
+
+\[
+(X'X)^{-1} =
+\begin{pmatrix}{}
+  0.216 & -0.112 & -0.075 \\ 
+  -0.112 & 0.119 & 0.021 \\ 
+  -0.075 & 0.021 & 0.047 \\ 
+  \end{pmatrix}
+\]
+
+
+\begin{enumerate}
+\item (1 балл) Проверьте гипотезу $H_0: \beta_Z = 0$ против $H_a: \beta_Z \neq 0$ на уровне значимости~5\%.
+\item (3 балла) Проверьте гипотезу $H_0: \beta_Z + \beta_W = 0$  против $H_a: \beta_Z + \beta_W \neq 0$ на уровне значимости~5\%.
+\item (2 балла) Выпишите использованные при проверке гипотез предпосылки о случайных ошибках модели.
+\end{enumerate}
+
+
+\newpage
+\item Исследовательница Глафира изучает зависимость спроса на молоко от цены молока и дохода семьи. В её распоряжении есть следующие переменные:
+
+\begin{itemize}
+\item $price$ — цена молока в рублях за литр
+\item $income$ — ежемесячный доход семьи в тысячах рублей
+\item $milk$ — расходы семьи на молоко за последние семь дней в рублях
+\end{itemize}
+
+В данных указано, проживает ли семья в сельской или городской местности. Поэтому Глафира оценила три регрессии: (All) — по всем данным, (Urban) — по городским семьям, (Rural) — по сельским семьям.
+
+
+\begin{tabular}{lD{.}{.}{3}D{.}{.}{3}D{.}{.}{3}}
+\toprule
+ & 
+\multicolumn{1}{c}{(All)} & 
+\multicolumn{1}{c}{(Urban)} & 
+\multicolumn{1}{c}{(Rural)}\\
+\midrule
+(Intercept)    & -1.765       & -4.059       & -0.155      \\
+               & (4.943)      & (6.601)      & (7.812)     \\
+income         &  0.308^{***} &  0.341^{***} &  0.281^{***}\\
+               & (0.052)      & (0.072)      & (0.079)     \\
+price          & -0.383^{*}   & -0.352       & -0.391      \\
+               & (0.161)      & (0.253)      & (0.221)     \\
+\midrule
+R-squared      &    0.304 &   0.356 &    0.273\\
+adj. R-squared &    0.290 &   0.325 &    0.245\\
+sigma          &    4.912 &   4.857 &    5.036\\
+F              &   21.216 &  11.593 &    9.744\\
+P-value        &    0.000 &   0.000 &    0.000\\
+RSS            & 2340.080 & 990.839 & 1318.741\\
+n observations &  100     &  45     &   55    \\
+\bottomrule
+\end{tabular}
+
+
+
+
+\begin{enumerate}
+\item (1 балл) Проверьте значимость в целом регрессии (All) на 5\%-ом уровне значимости.
+\item (2 балла) На 5\%-ом уровне значимости проверьте гипотезу, что зависимость спроса на молоко является единой для городской и сельской местности.
+\end{enumerate}
+
+
+\newpage
+
+\item Рассмотрим стационарный процесс, удовлетворяющий уравнению $Y_t = 1 + 0.6Y_{t-1} + u_t - 0.3 u_{t-1}$, 
+где $u_t$ — белый шум с $u_t \sim \cN(0; 4)$.
+
+\begin{enumerate}
+	\item Найдите $\E(Y_t)$, $\Var(Y_t)$.
+	\item Найдите первые два значения автокорреляционной и частной автокорреляционной функций.
+	\item Постройте 95\% интервальный прогноз для $Y_{101}$, если известно, что $Y_{100} = 2$, $u_{100}=1$.
+\end{enumerate}
+
+
+
+\item По 200 наблюдениям исследователь Иннокентий оценил модель логистической регрессии для вероятности
+сдать экзамен по метрике:
+\[
+\hat \P(Y_i = 1) = \Lambda(1.5 + 0.3X_i - 0.4 D_i),
+\]
+где $Y_i$ — бинарная переменная равная 1, если студент сдал экзамен;
+$X_i$ — количество часов подготовки студента; $D_i$ — бинарная переменная равная 1,
+если студент пробовал пиццу «четыре сыра» в новой столовой.
+
+Оценка ковариационной матрицы оценок коэффициентов имеет вид:
+
+\[
+\begin{pmatrix}
+0.04 & -0.01 & 0 \\
+-0.01 & 0.01 & 0 \\
+0 & 0 & 0.09 \\
+\end{pmatrix}
+\]
+
+\begin{enumerate}
+  \item Проверьте гипотезу о том, что количество часов подготовки не влияет на вероятность сдать экзамен.
+  \item Посчитайте предельный эффект увеличения каждого регрессора на вероятность сдать экзамен для студента не пробовавшего пиццу и готовившегося 24 часа.
+Кратко, одной-двумя фразами, прокомментируйте смысл полученных цифр.
+%  \item Постройте 95\%-й доверительный интервал для разницы вероятностей сдать экзамен двумя студентами, если
+%  оба студента готовились 20 часов, однако один пробовал пиццу, а второй — нет.
+  \item При каком значении $D_i$ предельный эффект увеличения $X_i$ на вероятность сдать экзамен максимален,
+  если $X_i=20$?
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+
+\end{document}
