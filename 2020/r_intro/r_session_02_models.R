@@ -93,4 +93,42 @@ screenreg(list(model_1, model_2))
 texreg(list(model_1, model_2))
 htmlreg(list(model_1, model_2))
 
+# time series forecasting
+# let's create ts object — for regular time series
+y = ts(rnorm(200, mean = 5, sd = 7), start = c(2001, 7), frequency = 12)
+y[2]
 
+data = as_tsibble(y)
+data
+
+?ARIMA
+model_table = model(data, 
+                    arma11 = ARIMA(value ~ pdq(1, 0, 1)),
+                    ma2 = ARIMA(value ~ pdq(0, 0, 2)),
+                    ar3 = ARIMA(value ~ pdq(3, 0, 0)),
+                    naive = NAIVE(value),
+                    snaive = SNAIVE(value))
+
+fcst_table = forecast(model_table, h = "2 years")
+fcst_table
+autoplot(fcst_table, data)
+
+# let's introduce ETS model on real data
+AirPassengers
+?AirPassengers
+glimpse(AirPassengers)
+AirPassengers[5]
+
+airpass = as_tsibble(AirPassengers)
+airpass = mutate(airpass, p2 = value^2, log_pass = log(value))
+airpass
+
+airpass = select(airpass, date = index, pass = value)
+airpass
+
+mtable = model(airpass, 
+    sarma_1111 = ARIMA(pass ~ pdq(1, 1, 1) + PDQ(1, 1, 1)),
+    ets_auto = ETS(pass))
+
+forecast(mtable, h = "1 year") %>% autoplot(airpass)
+mtable
