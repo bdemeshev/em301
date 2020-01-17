@@ -127,8 +127,10 @@ airpass = select(airpass, date = index, pass = value)
 airpass
 
 mtable = model(airpass, 
-    sarma_1111 = ARIMA(pass ~ pdq(1, 1, 1) + PDQ(1, 1, 1)),
-    ets_auto = ETS(pass))
+    sarima = ARIMA(pass ~ pdq(1, 1, 1) + PDQ(1, 1, 1)),
+    ets = ETS(pass ~ error("A") + trend("A") + season("A")))
 
-forecast(mtable, h = "1 year") %>% autoplot(airpass)
-mtable
+fabletools::forecast(mtable, h = "2 years")
+mtable[["ets"]][[1]]
+mtable[["sarima"]][[1]]
+
