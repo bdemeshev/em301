@@ -130,7 +130,7 @@ mtable = model(airpass,
     sarima = ARIMA(pass ~ pdq(1, 1, 1) + PDQ(1, 1, 1)),
     ets = ETS(pass ~ error("A") + trend("A") + season("A")))
 
-fabletools::forecast(mtable, h = "2 years")
+fabletools::forecast(mtable, h = "1 year")
 mtable[["ets"]][[1]]
 mtable[["sarima"]][[1]]
 
