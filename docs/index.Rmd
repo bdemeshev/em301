@@ -20,7 +20,7 @@ lang: ru-RU
 ## Компьютерное
 * Инструкция по [установке STAN](http://bdemeshev.github.io/em301/r_stan_installation/r_stan_installation.html) от Андрея Горюшева
 * [Наборы данных](https://github.com/bdemeshev/em301/wiki/Datasets)
-* [Про R](https://github.com/bdemeshev/em301/wiki/R)
+* [Про R](https://github.com/bdemeshev/r_links)
 * [LaTeX](https://github.com/bdemeshev/pr201/wiki/latex_examples)
 * [Весь используемый софт](https://github.com/bdemeshev/em301/wiki/Software)
 
