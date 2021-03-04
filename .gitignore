@@ -1,6 +1,9 @@
 .idea/
 session.inp
 
+*.xlsx
+*.xls
+
 *-concordance.tex
 *.aux
 *.log
