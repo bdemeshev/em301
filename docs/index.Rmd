@@ -69,6 +69,9 @@ lang: ru-RU
 * Страничка Ruey Tsay [с его курсами по временным рядам с R](http://faculty.chicagobooth.edu/ruey.tsay/teaching/) и названиями его книжек
 * Kevin Sheppard, [Financial Econometrics](https://www.kevinsheppard.com/MFE). Хорошо изложен GMM, VaR. Есть многомерная волатильность.
 * Kurt Schmidheiny, [Short guides on econometrics](http://schmidheiny.name/teaching/shortguides.htm)
+* Александр Цыплаков, [Лекции по экометрике](
+https://drive.google.com/file/d/1kjQwBd0ZniXI0242BU3mBcHk2FysrKei/view?fbclid=IwAR0dmugFeocvsTjeK19m0ka5ngcklop4iW_XjeZEquUv8gTd75ifj_BubeI)
+
 
 ### Мелочи:
 
